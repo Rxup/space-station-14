@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Administration.Systems;
 using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
@@ -23,7 +24,7 @@ using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests.Backmen.Body;
 
 [TestFixture]
-public sealed class BodySetupTest
+public sealed class BodySetupTest : GameTest
 {
     /// <summary>
     /// A list of species that can be ignored by this test.
@@ -34,24 +35,22 @@ public sealed class BodySetupTest
         "Monkey",
     };
 
+    public override PoolSettings PoolSettings => new()
+    {
+        Dirty = true,
+        Connected = true,
+        InLobby = false,
+    };
+
     [Test]
     public async Task InnateToolTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-            Connected = true,
-            InLobby = false,
-        });
+        var prototypeManager = Server.ResolveDependency<IPrototypeManager>();
+        var compFactory = Server.ResolveDependency<IComponentFactory>();
 
-        var server = pair.Server;
+        var handsSys = Server.EntMan.System<HandsSystem>();
 
-        var prototypeManager = server.ResolveDependency<IPrototypeManager>();
-        var compFactory = server.ResolveDependency<IComponentFactory>();
-
-        var handsSys = server.EntMan.System<HandsSystem>();
-
-        var testMap = await pair.CreateTestMap();
+        var testMap = await Pair.CreateTestMap();
 
         //var ticker = server.System<GameTicker>();
         //Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
@@ -60,7 +59,7 @@ public sealed class BodySetupTest
         {
             var skip = false;
             InnateToolComponent toolComponent = null;
-            await server.WaitAssertion(() =>
+            await Server.WaitAssertion(() =>
             {
                 if (!proto.TryGetComponent(out toolComponent, compFactory))
                     skip = true;
@@ -70,50 +69,40 @@ public sealed class BodySetupTest
                 continue;
 
             var dummy = EntityUid.Invalid;
-            await server.WaitAssertion(() =>
+            await Server.WaitAssertion(() =>
             {
-                dummy = server.EntMan.Spawn(proto.ID, testMap.MapCoords);
+                dummy = Server.EntMan.Spawn(proto.ID, testMap.MapCoords);
             });
-            await server.WaitIdleAsync();
-            await server.WaitRunTicks(2);
-            await server.WaitAssertion(() =>
+            await Server.WaitIdleAsync();
+            await Server.WaitRunTicks(2);
+            await Server.WaitAssertion(() =>
             {
                 Assert.That(dummy, Is.Not.EqualTo(EntityUid.Invalid));
                 var handCount = handsSys.EnumerateHands(dummy).Count();
                 Assert.That(handCount, Is.GreaterThanOrEqualTo(toolComponent.Tools.Count), $"hands {proto.ID}");
-                server.EntMan.DeleteEntity(dummy);
+                Server.EntMan.DeleteEntity(dummy);
             });
         }
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task AllSpeciesHaveLegs()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-            Connected = true,
-            InLobby = false,
-        });
+        var bodySys = Server.EntMan.System<BodySystem>();
 
-        var server = pair.Server;
-        var bodySys = server.EntMan.System<BodySystem>();
-
-        foreach (var speciesPrototype in server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
+        foreach (var speciesPrototype in Server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
         {
             var dummy = EntityUid.Invalid;
-            await server.WaitAssertion(() =>
+            await Server.WaitAssertion(() =>
             {
-                dummy = server.EntMan.Spawn(speciesPrototype.Prototype);
+                dummy = Server.EntMan.Spawn(speciesPrototype.Prototype);
             });
-            await server.WaitIdleAsync();
-            await server.WaitRunTicks(2);
-            await server.WaitAssertion(() =>
+            await Server.WaitIdleAsync();
+            await Server.WaitRunTicks(2);
+            await Server.WaitAssertion(() =>
             {
                 Assert.That(dummy, Is.Not.EqualTo(EntityUid.Invalid));
-                var bodyComp = server.EntMan.GetComponent<BodyComponent>(dummy);
+                var bodyComp = Server.EntMan.GetComponent<BodyComponent>(dummy);
                 var legs = bodyComp.LegEntities;
                 var legsCount = bodySys.GetBodyPartCount(dummy, BodyPartType.Leg);
                 Assert.That(legsCount, Is.EqualTo(legs.Count));
@@ -121,33 +110,23 @@ public sealed class BodySetupTest
             });
 
         }
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task AllSpeciesHaveHands()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-            Connected = true,
-            InLobby = false,
-        });
+        var handsSys = Server.EntMan.System<HandsSystem>();
 
-        var server = pair.Server;
-        var handsSys = server.EntMan.System<HandsSystem>();
-
-        foreach (var speciesPrototype in server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
+        foreach (var speciesPrototype in Server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
         {
             var dummy = EntityUid.Invalid;
-            await server.WaitAssertion(() =>
+            await Server.WaitAssertion(() =>
             {
-                dummy = server.EntMan.Spawn(speciesPrototype.Prototype);
+                dummy = Server.EntMan.Spawn(speciesPrototype.Prototype);
             });
-            await server.WaitIdleAsync();
-            await server.WaitRunTicks(2);
-            await server.WaitAssertion(() =>
+            await Server.WaitIdleAsync();
+            await Server.WaitRunTicks(2);
+            await Server.WaitAssertion(() =>
             {
                 Assert.That(dummy, Is.Not.EqualTo(EntityUid.Invalid));
                 var handCount = handsSys.EnumerateHands(dummy).Count();
@@ -155,28 +134,17 @@ public sealed class BodySetupTest
             });
 
         }
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task AllSpeciesAreConscious()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-            Connected = true,
-            InLobby = false,
-        });
-
-        var server = pair.Server;
-
-        var entMan = server.ResolveDependency<IEntityManager>();
+        var entMan = Server.ResolveDependency<IEntityManager>();
         var consciousnessSystem = entMan.System<ConsciousnessSystem>();
 
-        await server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
-            foreach (var speciesPrototype in server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
+            foreach (var speciesPrototype in Server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
             {
                 if (_ignoredPrototypes.Contains(speciesPrototype.ID))
                     continue;
@@ -197,31 +165,20 @@ public sealed class BodySetupTest
                 });
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task AllSpeciesCanBeRejuvenated()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-            Connected = true,
-            InLobby = false,
-        });
-
-        var server = pair.Server;
-
-        var entMan = server.ResolveDependency<IEntityManager>();
+        var entMan = Server.ResolveDependency<IEntityManager>();
         var bodySystem = entMan.System<BodySystem>();
         var woundSystem = entMan.System<WoundSystem>();
         var consciousnessSystem = entMan.System<ConsciousnessSystem>();
         var rejuvenateSystem = entMan.System<RejuvenateSystem>();
 
-        await server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
-            foreach (var speciesPrototype in server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
+            foreach (var speciesPrototype in Server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
             {
                 if (_ignoredPrototypes.Contains(speciesPrototype.ID))
                     continue;
@@ -255,29 +212,18 @@ public sealed class BodySetupTest
                 });
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task AllSpeciesHaveValidWoundables()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-            Connected = true,
-            InLobby = false,
-        });
-
-        var server = pair.Server;
-
-        var entMan = server.ResolveDependency<IEntityManager>();
+        var entMan = Server.ResolveDependency<IEntityManager>();
         var bodySystem = entMan.System<BodySystem>();
         var woundSystem = entMan.System<WoundSystem>();
 
-        await server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
-            foreach (var speciesPrototype in server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
+            foreach (var speciesPrototype in Server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
             {
                 if (_ignoredPrototypes.Contains(speciesPrototype.ID))
                     continue;
@@ -300,7 +246,5 @@ public sealed class BodySetupTest
                 }
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

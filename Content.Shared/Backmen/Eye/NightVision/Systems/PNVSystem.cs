@@ -3,6 +3,8 @@ using Content.Shared.Inventory;
 using Content.Shared.Actions;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 
@@ -14,6 +16,7 @@ public sealed class PNVSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {
@@ -21,12 +24,50 @@ public sealed class PNVSystem : EntitySystem
 
         SubscribeLocalEvent<PNVComponent, GotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<PNVComponent, GotUnequippedEvent>(OnUnequipped);
-        SubscribeLocalEvent<PNVComponent, InventoryRelayedEvent<CanVisionAttemptEvent>>(OnPNVTrySee);
+        SubscribeLocalEvent<PNVStatusEffectComponent, StatusEffectAppliedEvent>(OnPNVApplied);
+        SubscribeLocalEvent<PNVStatusEffectComponent, StatusEffectRemovedEvent>(OnPNVRemoved);
+        SubscribeLocalEvent<PNVStatusEffectComponent, StatusEffectRelayedEvent<CanVisionAttemptEvent>>(OnPNVTrySee);
     }
 
-    private void OnPNVTrySee(EntityUid uid, PNVComponent component, InventoryRelayedEvent<CanVisionAttemptEvent> args)
+    private void OnPNVTrySee(EntityUid uid, PNVStatusEffectComponent component, ref StatusEffectRelayedEvent<CanVisionAttemptEvent> args)
     {
         args.Args.Cancel();
+    }
+
+    private void OnPNVApplied(EntityUid uid, PNVStatusEffectComponent component, ref StatusEffectAppliedEvent args)
+    {
+        if (!_net.IsServer)
+            return;
+
+        var nvComp = EnsureComp<NightVisionComponent>(args.Target);
+        nvComp.IsGranted = true;
+
+        _nightvisionableSystem.UpdateIsNightVision(args.Target, nvComp);
+        _actionsSystem.AddAction(args.Target, ref component.ActionContainer, component.ActionProto);
+        nvComp.ActionContainer = component.ActionContainer;
+        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1)); // GCD?
+
+        if (!nvComp.PlaySoundOn)
+            return;
+
+        _audioSystem.PlayPredicted(nvComp.OnOffSound, args.Target, args.Target);
+    }
+
+    private void OnPNVRemoved(EntityUid uid, PNVStatusEffectComponent component, ref StatusEffectRemovedEvent args)
+    {
+        if (!_net.IsServer)
+            return;
+
+        if (_statusEffects.HasEffectComp<PNVStatusEffectComponent>(args.Target))
+            return;
+
+        if (!TryComp<NightVisionComponent>(args.Target, out var nvComp) || !nvComp.IsGranted)
+            return;
+
+        _nightvisionableSystem.UpdateIsNightVision(args.Target, nvComp);
+        _actionsSystem.RemoveAction(args.Target, component.ActionContainer);
+        nvComp.ActionContainer = null;
+        RemCompDeferred<NightVisionComponent>(args.Target);
     }
 
     private void OnEquipped(EntityUid uid, PNVComponent component, GotEquippedEvent args)
@@ -37,24 +78,10 @@ public sealed class PNVSystem : EntitySystem
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        if (HasComp<NightVisionComponent>(args.Equipee))
+        if (!_statusEffects.TrySetStatusEffectDuration(args.Equipee, component.StatusEffect))
             return;
 
-        var nvcomp = EnsureComp<NightVisionComponent>(args.Equipee);
-
-        nvcomp.IsGranted = true;
-
-        _nightvisionableSystem.UpdateIsNightVision(args.Equipee, nvcomp);
-        if(component.ActionContainer == null)
-            _actionsSystem.AddAction(args.Equipee, ref component.ActionContainer, component.ActionProto);
-        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1)); // GCD?
-
-        if (nvcomp.PlaySoundOn)
-        {
-            if(_net.IsServer)
-                _audioSystem.PlayPvs(nvcomp.OnOffSound, uid);
-        }
-
+        component._hasEffect = true;
     }
 
     private void OnUnequipped(EntityUid uid, PNVComponent component, GotUnequippedEvent args)
@@ -65,16 +92,10 @@ public sealed class PNVSystem : EntitySystem
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        if (!TryComp<NightVisionComponent>(args.Equipee, out var nvcomp))
+        if (!component._hasEffect)
             return;
 
-        if(!nvcomp.IsGranted)
-            return;
-
-        _nightvisionableSystem.UpdateIsNightVision(args.Equipee, nvcomp);
-        _actionsSystem.RemoveAction(args.Equipee, component.ActionContainer);
-        component.ActionContainer = null;
-
-        RemCompDeferred<NightVisionComponent>(args.Equipee);
+        component._hasEffect = false;
+        _statusEffects.TryRemoveStatusEffect(args.Equipee, component.StatusEffect);
     }
 }

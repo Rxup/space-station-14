@@ -1,17 +1,16 @@
-namespace Content.Shared.Backmen.Abilities.Psionics
+namespace Content.Shared.Backmen.Abilities.Psionics;
+
+[RegisterComponent]
+public sealed partial class TinfoilHatComponent : Component
 {
-    [RegisterComponent]
-    public sealed partial class TinfoilHatComponent : Component
-    {
-        public bool IsActive = false;
+    public bool IsActive = false;
 
-        [DataField("passthrough")]
-        public bool Passthrough = false;
+    [DataField("passthrough")]
+    public bool Passthrough = false;
 
-        /// <summary>
-        /// Whether this will turn to ash when its psionically fried.
-        /// </summary>
-        [DataField("destroyOnFry")]
-        public bool DestroyOnFry = true;
-    }
+    /// <summary>
+    /// Whether this will turn to ash when its psionically fried.
+    /// </summary>
+    [DataField("destroyOnFry")]
+    public bool DestroyOnFry = true;
 }

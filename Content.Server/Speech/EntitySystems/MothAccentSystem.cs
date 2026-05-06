@@ -2,6 +2,7 @@
 using Content.Server.Speech.Components;
 using Robust.Shared.Random;
 using Content.Shared.Speech;
+using Content.Shared.StatusEffectNew;
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -24,12 +25,21 @@ public sealed class MothAccentSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<MothAccentComponent, AccentGetEvent>(OnAccent);
+        SubscribeLocalEvent<MothAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
     }
 
-    private void OnAccent(EntityUid uid, MothAccentComponent component, AccentGetEvent args)
+    private void OnAccentRelayed(Entity<MothAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
     {
-        var message = args.Message;
+        args.Args.Message = Accentuate(args.Args.Message);
+    }
 
+    private void OnAccent(Entity<MothAccentComponent> ent, ref AccentGetEvent args)
+    {
+        args.Message = Accentuate(args.Message);
+    }
+
+    public string Accentuate(string message)
+    {
         // buzzz
         message = RegexLowerBuzz.Replace(message, "zzz");
         // buZZZ
@@ -58,6 +68,6 @@ public sealed class MothAccentSystem : EntitySystem
         );
         // Corvax-Localization-End
 
-        args.Message = message;
+        return message;
     }
 }

@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.Prototypes;
 using Content.Shared.Speech;
+using Content.Shared.StatusEffectNew;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -25,6 +26,7 @@ namespace Content.Server.Speech.EntitySystems
         public override void Initialize()
         {
             SubscribeLocalEvent<ReplacementAccentComponent, AccentGetEvent>(OnAccent);
+            SubscribeLocalEvent<ReplacementAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
 
             _proto.PrototypesReloaded += OnPrototypesReloaded;
         }
@@ -36,9 +38,14 @@ namespace Content.Server.Speech.EntitySystems
             _proto.PrototypesReloaded -= OnPrototypesReloaded;
         }
 
-        private void OnAccent(EntityUid uid, ReplacementAccentComponent component, AccentGetEvent args)
+        private void OnAccentRelayed(Entity<ReplacementAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
         {
-            args.Message = ApplyReplacements(args.Message, component.Accent);
+            args.Args.Message = ApplyReplacements(args.Args.Message, ent.Comp.Accent);
+        }
+
+        private void OnAccent(Entity<ReplacementAccentComponent> ent, ref AccentGetEvent args)
+        {
+            args.Message = ApplyReplacements(args.Message, ent.Comp.Accent);
         }
 
         /// <summary>

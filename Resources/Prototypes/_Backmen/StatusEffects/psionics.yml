@@ -20,6 +20,61 @@
   components:
   - type: MetapsionicVisible
 
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectGrantMetapsionicPower
+  name: grant metapsionic power
+  components:
+  - type: StatusEffect
+    blacklist:
+      components:
+      - MetapsionicPower
+  - type: MetapsionicPower
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectGrantTelegnosisPower
+  name: grant telegnosis power
+  components:
+  - type: StatusEffect
+    blacklist:
+      components:
+      - TelegnosisPower
+  - type: TelegnosisPower
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectGrantPsionicInvisibilityPower
+  name: grant psionic invisibility power
+  components:
+  - type: StatusEffect
+    blacklist:
+      components:
+      - PsionicInvisibilityPower
+  - type: PsionicInvisibilityPower
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectGrantDispelPower
+  name: grant dispel power
+  components:
+  - type: StatusEffect
+    blacklist:
+      components:
+      - DispelPower
+  - type: DispelPower
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectGrantNoosphericZapPower
+  name: grant noospheric zap power
+  components:
+  - type: StatusEffect
+    blacklist:
+      components:
+      - NoosphericZapPower
+  - type: NoosphericZapPower
+
 
 - type: entity
   parent: [StatusEffectSeeingRainbow, StatusEffectScrambled, StatusEffectSlurred]
@@ -27,3 +82,14 @@
   name: psionic rainbow repeater
   components:
   - type: TelepathicRepeater
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectPNV
+  name: pnv granted
+  components:
+  - type: StatusEffect
+    blacklist:
+      components:
+      - NightVision
+  - type: PNVStatusEffect

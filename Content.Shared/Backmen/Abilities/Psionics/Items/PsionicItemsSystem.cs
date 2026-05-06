@@ -1,15 +1,18 @@
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared.StatusEffectNew;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
 public sealed class PsionicItemsSystem : EntitySystem
 {
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly SharedPsionicAbilitiesSystem _psiAbilities = default!;
     [Dependency] private readonly SharedEyeSystem _sharedEyeSystem = default!;
+
+
+    private static readonly EntProtoId<PsionicInsulationComponent> StatusEffectPsionicallyInsulated = "StatusEffectPsionicallyInsulated";
 
     public override void Initialize()
     {
@@ -24,11 +27,14 @@ public sealed class PsionicItemsSystem : EntitySystem
         // This only works on clothing
         if (!TryComp<ClothingComponent>(uid, out var clothing))
             return;
+
         // Is the clothing in its actual slot?
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        var insul = EnsureComp<PsionicInsulationComponent>(args.Equipee);
+        if (!_statusEffects.TrySetStatusEffectDuration(args.Equipee, StatusEffectPsionicallyInsulated, out var effect))
+            return;
+        var insul = EnsureComp<PsionicInsulationComponent>(effect.Value);
         insul.Passthrough = component.Passthrough;
         component.IsActive = true;
         _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
@@ -42,9 +48,7 @@ public sealed class PsionicItemsSystem : EntitySystem
         if (!component.IsActive)
             return;
 
-        if (!_statusEffects.HasStatusEffect(args.Equipee, "StatusEffectPsionicallyInsulated"))
-            RemComp<PsionicInsulationComponent>(args.Equipee);
-
+        _statusEffects.TryRemoveStatusEffect(args.Equipee, StatusEffectPsionicallyInsulated);
         component.IsActive = false;
         _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
         _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
@@ -55,30 +59,26 @@ public sealed class PsionicItemsSystem : EntitySystem
         // This only works on clothing
         if (!TryComp<ClothingComponent>(uid, out var clothing))
             return;
+
         // Is the clothing in its actual slot?
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
-        // does the user already has this power?
-        var componentType = _componentFactory.GetRegistration(component.Power).Type;
-        if (HasComp(args.Equipee, componentType))
+
+        if (_statusEffects.HasStatusEffect(args.Equipee, component.StatusEffect))
             return;
 
-        var newComponent = (Component) _componentFactory.GetComponent(componentType);
-        AddComp(args.Equipee, newComponent);
+        if (!_statusEffects.TrySetStatusEffectDuration(args.Equipee, component.StatusEffect))
+            return;
 
-        component.IsActive = true;
+        component._hasEffect = true;
     }
 
     private void OnGranterUnequipped(EntityUid uid, ClothingGrantPsionicPowerComponent component, GotUnequippedEvent args)
     {
-        if (!component.IsActive)
+        if (!component._hasEffect)
             return;
 
-        component.IsActive = false;
-        var componentType = _componentFactory.GetRegistration(component.Power).Type;
-        if (EntityManager.HasComponent(args.Equipee, componentType))
-        {
-            EntityManager.RemoveComponent(args.Equipee, componentType);
-        }
+        component._hasEffect = false;
+        _statusEffects.TryRemoveStatusEffect(args.Equipee, component.StatusEffect);
     }
 }

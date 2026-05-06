@@ -1,5 +1,6 @@
 #nullable enable
 using System.Collections.Generic;
+using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Pair;
 using Content.Server.Administration.Managers;
 using Robust.Shared.Network;
@@ -13,15 +14,12 @@ namespace Content.IntegrationTests.Tests.Toolshed;
 
 [TestFixture]
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public abstract class ToolshedTest : IInvocationContext
+public abstract class ToolshedTest : GameTest, IInvocationContext
 {
-    protected TestPair Pair = default!;
-
     protected virtual bool Connected => false;
     protected virtual bool AssertOnUnexpectedError => true;
 
-    protected RobustIntegrationTest.ServerIntegrationInstance Server = default!;
-    protected RobustIntegrationTest.ClientIntegrationInstance? Client = null;
+    protected new RobustIntegrationTest.ClientIntegrationInstance? Client = null;
     public ToolshedManager Toolshed { get; private set; } = default!;
     public ToolshedEnvironment Environment => Toolshed.DefaultEnvironment;
 
@@ -29,11 +27,10 @@ public abstract class ToolshedTest : IInvocationContext
 
     protected IInvocationContext? InvocationContext = null;
 
-    [TearDown]
-    public async Task TearDownInternal()
+    public override async Task DoTeardown()
     {
-        await Pair.CleanReturnAsync();
         await TearDown();
+        await base.DoTeardown();
     }
 
     protected virtual Task TearDown()
@@ -44,15 +41,15 @@ public abstract class ToolshedTest : IInvocationContext
         return Task.CompletedTask;
     }
 
-    [SetUp]
-    public virtual async Task Setup()
+    public override PoolSettings PoolSettings => new() { Connected = Connected };
+
+    public override async Task DoSetup()
     {
-        Pair = await PoolManager.GetServerClient(new PoolSettings { Connected = Connected });
-        Server = Pair.Server;
+        await base.DoSetup();
 
         if (Connected)
         {
-            Client = Pair.Client;
+            Client = base.Client;
             await Client.WaitIdleAsync();
         }
 

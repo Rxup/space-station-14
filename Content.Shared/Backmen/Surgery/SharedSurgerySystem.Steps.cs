@@ -14,6 +14,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Backmen.Mood;
@@ -121,6 +122,22 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
+        if (ent.Comp.StatusEffectAdd != null)
+        {
+            foreach (var effect in ent.Comp.StatusEffectAdd)
+            {
+                _statusEffects.TrySetStatusEffectDuration(args.Part, effect);
+            }
+        }
+
+        if (ent.Comp.StatusEffectRemove != null)
+        {
+            foreach (var effect in ent.Comp.StatusEffectRemove)
+            {
+                _statusEffects.TryRemoveStatusEffect(args.Part, effect);
+            }
+        }
+
         if (ent.Comp.BodyAdd != null)
         {
             foreach (var reg in ent.Comp.BodyAdd.Values)
@@ -137,6 +154,22 @@ public abstract partial class SharedSurgerySystem
             foreach (var reg in ent.Comp.BodyRemove.Values)
             {
                 RemComp(args.Body, reg.Component.GetType());
+            }
+        }
+
+        if (ent.Comp.BodyStatusEffectAdd != null)
+        {
+            foreach (var effect in ent.Comp.BodyStatusEffectAdd)
+            {
+                _statusEffects.TrySetStatusEffectDuration(args.Body, effect);
+            }
+        }
+
+        if (ent.Comp.BodyStatusEffectRemove != null)
+        {
+            foreach (var effect in ent.Comp.BodyStatusEffectRemove)
+            {
+                _statusEffects.TryRemoveStatusEffect(args.Body, effect);
             }
         }
 
@@ -182,6 +215,30 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
+        if (ent.Comp.StatusEffectAdd != null)
+        {
+            foreach (var effect in ent.Comp.StatusEffectAdd)
+            {
+                if (!_statusEffects.HasStatusEffect(args.Part, effect))
+                {
+                    args.Cancelled = true;
+                    return;
+                }
+            }
+        }
+
+        if (ent.Comp.StatusEffectRemove != null)
+        {
+            foreach (var effect in ent.Comp.StatusEffectRemove)
+            {
+                if (_statusEffects.HasStatusEffect(args.Part, effect))
+                {
+                    args.Cancelled = true;
+                    return;
+                }
+            }
+        }
+
         if (ent.Comp.BodyAdd != null)
         {
             foreach (var reg in ent.Comp.BodyAdd.Values)
@@ -199,6 +256,30 @@ public abstract partial class SharedSurgerySystem
             foreach (var reg in ent.Comp.BodyRemove.Values)
             {
                 if (HasComp(args.Body, reg.Component.GetType()))
+                {
+                    args.Cancelled = true;
+                    return;
+                }
+            }
+        }
+
+        if (ent.Comp.BodyStatusEffectAdd != null)
+        {
+            foreach (var effect in ent.Comp.BodyStatusEffectAdd)
+            {
+                if (!_statusEffects.HasStatusEffect(args.Body, effect))
+                {
+                    args.Cancelled = true;
+                    return;
+                }
+            }
+        }
+
+        if (ent.Comp.BodyStatusEffectRemove != null)
+        {
+            foreach (var effect in ent.Comp.BodyStatusEffectRemove)
+            {
+                if (_statusEffects.HasStatusEffect(args.Body, effect))
                 {
                     args.Cancelled = true;
                     return;

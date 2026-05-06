@@ -4,12 +4,14 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs.Components;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
-public sealed class MassSleepPowerSystem : EntitySystem
+public sealed class MassSleepPowerSystem : StatusEffectGrantedPowerSystem<MassSleepPowerComponent, MassSleepPowerActionEvent>
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -20,16 +22,15 @@ public sealed class MassSleepPowerSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<MassSleepPowerComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<MassSleepPowerComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<MassSleepPowerComponent, MassSleepPowerActionEvent>(OnPowerUsed);
+        InitializeStatusEffectGrantedPower();
 
         _qPsionicInsulation = GetEntityQuery<PsionicInsulationComponent>();
     }
 
     private readonly EntProtoId ActionMassSleep = "ActionMassSleep";
 
-    private void OnInit(EntityUid uid, MassSleepPowerComponent component, ComponentInit args)
+    protected override void EnsurePowerActions(EntityUid uid, MassSleepPowerComponent component)
     {
         _actions.AddAction(uid, ref component.MassSleepPowerAction, ActionMassSleep);
 
@@ -45,15 +46,26 @@ public sealed class MassSleepPowerSystem : EntitySystem
             psionic.PsionicAbility = component.MassSleepPowerAction;
     }
 
+    protected override void RemovePowerActions(EntityUid uid, MassSleepPowerComponent component)
+    {
+        _actions.RemoveAction(uid, component.MassSleepPowerAction);
+    }
+
     private void OnShutdown(EntityUid uid, MassSleepPowerComponent component, ComponentShutdown args)
     {
+        if (HasComp<StatusEffectComponent>(uid))
+            return;
+
         _actions.RemoveAction(uid, component.MassSleepPowerAction);
     }
 
     private static readonly ProtoId<DamageContainerPrototype> Biological = "Biological";
 
-    private void OnPowerUsed(EntityUid uid, MassSleepPowerComponent component, MassSleepPowerActionEvent args)
+    protected override void HandlePowerUse(EntityUid uid, MassSleepPowerComponent component, MassSleepPowerActionEvent args)
     {
+        if (args.Handled)
+            return;
+
         var handle = false;
         foreach (var entity in _lookup.GetEntitiesInRange<MobStateComponent>(args.Target, component.Radius))
         {

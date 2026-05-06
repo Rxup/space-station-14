@@ -659,10 +659,10 @@
   - type: SurgeryStep
     tool:
     - type: Drill
-    bodyAdd:
-    - type: OhioAccent
-    - type: RatvarianLanguage
-    - type: SlurredAccent
+    bodyStatusEffectAdd:
+    - StatusEffectSpeechOhio
+    - StatusEffectLangRatvarian
+    - StatusEffectSlurred
     duration: 5
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/drill.rsi
@@ -686,10 +686,10 @@
     tool:
     - type: Hemostat
     duration: 5
-    bodyRemove:
-    - type: OhioAccent
-    - type: RatvarianLanguage
-    - type: SlurredAccent
+    bodyStatusEffectRemove:
+    - StatusEffectSpeechOhio
+    - StatusEffectLangRatvarian
+    - StatusEffectSlurred
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/drill.rsi
     state: drill

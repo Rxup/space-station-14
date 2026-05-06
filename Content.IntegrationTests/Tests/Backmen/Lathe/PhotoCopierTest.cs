@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Cargo.Systems;
 using Content.Shared.DeadSpace.Photocopier;
 using Content.Shared.Research.Prototypes;
@@ -8,21 +9,18 @@ using Robust.Shared.Utility;
 namespace Content.IntegrationTests.Tests.Backmen.Lathe;
 
 [TestFixture]
-public sealed class PhotoCopierTest
+public sealed class PhotoCopierTest : GameTest
 {
 
     [Test]
     public async Task PhotoCopierintTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
-
-        var server = pair.Server;
-        var proto = server.ProtoMan;
-        var  resMan = server.ResolveDependency< IResourceManager>();
+        var proto = Server.ProtoMan;
+        var resMan = Server.ResolveDependency<IResourceManager>();
 
         var fails = new List<string>();
 
-        await server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
             var recipes = proto.EnumeratePrototypes<PaperworkFormPrototype>();
 
@@ -43,7 +41,5 @@ public sealed class PhotoCopierTest
             var msg = string.Join("\n", fails) + "\n" + "Ошибка в форме документа";
             Assert.Fail(msg);
         }
-
-        await pair.CleanReturnAsync();
     }
 }

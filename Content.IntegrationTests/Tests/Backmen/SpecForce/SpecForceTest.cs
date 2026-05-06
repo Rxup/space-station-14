@@ -1,6 +1,8 @@
 ﻿#nullable enable
 using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server.Backmen.SpecForces;
 using Content.Server.Ghost.Roles.Components;
 using Robust.Shared.GameObjects;
@@ -9,32 +11,32 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests.Backmen.Specforce;
 
 [TestFixture]
-public sealed class SpecForceTest
+public sealed class SpecForceTest : GameTest
 {
+    private static PoolSettings PsDirtyNoDummyTickerNoLobby => new()
+    {
+        Dirty = true,
+        Connected = true,
+        DummyTicker = false,
+        InLobby = false,
+    };
+
     /// <summary>
     /// A list of spec forces that can be ignored by this test.
     /// </summary>
     private readonly HashSet<string> _ignoredPrototypes = new() {};
 
     [Test]
+    [PairConfig(nameof(PsDirtyNoDummyTickerNoLobby))]
     public async Task CallSpecForces()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-            Connected = true,
-            DummyTicker = false,
-            InLobby = false,
-        });
-        var (server, client) = (pair.Server, pair.Client);
-
-        var protoManager = server.ResolveDependency<IPrototypeManager>();
-        var entSysManager = server.ResolveDependency<IEntitySystemManager>();
-        var entMan = server.EntMan;
+        var protoManager = Server.ResolveDependency<IPrototypeManager>();
+        var entSysManager = Server.ResolveDependency<IEntitySystemManager>();
+        var entMan = Server.EntMan;
         var specForceSystem = entSysManager.GetEntitySystem<SpecForcesSystem>();
 
         // Try to spawn every SpecForceTeam
-        await server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
             foreach (var teamProto in protoManager.EnumeratePrototypes<SpecForceTeamPrototype>())
             {
@@ -65,7 +67,5 @@ public sealed class SpecForceTest
                 }
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 }

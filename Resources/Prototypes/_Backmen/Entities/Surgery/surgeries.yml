@@ -699,9 +699,9 @@
     steps:
     - SurgeryStepLobotomize
     - SurgeryStepClampInternalBleeders
-  - type: SurgeryComponentCondition
-    component:
-    - type: OhioAccent
+  - type: SurgeryStatusEffectCondition
+    statusEffects:
+    - StatusEffectSpeechOhio
     inverse: true
   - type: SurgeryPartCondition
     part: Head
@@ -717,9 +717,9 @@
     steps:
     - SurgeryStepMendBrainTissue
     - SurgeryStepClampInternalBleeders
-  - type: SurgeryComponentCondition
-    component:
-    - type: OhioAccent
+  - type: SurgeryStatusEffectCondition
+    statusEffects:
+    - StatusEffectSpeechOhio
   - type: SurgeryPartCondition
     part: Head
 

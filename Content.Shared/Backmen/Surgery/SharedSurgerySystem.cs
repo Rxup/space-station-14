@@ -25,6 +25,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
@@ -54,6 +55,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly TraumaSystem _trauma = default!;
     [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
     [Dependency] private readonly PainSystem _pain = default!;
+    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
     private readonly Dictionary<EntProtoId, EntityUid> _surgeries = new();
 
@@ -66,6 +68,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
         //SubscribeLocalEvent<SurgeryLarvaConditionComponent, SurgeryValidEvent>(OnLarvaValid);
         SubscribeLocalEvent<SurgeryComponentConditionComponent, SurgeryValidEvent>(OnComponentConditionValid);
+        SubscribeLocalEvent<SurgeryStatusEffectConditionComponent, SurgeryValidEvent>(OnStatusEffectConditionValid);
         SubscribeLocalEvent<SurgeryPartConditionComponent, SurgeryValidEvent>(OnPartConditionValid);
         SubscribeLocalEvent<SurgeryOrganConditionComponent, SurgeryValidEvent>(OnOrganConditionValid);
         SubscribeLocalEvent<SurgeryWoundedConditionComponent, SurgeryValidEvent>(OnWoundedValid);
@@ -134,6 +137,19 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         {
             var compType = reg.Component.GetType();
             if (!HasComp(args.Part, compType))
+                present = false;
+        }
+
+        if (ent.Comp.Inverse ? present : !present)
+            args.Cancelled = true;
+    }
+
+    private void OnStatusEffectConditionValid(Entity<SurgeryStatusEffectConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        var present = true;
+        foreach (var effect in ent.Comp.StatusEffects)
+        {
+            if (!_statusEffects.HasStatusEffect(args.Body, effect))
                 present = false;
         }
 

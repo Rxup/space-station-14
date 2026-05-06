@@ -34,6 +34,7 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly GlimmerSystem _glimmer = default!;
+    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
     private HashSet<MapId> GetStationEventMaps()
     {
@@ -67,7 +68,7 @@ internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComp
             var query = EntityQueryEnumerator<PotentialPsionicComponent, TransformComponent, MobStateComponent>();
             while (query.MoveNext(out var psion, out _, out var xform, out var mobstate))
             {
-                if (mindswaped.HasComponent(psion) || psiIsulated.HasComponent(psion))
+                if (mindswaped.HasComponent(psion) || psiIsulated.HasComponent(psion) || _statusEffects.HasEffectComp<PsionicInsulationComponent>(psion))
                     continue;
 
                 // Глиммер пробивает MS при уровне выше Dangerous

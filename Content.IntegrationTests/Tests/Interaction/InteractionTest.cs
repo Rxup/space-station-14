@@ -3,16 +3,8 @@ using System.Numerics;
 using Content.Client.Construction;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
+using Content.Client.Interaction;
 using Content.IntegrationTests.Pair;
-using Content.Server.Administration.Systems;
-using Content.Server.Atmos.Components;
-using Content.Server.Body.Systems;
-using Content.Server.Damage.Systems;
-using Content.Server.Hands.Systems;
-using Content.Server.Stack;
-using Content.Server.Tools;
-using Content.Shared.Backmen.CCVar;
-using Content.Shared.Body.Part;
 using Content.Server.Hands.Systems;
 using Content.Server.Stack;
 using Content.Server.Tools;
@@ -143,6 +135,7 @@ public abstract partial class InteractionTest
     protected InteractionTestSystem CTestSystem = default!;
     protected ISawmill CLogger = default!;
     protected SharedUserInterfaceSystem CUiSys = default!;
+    protected DragDropSystem CDragDropSys = default!;
 
     // player components
     protected HandsComponent? Hands;
@@ -182,7 +175,7 @@ public abstract partial class InteractionTest
     [SetUp]
     public virtual async Task Setup()
     {
-        Pair = await PoolManager.GetServerClient(Settings);
+        Pair = await PoolManager.GetServerClient(Settings, new NUnitTestContextWrap(TestContext.CurrentContext, TestContext.Out));
 
         // server dependencies
         SEntMan = Server.ResolveDependency<IEntityManager>();
@@ -217,6 +210,7 @@ public abstract partial class InteractionTest
         CConSys = CEntMan.System<ConstructionSystem>();
         ExamineSys = CEntMan.System<ExamineSystem>();
         CUiSys = CEntMan.System<SharedUserInterfaceSystem>();
+        CDragDropSys = CEntMan.System<DragDropSystem>();
 
         // Setup map.
         if (TestMapPath == null)
@@ -246,14 +240,11 @@ public abstract partial class InteractionTest
 
             CEntMan.TryGetNetEntity(cPlayerMan.LocalEntity, out old);
             SPlayer = SEntMan.SpawnEntity(PlayerPrototype, SEntMan.GetCoordinates(PlayerCoords));
-
             Player = SEntMan.GetNetEntity(SPlayer);
             Server.PlayerMan.SetAttachedEntity(ServerSession, SPlayer);
             Hands = SEntMan.GetComponentOrNull<HandsComponent>(SPlayer);
             DoAfters = SEntMan.GetComponentOrNull<DoAfterComponent>(SPlayer);
         });
-
-        await AwaitDoAfters(); // backmen edit: Make sure the entity is standing before running the tests
 
         // Check player got attached.
         await RunTicks(5);

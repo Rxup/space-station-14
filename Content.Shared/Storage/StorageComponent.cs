@@ -287,7 +287,7 @@ namespace Content.Shared.Storage
     }
 
     [ByRefEvent]
-    public record struct StorageInteractAttemptEvent(bool Silent, bool Cancelled = false);
+    public record struct StorageInteractAttemptEvent(EntityUid User, bool Silent, bool Cancelled = false);
 
     [ByRefEvent]
     public record struct StorageInteractUsingAttemptEvent(bool Cancelled = false);

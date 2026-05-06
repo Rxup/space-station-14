@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Backmen.Disease;
 using Content.Shared.Backmen.Disease;
 using Robust.Shared.GameObjects;
@@ -10,22 +11,19 @@ namespace Content.IntegrationTests.Tests.Backmen.Disease;
 
 [TestFixture]
 [TestOf(typeof(DiseaseSystem))]
-public sealed class DiseaseTest
+public sealed class DiseaseTest : GameTest
 {
     [Test]
     public async Task AddAllDiseases()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
-
-        var protoManager = server.ResolveDependency<IPrototypeManager>();
-        var entManager = server.ResolveDependency<IEntityManager>();
-        var entSysManager = server.ResolveDependency<IEntitySystemManager>();
+        var protoManager = Server.ResolveDependency<IPrototypeManager>();
+        var entManager = Server.ResolveDependency<IEntityManager>();
+        var entSysManager = Server.ResolveDependency<IEntitySystemManager>();
         var diseaseSystem = entSysManager.GetEntitySystem<DiseaseSystem>();
 
         var sickEntity = EntityUid.Invalid;
 
-        await server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
             sickEntity = entManager.SpawnEntity("MobHuman", MapCoordinates.Nullspace);
             if(!entManager.HasComponent<DiseaseCarrierComponent>(sickEntity))
@@ -35,13 +33,13 @@ public sealed class DiseaseTest
 
         foreach (var diseaseProto in protoManager.EnumeratePrototypes<DiseasePrototype>())
         {
-            await server.WaitAssertion(() =>
+            await Server.WaitAssertion(() =>
             {
                 diseaseSystem.TryAddDisease(sickEntity, diseaseProto.ID);
             });
-            await server.WaitIdleAsync();
-            server.RunTicks(5);
-            await server.WaitAssertion(() =>
+            await Server.WaitIdleAsync();
+            Server.RunTicks(5);
+            await Server.WaitAssertion(() =>
             {
                 if(!entManager.HasComponent<DiseasedComponent>(sickEntity))
                     Assert.Fail("MobHuman has not DiseasedComponent");
@@ -55,13 +53,13 @@ public sealed class DiseaseTest
             {
                 Assert.Fail("Disease not apply");
             }
-            await server.WaitAssertion(() =>
+            await Server.WaitAssertion(() =>
             {
                 diseaseSystem.CureDisease((sickEntity,diseaseCarrierComponent), diseaseProto.ID);
             });
-            await server.WaitIdleAsync();
-            server.RunTicks(1);
-            await server.WaitAssertion(() =>
+            await Server.WaitIdleAsync();
+            Server.RunTicks(1);
+            await Server.WaitAssertion(() =>
             {
                 if (diseaseCarrierComponent.Diseases.Any(x => x.ID == diseaseProto.ID))
                 {
@@ -79,7 +77,5 @@ public sealed class DiseaseTest
                 }
             });
         }
-
-        await pair.CleanReturnAsync();
     }
 }

@@ -1,12 +1,12 @@
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared.StatusEffectNew.Components;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
 [RegisterComponent]
 public sealed partial class ClothingGrantPsionicPowerComponent : Component
 {
-    [DataField("power", required: true, customTypeSerializer:typeof(ComponentNameSerializer))]
-    public string Power;
-    public bool IsActive = false;
+    [DataField("statusEffect", required: true)]
+    public EntProtoId<StatusEffectComponent> StatusEffect;
+    public bool _hasEffect = false;
 }
