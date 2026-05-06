@@ -240,6 +240,8 @@ namespace Content.IntegrationTests.Tests
 
             var excluded = new[]
             {
+                "TimedDespawn", // temporary effect entities can spawn detached short-lived children
+
                 //Backmen
                 "FugitiveCountdown", // Fugitive.
                 "ShipyardConsole", // Shipyard Console
