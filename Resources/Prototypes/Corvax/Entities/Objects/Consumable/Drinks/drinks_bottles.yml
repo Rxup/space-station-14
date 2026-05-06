@@ -1,6 +1,6 @@
 - type: entity
   parent:
-  #- DrinkBottleVisualsAll
+  - DrinkVisualsAllFilled
   - DrinkBottleGlassBaseFull
   id: DrinkCampariBottleFull
   name: campari bottle

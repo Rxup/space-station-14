@@ -159,6 +159,8 @@
   - type: Sprite
     layers:
     - state: syndie-soaplet
+  - type: SolutionContainerVisuals
+    maxFillLevels: 0
   - type: SolutionContainerManager
     solutions:
       soap:
