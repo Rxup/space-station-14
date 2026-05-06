@@ -37,7 +37,7 @@
   category: WallsAndFlooring
   sprite: /Textures/Interface/Radial/RCD/plating.png
   mode: ConstructTile
-  prototype: Plating
+  prototype: PlatingRCD
   cost: 1
   delay: 1
   collisionMask: InteractImpassable

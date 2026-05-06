@@ -1,5 +1,6 @@
 tiles-space = космос
 tiles-plating = покрытие
+tiles-rcd-plating = RCD покрытие
 tiles-lattice = решётка
 tiles-lattice-train = решётка поезда
 tiles-steel-floor = стальной пол

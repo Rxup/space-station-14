@@ -1,6 +1,8 @@
 ﻿using Content.Server.Antag.Components;
 using Content.Server.Backmen.Blob.NPC.BlobPod;
 using Content.Server.Backmen.Cloning.Components;
+using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server.Backmen.Language;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles.Components;
@@ -18,32 +20,37 @@ namespace Content.IntegrationTests.Tests.Backmen.Language;
 
 [TestFixture]
 [TestOf(typeof(SharedLanguageSystem))]
-public sealed class LanguageTest
+public sealed class LanguageTest : GameTest
 {
+    private static PoolSettings PsNoDummyTicker => new()
+    {
+        Dirty = false,
+        DummyTicker = false,
+        Connected = true,
+    };
+
+    private static PoolSettings PsDirtyNoDummyTicker => new()
+    {
+        Dirty = true,
+        DummyTicker = false,
+        Connected = true,
+    };
+
     [Test]
+    [PairConfig(nameof(PsNoDummyTicker))]
     public async Task RoleCanUnderstandTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = false,
-            DummyTicker = false,
-            Connected = true
-        });
+        var entMan = Server.EntMan;
+        var ticker = Server.System<GameTicker>();
+        var sys = (LanguageSystem)Server.System<SharedLanguageSystem>();
+        var proto = Server.ResolveDependency<IPrototypeManager>();
+        var compFactory = Server.ResolveDependency<IComponentFactory>();
 
-        var server = pair.Server;
-        var client = pair.Client;
-
-        var entMan = server.EntMan;
-        var ticker = server.System<GameTicker>();
-        var sys = (LanguageSystem)server.System<SharedLanguageSystem>();
-        var proto = server.ResolveDependency<IPrototypeManager>();
-        var compFactory = server.ResolveDependency<IComponentFactory>();
-
-        var testMap = await pair.CreateTestMap();
+        var testMap = await Pair.CreateTestMap();
 
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
 
-        await server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
             foreach (var entProto in proto.EnumeratePrototypes<EntityPrototype>())
             {
@@ -76,18 +83,14 @@ public sealed class LanguageTest
                 entMan.DeleteEntity(ent);
             }
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task FontsTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
-        var client = pair.Client;
-        var prototypeManager = client.ResolveDependency<IPrototypeManager>();
+        var prototypeManager = Client.ResolveDependency<IPrototypeManager>();
 
-        await client.WaitAssertion(() =>
+        await Client.WaitAssertion(() =>
         {
             foreach (var languagePrototype in prototypeManager.EnumeratePrototypes<LanguagePrototype>())
             {
@@ -99,17 +102,14 @@ public sealed class LanguageTest
                     $"Font {languagePrototype.SpeechOverride.FontId} does not exist");
             }
         });
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task LocalTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true });
-        var client = pair.Client;
-        var prototypeManager = client.ResolveDependency<IPrototypeManager>();
+        var prototypeManager = Client.ResolveDependency<IPrototypeManager>();
 
-        await client.WaitAssertion(() =>
+        await Client.WaitAssertion(() =>
         {
             foreach (var languagePrototype in prototypeManager.EnumeratePrototypes<LanguagePrototype>())
             {
@@ -121,29 +121,27 @@ public sealed class LanguageTest
                     $"LocId language-{languagePrototype.ID}-description does not exist");
             }
         });
-        await pair.CleanReturnAsync();
     }
 
     [Test]
+    [PairConfig(nameof(PsDirtyNoDummyTicker))]
     public async Task BlobZombie()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Dirty = true, Connected = true, DummyTicker = false });
-        var server = pair.Server;
-        var map = await pair.CreateTestMap();
-        var zBlob = server.EntMan.System<BlobPodSystem>();
-        var zDest = server.EntMan.System<SharedDestructibleSystem>();
+        var map = await Pair.CreateTestMap();
+        var zBlob = Server.EntMan.System<BlobPodSystem>();
+        var zDest = Server.EntMan.System<SharedDestructibleSystem>();
 
         var human = EntityUid.Invalid;
 
-        await server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
-            human = server.EntMan.Spawn("MobHuman",map.MapCoords);
-            var pod = server.EntMan.Spawn("MobBlobPod", map.MapCoords);
+            human = Server.EntMan.Spawn("MobHuman",map.MapCoords);
+            var pod = Server.EntMan.Spawn("MobBlobPod", map.MapCoords);
 
             Assert.That(
-                zBlob.Zombify((pod, server.EntMan.GetComponent<BlobPodComponent>(pod)), human),
+                zBlob.Zombify((pod, Server.EntMan.GetComponent<BlobPodComponent>(pod)), human),
                 Is.True);
-            var lang = server.EntMan.GetComponent<LanguageSpeakerComponent>(human);
+            var lang = Server.EntMan.GetComponent<LanguageSpeakerComponent>(human);
             Assert.That(lang.CurrentLanguage, Is.EqualTo("Blob"), $"Language {human} is not a blob");
             Assert.That(lang.UnderstoodLanguages.Contains("Blob"), Is.True, $"Language {human} is not understood blob");
             Assert.That(lang.SpokenLanguages.Contains("Blob"), Is.True, $"Language {human} is not spoken blob");
@@ -151,14 +149,13 @@ public sealed class LanguageTest
 
             zDest.DestroyEntity(pod);
         });
-        await server.WaitRunTicks(10);
-        await server.WaitAssertion(() =>
+        await Server.WaitRunTicks(10);
+        await Server.WaitAssertion(() =>
         {
-            var lang = server.EntMan.GetComponent<LanguageSpeakerComponent>(human);
+            var lang = Server.EntMan.GetComponent<LanguageSpeakerComponent>(human);
             Assert.That(lang.CurrentLanguage, Is.Not.EqualTo("Blob"), $"Language {human} is a blob");
             Assert.That(lang.UnderstoodLanguages.Contains("Blob"), Is.False, $"Language {human} is understood blob not in blob zombie");
             Assert.That(lang.SpokenLanguages.Contains("Blob"), Is.False);
         });
-        await pair.CleanReturnAsync();
     }
 }

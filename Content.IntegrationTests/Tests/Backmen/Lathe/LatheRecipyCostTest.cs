@@ -1,27 +1,25 @@
 using System.Collections.Generic;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Cargo.Systems;
 using Content.Shared.Research.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Backmen.Lathe;
 
 [TestFixture]
-public sealed class LatheRecipyCostTest
+public sealed class LatheRecipyCostTest : GameTest
 {
     private const double Tolerance = 10;
 
     [Test, Ignore("Нужны большие корректировки")]
     public async Task LatheRecipesNoArbitrageTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
-
-        var server = pair.Server;
-        var proto = server.ProtoMan;
-        var entMan = server.EntMan;
+        var proto = Server.ProtoMan;
+        var entMan = Server.EntMan;
         var priceSystem = entMan.System<PricingSystem>();
 
         var fails = new List<string>();
 
-        await server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
             var recipes = proto.EnumeratePrototypes<LatheRecipePrototype>();
             foreach (var recipe in recipes)
@@ -63,7 +61,5 @@ public sealed class LatheRecipyCostTest
                       "\n\nAdjust lathe recipe prices or material costs.";
             Assert.Fail(msg);
         }
-
-        await pair.CleanReturnAsync();
     }
 }

@@ -18,6 +18,25 @@
   sprite: /Textures/Tiles/plating.png
 
 - type: tile
+  id: PlatingRCD
+  parent: Plating
+  name: tiles-rcd-plating
+  baseWhitelist:
+  - Space
+  - TrainLattice
+  - FloorPlanetDirt
+  - FloorDesert
+  - FloorLowDesert
+  - FloorPlanetGrass
+  - FloorSnow
+  - FloorDirt
+  - FloorAsteroidIronsand
+  - FloorAsteroidSand
+  - FloorAsteroidSandBorderless
+  - FloorAsteroidIronsandBorderless
+  - FloorAsteroidSandRedBorderless
+
+- type: tile
   id: PlatingDamaged
   parent: BasePlating
   name: tiles-plating

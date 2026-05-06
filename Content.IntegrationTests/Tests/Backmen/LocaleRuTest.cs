@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.RandomMetadata;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
@@ -9,7 +10,7 @@ namespace Content.IntegrationTests.Tests.Backmen;
 
 [TestFixture]
 [TestOf(typeof(RandomMetadataSystem))]
-public sealed partial class LocaleRu
+public sealed partial class LocaleRu : GameTest
 {
     [GeneratedRegex(@"^[IА-Яа-яЁёЙй\s0-9\-\'""\.\,!\ ]+$", RegexOptions.Compiled)]
     private static partial Regex GeneratedRegex();
@@ -22,16 +23,13 @@ public sealed partial class LocaleRu
     [Test]
     public async Task RandomNameMustBeRuTest()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
-
-        var proto = server.ResolveDependency<IPrototypeManager>();
-        var compFactory = server.ResolveDependency<IComponentFactory>();
-        var mdSys = server.EntMan.System<RandomMetadataSystem>();
+        var proto = Server.ResolveDependency<IPrototypeManager>();
+        var compFactory = Server.ResolveDependency<IComponentFactory>();
+        var mdSys = Server.EntMan.System<RandomMetadataSystem>();
 
         var fails = new List<string>();
 
-        await server.WaitAssertion(() =>
+        await Server.WaitAssertion(() =>
         {
             foreach (var entProto in proto.EnumeratePrototypes<EntityPrototype>())
             {
@@ -72,7 +70,5 @@ public sealed partial class LocaleRu
             var msg = string.Join("\n", fails) + "\n" + "Проверь имена entity!";
             Assert.Fail(msg);
         }
-
-        await pair.CleanReturnAsync();
     }
 }
