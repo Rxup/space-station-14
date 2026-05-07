@@ -48,6 +48,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -68,7 +69,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryDoAfterEvent>(OnTargetDoAfter);
         //SubscribeLocalEvent<SurgeryLarvaConditionComponent, SurgeryValidEvent>(OnLarvaValid);
         SubscribeLocalEvent<SurgeryComponentConditionComponent, SurgeryValidEvent>(OnComponentConditionValid);
-        SubscribeLocalEvent<SurgeryStatusEffectConditionComponent, SurgeryValidEvent>(OnStatusEffectConditionValid);
+        SubscribeLocalEvent<SurgeryBodyStatusEffectConditionComponent, SurgeryValidEvent>(OnStatusEffectConditionValid);
         SubscribeLocalEvent<SurgeryPartConditionComponent, SurgeryValidEvent>(OnPartConditionValid);
         SubscribeLocalEvent<SurgeryOrganConditionComponent, SurgeryValidEvent>(OnOrganConditionValid);
         SubscribeLocalEvent<SurgeryWoundedConditionComponent, SurgeryValidEvent>(OnWoundedValid);
@@ -144,7 +145,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
             args.Cancelled = true;
     }
 
-    private void OnStatusEffectConditionValid(Entity<SurgeryStatusEffectConditionComponent> ent, ref SurgeryValidEvent args)
+    private void OnStatusEffectConditionValid(Entity<SurgeryBodyStatusEffectConditionComponent> ent, ref SurgeryValidEvent args)
     {
         var present = true;
         foreach (var effect in ent.Comp.StatusEffects)

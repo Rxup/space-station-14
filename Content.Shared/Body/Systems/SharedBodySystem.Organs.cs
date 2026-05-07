@@ -172,6 +172,9 @@ public partial class SharedBodySystem
         if (!Containers.TryGetContainingContainer((organId, null, null), out var container))
             return false;
 
+        if (TerminatingOrDeleted(organ.Body))
+            return false;
+
         var parent = container.Owner;
         return HasComp<BodyPartComponent>(parent)
             && Containers.Remove(organId, container, destination: Transform(organ.Body!.Value).Coordinates);

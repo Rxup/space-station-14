@@ -39,7 +39,6 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepEvent>(OnToolStep);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepCompleteCheckEvent>(OnToolCheck);
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryCanPerformStepEvent>(OnToolCanPerform);
-        SubscribeLocalEvent<SurgeryTargetComponent, AccessibleOverrideEvent>(OnAccessable);
 
         //SubSurgery<SurgeryCutLarvaRootsStepComponent>(OnCutLarvaRootsStep, OnCutLarvaRootsCheck);
 
@@ -66,16 +65,11 @@ public abstract partial class SharedSurgerySystem
         });
     }
 
-    private void OnAccessable(Entity<SurgeryTargetComponent> ent, ref AccessibleOverrideEvent args)
+    private bool CanReachSurgeryTarget(EntityUid user, EntityUid body)
     {
-        var actorTransform = _transform.GetMapCoordinates(args.User);
-        var targetTransform = _transform.GetMapCoordinates(args.Target);
-
-        if (actorTransform.InRange(targetTransform, 1.5f))
-        {
-            args.Accessible = true;
-            args.Handled = true;
-        }
+        // NOTE: Body parts / organs are frequently inside containers and may have Nullspace-ish transforms (e.g. 0,0).
+        // Checking reach against the patient body avoids the classic "can't access organs during surgery" bug.
+        return _interaction.InRangeAndAccessible((user, Transform(user)), (body, Transform(body)), range: 1.5f);
     }
 
     private void SubSurgery<TComp>(EntityEventRefHandler<TComp, SurgeryStepEvent> onStep,
@@ -103,7 +97,9 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
-        if (ent.Comp.Add != null)
+
+
+        if (ent.Comp.Add != null && _net.IsServer)
         {
             foreach (var reg in ent.Comp.Add.Values)
             {
@@ -114,7 +110,7 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
-        if (ent.Comp.Remove != null)
+        if (ent.Comp.Remove != null && _net.IsServer)
         {
             foreach (var reg in ent.Comp.Remove.Values)
             {
@@ -122,23 +118,7 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
-        if (ent.Comp.StatusEffectAdd != null)
-        {
-            foreach (var effect in ent.Comp.StatusEffectAdd)
-            {
-                _statusEffects.TrySetStatusEffectDuration(args.Part, effect);
-            }
-        }
-
-        if (ent.Comp.StatusEffectRemove != null)
-        {
-            foreach (var effect in ent.Comp.StatusEffectRemove)
-            {
-                _statusEffects.TryRemoveStatusEffect(args.Part, effect);
-            }
-        }
-
-        if (ent.Comp.BodyAdd != null)
+        if (ent.Comp.BodyAdd != null && _net.IsServer)
         {
             foreach (var reg in ent.Comp.BodyAdd.Values)
             {
@@ -149,7 +129,7 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
-        if (ent.Comp.BodyRemove != null)
+        if (ent.Comp.BodyRemove != null && _net.IsServer)
         {
             foreach (var reg in ent.Comp.BodyRemove.Values)
             {
@@ -208,30 +188,6 @@ public abstract partial class SharedSurgerySystem
             foreach (var reg in ent.Comp.Remove.Values)
             {
                 if (HasComp(args.Part, reg.Component.GetType()))
-                {
-                    args.Cancelled = true;
-                    return;
-                }
-            }
-        }
-
-        if (ent.Comp.StatusEffectAdd != null)
-        {
-            foreach (var effect in ent.Comp.StatusEffectAdd)
-            {
-                if (!_statusEffects.HasStatusEffect(args.Part, effect))
-                {
-                    args.Cancelled = true;
-                    return;
-                }
-            }
-        }
-
-        if (ent.Comp.StatusEffectRemove != null)
-        {
-            foreach (var effect in ent.Comp.StatusEffectRemove)
-            {
-                if (_statusEffects.HasStatusEffect(args.Part, effect))
                 {
                     args.Cancelled = true;
                     return;
@@ -819,6 +775,7 @@ public abstract partial class SharedSurgerySystem
         var user = args.Actor;
         if (GetEntity(args.Entity) is not { Valid: true } body ||
             GetEntity(args.Part) is not { Valid: true } targetPart ||
+            !CanReachSurgeryTarget(user, body) ||
             !IsSurgeryValid(body, targetPart, args.Surgery, args.Step, user, out var surgery, out var part, out var step))
         {
             return;
@@ -875,6 +832,12 @@ public abstract partial class SharedSurgerySystem
             DuplicateCondition = DuplicateConditions.SameEvent,
             NeedHand = true,
             BreakOnHandChange = true,
+            // Surgery uses DoAfter.Args.Target == part, but parts/organs are often stored inside containers
+            // and may not have reliable world coordinates (Nullspace-ish / 0,0). Range/access checks in
+            // SharedDoAfterSystem.Update would cancel the do-after based on the part instead of the patient body.
+            // We already validate reachability against the body before starting the step.
+            DistanceThreshold = null,
+            RequireCanInteract = false,
         };
 
         if (_doAfter.TryStartDoAfter(doAfter))

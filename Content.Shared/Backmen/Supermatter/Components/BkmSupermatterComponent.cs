@@ -4,10 +4,11 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Backmen.Supermatter.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class BkmSupermatterComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
@@ -361,68 +362,68 @@ public sealed partial class BkmSupermatterComponent : Component
     /// we yell if over 50 damage every YellTimer Seconds
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public float YellTimer = 30f;
+    public TimeSpan YellTimer = TimeSpan.FromSeconds(30);
 
     /// <summary>
-    /// set to YellTimer at first so it doesnt yell a minute after being hit
+    /// Next time to announce core damage status.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float YellAccumulator = 30f;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan YellAccumulator = TimeSpan.Zero;
 
     /// <summary>
     /// YellTimer before the SM is about the delam
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public float YellDelam = 5f;
+    public TimeSpan YellDelam = TimeSpan.FromSeconds(5);
 
     /// <summary>
-    ///  Timer for Damage
+    /// Next time to process damage updates.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float DamageUpdateAccumulator;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan DamageUpdateAccumulator = TimeSpan.Zero;
 
     /// <summary>
     /// update environment damage every 1 second
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public float DamageUpdateTimer = 1f;
+    public TimeSpan DamageUpdateTimer = TimeSpan.FromSeconds(1);
 
     /// <summary>
-    /// Timer for delam
+    /// Time when delamination should finalize if not cancelled.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float DelamTimerAccumulator;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan DelamTimerAccumulator = TimeSpan.Zero;
 
     /// <summary>
     ///     Time until delam
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
-    public float DelamTimer = 120f;
+    public TimeSpan DelamTimer = TimeSpan.FromSeconds(120);
 
     /// <summary>
-    ///  The message timer
+    /// Reserved timer for optional speech behavior.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float SpeakAccumulator = 5f;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan SpeakAccumulator = TimeSpan.Zero;
 
     /// <summary>
-    /// Atmos update timer
+    /// Next time to process atmosphere interaction.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float AtmosUpdateAccumulator;
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan AtmosUpdateAccumulator = TimeSpan.Zero;
 
     /// <summary>
     /// update atmos every 1 second
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public float AtmosUpdateTimer = 1f;
+    public TimeSpan AtmosUpdateTimer = TimeSpan.FromSeconds(1);
+
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan ZapAccumulator = TimeSpan.Zero;
 
     [DataField]
-    public float ZapAccumulator = 0f;
-
-    [DataField]
-    public float ZapTimer = 10f;
+    public TimeSpan ZapTimer = TimeSpan.FromSeconds(10);
 
     #endregion
 
