@@ -6,9 +6,10 @@
   id: MobRobotic
   components:
   - type: LanguageSpeaker
-    currentLanguage: Binary
+    currentLanguage: TauCetiBasic
   - type: LanguageKnowledge #backmen: languages
     speaks:
+    - TauCetiBasic
     - Binary
     understands:
     - Binary
