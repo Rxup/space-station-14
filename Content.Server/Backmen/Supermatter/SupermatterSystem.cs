@@ -116,6 +116,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     {
         base.Update(frameTime);
         _pwrJobQueue.Process();
+        var now = _timing.CurTime;
 
         var q = EntityQueryEnumerator<BkmSupermatterComponent, ExplosiveComponent, RadiationSourceComponent, MetaDataComponent>();
 
@@ -127,36 +128,43 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
             var mixture = _atmosphere.GetContainingMixture(owner, true, true);
 
             {
-                supermatter.AtmosUpdateAccumulator += frameTime;
+                if (supermatter.AtmosUpdateAccumulator == TimeSpan.Zero)
+                    supermatter.AtmosUpdateAccumulator = now + supermatter.AtmosUpdateTimer;
 
-                if (supermatter.AtmosUpdateAccumulator > supermatter.AtmosUpdateTimer &&
+                if (now >= supermatter.AtmosUpdateAccumulator &&
                     mixture is { })
                 {
-                    supermatter.AtmosUpdateAccumulator -= supermatter.AtmosUpdateTimer;
+                    supermatter.AtmosUpdateAccumulator = now + supermatter.AtmosUpdateTimer;
                     _pwrJobQueue.EnqueueJob(new HandleOutputJob(frameTime, this, (owner, supermatter, xplode, rads), mixture, PwrJobTime));
                 }
             }
             {
-                supermatter.DamageUpdateAccumulator += frameTime;
+                if (supermatter.DamageUpdateAccumulator == TimeSpan.Zero)
+                    supermatter.DamageUpdateAccumulator = now + supermatter.DamageUpdateTimer;
 
-                if (supermatter.DamageUpdateAccumulator > supermatter.DamageUpdateTimer)
+                if (now >= supermatter.DamageUpdateAccumulator)
                 {
-                    supermatter.DamageUpdateAccumulator -= supermatter.DamageUpdateTimer;
+                    supermatter.DamageUpdateAccumulator = now + supermatter.DamageUpdateTimer;
                     _pwrJobQueue.EnqueueJob(new HandleDamageJob(frameTime, this, (owner, supermatter, xplode, rads), mixture, PwrJobTime));
                 }
             }
             {
-                if (supermatter.ZapAccumulator >= supermatter.ZapTimer)
+                if (supermatter.ZapAccumulator == TimeSpan.Zero)
+                    supermatter.ZapAccumulator = now + supermatter.ZapTimer;
+
+                if (now >= supermatter.ZapAccumulator)
                 {
-                    supermatter.ZapAccumulator -= supermatter.ZapTimer;
+                    supermatter.ZapAccumulator = now + supermatter.ZapTimer;
                     _pwrJobQueue.EnqueueJob(new HandleLightingJob(frameTime, this, (owner, supermatter), PwrJobTime));
                 }
             }
             {
-                supermatter.YellAccumulator += frameTime;
-                if (supermatter.YellAccumulator >= supermatter.YellTimer)
+                if (supermatter.YellAccumulator == TimeSpan.Zero)
+                    supermatter.YellAccumulator = now + supermatter.YellTimer;
+
+                if (now >= supermatter.YellAccumulator)
                 {
-                    supermatter.YellAccumulator -= supermatter.YellTimer;
+                    supermatter.YellAccumulator = now + supermatter.YellTimer;
                     AnnounceCoreDamage(owner, supermatter);
                 }
             }
@@ -513,16 +521,18 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
         if (sMcomponent.Damage < sMcomponent.DamageDelaminationPoint && sMcomponent.Delamming)
         {
             sMcomponent.Delamming = false;
+            sMcomponent.DelamTimerAccumulator = TimeSpan.Zero;
             AnnounceCoreDamage(uid, sMcomponent);
             return;
         }
 
-        sMcomponent.DelamTimerAccumulator += frameTime + sMcomponent.DamageUpdateTimer;
+        if (sMcomponent.DelamTimerAccumulator == TimeSpan.Zero)
+            sMcomponent.DelamTimerAccumulator = _timing.CurTime + sMcomponent.DelamTimer;
 
 
         //TODO: make tesla(?) spawn at SupermatterComponent.PowerPenaltyThreshold and think up other delam types
         //times up, explode or make a singulo
-        if (!(sMcomponent.DelamTimerAccumulator >= sMcomponent.DelamTimer))
+        if (_timing.CurTime < sMcomponent.DelamTimerAccumulator)
             return;
 
         switch (sMcomponent.PreferredDelamType)
@@ -532,21 +542,34 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
             //    break;
 
             case DelamType.Singulo:
+                {
+                    var baseRadius = _explosion.IntensityToRadius(xplode.TotalIntensity, xplode.IntensitySlope, xplode.MaxIntensity);
+                    _explosion.TriggerExplosive(uid, xplode, radius: baseRadius * 100f);
+                }
                 Spawn(sMcomponent.SingularitySpawnPrototype, xform.Coordinates);
                 break;
 
             case DelamType.Tesla:
+                {
+                    var baseRadius = _explosion.IntensityToRadius(xplode.TotalIntensity, xplode.IntensitySlope, xplode.MaxIntensity);
+                    _explosion.TriggerExplosive(uid, xplode, radius: baseRadius * 100f, totalIntensity: xplode.TotalIntensity);
+                }
                 Spawn(sMcomponent.TeslaSpawnPrototype, xform.Coordinates);
                 break;
 
             default:
-                _explosion.TriggerExplosive(uid);
+                {
+                    // Exact scaling request: make the explosion radius 100x larger.
+                    var baseRadius = _explosion.IntensityToRadius(xplode.TotalIntensity, xplode.IntensitySlope, xplode.MaxIntensity);
+                    _explosion.TriggerExplosive(uid, xplode, radius: baseRadius * 100f, totalIntensity: xplode.TotalIntensity);
+                }
                 break;
         }
 
         sMcomponent.AudioStream = _audio.Stop(sMcomponent.AudioStream);
         _ambient.SetAmbience(uid, false);
         sMcomponent.Delamming = false;
+        sMcomponent.DelamTimerAccumulator = TimeSpan.Zero;
     }
 
     private void HandleSoundLoop(EntityUid uid, BkmSupermatterComponent sm)
@@ -605,7 +628,7 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
                 _alert.SetLevel((EntityUid) station, sm.AlertCodeDeltaId, true, true, true, false);
 
             sb.AppendLine(Loc.GetString(loc));
-            sb.AppendLine(Loc.GetString("supermatter-seconds-before-delam", ("seconds", sm.DelamTimer)));
+            sb.AppendLine(Loc.GetString("supermatter-seconds-before-delam", ("seconds", (int) sm.DelamTimer.TotalSeconds)));
 
             message = sb.ToString();
             global = true;
@@ -693,5 +716,6 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly AlertLevelSystem _alert = default!;
     [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
 }

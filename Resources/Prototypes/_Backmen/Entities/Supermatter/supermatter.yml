@@ -64,6 +64,8 @@
     maxIntensity: 25000000
     intensitySlope: 5
     totalIntensity: 25000000
+    tileBreakScale: 100
+    maxTileBreak: 2
   - type: GuideHelp
     guides:
     - Supermatter

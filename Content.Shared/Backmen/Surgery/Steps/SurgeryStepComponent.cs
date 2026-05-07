@@ -24,12 +24,6 @@ public sealed partial class SurgeryStepComponent : Component
     public ComponentRegistry? BodyRemove;
 
     [DataField]
-    public HashSet<EntProtoId>? StatusEffectAdd;
-
-    [DataField]
-    public HashSet<EntProtoId>? StatusEffectRemove;
-
-    [DataField]
     public HashSet<EntProtoId>? BodyStatusEffectAdd;
 
     [DataField]
