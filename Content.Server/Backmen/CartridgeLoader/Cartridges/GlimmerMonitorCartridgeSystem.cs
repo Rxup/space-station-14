@@ -5,10 +5,10 @@ using Content.Shared.CartridgeLoader;
 
 namespace Content.Server.Backmen.CartridgeLoader.Cartridges;
 
-public sealed class GlimmerMonitorCartridgeSystem : EntitySystem
+public sealed partial class GlimmerMonitorCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
-    [Dependency] private readonly PassiveGlimmerReductionSystem _glimmerReductionSystem = default!;
+    [Dependency] private CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
+    [Dependency] private PassiveGlimmerReductionSystem _glimmerReductionSystem = default!;
 
     public override void Initialize()
     {

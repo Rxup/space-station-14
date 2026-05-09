@@ -37,22 +37,22 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Antag.SuperPsi;
 
-public sealed class AutoPsiSystem : EntitySystem
+public sealed partial class AutoPsiSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly RandomMetadataSystem _randomMetadata = default!;
-    [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
-    [Dependency] private readonly IdCardSystem _idCardSystem = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerMgr = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IdentitySystem _identity = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private RandomMetadataSystem _randomMetadata = default!;
+    [Dependency] private StationRecordsSystem _recordsSystem = default!;
+    [Dependency] private IdCardSystem _idCardSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private ISharedPlayerManager _playerMgr = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

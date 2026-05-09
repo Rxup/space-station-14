@@ -35,21 +35,21 @@ namespace Content.Server.Zombies
 {
     public sealed partial class ZombieSystem : SharedZombieSystem
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IPrototypeManager _protoManager = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-        [Dependency] private readonly DamageableSystem _damageable = default!;
-        [Dependency] private readonly ChatSystem _chat = default!;
-        [Dependency] private readonly ActionsSystem _actions = default!;
-        [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
-        [Dependency] private readonly EmoteOnDamageSystem _emoteOnDamage = default!;
-        [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly SharedRoleSystem _role = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IPrototypeManager _protoManager = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
+        [Dependency] private DamageableSystem _damageable = default!;
+        [Dependency] private ChatSystem _chat = default!;
+        [Dependency] private ActionsSystem _actions = default!;
+        [Dependency] private AutoEmoteSystem _autoEmote = default!;
+        [Dependency] private EmoteOnDamageSystem _emoteOnDamage = default!;
+        [Dependency] private MobStateSystem _mobState = default!;
+        [Dependency] private SharedPopupSystem _popup = default!;
+        [Dependency] private SharedRoleSystem _role = default!;
 
-        [Dependency] private readonly PainSystem _pain = default!; // Backmen Edit
-        [Dependency] private readonly ConsciousnessSystem _consciousness = default!; // Backmen Edit
+        [Dependency] private PainSystem _pain = default!; // Backmen Edit
+        [Dependency] private ConsciousnessSystem _consciousness = default!; // Backmen Edit
         public readonly ProtoId<NpcFactionPrototype> Faction = "Zombie";
 
         public const SlotFlags ProtectiveSlots =

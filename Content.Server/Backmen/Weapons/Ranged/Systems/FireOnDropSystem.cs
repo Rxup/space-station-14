@@ -5,10 +5,10 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
-public sealed class FireOnDropSystem : EntitySystem
+public sealed partial class FireOnDropSystem : EntitySystem
 {
-    [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
 
     public override void Initialize()

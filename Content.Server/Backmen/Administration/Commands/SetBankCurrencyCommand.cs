@@ -12,10 +12,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Backmen.Administration.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class SetBankCurrencyCommand : IConsoleCommand
+public sealed partial class SetBankCurrencyCommand : IConsoleCommand
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     public string Command { get; } = "setbankcurrency";
     public string Description { get; } = "Изменить банковский счет";

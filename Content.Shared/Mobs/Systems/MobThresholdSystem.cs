@@ -19,16 +19,16 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Mobs.Systems;
 
-public sealed class MobThresholdSystem : EntitySystem
+public sealed partial class MobThresholdSystem : EntitySystem
 {
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
 
     // backmen edit start
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private SharedBodySystem _body = default!;
 
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly WoundSystem _wound = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private WoundSystem _wound = default!;
     // backmen edit end
 
     public override void Initialize()

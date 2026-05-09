@@ -10,11 +10,11 @@ namespace Content.Server._Lavaland.Mobs.Hierophant;
 ///     It searches for the player, picks a neat position and spawns itself with something else
 ///     (in our case hierophant damaging square).
 /// </summary>
-public sealed class HierophantChaserSystem : EntitySystem
+public sealed partial class HierophantChaserSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     private static readonly Vector2i[] Directions =
     {
@@ -121,8 +121,8 @@ public sealed class HierophantChaserSystem : EntitySystem
     {
         delta = Vector2.Clamp(Vector2.Round(delta), new Vector2(-1, -1), new Vector2(1, 1));
 
-        return Math.Abs(delta.X) >= Math.Abs(delta.Y) 
-            ? new Vector2i((int)delta.X, 0) 
+        return Math.Abs(delta.X) >= Math.Abs(delta.Y)
+            ? new Vector2i((int)delta.X, 0)
             : new Vector2i(0, (int)delta.Y);
     }
 }

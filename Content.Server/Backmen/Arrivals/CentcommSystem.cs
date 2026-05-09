@@ -41,24 +41,24 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Arrivals;
 
-public sealed class CentcommSystem : EntitySystem
+public sealed partial class CentcommSystem : EntitySystem
 {
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly  SharedMapSystem _mapSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private ShuttleSystem _shuttle = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ShuttleConsoleSystem _console = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
 
     public EntityUid CentComGrid { get; private set; } = EntityUid.Invalid;
     public MapId CentComMap { get; private set; } = MapId.Nullspace;

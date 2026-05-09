@@ -9,13 +9,13 @@ using Content.Shared.Stunnable;
 
 namespace Content.Shared._Ataraxia.TelescopicBaton;
 
-public sealed class TelescopicBatonSystem : EntitySystem
+public sealed partial class TelescopicBatonSystem : EntitySystem
 {
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly SharedLayingDownSystem _layingDown = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private ItemToggleSystem _itemToggle = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private SharedLayingDownSystem _layingDown = default!;
 
     public override void Initialize()
     {

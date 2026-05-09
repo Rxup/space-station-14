@@ -7,10 +7,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.EntityHealthBar;
 
-public sealed class ShowHealthBarsSystem : EntitySystem
+public sealed partial class ShowHealthBarsSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
 
     private BkmEntityHealthBarOverlay _overlay = default!;
     public override void Initialize()

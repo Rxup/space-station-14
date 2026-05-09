@@ -8,11 +8,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Eye.NightVision.Systems;
 
-public sealed class NightVisionSystem : EntitySystem
+public sealed partial class NightVisionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

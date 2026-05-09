@@ -4,10 +4,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Body.Components;
 
-public sealed class StatusEffectOrganSystem : EntitySystem
+public sealed partial class StatusEffectOrganSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly StatusEffectsSystem _effects = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private StatusEffectsSystem _effects = default!;
 
     public override void Update(float frameTime)
     {

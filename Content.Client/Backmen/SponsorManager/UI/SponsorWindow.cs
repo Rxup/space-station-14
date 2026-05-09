@@ -20,10 +20,10 @@ namespace Content.Client.Backmen.SponsorManager.UI;
 [GenerateTypedNameReferences]
 public sealed partial class SponsorWindow : DefaultWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly ISharedSponsorsManager _clientSponsorsManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private ISharedSponsorsManager _clientSponsorsManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public SponsorWindow()
     {

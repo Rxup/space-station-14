@@ -16,11 +16,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Economy;
 
-    public sealed class BankManagerSystem : EntitySystem
+    public sealed partial class BankManagerSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _robustRandom = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly ATMSystem _atmSystem = default!;
+        [Dependency] private IRobustRandom _robustRandom = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private ATMSystem _atmSystem = default!;
 
         [ViewVariables] public readonly Dictionary<string, Entity<BankAccountComponent>> ActiveBankAccounts = new();
 

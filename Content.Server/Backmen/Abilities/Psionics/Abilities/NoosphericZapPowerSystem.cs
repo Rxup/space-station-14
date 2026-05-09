@@ -15,16 +15,16 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class NoosphericZapPowerSystem
+public sealed partial class NoosphericZapPowerSystem
     : StatusEffectGrantedPowerSystem<NoosphericZapPowerComponent, NoosphericZapPowerActionEvent>
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly Content.Shared.StatusEffect.StatusEffectsSystem _statusEffectsSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly BeamSystem _beam = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
+    [Dependency] private StunSystem _stunSystem = default!;
+    [Dependency] private Content.Shared.StatusEffect.StatusEffectsSystem _statusEffectsSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private BeamSystem _beam = default!;
 
     public override void Initialize()
     {

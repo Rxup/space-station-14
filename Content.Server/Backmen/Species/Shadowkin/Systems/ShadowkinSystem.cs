@@ -21,15 +21,15 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
-public sealed class ShadowkinSystem : EntitySystem
+public sealed partial class ShadowkinSystem : EntitySystem
 {
-    [Dependency] private readonly ShadowkinPowerSystem _power = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly ShadowkinBlackeyeSystem _shadowkinBlackeyeSystem = default!;
-    [Dependency] private readonly ShadowkinTeleportSystem _teleport = default!;
+    [Dependency] private ShadowkinPowerSystem _power = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private ShadowkinBlackeyeSystem _shadowkinBlackeyeSystem = default!;
+    [Dependency] private ShadowkinTeleportSystem _teleport = default!;
 
 
     private EntityQuery<HandcuffComponent> _activeHandcuff;

@@ -21,18 +21,18 @@ using Content.Shared.Verbs;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
-public abstract class SharedInjectorSystem : EntitySystem
+public abstract partial class SharedInjectorSystem : EntitySystem
 {
-    [Dependency] private readonly SharedBloodstreamSystem _blood = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly OpenableSystem _openable = default!;
-    [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
-    [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedForensicsSystem _forensics = default!;
-    [Dependency] protected readonly SharedSolutionContainerSystem SolutionContainer = default!;
+    [Dependency] private SharedBloodstreamSystem _blood = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private OpenableSystem _openable = default!;
+    [Dependency] private ReactiveSystem _reactiveSystem = default!;
+    [Dependency] private SharedCombatModeSystem _combatMode = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedForensicsSystem _forensics = default!;
+    [Dependency] protected SharedSolutionContainerSystem SolutionContainer = default!;
 
     public override void Initialize()
     {

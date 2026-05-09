@@ -11,7 +11,7 @@ namespace Content.Client.Backmen.StationAI.UI;
 [GenerateTypedNameReferences]
 public sealed partial class AICameraList : FancyWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     public event Action<NetEntity>? WarpToCamera;
 
     private readonly EntityUid _owner;

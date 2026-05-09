@@ -7,9 +7,9 @@ namespace Content.Server.Backmen.DelayedDeath;
 
 public partial class DelayedDeathSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
     public override void Update(float frameTime)
     {
         base.Update(frameTime);

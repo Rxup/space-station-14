@@ -25,16 +25,16 @@ namespace Content.Server.Backmen.StationEvents.Events;
 /// <summary>
 /// Forces a mind swap on all non-insulated potential psionic entities.
 /// </summary>
-internal sealed class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComponent>
+internal sealed partial class MassMindSwapRule : StationEventSystem<MassMindSwapRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly MindSwapPowerSystem _mindSwap = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly GlimmerSystem _glimmer = default!;
-    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private MindSwapPowerSystem _mindSwap = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private SharedRoleSystem _roleSystem = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private GlimmerSystem _glimmer = default!;
+    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
     private HashSet<MapId> GetStationEventMaps()
     {

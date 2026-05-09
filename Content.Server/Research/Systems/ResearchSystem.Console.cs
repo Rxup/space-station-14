@@ -14,8 +14,8 @@ namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly ChatSystem _chat = default!; // Backmen
+    [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private ChatSystem _chat = default!; // Backmen
 
     private void InitializeConsole()
     {

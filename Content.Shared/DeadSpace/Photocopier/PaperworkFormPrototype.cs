@@ -7,7 +7,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.DeadSpace.Photocopier;
 
-[Prototype("paperworkForm")][Serializable, NetSerializable]
+[Prototype]
 public sealed partial class PaperworkFormPrototype : IPrototype
 {
     [ViewVariables][IdDataField] public string ID { get; private set; } = default!;

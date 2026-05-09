@@ -24,16 +24,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class PsionicRegenerationPowerSystem : StatusEffectGrantedPowerSystem<PsionicRegenerationPowerComponent, PsionicRegenerationPowerActionEvent>
+public sealed partial class PsionicRegenerationPowerSystem : StatusEffectGrantedPowerSystem<PsionicRegenerationPowerComponent, PsionicRegenerationPowerActionEvent>
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private AudioSystem _audioSystem = default!;
+    [Dependency] private DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
 
 
     public override void Initialize()

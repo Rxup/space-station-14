@@ -15,7 +15,7 @@ namespace Content.Server.Backmen.JoinQueue;
 
 
 
-public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJoinQueueManager
+public sealed partial class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJoinQueueManager
 {
     private static readonly Gauge QueueCount = Metrics.CreateGauge(
         "join_queue_count",
@@ -34,12 +34,12 @@ public sealed class JoinQueueManager : Content.Corvax.Interfaces.Server.IServerJ
             Buckets = Histogram.ExponentialBuckets(1, 2, 14),
         });
 
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IConnectionManager _connectionManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IServerNetManager _netManager = default!;
-    [Dependency] private readonly Content.Corvax.Interfaces.Server.IServerDiscordAuthManager _discordAuthManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IConnectionManager _connectionManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IServerNetManager _netManager = default!;
+    [Dependency] private Content.Corvax.Interfaces.Server.IServerDiscordAuthManager _discordAuthManager = default!;
 
     /// <summary>
     ///     Queue of active player sessions

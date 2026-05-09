@@ -10,10 +10,10 @@ using Robust.Shared.Player;
 
 namespace Content.Client.Backmen.Species.Shadowkin.Systems;
 
-public sealed class ShadowkinDarkSwappedSystem : EntitySystem
+public sealed partial class ShadowkinDarkSwappedSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlay = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
 
     private IgnoreHumanoidWithComponentOverlay _ignoreOverlay = default!;
     private EtherealOverlay _etherealOverlay = default!;

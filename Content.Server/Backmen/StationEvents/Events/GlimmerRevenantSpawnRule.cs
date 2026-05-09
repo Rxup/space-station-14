@@ -8,10 +8,10 @@ using Content.Shared.GameTicking.Components;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
-internal sealed class GlimmerRevenantRule : StationEventSystem<GlimmerRevenantRuleComponent>
+internal sealed partial class GlimmerRevenantRule : StationEventSystem<GlimmerRevenantRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     protected override void Started(EntityUid uid, GlimmerRevenantRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

@@ -4,10 +4,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Blob;
 
-public abstract class SharedBlobCarrierSystem : EntitySystem
+public abstract partial class SharedBlobCarrierSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Update(float frameTime)
     {

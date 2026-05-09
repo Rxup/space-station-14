@@ -29,20 +29,20 @@ using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server.Backmen.SpecForces;
 
-public sealed class SpecForcesSystem : EntitySystem
+public sealed partial class SpecForcesSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly MapLoaderSystem _map = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private MapLoaderSystem _map = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private ISerializationManager _serialization = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
 
     [ViewVariables] public List<SpecForcesHistory> CalledEvents { get; } = new();
     [ViewVariables] public TimeSpan LastUsedTime { get; private set; } = TimeSpan.Zero;

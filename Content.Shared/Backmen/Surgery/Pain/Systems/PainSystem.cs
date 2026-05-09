@@ -8,10 +8,10 @@ namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 
 public abstract partial class PainSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly IConfigurationManager Cfg = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected IConfigurationManager Cfg = default!;
 
-    [Dependency] protected readonly SharedAudioSystem IHaveNoMouthAndIMustScream = default!;
+    [Dependency] protected SharedAudioSystem IHaveNoMouthAndIMustScream = default!;
 
     protected EntityQuery<NerveSystemComponent> NerveSystemQuery;
     protected EntityQuery<NerveComponent> NerveQuery;

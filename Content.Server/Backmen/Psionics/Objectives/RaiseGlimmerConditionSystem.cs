@@ -4,10 +4,10 @@ using Content.Shared.Objectives.Components;
 
 namespace Content.Server.Backmen.Psionics.Objectives;
 
-public sealed class RaiseGlimmerConditionSystem : EntitySystem
+public sealed partial class RaiseGlimmerConditionSystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly GlimmerSystem _glimmer = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private GlimmerSystem _glimmer = default!;
 
     public override void Initialize()
     {

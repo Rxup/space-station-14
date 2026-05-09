@@ -8,7 +8,7 @@ namespace Content.Shared.Backmen.EntityEffects.Conditions;
 /// <inheritdoc cref="EntityConditionSystem{T, TCon}"/>
 public sealed partial class PressureThresholdEntityConditionSystem : EntityConditionSystem<TransformComponent, PressureThreshold>
 {
-    [Dependency] private readonly SharedAtmosphereSystem _atmosphere = default!;
+    [Dependency] private SharedAtmosphereSystem _atmosphere = default!;
 
     protected override void Condition(Entity<TransformComponent> entity, ref EntityConditionEvent<PressureThreshold> args)
     {

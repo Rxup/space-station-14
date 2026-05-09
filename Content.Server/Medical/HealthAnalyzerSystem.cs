@@ -35,21 +35,21 @@ using Content.Server.Backmen.Surgery.Consciousness.Systems;
 
 namespace Content.Server.Medical;
 
-public sealed class HealthAnalyzerSystem : EntitySystem
+public sealed partial class HealthAnalyzerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PowerCellSystem _cell = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
-    [Dependency] private readonly WoundSystem _woundSystem = default!; // backmen edit
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly ServerConsciousnessSystem _consciousnessSystem = default!; // backmen: pain
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PowerCellSystem _cell = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private WoundSystem _woundSystem = default!; // backmen edit
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private ServerConsciousnessSystem _consciousnessSystem = default!; // backmen: pain
 
     public override void Initialize()
     {

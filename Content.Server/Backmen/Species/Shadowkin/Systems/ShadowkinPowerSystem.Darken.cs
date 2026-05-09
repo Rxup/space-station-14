@@ -11,12 +11,12 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
-public sealed class ShadowkinDarkenSystem : EntitySystem
+public sealed partial class ShadowkinDarkenSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPointLightSystem _light = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private SharedPointLightSystem _light = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     private const double MoverJobTime = 0.005;
     private readonly JobQueue _moveJobQueue = new(MoverJobTime);

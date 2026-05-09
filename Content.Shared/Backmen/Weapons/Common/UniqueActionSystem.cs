@@ -7,11 +7,11 @@ using Robust.Shared.Input.Binding;
 
 namespace Content.Shared.Backmen.Weapons.Common;
 
-public sealed class UniqueActionSystem : EntitySystem
+public sealed partial class UniqueActionSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
 
     public override void Initialize()
     {

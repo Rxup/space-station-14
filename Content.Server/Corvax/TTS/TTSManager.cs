@@ -14,7 +14,7 @@ using Robust.Shared.Configuration;
 namespace Content.Server.Corvax.TTS;
 
 // ReSharper disable once InconsistentNaming
-public sealed class TTSManager
+public sealed partial class TTSManager
 {
     private static readonly Histogram RequestTimings = Metrics.CreateHistogram(
         "tts_req_timings",

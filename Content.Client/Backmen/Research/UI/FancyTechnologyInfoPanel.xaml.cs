@@ -15,8 +15,8 @@ namespace Content.Client.Backmen.Research.UI;
 [GenerateTypedNameReferences]
 public sealed partial class FancyTechnologyInfoPanel : Control
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public TechnologyPrototype Prototype;
     public Action<TechnologyPrototype>? BuyAction;

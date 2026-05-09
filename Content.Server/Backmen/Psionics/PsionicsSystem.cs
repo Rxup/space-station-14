@@ -15,14 +15,14 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Psionics;
 
-public sealed class PsionicsSystem : SharedPsionicsSystem
+public sealed partial class PsionicsSystem : SharedPsionicsSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly PsionicAbilitiesSystem _psionicAbilitiesSystem = default!;
-    [Dependency] private readonly MindSwapPowerSystem _mindSwapPowerSystem = default!;
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFactonSystem = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private PsionicAbilitiesSystem _psionicAbilitiesSystem = default!;
+    [Dependency] private MindSwapPowerSystem _mindSwapPowerSystem = default!;
+    [Dependency] private GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private NpcFactionSystem _npcFactonSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
 
     /// <summary>

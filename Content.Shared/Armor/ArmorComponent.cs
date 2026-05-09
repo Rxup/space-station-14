@@ -4,7 +4,6 @@ using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
-using Content.Shared.Damage;
 using Content.Shared.Inventory;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;

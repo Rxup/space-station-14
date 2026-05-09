@@ -11,12 +11,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Lavaland.Tendril;
 
-public sealed class TendrilSystem : EntitySystem
+public sealed partial class TendrilSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _time = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _time = default!;
 
     public override void Initialize()
     {

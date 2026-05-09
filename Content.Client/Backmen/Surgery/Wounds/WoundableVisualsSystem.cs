@@ -12,12 +12,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Backmen.Surgery.Wounds;
 
-public sealed class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsComponent>
+public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsComponent>
 {
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly WoundSystem _wound = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private WoundSystem _wound = default!;
 
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private const float AltBleedingSpriteChance = 0.15f;
 

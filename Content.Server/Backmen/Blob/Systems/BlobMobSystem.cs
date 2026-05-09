@@ -21,14 +21,14 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Blob.Systems;
 
-public sealed class BlobMobSystem : SharedBlobMobSystem
+public sealed partial class BlobMobSystem : SharedBlobMobSystem
 {
-    [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
-    [Dependency] private readonly SharedEntityEffectsSystem _effectsSystem = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private RadioSystem _radioSystem = default!;
+    [Dependency] private SharedEntityEffectsSystem _effectsSystem = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
 
     public override void Initialize()
     {

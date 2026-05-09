@@ -22,15 +22,15 @@ using Robust.Shared.Enums;
 namespace Content.Server.Backmen;
 
 [Obsolete]
-public sealed class OldAntagSelectionSystem : EntitySystem
+public sealed partial class OldAntagSelectionSystem : EntitySystem
 {
-    [Dependency] private readonly IServerPreferencesManager _prefs = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly JobSystem _jobs = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private IServerPreferencesManager _prefs = default!;
+    [Dependency] private AudioSystem _audioSystem = default!;
+    [Dependency] private JobSystem _jobs = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private SharedRoleSystem _roleSystem = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private IChatManager _chatManager = default!;
 
     #region Eligible Player Selection
     /// <summary>

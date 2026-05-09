@@ -15,9 +15,9 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 [UsedImplicitly]
 public sealed partial class SuppressPainEntityEffectSystem : EntityEffectSystem<MobStateComponent, SuppressPain>
 {
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly PainSystem _pain = default!;
+    [Dependency] private ConsciousnessSystem _consciousness = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private PainSystem _pain = default!;
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<SuppressPain> args)
     {

@@ -11,17 +11,17 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Backmen.Standing;
 
-public sealed class LayingDownSystem : SharedLayingDownSystem
+public sealed partial class LayingDownSystem : SharedLayingDownSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedRotationVisualsSystem _rotationVisuals = default!;
-    [Dependency] private readonly SpriteSystem _sprites = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IEyeManager _eyeManager = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private AnimationPlayerSystem _animation = default!;
+    [Dependency] private SharedBuckleSystem _buckle = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedRotationVisualsSystem _rotationVisuals = default!;
+    [Dependency] private SpriteSystem _sprites = default!;
 
     private bool _autoGetUp;
 

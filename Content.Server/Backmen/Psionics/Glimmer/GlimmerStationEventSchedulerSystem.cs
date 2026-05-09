@@ -11,11 +11,11 @@ namespace Content.Server.Backmen.Psionics.Glimmer;
 /// <summary>
 /// Система, запускающая события в зависимости от уровня сияния.
 /// </summary>
-public sealed class GlimmerStationEventSchedulerSystem : GameRuleSystem<GlimmerStationEventSchedulerComponent>
+public sealed partial class GlimmerStationEventSchedulerSystem : GameRuleSystem<GlimmerStationEventSchedulerComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly EventManagerSystem _event = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private EventManagerSystem _event = default!;
 
     protected override void Started(EntityUid uid, GlimmerStationEventSchedulerComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

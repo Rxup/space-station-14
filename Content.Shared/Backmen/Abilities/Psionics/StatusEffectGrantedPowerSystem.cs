@@ -7,11 +7,11 @@ namespace Content.Shared.Backmen.Abilities.Psionics;
 /// <summary>
 /// Common lifecycle + relay handling for powers that may be granted by status effects.
 /// </summary>
-public abstract class StatusEffectGrantedPowerSystem<TPowerComponent, TActionEvent> : EntitySystem
+public abstract partial class StatusEffectGrantedPowerSystem<TPowerComponent, TActionEvent> : EntitySystem
     where TPowerComponent : Component
     where TActionEvent : BaseActionEvent
 {
-    [Dependency] protected readonly StatusEffectsSystem StatusEffects = default!;
+    [Dependency] protected StatusEffectsSystem StatusEffects = default!;
 
     protected void InitializeStatusEffectGrantedPower()
     {

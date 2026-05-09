@@ -25,7 +25,7 @@ namespace Content.Shared.Mobs.Systems;
 
 public partial class MobStateSystem
 {
-    [Dependency] private readonly SharedLayingDownSystem _layingDownSystem = default!;
+    [Dependency] private SharedLayingDownSystem _layingDownSystem = default!;
 
     //General purpose event subscriptions. If you can avoid it register these events inside their own systems
     private void SubscribeEvents()

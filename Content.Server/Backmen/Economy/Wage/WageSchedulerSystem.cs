@@ -18,11 +18,11 @@ public sealed partial class WageSchedulerRuleComponent : Component
 }
 
 
-public sealed class WageSchedulerSystem : GameRuleSystem<WageSchedulerRuleComponent>
+public sealed partial class WageSchedulerSystem : GameRuleSystem<WageSchedulerRuleComponent>
 {
-    //[Dependency] private readonly IChatManager _chatManager = default!;
+    //[Dependency] private IChatManager _chatManager = default!;
     //public override string Prototype => "WageScheduler";
-    [Dependency] private readonly WageManagerSystem _wageManagerSystem = default!;
+    [Dependency] private WageManagerSystem _wageManagerSystem = default!;
 
 
 

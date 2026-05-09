@@ -22,22 +22,24 @@ using Content.Server.GameTicking;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.UserInterface;
 using Content.Shared.Power;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.DeadSpace.Photocopier;
 
-public sealed class PhotocopierSystem : EntitySystem
+public sealed partial class PhotocopierSystem : EntitySystem
 {
-    [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly PaperSystem _paperSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IResourceManager _resourceManager = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private PaperSystem _paperSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IResourceManager _resourceManager = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private const string PaperSlotId = "Paper";
 
@@ -247,7 +249,9 @@ public sealed class PhotocopierSystem : EntitySystem
 
     private void OnFormButtonPressed(EntityUid uid, PhotocopierComponent component, PhotocopierChoseFormMessage args)
     {
-        component.ChosenPaper = args.PaperworkForm;
+        if(!_proto.TryIndex(args.PaperworkForm, out var prototype))
+            return;
+        component.ChosenPaper = prototype;
         UpdateUserInterface(uid, component);
     }
 
@@ -317,7 +321,7 @@ public sealed class PhotocopierSystem : EntitySystem
         var isPaperInserted = component.PaperSlot.Item != null;
         var canPrint = component.UseTimeoutRemaining <= 0 &&
                       component.ScanningTimeRemaining <= 0;
-        var state = new PhotocopierUiState(canPrint, isPaperInserted, component.ChosenPaper, component.Mode, component.PhotocopierType, component.WasEmagged,
+        var state = new PhotocopierUiState(canPrint, isPaperInserted, component.ChosenPaper?.ID, component.Mode, component.PhotocopierType, component.WasEmagged,
             component.TonerLeft < 0 ? 0 : component.TonerLeft, component.MaxTonerAmount);
         _userInterface.SetUiState(uid, PhotocopierUiKey.Key, state);
     }

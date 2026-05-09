@@ -5,11 +5,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Species.Shadowkin.Systems;
 
-public sealed class ShadowkinDarken : EntitySystem
+public sealed partial class ShadowkinDarken : EntitySystem
 {
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {

@@ -6,10 +6,10 @@ using Content.Shared.Backmen.Traits;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Overlays;
-public sealed class NearsightedSystem : EntitySystem
+public sealed partial class NearsightedSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
 
     private NearsightedOverlay _overlay = default!;
 

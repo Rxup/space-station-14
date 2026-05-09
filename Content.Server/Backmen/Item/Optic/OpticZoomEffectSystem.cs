@@ -7,10 +7,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Item.Optic;
 
-public sealed class OpticZoomEffectSystem : EntitySystem
+public sealed partial class OpticZoomEffectSystem : EntitySystem
 {
-    [Dependency] private readonly ContentEyeSystem _contentEyeSystem = default!;
-    [Dependency] private readonly ActionsSystem _actionsSystem = default!;
+    [Dependency] private ContentEyeSystem _contentEyeSystem = default!;
+    [Dependency] private ActionsSystem _actionsSystem = default!;
 
     public override void Initialize()
     {

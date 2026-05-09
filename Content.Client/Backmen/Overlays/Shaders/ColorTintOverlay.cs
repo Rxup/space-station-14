@@ -9,11 +9,11 @@ namespace Content.Client.Backmen.Overlays.Shaders;
 /// <summary>
 ///     A simple overlay that applies a colored tint to the screen.
 /// </summary>
-public sealed class ColorTintOverlay : Overlay
+public sealed partial class ColorTintOverlay : Overlay
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IEntityManager _entity = default!;
 
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpace;

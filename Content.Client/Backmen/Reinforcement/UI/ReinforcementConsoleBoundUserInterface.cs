@@ -9,9 +9,9 @@ using Content.Shared.Backmen.Reinforcement.Components;
 namespace Content.Client.Backmen.Reinforcement.UI;
 
 [UsedImplicitly]
-public sealed class ReinforcementConsoleBoundUserInterface : BoundUserInterface
+public sealed partial class ReinforcementConsoleBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private ReinforcementConsoleWindow? _window;
 

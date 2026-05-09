@@ -26,14 +26,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Item.PseudoItem;
 
-public sealed class PseudoItemSystem : SharedPseudoItemSystem
+public sealed partial class PseudoItemSystem : SharedPseudoItemSystem
 {
-    [Dependency] private readonly StorageSystem _storageSystem = default!;
-    [Dependency] private readonly ItemSystem _itemSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
-    [Dependency] private readonly ContainerSystem _containerSystem = default!;
+    [Dependency] private StorageSystem _storageSystem = default!;
+    [Dependency] private ItemSystem _itemSystem = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private EntityStorageSystem _entityStorage = default!;
+    [Dependency] private ContainerSystem _containerSystem = default!;
 
     public override void Initialize()
     {

@@ -13,9 +13,9 @@ namespace Content.Client.Backmen.DiscordAuth;
 [GenerateTypedNameReferences]
 public sealed partial class DiscordAuthGui : Control
 {
-    [Dependency] private readonly Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordAuthManager = default!;
-    [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordAuthManager = default!;
+    [Dependency] private IClientConsoleHost _consoleHost = default!;
+    [Dependency] private INetManager _netManager = default!;
 
     public DiscordAuthGui()
     {

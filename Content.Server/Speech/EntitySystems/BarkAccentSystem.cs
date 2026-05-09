@@ -5,9 +5,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems
 {
-    public sealed class BarkAccentSystem : EntitySystem
+    public sealed partial class BarkAccentSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private IRobustRandom _random = default!;
 
         private static readonly IReadOnlyList<string> Barks = new List<string>{
             " Гав!", " ГАВ", " вуф-вуф"  // Corvax-Localization

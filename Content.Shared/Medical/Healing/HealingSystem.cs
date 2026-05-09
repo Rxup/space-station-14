@@ -6,7 +6,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
-using Content.Shared.Body.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -29,23 +28,23 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Medical.Healing;
 
-public sealed class HealingSystem : EntitySystem
+public sealed partial class HealingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedStackSystem _stacks = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedStackSystem _stacks = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
     // backmen edit start
-    [Dependency] private readonly WoundSystem _wounds = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
+    [Dependency] private WoundSystem _wounds = default!;
+    [Dependency] private TraumaSystem _trauma = default!;
     // backmen edit end
 
     public override void Initialize()
@@ -294,12 +293,12 @@ public sealed class HealingSystem : EntitySystem
         if (ent != args.User)
         {
             _adminLogger.Add(LogType.Healed,
-                $"{EntityManager.ToPrettyString(args.User):user} healed {EntityManager.ToPrettyString(ent):target} for {healedTotal:damage} damage");
+                $"{ToPrettyString(args.User):user} healed {ToPrettyString(ent):target} for {healedTotal:damage} damage");
         }
         else
         {
             _adminLogger.Add(LogType.Healed,
-                $"{EntityManager.ToPrettyString(args.User):user} healed themselves for {healedTotal:damage} damage");
+                $"{ToPrettyString(args.User):user} healed themselves for {healedTotal:damage} damage");
         }
 
         _audio.PlayPvs(healing.HealingEndSound, ent, AudioParams.Default.WithVariation(0.125f).WithVolume(1f));

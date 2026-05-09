@@ -6,13 +6,13 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Shared._Lavaland.Shelter;
 
-public abstract class SharedShelterCapsuleSystem : EntitySystem
+public abstract partial class SharedShelterCapsuleSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

@@ -9,7 +9,7 @@ namespace Content.Server._Lavaland.Pressure;
 
 public sealed partial class PressureEfficiencyChangeSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
 
     public override void Initialize()
     {

@@ -13,9 +13,9 @@ namespace Content.Client.Backmen.Language.Systems;
 ///   Unlike the server, the client is not aware of other entities' languages; it's only notified about the entity that it posesses.
 ///   Due to that, this system stores such information in a static manner.
 /// </remarks>
-public sealed class LanguageSystem : SharedLanguageSystem
+public sealed partial class LanguageSystem : SharedLanguageSystem
 {
-    [Dependency] private readonly IBaseClient _client = default!;
+    [Dependency] private IBaseClient _client = default!;
 
     /// <summary>
     ///   The current language of the entity currently possessed by the player.

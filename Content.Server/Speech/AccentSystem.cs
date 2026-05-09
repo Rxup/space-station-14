@@ -5,9 +5,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Speech;
 
-public sealed class AccentSystem : EntitySystem
+public sealed partial class AccentSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // backmen
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // backmen
     public static readonly Regex SentenceRegex = new(@"(?<=[\.!\?‽])(?![\.!\?‽])", RegexOptions.Compiled);
 
     public override void Initialize()

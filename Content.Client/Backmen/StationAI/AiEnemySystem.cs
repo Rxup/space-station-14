@@ -8,10 +8,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.StationAI;
 
-public sealed class AiEnemySystem : SharedAiEnemySystem
+public sealed partial class AiEnemySystem : SharedAiEnemySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
     private EntityQuery<GhostComponent> _ghostQuery;
 
     public override void Initialize()

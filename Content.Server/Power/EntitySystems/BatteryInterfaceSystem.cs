@@ -21,9 +21,9 @@ namespace Content.Server.Power.EntitySystems;
 /// it merely reconfigures parameters on <see cref="PowerNetworkBatteryComponent"/> from the UI.
 /// </para>
 /// </remarks>
-public sealed class BatteryInterfaceSystem : EntitySystem
+public sealed partial class BatteryInterfaceSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = null!;
     [Dependency] private readonly SharedBatterySystem _battery = null!;
 

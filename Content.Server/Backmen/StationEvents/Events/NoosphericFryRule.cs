@@ -27,20 +27,20 @@ namespace Content.Server.Backmen.StationEvents.Events;
 /// <summary>
 /// Fries tinfoil hats and cages
 /// </summary>
-internal sealed class NoosphericFryRule : StationEventSystem<NoosphericFryRuleComponent>
+internal sealed partial class NoosphericFryRule : StationEventSystem<NoosphericFryRuleComponent>
 {
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly FlammableSystem _flammableSystem = default!;
-    [Dependency] private readonly GlimmerReactiveSystem _glimmerReactiveSystem = default!;
-    [Dependency] private readonly AnchorableSystem _anchorableSystem = default!;
-    [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private FlammableSystem _flammableSystem = default!;
+    [Dependency] private GlimmerReactiveSystem _glimmerReactiveSystem = default!;
+    [Dependency] private AnchorableSystem _anchorableSystem = default!;
+    [Dependency] private PowerReceiverSystem _powerReceiverSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private MapSystem _mapSystem = default!;
 
         protected override void Started(EntityUid uid, NoosphericFryRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

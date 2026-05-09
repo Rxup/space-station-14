@@ -20,15 +20,15 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
-public sealed class HypospraySystem : EntitySystem
+public sealed partial class HypospraySystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainers = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private ReactiveSystem _reactiveSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainers = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
 
     public override void Initialize()
     {

@@ -9,10 +9,10 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Disease.StationEvents;
 
-public sealed class DiseaseOutbreakRule : StationEventSystem<DiseaseOutbreakRuleComponent>
+public sealed partial class DiseaseOutbreakRule : StationEventSystem<DiseaseOutbreakRuleComponent>
 {
-    [Dependency] private readonly DiseaseSystem _diseaseSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private DiseaseSystem _diseaseSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
 
     /// <summary>
     /// Finds 2-5 random, alive entities that can host diseases

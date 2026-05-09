@@ -16,13 +16,13 @@ namespace Content.Server.Backmen.StationEvents.Events;
 /// <summary>
 /// Zaps everyone, rolling psionics and disorienting them
 /// </summary>
-internal sealed class NoosphericZapRule : StationEventSystem<NoosphericZapRuleComponent>
+internal sealed partial class NoosphericZapRule : StationEventSystem<NoosphericZapRuleComponent>
 {
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly PsionicsSystem _psionicsSystem = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private StunSystem _stunSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private PsionicsSystem _psionicsSystem = default!;
+    [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
 
     public static readonly EntProtoId Stuttering = "StatusEffectStutter";
 

@@ -10,12 +10,12 @@ namespace Content.Server.Backmen.Objectives.Systems;
 /// <summary>
 ///     Handles escaping on the shuttle while being another person detection.
 /// </summary>
-public sealed class ImpersonateConditionSystem : EntitySystem
+public sealed partial class ImpersonateConditionSystem : EntitySystem
 {
-    [Dependency] private readonly TargetObjectiveSystem _target = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private TargetObjectiveSystem _target = default!;
+    [Dependency] private EmergencyShuttleSystem _emergencyShuttle = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
 
     private EntityQuery<MindComponent> _mindQuery;
     private EntityQuery<MetaDataComponent> _metadataQuery;

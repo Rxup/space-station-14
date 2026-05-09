@@ -11,12 +11,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.AirDrop;
 
-public sealed class AirDropSystem : SharedAirDropSystem
+public sealed partial class AirDropSystem : SharedAirDropSystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedEntityStorageSystem _storage = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly SharedNoLavalandUsageSystem _noLavaland = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedEntityStorageSystem _storage = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private SharedNoLavalandUsageSystem _noLavaland = default!;
 
 
     public override void Initialize()

@@ -11,9 +11,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Blob.Systems;
 
-public sealed class BlobFactorySystem : EntitySystem
+public sealed partial class BlobFactorySystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private EntityQuery<BlobTileComponent> _tile;
     private EntityQuery<BlobCoreComponent> _core;

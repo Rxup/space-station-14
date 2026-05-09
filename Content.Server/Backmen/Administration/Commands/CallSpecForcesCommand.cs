@@ -10,11 +10,11 @@ using static System.Int32;
 namespace Content.Server.Backmen.Administration.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class CallSpecForcesCommand : IConsoleCommand
+public sealed partial class CallSpecForcesCommand : IConsoleCommand
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly EntityManager _entManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private EntityManager _entManager = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     public string Command => "callspecforces";
     public string Description => "Вызов команды спецсил";

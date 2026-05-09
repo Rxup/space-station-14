@@ -33,13 +33,13 @@ namespace Content.Server.Backmen.Flesh;
 
 public sealed partial class FleshCultistSystem
 {
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly CuffableSystem _cuffable = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private CuffableSystem _cuffable = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private MovementSpeedModifierSystem _movement = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     private void InitializeAbilities()
     {

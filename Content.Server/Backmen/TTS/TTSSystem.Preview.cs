@@ -10,7 +10,7 @@ namespace Content.Server.Corvax.TTS;
 
 public sealed partial class TTSSystem
 {
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
 
     private readonly List<string> _sampleText = new() // TODO: Локализация?
     {

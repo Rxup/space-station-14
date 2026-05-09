@@ -7,7 +7,7 @@ namespace Content.Server.Backmen.NPC.HTN.PrimitiveTasks.Operators.Specific;
 
 public sealed partial class DrainOperator : HTNOperator
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
     private GlimmerWispSystem _wispSystem = default!;
 
     [DataField("drainKey")]

@@ -11,12 +11,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.AirDrop;
 
-public abstract class SharedAirDropSystem : EntitySystem
+public abstract partial class SharedAirDropSystem : EntitySystem
 {
-    [Dependency] protected readonly UseDelaySystem Delay = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] protected readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] protected readonly SharedTransformSystem _transform = default!;
+    [Dependency] protected UseDelaySystem Delay = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] protected IPrototypeManager PrototypeManager = default!;
+    [Dependency] protected SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

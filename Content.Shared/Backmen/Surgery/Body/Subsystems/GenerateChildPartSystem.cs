@@ -8,11 +8,11 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared.Backmen.Surgery.Body.Subsystems;
 
-public sealed class GenerateChildPartSystem : EntitySystem
+public sealed partial class GenerateChildPartSystem : EntitySystem
 {
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private INetManager _net = default!;
     public override void Initialize()
     {
         base.Initialize();

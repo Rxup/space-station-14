@@ -14,5 +14,5 @@ public sealed partial class EvilTwinRule : StationEventSystem<EvilTwinRuleCompon
         }
     }
 
-    [Dependency] private readonly EvilTwinSystem _evilTwinSystem = default!;
+    [Dependency] private EvilTwinSystem _evilTwinSystem = default!;
 }

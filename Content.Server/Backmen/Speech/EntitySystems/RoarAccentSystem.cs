@@ -7,9 +7,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Speech.EntitySystems;
 
-public sealed class RoarAccentSystem : EntitySystem
+public sealed partial class RoarAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private static readonly Regex R1 = new(@"r+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
     private static readonly Regex R2 = new(@"R+", RegexOptions.Compiled | RegexOptions.IgnoreCase);

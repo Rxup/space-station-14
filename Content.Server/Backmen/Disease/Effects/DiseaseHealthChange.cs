@@ -24,7 +24,7 @@ public sealed partial class DiseaseHealthChange : DiseaseEffect
 
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     private void DiseaseHealthChange(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseHealthChange> args)
     {

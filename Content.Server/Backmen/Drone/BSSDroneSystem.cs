@@ -35,20 +35,20 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Drone;
 
-public sealed class BSSDroneSystem : SharedDroneSystem
+public sealed partial class BSSDroneSystem : SharedDroneSystem
 {
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly InnateToolSystem _innateToolSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedActionsSystem _action = default!;
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly SharedBatterySystem _predictedBattery = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedBatteryDrainerSystem _batteryDrainer = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private InnateToolSystem _innateToolSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedActionsSystem _action = default!;
+    [Dependency] private HandsSystem _handsSystem = default!;
+    [Dependency] private RadioSystem _radioSystem = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private SharedBatterySystem _predictedBattery = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedBatteryDrainerSystem _batteryDrainer = default!;
 
     public readonly ProtoId<RadioChannelPrototype> BinaryChannel = "Binary";
 

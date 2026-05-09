@@ -10,14 +10,14 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class PsychokinesisPowerSystem : SharedPsychokinesisPowerSystem
+public sealed partial class PsychokinesisPowerSystem : SharedPsychokinesisPowerSystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
 
     public override void Initialize()
     {

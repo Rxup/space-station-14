@@ -15,8 +15,8 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 [UsedImplicitly]
 public sealed partial class ChemMiasmaPoolSourceEntityEffectSystem : EntityEffectSystem<MobStateComponent, ChemMiasmaPoolSource>
 {
-    [Dependency] private readonly SharedBkRottingSystem _rotting = default!;
-    [Dependency] private readonly SharedDiseaseSystem _disease = default!;
+    [Dependency] private SharedBkRottingSystem _rotting = default!;
+    [Dependency] private SharedDiseaseSystem _disease = default!;
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<ChemMiasmaPoolSource> args)
     {

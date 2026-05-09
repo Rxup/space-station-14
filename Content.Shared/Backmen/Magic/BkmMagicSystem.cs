@@ -6,9 +6,9 @@ using Content.Shared.Damage.Systems;
 
 namespace Content.Shared.Backmen.Magic;
 
-public abstract class SharedBkmMagicSystem : EntitySystem
+public abstract partial class SharedBkmMagicSystem : EntitySystem
 {
-    [Dependency] protected readonly DamageableSystem DamageableSystem = default!;
+    [Dependency] protected DamageableSystem DamageableSystem = default!;
 
     public override void Initialize()
     {

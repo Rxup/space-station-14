@@ -25,29 +25,29 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 
 public abstract partial class TraumaSystem : EntitySystem
 {
-    [Dependency] protected readonly IRobustRandom Random = default!;
+    [Dependency] protected IRobustRandom Random = default!;
 
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
-    [Dependency] protected readonly SharedContainerSystem Container = default!;
-    [Dependency] protected readonly SharedBodySystem Body = default!;
+    [Dependency] protected SharedContainerSystem Container = default!;
+    [Dependency] protected SharedBodySystem Body = default!;
 
-    [Dependency] protected readonly WoundSystem Wound = default!;
-    [Dependency] protected readonly PainSystem Pain = default!;
-    [Dependency] protected readonly ConsciousnessSystem Consciousness = default!;
+    [Dependency] protected WoundSystem Wound = default!;
+    [Dependency] protected PainSystem Pain = default!;
+    [Dependency] protected ConsciousnessSystem Consciousness = default!;
 
-    [Dependency] protected readonly MobStateSystem MobState = default!;
+    [Dependency] protected MobStateSystem MobState = default!;
 
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
 
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtual = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedVirtualItemSystem _virtual = default!;
 
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     protected EntityQuery<WoundableComponent> WoundableQuery;
     protected EntityQuery<BodyPartComponent> BodyPartQuery;

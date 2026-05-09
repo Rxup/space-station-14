@@ -19,15 +19,15 @@ namespace Content.Server.Objectives.Systems;
 /// <summary>
 /// Handles kill person condition logic and picking random kill targets.
 /// </summary>
-public sealed class KillPersonConditionSystem : EntitySystem
+public sealed partial class KillPersonConditionSystem : EntitySystem
 {
-    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly TargetObjectiveSystem _target = default!;
-    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private EmergencyShuttleSystem _emergencyShuttle = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private TargetObjectiveSystem _target = default!;
+    [Dependency] private SharedRoleSystem _roleSystem = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private static readonly ProtoId<DepartmentPrototype> _ccDep = "CentCom";
 

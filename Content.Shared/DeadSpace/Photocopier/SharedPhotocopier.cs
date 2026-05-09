@@ -1,5 +1,6 @@
 // Мёртвый Космос, Licensed under custom terms with restrictions on public hosting and commercial use, full text: https://raw.githubusercontent.com/dead-space-server/space-station-14-fobos/master/LICENSE.TXT
 
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.DeadSpace.Photocopier;
@@ -15,7 +16,7 @@ public sealed class PhotocopierUiState : BoundUserInterfaceState
 {
     public bool CanPrint { get; }
     public bool IsPaperInserted { get; }
-    public PaperworkFormPrototype? ChosenForm { get; }
+    public ProtoId<PaperworkFormPrototype>? ChosenForm { get; }
     public PhotocopierMode Mode { get; }
     public PhotocopierType Type { get; }
     public bool WasEmagged { get; }
@@ -25,7 +26,7 @@ public sealed class PhotocopierUiState : BoundUserInterfaceState
     public PhotocopierUiState(
         bool canPrint,
         bool isPaperInserted,
-        PaperworkFormPrototype? chosenForm,
+        ProtoId<PaperworkFormPrototype>? chosenForm,
         PhotocopierMode mode,
         PhotocopierType type,
         bool wasEmagged,
@@ -46,9 +47,9 @@ public sealed class PhotocopierUiState : BoundUserInterfaceState
 [Serializable, NetSerializable]
 public sealed class PhotocopierChoseFormMessage : BoundUserInterfaceMessage
 {
-    public readonly PaperworkFormPrototype PaperworkForm;
+    public readonly ProtoId<PaperworkFormPrototype> PaperworkForm;
 
-    public PhotocopierChoseFormMessage(PaperworkFormPrototype paperworkForm)
+    public PhotocopierChoseFormMessage(ProtoId<PaperworkFormPrototype> paperworkForm)
     {
         PaperworkForm = paperworkForm;
     }

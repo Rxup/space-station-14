@@ -9,13 +9,13 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server.Backmen.Speech.RandomBark
 {
-    public sealed class RandomBarkSystem : EntitySystem
+    public sealed partial class RandomBarkSystem : EntitySystem
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly ChatSystem _chat = default!;
-        [Dependency] private readonly IChatManager _chatManager = default!;
-        [Dependency] private readonly EntityManager _entities = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private ChatSystem _chat = default!;
+        [Dependency] private IChatManager _chatManager = default!;
+        [Dependency] private EntityManager _entities = default!;
 
         public override void Initialize()
         {

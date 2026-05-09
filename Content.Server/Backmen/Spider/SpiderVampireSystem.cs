@@ -18,18 +18,18 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Spider;
 
-public sealed class SpiderVampireSystem : EntitySystem
+public sealed partial class SpiderVampireSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _action = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly ChargesSystem _charges = default!;
+    [Dependency] private ActionsSystem _action = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private ChargesSystem _charges = default!;
 
     public override void Initialize()
     {

@@ -18,7 +18,7 @@ public sealed partial class MakeSentientEntityEffectSystem : EntityEffectSystem<
 {
 // start-backmen: language
     private static readonly ProtoId<LanguagePrototype> GlobalHuman = "TauCetiBasic";
-    [Dependency] private readonly LanguageSystem _languageSystem = default!;
+    [Dependency] private LanguageSystem _languageSystem = default!;
 // end-backmen: language
 
     protected override void Effect(Entity<MetaDataComponent> entity, ref EntityEffectEvent<MakeSentient> args)

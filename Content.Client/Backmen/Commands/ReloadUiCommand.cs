@@ -9,11 +9,11 @@ using Content.Client.MainMenu;
 
 namespace Content.Client.Backmen.Commands;
 
-public sealed class ReloadUiCommand : IConsoleCommand
+public sealed partial class ReloadUiCommand : IConsoleCommand
 {
-    //[Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-    [Dependency] private readonly IStateManager _stateManager = default!;
-    [Dependency] private readonly IBaseClient _baseClient = default!;
+    //[Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
+    [Dependency] private IStateManager _stateManager = default!;
+    [Dependency] private IBaseClient _baseClient = default!;
 
     public string Command => "reloadui";
     public string Description => Loc.GetString("command-reloadui-description");

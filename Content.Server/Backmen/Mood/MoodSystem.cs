@@ -29,17 +29,17 @@ using Content.Shared.Humanoid;
 
 namespace Content.Server.Backmen.Mood;
 
-public sealed class MoodSystem : EntitySystem
+public sealed partial class MoodSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly WoundSystem _wound = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private SharedJetpackSystem _jetpack = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private WoundSystem _wound = default!;
 
     private static readonly ProtoId<AlertCategoryPrototype> MoodCategory = "Mood";
 

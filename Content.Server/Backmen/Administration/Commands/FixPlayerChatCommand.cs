@@ -14,12 +14,12 @@ using Robust.Shared.Timing;
 namespace Content.Server.Backmen.Administration.Commands
 {
     [AdminCommand(AdminFlags.Admin)]
-    sealed class FixPlayerCommand : IConsoleCommand
+    sealed partial class FixPlayerCommand : IConsoleCommand
     {
 
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private ISharedPlayerManager _playerManager = default!;
 
         public string Command => "fixplayerchat";
 

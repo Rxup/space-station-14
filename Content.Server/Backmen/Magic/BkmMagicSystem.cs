@@ -10,12 +10,10 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Backmen.Magic;
 
-public sealed class BkmMagicSystem : SharedBkmMagicSystem
+public sealed partial class BkmMagicSystem : SharedBkmMagicSystem
 {
-    [Dependency]
-    private readonly SharedAudioSystem _audio = default!;
-    [Dependency]
-    private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

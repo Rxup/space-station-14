@@ -35,16 +35,16 @@ namespace Content.Shared.Humanoid;
 ///     you still need a local copy so that players can set up their
 ///     characters.
 /// </summary>
-public abstract class SharedHumanoidAppearanceSystem : EntitySystem
+public abstract partial class SharedHumanoidAppearanceSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ISerializationManager _serManager = default!;
-    [Dependency] private readonly MarkingManager _markingManager = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ISerializationManager _serManager = default!;
+    [Dependency] private MarkingManager _markingManager = default!;
     private ISharedSponsorsManager? _sponsors;
-    [Dependency] private readonly GrammarSystem _grammarSystem = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
+    [Dependency] private GrammarSystem _grammarSystem = default!;
+    [Dependency] private IdentitySystem _identity = default!;
 
     public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
 
@@ -519,7 +519,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         }
 
         humanoid.Age = profile.Age;
-        
+
         Dirty(uid, humanoid);
     }
 

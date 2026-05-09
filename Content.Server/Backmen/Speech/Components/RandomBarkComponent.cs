@@ -8,7 +8,7 @@ namespace Content.Server.Backmen.Speech.RandomBark
     [RegisterComponent]
     public sealed partial class RandomBarkComponent : Component
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private IRobustRandom _random = default!;
 
         // Should the message be sent to the chat log?
         [DataField("chatlog")]

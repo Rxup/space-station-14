@@ -13,10 +13,10 @@ namespace Content.Server.Backmen.StationEvents.Events;
 /// <summary>
 /// Glimmer version of the (removed) random sentience event
 /// </summary>
-internal sealed class GlimmerRandomSentienceRule : StationEventSystem<GlimmerRandomSentienceRuleComponent>
+internal sealed partial class GlimmerRandomSentienceRule : StationEventSystem<GlimmerRandomSentienceRuleComponent>
 {
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
 
 
     protected override void Started(EntityUid uid, GlimmerRandomSentienceRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)

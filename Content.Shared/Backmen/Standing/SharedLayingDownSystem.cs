@@ -42,25 +42,25 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Standing;
 
-public abstract class SharedLayingDownSystem : EntitySystem
+public abstract partial class SharedLayingDownSystem : EntitySystem
 {
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedGravitySystem _gravity = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedBuckleSystem _buckle = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 
-    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private IConfigurationManager _config = default!;
 
     public override void Initialize()
     {

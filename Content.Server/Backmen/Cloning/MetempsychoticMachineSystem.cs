@@ -31,14 +31,14 @@ public struct CloningSpawnEvent
     }
 }
 
-public sealed class MetempsychoticMachineSystem : EntitySystem
+public sealed partial class MetempsychoticMachineSystem : EntitySystem
 {
     private static readonly ProtoId<WeightedRandomPrototype> MetempsychoticHumanoidPool = "MetempsychoticHumanoidPool";
     private static readonly ProtoId<WeightedRandomPrototype> MetempsychoticNonHumanoidPool = "MetempsychoticNonhumanoidPool";
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
 
     public override void Initialize()
     {

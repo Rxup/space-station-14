@@ -17,13 +17,13 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Psionics;
 
-public abstract class SharedPsionicsSystem : EntitySystem
+public abstract partial class SharedPsionicsSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SharedElectrocutionSystem _electrocutionSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private ISharedAdminManager _adminManager = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SharedElectrocutionSystem _electrocutionSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

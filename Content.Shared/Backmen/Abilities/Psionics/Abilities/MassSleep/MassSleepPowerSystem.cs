@@ -11,12 +11,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
-public sealed class MassSleepPowerSystem : StatusEffectGrantedPowerSystem<MassSleepPowerComponent, MassSleepPowerActionEvent>
+public sealed partial class MassSleepPowerSystem : StatusEffectGrantedPowerSystem<MassSleepPowerComponent, MassSleepPowerActionEvent>
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
-    [Dependency] private readonly StatusEffectNew.StatusEffectsSystem _effectsSystem = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
+    [Dependency] private StatusEffectNew.StatusEffectsSystem _effectsSystem = default!;
     private EntityQuery<PsionicInsulationComponent> _qPsionicInsulation;
 
     public override void Initialize()

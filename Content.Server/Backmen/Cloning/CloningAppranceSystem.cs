@@ -12,16 +12,16 @@ using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server.Backmen.Cloning;
 
-public sealed class CloningAppearanceSystem : EntitySystem
+public sealed partial class CloningAppearanceSystem : EntitySystem
 {
-    [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly StationSystem _stations = default!;
-    [Dependency] private readonly StationSpawningSystem _spawning = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly OutfitSystem _outfitSystem = default!;
+    [Dependency] private ISerializationManager _serialization = default!;
+    [Dependency] private StationSystem _stations = default!;
+    [Dependency] private StationSpawningSystem _spawning = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private EntityLookupSystem _entityLookupSystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private OutfitSystem _outfitSystem = default!;
 
     public override void Initialize()
     {

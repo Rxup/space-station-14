@@ -13,15 +13,15 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Lavaland.Mobs.Hierophant;
 
-public sealed class HierophandClubItemSystem : EntitySystem
+public sealed partial class HierophandClubItemSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly HierophantSystem _hierophant = default!;
-    [Dependency] private readonly IMapManager _mapMan = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private HierophantSystem _hierophant = default!;
+    [Dependency] private IMapManager _mapMan = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

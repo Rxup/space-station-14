@@ -8,8 +8,8 @@ namespace Content.Server.Corvax.TTS;
 
 public sealed partial class TTSSystem
 {
-    [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private PlayerRateLimitManager _rateLimitManager = default!;
+    [Dependency] private IChatManager _chat = default!;
 
     private const string RateLimitKey = "TTS";
 

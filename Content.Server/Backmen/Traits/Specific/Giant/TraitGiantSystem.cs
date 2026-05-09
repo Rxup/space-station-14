@@ -3,9 +3,9 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server.Backmen.Traits.Specific.Giant;
 
-public sealed class TraitGiantSystem : EntitySystem
+public sealed partial class TraitGiantSystem : EntitySystem
 {
-    [Dependency] private readonly IServerConsoleHost _host = default!;
+    [Dependency] private IServerConsoleHost _host = default!;
 
     public override void Initialize()
     {

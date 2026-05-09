@@ -33,7 +33,7 @@ public sealed partial class DiseaseAdjustReagent : DiseaseEffect
 
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     private void DiseaseAdjustReagent(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseAdjustReagent> args)
     {

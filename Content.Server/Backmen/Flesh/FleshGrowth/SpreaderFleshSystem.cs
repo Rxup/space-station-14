@@ -17,11 +17,11 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Backmen.Flesh.FleshGrowth;
 
 // Future work includes making the growths per interval thing not global, but instead per "group"
-public sealed class SpreaderFleshSystem : EntitySystem
+public sealed partial class SpreaderFleshSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
 
     /// <summary>
     /// Maximum number of edges that can grow out every interval.

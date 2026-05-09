@@ -26,29 +26,29 @@ namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
 public abstract partial class WoundSystem : EntitySystem
 {
-    [Dependency] protected readonly IRobustRandom Random = default!;
-    [Dependency] protected readonly IConfigurationManager Cfg = default!;
+    [Dependency] protected IRobustRandom Random = default!;
+    [Dependency] protected IConfigurationManager Cfg = default!;
 
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IComponentFactory _factory = default!;
 
-    [Dependency] protected readonly SharedBodySystem Body = default!;
-    [Dependency] protected readonly SharedHandsSystem Hands = default!;
+    [Dependency] protected SharedBodySystem Body = default!;
+    [Dependency] protected SharedHandsSystem Hands = default!;
 
-    [Dependency] protected readonly SharedContainerSystem Containers = default!;
-    [Dependency] protected readonly SharedTransformSystem Xform = default!;
+    [Dependency] protected SharedContainerSystem Containers = default!;
+    [Dependency] protected SharedTransformSystem Xform = default!;
 
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
 
-    [Dependency] protected readonly ThrowingSystem Throwing = default!;
-    [Dependency] protected readonly InventorySystem Inventory = default!;
-    [Dependency] protected readonly TraumaSystem Trauma = default!;
-    [Dependency] protected readonly MobStateSystem MobState = default!;
+    [Dependency] protected ThrowingSystem Throwing = default!;
+    [Dependency] protected InventorySystem Inventory = default!;
+    [Dependency] protected TraumaSystem Trauma = default!;
+    [Dependency] protected MobStateSystem MobState = default!;
 
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     protected readonly Dictionary<WoundSeverity, FixedPoint2> WoundThresholds = new()
     {

@@ -26,18 +26,18 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class MindSwapPowerSystem : SharedMindSwapPowerSystem
+public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
     #if !DEBUG
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
     #endif
-    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
     private ISawmill _logger = default!;
 

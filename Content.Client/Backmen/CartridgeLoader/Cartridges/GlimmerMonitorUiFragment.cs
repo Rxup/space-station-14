@@ -12,7 +12,7 @@ namespace Content.Client.Backmen.CartridgeLoader.Cartridges;
 [GenerateTypedNameReferences]
 public sealed partial class GlimmerMonitorUiFragment : BoxContainer
 {
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
 
     public event Action<bool>? OnSync;
     private List<int> _cachedValues = new();

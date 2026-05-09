@@ -23,16 +23,16 @@ namespace Content.Server.Backmen.Chat;
 /// <summary>
 /// Extensions for nyano's chat stuff
 /// </summary>
-public sealed class NyanoChatSystem : EntitySystem
+public sealed partial class NyanoChatSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
     [Dependency] private readonly EntityQuery<StatusEffectComponent> _statusQuery = default;
-    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {

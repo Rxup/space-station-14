@@ -39,12 +39,12 @@ public partial class SharedBodySystem
      * - Each "connection" is a body part (e.g. arm, hand, etc.) and each part can also contain organs.
      */
 
-    [Dependency] private readonly WoundSystem _woundSystem = default!; // backmen edit
-    [Dependency] private readonly ItemSlotsSystem _slots = default!;
-    [Dependency] private readonly GibbingSystem _gibbingSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!; // backmen edit
+    [Dependency] private WoundSystem _woundSystem = default!; // backmen edit
+    [Dependency] private ItemSlotsSystem _slots = default!;
+    [Dependency] private GibbingSystem _gibbingSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private TraumaSystem _trauma = default!; // backmen edit
     private const float GibletLaunchImpulse = 8;
     private const float GibletLaunchImpulseVariance = 3;
 

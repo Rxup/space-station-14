@@ -5,7 +5,7 @@ namespace Content.Client.Backmen.Economy.ATM;
 
 public sealed class ATMSystem : SharedATMSystem
 {
-    //[Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+    //[Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

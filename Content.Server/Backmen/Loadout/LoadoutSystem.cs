@@ -10,15 +10,15 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Loadout;
 
-public sealed class LoadoutSystem : EntitySystem
+public sealed partial class LoadoutSystem : EntitySystem
 {
     private const string BackpackSlotId = "back";
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
-    [Dependency] private readonly StorageSystem _storageSystem = default!;
-    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private HandsSystem _handsSystem = default!;
+    [Dependency] private StorageSystem _storageSystem = default!;
+    [Dependency] private ISharedSponsorsManager _sponsorsManager = default!;
 
     public override void Initialize()
     {

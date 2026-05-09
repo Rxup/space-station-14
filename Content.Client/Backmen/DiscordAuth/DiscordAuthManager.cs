@@ -13,11 +13,11 @@ using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Client.Backmen.DiscordAuth;
 
-public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Client.IClientDiscordAuthManager
+public sealed partial class DiscordAuthManager : Content.Corvax.Interfaces.Client.IClientDiscordAuthManager
 {
-    [Dependency] private readonly IClientNetManager _netManager = default!;
-    [Dependency] private readonly IStateManager _stateManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IClientNetManager _netManager = default!;
+    [Dependency] private IStateManager _stateManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public string AuthUrl { get; private set; } = string.Empty;
     public Texture? Qrcode { get; private set; }

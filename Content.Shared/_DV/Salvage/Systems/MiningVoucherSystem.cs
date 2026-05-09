@@ -10,17 +10,17 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 namespace Content.Shared._DV.Salvage.Systems;
 
-public sealed class MiningVoucherSystem : EntitySystem
+public sealed partial class MiningVoucherSystem : EntitySystem
 {
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

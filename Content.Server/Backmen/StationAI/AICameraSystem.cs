@@ -20,17 +20,17 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationAI;
 
-public sealed class AICameraSystem : EntitySystem
+public sealed partial class AICameraSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly InteractionSystem _interaction = default!;
-    [Dependency] private readonly SurveillanceCameraSystem _cameraSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly GunSystem _gun = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedStationAiSystem _stationAi = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private InteractionSystem _interaction = default!;
+    [Dependency] private SurveillanceCameraSystem _cameraSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private GunSystem _gun = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedStationAiSystem _stationAi = default!;
 
 
      private const double MoverJobTime = 0.005;

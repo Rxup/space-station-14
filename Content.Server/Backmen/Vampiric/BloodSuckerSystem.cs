@@ -54,33 +54,33 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Vampiric;
 
-public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
+public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly PopupSystem _popups = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly StomachSystem _stomachSystem = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly BkmVampireLevelingSystem _leveling = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedCuffableSystem _cuffableSystem = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ServerWoundSystem _wound = default!;
-    [Dependency] private readonly PainSystem _pain = default!;
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
-    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
-    [Dependency] private readonly SharedForensicsSystem _forensics = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private PopupSystem _popups = default!;
+    [Dependency] private DoAfterSystem _doAfter = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private StomachSystem _stomachSystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private ReactiveSystem _reactiveSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private SharedRoleSystem _roleSystem = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private BkmVampireLevelingSystem _leveling = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private SharedCuffableSystem _cuffableSystem = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ServerWoundSystem _wound = default!;
+    [Dependency] private PainSystem _pain = default!;
+    [Dependency] private ConsciousnessSystem _consciousness = default!;
+    [Dependency] private SharedPuddleSystem _puddle = default!;
+    [Dependency] private SharedForensicsSystem _forensics = default!;
     private EntityQuery<BloodSuckerComponent> _bsQuery;
 
     private readonly EntProtoId BloodsuckerMindRole = "MindRoleBloodsucker";

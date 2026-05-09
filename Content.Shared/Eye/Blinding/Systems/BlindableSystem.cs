@@ -10,12 +10,12 @@ using JetBrains.Annotations;
 
 namespace Content.Shared.Eye.Blinding.Systems;
 
-public sealed class BlindableSystem : EntitySystem
+public sealed partial class BlindableSystem : EntitySystem
 {
-    [Dependency] private readonly BlurryVisionSystem _blurriness = default!;
-    [Dependency] private readonly EyeClosingSystem _eyelids = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!; // backmen edit
+    [Dependency] private BlurryVisionSystem _blurriness = default!;
+    [Dependency] private EyeClosingSystem _eyelids = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private TraumaSystem _trauma = default!; // backmen edit
     public override void Initialize()
     {
         base.Initialize();

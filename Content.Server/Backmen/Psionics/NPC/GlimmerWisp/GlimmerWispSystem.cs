@@ -23,18 +23,18 @@ using Robust.Shared.Audio;
 
 namespace Content.Server.Backmen.Psionics.NPC.GlimmerWisp;
 
-public sealed class GlimmerWispSystem : EntitySystem
+public sealed partial class GlimmerWispSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
-    [Dependency] private readonly PopupSystem _popups = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly MobStateSystem _mob = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private DoAfterSystem _doAfter = default!;
+    [Dependency] private ConsciousnessSystem _consciousness = default!;
+    [Dependency] private PopupSystem _popups = default!;
+    [Dependency] private AudioSystem _audioSystem = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private MobStateSystem _mob = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private StunSystem _stun = default!;
 
     private EntityQuery<PsionicComponent> _psiQuery;
 

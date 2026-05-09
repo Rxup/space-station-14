@@ -14,10 +14,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Backmen.Administration.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class AddBankAcсountCommand : IConsoleCommand
+public sealed partial class AddBankAcсountCommand : IConsoleCommand
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
 
     public string Command { get; } = "addbankacсount";

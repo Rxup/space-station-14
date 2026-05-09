@@ -5,10 +5,10 @@ using Content.Shared.Objectives.Components;
 
 namespace Content.Server.Backmen.Objectives.Systems;
 
-public sealed class BlobCaptureObjectiveSystem : EntitySystem
+public sealed partial class BlobCaptureObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
 
     public override void Initialize()
     {

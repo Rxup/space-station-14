@@ -10,12 +10,12 @@ using Content.Shared.Stunnable;
 
 namespace Content.Server.Weapons;
 
-public sealed class DamageMarkerSystem : SharedDamageMarkerSystem
+public sealed partial class DamageMarkerSystem : SharedDamageMarkerSystem
 {
     // Lavaland Change Start
-    [Dependency] private readonly PressureEfficiencyChangeSystem _pressure = default!;
-    [Dependency] private readonly BackStabSystem _backstab = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private PressureEfficiencyChangeSystem _pressure = default!;
+    [Dependency] private BackStabSystem _backstab = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
     public override void Initialize()
     {
         base.Initialize();

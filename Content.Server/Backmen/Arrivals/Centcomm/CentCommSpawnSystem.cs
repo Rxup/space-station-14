@@ -12,10 +12,10 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Arrivals.CentComm;
 
-public sealed class CentCommSpawnSystem : EntitySystem
+public sealed partial class CentCommSpawnSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     public override void Initialize()
     {
@@ -94,7 +94,7 @@ public sealed class CentCommSpawnSystem : EntitySystem
         var point = FindSpawnPoint(station);
         if (point == null)
         {
-            Log.Warning($"Can't find spawn point for {EntityManager.ToPrettyString(station)}");
+            Log.Warning($"Can't find spawn point for {ToPrettyString(station)}");
             return;
         }
 

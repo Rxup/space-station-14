@@ -9,10 +9,10 @@ using Robust.Shared.Containers;
 
 namespace Content.Server.Backmen.Abilities.Oni;
 
-public sealed class OniSystem : EntitySystem
+public sealed partial class OniSystem : EntitySystem
 {
-    [Dependency] private readonly ToolSystem _toolSystem = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
+    [Dependency] private ToolSystem _toolSystem = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
 
     public override void Initialize()
     {

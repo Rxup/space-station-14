@@ -23,9 +23,9 @@ namespace Content.Server._Lavaland.Procedural.Systems;
 
 public sealed partial class LavalandPlanetSystem
 {
-        [Dependency] private readonly GridFixtureSystem _gridFixture = default!;
-        [Dependency] private readonly ITileDefinitionManager _tileDef = default!;
-        [Dependency] private readonly SharedRoofSystem _roofSystem = default!;
+        [Dependency] private GridFixtureSystem _gridFixture = default!;
+        [Dependency] private ITileDefinitionManager _tileDef = default!;
+        [Dependency] private SharedRoofSystem _roofSystem = default!;
 
     private bool LoadGridRuin(
         LavalandGridRuinPrototype ruin,

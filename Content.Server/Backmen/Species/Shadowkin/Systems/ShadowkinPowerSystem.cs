@@ -7,14 +7,14 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
-public sealed class ShadowkinPowerSystem : EntitySystem
+public sealed partial class ShadowkinPowerSystem : EntitySystem
 {
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly ShadowkinBlackeyeSystem _shadowkinBlackeyeSystem = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private ShadowkinBlackeyeSystem _shadowkinBlackeyeSystem = default!;
 
     private readonly Dictionary<ShadowkinPowerThreshold, string> _powerDictionary = new();
 
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

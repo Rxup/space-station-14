@@ -20,20 +20,20 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Teleporter;
 
-public sealed class ExperimentalTeleporterSystem : EntitySystem
+public sealed partial class ExperimentalTeleporterSystem : EntitySystem
 {
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ContainerSystem _containerSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedLayingDownSystem _layingDown = default!;
-    [Dependency] private readonly SharedChargesSystem _charges = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ContainerSystem _containerSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedLayingDownSystem _layingDown = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     public override void Initialize()
     {

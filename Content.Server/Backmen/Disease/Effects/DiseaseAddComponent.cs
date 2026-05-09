@@ -25,7 +25,7 @@ public sealed partial class DiseaseAddComponent : DiseaseEffect
 
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private readonly ISerializationManager _serialization = default!;
+    [Dependency] private ISerializationManager _serialization = default!;
 
     private void DiseaseAddComponent(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseAddComponent> args)
     {

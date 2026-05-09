@@ -56,30 +56,30 @@ using static Content.Shared.Examine.ExamineSystemShared;
 
 namespace Content.Server.Backmen.Fugitive;
 
-public sealed class FugitiveSystem : EntitySystem
+public sealed partial class FugitiveSystem : EntitySystem
 {
     private readonly EntProtoId FugitiveMindRole = "MindRoleFugitive";
     private readonly EntProtoId EscapeObjective = "EscapeShuttleObjectiveFugitive";
     private static readonly ProtoId<JobPrototype> FugitiveRole = "Fugitive";
 
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly PaperSystem _paperSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly StunSystem _stun = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-    [Dependency] private readonly RoleSystem _roleSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
-    [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
-    [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
-    [Dependency] private readonly ExamineSystem _examine = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private PaperSystem _paperSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private StunSystem _stun = default!;
+    [Dependency] private AudioSystem _audioSystem = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private RoleSystem _roleSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private ObjectivesSystem _objectivesSystem = default!;
+    [Dependency] private RandomHelperSystem _randomHelper = default!;
+    [Dependency] private ExamineSystem _examine = default!;
 
     public override void Initialize()
     {

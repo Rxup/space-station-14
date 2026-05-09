@@ -8,9 +8,9 @@ namespace Content.Server.Backmen.Disease.Effects;
 
 public sealed partial class DiseaseEffectSystem : SharedDiseaseEffectSystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
 
     public override void Initialize()
     {

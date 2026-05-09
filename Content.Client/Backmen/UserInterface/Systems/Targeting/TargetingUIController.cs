@@ -10,11 +10,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Backmen.UserInterface.Systems.Targeting;
 
-public sealed class TargetingUIController : UIController, IOnStateEntered<GameplayState>, IOnSystemChanged<TargetingSystem>
+public sealed partial class TargetingUIController : UIController, IOnStateEntered<GameplayState>, IOnSystemChanged<TargetingSystem>
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IEntityNetworkManager _net = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IEntityNetworkManager _net = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     private SpriteSystem? _spriteSystem;
     private TargetingComponent? _targetingComponent;

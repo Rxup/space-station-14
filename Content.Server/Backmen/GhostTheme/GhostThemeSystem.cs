@@ -10,12 +10,12 @@ using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server.Backmen.GhostTheme;
 
-public sealed class GhostThemeSystem : EntitySystem
+public sealed partial class GhostThemeSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedSponsorsManager _sponsorsMgr = default!; // Corvax-Sponsors
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly IServerNetConfigurationManager _netConfigManager = default!;
+    [Dependency] private ISharedSponsorsManager _sponsorsMgr = default!; // Corvax-Sponsors
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ISerializationManager _serialization = default!;
+    [Dependency] private IServerNetConfigurationManager _netConfigManager = default!;
 
     public override void Initialize()
     {

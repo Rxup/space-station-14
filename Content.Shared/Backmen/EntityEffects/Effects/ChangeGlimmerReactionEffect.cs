@@ -9,7 +9,7 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 [DataDefinition]
 public sealed partial class ChangeGlimmerReactionEffectEntityEffectSystem : EntityEffectSystem<MobStateComponent, ChangeGlimmerReactionEffect>
 {
-    [Dependency] private readonly GlimmerSystem _glimmer = default!;
+    [Dependency] private GlimmerSystem _glimmer = default!;
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<ChangeGlimmerReactionEffect> args)
     {

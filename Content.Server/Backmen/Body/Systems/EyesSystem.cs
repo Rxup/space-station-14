@@ -9,11 +9,11 @@ using Robust.Shared.Containers;
 
 namespace Content.Server.Backmen.Body.Systems
 {
-    public sealed class EyesSystem : EntitySystem
+    public sealed partial class EyesSystem : EntitySystem
     {
-        [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly BlindableSystem _blindableSystem = default!;
-        [Dependency] private readonly BodySystem _bodySystem = default!;
+        [Dependency] private IEntityManager _entityManager = default!;
+        [Dependency] private BlindableSystem _blindableSystem = default!;
+        [Dependency] private BodySystem _bodySystem = default!;
 
         public override void Initialize()
         {

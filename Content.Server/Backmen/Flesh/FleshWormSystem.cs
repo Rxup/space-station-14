@@ -26,16 +26,16 @@ namespace Content.Server.Backmen.Flesh;
 
 public sealed partial class FleshWormSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly ActionsSystem _action = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedStunSystem _stunSystem = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private ActionsSystem _action = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

@@ -8,11 +8,11 @@ using Robust.Shared.Reflection;
 
 namespace Content.Client.Stylesheets
 {
-    public sealed class StylesheetManager : IStylesheetManager
+    public sealed partial class StylesheetManager : IStylesheetManager
     {
-        [Dependency] private readonly ILogManager _logManager = default!;
-        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-        [Dependency] private readonly IReflectionManager _reflection = default!;
+        [Dependency] private ILogManager _logManager = default!;
+        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private IReflectionManager _reflection = default!;
 
         [Dependency]
         private readonly IResourceCache

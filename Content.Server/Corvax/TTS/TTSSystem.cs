@@ -19,10 +19,10 @@ namespace Content.Server.Corvax.TTS;
 // ReSharper disable once InconsistentNaming
 public sealed partial class TTSSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly TTSManager _ttsManager = default!;
-    [Dependency] private readonly SharedTransformSystem _xforms = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private TTSManager _ttsManager = default!;
+    [Dependency] private SharedTransformSystem _xforms = default!;
 
     private const int MaxMessageChars = 100 * 2; // same as SingleBubbleCharLimit * 2
     private bool _isEnabled = false;

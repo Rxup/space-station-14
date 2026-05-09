@@ -30,25 +30,25 @@ public abstract partial class SharedStunSystem : EntitySystem
 {
     public static readonly EntProtoId StunId = "StatusEffectStunned";
 
-    [Dependency] protected readonly IGameTiming GameTiming = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] protected readonly ActionBlockerSystem Blocker = default!;
-    [Dependency] protected readonly AlertsSystem Alerts = default!;
-    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StandingStateSystem _standingState = default!;
-    [Dependency] private readonly SharedLayingDownSystem _layingDown = default!; // Backmen edit
+    [Dependency] protected IGameTiming GameTiming = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] protected ActionBlockerSystem Blocker = default!;
+    [Dependency] protected AlertsSystem Alerts = default!;
+    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private StandingStateSystem _standingState = default!;
+    [Dependency] private SharedLayingDownSystem _layingDown = default!; // Backmen edit
 
     /// <summary>
     /// Friction modifier for knocked down players.
     /// Doesn't make them faster but makes them slow down... slower.
     /// </summary>
     public const float KnockDownModifier = 0.2f;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] protected readonly SharedDoAfterSystem DoAfter = default!;
-    [Dependency] protected readonly SharedStaminaSystem Stamina = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] protected SharedDoAfterSystem DoAfter = default!;
+    [Dependency] protected SharedStaminaSystem Stamina = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
 
     public override void Initialize()
     {

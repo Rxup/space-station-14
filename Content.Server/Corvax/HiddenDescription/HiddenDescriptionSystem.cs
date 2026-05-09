@@ -9,9 +9,9 @@ namespace Content.Server.Corvax.HiddenDescription;
 
 public sealed partial class HiddenDescriptionSystem : EntitySystem
 {
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelis = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private EntityWhitelistSystem _whitelis = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
 
     public override void Initialize()
     {

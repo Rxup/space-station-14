@@ -7,10 +7,10 @@ using Content.Shared.Storage.Components;
 
 namespace Content.Shared.Morgue;
 
-public sealed class EntityStorageLayingDownOverrideSystem : EntitySystem
+public sealed partial class EntityStorageLayingDownOverrideSystem : EntitySystem
 {
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {

@@ -6,10 +6,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.GhostTheme;
 
-public sealed class GhostThemeSystem : EntitySystem
+public sealed partial class GhostThemeSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SpriteSystem _spriteSystem = default!;
 
     public override void Initialize()
     {

@@ -35,13 +35,13 @@ using Content.Shared.Tools.Systems;
 
 namespace Content.Server.Backmen.Arrivals;
 
-public sealed class ArrivalsProtectSystem : SharedArrivalsProtectSystem
+public sealed partial class ArrivalsProtectSystem : SharedArrivalsProtectSystem
 {
-    [Dependency] private readonly GodmodeSystem _godmodeSystem = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly ApcSystem _apcSystem = default!;
+    [Dependency] private GodmodeSystem _godmodeSystem = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private ApcSystem _apcSystem = default!;
 
     public override void Initialize()
     {

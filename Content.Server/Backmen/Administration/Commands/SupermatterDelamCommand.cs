@@ -7,9 +7,9 @@ using Robust.Shared.Console;
 namespace Content.Server.Backmen.Administration.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class SupermatterDelamCommand : IConsoleCommand
+public sealed partial class SupermatterDelamCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     public string Command => "smdelam";
     public string Description => "Forces a supermatter crystal into delamination mode.";

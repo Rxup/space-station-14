@@ -14,10 +14,10 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 [UsedImplicitly]
 public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSystem<MobStateComponent, AdjustPainFeels>
 {
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly PainSystem _pain = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private ConsciousnessSystem _consciousness = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private PainSystem _pain = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<AdjustPainFeels> args)
     {

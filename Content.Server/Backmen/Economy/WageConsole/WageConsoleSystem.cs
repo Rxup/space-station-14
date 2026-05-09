@@ -13,14 +13,14 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Economy.WageConsole;
 
-public sealed class WageConsoleSystem : SharedWageConsoleSystem
+public sealed partial class WageConsoleSystem : SharedWageConsoleSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly WageManagerSystem _wageManager = default!;
-    [Dependency] private readonly AccessReaderSystem _access = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly WhitelistSystem _whitelist = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private WageManagerSystem _wageManager = default!;
+    [Dependency] private AccessReaderSystem _access = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private WhitelistSystem _whitelist = default!;
 
     public override void Initialize()
     {

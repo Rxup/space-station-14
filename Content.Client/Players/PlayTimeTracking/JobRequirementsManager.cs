@@ -16,17 +16,17 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Players.PlayTimeTracking;
 
-public sealed class JobRequirementsManager : ISharedPlaytimeManager
+public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 {
-    [Dependency] private readonly IBaseClient _client = default!;
-    [Dependency] private readonly IClientNetManager _net = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IBaseClient _client = default!;
+    [Dependency] private IClientNetManager _net = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
-    [Dependency] private readonly Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sponsorsManager = default!; // backmen: allRoles
-    [Dependency] private readonly Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordManager = default!; // backmen: discord
+    [Dependency] private Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sponsorsManager = default!; // backmen: allRoles
+    [Dependency] private Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordManager = default!; // backmen: discord
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _jobBans = new();

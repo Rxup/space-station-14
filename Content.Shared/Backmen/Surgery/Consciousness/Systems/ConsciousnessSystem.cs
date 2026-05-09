@@ -15,18 +15,18 @@ namespace Content.Shared.Backmen.Surgery.Consciousness.Systems;
 
 public abstract partial class ConsciousnessSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
-    [Dependency] protected readonly IRobustRandom Random = default!;
-    [Dependency] protected readonly IPrototypeManager Proto = default!;
+    [Dependency] protected IRobustRandom Random = default!;
+    [Dependency] protected IPrototypeManager Proto = default!;
 
-    [Dependency] protected readonly SharedBodySystem Body = default!;
+    [Dependency] protected SharedBodySystem Body = default!;
 
-    [Dependency] protected readonly PainSystem Pain = default!;
-    [Dependency] protected readonly WoundSystem Wound = default!;
+    [Dependency] protected PainSystem Pain = default!;
+    [Dependency] protected WoundSystem Wound = default!;
 
-    [Dependency] protected readonly MobStateSystem MobStateSys = default!;
-    [Dependency] protected readonly MobThresholdSystem MobThresholds = default!;
+    [Dependency] protected MobStateSystem MobStateSys = default!;
+    [Dependency] protected MobThresholdSystem MobThresholds = default!;
 
     protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery;
     protected EntityQuery<MobStateComponent> MobStateQuery;

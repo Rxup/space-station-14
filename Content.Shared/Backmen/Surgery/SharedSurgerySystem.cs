@@ -36,27 +36,27 @@ namespace Content.Shared.Backmen.Surgery;
 
 public abstract partial class SharedSurgerySystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IComponentFactory _compFactory = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly WoundSystem _wounds = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
-    [Dependency] private readonly PainSystem _pain = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IComponentFactory _compFactory = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private RotateToFaceSystem _rotateToFace = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private WoundSystem _wounds = default!;
+    [Dependency] private TraumaSystem _trauma = default!;
+    [Dependency] private ConsciousnessSystem _consciousness = default!;
+    [Dependency] private PainSystem _pain = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
     private readonly Dictionary<EntProtoId, EntityUid> _surgeries = new();
 

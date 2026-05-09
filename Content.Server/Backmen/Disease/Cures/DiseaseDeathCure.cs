@@ -20,7 +20,7 @@ public sealed partial class DiseaseDeathCure : DiseaseCure
 
 public sealed partial class DiseaseCureSystem
 {
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
 
     private void DiseaseDeathCure(Entity<DiseaseCarrierComponent> ent, ref DiseaseCureArgs<DiseaseDeathCure> args)
     {

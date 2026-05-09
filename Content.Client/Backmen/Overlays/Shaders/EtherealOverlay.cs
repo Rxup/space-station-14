@@ -6,10 +6,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Overlays.Shaders;
 
-public sealed class EtherealOverlay : Overlay
+public sealed partial class EtherealOverlay : Overlay
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     public override bool RequestScreenTexture => true;
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;

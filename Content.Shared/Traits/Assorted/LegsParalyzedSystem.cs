@@ -8,10 +8,10 @@ using Content.Shared.Throwing;
 
 namespace Content.Shared.Traits.Assorted;
 
-public sealed class LegsParalyzedSystem : EntitySystem
+public sealed partial class LegsParalyzedSystem : EntitySystem
 {
-    [Dependency] private readonly StandingStateSystem _standingSystem = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private StandingStateSystem _standingSystem = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
 
     public override void Initialize()
     {

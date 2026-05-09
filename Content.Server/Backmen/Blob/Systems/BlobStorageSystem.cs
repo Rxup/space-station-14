@@ -3,9 +3,9 @@ using Content.Shared.Destructible;
 
 namespace Content.Server.Backmen.Blob.Systems;
 
-public sealed class BlobStorageSystem : EntitySystem
+public sealed partial class BlobStorageSystem : EntitySystem
 {
-    [Dependency] private readonly BlobCoreSystem _blobCore = default!;
+    [Dependency] private BlobCoreSystem _blobCore = default!;
 
     public override void Initialize()
     {

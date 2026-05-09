@@ -19,16 +19,16 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class PsionicAbilitiesSystem : SharedPsionicAbilitiesSystem
+public sealed partial class PsionicAbilitiesSystem : SharedPsionicAbilitiesSystem
 {
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
+    [Dependency] private GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
 
     public override void Initialize()
     {

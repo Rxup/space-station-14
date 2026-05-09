@@ -11,10 +11,10 @@ namespace Content.Server.Backmen.Shipyard.Commands;
 /// Purchases a shuttle and docks it to a station.
 /// </summary>
 [AdminCommand(AdminFlags.Fun)]
-public sealed class PurchaseShuttleCommand : IConsoleCommand
+public sealed partial class PurchaseShuttleCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public string Command => "purchaseshuttle";
     public string Description => "Spawns and docks a specified shuttle from a grid file";

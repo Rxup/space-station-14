@@ -5,10 +5,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Disease;
 
-public sealed class BkRottingSystem : SharedBkRottingSystem
+public sealed partial class BkRottingSystem : SharedBkRottingSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     /// Miasma Disease Pool
     /// Miasma outbreaks are not per-entity,

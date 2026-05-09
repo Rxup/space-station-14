@@ -7,12 +7,11 @@ using Content.Shared.Verbs;
 
 namespace Content.Shared.Backmen.Chapel;
 
-public abstract class SharedSacrificialAltarSystem : EntitySystem
+public abstract partial class SharedSacrificialAltarSystem : EntitySystem
 {
-    [Dependency]
-    private readonly SharedCuffableSystem _cuffable = default!;
+    [Dependency] private SharedCuffableSystem _cuffable = default!;
 
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
 
     public override void Initialize()
     {

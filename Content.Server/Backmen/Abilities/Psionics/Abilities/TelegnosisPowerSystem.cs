@@ -12,13 +12,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class TelegnosisPowerSystem : StatusEffectGrantedPowerSystem<TelegnosisPowerComponent, TelegnosisPowerActionEvent>
+public sealed partial class TelegnosisPowerSystem : StatusEffectGrantedPowerSystem<TelegnosisPowerComponent, TelegnosisPowerActionEvent>
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly MindSwapPowerSystem _mindSwapPowerSystem = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private MindSwapPowerSystem _mindSwapPowerSystem = default!;
 
     public override void Initialize()
     {

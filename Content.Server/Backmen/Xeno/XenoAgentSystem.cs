@@ -6,9 +6,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Xeno;
 
-public sealed class XenoAgentSystem : EntitySystem
+public sealed partial class XenoAgentSystem : EntitySystem
 {
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private LanguageSystem _language = default!;
     public override void Initialize()
     {
         base.Initialize();

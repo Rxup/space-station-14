@@ -26,17 +26,17 @@ namespace Content.Server.Backmen.Tourniquet;
 /// <summary>
 /// This handles tourniqueting people
 /// </summary>
-public sealed class TourniquetSystem : EntitySystem
+public sealed partial class TourniquetSystem : EntitySystem
 {
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly WoundSystem _wound = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly PainSystem _pain = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private WoundSystem _wound = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private PainSystem _pain = default!;
+    [Dependency] private BloodstreamSystem _bloodstream = default!;
 
     private const string TourniquetContainerId = "Tourniquet";
 

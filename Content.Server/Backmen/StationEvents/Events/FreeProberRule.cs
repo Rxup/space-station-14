@@ -18,13 +18,13 @@ using Robust.Shared.Physics.Dynamics;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
-internal sealed class FreeProberRule : StationEventSystem<FreeProberRuleComponent>
+internal sealed partial class FreeProberRule : StationEventSystem<FreeProberRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
-    [Dependency] private readonly AnchorableSystem _anchorable = default!;
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private MapSystem _mapSystem = default!;
+    [Dependency] private AnchorableSystem _anchorable = default!;
+    [Dependency] private GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     private static readonly string ProberPrototype = "GlimmerProber";
     private static readonly int SpawnDirections = 4;

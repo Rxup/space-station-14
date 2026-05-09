@@ -12,10 +12,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Blob;
 
-public sealed class BlobObserverSystem : SharedBlobObserverSystem
+public sealed partial class BlobObserverSystem : SharedBlobObserverSystem
 {
-    [Dependency] private readonly ILightManager _lightManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private ILightManager _lightManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

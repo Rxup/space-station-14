@@ -37,25 +37,25 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.ShipVsShip;
 
-public sealed class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
+public sealed partial class ShipVsShipGame : GameRuleSystem<ShipVsShipGameComponent>
 {
     //private ISawmill _sawmill = default!;
-    //[Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly WhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-    [Dependency] private readonly RoundEndSystem _endSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedTdmTeamSystem _teamSystem = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    //[Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private WhitelistSystem _whitelistSystem = default!;
+    [Dependency] private StationJobsSystem _stationJobs = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ShuttleConsoleSystem _console = default!;
+    [Dependency] private RoundEndSystem _endSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedTdmTeamSystem _teamSystem = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private SharedRoleSystem _roleSystem = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
     public override void Initialize()
     {

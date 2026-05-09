@@ -5,9 +5,9 @@ using Content.Shared.GameTicking.Components;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
-public sealed class GlimmerEventSystem: StationEventSystem<GlimmerEventComponent>
+public sealed partial class GlimmerEventSystem: StationEventSystem<GlimmerEventComponent>
 {
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private GlimmerSystem _glimmerSystem = default!;
 
     protected override void Ended(EntityUid uid, GlimmerEventComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {

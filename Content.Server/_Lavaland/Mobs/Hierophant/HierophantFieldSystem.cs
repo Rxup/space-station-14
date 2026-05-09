@@ -7,10 +7,10 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server._Lavaland.Mobs.Hierophant;
 
-public sealed class HierophantFieldSystem : EntitySystem
+public sealed partial class HierophantFieldSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
     public override void Initialize()
     {

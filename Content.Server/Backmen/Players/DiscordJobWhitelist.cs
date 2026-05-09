@@ -11,12 +11,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Players;
 
-public sealed class DiscordJobWhitelist : EntitySystem
+public sealed partial class DiscordJobWhitelist : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IServerDiscordAuthManager _manager = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IServerDiscordAuthManager _manager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     private ImmutableArray<ProtoId<JobPrototype>> _whitelistedJobs = [];
 

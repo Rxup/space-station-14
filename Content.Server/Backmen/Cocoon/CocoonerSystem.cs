@@ -29,17 +29,17 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Cocoon;
 
-public sealed class CocoonerSystem : EntitySystem
+public sealed partial class CocoonerSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly BlindableSystem _blindableSystem = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly BloodSuckerSystem _bloodSuckerSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private DoAfterSystem _doAfter = default!;
+    [Dependency] private BlindableSystem _blindableSystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private DestructibleSystem _destructibleSystem = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private BloodSuckerSystem _bloodSuckerSystem = default!;
 
     private const string BodySlot = "body_slot";
 

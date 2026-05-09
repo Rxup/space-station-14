@@ -2,10 +2,10 @@ using Content.Server.Backmen.Language;
 
 namespace Content.Server.Backmen.Traits.Assorted;
 
-public sealed class MonolingualSystem : EntitySystem
+public sealed partial class MonolingualSystem : EntitySystem
 {
 
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private LanguageSystem _language = default!;
 
     public override void Initialize()
     {

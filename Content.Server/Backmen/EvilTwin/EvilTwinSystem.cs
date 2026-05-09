@@ -64,7 +64,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.EvilTwin;
 
-public sealed class EvilTwinSystem : EntitySystem
+public sealed partial class EvilTwinSystem : EntitySystem
 {
     public override void Initialize()
     {
@@ -646,28 +646,28 @@ public sealed class EvilTwinSystem : EntitySystem
         return (twinUid, pref);
     }
 
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IServerPreferencesManager _prefs = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly PrayerSystem _prayerSystem = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly RoleSystem _roles = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
-    [Dependency] private readonly TargetObjectiveSystem _target = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly EconomySystem _economySystem = default!;
-    [Dependency] private readonly ForensicsSystem _forensicsSystem = default!;
-    [Dependency] private readonly SuitSensorSystem _sensor = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IServerPreferencesManager _prefs = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private PrayerSystem _prayerSystem = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private RoleSystem _roles = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private ObjectivesSystem _objectivesSystem = default!;
+    [Dependency] private TargetObjectiveSystem _target = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IdentitySystem _identity = default!;
+    [Dependency] private EconomySystem _economySystem = default!;
+    [Dependency] private ForensicsSystem _forensicsSystem = default!;
+    [Dependency] private SuitSensorSystem _sensor = default!;
 
     private readonly EntProtoId MindRoleEvilTwin = "MindRoleEvilTwin";
     private readonly EntProtoId KillObjective = "KillObjectiveEvilTwin";

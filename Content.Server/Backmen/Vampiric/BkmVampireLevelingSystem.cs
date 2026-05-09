@@ -35,29 +35,29 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Vampiric;
 
-public sealed class BkmVampireLevelingSystem : EntitySystem
+public sealed partial class BkmVampireLevelingSystem : EntitySystem
 {
-    [Dependency] private readonly StoreSystem _store = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly PolymorphSystem _polymorph = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _speedModifier = default!;
+    [Dependency] private StoreSystem _store = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private PolymorphSystem _polymorph = default!;
+    [Dependency] private MovementSpeedModifierSystem _speedModifier = default!;
 
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
 
-    [Dependency] private readonly HungerSystem _hunger = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private HungerSystem _hunger = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
 
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
 
-    [Dependency] private readonly BloodSuckerSystem _bloodSucker = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private BloodSuckerSystem _bloodSucker = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

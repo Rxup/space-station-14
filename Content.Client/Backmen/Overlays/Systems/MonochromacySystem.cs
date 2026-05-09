@@ -6,12 +6,12 @@ using Content.Shared.Backmen.Traits;
 using Robust.Shared.Player;
 
 namespace Content.Client.Backmen.Overlays;
-public sealed class MonochromacySystem : EntitySystem
+public sealed partial class MonochromacySystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     private MonochromacyOverlay _overlay = default!;
 

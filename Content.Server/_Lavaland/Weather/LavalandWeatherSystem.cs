@@ -21,18 +21,18 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Lavaland.Weather;
 
-public sealed class LavalandWeatherSystem : EntitySystem
+public sealed partial class LavalandWeatherSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly WeatherSystem _weather = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly TemperatureSystem _temperature = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly RoofSystem _roof = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private WeatherSystem _weather = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private TemperatureSystem _temperature = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private RoofSystem _roof = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
 
     private const double LavalandWeatherJobTime = 0.005;
     private readonly JobQueue _lavalandWeatherJobQueue = new(LavalandWeatherJobTime);

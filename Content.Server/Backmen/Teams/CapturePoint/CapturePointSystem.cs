@@ -18,12 +18,12 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Teams.CapturePoint;
 
-public sealed class CapturePointSystem : SharedCapturePointSystem
+public sealed partial class CapturePointSystem : SharedCapturePointSystem
 {
-    [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private DeviceLinkSystem _deviceLink = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
     private EntityQuery<ActorComponent> _actorQuery;
     private EntityQuery<TdmMemberComponent> _teamQuery;
     private EntityQuery<MobStateComponent> _mobStateQuery;

@@ -4,9 +4,9 @@ using Robust.Shared.Player;
 
 namespace Content.Shared.Backmen.Input;
 
-public sealed class RMCInputSystem : EntitySystem
+public sealed partial class RMCInputSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private IConfigurationManager _config = default!;
 
     private bool _activeInputMoverEnabled;
 

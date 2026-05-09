@@ -12,9 +12,9 @@ namespace Content.Client.Humanoid;
 [GenerateTypedNameReferences]
 public sealed partial class SingleMarkingPicker : BoxContainer
 {
-    [Dependency] private readonly MarkingManager _markingManager = default!;
+    [Dependency] private MarkingManager _markingManager = default!;
     private ISharedSponsorsManager? _sponsorsManager; // Corvax-Sponsors
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     private readonly SpriteSystem _sprite;
 
