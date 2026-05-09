@@ -9,11 +9,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
-public sealed class ShadowkinRestSystem : EntitySystem
+public sealed partial class ShadowkinRestSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly ShadowkinPowerSystem _power = default!;
-    [Dependency] private readonly SleepingSystem _sleeping = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private ShadowkinPowerSystem _power = default!;
+    [Dependency] private SleepingSystem _sleeping = default!;
 
     public override void Initialize()
     {

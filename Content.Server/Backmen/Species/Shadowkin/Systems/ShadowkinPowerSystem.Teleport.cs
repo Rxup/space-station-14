@@ -22,18 +22,18 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
-public sealed class ShadowkinTeleportSystem : EntitySystem
+public sealed partial class ShadowkinTeleportSystem : EntitySystem
 {
-    [Dependency] private readonly ShadowkinPowerSystem _power = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly MagicSystem _magic = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private ShadowkinPowerSystem _power = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private MagicSystem _magic = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()
     {

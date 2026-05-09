@@ -9,9 +9,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Speech.EntitySystems;
 
-public sealed class ShadowkinAccentSystem : EntitySystem
+public sealed partial class ShadowkinAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private static readonly Regex MRegex = new(@"[adgjmpsvy]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
     private static readonly Regex ARegex = new(@"[behknqtwz]", RegexOptions.Compiled | RegexOptions.IgnoreCase);

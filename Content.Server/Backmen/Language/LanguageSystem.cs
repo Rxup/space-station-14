@@ -17,7 +17,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
 {
     private EntityQuery<LanguageSpeakerComponent> _languageSpeakerQuery;
     private EntityQuery<UniversalLanguageSpeakerComponent> _universalLanguageSpeakerQuery;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private static readonly ProtoId<LanguagePrototype> GlobalHuman = "TauCetiBasic";
 

@@ -4,10 +4,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Sponsors;
 
-public sealed class LoadoutsManager : ISharedLoadoutsManager
+public sealed partial class LoadoutsManager : ISharedLoadoutsManager
 {
-    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private ISharedSponsorsManager _sponsorsManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public void Initialize()
     {

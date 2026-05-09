@@ -17,11 +17,11 @@ using Exception = System.Exception;
 
 namespace Content.Server.Backmen.Sponsors;
 
-public sealed class SponsorsManager : ISharedSponsorsManager
+public sealed partial class SponsorsManager : ISharedSponsorsManager
 {
-    [Dependency] private readonly IServerNetManager _netMgr = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IServerNetManager _netMgr = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     private readonly HttpClient _httpClient = new();
 

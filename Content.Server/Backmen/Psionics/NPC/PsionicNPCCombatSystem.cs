@@ -7,10 +7,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Psionics.NPC;
 
-public sealed class PsionicNPCCombatSystem : EntitySystem
+public sealed partial class PsionicNPCCombatSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
     public override void Initialize()
     {
         base.Initialize();

@@ -7,9 +7,9 @@ using Robust.Shared.Network;
 
 namespace Content.Client.Backmen.Sponsors;
 
-public sealed class SponsorsManager : ISharedSponsorsManager
+public sealed partial class SponsorsManager : ISharedSponsorsManager
 {
-    [Dependency] private readonly IClientNetManager _netMgr = default!;
+    [Dependency] private IClientNetManager _netMgr = default!;
 
     public void Initialize()
     {

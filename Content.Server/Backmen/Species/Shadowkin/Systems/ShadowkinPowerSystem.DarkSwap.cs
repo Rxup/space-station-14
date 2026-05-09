@@ -33,22 +33,22 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
-public sealed class ShadowkinDarkSwapSystem : EntitySystem
+public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
 {
-    [Dependency] private readonly ShadowkinPowerSystem _power = default!;
-    [Dependency] private readonly VisibilitySystem _visibility = default!;
-    [Dependency] private readonly ShadowkinDarkenSystem _darken = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
-    [Dependency] private readonly SharedStealthSystem _stealth = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly MagicSystem _magic = default!;
-    [Dependency] private readonly NpcFactionSystem _factions = default!;
-    [Dependency] private readonly EyeSystem _eye = default!;
-    [Dependency] private readonly SharedEyeSystem _sharedEye = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private ShadowkinPowerSystem _power = default!;
+    [Dependency] private VisibilitySystem _visibility = default!;
+    [Dependency] private ShadowkinDarkenSystem _darken = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
+    [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private MagicSystem _magic = default!;
+    [Dependency] private NpcFactionSystem _factions = default!;
+    [Dependency] private EyeSystem _eye = default!;
+    [Dependency] private SharedEyeSystem _sharedEye = default!;
+    [Dependency] private StunSystem _stunSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
     private EntityQuery<PsionicsDisabledComponent> _activePsionicsDisabled;
     private EntityQuery<StaminaComponent> _activeStamina;
 

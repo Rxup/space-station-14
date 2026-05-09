@@ -16,11 +16,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
-internal sealed class GlimmerWispRule : StationEventSystem<GlimmerWispRuleComponent>
+internal sealed partial class GlimmerWispRule : StationEventSystem<GlimmerWispRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     private static readonly EntProtoId WispPrototype = "MobGlimmerWisp";
 

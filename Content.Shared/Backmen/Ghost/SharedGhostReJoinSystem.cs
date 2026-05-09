@@ -4,10 +4,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Ghost;
 
-public abstract class SharedGhostReJoinSystem : EntitySystem
+public abstract partial class SharedGhostReJoinSystem : EntitySystem
 {
-    [Dependency] protected readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] protected readonly IGameTiming _gameTiming = default!;
+    [Dependency] protected IConfigurationManager _configurationManager = default!;
+    [Dependency] protected IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {

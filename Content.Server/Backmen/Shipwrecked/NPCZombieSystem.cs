@@ -22,10 +22,10 @@ public sealed class NpcZombieMakeEvent : EntityEventArgs
 }
 
 
-public sealed class NPCZombieSystem : EntitySystem
+public sealed partial class NPCZombieSystem : EntitySystem
 {
-    [Dependency] private readonly ZombieSystem _zombieSystem = default!;
-    [Dependency] private readonly StandingStateSystem _stateSystem = default!;
+    [Dependency] private ZombieSystem _zombieSystem = default!;
+    [Dependency] private StandingStateSystem _stateSystem = default!;
 
     public override void Initialize()
     {

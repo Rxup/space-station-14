@@ -23,16 +23,16 @@ namespace Content.Server.Backmen.Psionics.Glimmer;
 /// <summary>
 /// Handles structures which add/subtract glimmer.
 /// </summary>
-public sealed class GlimmerStructuresSystem : EntitySystem
+public sealed partial class GlimmerStructuresSystem : EntitySystem
 {
-    [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!;
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly PsionicsSystem _psionicsSystem = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private PowerReceiverSystem _powerReceiverSystem = default!;
+    [Dependency] private GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private StunSystem _stunSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private PsionicsSystem _psionicsSystem = default!;
+    [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     private EntityQuery<ApcPowerReceiverComponent> _apcPower;
     private EntityQuery<XenoArtifactComponent> _artQuery;

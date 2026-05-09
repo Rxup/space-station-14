@@ -29,25 +29,25 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Ghost;
 
-public sealed class GhostReJoinSystem : SharedGhostReJoinSystem
+public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly SharedGhostSystem _ghostSystem = default!;
-    [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly IServerPreferencesManager _prefs = default!;
-    [Dependency] private readonly ActorSystem _actorSystem = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly PlayTimeTrackingSystem _playTimeTrackings = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IConsoleHost _console = default!;
+    [Dependency] private SharedGhostSystem _ghostSystem = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private IServerPreferencesManager _prefs = default!;
+    [Dependency] private ActorSystem _actorSystem = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private PlayTimeTrackingSystem _playTimeTrackings = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _appearance = default!;
+    [Dependency] private StationJobsSystem _stationJobs = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

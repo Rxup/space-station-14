@@ -37,7 +37,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Supermatter;
 
-public sealed class SupermatterSystem : SharedSupermatterSystem
+public sealed partial class SupermatterSystem : SharedSupermatterSystem
 {
     public override void Initialize()
     {
@@ -706,16 +706,16 @@ public sealed class SupermatterSystem : SharedSupermatterSystem
     }
 
 
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly TransformSystem _xform = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly AmbientSoundSystem _ambient = default!;
-    [Dependency] private readonly LightningSystem _lightning = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly AlertLevelSystem _alert = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private TransformSystem _xform = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private AmbientSoundSystem _ambient = default!;
+    [Dependency] private LightningSystem _lightning = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private AlertLevelSystem _alert = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
 }

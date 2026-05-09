@@ -11,12 +11,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Backmen.UI.AnimatedBackground;
 
-public sealed class AnimatedBackgroundControl : TextureRect
+public sealed partial class AnimatedBackgroundControl : TextureRect
 {
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
-    [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private IClyde _clyde = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private ResPath _rsiPath = new("/Textures/Backmen/LobbyScreens/native.rsi");
     public RSI? _RSI;

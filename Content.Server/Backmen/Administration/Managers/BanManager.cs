@@ -16,7 +16,7 @@ public sealed partial class BanManager
 {
     public const string AntagPrefix = "Antag:";
 
-    [Dependency] private readonly IServerPreferencesManager _prefs = default!;
+    [Dependency] private IServerPreferencesManager _prefs = default!;
 
     public async void CreateAntagban(NetUserId? target,
         string? targetUsername,

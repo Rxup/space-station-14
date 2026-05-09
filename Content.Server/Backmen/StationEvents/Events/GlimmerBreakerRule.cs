@@ -12,11 +12,11 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
-public sealed class GlimmerBreakerRule : StationEventSystem<GlimmerBreakerRuleComponent>
+public sealed partial class GlimmerBreakerRule : StationEventSystem<GlimmerBreakerRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly EmpSystem _emp = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private EmpSystem _emp = default!;
 
     protected override void Started(EntityUid uid,
         GlimmerBreakerRuleComponent component,

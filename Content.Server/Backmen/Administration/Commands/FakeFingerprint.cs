@@ -9,9 +9,9 @@ using Robust.Shared.Console;
 namespace Content.Server.Backmen.Administration.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class FakeFingerprint : IConsoleCommand
+public sealed partial class FakeFingerprint : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     public string Command => "fakefingerprints";
 

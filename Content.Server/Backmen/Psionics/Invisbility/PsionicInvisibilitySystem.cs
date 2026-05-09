@@ -13,12 +13,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Psionics;
 
-public sealed class PsionicInvisibilitySystem : EntitySystem
+public sealed partial class PsionicInvisibilitySystem : EntitySystem
 {
-    [Dependency] private readonly VisibilitySystem _visibilitySystem = default!;
-    [Dependency] private readonly PsionicInvisibilityPowerSystem _invisSystem = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFactonSystem = default!;
-    [Dependency] private readonly SharedEyeSystem _sharedEyeSystem = default!;
+    [Dependency] private VisibilitySystem _visibilitySystem = default!;
+    [Dependency] private PsionicInvisibilityPowerSystem _invisSystem = default!;
+    [Dependency] private NpcFactionSystem _npcFactonSystem = default!;
+    [Dependency] private SharedEyeSystem _sharedEyeSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

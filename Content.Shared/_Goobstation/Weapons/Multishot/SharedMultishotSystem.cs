@@ -10,7 +10,7 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem : EntitySystem
 {
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
+    [Dependency] private SharedGunSystem _gunSystem = default!;
 
     protected void InitializeMultishot()
     {

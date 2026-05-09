@@ -16,10 +16,10 @@ using Robust.Server.Player;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
-public sealed class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
+public sealed partial class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _playerSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPlayerManager _playerSystem = default!;
 
     public override void Initialize()
     {

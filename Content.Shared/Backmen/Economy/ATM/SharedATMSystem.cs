@@ -2,9 +2,9 @@
 
 namespace Content.Shared.Backmen.Economy.ATM;
 
-public abstract class SharedATMSystem : EntitySystem
+public abstract partial class SharedATMSystem : EntitySystem
 {
-    [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

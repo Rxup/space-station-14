@@ -8,12 +8,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Backmen.AirDrop;
 
-public sealed class AirDropSystem : SharedAirDropSystem
+public sealed partial class AirDropSystem : SharedAirDropSystem
 {
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private SpriteSystem _spriteSystem = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
 
     private readonly Queue<Entity<AirDropVisualizerComponent>> _updateQueue = new();
 

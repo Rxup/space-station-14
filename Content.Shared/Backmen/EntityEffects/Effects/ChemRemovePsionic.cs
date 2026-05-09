@@ -14,7 +14,7 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 [UsedImplicitly]
 public sealed partial class ChemRemovePsionicEntityEffectSystem : EntityEffectSystem<PotentialPsionicComponent, ChemRemovePsionic>
 {
-    [Dependency] private readonly SharedPsionicsSystem _psionics = default!;
+    [Dependency] private SharedPsionicsSystem _psionics = default!;
 
     protected override void Effect(Entity<PotentialPsionicComponent> entity, ref EntityEffectEvent<ChemRemovePsionic> args)
     {

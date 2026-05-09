@@ -7,9 +7,9 @@ using Robust.Shared.Console;
 namespace Content.Server.Chat.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class SetLOOCCommand : LocalizedCommands
+public sealed partial class SetLOOCCommand : LocalizedCommands
 {
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
 
     public override string Command => "setlooc";
 

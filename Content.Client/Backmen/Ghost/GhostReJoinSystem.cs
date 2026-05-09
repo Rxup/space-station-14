@@ -6,10 +6,10 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client.Backmen.Ghost;
 
-public sealed class GhostReJoinSystem : SharedGhostReJoinSystem
+public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
 {
-    [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     public override void Initialize()
     {

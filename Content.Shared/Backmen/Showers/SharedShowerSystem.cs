@@ -7,11 +7,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Showers;
 
-public abstract class SharedShowerSystem : EntitySystem
+public abstract partial class SharedShowerSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
     public override void Initialize()
     {
         base.Initialize();

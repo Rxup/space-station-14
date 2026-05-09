@@ -15,12 +15,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Item.PseudoItem;
 
-public abstract class SharedPseudoItemSystem : EntitySystem
+public abstract partial class SharedPseudoItemSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedStorageSystem _storageSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedStorageSystem _storageSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
 
     protected EntityQuery<StorageComponent> StorageQuery;
     public override void Initialize()

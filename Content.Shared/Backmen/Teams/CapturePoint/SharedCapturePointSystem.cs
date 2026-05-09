@@ -7,10 +7,10 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Backmen.Teams.CapturePoint;
 
-public abstract class SharedCapturePointSystem : EntitySystem
+public abstract partial class SharedCapturePointSystem : EntitySystem
 {
-    [Dependency] private readonly FixtureSystem _fixtures = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private FixtureSystem _fixtures = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 
     public const float TicksPerSecond = 1f;
 

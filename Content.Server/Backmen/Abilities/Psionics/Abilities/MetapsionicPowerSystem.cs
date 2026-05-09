@@ -10,13 +10,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class MetapsionicPowerSystem : StatusEffectGrantedPowerSystem<MetapsionicPowerComponent, MetapsionicPowerActionEvent>
+public sealed partial class MetapsionicPowerSystem : StatusEffectGrantedPowerSystem<MetapsionicPowerComponent, MetapsionicPowerActionEvent>
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedPopupSystem _popups = default!;
-    [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedPopupSystem _popups = default!;
+    [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
+    [Dependency] private SharedEyeSystem _eye = default!;
 
     private EntityQuery<PsionicInsulationComponent>  _insulationQuery;
 

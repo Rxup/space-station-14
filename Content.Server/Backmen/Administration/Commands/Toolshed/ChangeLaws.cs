@@ -11,10 +11,10 @@ using Robust.Shared.Toolshed.TypeParsers;
 namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Admin)]
-public sealed class LawsCommand : ToolshedCommand
+public sealed partial class LawsCommand : ToolshedCommand
 {
     private SiliconLawSystem? _law;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     [CommandImplementation("list")]
     public IEnumerable<EntityUid> List()

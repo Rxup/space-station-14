@@ -11,7 +11,7 @@ namespace Content.Server.Backmen.Disease.Cures;
 
 public sealed partial class DiseaseCureSystem : EntitySystem
 {
-    [Dependency] private readonly DiseaseSystem _disease = default!;
+    [Dependency] private DiseaseSystem _disease = default!;
     private EntityQuery<BuckleComponent> _buckleQuery;
     private EntityQuery<HealOnBuckleComponent> _healOnBuckleQuery;
     private EntityQuery<SleepingComponent> _sleepingComponentQuery;

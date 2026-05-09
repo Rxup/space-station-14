@@ -20,8 +20,8 @@ public sealed partial class DiseaseCyborgConversion : DiseaseEffect
 
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private readonly HumanoidAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private HumanoidAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
 
     private void DiseaseCyborgConversion(Entity<DiseaseCarrierComponent> ent,
         ref DiseaseEffectArgs<DiseaseCyborgConversion> args)

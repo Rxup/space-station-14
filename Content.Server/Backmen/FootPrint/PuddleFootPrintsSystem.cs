@@ -12,11 +12,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.FootPrint;
 
-public sealed class PuddleFootPrintsSystem : EntitySystem
+public sealed partial class PuddleFootPrintsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<FootPrintsComponent> _footPrintsQuery;

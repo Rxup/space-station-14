@@ -7,9 +7,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationAI;
 
-public sealed class AiEnemySystem : SharedAiEnemySystem
+public sealed partial class AiEnemySystem : SharedAiEnemySystem
  {
-     [Dependency] private readonly NpcFactionSystem _faction = default!;
+     [Dependency] private NpcFactionSystem _faction = default!;
 
 
      public override void Initialize()

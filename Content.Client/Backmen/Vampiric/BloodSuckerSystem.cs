@@ -8,9 +8,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Vampiric;
 
-public sealed class BloodSuckerSystem : SharedBloodSuckerSystem
+public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private StatusIconPrototype _statusIconPrototype = default!;
     public override void Initialize()

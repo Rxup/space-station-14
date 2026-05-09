@@ -7,12 +7,12 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Vampiric.Objective;
 
-public sealed class BloodsuckerObjectiveSystem : EntitySystem
+public sealed partial class BloodsuckerObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedRoleSystem _roleSystem = default!;
 
     public override void Initialize()
     {

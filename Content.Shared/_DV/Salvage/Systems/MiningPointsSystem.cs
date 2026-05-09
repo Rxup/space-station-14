@@ -9,11 +9,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._DV.Salvage.Systems;
 
-public sealed class MiningPointsSystem : EntitySystem
+public sealed partial class MiningPointsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedIdCardSystem _idCard = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedIdCardSystem _idCard = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private EntityQuery<MiningPointsComponent> _query;
 

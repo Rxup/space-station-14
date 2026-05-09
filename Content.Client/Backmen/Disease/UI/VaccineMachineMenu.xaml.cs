@@ -9,7 +9,7 @@ namespace Content.Client.Backmen.Disease.UI;
 [GenerateTypedNameReferences]
 public sealed partial class VaccineMachineMenu : DefaultWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     private readonly SharedMaterialStorageSystem _storage;
 

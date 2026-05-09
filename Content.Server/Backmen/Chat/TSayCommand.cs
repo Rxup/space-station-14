@@ -7,9 +7,9 @@ using Robust.Shared.Enums;
 namespace Content.Server.Backmen.Chat.Commands;
 
 [AnyCommand]
-internal sealed class TSayCommand : IConsoleCommand
+internal sealed partial class TSayCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
+    [Dependency] private IEntityManager _entities = default!;
     private ChatSystem? _chatSystem;
 
     public string Command => "tsay";

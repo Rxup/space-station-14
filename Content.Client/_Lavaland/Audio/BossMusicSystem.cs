@@ -15,14 +15,14 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Lavaland.Audio;
 
-public sealed class BossMusicSystem : EntitySystem
+public sealed partial class BossMusicSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly ContentAudioSystem _audioContent = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private ContentAudioSystem _audioContent = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private static float _volumeSlider;
     private Entity<AudioComponent?>? _bossMusicStream;

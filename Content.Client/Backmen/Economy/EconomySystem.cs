@@ -15,11 +15,11 @@ using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Client.Backmen.Economy;
 
-public sealed class EconomySystem : EntitySystem
+public sealed partial class EconomySystem : EntitySystem
 {
     [Dependency] private TransformSystem _transformSystem = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    [Dependency] private IUserInterfaceManager _uiManager = default!;
 
     public override void Initialize()
     {
@@ -35,7 +35,7 @@ public sealed class EconomySystem : EntitySystem
             ui?.Fragment?.FillFields();
         }
     }
-    
+
     private void OnHandleState(EntityUid uid, BankAccountComponent component, ref AfterAutoHandleStateEvent args)
     {
         var parent = _transformSystem.GetParentUid(uid);

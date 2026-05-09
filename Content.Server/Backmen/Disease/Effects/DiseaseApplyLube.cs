@@ -43,8 +43,8 @@ public sealed partial class DiseaseApplyLube : DiseaseEffect
 
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     private void DiseaseApplyLube(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseApplyLube> args)
     {
@@ -62,8 +62,8 @@ public sealed partial class DiseaseEffectSystem
 
 public sealed partial class DiseaseLubeHandsSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

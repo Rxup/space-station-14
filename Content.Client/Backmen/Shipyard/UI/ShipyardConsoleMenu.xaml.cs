@@ -14,7 +14,7 @@ namespace Content.Client.Backmen.Shipyard.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShipyardConsoleMenu : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
 
     public event Action<ButtonEventArgs>? OnOrderApproved;
     private readonly ShipyardConsoleBoundUserInterface _menu;

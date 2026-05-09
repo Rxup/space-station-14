@@ -10,10 +10,10 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._Lavaland.Aggression;
 
-public abstract class SharedAggressorsSystem : EntitySystem
+public abstract partial class SharedAggressorsSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
     private EntityQuery<ActorComponent> _actorQuery;
 
     // TODO: make cooldowns for all individual aggressors that fall out of vision range

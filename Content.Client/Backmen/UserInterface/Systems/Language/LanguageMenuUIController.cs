@@ -15,13 +15,13 @@ using Robust.Client.Input;
 namespace Content.Client.Backmen.UserInterface.Systems.Language;
 
 [UsedImplicitly]
-public sealed class LanguageMenuUIController :
+public sealed partial class LanguageMenuUIController :
     UIController,
     IOnStateEntered<GameplayState>,
     IOnStateExited<GameplayState>,
     IOnSystemChanged<LanguageSystem>
 {
-    [Dependency] private readonly IInputManager _input = default!;
+    [Dependency] private IInputManager _input = default!;
     public LanguageMenuWindow? LanguageWindow;
 
     private MenuButton? LanguageButton =>

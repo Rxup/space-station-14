@@ -53,7 +53,7 @@ public enum StatusEffectDiseaseType
 
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private readonly Shared.StatusEffectNew.StatusEffectsSystem _effectsSystem = default!;
+    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _effectsSystem = default!;
 
     private void DiseaseGenericStatusEffect(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseGenericStatusEffect> args)
     {

@@ -5,10 +5,10 @@ using Robust.Client.Player;
 
 namespace Content.Client.Backmen.Overlays.Shaders;
 
-public sealed class IgnoreHumanoidWithComponentOverlay : Overlay
+public sealed partial class IgnoreHumanoidWithComponentOverlay : Overlay
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     public List<Component> IgnoredComponents = new();
     public List<Component> AllowAnywayComponents = new();

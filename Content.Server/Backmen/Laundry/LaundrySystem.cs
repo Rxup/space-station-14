@@ -5,10 +5,10 @@ using Robust.Shared.Containers;
 
 namespace Content.Server.Backmen.Laundry;
 
-public sealed class LaundrySystem : EntitySystem
+public sealed partial class LaundrySystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
 
     public override void Initialize()
     {

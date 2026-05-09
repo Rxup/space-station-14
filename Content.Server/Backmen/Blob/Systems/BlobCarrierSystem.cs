@@ -16,14 +16,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Blob.Systems;
 
-public sealed class BlobCarrierSystem : SharedBlobCarrierSystem
+public sealed partial class BlobCarrierSystem : SharedBlobCarrierSystem
 {
-    [Dependency] private readonly BlobCoreSystem _blobCoreSystem = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly GhostRoleSystem _ghost = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly ActionsSystem _action = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private BlobCoreSystem _blobCoreSystem = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private GhostRoleSystem _ghost = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private ActionsSystem _action = default!;
+    [Dependency] private LanguageSystem _language = default!;
 
     public override void Initialize()
     {

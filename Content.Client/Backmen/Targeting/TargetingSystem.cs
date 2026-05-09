@@ -5,9 +5,9 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 
 namespace Content.Client.Backmen.Targeting;
-public sealed class TargetingSystem : SharedTargetingSystem
+public sealed partial class TargetingSystem : SharedTargetingSystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     public event Action<TargetingComponent>? TargetingStartup;
     public event Action? TargetingShutdown;

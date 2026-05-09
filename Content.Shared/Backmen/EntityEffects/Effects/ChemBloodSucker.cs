@@ -11,7 +11,7 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T, TEffect}"/>
 public sealed partial class ChemBloodSuckerEntityEffectSystem : EntityEffectSystem<MobStateComponent, ChemBloodSucker>
 {
-    [Dependency] private readonly SharedBloodSuckerSystem _bloodSucker = default!;
+    [Dependency] private SharedBloodSuckerSystem _bloodSucker = default!;
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<ChemBloodSucker> args)
     {

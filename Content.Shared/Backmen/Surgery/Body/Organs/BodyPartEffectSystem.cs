@@ -9,8 +9,8 @@ namespace Content.Shared.Backmen.Surgery.Body.Organs;
 
 public partial class BodyPartEffectSystem : EntitySystem
 {
-    [Dependency] private readonly ISerializationManager _serManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private ISerializationManager _serManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
     public override void Initialize()
     {
         base.Initialize();

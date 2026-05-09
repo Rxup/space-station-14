@@ -15,10 +15,10 @@ public sealed class PlayerJoinMoveToGameEvent : EntityEventArgs
     public ICommonSession Player { get; }
 }
 
-public sealed class PlayerManagerSystem : EntitySystem
+public sealed partial class PlayerManagerSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private ISharedSponsorsManager _sponsorsManager = default!;
     public override void Initialize()
     {
         base.Initialize();

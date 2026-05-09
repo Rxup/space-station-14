@@ -21,10 +21,10 @@ namespace Content.Server.Backmen.Chat;
 /*
 public sealed class SimpleStationChatSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
 
     private IEnumerable<INetChannel> GetShadowkinChatClients()
     {

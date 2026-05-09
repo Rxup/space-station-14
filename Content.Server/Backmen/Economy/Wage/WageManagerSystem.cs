@@ -23,11 +23,11 @@ public sealed record WagePaydayPayout(
     public FixedPoint2 PayoutAmount { get; set; }
 }
 
-public sealed class WageManagerSystem : EntitySystem
+public sealed partial class WageManagerSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly BankManagerSystem _bankManagerSystem = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private BankManagerSystem _bankManagerSystem = default!;
 
     private uint _nextId = 1;
 

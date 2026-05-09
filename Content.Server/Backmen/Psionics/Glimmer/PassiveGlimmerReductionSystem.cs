@@ -11,13 +11,13 @@ namespace Content.Server.Backmen.Psionics.Glimmer
     /// <summary>
     /// Handles the passive reduction of glimmer.
     /// </summary>
-    public sealed class PassiveGlimmerReductionSystem : EntitySystem
+    public sealed partial class PassiveGlimmerReductionSystem : EntitySystem
     {
-        [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        //[Dependency] private readonly GlimmerMonitorCartridgeSystem _cartridgeSys = default!;
+        [Dependency] private GlimmerSystem _glimmerSystem = default!;
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
+        //[Dependency] private GlimmerMonitorCartridgeSystem _cartridgeSys = default!;
 
         /// List of glimmer values spaced by minute.
         public List<int> GlimmerValues = new();

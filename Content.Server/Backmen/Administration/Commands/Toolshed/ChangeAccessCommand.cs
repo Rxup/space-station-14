@@ -19,10 +19,10 @@ using Robust.Shared.Utility;
 namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
-public sealed class ChangeAccessCommand : ToolshedCommand
+public sealed partial class ChangeAccessCommand : ToolshedCommand
 {
     private AccessSystem? _accessSystem;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     #region Set
 

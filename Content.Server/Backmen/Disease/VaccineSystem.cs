@@ -33,17 +33,17 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Disease;
 
-public sealed class VaccineSystem : EntitySystem
+public sealed partial class VaccineSystem : EntitySystem
 {
-    [Dependency] private readonly DiseaseDiagnosisSystem _diseaseDiagnosisSystem = default!;
-    [Dependency] private readonly SharedMaterialStorageSystem _storageSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSys = default!;
-    [Dependency] private readonly ResearchSystem _research = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private DiseaseDiagnosisSystem _diseaseDiagnosisSystem = default!;
+    [Dependency] private SharedMaterialStorageSystem _storageSystem = default!;
+    [Dependency] private UserInterfaceSystem _uiSys = default!;
+    [Dependency] private ResearchSystem _research = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private AudioSystem _audioSystem = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
 
     public override void Initialize()
     {

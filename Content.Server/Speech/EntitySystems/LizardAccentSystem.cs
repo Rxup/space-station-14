@@ -6,7 +6,7 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed class LizardAccentSystem : EntitySystem
+public sealed partial class LizardAccentSystem : EntitySystem
 {
     private static readonly Regex RegexLowerS = new("s+");
     private static readonly Regex RegexUpperS = new("S+");
@@ -27,7 +27,7 @@ public sealed class LizardAccentSystem : EntitySystem
     private static readonly Regex RegexLoc4_1 = new("ч+");
     private static readonly Regex RegexLoc4_2 = new("Ч+");
     // Corvax-Localization-End
-    [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
+    [Dependency] private IRobustRandom _random = default!; // Corvax-Localization
 
     public override void Initialize()
     {

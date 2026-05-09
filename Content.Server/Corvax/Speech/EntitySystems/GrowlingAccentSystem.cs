@@ -7,9 +7,9 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Corvax.Speech.EntitySystems;
 
-public sealed class GrowlingAccentSystem : EntitySystem
+public sealed partial class GrowlingAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
     private static readonly Regex LowerRRegex = new(@"r+", RegexOptions.Compiled);
     private static readonly Regex UpperRRegex = new(@"R+", RegexOptions.Compiled);
     private static readonly Regex LowerRuRRegex = new(@"р+", RegexOptions.Compiled);

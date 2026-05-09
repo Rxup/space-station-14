@@ -7,9 +7,9 @@ using Robust.Shared.Network;
 
 namespace Content.Client.Backmen.WL;
 
-public sealed class WhitelistSystem  : SharedWhitelistSystem
+public sealed partial class WhitelistSystem  : SharedWhitelistSystem
 {
-    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
+    [Dependency] private ISharedSponsorsManager _sponsorsManager = default!;
 
     public override void Initialize()
     {

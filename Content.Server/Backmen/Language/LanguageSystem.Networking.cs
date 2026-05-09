@@ -11,7 +11,7 @@ namespace Content.Server.Backmen.Language;
 
 public sealed partial class LanguageSystem
 {
-    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private MindSystem _mind = default!;
 
 
     public void InitializeNet()

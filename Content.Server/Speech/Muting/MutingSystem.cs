@@ -12,10 +12,10 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Speech.Muting
 {
-    public sealed class MutingSystem : EntitySystem
+    public sealed partial class MutingSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!; // backmen edit
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
+        [Dependency] private IRobustRandom _random = default!; // backmen edit
+        [Dependency] private PopupSystem _popupSystem = default!;
         public override void Initialize()
         {
             base.Initialize();

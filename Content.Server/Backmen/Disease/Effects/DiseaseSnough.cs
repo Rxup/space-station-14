@@ -32,7 +32,7 @@ public sealed partial class DiseaseSnough : DiseaseEffect
 }
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private readonly DiseaseSystem _disease = default!;
+    [Dependency] private DiseaseSystem _disease = default!;
     private void DiseaseSnough(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseSnough> args)
     {
         if(args.Handled)

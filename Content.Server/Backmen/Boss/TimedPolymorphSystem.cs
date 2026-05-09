@@ -9,11 +9,11 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Boss;
 
-public sealed class TimedPolymorphSystem : EntitySystem
+public sealed partial class TimedPolymorphSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly PolymorphSystem _polySystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private PolymorphSystem _polySystem = default!;
     private EntityQuery<HTNComponent> _htnQuery;
     private EntityQuery<ActiveNPCComponent> _activeNpcQuery;
     private EntityQuery<CombatModeComponent> _combatModeQuery;

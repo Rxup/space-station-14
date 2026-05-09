@@ -11,12 +11,12 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
-internal sealed class NoosphericStormRule : StationEventSystem<NoosphericStormRuleComponent>
+internal sealed partial class NoosphericStormRule : StationEventSystem<NoosphericStormRuleComponent>
 {
-    [Dependency] private readonly PsionicAbilitiesSystem _psionicAbilitiesSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly GlimmerSystem _glimmerSystem = default!;
-    [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private PsionicAbilitiesSystem _psionicAbilitiesSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private GlimmerSystem _glimmerSystem = default!;
+    [Dependency] private IRobustRandom _robustRandom = default!;
 
     protected override void Started(EntityUid uid, NoosphericStormRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

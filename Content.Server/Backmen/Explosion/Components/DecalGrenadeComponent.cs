@@ -10,7 +10,7 @@ namespace Content.Server.Backmen.Explosion.Components;
 [RegisterComponent, Access(typeof(DecalGrenadeSystem))]
 public sealed partial class DecalGrenadeComponent : Component
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     /// <summary>
     /// The kinds of decals to spawn on explosion.

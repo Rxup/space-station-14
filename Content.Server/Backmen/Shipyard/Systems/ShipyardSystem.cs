@@ -23,14 +23,14 @@ namespace Content.Server.Backmen.Shipyard.Systems;
 
 public sealed partial class ShipyardSystem : SharedShipyardSystem
 {
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly MapLoaderSystem _map = default!;
-    [Dependency] private readonly ShipyardConsoleSystem _shipyardConsole = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private PricingSystem _pricing = default!;
+    [Dependency] private ShuttleSystem _shuttle = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private MapLoaderSystem _map = default!;
+    [Dependency] private ShipyardConsoleSystem _shipyardConsole = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
 
     public MapId? ShipyardMap { get; private set; }
     private float _shuttleIndex;

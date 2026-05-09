@@ -10,10 +10,10 @@ namespace Content.Server.Backmen.Psionics.Invisbility;
 /// <summary>
 /// Allows an entity to become psionically invisible when touching certain entities.
 /// </summary>
-public sealed class PsionicInvisibleContactsSystem : EntitySystem
+public sealed partial class PsionicInvisibleContactsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStealthSystem _stealth = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
     private EntityQuery<PsionicallyInvisibleComponent> _psiInvisible;
 
     public override void Initialize()

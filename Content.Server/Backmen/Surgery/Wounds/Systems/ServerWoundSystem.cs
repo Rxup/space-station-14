@@ -19,7 +19,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Surgery.Wounds.Systems;
 
-public sealed class ServerWoundSystem : WoundSystem
+public sealed partial class ServerWoundSystem : WoundSystem
 {
     private float _medicalHealingTickrate = 0.5f;
 
@@ -30,7 +30,7 @@ public sealed class ServerWoundSystem : WoundSystem
 
     private readonly EntProtoId BluntWoundId = "Blunt";
 
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

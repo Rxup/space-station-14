@@ -11,10 +11,10 @@ using Robust.Shared.Player;
 
 namespace Content.Client.Backmen.Species.Shadowkin.Systems;
 
-public sealed class ShadowkinTintSystem : EntitySystem
+public sealed partial class ShadowkinTintSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlay = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
 
     private ColorTintOverlay _tintOverlay = default!;
 

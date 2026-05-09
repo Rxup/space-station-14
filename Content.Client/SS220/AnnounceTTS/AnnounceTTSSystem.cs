@@ -16,11 +16,11 @@ using Robust.Shared.Utility;
 namespace Content.Client.SS220.AnnounceTTS;
 
 // ReSharper disable once InconsistentNaming
-public sealed class AnnounceTTSSystem : EntitySystem
+public sealed partial class AnnounceTTSSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
 
     private ISawmill _sawmill = default!;
     private readonly MemoryContentRoot _contentRoot = new();

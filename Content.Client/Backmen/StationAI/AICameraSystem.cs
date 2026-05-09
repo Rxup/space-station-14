@@ -6,10 +6,10 @@ using Robust.Client.Player;
 
 namespace Content.Client.Backmen.StationAI;
 
-public sealed class AICameraSystem : EntitySystem
+public sealed partial class AICameraSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     public override void Initialize()
     {

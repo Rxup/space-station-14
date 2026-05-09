@@ -9,12 +9,12 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Backmen.Language;
 
-public sealed class LanguageLearnSystem : EntitySystem
+public sealed partial class LanguageLearnSystem : EntitySystem
 {
-    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private LanguageSystem _language = default!;
 
     public override void Initialize()
     {

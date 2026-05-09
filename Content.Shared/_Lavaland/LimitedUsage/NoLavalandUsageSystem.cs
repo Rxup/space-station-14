@@ -9,12 +9,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Lavaland.LimitedUsage;
 
-public abstract class SharedNoLavalandUsageSystem : EntitySystem
+public abstract partial class SharedNoLavalandUsageSystem : EntitySystem
 {
     protected EntityQuery<NoLavalandUsageComponent> QueryLimit;
 
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
 
 
     public override void Initialize()

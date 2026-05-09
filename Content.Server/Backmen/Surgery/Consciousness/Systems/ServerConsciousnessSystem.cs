@@ -36,14 +36,14 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Surgery.Consciousness.Systems;
 
-public sealed class ServerConsciousnessSystem : ConsciousnessSystem
+public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
-    [Dependency] private readonly PainSystem _pain = default!; // backmen
+    [Dependency] private DoAfterSystem _doAfter = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private TraumaSystem _trauma = default!;
+    [Dependency] private PainSystem _pain = default!; // backmen
 
     private float _cprTraumaChance = 0.1f;
 

@@ -6,9 +6,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Backmen.Teams;
 
-public sealed class TdmTeamSystem : SharedTdmTeamSystem
+public sealed partial class TdmTeamSystem : SharedTdmTeamSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {

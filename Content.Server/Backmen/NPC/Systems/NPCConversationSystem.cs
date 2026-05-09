@@ -33,18 +33,18 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.NPC.Systems;
 
-public sealed class NPCConversationSystem : EntitySystem
+public sealed partial class NPCConversationSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly NPCSystem _npcSystem = default!;
-    [Dependency] private readonly RotateToFaceSystem _rotateToFaceSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly TypingIndicatorSystem _typingIndicatorSystem = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private AudioSystem _audioSystem = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private NPCSystem _npcSystem = default!;
+    [Dependency] private RotateToFaceSystem _rotateToFaceSystem = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private TypingIndicatorSystem _typingIndicatorSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     // GPT Integration
     private Dictionary<EntityUid, NPCGptHistory> _npcGptHistory = new();

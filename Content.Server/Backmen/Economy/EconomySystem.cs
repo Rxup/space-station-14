@@ -35,19 +35,19 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Economy;
 
-public sealed class EconomySystem : EntitySystem
+public sealed partial class EconomySystem : EntitySystem
 {
-    [Dependency] private readonly WageManagerSystem _wageManagerSystem = default!;
-    [Dependency] private readonly BankCartridgeSystem _bankCartridgeSystem = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly IdCardSystem _cardSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly BankManagerSystem _bankManager = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly RoleSystem _roleSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private WageManagerSystem _wageManagerSystem = default!;
+    [Dependency] private BankCartridgeSystem _bankCartridgeSystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private IdCardSystem _cardSystem = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private BankManagerSystem _bankManager = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private RoleSystem _roleSystem = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private IChatManager _chatManager = default!;
 
     private readonly EntProtoId MindRoleBankMemory = "MindRoleBankMemory";
 

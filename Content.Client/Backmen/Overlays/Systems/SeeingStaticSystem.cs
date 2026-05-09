@@ -10,10 +10,10 @@ namespace Content.Client.Backmen.Silicon.Systems;
 /// <summary>
 ///     System to handle the SeeingStatic overlay.
 /// </summary>
-public sealed class SeeingStaticSystem : EntitySystem
+public sealed partial class SeeingStaticSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
 
     private StaticOverlay _overlay = default!;
     public const string StaticKey = "SeeingStatic";

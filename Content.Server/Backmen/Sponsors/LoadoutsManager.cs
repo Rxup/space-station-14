@@ -5,9 +5,9 @@ using Robust.Shared.Network;
 
 namespace Content.Server.Backmen.Sponsors;
 
-public sealed class LoadoutsManager : ISharedLoadoutsManager
+public sealed partial class LoadoutsManager : ISharedLoadoutsManager
 {
-    [Dependency] private readonly ISharedSponsorsManager _sponsorsManager = default!;
+    [Dependency] private ISharedSponsorsManager _sponsorsManager = default!;
 
     public void Initialize()
     {

@@ -6,9 +6,9 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed class MothAccentSystem : EntitySystem
+public sealed partial class MothAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!; // Corvax-Localization
+    [Dependency] private IRobustRandom _random = default!; // Corvax-Localization
 
     // Corvax-Localization-Start
     private static readonly Regex RegexLoc1_1 = new("ж{1,3}");

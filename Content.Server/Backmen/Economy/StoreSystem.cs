@@ -13,9 +13,9 @@ namespace Content.Server.Store.Systems;
 
 public sealed partial class StoreSystem
 {
-    [Dependency] private readonly BankManagerSystem _bankManagerSystem = default!;
-    [Dependency] private readonly IdCardSystem _idCardSystem = default!;
-    [Dependency] private readonly VendingMachineSystem _vendingMachineSystem = default!;
+    [Dependency] private BankManagerSystem _bankManagerSystem = default!;
+    [Dependency] private IdCardSystem _idCardSystem = default!;
+    [Dependency] private VendingMachineSystem _vendingMachineSystem = default!;
 
     private void _PlayDeny(EntityUid uid)
     {

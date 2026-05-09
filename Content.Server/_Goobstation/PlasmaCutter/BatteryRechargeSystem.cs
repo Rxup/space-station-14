@@ -10,11 +10,11 @@ using Content.Shared.Power.EntitySystems;
 
 namespace Content.Server._Goobstation.Plasmacutter;
 
-public sealed class BatteryRechargeSystem : EntitySystem
+public sealed partial class BatteryRechargeSystem : EntitySystem
 {
-    [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
-    [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private MaterialStorageSystem _materialStorage = default!;
+    [Dependency] private SharedBatterySystem _batterySystem = default!;
+    [Dependency] private HandsSystem _hands = default!;
 
     private EntityUid playerUid;
 

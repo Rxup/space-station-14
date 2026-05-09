@@ -25,18 +25,18 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Economy.ATM;
 
-public sealed class ATMSystem : SharedATMSystem
+public sealed partial class ATMSystem : SharedATMSystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly BankManagerSystem _bankManagerSystem = default!;
-    [Dependency] private readonly StackSystem _stack = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly StoreSystem _storeSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private BankManagerSystem _bankManagerSystem = default!;
+    [Dependency] private StackSystem _stack = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private AudioSystem _audioSystem = default!;
+    [Dependency] private StoreSystem _storeSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
 
     public override void Initialize()
     {

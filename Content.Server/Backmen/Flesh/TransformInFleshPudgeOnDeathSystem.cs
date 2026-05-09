@@ -22,16 +22,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Flesh;
 
-public sealed class TransformInFleshPudgeOnDeathSystem : EntitySystem
+public sealed partial class TransformInFleshPudgeOnDeathSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly PuddleSystem _puddleSystem = default!;
-    [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
-    //[Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private PuddleSystem _puddleSystem = default!;
+    [Dependency] private RandomHelperSystem _randomHelper = default!;
+    //[Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
 
     public override void Initialize()
     {

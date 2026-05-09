@@ -4,10 +4,10 @@ using Content.Shared.Weapons.Ranged.Events;
 
 namespace Content.Shared.Backmen.Soul;
 
-public abstract class SharedGolemSystem : EntitySystem
+public abstract partial class SharedGolemSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
-    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
+    [Dependency] private SharedPointLightSystem _pointLight = default!;
 
     public override void Initialize()
     {

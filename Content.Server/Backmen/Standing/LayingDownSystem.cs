@@ -7,11 +7,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Standing;
 
-public sealed class LayingDownSystem : SharedLayingDownSystem
+public sealed partial class LayingDownSystem : SharedLayingDownSystem
 {
-    [Dependency] private readonly INetConfigurationManager _cfg = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedRotationVisualsSystem _rotationVisuals = default!;
+    [Dependency] private INetConfigurationManager _cfg = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedRotationVisualsSystem _rotationVisuals = default!;
 
     public override void Initialize()
     {

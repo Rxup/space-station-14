@@ -8,13 +8,13 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._Lavaland.Chasm;
 
-public sealed class PreventChasmFallingSystem : EntitySystem
+public sealed partial class PreventChasmFallingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
 
     public override void Initialize()
@@ -38,7 +38,7 @@ public sealed class PreventChasmFallingSystem : EntitySystem
             curAttempts++;
             if (curAttempts > attempts)
                 return; // Just to be safe from stack overflow
-            
+
             var newCoords = new EntityCoordinates(Transform(args.Entity).ParentUid, coords.X + _random.NextFloat(-5f, 5f), coords.Y + _random.NextFloat(-5f, 5f));
             if (!_interaction.InRangeUnobstructed(args.Entity, newCoords, -1f) ||
                 _lookup.GetEntitiesInRange<ChasmComponent>(newCoords, 1f).Count > 0)

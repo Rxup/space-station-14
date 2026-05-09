@@ -28,9 +28,9 @@ public sealed partial class PainCausesDisplay : Control
     private float _criticalThreshold = DefaultCriticalThreshold;
     private float _mediumThreshold = DefaultMediumThreshold;
 
-    [Dependency] private readonly IEntityManager _entManager = default!; // backmen
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!; // backmen
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // backmen
+    [Dependency] private IEntityManager _entManager = default!; // backmen
+    [Dependency] private IUserInterfaceManager _uiManager = default!; // backmen
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // backmen
     private readonly ConsciousnessSystem _consciousness; // backmen
 
     public PainCausesDisplay()
@@ -45,7 +45,7 @@ public sealed partial class PainCausesDisplay : Control
         // Start-backmen: clear tab contents
         NerveSystemTab.RemoveAllChildren();
         BodyPainCausesTab.RemoveAllChildren();
-        
+
         // Also clear RootContainer if we're not using tabs (for direct content display)
         // We'll check if tabs are visible later and clear RootContainer if needed
         // End-backmen: clear tab contents

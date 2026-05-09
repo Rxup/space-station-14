@@ -10,11 +10,11 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Flesh;
 
-public sealed class FleshMobSystem : EntitySystem
+public sealed partial class FleshMobSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

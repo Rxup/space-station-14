@@ -41,26 +41,26 @@ using static Content.Shared.Examine.ExamineSystemShared;
 
 namespace Content.Server.Backmen.Arachne;
 
-public sealed class ArachneSystem : EntitySystem
+public sealed partial class ArachneSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly HungerSystem _hungerSystem = default!;
-    [Dependency] private readonly ThirstSystem _thirstSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
-    [Dependency] private readonly BuckleSystem _buckleSystem = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly BlindableSystem _blindableSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private HungerSystem _hungerSystem = default!;
+    [Dependency] private ThirstSystem _thirstSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private DoAfterSystem _doAfter = default!;
+    [Dependency] private BuckleSystem _buckleSystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private BlindableSystem _blindableSystem = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
 
-    [Dependency] private readonly IServerConsoleHost _host = default!;
-    [Dependency] private readonly BloodSuckerSystem _bloodSuckerSystem = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private IServerConsoleHost _host = default!;
+    [Dependency] private BloodSuckerSystem _bloodSuckerSystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
 
 
     private const string BodySlot = "body_slot";

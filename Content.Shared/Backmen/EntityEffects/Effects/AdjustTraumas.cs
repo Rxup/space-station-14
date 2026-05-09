@@ -25,10 +25,10 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 [UsedImplicitly]
 public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem<MobStateComponent, AdjustTraumas>
 {
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
-    [Dependency] private readonly PainSystem _pain = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private TraumaSystem _trauma = default!;
+    [Dependency] private PainSystem _pain = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private EntityQuery<WoundableComponent> _woundableQuery;
     private EntityQuery<OrganComponent> _organQuery;
@@ -242,7 +242,7 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                         modifier.Key.Item2,
                         modifier.Key.Item1,
                         organ.Comp);
-                    
+
                     if (remainingHeal <= 0)
                         break;
                 }
@@ -368,7 +368,7 @@ public sealed partial class AdjustTraumas : EntityEffectBase<AdjustTraumas>
             targetParts.Add(Loc.GetString("entity-effect-guidebook-adjust-traumas-target-body-parts"));
         if (TargetOrgans)
             targetParts.Add(Loc.GetString("entity-effect-guidebook-adjust-traumas-target-organs"));
-        
+
         if (targetParts.Count > 0)
         {
             targetInfo = Loc.GetString(

@@ -13,7 +13,7 @@ namespace Content.Server.Backmen.NPC.HTN.PrimitiveTasks.Operators.Specific;
 
 public sealed partial class PickDrainTargetOperator: HTNOperator
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
     private NpcFactionSystem _npcFactonSystem = default!;
     private MobStateSystem _mobSystem = default!;
 

@@ -7,10 +7,10 @@ using Content.Shared.Backmen.Traits;
 
 namespace Content.Client.Backmen.Overlays
 {
-    public sealed class MonochromacyOverlay : Overlay
+    public sealed partial class MonochromacyOverlay : Overlay
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] IEntityManager _entityManager = default!;
 
 

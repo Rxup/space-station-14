@@ -9,9 +9,9 @@ using Color = Robust.Shared.Maths.Color;
 namespace Content.Client.Backmen.UI.Buttons;
 
 [Virtual]
-public class WhiteLobbyTextButton : TextureButton
+public partial class WhiteLobbyTextButton : TextureButton
 {
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
 
     private readonly Font _font;
 

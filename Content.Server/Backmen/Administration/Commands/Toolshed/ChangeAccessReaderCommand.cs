@@ -15,10 +15,10 @@ using Robust.Shared.Utility;
 namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
-public sealed class ChangeAccessReaderCommand : ToolshedCommand
+public sealed partial class ChangeAccessReaderCommand : ToolshedCommand
 {
     private AccessReaderSystem? _accessReaderSystem;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
 
     #region Add

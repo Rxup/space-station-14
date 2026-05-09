@@ -23,16 +23,16 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.GameTicking.Rules;
 
-public sealed class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
+public sealed partial class BlobRuleSystem : GameRuleSystem<BlobRuleComponent>
 {
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly NukeCodePaperSystem _nukeCode = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
-    [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private RoundEndSystem _roundEndSystem = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private NukeCodePaperSystem _nukeCode = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private ObjectivesSystem _objectivesSystem = default!;
+    [Dependency] private AlertLevelSystem _alertLevelSystem = default!;
+    [Dependency] private IChatManager _chatManager = default!;
 
     private static readonly SoundPathSpecifier BlobDetectAudio = new ("/Audio/Corvax/Adminbuse/Outbreak5.ogg");
 

@@ -4,10 +4,10 @@ using Robust.Shared.Network;
 
 namespace Content.Client.Backmen.JoinQueue;
 
-public sealed class JoinQueueManager : Content.Corvax.Interfaces.Client.IClientJoinQueueManager
+public sealed partial class JoinQueueManager : Content.Corvax.Interfaces.Client.IClientJoinQueueManager
 {
-    [Dependency] private readonly IClientNetManager _netManager = default!;
-    [Dependency] private readonly IStateManager _stateManager = default!;
+    [Dependency] private IClientNetManager _netManager = default!;
+    [Dependency] private IStateManager _stateManager = default!;
 
     public void Initialize()
     {

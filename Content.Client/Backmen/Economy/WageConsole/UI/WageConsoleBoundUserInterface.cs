@@ -5,9 +5,9 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.Backmen.Economy.WageConsole.UI;
 
 [UsedImplicitly]
-public sealed class WageConsoleBoundUserInterface : BoundUserInterface
+public sealed partial class WageConsoleBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private WageConsoleWindow? _window;
     private EditWageRowWindow? _editWindow;

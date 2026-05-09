@@ -19,17 +19,17 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed class DispelPowerSystem : StatusEffectGrantedPowerSystem<DispelPowerComponent, DispelPowerActionEvent>
+public sealed partial class DispelPowerSystem : StatusEffectGrantedPowerSystem<DispelPowerComponent, DispelPowerActionEvent>
 {
-    [Dependency] private readonly Content.Shared.StatusEffect.StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly GuardianSystem _guardianSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPsionicAbilitiesSystem _psionics = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private Content.Shared.StatusEffect.StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private GuardianSystem _guardianSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
 
     public override void Initialize()

@@ -8,10 +8,10 @@ using Robust.Shared.Player;
 
 namespace Content.Client.GG.Eye.NightVision;
 
-public sealed class NightVisionSystem : EquipmentHudSystem<NightVisionComponent>
+public sealed partial class NightVisionSystem : EquipmentHudSystem<NightVisionComponent>
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly ILightManager _lightManager = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private ILightManager _lightManager = default!;
 
 
     private NightVisionOverlay _overlay = default!;

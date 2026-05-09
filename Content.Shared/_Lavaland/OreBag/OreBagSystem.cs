@@ -6,10 +6,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Lavaland.OreBag;
 
-public sealed class OreBagSystem : EntitySystem
+public sealed partial class OreBagSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedMaterialStorageSystem _materialStorage = default!;
+    [Dependency] private IGameTiming _timing = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<OreBagComponent, AfterInteractEvent>(OnAfterInteract);

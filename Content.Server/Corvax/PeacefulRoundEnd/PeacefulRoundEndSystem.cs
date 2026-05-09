@@ -9,10 +9,10 @@ using Robust.Shared.Configuration;
 
 namespace Content.Server.Corvax.PeacefulRoundEnd;
 
-public sealed class PeacefulRoundEndSystem : EntitySystem
+public sealed partial class PeacefulRoundEndSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     private bool _isEnabled = false;
 

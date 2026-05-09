@@ -4,9 +4,9 @@ using Content.Shared.Interaction;
 
 namespace Content.Server.Backmen.Vampiric.Injector;
 
-public sealed class BloodSuckerGlandInjectorSystem : EntitySystem
+public sealed partial class BloodSuckerGlandInjectorSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

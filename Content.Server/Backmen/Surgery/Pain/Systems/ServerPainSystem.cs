@@ -30,22 +30,22 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Surgery.Pain.Systems;
 
-public sealed class ServerPainSystem : PainSystem
+public sealed partial class ServerPainSystem : PainSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly TraumaSystem _trauma = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private TraumaSystem _trauma = default!;
 
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedJitteringSystem _jitter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedJitteringSystem _jitter = default!;
 
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private SharedBodySystem _body = default!;
 
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
-    [Dependency] private readonly WoundSystem _wound = default!;
+    [Dependency] private ConsciousnessSystem _consciousness = default!;
+    [Dependency] private WoundSystem _wound = default!;
 
     private const string PainAdrenalineIdentifier = "PainAdrenaline";
     private const string PainPhantomPainIdentifier = "PhantomPain";

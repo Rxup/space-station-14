@@ -4,9 +4,9 @@ using Content.Shared.Construction.EntitySystems;
 
 namespace Content.Server._Lavaland.LimitedUsage;
 
-public sealed class NoLavalandUsageSystem : SharedNoLavalandUsageSystem
+public sealed partial class NoLavalandUsageSystem : SharedNoLavalandUsageSystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
     public override void Initialize()
     {
         base.Initialize();

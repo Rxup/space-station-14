@@ -8,9 +8,9 @@ using Content.Shared.Backmen.Surgery.Body.Organs;
 
 namespace Content.Server.Backmen.Body.Systems;
 
-public sealed class HeartSystem : EntitySystem
+public sealed partial class HeartSystem : EntitySystem
 {
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
     public override void Initialize()
     {
         base.Initialize();

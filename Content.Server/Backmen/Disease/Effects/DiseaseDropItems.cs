@@ -27,7 +27,7 @@ public sealed partial class DiseaseDropItems : DiseaseEffect
 
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
 
     private void DiseaseDropItems(Entity<DiseaseCarrierComponent> ent, ref DiseaseEffectArgs<DiseaseDropItems> args)
     {

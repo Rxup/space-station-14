@@ -11,7 +11,7 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T, TEffect}"/>
 public sealed partial class AdjustConsciousnessEntityEffectSystem : EntityEffectSystem<MobStateComponent, AdjustConsciousness>
 {
-    [Dependency] private readonly ConsciousnessSystem _consciousness = default!;
+    [Dependency] private ConsciousnessSystem _consciousness = default!;
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<AdjustConsciousness> args)
     {

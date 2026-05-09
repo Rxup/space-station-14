@@ -23,13 +23,13 @@ using Robust.Shared.Utility;
 namespace Content.Server.Backmen.Administration.Bwoink.Gpt;
 
 
-public sealed class GptAhelpSystem : EntitySystem
+public sealed partial class GptAhelpSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly AdminSystem _adminSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IConsoleHost _console = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private AdminSystem _adminSystem = default!;
 
     private static readonly SocketsHttpHandler _socketsHttpHandler = new()
         {

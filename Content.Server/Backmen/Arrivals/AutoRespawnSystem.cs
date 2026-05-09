@@ -5,9 +5,9 @@ using Robust.Shared.Console;
 
 namespace Content.Server.Backmen.Arrivals;
 
-public sealed class AutoRespawnSystem : EntitySystem
+public sealed partial class AutoRespawnSystem : EntitySystem
 {
-    [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private GameTicker _ticker = default!;
 
     public override void Initialize()
     {

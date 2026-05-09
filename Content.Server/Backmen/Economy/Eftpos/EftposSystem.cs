@@ -16,14 +16,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Economy.Eftpos;
 
-    public sealed class EftposSystem : EntitySystem
+    public sealed partial class EftposSystem : EntitySystem
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly BankManagerSystem _bankManagerSystem = default!;
-        [Dependency] private readonly IdCardSystem _idCardSystem = default!;
-        [Dependency] private readonly AudioSystem _audioSystem = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private BankManagerSystem _bankManagerSystem = default!;
+        [Dependency] private IdCardSystem _idCardSystem = default!;
+        [Dependency] private AudioSystem _audioSystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private UserInterfaceSystem _uiSystem = default!;
         public override void Initialize()
         {
             base.Initialize();

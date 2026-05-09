@@ -13,15 +13,15 @@ using Robust.Shared.Player;
 
 namespace Content.Shared.Backmen.PacifyZone;
 
-public sealed class SharedPacifyZoneSystem : EntitySystem
+public sealed partial class SharedPacifyZoneSystem : EntitySystem
 {
     private EntityQuery<MindShieldComponent> _mindShield;
     private EntityQuery<HumanoidAppearanceComponent> _humanoidAppearance;
     private EntityQuery<PacifyZonePacifestedComponent> _pacifyZonePacifested;
 
-    [Dependency] private readonly FixtureSystem _fixtures = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private FixtureSystem _fixtures = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
 
     public override void Initialize()

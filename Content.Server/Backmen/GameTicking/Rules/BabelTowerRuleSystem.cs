@@ -9,9 +9,9 @@ using Content.Shared.GameTicking.Components;
 
 namespace Content.Server.Backmen.GameTicking.Rules;
 
-public sealed class BabelTowerRuleSystem : GameRuleSystem<BabelTowerRuleComponent>
+public sealed partial class BabelTowerRuleSystem : GameRuleSystem<BabelTowerRuleComponent>
 {
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private LanguageSystem _language = default!;
 
     public override void Initialize()
     {

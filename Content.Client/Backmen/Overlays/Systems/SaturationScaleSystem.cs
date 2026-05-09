@@ -6,10 +6,10 @@ using Robust.Shared.Player;
 
 namespace Content.Client.Backmen.Overlays.Systems;
 
-public sealed class SaturationScaleSystem : EntitySystem
+public sealed partial class SaturationScaleSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private ISharedPlayerManager _playerMan = default!;
 
     private SaturationScaleOverlay _overlay = default!;
 

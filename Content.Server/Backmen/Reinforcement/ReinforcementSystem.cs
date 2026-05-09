@@ -56,24 +56,24 @@ public class ReinforcementSpawnPlayer : EntityEventArgs
     }
 }
 
-public sealed class ReinforcementSystem : SharedReinforcementSystem
+public sealed partial class ReinforcementSystem : SharedReinforcementSystem
 {
-    [Dependency] private readonly AccessReaderSystem _access = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IBanManager _banManager = default!;
-    [Dependency] private readonly PlayTimeTrackingSystem _playTimeTrackings = default!;
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly JobWhitelistManager _jobWhitelistManager = default!;
+    [Dependency] private AccessReaderSystem _access = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IBanManager _banManager = default!;
+    [Dependency] private PlayTimeTrackingSystem _playTimeTrackings = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _appearance = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private StationJobsSystem _stationJobs = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private JobWhitelistManager _jobWhitelistManager = default!;
 
     public override void Initialize()
     {

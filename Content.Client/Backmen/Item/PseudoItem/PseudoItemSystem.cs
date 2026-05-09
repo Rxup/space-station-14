@@ -5,7 +5,7 @@ using Content.Shared.Storage;
 
 namespace Content.Client.Backmen.Item.PseudoItem;
 
-public sealed class PseudoItemSystem : SharedPseudoItemSystem
+public sealed partial class PseudoItemSystem : SharedPseudoItemSystem
 {
     [Dependency] private PopupSystem _popup = default!;
 

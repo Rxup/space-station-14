@@ -5,11 +5,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
-public sealed class PsionicItemsSystem : EntitySystem
+public sealed partial class PsionicItemsSystem : EntitySystem
 {
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SharedPsionicAbilitiesSystem _psiAbilities = default!;
-    [Dependency] private readonly SharedEyeSystem _sharedEyeSystem = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SharedPsionicAbilitiesSystem _psiAbilities = default!;
+    [Dependency] private SharedEyeSystem _sharedEyeSystem = default!;
 
 
     private static readonly EntProtoId<PsionicInsulationComponent> StatusEffectPsionicallyInsulated = "StatusEffectPsionicallyInsulated";

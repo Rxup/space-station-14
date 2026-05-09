@@ -6,13 +6,13 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Backmen.Abilities.Xeno;
 
-public sealed class XenoAbilitiesSystem : EntitySystem
+public sealed partial class XenoAbilitiesSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly GunSystem _gunSystem = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private GunSystem _gunSystem = default!;
+    [Dependency] private PhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {

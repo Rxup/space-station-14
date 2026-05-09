@@ -17,11 +17,11 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Backmen.RoleWhitelist;
 
 [UsedImplicitly]
-public sealed class WhitelistSystem  : SharedWhitelistSystem
+public sealed partial class WhitelistSystem  : SharedWhitelistSystem
 {
-    [Dependency] private readonly IServerNetManager _net = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private IServerNetManager _net = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IServerDbManager _db = default!;
 
     private readonly HashSet<NetUserId> _whitelisted = new();
 

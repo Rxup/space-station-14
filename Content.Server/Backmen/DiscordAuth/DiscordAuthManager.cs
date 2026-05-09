@@ -14,11 +14,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.DiscordAuth;
 
-public sealed class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServerDiscordAuthManager
+public sealed partial class DiscordAuthManager : Content.Corvax.Interfaces.Server.IServerDiscordAuthManager
 {
-    [Dependency] private readonly IServerNetManager _netMgr = default!;
-    [Dependency] private readonly IPlayerManager _playerMgr = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IServerNetManager _netMgr = default!;
+    [Dependency] private IPlayerManager _playerMgr = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private ISawmill _sawmill = default!;
     private readonly HttpClient _httpClient = new();

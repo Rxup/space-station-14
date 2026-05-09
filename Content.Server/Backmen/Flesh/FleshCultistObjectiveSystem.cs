@@ -8,10 +8,10 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Flesh;
 
-public sealed class FleshCultistObjectiveSystem : EntitySystem
+public sealed partial class FleshCultistObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private IChatManager _chatManager = default!;
 
     public override void Initialize()
     {

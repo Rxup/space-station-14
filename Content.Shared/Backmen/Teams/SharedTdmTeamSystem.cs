@@ -13,10 +13,10 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Teams;
 
-public abstract class SharedTdmTeamSystem : EntitySystem
+public abstract partial class SharedTdmTeamSystem : EntitySystem
 {
-    [Dependency] private readonly NpcFactionSystem _npcFactionSystem = default!;
-    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
+    [Dependency] private NpcFactionSystem _npcFactionSystem = default!;
+    [Dependency] private ISharedAdminManager _adminManager = default!;
 
     public override void Initialize()
     {

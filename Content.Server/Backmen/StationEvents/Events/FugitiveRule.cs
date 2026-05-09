@@ -5,7 +5,7 @@ using Content.Shared.GameTicking.Components;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
-public sealed class FugitiveRule : StationEventSystem<FugitiveRuleComponent>
+public sealed partial class FugitiveRule : StationEventSystem<FugitiveRuleComponent>
 {
     protected override void Started(EntityUid uid, FugitiveRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -17,5 +17,5 @@ public sealed class FugitiveRule : StationEventSystem<FugitiveRuleComponent>
         }
     }
 
-    [Dependency] private readonly FugitiveSystem _fugitiveSystem = default!;
+    [Dependency] private FugitiveSystem _fugitiveSystem = default!;
 }
