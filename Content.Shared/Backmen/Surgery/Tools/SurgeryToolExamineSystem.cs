@@ -43,7 +43,7 @@ public sealed class SurgeryToolExamineSystem : EntitySystem
         RaiseLocalEvent(ent, ref ev);
 
         _examine.AddDetailedExamineVerb(args, ent.Comp, ev.Message,
-            Loc.GetString("surgery-tool-examinable-verb-text"), "/Textures/Objects/Specific/Medical/Surgery/scalpel.rsi/scalpel.png",
+            Loc.GetString("surgery-tool-examinable-verb-text"), "/Textures/_Shitmed/Objects/Specific/Medical/Surgery/scalpel.rsi/scalpel.png",
             Loc.GetString("surgery-tool-examinable-verb-message"));
     }
 
@@ -58,7 +58,8 @@ public sealed class SurgeryToolExamineSystem : EntitySystem
         };
         var key = "surgery-tool-" + (comp.Used == true ? "used" : "unlimited");
         var speed = comp.Speed.ToString("N2"); // 2 decimal places to not get trolled by float
-        msg.PushMarkup(Loc.GetString(key, ("tool", comp.ToolName), ("speed", speed), ("color", color)));
+        msg.AddMarkupPermissive(Loc.GetString(key, ("tool", comp.ToolName), ("speed", speed), ("color", color)));
+        msg.PushNewline();
     }
 }
 
