@@ -22,6 +22,7 @@ using Content.Server.GameTicking;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.UserInterface;
 using Content.Shared.Power;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.DeadSpace.Photocopier;
 
@@ -38,6 +39,7 @@ public sealed partial class PhotocopierSystem : EntitySystem
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private const string PaperSlotId = "Paper";
 
@@ -247,7 +249,9 @@ public sealed partial class PhotocopierSystem : EntitySystem
 
     private void OnFormButtonPressed(EntityUid uid, PhotocopierComponent component, PhotocopierChoseFormMessage args)
     {
-        component.ChosenPaper = args.PaperworkForm;
+        if(!_proto.TryIndex(args.PaperworkForm, out var prototype))
+            return;
+        component.ChosenPaper = prototype;
         UpdateUserInterface(uid, component);
     }
 
@@ -317,7 +321,7 @@ public sealed partial class PhotocopierSystem : EntitySystem
         var isPaperInserted = component.PaperSlot.Item != null;
         var canPrint = component.UseTimeoutRemaining <= 0 &&
                       component.ScanningTimeRemaining <= 0;
-        var state = new PhotocopierUiState(canPrint, isPaperInserted, component.ChosenPaper, component.Mode, component.PhotocopierType, component.WasEmagged,
+        var state = new PhotocopierUiState(canPrint, isPaperInserted, component.ChosenPaper?.ID, component.Mode, component.PhotocopierType, component.WasEmagged,
             component.TonerLeft < 0 ? 0 : component.TonerLeft, component.MaxTonerAmount);
         _userInterface.SetUiState(uid, PhotocopierUiKey.Key, state);
     }
