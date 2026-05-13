@@ -1,21 +1,6 @@
 - type: gameMapPool
   id: BackmenDefaultMapPool
   maps:
-  - BackmenAspid
-  - BackmenKettle
-  - BackmenBox
-  - BackmenTortuga
-  - BackmenHive
   - BackmenShoukou
   - BackmenRook
-  - BackmenDelta
-  - BackmenTrain
-  - Bagel
-  - Box
-  - Elkridge
-  - Fland
-  - Marathon
-  - Oasis
   - Packed
-  - Plasma
-  - Exo
