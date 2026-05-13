@@ -17,82 +17,58 @@
           emergencyShuttlePath: /Maps/Shuttles/emergency_courser.yml
         - type: StationJobs
           availableJobs:
-
-          #Командование
-            Captain: [ 1, 1 ] # Капитан
-            HeadOfPersonnel: [ 1, 1 ] # Глава персонала
-            ChiefEngineer: [ 1, 1 ] # Старший инженер
-            ChiefMedicalOfficer: [ 1, 1 ] # Главный врач
-            HeadOfSecurity: [ 1, 1 ] # Глава службы безопасности
-            Quartermaster: [ 1, 1 ] # Квартирмейстер
-            ResearchDirector: [ 1, 1 ] # Научный руководитель
-            IAA: [ 1, 1 ] # Агент внутрених дел
-
-          #Центральное Командование
-            BlueShield: [1, 1] # Backmen Офицер "Синий Щит"
-            IAA: [ 1, 1 ] # Агент внутрених дел
-
-          #Юридический отдел
-            IAA: [ 1, 1 ] # Агент внутрених дел
-            # Возможный адвокат в будующем
-
-          #Служба безопасности
-            HeadOfSecurity: [ 1, 1 ] # Глава службы безопасности
-            Warden: [ 1, 1 ] # Смотритель
-            Detective: [ 1, 1 ] # Детектив
-            Brigmedic: [ 1, 1 ] # Backmen Бригмедик
-            SecurityOfficer: [ 3, 4 ] # Офицер службы безопасности
-            SecurityCadet: [ 3, 4 ] # Кадет службы безопасности
-            Prisoner: [ 2, 3] # Заключённый
-
-          #Сервисный отдел
-            HeadOfPersonnel: [ 1, 1 ] # Глава персонала
-            Bartender: [ 1, 2 ] # Бармен
-            Botanist: [ 1, 2 ] # Батаник
-            Chef: [ 1, 2 ] # Шеф повар
-            Janitor: [ 2, 3 ] # Уборщик
-            Chaplain: [ 1, 1 ] # Священник
-            Librarian: [ 1, 1 ] # Библиотекарь
-            ServiceWorker: [ 1, 1 ] # Сервисный работник
-            Passenger: [ -1, -1 ] # Ассистент
-            Clown: [ 1, 1 ] # Клоун
-            Mime: [ 1, 1 ] # Мим
-            Musician: [ 1, 1 ] # Музыкан
-
-          #Инженерный отдел
-            ChiefEngineer: [ 1, 1 ] # Старший инженер
-            AtmosphericTechnician: [ 2, 2 ] # Атмосферный техник
-            StationEngineer: [ 3, 4 ] # Инженер
-            TechnicalAssistant: [ 3, 4 ] # Технический ассистенит
-
-          #Медицинский отдел
-            ChiefMedicalOfficer: [ 1, 1 ] # Главный врач
-            Paramedic: [ 1, 1 ] # Парамедик
-            Chemist: [ 2, 2 ] # Химик
-            BkmVirologist: [1, 1] # Backmen Вирусолог
-            BkmSurgeon: [1, 1] # Backmen Хирург
-            MedicalDoctor: [ 3, 4 ] # Врач
-            MedicalIntern: [ 2, 3 ] # Интерн
-            Psychologist: [ 0, 1 ] # Психолог
-
-          #Научный отдел
-            ResearchDirector: [ 1, 1 ] # Научный руководитель
-            Scientist: [ 3, 4 ] # Ученый
-            ResearchAssistant: [ 2, 3 ] # Научный ассистенит
-            Roboticist: [ 1, 1 ] #Робототехник
-
-          #Синтетики
-            StationAi: [ 1, 1 ] # Центральный искусственный интеллект
-            BKBPLATech: [0, 1] # Backmen Инженерный дрон
-            BKBPLAMED: [0, 1] # Backmen Медицинский дрон
-            Borg: [ 2, 2 ] # Киборг
-
-          #Отдел снабжения
-            Quartermaster: [ 1, 1 ] # Квартирмейстер
-            # Возможный шахтер в будующем
-            SalvageSpecialist: [ 3, 3 ] # Утилизатор
-            CargoTechnician: [ 2, 3 ] # Грузчик
-
+            #service
+            Captain: [ 1, 1 ]
+            IAA: [ 1, 1 ] # Corvax-IAA
+            HeadOfPersonnel: [ 1, 1 ]
+            Bartender: [ 1, 2 ]
+            Botanist: [ 2, 3 ]
+            Chef: [ 2, 2 ]
+            Janitor: [ 2, 3 ]
+            Chaplain: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
+            ServiceWorker: [ 1, 1 ]
+            #engineering
+            ChiefEngineer: [ 1, 1 ]
+            AtmosphericTechnician: [ 2, 2 ]
+            StationEngineer: [ 3, 4 ]
+            TechnicalAssistant: [ 3, 4 ]
+            #medical
+            ChiefMedicalOfficer: [ 1, 1 ]
+            Paramedic: [ 1, 1 ]
+            Chemist: [ 2, 2 ]
+            MedicalDoctor: [ 3, 4 ]
+            MedicalIntern: [ 2, 3 ]
+            #science
+            ResearchDirector: [ 1, 1 ]
+            Scientist: [ 3, 4 ]
+            ResearchAssistant: [ 2, 3 ]
+            Borg: [ 2, 2 ]
+            Roboticist: [ 1, 1 ]
+            #security
+            HeadOfSecurity: [ 1, 1 ]
+            Warden: [ 1, 1 ]
+            Detective: [ 1, 1 ]
+            SecurityOfficer: [ 3, 4 ]
+            SecurityCadet: [ 3, 4 ]
+            #supply
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            CargoTechnician: [ 2, 3 ]
+            #civillian
+            Passenger: [ -1, -1 ]
+            Clown: [ 1, 1 ]
+            Mime: [ 1, 1 ]
+            Musician: [ 1, 1 ]
+            #backmen
+            BkmVirologist: [1, 1] # backmen-Virologist
+            BkmSurgeon: [1, 1] # backmen-Surgeon
+            Brigmedic: [ 1, 1 ] # backmen-Brigmedic
+            BKBPLATech: [0, 1] # backmen-BPLA-Silicons
+            BKBPLAMED: [0, 1] # backmen-BPLAMED-Silicons
+            Prisoner: [ 2, 3]
+            BlueShield: [1, 1] # backmen-BlueShield
+            StationAi: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Singularity
