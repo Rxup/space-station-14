@@ -206,7 +206,7 @@ public sealed partial class EconomySystem : EntitySystem
     {
         foreach (var department in _prototype.EnumeratePrototypes<DepartmentPrototype>())
         {
-            var dummy = Spawn("CaptainIDCard");
+            var dummy = Spawn(null);
             _metaDataSystem.SetEntityName(dummy, "Bank: " + department.AccountNumber);
             var bankAccount = _bankManager.CreateNewBankAccount(dummy, department.AccountNumber, true);
             if (bankAccount == null)

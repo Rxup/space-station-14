@@ -1,4 +1,5 @@
 diagnoser-cant-use-swab = { CAPITALIZE(THE($machine)) } отвергает { THE($swab) }.
+diagnoser-chat-error = ОШИБКА: НЕХВАТКА БИОМАССЫ. ТРЕБУЕТ { $units } ЕДИНИЦ БИОМАССЫ.
 diagnoser-insert-swab = Вы помещаете { THE($swab) } в { THE($machine) }.
 diagnoser-disease-report = Отчёт о заболевании: { CAPITALIZE($disease) }
 diagnoser-disease-report-none = Чек о хорошем состоянии

@@ -7,4 +7,4 @@ namespace Content.Shared.Backmen.Language.Events;
 /// Raised after the doafter is completed when using the item.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed partial class LanguageLearnDoAfterEvent : SimpleDoAfterEvent{}
+public sealed partial class LanguageLearnDoAfterEvent : SimpleDoAfterEvent;

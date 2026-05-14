@@ -20,13 +20,17 @@ public sealed partial class LanguageMenuWindow : DefaultWindow, IEntityEventSubs
     {
         RobustXamlLoader.Load(this);
         _clientLanguageSystem = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<LanguageSystem>();
+    }
 
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
         _clientLanguageSystem.OnLanguagesChanged += OnUpdateState;
     }
 
-    protected override void Dispose(bool disposing)
+    protected override void ExitedTree()
     {
-        base.Dispose(disposing);
+        base.ExitedTree();
         _clientLanguageSystem.OnLanguagesChanged -= OnUpdateState;
     }
 
@@ -35,16 +39,14 @@ public sealed partial class LanguageMenuWindow : DefaultWindow, IEntityEventSubs
         // Refresh the window when it gets opened.
         // This actually causes two refreshes: one immediately, and one after the server sends a state message.
         UpdateState(_clientLanguageSystem.CurrentLanguage, _clientLanguageSystem.SpokenLanguages);
-        _clientLanguageSystem.RequestStateUpdate();
     }
 
-
-    private void OnUpdateState(object? sender, LanguagesUpdatedMessage args)
+    private void OnUpdateState(object? sender, Entity<LanguageSpeakerComponent> args)
     {
-        UpdateState(args.CurrentLanguage, args.Spoken);
+        UpdateState(args.Comp.CurrentLanguage, args.Comp.SpokenLanguages);
     }
 
-    public void UpdateState(string currentLanguage, List<ProtoId<LanguagePrototype>> spokenLanguages)
+    private void UpdateState(string? currentLanguage, List<ProtoId<LanguagePrototype>> spokenLanguages)
     {
         var langName = Loc.GetString($"language-{currentLanguage}-name");
         CurrentLanguageLabel.Text = Loc.GetString("language-menu-current-language", ("language", langName));

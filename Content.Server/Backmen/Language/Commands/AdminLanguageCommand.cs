@@ -16,6 +16,18 @@ public sealed class AdminLanguageCommand : ToolshedCommand
     private LanguageSystem? _languagesField;
     private LanguageSystem Languages => _languagesField ??= GetSys<LanguageSystem>();
 
+    [CommandImplementation("set")]
+    public EntityUid SetLanguage(
+        [CommandInvocationContext] IInvocationContext ctx,
+        [PipedArgument] EntityUid input,
+        [CommandArgument] ProtoId<LanguagePrototype> prototype
+    )
+    {
+        EnsureComp<LanguageSpeakerComponent>(input);
+        Languages.SetLanguage(input, prototype.Id);
+        return input;
+    }
+
     [CommandImplementation("add")]
     public EntityUid AddLanguage(
         [CommandInvocationContext] IInvocationContext ctx,
