@@ -5223,8 +5223,6 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: DeviceNetwork
-      configurators:
-      - invalid
   - uid: 81
     components:
     - type: Transform
@@ -73345,8 +73343,6 @@ entities:
       pos: -45.5,-4.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: DeviceLinkSource
       linkedPorts:
         80:
@@ -88816,9 +88812,7 @@ entities:
       accessListsOriginal:
       - - StationAi
       - - ResearchDirector
-    - type: DeviceNetwork
-      configurators:
-      - invalid
+    - type: DeviceNetwor
       deviceLists:
       - 10113
   - uid: 10058
@@ -88828,8 +88822,6 @@ entities:
       pos: 50.5,-22.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 10113
   - uid: 12569
@@ -88950,8 +88942,6 @@ entities:
       - - StationAi
       - - Command
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 11702
 - proto: WeaponEnergyTurretCommandControlPanel

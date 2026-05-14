@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/14/2026 10:58:41
-  entityCount: 16024
+  time: 05/14/2026 11:29:29
+  entityCount: 16028
 maps:
 - 126
 grids:
@@ -44127,7 +44127,7 @@ entities:
       pos: 59.5,39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -31680.162
+      secondsUntilStateChange: -31963.373
       state: Closing
 - proto: CurtainsSkyBlue
   entities:
@@ -50005,7 +50005,7 @@ entities:
       pos: 26.5,37.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -78973.95
+      secondsUntilStateChange: -79257.164
       state: Closing
   - uid: 9362
     components:
@@ -72619,7 +72619,7 @@ entities:
       pos: 12.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17145.896
+      secondsUntilStateChange: -17429.107
       state: Closing
   - uid: 5750
     components:
@@ -86246,6 +86246,30 @@ entities:
     components:
     - type: Transform
       pos: 64.5,10.5
+      parent: 2
+- proto: SpawnMobBPLA
+  entities:
+  - uid: 16006
+    components:
+    - type: Transform
+      pos: 25.5,-27.5
+      parent: 2
+  - uid: 16007
+    components:
+    - type: Transform
+      pos: 27.5,-27.5
+      parent: 2
+- proto: SpawnMobBPLAMED
+  entities:
+  - uid: 16004
+    components:
+    - type: Transform
+      pos: 60.5,2.5
+      parent: 2
+  - uid: 16005
+    components:
+    - type: Transform
+      pos: 66.5,2.5
       parent: 2
 - proto: SpawnMobCatGeneric
   entities:
