@@ -32,29 +32,29 @@ using Content.Shared.Prying.Components;
 using Content.Shared.SurveillanceCamera.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Arrivals;
 
 public sealed partial class ArrivalsProtectSystem : SharedArrivalsProtectSystem
 {
     [Dependency] private GodmodeSystem _godmodeSystem = default!;
-    [Dependency] private IAdminManager _adminManager = default!;
     [Dependency] private TagSystem _tagSystem = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private ApcSystem _apcSystem = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ArrivalsProtectGridComponent, MapInitEvent>(OnGridMapInit, after: new[]{ typeof(ArrivalsSystem)});
         SubscribeLocalEvent<ArrivalsProtectComponent, MapInitEvent>(OnMapInit, after: new[]{ typeof(ArrivalsSystem)});
+
         SubscribeLocalEvent<ArrivalsProtectComponent, ComponentStartup>(OnStartup, after: new[]{ typeof(ArrivalsSystem)});
 
         SubscribeLocalEvent<ArrivalsSourceComponent, ComponentStartup>(OnArrivalsStartup, after: new[]{ typeof(ArrivalsSystem)});
         SubscribeLocalEvent<ArrivalsShuttleComponent, ComponentAdd>(OnArrivalsStartup2, after: new[]{ typeof(ArrivalsSystem)});
-
-
-
+        
         SubscribeLocalEvent<ArrivalsProtectComponent, InteractUsingEvent>(OnInteractUsing, before: new []{typeof(DoorSystem), typeof(WiresSystem), typeof(CableSystem)});
         SubscribeLocalEvent<ArrivalsProtectComponent, WeldableAttemptEvent>(OnWeldAttempt, before: new []{typeof(DoorSystem), typeof(WiresSystem)});
         SubscribeLocalEvent<ArrivalsProtectComponent, ApcToggleMainBreakerAttemptEvent>(OnToggleApc, before: new[]{ typeof(EmpSystem)});
@@ -62,6 +62,21 @@ public sealed partial class ArrivalsProtectSystem : SharedArrivalsProtectSystem
 
         SubscribeLocalEvent<BuildAttemptEvent>(OnBuildAttemptEvent);
         SubscribeLocalEvent<ArrivalsProtectComponent, LinkAttemptEvent>(OnLinkAttempt);
+    }
+
+    private void OnGridMapInit(Entity<ArrivalsProtectGridComponent> ent, ref MapInitEvent args)
+    {
+        var q = AllEntityQuery<TransformComponent>();
+        while (q.MoveNext(out var gridUid, out var transformComponent))
+        {
+            if(transformComponent.GridUid != ent.Owner)
+                continue;
+
+            if(ArrivalsProtectGridQuery.HasComp(gridUid))
+                continue;
+
+            AddComp<ArrivalsProtectComponent>(gridUid);
+        }
     }
 
     private void OnTryPry(Entity<ArrivalsProtectComponent> ent, ref BeforePryEvent args)
@@ -141,11 +156,11 @@ public sealed partial class ArrivalsProtectSystem : SharedArrivalsProtectSystem
     private void ProcessGrid(EntityUid uid)
     {
         EntityUid grid;
-        if(_mapManager.IsGrid(uid))
+        if(HasComp<MapGridComponent>(uid))
         {
             grid = uid;
         }
-        else if(_mapManager.IsMap(uid))
+        else if(HasComp<MapComponent>(uid))
         {
             return;
         }
@@ -165,6 +180,12 @@ public sealed partial class ArrivalsProtectSystem : SharedArrivalsProtectSystem
         RecursiveGodmode(transformQuery, grid);
     }
 
+    private static readonly ProtoId<TagPrototype> EmagImmune = "EmagImmune";
+    private static readonly ProtoId<TagPrototype> GasVent = "GasVent";
+    private static readonly ProtoId<TagPrototype> GasScrubber = "GasScrubber";
+    private static readonly ProtoId<TagPrototype> Wall = "Wall";
+    private static readonly ProtoId<TagPrototype> Window = "Window";
+
     private void ProcessGodmode(EntityUid uid)
     {
         if (TryComp<GasMixerComponent>(uid, out var gasMinerComponent))
@@ -183,16 +204,16 @@ public sealed partial class ArrivalsProtectSystem : SharedArrivalsProtectSystem
 
             if(HasComp<AirlockComponent>(uid))
             {
-                _tagSystem.TryAddTag(uid,"EmagImmune");
+                _tagSystem.TryAddTag(uid,EmagImmune);
             }
         }
-        else if(_tagSystem.HasAnyTag(uid,"GasVent", "GasScrubber"))
+        else if(_tagSystem.HasAnyTag(uid,GasVent, GasScrubber))
         {
             EnsureComp<ArrivalsProtectComponent>(uid);
             RemCompDeferred<VentCritterSpawnLocationComponent>(uid);
         }
         else if( // basic elements
-                _tagSystem.HasAnyTag(uid,"Wall","Window") ||
+                _tagSystem.HasAnyTag(uid,Wall,Window) ||
                 HasComp<PoweredLightComponent>(uid) ||
                 HasComp<ApcComponent>(uid) ||
                 HasComp<PowerSupplierComponent>(uid) ||

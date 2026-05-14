@@ -5222,7 +5222,6 @@ entities:
       parent: 2
     - type: AccessReader
       accessListsOriginal: []
-    - type: DeviceNetwork
   - uid: 81
     components:
     - type: Transform
@@ -73342,7 +73341,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -45.5,-4.5
       parent: 2
-    - type: DeviceNetwork
     - type: DeviceLinkSource
       linkedPorts:
         80:
@@ -88812,7 +88810,7 @@ entities:
       accessListsOriginal:
       - - StationAi
       - - ResearchDirector
-    - type: DeviceNetwor
+    - type: DeviceNetwork
       deviceLists:
       - 10113
   - uid: 10058
