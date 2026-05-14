@@ -17,50 +17,99 @@
       - type: StationEmergencyShuttle
         emergencyShuttlePath: /Maps/Shuttles/emergency_crimson.yml
       - type: StationJobs
-        availableJobs: # 47 jobs total w/o latejoins & interns, 58 jobs total w/ latejoins & interns
-          #command (7)
-          Captain: [ 1, 1 ]
-          IAA: [ 1, 1 ] # Corvax-IAA
-          HeadOfPersonnel: [ 1, 1 ]
-          HeadOfSecurity: [ 1, 1 ]
-          ChiefMedicalOfficer: [ 1, 1 ]
-          ChiefEngineer: [ 1, 1 ]
-          ResearchDirector: [ 1, 1 ]
-          Quartermaster: [ 1, 1 ]
-          #service (8 - 10)
-          Bartender: [ 1, 1 ]
-          Botanist: [ 1, 2 ]
-          Chef: [ 1, 1 ]
-          Janitor: [ 1, 2 ]
-          Chaplain: [ 1, 1 ]
-          Librarian: [ 1, 1 ]
-          ServiceWorker: [ 2, 2 ]
-          #engineering (6)
-          AtmosphericTechnician: [ 2, 2 ]
-          StationEngineer: [ 4, 4 ]
-          TechnicalAssistant: [ 3, 3 ] #intern, not counted
-          #medical (6)
-          Chemist: [ 2, 2 ]
-          MedicalDoctor: [ 3, 3 ]
-          MedicalIntern: [ 2, 2 ] #intern, not counted
-          Paramedic: [ 1, 1 ]
-          #science (4)
-          Scientist: [ 4, 4 ]
-          ResearchAssistant: [ 2, 2 ] #intern, not counted
-          #security (6)
-          Warden: [ 1, 1 ]
-          SecurityOfficer: [ 3, 3 ]
-          Detective: [ 1, 1 ]
-          SecurityCadet: [ 2, 2 ] #intern, not counted
-          #Lawyer: [ 1, 1 ] # Corvax-IAA
-          #supply (4)
-          SalvageSpecialist: [ 2, 2 ]
-          CargoTechnician: [ 2, 2 ]
-          #civilian (3+)
-          Passenger: [ -1, -1 ] #infinite, not counted
-          Clown: [ 1, 1 ]
-          Mime: [ 1, 1 ]
-          Musician: [ 1, 1 ]
-          #silicon (3)
-          StationAi: [ 1, 1 ]
-          Borg: [ 2, 2 ]
+        availableJobs:
+        #Командование
+          Captain: [ 1, 1 ] # Капитан
+          HeadOfPersonnel: [ 1, 1 ] # Глава персонала
+          ChiefEngineer: [ 1, 1 ] # Старший инженер
+          ChiefMedicalOfficer: [ 1, 1 ] # Главный врач
+          HeadOfSecurity: [ 1, 1 ] # Глава службы безопасности
+          Quartermaster: [ 1, 1 ] # Квартирмейстер
+          ResearchDirector: [ 1, 1 ] # Научный руководитель
+          IAA: [ 0, 1 ] # Агент внутренних дел
+
+        #Центральное Командование
+          BlueShield: [1, 1] # Backmen Офицер "Синий Щит"
+
+        #Юридический отдел
+          # Агент внутренних дел
+          # Возможный адвокат в будущем
+
+        #Служба безопасности
+          # Глава службы безопасности
+          Warden: [ 1, 1 ] # Смотритель
+          Detective: [ 1, 1 ] # Детектив
+          Brigmedic: [ 1, 1 ] # Backmen Бригмедик
+          SecurityOfficer: [ 2, 3 ] # Офицер службы безопасности
+          SecurityCadet: [ 1, 2 ] # Кадет службы безопасности
+          Prisoner: [ 3, 4] # Заключённый
+
+        #Сервисный отдел
+          # Глава персонала
+          Bartender: [ 1, 1 ] # Бармен
+          Botanist: [ 1, 2 ] # Батаник
+          Chef: [ 1, 1 ] # Шеф повар
+          Janitor: [ 1, 1 ] # Уборщик
+          Chaplain: [ 1, 1 ] # Священник
+          Librarian: [ 1, 1 ] # Библиотекарь
+          ServiceWorker: [ 2, 4 ] # Сервисный работник
+          Passenger: [ -1, -1 ] # Ассистент
+          Clown: [ 1, 1 ] # Клоун
+          Mime: [ 1, 1 ] # Мим
+          Musician: [ 1, 1 ] # Музыкан
+
+        #Инженерный отдел
+          # Старший инженер
+          AtmosphericTechnician: [ 2, 2 ] # Атмосферный техник
+          StationEngineer: [ 2, 3 ] # Инженер
+          TechnicalAssistant: [ 1, 3 ] # Технический ассистент
+
+        #Медицинский отдел
+          # Главный врач
+          Paramedic: [ 1, 1 ] # Парамедик
+          Chemist: [ 1, 2 ] # Химик
+          BkmVirologist: [1, 1] # Backmen Вирусолог
+          BkmSurgeon: [1, 1] # Backmen Хирург
+          MedicalDoctor: [ 2, 3 ] # Врач
+          MedicalIntern: [ 1, 1 ] # Интерн
+          Psychologist: [ 0, 0 ] # Психолог (На данной карте отсуствует)
+
+        #Научный отдел
+          # Научный руководитель
+          Roboticist: [ 1, 1 ] #Робототехник
+          Scientist: [ 3, 4 ] # Ученый
+          ResearchAssistant: [ 1, 2 ] # Научный ассистент
+
+        #Синтетики
+          StationAi: [ 1, 1 ] # Центральный искусственный интеллект
+          BKBPLATech: [0, 1] # Backmen Инженерный дрон
+          BKBPLAMED: [0, 1] # Backmen Медицинский дрон
+          Borg: [ 2, 2 ] # Киборг
+
+        #Отдел снабжения
+          # Квартирмейстер
+          # Возможный шахтер в будущем
+          SalvageSpecialist: [ 1, 2 ] # Утилизатор
+          CargoTechnician: [ 2, 3 ] # Грузчик
+
+      - type: StationGoal #Цели станции
+        goals:
+        - Singularity
+        - SolarPanels
+        - Artifacts
+        - Bank
+        - Zoo
+        - MiningOutpost
+        - Tesla
+        - SecurityTraining
+        - ShuttleMed
+        - ShuttleSec
+        - ShuttleRnd
+        - ShuttleSrv
+        - ShuttleEmergency
+        - Theatre
+        - CellAI
+        - Botany
+        - Bunker
+        - XenobiologyRepair
+        - VirusologyAmbusol

@@ -200,6 +200,13 @@
   id: GamblingDangersTable
   table: !type:GroupSelector
     children:
+    - !type:GroupSelector
+      prob: 0.75
+      children:
+      - id: MobBehonkerElectrical
+      - id: MobBehonkerPyro
+      - id: MobBehonkerIce
+      - id: MobBehonkerGrav
     - id: MobLaserRaptor
     - id: WeakKudzu
     - id: WeaponTurretXeno

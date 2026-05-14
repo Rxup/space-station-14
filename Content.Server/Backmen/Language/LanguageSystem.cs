@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Backmen.Language.Events;
 using Content.Server.Backmen.Speech.Components;
 using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Language.Components;
@@ -101,7 +100,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     {
         if (!_languageSpeakerQuery.Resolve(speaker, ref speaker.Comp, logMissing: false)
             || string.IsNullOrEmpty(speaker.Comp.CurrentLanguage)
-            || !_prototype.TryIndex(speaker.Comp.CurrentLanguage, out var proto))
+            || !PrototypeManager.TryIndex(speaker.Comp.CurrentLanguage, out var proto))
             return Universal;
 
         return proto;
@@ -139,7 +138,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
             return;
 
         speaker.Comp.CurrentLanguage = language;
-        RaiseLocalEvent(speaker, new LanguagesUpdateEvent(), true);
+        Dirty(speaker);
     }
 
     /// <summary>
@@ -197,7 +196,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         if (!entity.Comp.SpokenLanguages.Contains(entity.Comp.CurrentLanguage ?? ""))
         {
             entity.Comp.CurrentLanguage = entity.Comp.SpokenLanguages.FirstOrDefault(UniversalPrototype);
-            RaiseLocalEvent(entity, new LanguagesUpdateEvent());
+            Dirty(entity);
             return true;
         }
 
@@ -242,7 +241,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         entity.Comp1.UnderstoodLanguages.AddRange(ev.UnderstoodLanguages);
 
         if (!EnsureValidLanguage(entity))
-            RaiseLocalEvent(entity, new LanguagesUpdateEvent());
+            Dirty(entity,entity.Comp1);
     }
 
     #endregion

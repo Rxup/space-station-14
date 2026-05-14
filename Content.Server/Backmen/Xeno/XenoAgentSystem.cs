@@ -1,5 +1,4 @@
 ﻿using Content.Server.Backmen.Language;
-using Content.Server.Backmen.Language.Events;
 using Content.Server.Backmen.Xeno.Components;
 using Content.Shared.Backmen.Language;
 using Robust.Shared.Prototypes;
