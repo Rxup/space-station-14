@@ -103,4 +103,27 @@ public sealed partial class MsgCommand : ToolshedCommand
             yield return session;
         }
     }
+
+    [CommandImplementation("psi")]
+    public IEnumerable<EntityUid> PsiChat([PipedArgument] IEnumerable<EntityUid> targets, string message)
+    {
+        foreach (var ent in targets)
+        {
+            if (!TryComp<ActorComponent>(ent, out var actor))
+                continue;
+
+            _chatManager.ChatMessageToOne(ChatChannel.Telepathic, message, message, EntityUid.Invalid, false, actor.PlayerSession.Channel);
+            yield return ent;
+        }
+    }
+
+    [CommandImplementation("psi")]
+    public IEnumerable<ICommonSession> PsiChat([PipedArgument] IEnumerable<ICommonSession> targets, string message)
+    {
+        foreach (var session in targets)
+        {
+            _chatManager.ChatMessageToOne(ChatChannel.Telepathic, message, message, EntityUid.Invalid, false, session.Channel);
+            yield return session;
+        }
+    }
 }
