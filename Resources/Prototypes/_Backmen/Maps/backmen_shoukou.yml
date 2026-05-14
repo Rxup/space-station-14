@@ -25,14 +25,14 @@
             HeadOfSecurity: [ 1, 1 ] # Глава службы безопасности
             Quartermaster: [ 1, 1 ] # Квартирмейстер
             ResearchDirector: [ 1, 1 ] # Научный руководитель
-            IAA: [ 1, 1 ] # Агент внутрених дел
+            IAA: [ 0, 1 ] # Агент внутренних дел
 
           #Центральное Командование
             BlueShield: [1, 1] # Backmen Офицер "Синий Щит"
 
           #Юридический отдел
-            # Агент внутрених дел
-            # Возможный адвокат в будующем
+            # Агент внутренних дел
+            # Возможный адвокат в будущем
 
           #Служба безопасности
             # Глава службы безопасности
@@ -61,7 +61,7 @@
             # Старший инженер
             AtmosphericTechnician: [ 2, 2 ] # Атмосферный техник
             StationEngineer: [ 3, 4 ] # Инженер
-            TechnicalAssistant: [ 3, 4 ] # Технический ассистенит
+            TechnicalAssistant: [ 3, 4 ] # Технический ассистент
 
           #Медицинский отдел
             # Главный врач
@@ -71,23 +71,23 @@
             BkmSurgeon: [1, 1] # Backmen Хирург
             MedicalDoctor: [ 3, 4 ] # Врач
             MedicalIntern: [ 2, 3 ] # Интерн
-            Psychologist: [ 0, 0 ] # Психолог (На данной карте отсуствует)
+            Psychologist: [ 0, 0 ] # Психолог (На данной карте отсутствует)
 
           #Научный отдел
             # Научный руководитель
             Roboticist: [ 1, 1 ] #Робототехник
             Scientist: [ 3, 4 ] # Ученый
-            ResearchAssistant: [ 2, 3 ] # Научный ассистенит
+            ResearchAssistant: [ 2, 3 ] # Научный ассистент
 
           #Синтетики
             StationAi: [ 1, 1 ] # Центральный искусственный интеллект
-            BKBPLATech: [1, 1] # Backmen Инженерный дрон
-            BKBPLAMED: [1, 1] # Backmen Медицинский дрон
+            BKBPLATech: [0, 1] # Backmen Инженерный дрон
+            BKBPLAMED: [0, 1] # Backmen Медицинский дрон
             Borg: [ 4, 4 ] # Киборг
 
           #Отдел снабжения
             # Квартирмейстер
-            # Возможный шахтер в будующем
+            # Возможный шахтер в будущем
             SalvageSpecialist: [ 3, 3 ] # Утилизатор
             CargoTechnician: [ 2, 3 ] # Грузчик
 
@@ -97,3 +97,25 @@
           stageCritical: 350
           stageTheEnd: 700
         # backmen blob-config-end
+
+        - type: StationGoal #Цели станции
+          goals:
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - SecurityTraining
+          - ShuttleMed
+          - ShuttleSec
+          - ShuttleRnd
+          - ShuttleSrv
+          - ShuttleEmergency
+          - Theatre
+          - CellAI
+          - Botany
+          - Bunker
+          - XenobiologyRepair
+          - VirusologyAmbusol
