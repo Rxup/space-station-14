@@ -46,6 +46,7 @@ public sealed partial class TTSManager
     public int _maxCachedCount = 200;
     private string _apiUrl = string.Empty;
     private string _apiToken = string.Empty;
+    public int ApiTimeout { private set; get; } = 5;
 
     public void Initialize()
     {
@@ -57,6 +58,7 @@ public sealed partial class TTSManager
         }, true);
         _cfg.OnValueChanged(CCCVars.TTSApiUrl, v => _apiUrl = v, true);
         _cfg.OnValueChanged(CCCVars.TTSApiToken, v => _apiToken = v, true);
+        _cfg.OnValueChanged(CCCVars.TTSApiTimeout, v => ApiTimeout = v, true);
     }
 
     /// <summary>
@@ -88,8 +90,7 @@ public sealed partial class TTSManager
         var reqTime = DateTime.UtcNow;
         try
         {
-            var timeout = _cfg.GetCVar(CCCVars.TTSApiTimeout);
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(timeout));
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(ApiTimeout));
             var response = await _httpClient.PostAsJsonAsync(_apiUrl, body, cts.Token);
             if (!response.IsSuccessStatusCode)
             {

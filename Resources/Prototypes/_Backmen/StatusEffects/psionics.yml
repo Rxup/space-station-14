@@ -82,6 +82,14 @@
   name: psionic rainbow repeater
   components:
   - type: TelepathicRepeater
+  - type: StatusEffectAlert
+    alert: TelepathicRepeater
+
+- type: alert
+  id: TelepathicRepeater
+  icons: [ /Textures/Backmen/Interface/Alerts/Psi/TelepathicRepeater.png ]
+  name: alerts-TelepathicRepeater-name
+  description: alerts-TelepathicRepeater-desc
 
 - type: entity
   parent: MobStatusEffectBase

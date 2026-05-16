@@ -41,6 +41,8 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<TTSComponent, EntitySpokeLanguageEvent>(OnEntitySpoke);
 
         RegisterRateLimits();
+
+        InitializeRadio();
     }
 
     private void OnTtsInitialized(Entity<TTSComponent> ent, ref MapInitEvent args)

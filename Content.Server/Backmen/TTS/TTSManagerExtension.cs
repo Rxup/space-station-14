@@ -51,7 +51,7 @@ public static class TTSManagerExtension
 
     private static readonly HttpClient _httpClient = new();
 
-    public static async Task<byte[]> RadioConvertTextToSpeech(this TTSManager _cfTtsManager, string speaker, string text)
+    public static async Task<byte[]?> RadioConvertTextToSpeech(this TTSManager _cfTtsManager, string speaker, string text)
     {
         // ReSharper disable once InconsistentNaming
         var _sawmill = Logger.GetSawmill("tts");
@@ -90,14 +90,14 @@ public static class TTSManagerExtension
         var reqTime = DateTime.UtcNow;
         try
         {
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(4));
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(_cfTtsManager.ApiTimeout));
             var response = await _httpClient.PostAsJsonAsync(url, body, cts.Token);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"TTS request returned bad status code: {response.StatusCode}");
             }
 
-            var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>();
+            var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>(cancellationToken: cts.Token);
             var soundData = Convert.FromBase64String(json.Results.First().Audio);
 
             _cfTtsManager._cache.Add(cacheKey, soundData);
@@ -160,14 +160,14 @@ public static class TTSManagerExtension
         var reqTime = DateTime.UtcNow;
         try
         {
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(15));
+            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10 + _cfTtsManager.ApiTimeout));
             var response = await _httpClient.PostAsJsonAsync(url, body, cts.Token);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"TTS request returned bad status code: {response.StatusCode}");
             }
 
-            var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>();
+            var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>(cancellationToken: cts.Token);
             var soundData = Convert.FromBase64String(json.Results.First().Audio);
 
             _cfTtsManager._cache.Add(cacheKey, soundData);
