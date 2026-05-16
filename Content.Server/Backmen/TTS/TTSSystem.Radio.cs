@@ -31,7 +31,7 @@ public sealed partial class TTSSystem
     {
         if (!_isEnabled ||
             uid == args.MessageSource ||
-            !_ttsQuery.TryGetComponent(uid, out var sourceTts) ||
+            !_ttsQuery.TryGetComponent(args.MessageSource, out var sourceTts) ||
             sourceTts.VoicePrototypeId is not {} sourceVoice
             )
         {
