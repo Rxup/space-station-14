@@ -61,13 +61,15 @@ public static class TTSManagerExtension
         var url = _cfg.GetCVar(CCCVars.TTSApiUrl);
         if (string.IsNullOrWhiteSpace(url))
         {
-            throw new Exception("TTS Api url not specified");
+            _sawmill.Error("TTS Api url not specified");
+            return null;
         }
 
         var token = _cfg.GetCVar(CCCVars.TTSApiToken);
         if (string.IsNullOrWhiteSpace(token))
         {
-            throw new Exception("TTS Api token not specified");
+            _sawmill.Error("TTS Api token not specified");
+            return null;
         }
 
         RadioWantedCount.Inc();
@@ -94,7 +96,8 @@ public static class TTSManagerExtension
             var response = await _httpClient.PostAsJsonAsync(url, body, cts.Token);
             if (!response.IsSuccessStatusCode)
             {
-                throw new Exception($"TTS request returned bad status code: {response.StatusCode}");
+                _sawmill.Error($"TTS request returned bad status code: {response.StatusCode}");
+                return null;
             }
 
             var json = await response.Content.ReadFromJsonAsync<GenerateVoiceResponse>(cancellationToken: cts.Token);
@@ -112,13 +115,13 @@ public static class TTSManagerExtension
         {
             RadioRequestTimings.WithLabels("Timeout").Observe((DateTime.UtcNow - reqTime).TotalSeconds);
             _sawmill.Error($"Timeout of request generation new radio sound for '{text}' speech by '{speaker}' speaker");
-            throw new Exception("TTS request timeout");
+            return null;
         }
         catch (Exception e)
         {
             RadioRequestTimings.WithLabels("Error").Observe((DateTime.UtcNow - reqTime).TotalSeconds);
             _sawmill.Error($"Failed of request generation new radio sound for '{text}' speech by '{speaker}' speaker\n{e}");
-            throw new Exception("TTS request failed");
+            return null;
         }
     }
     public static async Task<byte[]> AnnounceConvertTextToSpeech(this TTSManager _cfTtsManager, string speaker, string text)
