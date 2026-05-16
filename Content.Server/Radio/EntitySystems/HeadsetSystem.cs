@@ -1,13 +1,12 @@
 using Content.Server.Backmen.Language;
 using Content.Server.Chat.Systems;
+using Content.Server.Corvax.TTS;
 using Content.Server.Emp;
 using Content.Shared.Chat;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 
@@ -17,8 +16,8 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
 {
     [Dependency] private INetManager _netMan = default!;
     [Dependency] private RadioSystem _radio = default!;
-    [Dependency] private LanguageSystem _language = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private LanguageSystem _language = default!; // backmen
+
     public override void Initialize()
     {
         base.Initialize();
@@ -106,13 +105,6 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
         }
     }
 
-    // start-backmen: radio sound
-
-    private static readonly SoundSpecifier DefaultOnSound =
-        new SoundPathSpecifier("/Audio/Backmen/Radio/common.ogg", AudioParams.Default.WithVolume(-6).WithMaxDistance(2));
-
-    // end-backmen: radio sound
-
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
 
@@ -132,14 +124,13 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
         {
             // start-backmen: language
             var msg = args.ChatMsg;
-            if (args.Language != null
-                && args.LanguageObfuscatedChatMsg != null
+            if (args is { Language: not null, LanguageObfuscatedChatMsg: not null }
                 && !_language.CanUnderstand(parent, args.Language.ID))
                 msg = args.LanguageObfuscatedChatMsg;
             // end-backmen: language
 
             _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel); // backmen
-            _audio.PlayPvs(args.Channel.OnSendSound ?? DefaultOnSound, uid); // backmen: radio sound
+            RaiseLocalEvent(parent, new RequestTtsRadioEvent(actor.PlayerSession, args.Channel, args.MessageSource, msg)); // backmen
         }
     }
 }

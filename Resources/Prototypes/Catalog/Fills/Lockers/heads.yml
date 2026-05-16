@@ -296,6 +296,7 @@
     - id: FlatpackOracle # backmen edit
     - id: FlatpackSophie # backmen edit
     - id: BoxBodyBagRadiation # backmen edit: AdvancedBodyBags
+    - id: PonderingOrbTelepathic # backmen
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

@@ -7,3 +7,5 @@
   - type: TelepathicRepeater
   - type: Psionic
   - type: Speech
+  - type: TTS
+    voice: Xenia
