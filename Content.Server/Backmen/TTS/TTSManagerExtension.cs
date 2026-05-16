@@ -92,8 +92,8 @@ public static class TTSManagerExtension
         var reqTime = DateTime.UtcNow;
         try
         {
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(_cfTtsManager.ApiTimeout));
-            var response = await _httpClient.PostAsJsonAsync(url, body, cts.Token);
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(_cfTtsManager.ApiTimeout));
+            using var response = await _httpClient.PostAsJsonAsync(url, body, cts.Token);
             if (!response.IsSuccessStatusCode)
             {
                 _sawmill.Error($"TTS request returned bad status code: {response.StatusCode}");
@@ -163,8 +163,8 @@ public static class TTSManagerExtension
         var reqTime = DateTime.UtcNow;
         try
         {
-            var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10 + _cfTtsManager.ApiTimeout));
-            var response = await _httpClient.PostAsJsonAsync(url, body, cts.Token);
+            using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(10 + _cfTtsManager.ApiTimeout));
+            using var response = await _httpClient.PostAsJsonAsync(url, body, cts.Token);
             if (!response.IsSuccessStatusCode)
             {
                 throw new Exception($"TTS request returned bad status code: {response.StatusCode}");
