@@ -41,7 +41,7 @@ mindswap-trapped = Кажется, ты заперт в этом сосуде.
 telegnostic-trapped-entity-name = разорванная телегностическая проекция
 telegnostic-trapped-entity-desc = Его многочисленные глаза выдают печаль.
 telegnostic-extract-brain = Извлечь мозг
-psionic-actions-off = [color=red]В данный момент вы не можете использовать по причинам псионической изоляции.[/color]
+psionic-actions-off = [color=red]В данный момент вы не можете использовать способности из-за псионической изоляции.[/color]
 psionic-burns-up = { CAPITALIZE(THE($item)) } вспыхивает дугами странной энергии!
 psionic-burn-resist = Странные дуги танцуют поперек { THE($item) }!
 action-name-noospheric-zap = Ноосферический удар

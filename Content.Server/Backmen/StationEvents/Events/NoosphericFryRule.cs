@@ -57,7 +57,7 @@ internal sealed partial class NoosphericFryRule : StationEventSystem<NoosphericF
         while (query.MoveNext(out var psion, out _, out var mobState))
         {
             if(!_statusEffects.HasEffectComp<PsionicInsulationComponent>(psion))
-                return;
+                continue;
 
             if (!_mobStateSystem.IsIncapacitated(psion,mobState))
                 continue;
