@@ -24,9 +24,9 @@ github="https://github.com/Rxup/space-station-14"
 
 [shuttle]
 arrivals = true
-arrivals_map = "/Maps/Misc/kosmoport.yml"
+#arrivals_map = "/Maps/Misc/kosmoport.yml"
 #arrivals_map = "/Maps/Backmen/Etc/terminal.yml"
-#arrivals_map = "/Maps/Misc/terminal.yml"
+arrivals_map = "/Maps/Misc/terminal.yml"
 arrivals_returns = true
 auto_call_time = 150
 auto_call_extension_time = 70

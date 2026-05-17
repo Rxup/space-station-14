@@ -2,6 +2,7 @@ using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.Construction.Components;
 using Content.Server._Impstation.Revenant.Components;
+using Content.Server.Resist;
 using Content.Shared.CombatMode;
 using Content.Shared.Construction.Components;
 using Content.Shared.Cuffs.Components;
@@ -149,6 +150,8 @@ public sealed partial class RevenantAnimatedSystem : EntitySystem
 
             htn.Blackboard.SetValue(NPCBlackboard.Owner, uid);
         }
+
+        EnsureHelper<CanEscapeInventoryComponent>(uid, comp);
 
         EnsureHelper<InputMoverComponent>(uid, comp);
         EnsureHelper<MobMoverComponent>(uid, comp);
