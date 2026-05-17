@@ -31,6 +31,8 @@
       weight: 10.0
     - id: XenoArtifactThrowThingsAround
       weight: 10.0
+    - id: XenoArtifactAnimateNearby
+      weight: 2.0
     - id: XenoArtifactColdWave
       weight: 10.0
     - id: XenoArtifactHeatWave

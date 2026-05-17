@@ -294,6 +294,14 @@ namespace Content.Server.Construction
                 }
             }
 
+            foreach (var (_, cont) in containers)
+            {
+                foreach (var entity in cont.ContainedEntities.ToArray())
+                {
+                    RaiseLocalEvent(entity, new ConstructionConsumedObjectEvent(entity, newEntity));
+                }
+            }
+
             // We now get rid of all them.
             ShutdownContainers();
 

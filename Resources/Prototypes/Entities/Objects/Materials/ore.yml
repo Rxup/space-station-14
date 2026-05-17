@@ -404,6 +404,15 @@
   name: salt
   suffix: Full
   components:
+  - type: RevealRevenantOnCollide
+    popupText: revenant-revealed-salt
+    revealTime: 5
+    stunTime: 2
+  - type: CollisionWake
+    enabled: false
+  - type: Tag
+    tags:
+    - Salt
   - type: Stack
     stackType: SaltOre
   - type: Sprite

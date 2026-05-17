@@ -1,4 +1,5 @@
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 
@@ -15,4 +16,12 @@ public sealed partial class PsychokinesisPowerComponent : Component
     /// </summary>
     [DataField("waveVolume")]
     public float WaveVolume = 5f;
+
+    /// <summary>
+    /// What should spawn as an effect when the user teleports?
+    /// </summary>
+    [DataField]
+    public EntProtoId? TeleportEffect = "PsiSmoke";
+    [DataField]
+    public EntProtoId? TeleportOutEffect = "ExperimentalTeleporterOutEffect";
 }

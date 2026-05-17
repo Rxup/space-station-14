@@ -147,6 +147,15 @@
   flavor: salty
   color: "#cfd1d0"
   recognizable: true
+  tileReactions:
+  - !type:EnsureTileReaction
+    components:
+    - type: RevealRevenantOnCollide
+      popupText: revenant-revealed-salt
+      revealTime: 5
+      stunTime: 2
+    tags:
+    - Salt
   boilingPoint: 1465.0
   meltingPoint: 800.7
   plantMetabolism:

@@ -1,9 +1,12 @@
-using Content.Shared.Physics;
-using Robust.Shared.Physics;
 using System.Linq;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Physics;
+using Content.Shared._Impstation.Revenant.Components;
 using Content.Shared.Revenant.Components;
+using Content.Shared.StatusEffectNew;
+using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Revenant.EntitySystems;
 
@@ -17,6 +20,7 @@ public abstract partial class SharedCorporealSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private MovementSpeedModifierSystem _movement = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -25,6 +29,22 @@ public abstract partial class SharedCorporealSystem : EntitySystem
         SubscribeLocalEvent<CorporealComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<CorporealComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<CorporealComponent, RefreshMovementSpeedModifiersEvent>(OnRefresh);
+
+        SubscribeLocalEvent<CorporealStatusEffectComponent, StatusEffectAppliedEvent>(OnCorporealStatusApplied);
+        SubscribeLocalEvent<CorporealStatusEffectComponent, StatusEffectRemovedEvent>(OnCorporealStatusRemoved);
+    }
+
+    private void OnCorporealStatusApplied(Entity<CorporealStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
+    {
+        if (_timing.ApplyingState)
+            return;
+
+        EnsureComp<CorporealComponent>(args.Target);
+    }
+
+    private void OnCorporealStatusRemoved(Entity<CorporealStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        RemComp<CorporealComponent>(args.Target);
     }
 
     private void OnRefresh(EntityUid uid, CorporealComponent component, RefreshMovementSpeedModifiersEvent args)

@@ -1252,6 +1252,12 @@
 ## S ##
 
 - type: Tag
+  id: Salt # Revenant grinder / salt puddles
+
+- type: Tag
+  id: Holy # Revenant grinder (holy reagents)
+
+- type: Tag
   id: SaltShaker # Storage whitelist: ClothingBeltChef. ItemMapper: ClothingBeltChef
 
 - type: Tag # Used on DungeonRoom prototypes.

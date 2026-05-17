@@ -440,6 +440,9 @@ namespace Content.Server.Cargo.Systems
             if (!TryComp<StationBankAccountComponent>(station, out var bank))
                 return [];
 
+            if(!station.Comp.Orders.ContainsKey(console.Comp.Account))
+                return [];
+
             var ourOrders = station.Comp.Orders[console.Comp.Account];
 
             if (console.Comp.Account == bank.PrimaryAccount)
@@ -474,6 +477,9 @@ namespace Content.Server.Cargo.Systems
             var amount = 0;
 
             if (!TryComp<StationBankAccountComponent>(station, out var bank))
+                return amount;
+
+            if(!station.Comp.Orders.ContainsKey(account))
                 return amount;
 
             foreach (var order in station.Comp.Orders[account])

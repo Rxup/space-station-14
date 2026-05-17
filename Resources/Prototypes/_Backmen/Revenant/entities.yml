@@ -1,0 +1,15 @@
+- type: entity
+  parent: CrayonInedible
+  id: CrayonBlood
+  name: blood crayon
+  description: Draws in blood. Only a revenant can wield it.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/crayons.rsi
+    state: red
+  - type: Crayon
+    selectedState: red
+    color: "#8a0303"
+  - type: LimitedCharges
+    maxCharges: 50
+  - type: BloodCrayon

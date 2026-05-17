@@ -67,15 +67,15 @@ public sealed partial class ArrivalsProtectSystem : SharedArrivalsProtectSystem
     private void OnGridMapInit(Entity<ArrivalsProtectGridComponent> ent, ref MapInitEvent args)
     {
         var q = AllEntityQuery<TransformComponent>();
-        while (q.MoveNext(out var gridUid, out var transformComponent))
+        while (q.MoveNext(out var uid, out var transformComponent))
         {
             if(transformComponent.GridUid != ent.Owner)
                 continue;
 
-            if(ArrivalsProtectGridQuery.HasComp(gridUid))
+            if(ArrivalsProtectGridQuery.HasComp(uid))
                 continue;
 
-            AddComp<ArrivalsProtectComponent>(gridUid);
+            EnsureComp<ArrivalsProtectComponent>(uid);
         }
     }
 

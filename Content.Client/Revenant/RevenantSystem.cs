@@ -1,8 +1,11 @@
 using Content.Client.Alerts;
 using Content.Shared.Alert;
 using Content.Shared.Alert.Components;
+using Content.Shared._Impstation.Revenant;
+using Content.Shared._Impstation.Revenant.Components;
 using Content.Shared.Revenant;
 using Content.Shared.Revenant.Components;
+using Content.Shared.StatusEffectNew;
 using Robust.Client.GameObjects;
 
 namespace Content.Client.Revenant;
@@ -11,6 +14,7 @@ public sealed partial class RevenantSystem : EntitySystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
 
     public override void Initialize()
     {
@@ -47,9 +51,19 @@ public sealed partial class RevenantSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (ent.Comp.EssenceAlert != args.Alert)
+        if (ent.Comp.EssenceAlert == args.Alert)
+        {
+            args.Amount = ent.Comp.Essence.Int();
+            return;
+        }
+
+        if (args.Alert.ID != "EssenceRegen")
             return;
 
-        args.Amount = ent.Comp.Essence.Int();
+        if (!_status.TryGetStatusEffect(ent, RevenantStatusEffects.EssenceRegen, out var regenEnt)
+            || !TryComp<RevenantRegenModifierStatusEffectComponent>(regenEnt, out var regen))
+            return;
+
+        args.Amount = regen.Witnesses.Count;
     }
 }

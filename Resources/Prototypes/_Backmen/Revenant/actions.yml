@@ -1,0 +1,49 @@
+- type: entity
+  parent: BaseAction
+  id: ActionRevenantHaunt
+  name: Haunt
+  description: Frighten nearby souls to steal essence and boost regeneration.
+  components:
+  - type: Action
+    icon: Interface/Actions/scream.png
+    useDelay: 30
+  - type: InstantAction
+    event: !type:RevenantHauntActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionRevenantBloodWriting
+  name: Blood Writing
+  description: Draw with blood at the cost of essence.
+  components:
+  - type: Action
+    icon: Interface/Actions/blood-writing.png
+    useDelay: 0
+  - type: InstantAction
+    event: !type:RevenantBloodWritingEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionRevenantAnimate
+  name: Animate
+  description: Animate an object to fight for you.
+  components:
+  - type: Action
+    icon: Interface/Actions/animate.png
+    useDelay: 0
+  - type: TargetAction
+    range: 8
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Item
+    blacklist:
+      components:
+      - MindContainer
+      - NukeDisk
+      - GravityGenerator
+      - AnomalyGenerator
+      - TegGenerator
+      - TegCirculator
+      - XenoArtifact
+    event: !type:RevenantAnimateEvent

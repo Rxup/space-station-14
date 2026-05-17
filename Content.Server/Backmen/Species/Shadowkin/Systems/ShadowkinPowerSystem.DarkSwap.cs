@@ -364,7 +364,7 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
                 return;
 
             // Copy the suppressed factions to the power component
-            component.SuppressedFactions = factions.Factions.Select(x => x.Id).ToList();
+            component.SuppressedFactions = factions.Factions.ToList();
 
             // Remove the factions from the entity
             foreach (var faction in factions.Factions)

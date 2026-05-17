@@ -1,0 +1,38 @@
+# Pre-animated revenant objects for admin spawn menu (Admeme).
+# RevenantAnimated ComponentStartup assigns HTN (AnimatedGrenadeCompound / AnimatedHandcuffsCompound).
+
+- type: entity
+  parent: PsiGrenade
+  id: PsiGrenadeAnimatedAdmeme
+  name: psi gas grenade
+  description: Already animated. Hunts hostiles and primes near them. Admeme.
+  suffix: Admeme, Animated
+  components:
+  - type: RevenantAnimated
+
+- type: entity
+  parent: AntiPsiGrenade
+  id: AntiPsiGrenadeAnimatedAdmeme
+  name: anti-psi gas grenade
+  description: Already animated. Hunts hostiles and primes near them. Admeme.
+  suffix: Admeme, Animated
+  components:
+  - type: RevenantAnimated
+
+- type: entity
+  parent: XenoGrenade
+  id: XenoGrenadeAnimatedAdmeme
+  name: xeno virus grenade
+  description: Already animated. Hunts hostiles and primes near them. Admeme.
+  suffix: Admeme, Animated
+  components:
+  - type: RevenantAnimated
+
+- type: entity
+  parent: Handcuffs
+  id: HandcuffsAnimatedAdmeme
+  name: handcuffs
+  description: Already animated. Hunts hostiles and cuffs them on its own. Admeme.
+  suffix: Admeme, Animated
+  components:
+  - type: RevenantAnimated

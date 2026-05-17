@@ -47,9 +47,13 @@ public sealed partial class PsychokinesisPowerSystem : SharedPsychokinesisPowerS
         if(transform.GridUid != _transform.GetGrid(args.Target))
             return;
 
-
+        if(component.TeleportEffect != null)
+            SpawnAtPosition(component.TeleportEffect, transform.Coordinates);
         _transform.SetCoordinates(args.Performer, args.Target);
         _transform.AttachToGridOrMap(args.Performer);
+
+        if(component.TeleportOutEffect != null)
+            SpawnAtPosition(component.TeleportOutEffect, args.Target);
         _audio.PlayPvs(component.WaveSound, args.Performer, AudioParams.Default.WithVolume(component.WaveVolume));
 
         _psionics.LogPowerUsed(uid, "psychokinesis");

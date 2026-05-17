@@ -1,0 +1,17 @@
+- type: soundCollection
+  id: RevenantHaunt
+  files:
+  - /Audio/_Backmen/Effects/Revenant/haunt0.ogg
+  - /Audio/_Backmen/Effects/Revenant/haunt1.ogg
+  - /Audio/_Backmen/Effects/Revenant/haunt2.ogg
+  - /Audio/_Backmen/Effects/Revenant/haunt3.ogg
+  - /Audio/_Backmen/Effects/Revenant/haunt4.ogg
+
+- type: speechSounds
+  id: Plushie
+  saySound:
+    path: /Audio/Animals/mouse_squeak.ogg
+  askSound:
+    path: /Audio/Animals/mouse_squeak.ogg
+  exclaimSound:
+    path: /Audio/Animals/mouse_squeak.ogg

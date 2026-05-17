@@ -121,6 +121,8 @@
   name: revenant soft toy
   description: So soft it almost makes you want to take a nap...
   components:
+  - type: Speech
+    speechSounds: Plushie
   - type: Sprite
     sprite: Mobs/Ghosts/revenant.rsi
     state: icon

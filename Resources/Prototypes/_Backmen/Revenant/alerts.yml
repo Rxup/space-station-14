@@ -1,0 +1,36 @@
+- type: alert
+  id: EssenceRegen
+  icons:
+  - sprite: /Textures/Mobs/Ghosts/revenant.rsi
+    state: icon
+  alertViewEntity: AlertEssenceRegenSpriteView
+  name: alerts-revenant-essence-regen-name
+  description: alerts-revenant-essence-regen-desc
+
+- type: entity
+  id: AlertEssenceRegenSpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GenericCounterAlert
+    centerGlyph: false
+    hideLeadingZeroes: true
+    digitKeys:
+    - "0"
+    - "1"
+  - type: Sprite
+    sprite: /Textures/Interface/Alerts/essence_counter.rsi
+    layers:
+    - map: [ "enum.AlertVisualLayers.Base" ]
+    - map: [ "0" ]
+      offset: 0.25, 0
+    - map: [ "1" ]
+      offset: 0.125, 0
+
+- type: alert
+  id: Stasis
+  category: Health
+  icons:
+  - sprite: Mobs/Ghosts/revenant.rsi
+    state: ectoplasm
+  name: alerts-revenant-stasis-name
+  description: alerts-revenant-stasis-desc

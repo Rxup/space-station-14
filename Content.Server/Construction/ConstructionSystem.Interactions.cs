@@ -639,4 +639,10 @@ namespace Content.Server.Construction
     {
         public HandleResult? Result;
     }
+
+    public sealed class ConstructionConsumedObjectEvent(EntityUid oldEnt, EntityUid newEnt) : EntityEventArgs
+    {
+        public EntityUid Old = oldEnt;
+        public EntityUid New = newEnt;
+    }
 }
