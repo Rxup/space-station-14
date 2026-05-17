@@ -8,6 +8,8 @@
   description: Already animated. Hunts hostiles and primes near them. Admeme.
   suffix: Admeme, Animated
   components:
+  - type: Physics
+    bodyType: KinematicController
   - type: RevenantAnimated
 
 - type: entity
@@ -17,6 +19,8 @@
   description: Already animated. Hunts hostiles and primes near them. Admeme.
   suffix: Admeme, Animated
   components:
+  - type: Physics
+    bodyType: KinematicController
   - type: RevenantAnimated
 
 - type: entity
@@ -26,6 +30,8 @@
   description: Already animated. Hunts hostiles and primes near them. Admeme.
   suffix: Admeme, Animated
   components:
+  - type: Physics
+    bodyType: KinematicController
   - type: RevenantAnimated
 
 - type: entity
@@ -35,4 +41,6 @@
   description: Already animated. Hunts hostiles and cuffs them on its own. Admeme.
   suffix: Admeme, Animated
   components:
+  - type: Physics
+    bodyType: KinematicController
   - type: RevenantAnimated
