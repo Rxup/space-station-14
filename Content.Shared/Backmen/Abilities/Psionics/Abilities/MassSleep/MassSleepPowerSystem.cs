@@ -18,13 +18,7 @@ public sealed partial class MassSleepPowerSystem : StatusEffectGrantedPowerSyste
     [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private StatusEffectNew.StatusEffectsSystem _effectsSystem = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<MassSleepPowerComponent, ComponentShutdown>(OnShutdown);
-    }
-
-    private readonly EntProtoId ActionMassSleep = "ActionMassSleep";
+    private static readonly EntProtoId ActionMassSleep = "ActionMassSleep";
 
     protected override void EnsurePowerActions(EntityUid uid, MassSleepPowerComponent component)
     {
@@ -44,14 +38,6 @@ public sealed partial class MassSleepPowerSystem : StatusEffectGrantedPowerSyste
 
     protected override void RemovePowerActions(EntityUid uid, MassSleepPowerComponent component)
     {
-        _actions.RemoveAction(uid, component.MassSleepPowerAction);
-    }
-
-    private void OnShutdown(EntityUid uid, MassSleepPowerComponent component, ComponentShutdown args)
-    {
-        if (HasComp<StatusEffectComponent>(uid))
-            return;
-
         _actions.RemoveAction(uid, component.MassSleepPowerAction);
     }
 
