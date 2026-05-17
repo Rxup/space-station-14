@@ -89,7 +89,7 @@ public sealed partial class RevenantStasisSystem : EntitySystem
 
     private void OnStasisStatusRemoved(Entity<RevenantStasisStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {
-        if (!TryComp<RevenantStasisComponent>(args.Target, out var stasis))
+        if (!TryComp<RevenantStasisComponent>(args.Target, out var stasis) || TerminatingOrDeleted(args.Target))
             return;
 
         _transformSystem.SetCoordinates(stasis.Revenant, Transform(args.Target).Coordinates);
