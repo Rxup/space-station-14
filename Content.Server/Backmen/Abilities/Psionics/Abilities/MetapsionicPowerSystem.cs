@@ -18,21 +18,15 @@ public sealed partial class MetapsionicPowerSystem : StatusEffectGrantedPowerSys
     [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
 
-    private EntityQuery<PsionicInsulationComponent>  _insulationQuery;
-
-
     public override void Initialize()
     {
         base.Initialize();
-        InitializeStatusEffectGrantedPower();
         SubscribeLocalEvent<MetapsionicVisibleComponent, ComponentStartup>(OnAddCanSeeAll);
         SubscribeLocalEvent<MetapsionicVisibleComponent, ComponentShutdown>(OnRemoveCanSeeAll);
 
         SubscribeLocalEvent<MetapsionicVisibleComponent, GetVisMaskEvent>(OnGetVisMask);
         SubscribeLocalEvent<MetapsionicVisibleComponent, StatusEffectAppliedEvent>(OnApplied);
         SubscribeLocalEvent<MetapsionicVisibleComponent, StatusEffectRemovedEvent>(OnRemoved);
-
-        _insulationQuery = GetEntityQuery<PsionicInsulationComponent>();
     }
 
     private void OnRemoved(Entity<MetapsionicVisibleComponent> ent, ref StatusEffectRemovedEvent args)
@@ -99,7 +93,7 @@ public sealed partial class MetapsionicPowerSystem : StatusEffectGrantedPowerSys
 
         foreach (var entity in _lookup.GetEntitiesInRange<PsionicComponent>(coord, component.Range))
         {
-            if (entity.Owner != args.Performer && !_insulationQuery.HasComp(entity)
+            if (entity.Owner != args.Performer && !StatusEffects.HasEffectComp<PsionicInsulationComponent>(entity)
                                     //&& !(HasComp<ClothingGrantPsionicPowerComponent>(entity) && Transform(entity).ParentUid == uid)
                                     )
             {
@@ -111,7 +105,7 @@ public sealed partial class MetapsionicPowerSystem : StatusEffectGrantedPowerSys
 
         foreach (var entity in _lookup.GetEntitiesInRange<ShadowkinDarkSwappedComponent>(coord, component.Range))
         {
-            if (entity.Owner != args.Performer && !_insulationQuery.HasComp(entity)
+            if (entity.Owner != args.Performer && !StatusEffects.HasEffectComp<PsionicInsulationComponent>(entity)
                 //&& !(HasComp<ClothingGrantPsionicPowerComponent>(entity) && Transform(entity).ParentUid == uid)
                )
             {

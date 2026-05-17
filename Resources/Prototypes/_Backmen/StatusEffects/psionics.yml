@@ -1,17 +1,23 @@
+- type: alert
+  id: PsionicInsulation
+  icons: [ /Textures/Backmen/Interface/Alerts/Psi/Insulated.png ]
+  name: alerts-PsionicInsulation-name
+  description: alerts-PsionicInsulation-desc
+
 - type: entity
   parent: MobStatusEffectBase
   id: StatusEffectPsionicallyInsulated
   name: psionically insulated
   components:
   - type: PsionicInsulation
+  - type: StatusEffectAlert
+    alert: PsionicInsulation
 
-- type: entity
-  parent: MobStatusEffectBase
-  id: StatusEffectPsionicDisabled
-  name: psionic disabled
-  components:
-  - type: PsionicsDisabled
-
+- type: alert
+  id: PsionicAllSee
+  icons: [ /Textures/Backmen/Interface/Alerts/Psi/PsionicAllSee.png ]
+  name: alerts-PsionicAllSee-name
+  description: alerts-PsionicAllSee-desc
 
 - type: entity
   parent: MobStatusEffectBase
@@ -19,6 +25,8 @@
   name: psionic all see
   components:
   - type: MetapsionicVisible
+  - type: StatusEffectAlert
+    alert: PsionicAllSee
 
 - type: entity
   parent: MobStatusEffectBase

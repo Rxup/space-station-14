@@ -118,7 +118,7 @@ public sealed partial class ShadowkinTeleportSystem : EntitySystem
 
         // Don't activate abilities if handcuffed
         // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
-        if (HasComp<HandcuffComponent>(args.Performer) || HasComp<PsionicInsulationComponent>(args.Performer))
+        if (HasComp<HandcuffComponent>(args.Performer))
             return;
 
         if(_statusEffects.HasEffectComp<PsionicInsulationComponent>(args.Performer))

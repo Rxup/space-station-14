@@ -49,7 +49,6 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
     [Dependency] private StunSystem _stunSystem = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
-    private EntityQuery<PsionicsDisabledComponent> _activePsionicsDisabled;
     private EntityQuery<StaminaComponent> _activeStamina;
 
     public override void Initialize()
@@ -71,7 +70,6 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
         // Visibility mask event
         SubscribeLocalEvent<ShadowkinDarkSwappedComponent, GetVisMaskEvent>(OnGetVisMask);
 
-        _activePsionicsDisabled = GetEntityQuery<PsionicsDisabledComponent>();
         _activeStamina = GetEntityQuery<StaminaComponent>();
     }
 
@@ -157,7 +155,7 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
         var q = EntityQueryEnumerator<StaminaComponent, ShadowkinDarkSwappedComponent>();
         while (q.MoveNext(out var uid, out var stamina, out var comp))
         {
-            if (stamina.Critical || _activePsionicsDisabled.HasComponent(uid) || _statusEffects.HasEffectComp<PsionicsDisabledComponent>(uid))
+            if (stamina.Critical || _statusEffects.HasEffectComp<PsionicInsulationComponent>(uid))
             {
                 RemCompDeferred<ShadowkinDarkSwappedComponent>(uid);
                 _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(5));
@@ -182,7 +180,7 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
 
         // Don't activate abilities if handcuffed
         // TODO: Something like the Psionic Headcage to disable powers for Shadowkin
-        if (HasComp<HandcuffComponent>(args.Performer) || HasComp<PsionicInsulationComponent>(args.Performer))
+        if (HasComp<HandcuffComponent>(args.Performer) || _statusEffects.HasEffectComp<PsionicInsulationComponent>(args.Performer))
             return;
 
         var hasComp = HasComp<ShadowkinDarkSwappedComponent>(args.Performer);

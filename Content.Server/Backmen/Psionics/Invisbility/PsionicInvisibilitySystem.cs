@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics;
@@ -19,6 +20,8 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
     [Dependency] private PsionicInvisibilityPowerSystem _invisSystem = default!;
     [Dependency] private NpcFactionSystem _npcFactonSystem = default!;
     [Dependency] private SharedEyeSystem _sharedEyeSystem = default!;
+    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -56,17 +59,21 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
             return;
         }
 
-        // Entities with PsionicInsulationComponent can see psionic invisibility
-        if (TryComp<PsionicInsulationComponent>(args.Entity, out var insulationComponent)
-            && insulationComponent.LifeStage <= ComponentLifeStage.Running)
+        // Entities without PotentialPsionicComponent can see psionic invisibility
+        if (!HasComp<PotentialPsionicComponent>(args.Entity))
         {
             args.VisibilityMask |= (int)VisibilityFlags.PsionicInvisibility;
             return;
         }
 
-        // Entities without PotentialPsionicComponent can see psionic invisibility
-        if (!HasComp<PotentialPsionicComponent>(args.Entity))
+        // Entities with PsionicInsulationComponent can see psionic invisibility
+        if (_statusEffects.TryEffectsWithComp<PsionicInsulationComponent>(args.Entity, out var insul))
         {
+            if (insul.Any(effect => effect.Comp1.LifeStage >= ComponentLifeStage.Stopping))
+            {
+                return;
+            }
+
             args.VisibilityMask |= (int)VisibilityFlags.PsionicInvisibility;
         }
     }

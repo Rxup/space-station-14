@@ -39,7 +39,10 @@ public sealed partial class PsionicRegenerationPowerActionEvent : InstantActionE
 public sealed partial class NoosphericZapPowerActionEvent : EntityTargetActionEvent {}
 public sealed partial class DispelPowerActionEvent : EntityTargetActionEvent {}
 
-public sealed partial class DispelledEvent : HandledEntityEventArgs {}
+public sealed partial class DispelledEvent : HandledEntityEventArgs
+{
+    public EntityUid? Source;
+}
 public sealed partial class MindSwapPowerActionEvent : EntityTargetActionEvent
 {
 

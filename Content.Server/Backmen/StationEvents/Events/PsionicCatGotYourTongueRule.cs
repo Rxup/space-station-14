@@ -22,6 +22,8 @@ internal sealed partial class PsionicCatGotYourTongueRule : StationEventSystem<P
     [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private SharedAudioSystem _sharedAudioSystem = default!;
+    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
+
 
 
     protected override void Started(EntityUid uid, PsionicCatGotYourTongueRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
@@ -33,7 +35,7 @@ internal sealed partial class PsionicCatGotYourTongueRule : StationEventSystem<P
         var query = EntityQueryEnumerator<PotentialPsionicComponent, MobStateComponent>();
         while (query.MoveNext(out var psion, out _, out var mobStateComponent))
         {
-            if (_mobStateSystem.IsAlive(psion, mobStateComponent) && !HasComp<PsionicInsulationComponent>(psion))
+            if (_mobStateSystem.IsAlive(psion, mobStateComponent) && !_statusEffects.HasEffectComp<PsionicInsulationComponent>(psion))
                 psionicList.Add(psion);
         }
 

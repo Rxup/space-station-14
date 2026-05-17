@@ -1,5 +1,6 @@
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
+using Content.Shared.Examine;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Prototypes;
 
@@ -19,9 +20,23 @@ public sealed partial class PsionicItemsSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<TinfoilHatComponent, GotEquippedEvent>(OnTinfoilEquipped);
         SubscribeLocalEvent<TinfoilHatComponent, GotUnequippedEvent>(OnTinfoilUnequipped);
+        SubscribeLocalEvent<TinfoilHatComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<ClothingGrantPsionicPowerComponent, GotEquippedEvent>(OnGranterEquipped);
         SubscribeLocalEvent<ClothingGrantPsionicPowerComponent, GotUnequippedEvent>(OnGranterUnequipped);
     }
+
+    private void OnExamined(Entity<TinfoilHatComponent> ent, ref ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        args.PushText(Loc.GetString("tinfoil-hat-component-effect"));
+        if (ent.Comp.DestroyOnFry)
+        {
+            args.PushMarkup(Loc.GetString("tinfoil-hat-component-effect-fry"));
+        }
+    }
+
     private void OnTinfoilEquipped(EntityUid uid, TinfoilHatComponent component, GotEquippedEvent args)
     {
         // This only works on clothing
@@ -40,7 +55,7 @@ public sealed partial class PsionicItemsSystem : EntitySystem
         _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
 
         // Visibility mask will be set automatically by OnGetVisMask event handler
-        _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
+        //_sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
     }
 
     private void OnTinfoilUnequipped(EntityUid uid, TinfoilHatComponent component, GotUnequippedEvent args)
@@ -51,7 +66,7 @@ public sealed partial class PsionicItemsSystem : EntitySystem
         _statusEffects.TryRemoveStatusEffect(args.Equipee, StatusEffectPsionicallyInsulated);
         component.IsActive = false;
         _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
-        _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
+        //_sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
     }
 
     private void OnGranterEquipped(EntityUid uid, ClothingGrantPsionicPowerComponent component, GotEquippedEvent args)

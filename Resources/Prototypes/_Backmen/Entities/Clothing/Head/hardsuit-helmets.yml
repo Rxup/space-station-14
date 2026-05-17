@@ -245,7 +245,7 @@
         Piercing: 0.8
 
 - type: entity
-  parent: ClothingHeadHelmetHardsuitERTOperativeAlpha1
+  parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitBlueShield
   name: шлем скафандра Синего Щита
   description: Модифицированный шлем скафандра разведчиков ОПЗ, специализирован для ведения разведки на дальних расстояниях, оснащен устройством ночного видиния.
@@ -254,6 +254,19 @@
     sprite: Backmen/Clothing/Head/Hardsuits/bluehardhelmet.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Head/Hardsuits/bluehardhelmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    coverage:
+    - Head
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.5
+        Heat: 0.4
+  - type: PNV
 
 #Chrono
 - type: entity

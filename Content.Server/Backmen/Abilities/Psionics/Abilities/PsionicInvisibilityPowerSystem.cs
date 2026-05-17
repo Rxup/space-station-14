@@ -28,7 +28,6 @@ public sealed partial class PsionicInvisibilityPowerSystem : StatusEffectGranted
     public override void Initialize()
     {
         base.Initialize();
-        InitializeStatusEffectGrantedPower();
         SubscribeLocalEvent<PsionicInvisibilityPowerOffActionEvent>(OnPowerOff);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentInit>(OnStart);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentShutdown>(OnEnd);

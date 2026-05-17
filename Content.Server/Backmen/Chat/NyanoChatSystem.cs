@@ -95,8 +95,7 @@ public sealed partial class NyanoChatSystem : EntitySystem
             .AddWhereAttachedEntity(entity =>
                  (HasComp<SleepingComponent>(entity) ||
                                  HasComp<SeeingRainbowsStatusEffectComponent>(entity)) &&
-                (!HasComp<PsionicsDisabledComponent>(entity) && !_statusEffects.HasEffectComp<PsionicsDisabledComponent>(entity)) &&
-                (!HasComp<PsionicInsulationComponent>(entity) && !_statusEffects.HasEffectComp<PsionicInsulationComponent>(entity)))
+                !_statusEffects.HasEffectComp<PsionicInsulationComponent>(entity))
             .Recipients
             .Select(p => p.Channel);
 
@@ -113,8 +112,7 @@ public sealed partial class NyanoChatSystem : EntitySystem
     private bool IsEligibleForTelepathy(EntityUid entity)
     {
         return HasComp<PsionicComponent>(entity)
-               && (!HasComp<PsionicsDisabledComponent>(entity) && !_statusEffects.HasEffectComp<PsionicsDisabledComponent>(entity))
-               && (!HasComp<PsionicInsulationComponent>(entity) && !_statusEffects.HasEffectComp<PsionicInsulationComponent>(entity))
+               && !_statusEffects.HasEffectComp<PsionicInsulationComponent>(entity)
                && (!TryComp<MobStateComponent>(entity, out var mobstate) || mobstate.CurrentState == MobState.Alive);
     }
 

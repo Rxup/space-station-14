@@ -15,20 +15,9 @@ public sealed partial class PsychokinesisPowerSystem : SharedPsychokinesisPowerS
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private SharedInteractionSystem _interaction = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<PsychokinesisPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<PsychokinesisPowerComponent, PsychokinesisPowerActionEvent>(OnPowerUsed);
-    }
-
-    private readonly EntProtoId ActionPsychokinesis = "ActionPsychokinesis";
-
-    private void OnInit(EntityUid uid, PsychokinesisPowerComponent component, ComponentInit args)
+    protected override void EnsurePowerActions(EntityUid uid, PsychokinesisPowerComponent component)
     {
         _actions.AddAction(uid, ref component.PsychokinesisPowerAction, ActionPsychokinesis);
 
@@ -40,8 +29,12 @@ public sealed partial class PsychokinesisPowerSystem : SharedPsychokinesisPowerS
             psionic.PsionicAbility = component.PsychokinesisPowerAction;
     }
 
+    protected override void RemovePowerActions(EntityUid uid, PsychokinesisPowerComponent component)
+    {
+        _actions.RemoveAction(uid, component.PsychokinesisPowerAction);
+    }
 
-    private void OnPowerUsed(EntityUid uid ,PsychokinesisPowerComponent comp, PsychokinesisPowerActionEvent args)
+    protected override void HandlePowerUse(EntityUid uid, PsychokinesisPowerComponent component, PsychokinesisPowerActionEvent args)
     {
         if(args.Handled)
             return;
@@ -57,11 +50,13 @@ public sealed partial class PsychokinesisPowerSystem : SharedPsychokinesisPowerS
 
         _transform.SetCoordinates(args.Performer, args.Target);
         _transform.AttachToGridOrMap(args.Performer);
-        _audio.PlayPvs(comp.WaveSound, args.Performer, AudioParams.Default.WithVolume(comp.WaveVolume));
+        _audio.PlayPvs(component.WaveSound, args.Performer, AudioParams.Default.WithVolume(component.WaveVolume));
 
         _psionics.LogPowerUsed(uid, "psychokinesis");
 
         args.Handled = true;
     }
+
+    private readonly EntProtoId ActionPsychokinesis = "ActionPsychokinesis";
 }
 

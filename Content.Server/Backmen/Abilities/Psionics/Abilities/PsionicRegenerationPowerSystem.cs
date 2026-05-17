@@ -39,8 +39,6 @@ public sealed partial class PsionicRegenerationPowerSystem : StatusEffectGranted
     public override void Initialize()
     {
         base.Initialize();
-        InitializeStatusEffectGrantedPower();
-
         SubscribeLocalEvent<PsionicRegenerationPowerComponent, DispelledEvent>(OnDispelled);
         SubscribeLocalEvent<PsionicRegenerationPowerComponent, PsionicRegenerationDoAfterEvent>(OnDoAfter);
     }

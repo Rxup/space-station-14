@@ -13,8 +13,9 @@ public abstract partial class StatusEffectGrantedPowerSystem<TPowerComponent, TA
 {
     [Dependency] protected StatusEffectsSystem StatusEffects = default!;
 
-    protected void InitializeStatusEffectGrantedPower()
+    public override void Initialize()
     {
+        base.Initialize();
         SubscribeLocalEvent<TPowerComponent, ComponentInit>(OnPowerInit);
         SubscribeLocalEvent<TPowerComponent, StatusEffectAppliedEvent>(OnPowerApplied);
         SubscribeLocalEvent<TPowerComponent, StatusEffectRemovedEvent>(OnPowerRemoved);

@@ -205,10 +205,8 @@ public sealed partial class OracleSystem : EntitySystem
 
     private void OnInteractHand(EntityUid uid, OracleComponent component, InteractHandEvent args)
     {
-        if (!HasComp<PotentialPsionicComponent>(args.User) || HasComp<PsionicInsulationComponent>(args.User))
-            return;
-
-        if (_statusEffects.HasEffectComp<PsionicInsulationComponent>(args.User))
+        if (!HasComp<PotentialPsionicComponent>(args.User) ||
+            _statusEffects.HasEffectComp<PsionicInsulationComponent>(args.User))
             return;
 
         if (!TryComp<ActorComponent>(args.User, out var actor))
@@ -329,9 +327,7 @@ public sealed partial class OracleSystem : EntitySystem
 
         sol.AddReagent(reagent, amount);
 
-        _solutionSystem.TryMixAndOverflow(fountainEnt.Value, sol, fountainSol.MaxVolume, out var overflowing);
-
-        if (overflowing != null && overflowing.Volume > 0)
+        if (_solutionSystem.TryMixAndOverflow(fountainEnt.Value, sol, fountainSol.MaxVolume, out var overflowing) && overflowing.Volume > 0)
             _puddleSystem.TrySpillAt(uid, overflowing, out _);
     }
 
