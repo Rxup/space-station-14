@@ -1,4 +1,6 @@
+using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Language.Events;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Language;
 
@@ -7,6 +9,7 @@ public sealed partial class LanguageSystem
     private void InitializeNet()
     {
         SubscribeNetworkEvent<LanguagesSetMessage>(OnClientSetLanguage);
+        SubscribeLocalEvent<LanguageSpeakerComponent, PlayerAttachedEvent>(OnNetSync);
     }
 
     private void OnClientSetLanguage(LanguagesSetMessage message, EntitySessionEventArgs args)
@@ -19,5 +22,10 @@ public sealed partial class LanguageSystem
             return;
 
         SetLanguage(uid, language.ID);
+    }
+
+    private void OnNetSync(Entity<LanguageSpeakerComponent> ent, ref PlayerAttachedEvent args)
+    {
+        Dirty(ent);
     }
 }

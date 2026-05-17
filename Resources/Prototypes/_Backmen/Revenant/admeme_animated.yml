@@ -4,6 +4,7 @@
 - type: entity
   parent: PsiGrenade
   id: PsiGrenadeAnimatedAdmeme
+  save: false
   name: psi gas grenade
   description: Already animated. Hunts hostiles and primes near them. Admeme.
   suffix: Admeme, Animated
@@ -15,6 +16,7 @@
 - type: entity
   parent: AntiPsiGrenade
   id: AntiPsiGrenadeAnimatedAdmeme
+  save: false
   name: anti-psi gas grenade
   description: Already animated. Hunts hostiles and primes near them. Admeme.
   suffix: Admeme, Animated
@@ -26,6 +28,7 @@
 - type: entity
   parent: XenoGrenade
   id: XenoGrenadeAnimatedAdmeme
+  save: false
   name: xeno virus grenade
   description: Already animated. Hunts hostiles and primes near them. Admeme.
   suffix: Admeme, Animated
@@ -37,6 +40,7 @@
 - type: entity
   parent: Handcuffs
   id: HandcuffsAnimatedAdmeme
+  save: false
   name: handcuffs
   description: Already animated. Hunts hostiles and cuffs them on its own. Admeme.
   suffix: Admeme, Animated
