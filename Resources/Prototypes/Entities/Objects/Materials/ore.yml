@@ -412,6 +412,7 @@
     enabled: false
   - type: Tag
     tags:
+    - Ore
     - Salt
   - type: Stack
     stackType: SaltOre

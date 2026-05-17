@@ -400,8 +400,7 @@ public sealed partial class RevenantSystem
             if (!HasComp<MobStateComponent>(ent) || !HasComp<MobMoverComponent>(ent) || HasComp<RevenantComponent>(ent))
                 return true;
 
-            return !_interact.InRangeUnobstructed((uid, Transform(uid)), (ent, Transform(ent)), range: 0,
-                collisionMask: CollisionGroup.Impassable);
+            return !_interact.InRangeUnobstructed(uid, ent, -1, collisionMask: CollisionGroup.Impassable);
         });
 
         var witnesses = new HashSet<NetEntity>(
