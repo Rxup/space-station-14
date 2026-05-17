@@ -1,3 +1,7 @@
+ent-HandcuffsAnimatedAdmeme = { ent-Handcuffs }
+    .suffix = Адмем, оживлённые
+    .desc = Уже оживлены. Сами ищут врагов и надеваются на них.
+
 ent-Handcuffs = наручники
     .desc = Используется для удержания преступников и прочих засранцев.
 ent-Cablecuffs = самодельные наручники

@@ -63,12 +63,11 @@ internal sealed partial class MassMindSwapRule : StationEventSystem<MassMindSwap
             var stationEvents = GetStationEventMaps();
 
             var mindshild = GetEntityQuery<MindShieldComponent>();
-            var psiIsulated = GetEntityQuery<PsionicInsulationComponent>();
 
             var query = EntityQueryEnumerator<PotentialPsionicComponent, TransformComponent, MobStateComponent>();
             while (query.MoveNext(out var psion, out _, out var xform, out var mobstate))
             {
-                if (mindswaped.HasComponent(psion) || psiIsulated.HasComponent(psion) || _statusEffects.HasEffectComp<PsionicInsulationComponent>(psion))
+                if (mindswaped.HasComponent(psion) || _statusEffects.HasEffectComp<PsionicInsulationComponent>(psion))
                     continue;
 
                 // Глиммер пробивает MS при уровне выше Dangerous

@@ -98,3 +98,11 @@
     gases:
       AntiNoblium: 300
 # ADT-Gas Artifact Effects End
+
+- type: entity
+  id: XenoArtifactAnimateNearby
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Nearby items become hostile for a short time.
+  components:
+  - type: XAEAnimateNearby
+

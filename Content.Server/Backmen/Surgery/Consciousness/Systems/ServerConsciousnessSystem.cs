@@ -460,7 +460,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
                     ConsciousnessModType.Pain);
             }
 
-            if (consciousness.Comp.Modifiers[(nerveSys.Value, "Suffocation")].Change > 0)
+            if (consciousness.Comp.Modifiers.ContainsKey((nerveSys.Value, "Suffocation")) && consciousness.Comp.Modifiers[(nerveSys.Value, "Suffocation")].Change > 0)
             {
                 // No fuck you
                 RemoveConsciousnessModifier(consciousness.AsNullable(), nerveSys.Value, "Suffocation");

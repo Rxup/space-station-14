@@ -15,8 +15,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed partial class NoosphericZapPowerSystem
-    : StatusEffectGrantedPowerSystem<NoosphericZapPowerComponent, NoosphericZapPowerActionEvent>
+public sealed partial class NoosphericZapPowerSystem : SharedNoosphericZapPowerSystem
 {
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
@@ -25,12 +24,6 @@ public sealed partial class NoosphericZapPowerSystem
     [Dependency] private Content.Shared.StatusEffect.StatusEffectsSystem _statusEffectsSystem = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private BeamSystem _beam = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        InitializeStatusEffectGrantedPower();
-    }
 
     private readonly EntProtoId ActionNoosphericZap = "ActionNoosphericZap";
 

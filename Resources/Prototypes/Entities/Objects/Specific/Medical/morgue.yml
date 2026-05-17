@@ -136,6 +136,8 @@
   name: ectoplasm
   description: Much less deadly in this form.
   components:
+    - type: Physics
+      bodyType: KinematicController
     - type: Sprite
       sprite: Mobs/Ghosts/revenant.rsi
       state: ectoplasm

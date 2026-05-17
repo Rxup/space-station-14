@@ -39,40 +39,36 @@ public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
     #endif
     [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
-    private ISawmill _logger = default!;
-
     public override void Initialize()
     {
         base.Initialize();
-        _logger = Logger.GetSawmill("mindswap");
-        SubscribeLocalEvent<MindSwapPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<MindSwapPowerActionEvent>(OnPowerUsed);
         SubscribeLocalEvent<MindSwappedComponent, MindSwapPowerReturnActionEvent>(OnPowerReturned);
         SubscribeLocalEvent<MindSwappedComponent, DispelledEvent>(OnDispelled);
         SubscribeLocalEvent<MindSwappedComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<GhostAttemptHandleEvent>(OnGhostAttempt);
-        //
         SubscribeLocalEvent<MindSwappedComponent, ComponentInit>(OnSwapInit);
     }
 
-    private readonly EntProtoId ActionMindSwap = "ActionMindSwapPsionic";
-    private readonly EntProtoId ActionMindSwapReturn = "ActionMindSwapReturn";
-
-    private void OnInit(EntityUid uid, MindSwapPowerComponent component, ComponentInit args)
+    protected override void EnsurePowerActions(EntityUid uid, MindSwapPowerComponent component)
     {
         _actions.AddAction(uid, ref component.MindSwapPowerAction, ActionMindSwap);
 
-    #if !DEBUG
+#if !DEBUG
         var actionEnt = _actions.GetAction(component.MindSwapPowerAction);
         if (actionEnt is { Comp.UseDelay: {} delay }) {
             _actions.SetCooldown(component.MindSwapPowerAction, delay);
         }
-    #endif
+#endif
         if (TryComp<PsionicComponent>(uid, out var psionic) && psionic.PsionicAbility == null)
             psionic.PsionicAbility = component.MindSwapPowerAction;
     }
 
-    private void OnPowerUsed(MindSwapPowerActionEvent args)
+    protected override void RemovePowerActions(EntityUid uid, MindSwapPowerComponent component)
+    {
+        _actions.RemoveAction(uid, component.MindSwapPowerAction);
+    }
+
+    protected override void HandlePowerUse(EntityUid uid, MindSwapPowerComponent component, MindSwapPowerActionEvent args)
     {
         if(args.Handled)
             return;
@@ -88,15 +84,17 @@ public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
         args.Handled = true;
     }
 
+    private static readonly EntProtoId ActionMindSwap = "ActionMindSwapPsionic";
+    private static readonly EntProtoId ActionMindSwapReturn = "ActionMindSwapReturn";
+
     private void OnPowerReturned(EntityUid uid, MindSwappedComponent component, MindSwapPowerReturnActionEvent args)
     {
-        if (HasComp<PsionicInsulationComponent>(component.OriginalEntity) || HasComp<PsionicInsulationComponent>(uid) ||
-            _statusEffects.HasEffectComp<PsionicInsulationComponent>(component.OriginalEntity) ||
+        if (_statusEffects.HasEffectComp<PsionicInsulationComponent>(component.OriginalEntity) ||
             _statusEffects.HasEffectComp<PsionicInsulationComponent>(uid)
             )
             return;
 
-        if (HasComp<MobStateComponent>(uid) && !_mobStateSystem.IsAlive(uid))
+        if (TryComp<MobStateComponent>(uid, out var mobStateComp) && _mobStateSystem.IsIncapacitated(uid, mobStateComp))
             return;
 
         // How do we get trapped?
@@ -217,7 +215,7 @@ public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
         var b = _mindSystem.TryGetMind(target, out var targetMindId, out var targetMind);
 
 
-        _logger.Info($"swap performer: {ToPrettyString(performer):Entity} target: {ToPrettyString(target):Entity}");
+        Log.Info($"swap performer: {ToPrettyString(performer):Entity} target: {ToPrettyString(target):Entity}");
 
         ICommonSession? performerSession = null;
         ICommonSession? targetSession = null;
@@ -308,14 +306,14 @@ public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
             _actions.RemoveAction(uid, mindSwappedComp.MindSwapReturn);
         }
 
-        if (HasComp<TelegnosticProjectionComponent>(uid))
-        {
-            RemComp<PsionicallyInvisibleComponent>(uid);
-            RemComp<StealthComponent>(uid);
-            EnsureComp<SpeechComponent>(uid);
-            EnsureComp<DispellableComponent>(uid);
-            _metaDataSystem.SetEntityName(uid,Loc.GetString("telegnostic-trapped-entity-name"));
-            _metaDataSystem.SetEntityDescription(uid, Loc.GetString("telegnostic-trapped-entity-desc"));
-        }
+        if (!HasComp<TelegnosticProjectionComponent>(uid))
+            return;
+
+        RemComp<PsionicallyInvisibleComponent>(uid);
+        RemComp<StealthComponent>(uid);
+        EnsureComp<SpeechComponent>(uid);
+        EnsureComp<DispellableComponent>(uid);
+        _metaDataSystem.SetEntityName(uid,Loc.GetString("telegnostic-trapped-entity-name"));
+        _metaDataSystem.SetEntityDescription(uid, Loc.GetString("telegnostic-trapped-entity-desc"));
     }
 }

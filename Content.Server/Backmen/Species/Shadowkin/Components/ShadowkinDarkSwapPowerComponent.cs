@@ -11,13 +11,13 @@ public sealed partial class ShadowkinDarkSwapPowerComponent : Component
     /// <summary>
     ///     Factions temporarily deleted from the entity while swapped
     /// </summary>
-    public List<string> SuppressedFactions = new();
+    public List<ProtoId<NpcFactionPrototype>> SuppressedFactions = new();
 
     /// <summary>
     ///     Factions temporarily added to the entity while swapped
     /// </summary>
-    [DataField("factions", customTypeSerializer: typeof(PrototypeIdListSerializer<NpcFactionPrototype>))]
-    public List<string> AddedFactions = new() { "ShadowkinDarkFriendly" };
+    [DataField("factions")]
+    public List<ProtoId<NpcFactionPrototype>> AddedFactions = ["ShadowkinDarkFriendly"];
 
     public EntityUid? ShadowkinDarkSwapAction;
 }

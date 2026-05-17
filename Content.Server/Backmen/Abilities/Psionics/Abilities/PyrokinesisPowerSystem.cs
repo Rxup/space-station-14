@@ -19,18 +19,8 @@ public sealed partial class PyrokinesisPowerSystem : SharedPyrokinesisPowerSyste
     [Dependency] private FlammableSystem _flammableSystem = default!;
     [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<PyrokinesisPowerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<PyrokinesisPowerComponent, PyrokinesisPowerActionEvent>(OnPowerUsed);
-    }
-
-    private readonly EntProtoId ActionPyrokinesis = "ActionPyrokinesis";
-
-    private void OnInit(EntityUid uid, PyrokinesisPowerComponent component, ComponentInit args)
+    protected override void EnsurePowerActions(EntityUid uid, PyrokinesisPowerComponent component)
     {
         _actions.AddAction(uid, ref component.PyrokinesisPowerAction, ActionPyrokinesis);
 
@@ -42,8 +32,12 @@ public sealed partial class PyrokinesisPowerSystem : SharedPyrokinesisPowerSyste
             psionic.PsionicAbility = component.PyrokinesisPowerAction;
     }
 
+    protected override void RemovePowerActions(EntityUid uid, PyrokinesisPowerComponent component)
+    {
+        _actions.RemoveAction(uid, component.PyrokinesisPowerAction);
+    }
 
-    private void OnPowerUsed(Entity<PyrokinesisPowerComponent> ent, ref PyrokinesisPowerActionEvent args)
+    protected override void HandlePowerUse(EntityUid uid, PyrokinesisPowerComponent component, PyrokinesisPowerActionEvent args)
     {
         if(args.Handled)
             return;
@@ -51,7 +45,7 @@ public sealed partial class PyrokinesisPowerSystem : SharedPyrokinesisPowerSyste
         if (!TryComp<FlammableComponent>(args.Target, out var flammableComponent))
             return;
 
-        flammableComponent.FireStacks += ent.Comp.FireStacks;
+        flammableComponent.FireStacks += component.FireStacks;
         _flammableSystem.Ignite(args.Target, args.Performer, flammableComponent);
         _popupSystem.PopupEntity(Loc.GetString("pyrokinesis-power-used", ("target", args.Target)),
             args.Target,
@@ -67,4 +61,6 @@ public sealed partial class PyrokinesisPowerSystem : SharedPyrokinesisPowerSyste
             _actions.SetCooldown(powerComponent.NoosphericZapPowerAction, actionEnt?.Comp.UseDelay ?? TimeSpan.FromMinutes(1));
         }
     }
+
+    private readonly EntProtoId ActionPyrokinesis = "ActionPyrokinesis";
 }

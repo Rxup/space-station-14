@@ -4,6 +4,12 @@
   parent: BaseStorageItem
   id: Bible
   components:
+  - type: RevealRevenantOnCollide
+    popupText: revenant-revealed-default
+    revealTime: 5
+    stunTime: 2
+  - type: CollisionWake
+    enabled: false
   - type: UseDelay
     delay: 10.0
   - type: Bible

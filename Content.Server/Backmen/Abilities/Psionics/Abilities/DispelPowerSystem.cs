@@ -19,7 +19,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
-public sealed partial class DispelPowerSystem : StatusEffectGrantedPowerSystem<DispelPowerComponent, DispelPowerActionEvent>
+public sealed partial class DispelPowerSystem : SharedDispelPowerSystem
 {
     [Dependency] private Content.Shared.StatusEffect.StatusEffectsSystem _statusEffects = default!;
     [Dependency] private ActionsSystem _actions = default!;
@@ -35,7 +35,6 @@ public sealed partial class DispelPowerSystem : StatusEffectGrantedPowerSystem<D
     public override void Initialize()
     {
         base.Initialize();
-        InitializeStatusEffectGrantedPower();
 
         SubscribeLocalEvent<DispellableComponent, DispelledEvent>(OnDispelled);
         SubscribeLocalEvent<DamageOnDispelComponent, DispelledEvent>(OnDmgDispelled);
@@ -69,7 +68,10 @@ public sealed partial class DispelPowerSystem : StatusEffectGrantedPowerSystem<D
         if (args.Handled)
             return;
 
-        var ev = new DispelledEvent();
+        var ev = new DispelledEvent
+        {
+            Source = args.Performer
+        };
         RaiseLocalEvent(args.Target, ev, false);
 
         if (ev.Handled)

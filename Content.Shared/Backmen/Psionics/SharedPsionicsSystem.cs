@@ -41,9 +41,6 @@ public abstract partial class SharedPsionicsSystem : EntitySystem
     protected EntityQuery<PotentialPsionicComponent> PotentialPsionicQuery { get; set; }
     protected EntityQuery<PsionicComponent> PsionicQuery { get; set; }
 
-    private static readonly EntProtoId PsionicsDisabled = "StatusEffectPsionicDisabled";
-
-
     private static readonly SoundPathSpecifier Lightburn = new("/Audio/Effects/lightburn.ogg");
 
     public virtual void RemovePsionics(Entity<PotentialPsionicComponent?> ent)
@@ -105,6 +102,8 @@ public abstract partial class SharedPsionicsSystem : EntitySystem
         }
     }
 
+    private static readonly EntProtoId<PsionicInsulationComponent> StatusEffectPsionicallyInsulated = "StatusEffectPsionicallyInsulated";
+
     private void OnMeleeHit(EntityUid uid, AntiPsionicWeaponComponent component, MeleeHitEvent args)
     {
         foreach (var entity in args.HitEntities)
@@ -114,7 +113,7 @@ public abstract partial class SharedPsionicsSystem : EntitySystem
                 _audio.PlayPvs(Lightburn,entity);
                 args.ModifiersList.Add(component.Modifiers);
                 if (_random.Prob(component.DisableChance))
-                    _statusEffects.TryAddStatusEffectDuration(entity, PsionicsDisabled, TimeSpan.FromSeconds(10));
+                    _statusEffects.TryAddStatusEffectDuration(entity, StatusEffectPsionicallyInsulated, TimeSpan.FromSeconds(10));
             }
 
             if (UndoMindSwap(entity))

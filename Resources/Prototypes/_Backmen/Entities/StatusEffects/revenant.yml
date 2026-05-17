@@ -1,0 +1,41 @@
+# StatusEffectStunned whitelist (movement.yml) includes Revenant — no MobState on revenants.
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectCorporeal
+  name: corporeal
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - Revenant
+  - type: StatusEffectAlert
+    alert: Corporeal
+  - type: CorporealStatusEffect
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectStasis
+  name: revenant stasis
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - RevenantStasis
+  - type: StatusEffectAlert
+    alert: Stasis
+  - type: RevenantStasisStatusEffect
+  - type: RejuvenateRemovedStatusEffect
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectEssenceRegen
+  name: essence regen boost
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - Revenant
+  - type: StatusEffectAlert
+    alert: EssenceRegen
+  - type: RevenantRegenModifierStatusEffect

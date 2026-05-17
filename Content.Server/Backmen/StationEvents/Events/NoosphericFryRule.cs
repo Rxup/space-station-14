@@ -8,6 +8,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
+using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Damage;
@@ -17,6 +18,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
@@ -41,17 +43,23 @@ internal sealed partial class NoosphericFryRule : StationEventSystem<NoosphericF
     [Dependency] private PowerReceiverSystem _powerReceiverSystem = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private MapSystem _mapSystem = default!;
+    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
-        protected override void Started(EntityUid uid, NoosphericFryRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    private static readonly SoundSpecifier BurnSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg");
+
+    protected override void Started(EntityUid uid, NoosphericFryRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
 
         List<(EntityUid wearer, Entity<TinfoilHatComponent> worn)> psionicList = new();
 
-        var query = EntityQueryEnumerator<PsionicInsulationComponent, MobStateComponent>();
-        while (query.MoveNext(out var psion, out _, out _))
+        var query = EntityQueryEnumerator<PotentialPsionicComponent, MobStateComponent>();
+        while (query.MoveNext(out var psion, out _, out var mobState))
         {
-            if (!_mobStateSystem.IsAlive(psion))
+            if(!_statusEffects.HasEffectComp<PsionicInsulationComponent>(psion))
+                continue;
+
+            if (!_mobStateSystem.IsIncapacitated(psion,mobState))
                 continue;
 
             if (!_inventorySystem.TryGetSlotEntity(psion, "head", out var headItem))
@@ -69,20 +77,20 @@ internal sealed partial class NoosphericFryRule : StationEventSystem<NoosphericF
             {
                 QueueDel(wornOwner);
                 Spawn("Ash", Transform(wearer).Coordinates);
-                _popupSystem.PopupEntity(Loc.GetString("psionic-burns-up", ("item", wornOwner)), wearer, Filter.Pvs(wornOwner), true, Shared.Popups.PopupType.MediumCaution);
-                _audioSystem.PlayPvs("/Audio/Effects/lightburn.ogg", wornOwner);
+                _popupSystem.PopupEntity(Loc.GetString("psionic-burns-up", ("item", wornOwner)), wearer, Filter.Pvs(wearer), true, Shared.Popups.PopupType.MediumCaution);
+                _audioSystem.PlayPvs(BurnSound, wearer);
             }
             else
             {
-                _popupSystem.PopupEntity(Loc.GetString("psionic-burn-resist", ("item", wornOwner)), wearer, Filter.Pvs(wornOwner), true, Shared.Popups.PopupType.SmallCaution);
-                _audioSystem.PlayPvs("/Audio/Effects/lightburn.ogg", wornOwner);
+                _popupSystem.PopupEntity(Loc.GetString("psionic-burn-resist", ("item", wornOwner)), wearer, Filter.Pvs(wearer), true, Shared.Popups.PopupType.SmallCaution);
+                _audioSystem.PlayPvs(BurnSound, wearer);
             }
 
             DamageSpecifier damage = new();
             damage.DamageDict.Add("Heat", 2.5);
             damage.DamageDict.Add("Shock", 2.5);
 
-            if (_glimmerSystem.Glimmer > 500 && _glimmerSystem.Glimmer < 750)
+            if (_glimmerSystem.Glimmer is > 500 and < 750)
             {
                 damage *= 2;
                 if (TryComp<FlammableComponent>(wearer, out var flammableComponent))
@@ -121,7 +129,7 @@ internal sealed partial class NoosphericFryRule : StationEventSystem<NoosphericF
 
                 var tileIndices = _mapSystem.TileIndicesFor(gridUid.Value, grid, coordinates);
 
-                if (_anchorableSystem.TileFree(grid, tileIndices, physics.CollisionLayer, physics.CollisionMask))
+                if (_anchorableSystem.TileFree((gridUid.Value, grid), tileIndices, physics.CollisionLayer, physics.CollisionMask))
                     _transformSystem.AnchorEntity(reactive, xform);
             }
 

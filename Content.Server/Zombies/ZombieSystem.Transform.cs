@@ -14,8 +14,10 @@ using Content.Server.NPC.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain;
+using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
@@ -256,24 +258,42 @@ public sealed partial class ZombieSystem
         _mobState.ChangeMobState(target, MobState.Alive);
 
         // Backmen Edit start
-        if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
-        {
-            _consciousness.ForceConscious(target, TimeSpan.FromSeconds(12f));
-            _consciousness.AddConsciousnessMultiplier(target, target, 1.4f, "Zombified");
-
-            _pain.TryAddPainMultiplier(
-                nerveSys.Value,
-                "Zombified",
-                -1f,
-                PainType.WoundPain,
-                nerveSys.Value);
-            _pain.TryAddPainMultiplier(nerveSys.Value,
-                "ZombifiedTraumatic",
-                -1f,
-                PainType.TraumaticPain,
-                nerveSys.Value);
-        }
         _bodySystem.ForceRestoreBody(target, true);
+
+        if (TryComp<ConsciousnessComponent>(target, out var consciousness))
+        {
+            Entity<ConsciousnessComponent?> entConsciousness = (target, consciousness);
+            _consciousness.RemoveConsciousnessModifier(entConsciousness, target, "DeathThreshold");
+
+            if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
+            {
+                _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "Suffocation");
+                _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "WoundPain");
+
+                if (TryComp<BloodstreamComponent>(target, out var bloodstream))
+                {
+                    var bloodLevel = (FixedPoint2) _bloodstream.GetBloodLevel((target, bloodstream));
+                    var thresholdValue = bloodstream.LethalBloodlossThreshold * bloodstream.MaxVolumeModifier;
+                    if (bloodLevel >= thresholdValue)
+                        _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "Bloodloss");
+                }
+
+                _pain.TryAddPainMultiplier(
+                    nerveSys.Value,
+                    "Zombified",
+                    -1f,
+                    PainType.WoundPain,
+                    nerveSys.Value);
+                _pain.TryAddPainMultiplier(nerveSys.Value,
+                    "ZombifiedTraumatic",
+                    -1f,
+                    PainType.TraumaticPain,
+                    nerveSys.Value);
+            }
+
+            _consciousness.CheckConscious(entConsciousness);
+            _consciousness.AddConsciousnessMultiplier(target, target, 1.4f, "Zombified");
+        }
         // Backmen Edit end
 
         _faction.ClearFactions(target, dirty: false);

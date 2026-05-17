@@ -36,7 +36,6 @@ public sealed partial class PsionicAbilitiesSystem : SharedPsionicAbilitiesSyste
         SubscribeLocalEvent<PsionicAwaitingPlayerComponent, PlayerAttachedEvent>(OnPlayerAttached);
     }
 
-
     private void OnPlayerAttached(EntityUid uid, PsionicAwaitingPlayerComponent component, PlayerAttachedEvent args)
     {
         if (TryComp<PsionicBonusChanceComponent>(uid, out var bonus) && bonus.Warn == true)
@@ -99,7 +98,7 @@ public sealed partial class PsionicAbilitiesSystem : SharedPsionicAbilitiesSyste
 
         // uh oh, stinky!
         var newComponent = (Component) _componentFactory.GetComponent(pool.Pick());
-        EntityManager.AddComponent(uid, newComponent, true);
+        AddComp(uid, newComponent, true);
 
         _glimmerSystem.Glimmer += _random.Next(1, 5);
     }

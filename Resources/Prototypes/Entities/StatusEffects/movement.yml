@@ -73,6 +73,7 @@
     whitelist:
       components:
       - MobState
+      - Revenant
     blacklist:
       tags:
       - StunImmune

@@ -17,18 +17,8 @@ public sealed partial class MassSleepPowerSystem : StatusEffectGrantedPowerSyste
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private StatusEffectNew.StatusEffectsSystem _effectsSystem = default!;
-    private EntityQuery<PsionicInsulationComponent> _qPsionicInsulation;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<MassSleepPowerComponent, ComponentShutdown>(OnShutdown);
-        InitializeStatusEffectGrantedPower();
-
-        _qPsionicInsulation = GetEntityQuery<PsionicInsulationComponent>();
-    }
-
-    private readonly EntProtoId ActionMassSleep = "ActionMassSleep";
+    private static readonly EntProtoId ActionMassSleep = "ActionMassSleep";
 
     protected override void EnsurePowerActions(EntityUid uid, MassSleepPowerComponent component)
     {
@@ -51,15 +41,8 @@ public sealed partial class MassSleepPowerSystem : StatusEffectGrantedPowerSyste
         _actions.RemoveAction(uid, component.MassSleepPowerAction);
     }
 
-    private void OnShutdown(EntityUid uid, MassSleepPowerComponent component, ComponentShutdown args)
-    {
-        if (HasComp<StatusEffectComponent>(uid))
-            return;
-
-        _actions.RemoveAction(uid, component.MassSleepPowerAction);
-    }
-
     private static readonly ProtoId<DamageContainerPrototype> Biological = "Biological";
+    private static readonly EntProtoId StatusEffectForcedSleeping = "StatusEffectForcedSleeping";
 
     protected override void HandlePowerUse(EntityUid uid, MassSleepPowerComponent component, MassSleepPowerActionEvent args)
     {
@@ -74,13 +57,13 @@ public sealed partial class MassSleepPowerSystem : StatusEffectGrantedPowerSyste
                 entity.Owner == uid ||
 #endif
 
-                _qPsionicInsulation.HasComp(entity))
+                _effectsSystem.HasEffectComp<PsionicInsulationComponent>(entity))
                 continue;
 
             if (!TryComp<DamageableComponent>(entity, out var damageable) || damageable.DamageContainerID != Biological)
                 continue;
 
-            var result = _effectsSystem.TryUpdateStatusEffectDuration(entity, "StatusEffectForcedSleeping", TimeSpan.FromSeconds(10));
+            var result = _effectsSystem.TryUpdateStatusEffectDuration(entity, StatusEffectForcedSleeping, TimeSpan.FromSeconds(10));
             if (!handle && result)
                 handle = true;
         }
@@ -90,4 +73,4 @@ public sealed partial class MassSleepPowerSystem : StatusEffectGrantedPowerSyste
     }
 }
 
-public sealed partial class MassSleepPowerActionEvent : WorldTargetActionEvent {}
+public sealed partial class MassSleepPowerActionEvent : WorldTargetActionEvent;

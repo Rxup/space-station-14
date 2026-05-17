@@ -523,7 +523,8 @@ namespace Content.Shared.Cuffs
                 return true;
             }
 
-            if (!_hands.CanDrop(user, handcuff))
+            // Animated revenant handcuffs act as both user and cuff item (no hands to hold/drop from).
+            if (user != handcuff && !_hands.CanDrop(user, handcuff))
             {
                 _popup.PopupClient(Loc.GetString("handcuff-component-cannot-drop-cuffs", ("target", Identity.Name(target, EntityManager, user))), user, user);
                 return false;
@@ -542,7 +543,7 @@ namespace Content.Shared.Cuffs
                 BreakOnMove = true,
                 BreakOnWeightlessMove = false,
                 BreakOnDamage = true,
-                NeedHand = true,
+                NeedHand = user != handcuff,
                 DistanceThreshold = 1f // shorter than default but still feels good
             };
 

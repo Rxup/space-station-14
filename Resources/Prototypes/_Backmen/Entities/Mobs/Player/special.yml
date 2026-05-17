@@ -15,7 +15,6 @@
       layers:
         - state: eyeball
           shader: unshaded
-    - type: Dispellable
     - type: Psionic
     - type: MindContainer
     - type: Clickable
