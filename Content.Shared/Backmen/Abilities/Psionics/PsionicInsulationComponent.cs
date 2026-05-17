@@ -7,5 +7,5 @@ public sealed partial class PsionicInsulationComponent : Component
 {
     public bool Passthrough = false;
 
-    public List<string> SuppressedFactions = new();
+    public List<string> SuppressedFactions = [];
 }

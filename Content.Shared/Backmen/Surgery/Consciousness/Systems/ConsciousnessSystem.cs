@@ -7,6 +7,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -100,6 +101,10 @@ public abstract partial class ConsciousnessSystem : EntitySystem
         if (TerminatingOrDeleted(target)
             || !ConsciousnessQuery.Resolve(target, ref target.Comp1)
             || !MobStateQuery.Resolve(target, ref target.Comp2, false))
+            return;
+
+        // Zombies are revived corpses; consciousness must not re-apply death/unconscious states.
+        if (HasComp<ZombieComponent>(target.Owner))
             return;
 
         var newMobState = MobState.Alive;

@@ -55,7 +55,7 @@ public sealed partial class PsionicItemsSystem : EntitySystem
         _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
 
         // Visibility mask will be set automatically by OnGetVisMask event handler
-        //_sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
+        _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
     }
 
     private void OnTinfoilUnequipped(EntityUid uid, TinfoilHatComponent component, GotUnequippedEvent args)
@@ -66,7 +66,7 @@ public sealed partial class PsionicItemsSystem : EntitySystem
         _statusEffects.TryRemoveStatusEffect(args.Equipee, StatusEffectPsionicallyInsulated);
         component.IsActive = false;
         _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
-        //_sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
+        _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
     }
 
     private void OnGranterEquipped(EntityUid uid, ClothingGrantPsionicPowerComponent component, GotEquippedEvent args)

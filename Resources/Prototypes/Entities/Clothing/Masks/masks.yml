@@ -118,6 +118,8 @@
     sprite: Clothing/Mask/gascaptain.rsi
   - type: BreathMask
   - type: IngestionBlocker
+  - type: ClothingGrantPsionicPower
+    statusEffect: StatusEffectGrantTelegnosisPower
 
 - type: entity
   parent: [ ClothingMaskGasAtmos, BaseCentcommContraband ]

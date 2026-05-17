@@ -26,6 +26,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
+using Robust.Shared.Maths;
 
 namespace Content.Server.Backmen.Mood;
 
@@ -358,6 +359,7 @@ public sealed partial class MoodSystem : EntitySystem
             return;
 
         var neutral = component.MoodThresholds[MoodThreshold.Neutral];
+        var oldMoodLevel = component.CurrentMoodLevel;
         var ev = new OnSetMoodEvent(uid, amount, false);
         RaiseLocalEvent(uid, ref ev);
 
@@ -382,6 +384,10 @@ public sealed partial class MoodSystem : EntitySystem
         component.NeutralMoodThreshold = component.MoodThresholds.GetValueOrDefault(MoodThreshold.Neutral);
         Dirty(uid, component);
         UpdateCurrentThreshold(uid, component);
+
+        // Speed modifier uses CurrentMoodLevel, not just the threshold band — refresh on any mood change.
+        if (!MathHelper.CloseTo(oldMoodLevel, newMoodLevel))
+            _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
     }
 
     private void UpdateCurrentThreshold(EntityUid uid, MoodComponent? component = null)
