@@ -46,7 +46,7 @@ public sealed partial class LanguageMenuWindow : DefaultWindow, IEntityEventSubs
         UpdateState(args.Comp.CurrentLanguage, args.Comp.SpokenLanguages);
     }
 
-    private void UpdateState(string? currentLanguage, List<ProtoId<LanguagePrototype>> spokenLanguages)
+    private void UpdateState(string? currentLanguage, HashSet<ProtoId<LanguagePrototype>> spokenLanguages)
     {
         var langName = Loc.GetString($"language-{currentLanguage}-name");
         CurrentLanguageLabel.Text = Loc.GetString("language-menu-current-language", ("language", langName));

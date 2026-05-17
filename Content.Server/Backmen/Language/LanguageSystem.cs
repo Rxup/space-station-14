@@ -111,7 +111,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     ///     Returns the list of languages this entity can speak.
     /// </summary>
     /// <remarks>Typically, checking <see cref="LanguageSpeakerComponent.SpokenLanguages"/> is sufficient.</remarks>
-    public List<ProtoId<LanguagePrototype>> GetSpokenLanguages(Entity<LanguageSpeakerComponent?> uid)
+    public HashSet<ProtoId<LanguagePrototype>> GetSpokenLanguages(Entity<LanguageSpeakerComponent?> uid)
     {
         if (!_languageSpeakerQuery.Resolve(uid, ref uid.Comp, logMissing: false))
             return [];
@@ -123,7 +123,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     ///     Returns the list of languages this entity can understand.
     /// </summary>
     /// <remarks>Typically, checking <see cref="LanguageSpeakerComponent.UnderstoodLanguages"/> is sufficient.</remarks>
-    public List<ProtoId<LanguagePrototype>> GetUnderstoodLanguages(Entity<LanguageSpeakerComponent?> uid)
+    public HashSet<ProtoId<LanguagePrototype>> GetUnderstoodLanguages(Entity<LanguageSpeakerComponent?> uid)
     {
         if (!_languageSpeakerQuery.Resolve(uid, ref uid.Comp, logMissing: false))
             return [];
@@ -238,8 +238,14 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         entity.Comp1.SpokenLanguages.Clear();
         entity.Comp1.UnderstoodLanguages.Clear();
 
-        entity.Comp1.SpokenLanguages.AddRange(ev.SpokenLanguages);
-        entity.Comp1.UnderstoodLanguages.AddRange(ev.UnderstoodLanguages);
+        foreach (var language in ev.SpokenLanguages)
+        {
+            entity.Comp1.SpokenLanguages.Add(language);
+        }
+        foreach (var language in ev.UnderstoodLanguages)
+        {
+            entity.Comp1.UnderstoodLanguages.Add(language);
+        }
 
         if (!EnsureValidLanguage(entity))
             Dirty(entity,entity.Comp1);

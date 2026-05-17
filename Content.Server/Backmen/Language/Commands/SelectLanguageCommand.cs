@@ -63,14 +63,14 @@ public sealed class SelectLanguageCommand : IConsoleCommand
         if (int.TryParse(input, out var num))
         {
             // The argument is a number
-            var spoken = languageSystem.GetSpokenLanguages(speaker);
-            if (num > 0 && num - 1 < spoken.Count)
+            var spoken = languageSystem.GetSpokenLanguages(speaker).ToArray();
+            if (num > 0 && num - 1 < spoken.Length)
                 language = languageSystem.GetLanguagePrototype(spoken[num - 1]);
 
             if (language != null) // the ability to speak it is implied
                 return true;
 
-            failureReason = Loc.GetString("command-language-invalid-number", ("total", spoken.Count));
+            failureReason = Loc.GetString("command-language-invalid-number", ("total", spoken.Length));
             return false;
         }
         else

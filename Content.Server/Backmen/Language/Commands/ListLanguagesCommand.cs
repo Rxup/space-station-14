@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Administration;
 using Content.Shared.Backmen.Language;
 using Robust.Shared.Console;
@@ -33,8 +34,8 @@ public sealed class ListLanguagesCommand : IConsoleCommand
         var currentLang = languages.GetLanguage(playerEntity).ID;
 
         shell.WriteLine(Loc.GetString("command-language-spoken"));
-        var spoken = languages.GetSpokenLanguages(playerEntity);
-        for (int i = 0; i < spoken.Count; i++)
+        var spoken = languages.GetSpokenLanguages(playerEntity).ToArray();
+        for (int i = 0; i < spoken.Length; i++)
         {
             var lang = spoken[i];
             shell.WriteLine(lang == currentLang
@@ -43,8 +44,8 @@ public sealed class ListLanguagesCommand : IConsoleCommand
         }
 
         shell.WriteLine(Loc.GetString("command-language-understood"));
-        var understood = languages.GetUnderstoodLanguages(playerEntity);
-        for (int i = 0; i < understood.Count; i++)
+        var understood = languages.GetUnderstoodLanguages(playerEntity).ToArray();
+        for (int i = 0; i < understood.Length; i++)
         {
             var lang = understood[i];
             shell.WriteLine(Loc.GetString("command-language-entry", ("id", i + 1), ("language", lang), ("name", LanguageName(lang))));

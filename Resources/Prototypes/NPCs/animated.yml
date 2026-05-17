@@ -39,8 +39,21 @@
     curve: !type:BoolCurve
 
 - type: htnCompound
+  id: AnimatedEscapeInventoryCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:AnimatedEscapeInventoryOperator
+
+- type: htnCompound
   id: AnimatedHandcuffsCompound
   branches:
+    - preconditions:
+        - !type:InContainerPrecondition
+          isInContainer: true
+      tasks:
+        - !type:HTNCompoundTask
+          task: AnimatedEscapeInventoryCompound
     - tasks:
         - !type:HTNPrimitiveTask
           operator: !type:UtilityOperator
@@ -72,6 +85,12 @@
 - type: htnCompound
   id: AnimatedGrenadeCompound
   branches:
+    - preconditions:
+        - !type:InContainerPrecondition
+          isInContainer: true
+      tasks:
+        - !type:HTNCompoundTask
+          task: AnimatedEscapeInventoryCompound
     - tasks:
         - !type:HTNPrimitiveTask
           operator: !type:UtilityOperator
