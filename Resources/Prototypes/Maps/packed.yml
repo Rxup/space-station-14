@@ -18,6 +18,7 @@
         emergencyShuttlePath: /Maps/Shuttles/emergency_crimson.yml
       - type: StationJobs
         availableJobs:
+
         #Командование
           Captain: [ 1, 1 ] # Капитан
           HeadOfPersonnel: [ 1, 1 ] # Глава персонала
@@ -26,13 +27,12 @@
           HeadOfSecurity: [ 1, 1 ] # Глава службы безопасности
           Quartermaster: [ 1, 1 ] # Квартирмейстер
           ResearchDirector: [ 1, 1 ] # Научный руководитель
-          IAA: [ 0, 1 ] # Агент внутренних дел
 
         #Центральное Командование
           BlueShield: [1, 1] # Backmen Офицер "Синий Щит"
 
         #Юридический отдел
-          # Агент внутренних дел
+          IAA: [ 1, 1 ] # Агент внутренних дел
           # Возможный адвокат в будущем
 
         #Служба безопасности
@@ -72,7 +72,6 @@
           BkmSurgeon: [1, 1] # Backmen Хирург
           MedicalDoctor: [ 2, 3 ] # Врач
           MedicalIntern: [ 1, 1 ] # Интерн
-          Psychologist: [ 0, 0 ] # Психолог (На данной карте отсуствует)
 
         #Научный отдел
           # Научный руководитель
@@ -82,8 +81,8 @@
 
         #Синтетики
           StationAi: [ 1, 1 ] # Центральный искусственный интеллект
-          BKBPLATech: [0, 1] # Backmen Инженерный дрон
-          BKBPLAMED: [0, 1] # Backmen Медицинский дрон
+          BKBPLATech: [1, 1] # Backmen Инженерный дрон
+          BKBPLAMED: [1, 1] # Backmen Медицинский дрон
           Borg: [ 2, 2 ] # Киборг
 
         #Отдел снабжения
