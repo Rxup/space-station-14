@@ -67434,6 +67434,8 @@ entities:
     - type: Transform
       pos: 49.5,42.5
       parent: 2
+    - type: Door
+      performCollisionCheck: False
     - type: ArrivalsProtect
   - uid: 8686
     components:

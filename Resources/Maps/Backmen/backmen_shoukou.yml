@@ -5245,8 +5245,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -26252.457
-      state: Opening
+      state: Closed
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True

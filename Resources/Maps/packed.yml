@@ -44113,7 +44113,6 @@ entities:
       pos: 59.5,39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -33157.676
       state: Closing
 - proto: CurtainsSkyBlue
   entities:
