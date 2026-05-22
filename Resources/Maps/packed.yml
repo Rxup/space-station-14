@@ -2,10 +2,10 @@ meta:
   format: 7
   category: Map
   engineVersion: 277.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 05/14/2026 11:29:29
-  entityCount: 16028
+  forkId: backmen
+  forkVersion: ce3f75e7fcb93cfdb71576c67c996c62f1814e48
+  time: 05/22/2026 16:36:25
+  entityCount: 16020
 maps:
 - 126
 grids:
@@ -7169,28 +7169,6 @@ entities:
     - type: Transform
       pos: 12.501018,-34.058125
       parent: 2
-- proto: ActionToggleInternals
-  entities:
-  - uid: 6295
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 10308
-    - type: Action
-      originalIconColor: '#FFFFFFFF'
-      container: 10308
-- proto: ActionToggleJetpack
-  entities:
-  - uid: 6125
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 10308
-    - type: Action
-      originalIconColor: '#FFFFFFFF'
-      container: 10308
 - proto: ActionToggleLight
   entities:
   - uid: 6399
@@ -9946,6 +9924,8 @@ entities:
     - type: Transform
       pos: 23.5,43.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 7870
     components:
     - type: Transform
@@ -11466,6 +11446,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 9.5,-35.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Engineering
     - type: Fixtures
       fixtures: {}
   - uid: 1038
@@ -42553,6 +42536,23 @@ entities:
     - type: Transform
       pos: 51.50634,26.522182
       parent: 2
+- proto: ClothingShoesBootsMag
+  entities:
+  - uid: 3441
+    components:
+    - type: Transform
+      pos: 8.6919565,-8.2225685
+      parent: 2
+  - uid: 3443
+    components:
+    - type: Transform
+      pos: 8.351531,-8.435335
+      parent: 2
+  - uid: 4577
+    components:
+    - type: Transform
+      pos: 8.649403,-8.605548
+      parent: 2
 - proto: ClothingShoesBootsMagArmy
   entities:
   - uid: 4474
@@ -42563,23 +42563,6 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
       storage: 2435
-- proto: ClothingShoesBootsMagSci
-  entities:
-  - uid: 3441
-    components:
-    - type: Transform
-      pos: 8.394775,-8.212509
-      parent: 2
-  - uid: 3443
-    components:
-    - type: Transform
-      pos: 8.582275,-8.415634
-      parent: 2
-  - uid: 8681
-    components:
-    - type: Transform
-      pos: 8.37915,-8.650009
-      parent: 2
 - proto: ClothingShoesFlippers
   entities:
   - uid: 6828
@@ -43003,6 +42986,9 @@ entities:
     - type: Transform
       pos: 27.5,48.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Command
 - proto: ComputerCrewMonitoring
   entities:
   - uid: 7925
@@ -44127,7 +44113,7 @@ entities:
       pos: 59.5,39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -31963.373
+      secondsUntilStateChange: -33157.676
       state: Closing
 - proto: CurtainsSkyBlue
   entities:
@@ -44657,6 +44643,13 @@ entities:
     components:
     - type: Transform
       pos: 45.5,5.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 11960
+    components:
+    - type: Transform
+      pos: 66.5,5.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -50005,7 +49998,7 @@ entities:
       pos: 26.5,37.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -79257.164
+      secondsUntilStateChange: -80451.47
       state: Closing
   - uid: 9362
     components:
@@ -71979,11 +71972,9 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 15948
           - 15993
           - 15994
-          - 15995
-          - 15996
+          - 15948
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -72294,6 +72285,9 @@ entities:
     - type: Transform
       pos: 21.5,41.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Command
 - proto: HolopadCommandQm
   entities:
   - uid: 15169
@@ -72619,7 +72613,7 @@ entities:
       pos: 12.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17429.107
+      secondsUntilStateChange: -18623.41
       state: Closing
   - uid: 5750
     components:
@@ -73049,33 +73043,32 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 27.5,29.5
       parent: 2
-- proto: JetpackMiniFilled
+- proto: JetpackBlueFilled
   entities:
-  - uid: 8627
+  - uid: 1939
     components:
     - type: Transform
-      pos: 8.488525,-9.228134
+      pos: 8.481079,-9.148935
       parent: 2
-  - uid: 10308
+  - uid: 4578
     components:
     - type: Transform
-      pos: 8.488525,-9.353134
+      pos: 8.481079,-9.25532
       parent: 2
-    - type: GasTank
-      toggleActionEntity: 6295
-    - type: Jetpack
-      toggleActionEntity: 6125
-    - type: ActionsContainer
-    - type: ContainerContainer
-      containers:
-        actions: !type:Container
-          ents:
-          - 6125
-          - 6295
-  - uid: 10309
+  - uid: 4579
     components:
     - type: Transform
-      pos: 8.484015,-9.496899
+      pos: 8.481079,-9.361702
+      parent: 2
+  - uid: 11962
+    components:
+    - type: Transform
+      pos: 8.481079,-9.468084
+      parent: 2
+  - uid: 15227
+    components:
+    - type: Transform
+      pos: 8.481079,-9.574468
       parent: 2
 - proto: JetpackSecurityFilled
   entities:
@@ -73527,9 +73520,13 @@ entities:
         599:
         - - Pressed
           - Open
+        - - Pressed
+          - AutoClose
         600:
         - - Pressed
           - Open
+        - - Pressed
+          - AutoClose
     - type: Fixtures
       fixtures: {}
 - proto: LockableButtonResearch
@@ -73747,20 +73744,20 @@ entities:
       parent: 2
 - proto: LockerEngineerFilledHardsuit
   entities:
-  - uid: 4904
-    components:
-    - type: Transform
-      pos: 20.5,-32.5
-      parent: 2
-  - uid: 4905
+  - uid: 4580
     components:
     - type: Transform
       pos: 20.5,-31.5
       parent: 2
-  - uid: 5182
+  - uid: 4581
     components:
     - type: Transform
       pos: 20.5,-30.5
+      parent: 2
+  - uid: 11959
+    components:
+    - type: Transform
+      pos: 20.5,-32.5
       parent: 2
 - proto: LockerEvidence
   entities:
@@ -73853,6 +73850,9 @@ entities:
     - type: Transform
       pos: 74.5,5.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Medical
 - proto: LockerParamedicFilled
   entities:
   - uid: 9618
@@ -75083,6 +75083,11 @@ entities:
     - type: Transform
       pos: 8.5,-5.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Atmospherics
+      - - Engineering
+      - - Research
   - uid: 11398
     components:
     - type: Transform
@@ -86249,27 +86254,17 @@ entities:
       parent: 2
 - proto: SpawnMobBPLA
   entities:
-  - uid: 16006
+  - uid: 10308
     components:
     - type: Transform
-      pos: 25.5,-27.5
-      parent: 2
-  - uid: 16007
-    components:
-    - type: Transform
-      pos: 27.5,-27.5
+      pos: 26.5,-28.5
       parent: 2
 - proto: SpawnMobBPLAMED
   entities:
-  - uid: 16004
+  - uid: 4905
     components:
     - type: Transform
-      pos: 60.5,2.5
-      parent: 2
-  - uid: 16005
-    components:
-    - type: Transform
-      pos: 66.5,2.5
+      pos: 54.5,-0.5
       parent: 2
 - proto: SpawnMobCatGeneric
   entities:
@@ -86392,15 +86387,15 @@ entities:
       parent: 2
 - proto: SpawnPointAtmos
   entities:
-  - uid: 4577
+  - uid: 5071
     components:
     - type: Transform
-      pos: 30.5,-31.5
+      pos: 31.5,-31.5
       parent: 2
-  - uid: 4578
+  - uid: 5182
     components:
     - type: Transform
-      pos: 29.5,-31.5
+      pos: 31.5,-32.5
       parent: 2
 - proto: SpawnPointBartender
   entities:
@@ -86487,15 +86482,10 @@ entities:
       parent: 2
 - proto: SpawnPointChemist
   entities:
-  - uid: 5071
+  - uid: 6295
     components:
     - type: Transform
-      pos: 53.5,-4.5
-      parent: 2
-  - uid: 6650
-    components:
-    - type: Transform
-      pos: 50.5,-4.5
+      pos: 51.5,-6.5
       parent: 2
 - proto: SpawnPointChiefEngineer
   entities:
@@ -86570,12 +86560,7 @@ entities:
       parent: 2
 - proto: SpawnPointLawyer
   entities:
-  - uid: 8160
-    components:
-    - type: Transform
-      pos: -2.5,-11.5
-      parent: 2
-  - uid: 8161
+  - uid: 6650
     components:
     - type: Transform
       pos: -3.5,-10.5
@@ -86589,32 +86574,27 @@ entities:
       parent: 2
 - proto: SpawnPointMedicalDoctor
   entities:
-  - uid: 11958
-    components:
-    - type: Transform
-      pos: 71.5,5.5
-      parent: 2
-  - uid: 11959
+  - uid: 8627
     components:
     - type: Transform
       pos: 71.5,6.5
       parent: 2
-  - uid: 11960
+  - uid: 8681
     components:
     - type: Transform
-      pos: 71.5,7.5
+      pos: 71.5,5.5
       parent: 2
 - proto: SpawnPointMedicalIntern
   entities:
-  - uid: 11961
-    components:
-    - type: Transform
-      pos: 73.5,5.5
-      parent: 2
-  - uid: 11962
+  - uid: 8161
     components:
     - type: Transform
       pos: 73.5,6.5
+      parent: 2
+  - uid: 8314
+    components:
+    - type: Transform
+      pos: 73.5,5.5
       parent: 2
 - proto: SpawnPointMime
   entities:
@@ -86639,10 +86619,10 @@ entities:
       parent: 2
 - proto: SpawnPointParamedic
   entities:
-  - uid: 8314
+  - uid: 4904
     components:
     - type: Transform
-      pos: 46.5,3.5
+      pos: 45.5,4.5
       parent: 2
 - proto: SpawnPointPassenger
   entities:
@@ -86692,11 +86672,6 @@ entities:
     components:
     - type: Transform
       pos: 38.5,19.5
-      parent: 2
-  - uid: 1939
-    components:
-    - type: Transform
-      pos: 32.5,19.5
       parent: 2
 - proto: SpawnPointQuartermaster
   entities:
@@ -86818,20 +86793,20 @@ entities:
       parent: 2
 - proto: SpawnPointStationEngineer
   entities:
-  - uid: 4579
-    components:
-    - type: Transform
-      pos: 23.5,-31.5
-      parent: 2
-  - uid: 4580
-    components:
-    - type: Transform
-      pos: 22.5,-31.5
-      parent: 2
-  - uid: 4581
+  - uid: 10309
     components:
     - type: Transform
       pos: 21.5,-31.5
+      parent: 2
+  - uid: 11958
+    components:
+    - type: Transform
+      pos: 21.5,-30.5
+      parent: 2
+  - uid: 11961
+    components:
+    - type: Transform
+      pos: 21.5,-32.5
       parent: 2
 - proto: SpawnPointSurgeon
   entities:
@@ -86842,20 +86817,15 @@ entities:
       parent: 2
 - proto: SpawnPointTechnicalAssistant
   entities:
-  - uid: 15227
+  - uid: 6125
     components:
     - type: Transform
-      pos: 20.5,-27.5
+      pos: 18.5,-27.5
       parent: 2
-  - uid: 15310
+  - uid: 8160
     components:
     - type: Transform
-      pos: 20.5,-25.5
-      parent: 2
-  - uid: 15311
-    components:
-    - type: Transform
-      pos: 15.5,-26.5
+      pos: 18.5,-25.5
       parent: 2
 - proto: SpawnPointWarden
   entities:
@@ -90813,22 +90783,6 @@ entities:
     - type: InsideEntityStorage
       storage: 15947
   - uid: 15994
-    components:
-    - type: Transform
-      parent: 15947
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-      storage: 15947
-  - uid: 15995
-    components:
-    - type: Transform
-      parent: 15947
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-      storage: 15947
-  - uid: 15996
     components:
     - type: Transform
       parent: 15947
@@ -103560,6 +103514,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 54.5,-4.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 5140
     components:
     - type: Transform
@@ -103579,6 +103535,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 54.5,-5.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
 - proto: WindoorSecureCommandLocked
   entities:
   - uid: 8247
