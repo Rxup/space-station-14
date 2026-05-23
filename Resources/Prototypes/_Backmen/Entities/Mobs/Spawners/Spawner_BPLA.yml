@@ -1,7 +1,7 @@
 - type: entity
   name: BPLA Spawner
   id: SpawnMobBPLA
-  parent: MarkerBase
+  parent: SpawnPointJobBase
   components:
     - type: Sprite
       layers:
@@ -14,7 +14,7 @@
 - type: entity
   name: BPLA Spawner MED
   id: SpawnMobBPLAMED
-  parent: MarkerBase
+  parent: SpawnPointJobBase
   components:
     - type: Sprite
       layers:
@@ -22,5 +22,4 @@
         - sprite: Backmen/Mobs/Silicon/BPLAMED.rsi
           state: shell
     - type: SpawnPoint
-      job_id: BKBPLAMED 
-        
+      job_id: BKBPLAMED

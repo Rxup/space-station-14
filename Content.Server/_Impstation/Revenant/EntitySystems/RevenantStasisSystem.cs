@@ -18,10 +18,13 @@ using Content.Shared._Impstation.Revenant.Components;
 using Content.Shared.Revenant;
 using Content.Shared.Revenant.Components;
 using Content.Shared.Chat;
+using Content.Shared.Follower;
+using Content.Shared.Follower.Components;
 using Content.Shared.Speech;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Tag;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Impstation.Revenant.EntitySystems;
 
@@ -36,6 +39,7 @@ public sealed partial class RevenantStasisSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private TagSystem _tags = default!;
     [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private FollowerSystem _followerSystem = default!;
 
     public override void Initialize()
     {
@@ -49,12 +53,20 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         SubscribeLocalEvent<RevenantStasisComponent, ConstructionConsumedObjectEvent>(OnCrafted);
         SubscribeLocalEvent<RevenantStasisComponent, ReagentGrinderSystem.GrindAttemptEvent>(OnGrindAttempt);
         SubscribeLocalEvent<RevenantStasisComponent, TransformSpeakerNameEvent>(OnTransformName);
-        SubscribeLocalEvent<RevenantStasisComponent, AfterInteractUsingEvent>(OnBibleInteract, before: [typeof(BibleSystem)]);
+        SubscribeLocalEvent<RevenantStasisComponent, AfterInteractUsingEvent>(OnBibleInteract,
+            before: [typeof(BibleSystem)]);
         SubscribeLocalEvent<RevenantStasisComponent, ExorciseRevenantDoAfterEvent>(OnExorcise);
     }
 
     private void OnStartup(EntityUid uid, RevenantStasisComponent component, ComponentStartup args)
     {
+        if (TryComp<FollowedComponent>(component.Revenant, out var followed))
+        {
+            foreach (var follower in followed.Following)
+            {
+                _followerSystem.StartFollowingEntity(follower, uid);
+            }
+        }
         EnsureComp<SpeechComponent>(uid);
         _status.TryAddStatusEffectDuration(uid, RevenantStatusEffects.Stasis, component.StasisDuration);
 
@@ -87,7 +99,8 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         }
     }
 
-    private void OnStasisStatusRemoved(Entity<RevenantStasisStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
+    private void OnStasisStatusRemoved(Entity<RevenantStasisStatusEffectComponent> ent,
+        ref StatusEffectRemovedEvent args)
     {
         if (!TryComp<RevenantStasisComponent>(args.Target, out var stasis) || TerminatingOrDeleted(args.Target))
             return;
@@ -100,6 +113,14 @@ public sealed partial class RevenantStasisSystem : EntitySystem
             _mind.TransferTo(mindId, stasis.Revenant);
 
         QueueDel(args.Target);
+
+        if (TryComp<FollowedComponent>(args.Target, out var followed))
+        {
+            foreach (var uid in followed.Following)
+            {
+                _followerSystem.StartFollowingEntity(uid, stasis.Revenant);
+            }
+        }
     }
 
     private void OnExamine(Entity<RevenantStasisComponent> entity, ref ExaminedEvent args)
@@ -117,14 +138,19 @@ public sealed partial class RevenantStasisSystem : EntitySystem
             _mind.TransferTo(mindId, args.New);
     }
 
-    private void OnGrindAttempt(EntityUid uid, RevenantStasisComponent comp, ReagentGrinderSystem.GrindAttemptEvent args)
+    private static readonly ProtoId<TagPrototype> Salt = "Salt";
+    private static readonly ProtoId<TagPrototype> Holy = "Holy";
+
+    private void OnGrindAttempt(EntityUid uid,
+        RevenantStasisComponent comp,
+        ReagentGrinderSystem.GrindAttemptEvent args)
     {
         if (!TryComp<RevenantComponent>(comp.Revenant, out var revenant) || !revenant.GrindingRequiresSalt)
             return;
 
         foreach (var reagent in args.Reagents)
         {
-            if (_tags.HasAnyTag(reagent, "Salt", "Holy"))
+            if (_tags.HasAnyTag(reagent, Salt, Holy))
                 return;
         }
 
@@ -160,8 +186,13 @@ public sealed partial class RevenantStasisSystem : EntitySystem
             return;
         }
 
-        var doAfterEventArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(10),
-            new ExorciseRevenantDoAfterEvent(), target, target, bible)
+        var doAfterEventArgs = new DoAfterArgs(EntityManager,
+            user,
+            TimeSpan.FromSeconds(10),
+            new ExorciseRevenantDoAfterEvent(),
+            target,
+            target,
+            bible)
         {
             BreakOnMove = true,
             BreakOnWeightlessMove = false,
@@ -176,14 +207,28 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         args.Handled = true;
 
         _popup.PopupEntity(
-            Loc.GetString("revenant-exorcise-begin-user", ("bible", bible), ("user", user), ("revenant", comp.Revenant)),
-            user, user);
+            Loc.GetString("revenant-exorcise-begin-user",
+                ("bible", bible),
+                ("user", user),
+                ("revenant", comp.Revenant)),
+            user,
+            user);
         _popup.PopupEntity(
-            Loc.GetString("revenant-exorcise-begin-target", ("bible", bible), ("user", user), ("revenant", comp.Revenant)),
-            target, target, PopupType.MediumCaution);
+            Loc.GetString("revenant-exorcise-begin-target",
+                ("bible", bible),
+                ("user", user),
+                ("revenant", comp.Revenant)),
+            target,
+            target,
+            PopupType.MediumCaution);
         _popup.PopupEntity(
-            Loc.GetString("revenant-exorcise-begin-other", ("bible", bible), ("user", user), ("revenant", comp.Revenant)),
-            target, Filter.Pvs(target).RemovePlayersByAttachedEntity(user, target), true);
+            Loc.GetString("revenant-exorcise-begin-other",
+                ("bible", bible),
+                ("user", user),
+                ("revenant", comp.Revenant)),
+            target,
+            Filter.Pvs(target).RemovePlayersByAttachedEntity(user, target),
+            true);
     }
 
     private void OnExorcise(EntityUid uid, RevenantStasisComponent comp, ExorciseRevenantDoAfterEvent args)
@@ -193,7 +238,9 @@ public sealed partial class RevenantStasisSystem : EntitySystem
 
         _popup.PopupEntity(
             Loc.GetString("revenant-exorcise-success",
-                ("bible", args.Used.Value), ("user", args.User), ("revenant", comp.Revenant)),
+                ("bible", args.Used.Value),
+                ("user", args.User),
+                ("revenant", comp.Revenant)),
             args.Target.Value);
 
         RemComp<RevenantStasisComponent>(args.Target.Value);
