@@ -1,12 +1,14 @@
-- type: bkmloadout
+- type: loadout
   id: BedsheetInvisibilityCloak
-  entity: BedsheetInvisibilityCloak
-  sponsorOnly: true
+  storage:
+    back:
+    - BedsheetInvisibilityCloak
 
-- type: bkmloadout
+- type: loadout
   id: MedipenProbka
-  entity: MedipenProbka
-  sponsorOnly: true
+  storage:
+    back:
+    - MedipenProbka
 
 - type: entity
   name: Пробка
