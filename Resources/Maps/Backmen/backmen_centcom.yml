@@ -67593,11 +67593,13 @@ entities:
       performCollisionCheck: False
     - type: ArrivalsProtect
   - uid: 8364
-    components:
-    - type: Transform
-      pos: 49.5,42.5
-      parent: 2
-    - type: ArrivalsProtect
+     components:
+      - type: Transform
+        pos: 49.5,42.5
+        parent: 2
+      - type: Door
+        performCollisionCheck: False
+      - type: ArrivalsProtect
   - uid: 8686
     components:
     - type: Transform
