@@ -8,68 +8,112 @@
     Rook:
       stationProto: StandardNanotrasenStation
       components:
-        - type: StationNameSetup
-          mapNameTemplate: '{0} Rook {1}'
-          nameGenerator:
-            !type:NanotrasenNameGenerator
-            prefixCreator: '14'
-        - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Backmen/Shuttles/emergency_rook.yml
-        - type: StationJobs
-          availableJobs:
-          #Service
-            Passenger: [ -1, -1 ]
-            ServiceWorker: [ 1, 1]
-            IAA: [ 1, 1 ]
-            Bartender: [ 1, 1 ]
-            Botanist: [ 1, 1 ]
-            Chef: [ 1, 1 ]
-            Clown: [ 1, 1 ]
-            Janitor: [ 1, 1 ]
-            Musician: [ 1, 1]
-            Mime: [ 1, 1 ]
-            Captain: [ 1, 1 ]
-            HeadOfPersonnel: [ 1, 1 ]
-          #Engineering
-            ChiefEngineer: [ 1, 1 ]
-            StationEngineer: [ 2, 3 ]
-            TechnicalAssistant: [ 1, 2 ]
-            AtmosphericTechnician: [ 1, 2 ]
-          #Medical
-            ChiefMedicalOfficer: [ 1, 1 ]
-            Paramedic: [ 1, 1 ]
-            MedicalDoctor: [ 2, 3 ]
-            Chemist: [ 1, 1 ]
-            MedicalIntern: [ 1, 2 ]
-            BkmVirologist: [1, 1] # backmen-Virologist
-            BkmSurgeon: [1, 1] # backmen-Surgeon
-          #Security
-            HeadOfSecurity: [ 1, 1 ]
-            SecurityOfficer: [ 2, 3 ]
-            Detective: [ 1, 1 ]
-            Warden: [ 1, 1 ]
-            SecurityCadet: [ 1, 2 ]
-            Brigmedic: [ 1, 1 ]
-            Prisoner: [ 2, 2 ]
-          #Science
-            ResearchDirector: [ 1, 1 ]
-            Scientist: [ 2, 3 ]
-            ResearchAssistant: [ 1, 2 ]
-            Roboticist: [ 1, 1 ]
-            Chaplain: [ 1, 1 ]
-          #cargo
-            Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 2, 2 ]
-            CargoTechnician: [ 2, 3 ]
-          #silicon
-            StationAi: [ 1, 1 ]
-            BKBPLATech: [0, 1]
-            BKBPLAMED: [0, 1]
-            Borg: [ 1, 2 ]
-        # backmen blob-config-start LOW
-        - type: StationBlobConfig
-          stageBegin: 15
-          stageCritical: 200
-          stageTheEnd: 400
-          specForceTeam: RXBZZBlobLow
-        # backmen blob-config-end
+      - type: StationNameSetup
+        mapNameTemplate: '{0} Rook {1}'
+        nameGenerator:
+          !type:NanotrasenNameGenerator
+          prefixCreator: '14'
+      - type: StationEmergencyShuttle
+        emergencyShuttlePath: /Maps/Backmen/Shuttles/emergency_rook.yml
+      - type: StationJobs
+        availableJobs:
+
+        #Командование
+          Captain: [ 1, 1 ] # Капитан
+          HeadOfPersonnel: [ 1, 1 ] # Глава персонала
+          ChiefEngineer: [ 1, 1 ] # Старший инженер
+          ChiefMedicalOfficer: [ 1, 1 ] # Главный врач
+          HeadOfSecurity: [ 1, 1 ] # Глава службы безопасности
+          Quartermaster: [ 1, 1 ] # Квартирмейстер
+          ResearchDirector: [ 1, 1 ] # Научный руководитель
+          #Центральное Командование
+          BlueShield: [1, 1] # Backmen Офицер "Синий Щит"
+
+          #Юридический отдел
+          IAA: [ 1, 1 ] # Агент внутренних дел
+          # Возможный адвокат в будущем
+
+          #Служба безопасности
+          # Глава службы безопасности
+          Warden: [ 1, 1 ] # Смотритель
+          Detective: [ 1, 1 ] # Детектив
+          Brigmedic: [ 1, 1 ] # Backmen Бригмедик
+          SecurityOfficer: [ 3, 3 ] # Офицер службы безопасности
+          SecurityCadet: [ 2, 2 ] # Кадет службы безопасности
+          Prisoner: [ 2, 2] # Заключённый
+
+          #Сервисный отдел
+          # Глава персонала
+          Bartender: [ 1, 1 ] # Бармен
+          Botanist: [ 1, 1 ] # Батаник
+          Chef: [ 1, 1 ] # Шеф повар
+          Janitor: [ 1, 1 ] # Уборщик
+          Chaplain: [ 1, 1 ] # Священник
+          Librarian: [ 1, 1 ] # Библиотекарь
+          ServiceWorker: [ 1, 1 ] # Сервисный работник
+          Passenger: [ -1, -1 ] # Ассистент
+          Clown: [ 1, 1 ] # Клоун
+          Mime: [ 1, 1 ] # Мим
+          Musician: [ 1, 1 ] # Музыкан
+
+          #Инженерный отдел
+          # Старший инженер
+          AtmosphericTechnician: [ 2, 2 ] # Атмосферный техник
+          StationEngineer: [ 3, 3 ] # Инженер
+          TechnicalAssistant: [ 2, 2 ] # Технический ассистент
+
+          #Медицинский отдел
+          # Главный врач
+          Paramedic: [ 1, 1 ] # Парамедик
+          Chemist: [ 1, 1 ] # Химик
+          BkmVirologist: [1, 1] # Backmen Вирусолог
+          BkmSurgeon: [1, 1] # Backmen Хирург
+          MedicalDoctor: [ 3, 3 ] # Врач
+          MedicalIntern: [ 2, 2 ] # Интерн
+
+          #Научный отдел
+          # Научный руководитель
+          Roboticist: [ 1, 1 ] #Робототехник
+          Scientist: [ 3, 3 ] # Ученый
+          ResearchAssistant: [ 2, 2 ] # Научный ассистент
+
+          #Синтетики
+          StationAi: [ 1, 1 ] # Станционный искусственный интеллект
+          BKBPLATech: [1, 1] # Backmen Инженерный дрон
+          BKBPLAMED: [1, 1] # Backmen Медицинский дрон
+          Borg: [ 2, 2 ] # Киборг
+
+          #Отдел снабжения
+          # Квартирмейстер
+          # Возможный шахтер в будущем
+          SalvageSpecialist: [ 3, 3 ] # Утилизатор
+          CargoTechnician: [ 2, 2 ] # Грузчик
+
+      # backmen blob-config-start SMALL+
+      - type: StationBlobConfig
+        stageBegin: 25
+        stageCritical: 350
+        stageTheEnd: 700
+      # backmen blob-config-end
+
+      - type: StationGoal #Цели станции
+        goals:
+        - Singularity
+        - SolarPanels
+        - Artifacts
+        - Bank
+        - Zoo
+        - MiningOutpost
+        - Tesla
+        - SecurityTraining
+        - ShuttleMed
+        - ShuttleSec
+        - ShuttleRnd
+        - ShuttleSrv
+        - ShuttleEmergency
+        - Theatre
+        - CellAI
+        - Botany
+        - Bunker
+        - XenobiologyRepair
+        - VirusologyAmbusol

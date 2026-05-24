@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: backmen
   forkVersion: ce3f75e7fcb93cfdb71576c67c996c62f1814e48
-  time: 05/22/2026 16:36:25
+  time: 05/24/2026 00:49:56
   entityCount: 16020
 maps:
 - 126
@@ -8762,10 +8762,24 @@ entities:
     - type: Transform
       pos: 11.5,-39.5
       parent: 2
+  - uid: 662
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 24.5,-17.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 948
     components:
     - type: Transform
       pos: 14.5,-34.5
+      parent: 2
+  - uid: 5824
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 19.5,-14.5
       parent: 2
 - proto: AirlockChiefMedicalOfficerGlassLocked
   entities:
@@ -8940,12 +8954,6 @@ entities:
     - type: Transform
       pos: 15.5,6.5
       parent: 2
-  - uid: 662
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 19.5,-14.5
-      parent: 2
   - uid: 815
     components:
     - type: Transform
@@ -8986,11 +8994,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 63.5,19.5
-      parent: 2
-  - uid: 5824
-    components:
-    - type: Transform
-      pos: 24.5,-17.5
       parent: 2
   - uid: 8500
     components:
@@ -44113,6 +44116,7 @@ entities:
       pos: 59.5,39.5
       parent: 2
     - type: Door
+      secondsUntilStateChange: -33252.973
       state: Closing
 - proto: CurtainsSkyBlue
   entities:
@@ -49997,7 +50001,7 @@ entities:
       pos: 26.5,37.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -80451.47
+      secondsUntilStateChange: -80546.766
       state: Closing
   - uid: 9362
     components:
@@ -71971,9 +71975,9 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 15993
           - 15994
           - 15948
+          - 15993
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -72612,7 +72616,7 @@ entities:
       pos: 12.5,12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -18623.41
+      secondsUntilStateChange: -18718.709
       state: Closing
   - uid: 5750
     components:
