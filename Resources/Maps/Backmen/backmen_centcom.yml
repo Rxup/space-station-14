@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: backmen
   forkVersion: ce3f75e7fcb93cfdb71576c67c996c62f1814e48
-  time: 05/22/2026 18:38:03
-  entityCount: 10830
+  time: 05/24/2026 13:32:46
+  entityCount: 10864
 maps:
 - 1
 grids:
@@ -11669,7 +11669,7 @@ entities:
       pos: 16.5,75.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -113887.72
+      secondsUntilStateChange: -115013.836
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11893,7 +11893,7 @@ entities:
       pos: 68.5,79.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -116073.28
+      secondsUntilStateChange: -117199.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12896,9 +12896,7 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: APCHighCapacity
-  entities:
-  - uid: 10445
+  - uid: 10834
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -12907,6 +12905,30 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Engineering
+    - type: Fixtures
+      fixtures: {}
+  - uid: 10857
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 4.5,-2.5
+      parent: 10313
+    - type: Fixtures
+      fixtures: {}
+  - uid: 10858
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,-2.5
+      parent: 10313
+    - type: Fixtures
+      fixtures: {}
+  - uid: 10859
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-9.5
+      parent: 10313
     - type: Fixtures
       fixtures: {}
 - proto: APCSuperCapacity
@@ -26062,6 +26084,111 @@ entities:
     - type: Transform
       pos: 0.5,-0.5
       parent: 10313
+  - uid: 10836
+    components:
+    - type: Transform
+      pos: -1.5,-0.5
+      parent: 10313
+  - uid: 10837
+    components:
+    - type: Transform
+      pos: -1.5,-1.5
+      parent: 10313
+  - uid: 10838
+    components:
+    - type: Transform
+      pos: -1.5,-2.5
+      parent: 10313
+  - uid: 10839
+    components:
+    - type: Transform
+      pos: -1.5,-3.5
+      parent: 10313
+  - uid: 10840
+    components:
+    - type: Transform
+      pos: -1.5,-4.5
+      parent: 10313
+  - uid: 10841
+    components:
+    - type: Transform
+      pos: -1.5,-5.5
+      parent: 10313
+  - uid: 10842
+    components:
+    - type: Transform
+      pos: -0.5,-5.5
+      parent: 10313
+  - uid: 10843
+    components:
+    - type: Transform
+      pos: -0.5,-6.5
+      parent: 10313
+  - uid: 10844
+    components:
+    - type: Transform
+      pos: -0.5,-7.5
+      parent: 10313
+  - uid: 10845
+    components:
+    - type: Transform
+      pos: -0.5,-8.5
+      parent: 10313
+  - uid: 10846
+    components:
+    - type: Transform
+      pos: -1.5,-8.5
+      parent: 10313
+  - uid: 10847
+    components:
+    - type: Transform
+      pos: -2.5,-8.5
+      parent: 10313
+  - uid: 10848
+    components:
+    - type: Transform
+      pos: -2.5,-9.5
+      parent: 10313
+  - uid: 10849
+    components:
+    - type: Transform
+      pos: 0.5,-2.5
+      parent: 10313
+  - uid: 10850
+    components:
+    - type: Transform
+      pos: -0.5,-2.5
+      parent: 10313
+  - uid: 10851
+    components:
+    - type: Transform
+      pos: 1.5,-2.5
+      parent: 10313
+  - uid: 10852
+    components:
+    - type: Transform
+      pos: -3.5,-2.5
+      parent: 10313
+  - uid: 10853
+    components:
+    - type: Transform
+      pos: -2.5,-2.5
+      parent: 10313
+  - uid: 10854
+    components:
+    - type: Transform
+      pos: 2.5,-2.5
+      parent: 10313
+  - uid: 10855
+    components:
+    - type: Transform
+      pos: 3.5,-2.5
+      parent: 10313
+  - uid: 10856
+    components:
+    - type: Transform
+      pos: 4.5,-2.5
+      parent: 10313
 - proto: CableMVStack
   entities:
   - uid: 1730
@@ -28517,6 +28644,11 @@ entities:
     components:
     - type: Transform
       pos: 31.223812,79.83219
+      parent: 2
+  - uid: 10864
+    components:
+    - type: Transform
+      pos: 32.75334,79.43593
       parent: 2
 - proto: ChemistryHotplate
   entities:
@@ -31577,7 +31709,7 @@ entities:
       pos: 46.5,76.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -504.8067
+      secondsUntilStateChange: -1630.9247
       state: Opening
   - uid: 3500
     components:
@@ -31619,7 +31751,7 @@ entities:
       pos: 1.5,62.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -116478.15
+      secondsUntilStateChange: -117604.266
       state: Opening
   - uid: 3507
     components:
@@ -57153,6 +57285,10 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 76.5,81.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - CentralCommand
+        - CCAdmiral
   - uid: 6714
     components:
     - type: Transform
@@ -57235,13 +57371,47 @@ entities:
     - type: Transform
       pos: 27.5,90.5
       parent: 2
+- proto: HolopadCentCommAdmiral
+  entities:
+  - uid: 10833
+    components:
+    - type: Transform
+      pos: 73.5,86.5
+      parent: 2
+- proto: HolopadCentCommEvac
+  entities:
+  - uid: 10445
+    components:
+    - type: Transform
+      pos: 47.5,34.5
+      parent: 2
 - proto: HolopadCentCommLongRange
+  entities:
+  - uid: 10831
+    components:
+    - type: Transform
+      pos: 81.5,67.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Command
+- proto: HolopadCentCommOperator
+  entities:
+  - uid: 10832
+    components:
+    - type: Transform
+      pos: 83.5,67.5
+      parent: 2
+- proto: HolopadCentCommUnlimitedRange
   entities:
   - uid: 161
     components:
     - type: Transform
       pos: 82.5,67.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Command
 - proto: HolopadLongRange
   entities:
   - uid: 10584
@@ -57472,11 +57642,6 @@ entities:
     - type: Transform
       pos: 65.5,68.5
       parent: 2
-  - uid: 6760
-    components:
-    - type: Transform
-      pos: 59.5,78.5
-      parent: 2
   - uid: 6761
     components:
     - type: Transform
@@ -57486,6 +57651,11 @@ entities:
     components:
     - type: Transform
       pos: 88.5,72.5
+      parent: 2
+  - uid: 8743
+    components:
+    - type: Transform
+      pos: 59.5,79.5
       parent: 2
 - proto: KitchenReagentGrinder
   entities:
@@ -57898,16 +58068,14 @@ entities:
       parent: 2
     - type: DeviceLinkSource
       linkedPorts:
-        422:
+        10447:
         - - Pressed
-          - Toggle
-        421:
+          - AutoClose
         - - Pressed
-          - Toggle
-        420:
+          - Open
+        10446:
         - - Pressed
-          - Toggle
-        419:
+          - Open
         - - Pressed
           - Toggle
     - type: Fixtures
@@ -61132,7 +61300,7 @@ entities:
   - uid: 10601
     components:
     - type: Transform
-      pos: -3.5,-2.5
+      pos: -3.5,-1.5
       parent: 10313
     - type: Fixtures
       fixtures: {}
@@ -61677,7 +61845,7 @@ entities:
   - uid: 7206
     components:
     - type: Transform
-      pos: 64.5,80.5
+      pos: 63.5,83.5
       parent: 2
   - uid: 7207
     components:
@@ -62884,6 +63052,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 84.5,47.5
       parent: 2
+  - uid: 10075
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 63.5,74.5
+      parent: 2
   - uid: 10602
     components:
     - type: Transform
@@ -62976,6 +63150,12 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Dynamic
+  - uid: 10861
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 59.5,78.5
+      parent: 2
 - proto: PoweredlightBlue
   entities:
   - uid: 7413
@@ -67434,8 +67614,6 @@ entities:
     - type: Transform
       pos: 49.5,42.5
       parent: 2
-    - type: Door
-      performCollisionCheck: False
     - type: ArrivalsProtect
   - uid: 8686
     components:
@@ -68288,6 +68466,11 @@ entities:
     - type: Transform
       pos: 0.5,-7.5
       parent: 10313
+  - uid: 10835
+    components:
+    - type: Transform
+      pos: -2.5,-1.5
+      parent: 10313
 - proto: SpawnMobGuardSecurityNTDisabler
   entities:
   - uid: 8209
@@ -68305,6 +68488,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,0.5
+      parent: 10313
+  - uid: 10860
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,0.5
       parent: 10313
 - proto: SpawnMobGuardSecurityNTPistol
   entities:
@@ -71792,6 +71981,12 @@ entities:
       parent: 2
 - proto: TableWood
   entities:
+  - uid: 6760
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 59.5,77.5
+      parent: 2
   - uid: 8720
     components:
     - type: Transform
@@ -71915,14 +72110,8 @@ entities:
   - uid: 8742
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 59.5,78.5
-      parent: 2
-  - uid: 8743
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 59.5,77.5
+      rot: 1.5707963267948966 rad
+      pos: 59.5,79.5
       parent: 2
   - uid: 8744
     components:
@@ -71989,6 +72178,12 @@ entities:
     components:
     - type: Transform
       pos: 92.5,78.5
+      parent: 2
+  - uid: 10862
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 59.5,78.5
       parent: 2
 - proto: TaikoInstrument
   entities:
@@ -80126,15 +80321,15 @@ entities:
     - type: Transform
       pos: 85.5,57.5
       parent: 2
-  - uid: 10075
-    components:
-    - type: Transform
-      pos: 59.5,79.5
-      parent: 2
   - uid: 10076
     components:
     - type: Transform
       pos: 58.5,89.5
+      parent: 2
+  - uid: 10863
+    components:
+    - type: Transform
+      pos: 60.5,79.5
       parent: 2
 - proto: WaterTankFull
   entities:

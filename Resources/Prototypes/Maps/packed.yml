@@ -3,8 +3,6 @@
   id: Packed
   mapName: 'Packed'
   mapPath: /Maps/packed.yml
-  minPlayers: 0
-  maxPlayers: 35
   stations:
     Packed:
       stationProto: StandardNanotrasenStation
@@ -80,7 +78,7 @@
           ResearchAssistant: [ 2, 2 ] # Научный ассистент
 
         #Синтетики
-          StationAi: [ 1, 1 ] # Центральный искусственный интеллект
+          StationAi: [ 1, 1 ] # Станционный искусственный интеллект
           BKBPLATech: [1, 1] # Backmen Инженерный дрон
           BKBPLAMED: [1, 1] # Backmen Медицинский дрон
           Borg: [ 2, 2 ] # Киборг

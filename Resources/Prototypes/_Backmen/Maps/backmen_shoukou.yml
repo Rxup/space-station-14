@@ -2,8 +2,6 @@
   id: BackmenShoukou
   mapName: 'Shōkō'
   mapPath: /Maps/Backmen/backmen_shoukou.yml
-  minPlayers: 0
-  maxPlayers: 35
   stations:
     Shoukou:
       stationProto: StandardNanotrasenStation
@@ -26,6 +24,7 @@
           HeadOfSecurity: [ 1, 1 ] # Глава службы безопасности
           Quartermaster: [ 1, 1 ] # Квартирмейстер
           ResearchDirector: [ 1, 1 ] # Научный руководитель
+
           #Центральное Командование
           BlueShield: [1, 1] # Backmen Офицер "Синий Щит"
 
@@ -78,7 +77,7 @@
           ResearchAssistant: [ 2, 2 ] # Научный ассистент
 
           #Синтетики
-          StationAi: [ 1, 1 ] # Центральный искусственный интеллект
+          StationAi: [ 1, 1 ] # Станционный искусственный интеллект
           BKBPLATech: [1, 1] # Backmen Инженерный дрон
           BKBPLAMED: [1, 1] # Backmen Медицинский дрон
           Borg: [ 2, 2 ] # Киборг

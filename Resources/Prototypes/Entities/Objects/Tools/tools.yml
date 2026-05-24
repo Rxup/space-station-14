@@ -414,7 +414,7 @@
   suffix: AutoRecharge
   components:
   - type: LimitedCharges
-    maxCharges: 20
+    maxCharges: 30
   - type: AutoRecharge
     rechargeDuration: 10
 
