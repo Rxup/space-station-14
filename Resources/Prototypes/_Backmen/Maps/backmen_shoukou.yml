@@ -2,6 +2,7 @@
   id: BackmenShoukou
   mapName: 'Shōkō'
   mapPath: /Maps/Backmen/backmen_shoukou.yml
+  minPlayers: 0
   stations:
     Shoukou:
       stationProto: StandardNanotrasenStation

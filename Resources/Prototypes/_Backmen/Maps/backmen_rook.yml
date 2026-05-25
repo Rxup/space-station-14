@@ -2,6 +2,7 @@
   id: BackmenRook
   mapName: 'Rook'
   mapPath: /Maps/Backmen/backmen_rook.yml
+  minPlayers: 0
   stations:
     Rook:
       stationProto: StandardNanotrasenStation
