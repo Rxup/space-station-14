@@ -94,7 +94,8 @@
         stageBegin: 25
         stageCritical: 350
         stageTheEnd: 700
-
+      # backmen blob-config-end
+      
       - type: StationGoal #Цели станции
         goals:
         - Singularity
