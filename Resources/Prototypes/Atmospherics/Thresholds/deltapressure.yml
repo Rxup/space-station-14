@@ -1,5 +1,5 @@
-# Добавь компонент DeltaPressureComponent. Чтобы сделать объект подтвержденным давлению.
-## parent to them and just them globally here.
+# Добавь компонент DeltaPressureComponent, чтобы сделать объект подверженным воздействию давления.
+# Родительские прототипы для глобального применения.
 
 # Полное плазменное бронеокно
 - type: entity
@@ -62,7 +62,7 @@
     minPressure: 3750
     minPressureDelta: 2500
 
-# Полное броне окно
+# Полное окно
 - type: entity
   abstract: true
   id: BaseDeltaPressureGlass

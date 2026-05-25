@@ -11669,8 +11669,7 @@ entities:
       pos: 16.5,75.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -115013.836
-      state: Opening
+      state: Open
     - type: DeviceLinkSource
       lastSignals:
         DoorStatus: True
@@ -58076,8 +58075,6 @@ entities:
         10446:
         - - Pressed
           - Open
-        - - Pressed
-          - Toggle
     - type: Fixtures
       fixtures: {}
   - uid: 6791
