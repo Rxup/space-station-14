@@ -89,6 +89,12 @@
           SalvageSpecialist: [ 2, 2 ] # Утилизатор
           CargoTechnician: [ 3, 3 ] # Грузчик
 
+      # backmen blob-config-start SMALL+
+      - type: StationBlobConfig
+        stageBegin: 25
+        stageCritical: 350
+        stageTheEnd: 700
+
       - type: StationGoal #Цели станции
         goals:
         - Singularity
