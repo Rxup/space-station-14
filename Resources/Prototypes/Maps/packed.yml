@@ -1,10 +1,8 @@
-
 - type: gameMap
   id: Packed
   mapName: 'Packed'
   mapPath: /Maps/packed.yml
   minPlayers: 0
-  maxPlayers: 35
   stations:
     Packed:
       stationProto: StandardNanotrasenStation
@@ -33,10 +31,8 @@
 
         #Юридический отдел
           IAA: [ 1, 1 ] # Агент внутренних дел
-          # Возможный адвокат в будущем
 
         #Служба безопасности
-          # Глава службы безопасности
           Warden: [ 1, 1 ] # Смотритель
           Detective: [ 1, 1 ] # Детектив
           Brigmedic: [ 1, 1 ] # Backmen Бригмедик
@@ -45,7 +41,6 @@
           Prisoner: [ 3, 3] # Заключённый
 
         #Сервисный отдел
-          # Глава персонала
           Bartender: [ 1, 1 ] # Бармен
           Botanist: [ 2, 2 ] # Батаник
           Chef: [ 1, 1 ] # Шеф повар
@@ -59,13 +54,11 @@
           Musician: [ 1, 1 ] # Музыкан
 
         #Инженерный отдел
-          # Старший инженер
           AtmosphericTechnician: [ 2, 2 ] # Атмосферный техник
           StationEngineer: [ 3, 3 ] # Инженер
           TechnicalAssistant: [ 2, 2 ] # Технический ассистент
 
         #Медицинский отдел
-          # Главный врач
           Paramedic: [ 1, 1 ] # Парамедик
           Chemist: [ 1, 1 ] # Химик
           BkmVirologist: [1, 1] # Backmen Вирусолог
@@ -74,22 +67,26 @@
           MedicalIntern: [ 2, 2 ] # Интерн
 
         #Научный отдел
-          # Научный руководитель
           Roboticist: [ 1, 1 ] #Робототехник
           Scientist: [ 4, 4 ] # Ученый
           ResearchAssistant: [ 2, 2 ] # Научный ассистент
 
         #Синтетики
-          StationAi: [ 1, 1 ] # Центральный искусственный интеллект
+          StationAi: [ 1, 1 ] # Станционный искусственный интеллект
           BKBPLATech: [1, 1] # Backmen Инженерный дрон
           BKBPLAMED: [1, 1] # Backmen Медицинский дрон
           Borg: [ 2, 2 ] # Киборг
 
         #Отдел снабжения
-          # Квартирмейстер
-          # Возможный шахтер в будущем
           SalvageSpecialist: [ 2, 2 ] # Утилизатор
           CargoTechnician: [ 3, 3 ] # Грузчик
+
+      # backmen blob-config-start SMALL+
+      - type: StationBlobConfig
+        stageBegin: 25
+        stageCritical: 350
+        stageTheEnd: 700
+      # backmen blob-config-end
 
       - type: StationGoal #Цели станции
         goals:

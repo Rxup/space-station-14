@@ -1,7 +1,7 @@
-## Base prototypes for DeltaPressureComponent settings, to make it easy to just
-## parent to them and just them globally here.
+# Добавь компонент DeltaPressureComponent, чтобы сделать объект подверженным воздействию давления.
+# Родительские прототипы для глобального применения.
 
-## For reinforced plasma windows
+# Полное плазменное бронеокно
 - type: entity
   abstract: true
   id: BaseDeltaPressureReinforcedPlasma
@@ -12,7 +12,7 @@
     scalingType: Linear
     scalingPower: 0.0001
 
-## For quarter reinforced plasma windows
+# Направленное плазменное бронеокно
 - type: entity
   abstract: true
   id: BaseDeltaPressureReinforcedPlasmaQuarter
@@ -22,7 +22,7 @@
     minPressureDelta: 25000
     scalingType: Threshold
 
-## For plasma windows
+# Полное плазменное окно
 - type: entity
   abstract: true
   id: BaseDeltaPressurePlasma
@@ -33,7 +33,7 @@
     scalingType: Linear
     scalingPower: 0.0005
 
-## For quarter plasma windows
+# Направленное плазменное окно
 - type: entity
   abstract: true
   id: BaseDeltaPressurePlasmaQuarter
@@ -43,7 +43,7 @@
     minPressureDelta: 12500
     scalingType: Threshold
 
-## For reinforced glass windows
+# Полное броне окно
 - type: entity
   abstract: true
   id: BaseDeltaPressureReinforcedGlass
@@ -53,7 +53,7 @@
     minPressureDelta: 10000
     scalingType: Threshold
 
-## For quarter reinforced glass windows
+# Направленное броне окно
 - type: entity
   abstract: true
   id: BaseDeltaPressureReinforcedGlassQuarter
@@ -62,7 +62,7 @@
     minPressure: 3750
     minPressureDelta: 2500
 
-## For glass windows
+# Полное окно
 - type: entity
   abstract: true
   id: BaseDeltaPressureGlass
@@ -73,7 +73,7 @@
     scalingType: Linear
     scalingPower: 0.0005
 
-## For quarter glass windows
+# Направленное окно
 - type: entity
   abstract: true
   id: BaseDeltaPressureGlassQuarter
@@ -82,4 +82,3 @@
     minPressure: 250
     minPressureDelta: 187.5
     scalingType: Threshold
-
