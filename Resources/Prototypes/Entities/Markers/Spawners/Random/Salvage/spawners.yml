@@ -505,7 +505,9 @@
       - !type:GroupSelector
         children:
         - id: Thruster
+          weight: 4
         - id: Gyroscope
+          weight: 1
 
 - type: entity
   parent: MarkerBase
