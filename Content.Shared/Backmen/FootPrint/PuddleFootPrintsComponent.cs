@@ -1,4 +1,4 @@
-using Content.Shared.Fluids;
+using Content.Shared.FixedPoint;
 
 namespace Content.Shared.Backmen.FootPrint;
 
@@ -15,9 +15,8 @@ public sealed partial class PuddleFootPrintsComponent : Component
     public float OffPercent = 80f;
 
     /// <summary>
-    /// Minimum puddle fill (fraction of <see cref="PuddleComponent.OverflowVolume"/>) to leave footprints or drain liquid.
-    /// Matches the puddle sprite / slip threshold by default.
+    /// Minimum solution volume in a puddle before footprints are left or liquid is consumed.
     /// </summary>
     [DataField]
-    public float MinVolumeRatio = SharedPuddleSystem.LowThreshold;
+    public FixedPoint2 MinVolume = 1.01f;
 }

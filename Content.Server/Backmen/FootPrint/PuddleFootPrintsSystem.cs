@@ -63,8 +63,7 @@ public sealed partial class PuddleFootPrintsSystem : EntitySystem
         if (volume <= FixedPoint2.Zero)
             return;
 
-        var minVolume = puddle.OverflowVolume * comp.MinVolumeRatio;
-        if (volume < minVolume)
+        if (volume < comp.MinVolume)
             return;
 
         var totalSolutionQuantity = volume.Float();
@@ -77,9 +76,9 @@ public sealed partial class PuddleFootPrintsSystem : EntitySystem
             solutions.Contents.Aggregate((l, r) => l.Quantity > r.Quantity ? l : r).Reagent.Prototype;
 
         if (_appearance.TryGetData(uid, PuddleVisuals.SolutionColor, out var color, appearance) &&
-            _appearance.TryGetData(uid, PuddleVisuals.CurrentVolume, out var volume, appearance))
+            _appearance.TryGetData(uid, PuddleVisuals.CurrentVolume, out var volumeRatio, appearance))
         {
-            AddColor((Color)color, (float)volume * comp.SizeRatio, tripper);
+            AddColor((Color)color, (float)volumeRatio * comp.SizeRatio, tripper);
         }
 
         _solutionContainerSystem.RemoveEachReagent(puddle.Solution.Value, 1);

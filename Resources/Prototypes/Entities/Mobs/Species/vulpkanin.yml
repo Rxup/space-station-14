@@ -183,6 +183,9 @@
           32:
             sprite: Mobs/Species/Vulpkanin/displacement.rsi
             state: belt
+  - type: FootPrints
+    leftBarePrint: "footprint-left-bare-lizard"
+    rightBarePrint: "footprint-right-bare-lizard"
 
 - type: entity
   parent: [BaseSpeciesDummy]
