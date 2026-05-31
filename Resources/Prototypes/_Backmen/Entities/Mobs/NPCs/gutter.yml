@@ -333,6 +333,7 @@
     revertOnCrit: true
     duration: 5
     polymorphPopup: null
+    exitPolymorphPopup: null
 
 - type: entity
   parent: MobGuttermanShooter
@@ -591,6 +592,7 @@
     revertOnCrit: true
     duration: 2
     polymorphPopup: null
+    exitPolymorphPopup: null
 
 - type: entity
   parent: MobGuttertankBase
@@ -663,6 +665,7 @@
     revertOnCrit: true
     duration: 3
     polymorphPopup: null
+    exitPolymorphPopup: null
 
 - type: entity
   parent: MobGuttertankBase

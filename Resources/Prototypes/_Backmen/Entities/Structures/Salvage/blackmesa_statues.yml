@@ -5,7 +5,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Construction
-    remove: true
+    graph: CarpStatue
+    node: statue
   - type: Sprite
     noRot: true
     drawdepth: Mobs
