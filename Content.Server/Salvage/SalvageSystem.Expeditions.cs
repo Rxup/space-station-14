@@ -3,11 +3,14 @@ using System.Threading;
 using Content.Server.Salvage.Expeditions;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
+using Content.Shared.Procedural;
 using Content.Shared.Salvage.Expeditions;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Server.Salvage;
 
@@ -142,13 +145,20 @@ public sealed partial class SalvageSystem
     {
         component.Missions.Clear();
 
+        var difficulties = _prototypeManager.EnumeratePrototypes<SalvageDifficultyPrototype>()
+            .Select(x => x.ID)
+            .ToList();
+
+        if (difficulties.Count == 0)
+            difficulties.Add("Moderate");
+
         for (var i = 0; i < MissionLimit; i++)
         {
             var mission = new SalvageMissionParams
             {
                 Index = component.NextIndex,
                 Seed = _random.Next(),
-                Difficulty = "Moderate",
+                Difficulty = _random.Pick(difficulties),
             };
 
             component.Missions[component.NextIndex++] = mission;

@@ -16,11 +16,13 @@ using Content.Shared.Backmen.CCVar;
 
 using Content.Shared.Backmen.Supermatter;
 using Content.Shared.Backmen.Supermatter.Components;
+using Content.Shared.Backmen.Supermatter.Events;
 using Content.Shared.Chat;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
+using Robust.Shared.Player;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Tag;
 using Content.Shared.Whitelist;
@@ -47,6 +49,7 @@ public sealed partial class SupermatterSystem : SharedSupermatterSystem
         SubscribeLocalEvent<BkmSupermatterComponent, InteractHandEvent>(OnHandInteract);
         SubscribeLocalEvent<BkmSupermatterComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<BkmSupermatterComponent, ComponentRemove>(OnComponentRemove);
+        SubscribeLocalEvent<BkmSupermatterComponent, BkmSupermatterProjectileHitEvent>(OnProjectileHit);
     }
 
     private const double PwrJobTime = 0.5;
@@ -675,11 +678,26 @@ public sealed partial class SupermatterSystem : SharedSupermatterSystem
 
     #endregion
 
+    private void OnProjectileHit(EntityUid uid, BkmSupermatterComponent supermatter, ref BkmSupermatterProjectileHitEvent args)
+    {
+        var coords = Transform(uid).Coordinates;
+
+        RaiseNetworkEvent(
+            new ImpactEffectEvent(supermatter.ProjectileHitEffect, GetNetCoordinates(coords)),
+            Filter.Pvs(coords, entityMan: EntityManager));
+    }
+
     private void OnHandInteract(EntityUid uid, BkmSupermatterComponent supermatter, InteractHandEvent args)
     {
         var target = args.User;
-        if (_supermatterImmuneQuery.HasComp(target))
+        var ev = new BkmSupermatterImmuneEvent(target, uid);
+        RaiseLocalEvent(target, ev);
+        RaiseLocalEvent(uid, ev);
+
+        if (ev.Cancelled)
             return;
+
+        args.Handled = true;
 
         supermatter.MatterPower += 200;
         Spawn(Ash, Transform(target).Coordinates);

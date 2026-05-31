@@ -107,6 +107,7 @@
   components:
   - type: ResistLocker
   - type: Sprite
+    noRot: true
     sprite: Backmen/Structures/Storage/supplypod.rsi
     layers:
     - state: supplypod
@@ -164,9 +165,12 @@
   suffix: Component
   components:
   - type: Sprite
+    noRot: true
+    drawdepth: Effects
     sprite: Backmen/Effects/droppod_falling.rsi
     layers:
     - state: supplypod_falling_animation
+      map: ["enum.StorageVisualLayers.Base"]
       offset: "0,3.3"
   - type: EmitSoundOnSpawn
     sound:

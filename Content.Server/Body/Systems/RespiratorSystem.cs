@@ -24,6 +24,7 @@ using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Backmen.Surgery.Consciousness; // backmen
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -47,7 +48,7 @@ public sealed partial class RespiratorSystem : EntitySystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedEntityConditionsSystem _entityConditions = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private ConsciousnessSystem _consciousness = default!; // backmen edit
+    [Dependency] private EntityQuery<GodmodeComponent> _godModeQuery = default!; // backmen edit
 
     private static readonly ProtoId<MetabolismGroupPrototype> GasId = new("Gas");
 
@@ -106,7 +107,7 @@ public sealed partial class RespiratorSystem : EntitySystem
             }
 
             // start-backmen: blob zombie
-            if (respirator.HasImmunity)
+            if (respirator.HasImmunity || _godModeQuery.HasComp(uid))
             {
                 if (respirator.SuffocationCycles > 0)
                 {

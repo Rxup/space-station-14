@@ -11,14 +11,17 @@ public sealed partial class LavalandGridRuinPrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = default!;
 
-    [DataField] public LocId Name = "lavaland-ruin-unknown";
+    [DataField] public LocId Name { get; private set; } = "lavaland-ruin-unknown";
 
     [DataField(required: true)]
     public ResPath Path { get; private set; } = default!;
 
     [DataField]
-    public int SpawnAttemps = 8;
+    public int SpawnAttemps { get; private set; } = 8;
 
     [DataField(required: true)]
-    public int Priority = int.MinValue;
+    public int Priority { get; private set; } = int.MinValue;
+
+    [DataField]
+    public bool IsGrid { get; private set; } = false;
 }

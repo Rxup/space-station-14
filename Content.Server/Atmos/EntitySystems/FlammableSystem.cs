@@ -27,6 +27,7 @@ using Content.Shared.Temperature.Components;
 using Robust.Server.Audio;
 using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Standing;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
@@ -53,6 +54,7 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private AudioSystem _audio = default!;
         [Dependency] private IRobustRandom _random = default!;
         [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private StandingStateSystem _standing = default!; // backmen
 
         private EntityQuery<InventoryComponent> _inventoryQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -263,6 +265,15 @@ namespace Content.Server.Atmos.EntitySystems
         {
             if (args.Handled)
                 return;
+
+            // start-backmen
+            if (TryComp<StandingStateComponent>(ent, out var standing) &&
+                !_standing.Down(ent, standingState: standing))
+            {
+                _popup.PopupClient("Вы не можете лечь!", ent, PopupType.LargeCaution);
+                return;
+            }
+            // end-backmen
 
             Resist(ent, ent);
             args.Handled = true;

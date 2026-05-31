@@ -31,7 +31,7 @@ public sealed partial class LavalandPlanetSystem
         LavalandGridRuinPrototype ruin,
         Entity<LavalandMapComponent> lavaland,
         Entity<LavalandPreloaderComponent> preloader,
-        Random random,
+        IRobustRandom random,
         ref Dictionary<string, Box2> ruinsBoundsDict,
         ref List<Box2> usedSpace,
         ref List<Vector2> coords)
@@ -122,7 +122,7 @@ public sealed partial class LavalandPlanetSystem
         _transform.SetCoordinates(spawned.Value, new EntityCoordinates(lavaland, spawnedXForm.Coordinates.Position.Rounded()));
 
         // Merge fixtures from lavaland grid to spawned ruin grid
-        if (HasComp<MapGridComponent>(lavaland.Owner))
+        if (HasComp<MapGridComponent>(lavaland.Owner) && !ruin.IsGrid)
         {
             var sourceGridUid = lavaland.Owner;
 

@@ -194,6 +194,7 @@
     revertOnCrit: true
     duration: 4
     polymorphPopup: null
+    exitPolymorphPopup: null
 
 - type: entity
   id: MobJohninatorSwoop

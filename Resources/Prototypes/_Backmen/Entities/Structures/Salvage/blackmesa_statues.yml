@@ -1,0 +1,82 @@
+- type: entity
+  id: BlackMesaSalvageStatueBase
+  parent: CarpStatue
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Construction
+    graph: CarpStatue
+    node: statue
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+
+- type: entity
+  id: HeadcrabSalvageStatue
+  parent: BlackMesaSalvageStatueBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Specific/carp_statue.rsi
+      state: statue
+    - sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      state: headcrab
+      color: "#9E9E9ECC"
+    - sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      state: headcrab
+      color: "#E8E8E899"
+      shader: unshaded
+
+- type: entity
+  id: HeadcrabZombieSalvageStatue
+  parent: BlackMesaSalvageStatueBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Specific/carp_statue.rsi
+      state: statue
+    - sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      state: headcrab_zombie
+      color: "#9E9E9ECC"
+    - sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      state: headcrab_zombie
+      color: "#E8E8E899"
+      shader: unshaded
+
+- type: entity
+  id: BlackOpsSalvageStatue
+  parent: BlackMesaSalvageStatueBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Specific/carp_statue.rsi
+      state: statue
+    - sprite: Structures/Decoration/crystal.rsi
+      state: crystal_grey
+      color: "#363636CC"
+      offset: "0, 0.2"
+    - sprite: Structures/Decoration/crystal.rsi
+      state: crystal_grey
+      color: "#55555599"
+      shader: unshaded
+      offset: "0, 0.2"
+  - type: PointLight
+    radius: 2
+    energy: 1.5
+    color: "#363636"
+
+- type: entity
+  id: VortigauntSalvageStatue
+  parent: BlackMesaSalvageStatueBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Specific/carp_statue.rsi
+      state: statue
+    - sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      state: vortigaunt
+      color: "#9E9E9ECC"
+    - sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      state: vortigaunt
+      color: "#E8E8E899"
+      shader: unshaded

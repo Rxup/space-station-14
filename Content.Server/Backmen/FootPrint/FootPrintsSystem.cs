@@ -11,6 +11,7 @@ using Content.Shared.Backmen.Standing;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Gravity;
+using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Standing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
@@ -41,8 +42,10 @@ public sealed partial class FootPrintsSystem : EntitySystem
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<InventoryComponent> _inventoryQuery;
     private EntityQuery<ContainerManagerComponent> _containerManagerQuery;
+    private EntityQuery<PullableComponent> _pullableQuery;
 
     private bool _footprintEnabled = false;
+    private readonly HashSet<EntityUid> _pendingFootprintMoves = new();
 
     public override void Initialize()
     {
@@ -53,13 +56,14 @@ public sealed partial class FootPrintsSystem : EntitySystem
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
         _inventoryQuery = GetEntityQuery<InventoryComponent>();
         _containerManagerQuery = GetEntityQuery<ContainerManagerComponent>();
+        _pullableQuery = GetEntityQuery<PullableComponent>();
 
         Subs.CVar(_configuration, CCVars.EnableFootPrints, value => _footprintEnabled = value, true);
 
         SubscribeLocalEvent<FootPrintsComponent, ComponentStartup>(OnStartupComponent);
         SubscribeLocalEvent<FootPrintsComponent, MoveEvent>(OnMove);
+        SubscribeLocalEvent<PullerComponent, MoveEvent>(OnPullerMove);
     }
-
 
     private const double ActionJobTime = 0.005;
     private readonly JobQueue _actionJobQueue = new(ActionJobTime);
@@ -84,18 +88,46 @@ public sealed partial class FootPrintsSystem : EntitySystem
     {
         protected override async Task<object?> Process()
         {
-            system.MoveProccessing(ent);
+            try
+            {
+                system.MoveProccessing(ent);
+            }
+            finally
+            {
+                system._pendingFootprintMoves.Remove(ent.Owner);
+            }
+
             return null;
         }
     }
 
     private void OnMove(EntityUid uid, FootPrintsComponent comp, ref MoveEvent args)
     {
-        if (!_footprintEnabled)
+        TryEnqueueFootprintMove(uid, comp);
+    }
+
+    private void OnPullerMove(EntityUid uid, PullerComponent puller, ref MoveEvent args)
+    {
+        if (puller.Pulling is not { } pulled || !TryComp<FootPrintsComponent>(pulled, out var comp))
             return;
 
-        // Less resource expensive checks first
-        if (comp.PrintsColor.A <= 0f || TerminatingOrDeleted(uid))
+        TryEnqueueFootprintMove(pulled, comp);
+    }
+
+    private void TryEnqueueFootprintMove(EntityUid uid, FootPrintsComponent comp)
+    {
+        if (!_footprintEnabled || TerminatingOrDeleted(uid))
+            return;
+
+        if (!HasVisibleFluidPrints(comp))
+        {
+            if (comp.PrintsColor.A > 0f)
+                comp.PrintsColor = comp.PrintsColor.WithAlpha(0f);
+
+            return;
+        }
+
+        if (!_pendingFootprintMoves.Add(uid))
             return;
 
         _actionJobQueue.EnqueueJob(new FootprintsMoveProcess((uid, comp), this, ActionJobTime));
@@ -116,48 +148,57 @@ public sealed partial class FootPrintsSystem : EntitySystem
             !_map.TryFindGridAt(_transform.GetMapCoordinates((uid, transform)), out var gridUid, out _))
             return;
 
-        var dragging = mobThreshHolds.CurrentThresholdState is MobState.Critical or MobState.Dead ||
-                       _standing.IsDown(uid);
+        if (!HasVisibleFluidPrints(comp))
+            return;
+
+        var useDragPrints = UsesDragFootprints(uid, mobThreshHolds);
+
         var distance = (transform.LocalPosition - comp.StepPos).Length();
-        var stepSize = dragging ? comp.DragSize : comp.StepSize;
+        var stepSize = useDragPrints ? comp.DragSize : comp.StepSize;
 
         if (!(distance > stepSize))
             return;
 
         comp.RightStep = !comp.RightStep;
 
-        var entity = Spawn(comp.StepProtoId, CalcCoords(gridUid, comp, transform, dragging));
+        var entity = Spawn(comp.StepProtoId, CalcCoords(gridUid, comp, transform, useDragPrints));
         var footPrintComponent =
             Comp<FootPrintComponent>(entity); // There's NO way there's no footprint component in a FOOTPRINT
 
-        if (_appearanceQuery.TryComp(entity, out var appearance))
+        if (!_appearanceQuery.TryComp(entity, out var appearance))
         {
-            var state = PickState(uid, dragging);
-
-            _appearance.SetData(entity, FootPrintValue.Rsi, comp.RsiPath, appearance);
-            var layer = state switch
-            {
-                FootPrintVisuals.BareFootPrint => comp.RightStep
-                    ? comp.RightBarePrint
-                    : comp.LeftBarePrint,
-                FootPrintVisuals.ShoesPrint => comp.ShoesPrint,
-                FootPrintVisuals.SuitPrint => comp.SuitPrint,
-                FootPrintVisuals.Dragging => _random.Pick(comp.DraggingPrint),
-                _ => "error",
-            };
-
-            _appearance.SetData(entity, FootPrintValue.Layer, layer, appearance);
-            _appearance.SetData(entity, FootPrintVisualState.Color, comp.PrintsColor, appearance);
+            Del(entity);
+            return;
         }
+
+        var state = PickState(uid, useDragPrints);
+
+        _appearance.SetData(entity, FootPrintValue.Rsi, comp.RsiPath, appearance);
+        var layer = state switch
+        {
+            FootPrintVisuals.BareFootPrint => comp.RightStep
+                ? comp.RightBarePrint
+                : comp.LeftBarePrint,
+            FootPrintVisuals.ShoesPrint => comp.ShoesPrint,
+            FootPrintVisuals.SuitPrint => comp.SuitPrint,
+            FootPrintVisuals.Dragging => _random.Pick(comp.DraggingPrint),
+            _ => "error",
+        };
+
+        _appearance.SetData(entity, FootPrintValue.Layer, layer, appearance);
+        _appearance.SetData(entity, FootPrintVisualState.Color, comp.PrintsColor, appearance);
 
         if (!_transformQuery.TryComp(entity, out var stepTransform))
             return;
 
-        stepTransform.LocalRotation = dragging
+        stepTransform.LocalRotation = useDragPrints
             ? (transform.LocalPosition - comp.StepPos).ToAngle() + Angle.FromDegrees(-90f)
             : transform.LocalRotation + Angle.FromDegrees(180f);
 
-        comp.PrintsColor = comp.PrintsColor.WithAlpha(ReduceAlpha(comp.PrintsColor.A, comp.ColorReduceAlpha));
+        var newAlpha = ReduceAlpha(comp.PrintsColor.A, comp.ColorReduceAlpha);
+        comp.PrintsColor = newAlpha < comp.MinVisibleAlpha
+            ? comp.PrintsColor.WithAlpha(0f)
+            : comp.PrintsColor.WithAlpha(newAlpha);
         comp.StepPos = transform.LocalPosition;
 
         if (!TryComp<SolutionContainerManagerComponent>(entity, out var solutionContainer)
@@ -216,6 +257,29 @@ public sealed partial class FootPrintsSystem : EntitySystem
 
         return state;
     }
+
+    private bool UsesDragFootprints(EntityUid uid, MobThresholdsComponent? mobThresholds = null)
+    {
+        if (mobThresholds == null)
+            _mobThresholdQuery.TryComp(uid, out mobThresholds);
+
+        if (mobThresholds != null &&
+            mobThresholds.CurrentThresholdState is MobState.Critical or MobState.Dead)
+        {
+            return true;
+        }
+
+        if (_standing.IsDown(uid))
+            return true;
+
+        if (_pullableQuery.TryComp(uid, out var pullable) && pullable.Puller != null)
+            return true;
+
+        return false;
+    }
+
+    private static bool HasVisibleFluidPrints(FootPrintsComponent comp) =>
+        comp.PrintsColor.A >= comp.MinVisibleAlpha;
 
     private float ReduceAlpha(float alpha, float reductionAmount)
     {

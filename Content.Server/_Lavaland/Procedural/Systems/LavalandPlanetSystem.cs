@@ -297,18 +297,18 @@ public sealed partial class LavalandPlanetSystem : EntitySystem
 
     private void SetupRuins(LavalandRuinPoolPrototype pool, Entity<LavalandMapComponent> lavaland, Entity<LavalandPreloaderComponent> preloader)
     {
-        var random = new Random(lavaland.Comp.Seed);
+        _random.SetSeed(lavaland.Comp.Seed);
 
         var boundary = GetOutpostBoundary(lavaland);
         if (boundary == null)
             return;
 
         var coords = GetCoordinates(pool.RuinDistance, pool.MaxDistance);
-        random.Shuffle(coords);
+        _random.Shuffle(coords);
         var usedSpace = new List<Box2> { boundary.Value };
 
         // Load grid ruins
-        SetupHugeRuins(pool.GridRuins, lavaland, preloader, random, pool.RuinDistance, ref coords, ref usedSpace);
+        SetupHugeRuins(pool.GridRuins, lavaland, preloader, _random, pool.RuinDistance, ref coords, ref usedSpace);
 
         // Create a new list that excludes all already used spaces that intersect with big ruins.
         // Sweet optimization (another lag machine).
@@ -323,7 +323,7 @@ public sealed partial class LavalandPlanetSystem : EntitySystem
 
         // Load dungeon ruins
         // TODO: make it actual dungeons instead of spawning markers
-        SetupDungeonRuins(pool.DungeonRuins, lavaland, random, pool.RuinDistance, ref coords, ref usedSpace);
+        SetupDungeonRuins(pool.DungeonRuins, lavaland, _random, pool.RuinDistance, ref coords, ref usedSpace);
     }
 
     /// <summary>
@@ -335,7 +335,7 @@ public sealed partial class LavalandPlanetSystem : EntitySystem
         Dictionary<ProtoId<LavalandGridRuinPrototype>, ushort> ruins,
         Entity<LavalandMapComponent> lavaland,
         Entity<LavalandPreloaderComponent> preloader,
-        Random random,
+        IRobustRandom random,
         float ruinDistance,
         ref List<Vector2> coords,
         ref List<Box2> usedSpace)
@@ -360,7 +360,7 @@ public sealed partial class LavalandPlanetSystem : EntitySystem
     private void SetupDungeonRuins(
         Dictionary<ProtoId<LavalandDungeonRuinPrototype>, ushort> ruins,
         Entity<LavalandMapComponent> lavaland,
-        Random random,
+        IRobustRandom random,
         float ruinDistance,
         ref List<Vector2> coords,
         ref List<Box2> usedSpace)
@@ -408,7 +408,7 @@ public sealed partial class LavalandPlanetSystem : EntitySystem
     private bool LoadDungeonRuin(
         LavalandDungeonRuinPrototype ruin,
         Entity<LavalandMapComponent> lavaland,
-        Random random,
+        IRobustRandom random,
         ref List<Box2> usedSpace,
         ref List<Vector2> coords)
     {

@@ -264,9 +264,10 @@
   components:
   - type: StationEvent
     weight: 12
-    earliestStart: 1
+    earliestStart: 5
     reoccurrenceDelay: 1
-    minimumPlayers: 5
+    minimumPlayers: 3
+    duration: 30
   - type: GlimmerEvent
     minimumGlimmer: 30
     maximumGlimmer: 500
