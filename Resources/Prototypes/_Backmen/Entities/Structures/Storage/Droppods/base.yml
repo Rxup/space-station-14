@@ -111,7 +111,7 @@
     sprite: Backmen/Structures/Storage/supplypod.rsi
     layers:
     - state: supplypod
-      map: ["enum.StorageVisualLayers.Base"]
+      map: ["enum.StorageVisualLayers.Base", "Base"]
     - state: supplypod_door
       map: ["enum.StorageVisualLayers.Door"]
   - type: EntityStorage

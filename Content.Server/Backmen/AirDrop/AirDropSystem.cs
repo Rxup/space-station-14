@@ -10,6 +10,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.AirDrop;
@@ -25,6 +26,13 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private UseDelaySystem _delay = default!;
 
+    /// <summary>
+    /// Buffers work collected during <see cref="EntityQueryEnumerator{TComp1,TComp2}"/>.
+    /// Must not <see cref="EntitySystem.Dirty"/> or raise events while iterating — that can loop forever in MoveNext.
+    /// </summary>
+    private readonly List<EntityUid> _advanceToDrop = new();
+
+    private readonly List<(EntityUid Uid, MapCoordinates Pos)> _finishDrop = new();
 
     public override void Initialize()
     {
@@ -45,6 +53,9 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
     {
         base.Update(frameTime);
 
+        _advanceToDrop.Clear();
+        _finishDrop.Clear();
+
         var curTime = _timing.CurTime;
         var query = EntityQueryEnumerator<AirDropComponent, MetaDataComponent>();
 
@@ -62,22 +73,39 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
             switch (comp.Phase)
             {
                 case AirDropPhase.Target:
-                    comp.Phase = AirDropPhase.Drop;
-                    comp.PhaseEndTime = curTime + TimeSpan.FromSeconds(comp.TimeToDrop);
-                    Dirty(uid, comp);
+                    _advanceToDrop.Add(uid);
                     break;
 
                 case AirDropPhase.Drop:
-                    RaiseLocalEvent(uid,
-                        new AirDropSpawnEvent
-                        {
-                            Pos = _transform.GetMapCoordinates(uid)
-                        });
-                    comp.Phase = AirDropPhase.Done;
-                    comp.PhaseEndTime = TimeSpan.Zero;
-                    Dirty(uid, comp);
+                    _finishDrop.Add((uid, _transform.GetMapCoordinates(uid)));
                     break;
             }
+        }
+
+        foreach (var uid in _advanceToDrop)
+        {
+            if (!TryComp(uid, out AirDropComponent? comp))
+                continue;
+
+            comp.Phase = AirDropPhase.Drop;
+            comp.PhaseEndTime = curTime + TimeSpan.FromSeconds(comp.TimeToDrop);
+            Dirty(uid, comp);
+        }
+
+        foreach (var (uid, pos) in _finishDrop)
+        {
+            if (TerminatingOrDeleted(uid) || !TryComp(uid, out AirDropComponent? comp))
+                continue;
+
+            comp.Phase = AirDropPhase.Done;
+            comp.PhaseEndTime = TimeSpan.Zero;
+            Dirty(uid, comp);
+
+            RaiseLocalEvent(uid,
+                new AirDropSpawnEvent
+                {
+                    Pos = pos
+                });
         }
     }
 
@@ -167,9 +195,9 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
         }
     }
 
-    private async void OnAirDropSpawn(EntityUid uid, AirDropComponent comp, AirDropSpawnEvent args)
+    private void OnAirDropSpawn(EntityUid uid, AirDropComponent comp, AirDropSpawnEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || TerminatingOrDeleted(uid))
             return;
 
         var pos = args.Pos;
@@ -186,6 +214,8 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
             }
         }
 
+        var ev = new TimedDespawnEvent();
+        RaiseLocalEvent(uid, ref ev);
         QueueDel(uid);
         args.Handled = true;
 
@@ -197,8 +227,8 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
             Timer.Spawn(1000,
                 () =>
                 {
-                    if(supplyCompVis is not null)
-                        Dirty(supply,supplyCompVis);
+                    if (supplyCompVis is not null)
+                        Dirty(supply, supplyCompVis);
                     QueueLocalEvent(new AirDropItemSpawnEvent
                     {
                         DropTable = _prototypeManager.Index(lootTable).Table,
@@ -244,7 +274,6 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
             {
                 Log.Warning($"Unable to open {ToPrettyString(ev.SupplyPod)}: {e}");
             }
-
         }
 
         ev.Handled = true;

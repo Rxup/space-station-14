@@ -31,7 +31,7 @@ public sealed partial class LavalandPlanetSystem
         LavalandGridRuinPrototype ruin,
         Entity<LavalandMapComponent> lavaland,
         Entity<LavalandPreloaderComponent> preloader,
-        IRobustRandom random,
+        Random random,
         ref Dictionary<string, Box2> ruinsBoundsDict,
         ref List<Box2> usedSpace,
         ref List<Vector2> coords)

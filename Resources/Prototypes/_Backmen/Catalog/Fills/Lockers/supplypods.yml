@@ -303,87 +303,77 @@
 
 #missiles
 - type: entity
-  id: MissileDrop
-  parent: MissileBase
-  categories: [ HideSpawnMenu ]
-  save: false
-  components:
-  - type: AirDrop
-    timeOfTarget: 4
-    inAir:
-    - type: Sprite
-      sprite: Backmen/Effects/droppod_falling.rsi
-      layers:
-      - state: missile_falling_animation
-        offset: "0,3.3"
-    supplyDrop:
-    - type: Sprite
-      sprite: Backmen/Structures/Storage/supplypod.rsi
-      layers:
-      - state: missilepod
-      - state: missilepod_door
-    - type: SpawnOnDespawn
-      prototype: ExplosionInstant
-    - type: TimedDespawn
-      lifetime: 1
-
-- type: entity
-  id: MissileDropUnexploded
-  parent: MissileBase
-  categories: [ HideSpawnMenu ]
-  name: неразорвавшийся снаряд
-  description: Очень опасная штука, может взорваться в любой момент, я бы не стал к ней подходить...
-  save: false
-  components:
-  - type: AirDrop
-    timeOfTarget: 3
-    inAir:
-    - type: Sprite
-      sprite: Backmen/Effects/droppod_falling.rsi
-      layers:
-      - state: missile_falling_animation
-        offset: "0,3.3"
-    supplyDrop:
-    - type: Sprite
-      sprite: Backmen/Structures/Storage/supplypod.rsi
-      layers:
-      - state: missilepod
-      - state: missilepod_door
-    - type: Destructible
-      thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 150
-        behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalBreak
-            params:
-              volume: -6
-        - !type:SpawnEntitiesBehavior
-          spawn:
-            ExplosionInstant:
-              min: 1
-              max: 1
-
-
-- type: entity
-  id: MissileDropRandomSpawner
+  id: MissileDropImpact
   categories: [ HideSpawnMenu ]
   save: false
   components:
   - type: RandomSpawner
     prototypes:
-    - MissileDrop
+    - ExplosionInstant
     chance: 1
     rarePrototypes:
     - MissileDropUnexploded
     rareChance: 0.2
 
 - type: entity
+  id: MissileDrop
   name: арт-обстрел
+  save: false
+  components:
+  - type: AirDrop
+    inAir:
+    - type: Sprite
+      sprite: Backmen/Effects/droppod_falling.rsi
+      layers:
+      - state: missile_falling_animation
+        offset: "0,3.3"
+    supplyDrop:
+    - type: Sprite
+      sprite: Backmen/Structures/Storage/supplypod.rsi
+      layers:
+      - state: missilepod
+      - state: missilepod_door
+    - type: TimedDespawn
+      lifetime: 0
+  - type: SpawnOnDespawn
+    prototype: MissileDropImpact
+
+- type: entity
+  id: MissileDropUnexploded
+  parent: SupplyDropPodEmpty
+  categories: [ HideSpawnMenu ]
+  name: неразорвавшийся снаряд
+  description: Очень опасная штука, может взорваться в любой момент, я бы не стал к ней подходить...
+  save: false
+  components:
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+    - state: missilepod
+    - state: missilepod_door
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ExplosionInstant:
+            min: 1
+            max: 1
+
+
+
+- type: entity
+  name: арт-обстрел зоны
   id: MissileDropSpawnerAreaSpawner
   parent: DropPodMarkerBase
   save: false
@@ -404,7 +394,7 @@
   - type: RandomSpawner
     offset: 10
     prototypes:
-    - MissileDropRandomSpawner
+    - MissileDrop
     chance: 1
   - type: TimedDespawn
     lifetime: 1
