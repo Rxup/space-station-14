@@ -58,6 +58,12 @@ public sealed partial class FootPrintsComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public float ColorReduceAlpha = 0.1f;
 
+    /// <summary>
+    /// Footsteps are not spawned below this alpha to avoid invisible but still slippery footprints.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public float MinVisibleAlpha = 0.2f;
+
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public string? ReagentToTransfer;
 }

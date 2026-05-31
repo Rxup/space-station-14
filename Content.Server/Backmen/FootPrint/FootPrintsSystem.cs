@@ -95,8 +95,13 @@ public sealed partial class FootPrintsSystem : EntitySystem
             return;
 
         // Less resource expensive checks first
-        if (comp.PrintsColor.A <= 0f || TerminatingOrDeleted(uid))
+        if (comp.PrintsColor.A < comp.MinVisibleAlpha || TerminatingOrDeleted(uid))
+        {
+            if (comp.PrintsColor.A > 0f)
+                comp.PrintsColor = comp.PrintsColor.WithAlpha(0f);
+
             return;
+        }
 
         _actionJobQueue.EnqueueJob(new FootprintsMoveProcess((uid, comp), this, ActionJobTime));
     }
@@ -124,31 +129,40 @@ public sealed partial class FootPrintsSystem : EntitySystem
         if (!(distance > stepSize))
             return;
 
+        if (comp.PrintsColor.A < comp.MinVisibleAlpha)
+        {
+            comp.PrintsColor = comp.PrintsColor.WithAlpha(0f);
+            return;
+        }
+
         comp.RightStep = !comp.RightStep;
 
         var entity = Spawn(comp.StepProtoId, CalcCoords(gridUid, comp, transform, dragging));
         var footPrintComponent =
             Comp<FootPrintComponent>(entity); // There's NO way there's no footprint component in a FOOTPRINT
 
-        if (_appearanceQuery.TryComp(entity, out var appearance))
+        if (!_appearanceQuery.TryComp(entity, out var appearance))
         {
-            var state = PickState(uid, dragging);
-
-            _appearance.SetData(entity, FootPrintValue.Rsi, comp.RsiPath, appearance);
-            var layer = state switch
-            {
-                FootPrintVisuals.BareFootPrint => comp.RightStep
-                    ? comp.RightBarePrint
-                    : comp.LeftBarePrint,
-                FootPrintVisuals.ShoesPrint => comp.ShoesPrint,
-                FootPrintVisuals.SuitPrint => comp.SuitPrint,
-                FootPrintVisuals.Dragging => _random.Pick(comp.DraggingPrint),
-                _ => "error",
-            };
-
-            _appearance.SetData(entity, FootPrintValue.Layer, layer, appearance);
-            _appearance.SetData(entity, FootPrintVisualState.Color, comp.PrintsColor, appearance);
+            Del(entity);
+            return;
         }
+
+        var state = PickState(uid, dragging);
+
+        _appearance.SetData(entity, FootPrintValue.Rsi, comp.RsiPath, appearance);
+        var layer = state switch
+        {
+            FootPrintVisuals.BareFootPrint => comp.RightStep
+                ? comp.RightBarePrint
+                : comp.LeftBarePrint,
+            FootPrintVisuals.ShoesPrint => comp.ShoesPrint,
+            FootPrintVisuals.SuitPrint => comp.SuitPrint,
+            FootPrintVisuals.Dragging => _random.Pick(comp.DraggingPrint),
+            _ => "error",
+        };
+
+        _appearance.SetData(entity, FootPrintValue.Layer, layer, appearance);
+        _appearance.SetData(entity, FootPrintVisualState.Color, comp.PrintsColor, appearance);
 
         if (!_transformQuery.TryComp(entity, out var stepTransform))
             return;
@@ -157,7 +171,10 @@ public sealed partial class FootPrintsSystem : EntitySystem
             ? (transform.LocalPosition - comp.StepPos).ToAngle() + Angle.FromDegrees(-90f)
             : transform.LocalRotation + Angle.FromDegrees(180f);
 
-        comp.PrintsColor = comp.PrintsColor.WithAlpha(ReduceAlpha(comp.PrintsColor.A, comp.ColorReduceAlpha));
+        var newAlpha = ReduceAlpha(comp.PrintsColor.A, comp.ColorReduceAlpha);
+        comp.PrintsColor = newAlpha < comp.MinVisibleAlpha
+            ? comp.PrintsColor.WithAlpha(0f)
+            : comp.PrintsColor.WithAlpha(newAlpha);
         comp.StepPos = transform.LocalPosition;
 
         if (!TryComp<SolutionContainerManagerComponent>(entity, out var solutionContainer)
