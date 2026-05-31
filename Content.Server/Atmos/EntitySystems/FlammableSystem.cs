@@ -268,7 +268,7 @@ namespace Content.Server.Atmos.EntitySystems
 
             // start-backmen
             if (TryComp<StandingStateComponent>(ent, out var standing) &&
-                !_standing.Down(ent, force: true, standingState: standing))
+                !_standing.Down(ent, standingState: standing))
             {
                 _popup.PopupClient("Вы не можете лечь!", ent, PopupType.LargeCaution);
                 return;
