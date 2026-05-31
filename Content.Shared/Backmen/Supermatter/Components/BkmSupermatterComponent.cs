@@ -223,6 +223,12 @@ public sealed partial class BkmSupermatterComponent : Component
     [DataField("dustSound")]
     public SoundSpecifier DustSound = new SoundPathSpecifier("/Audio/Backmen/Supermatter/dust.ogg");
 
+    [DataField]
+    public EntProtoId ProjectileHitEffect = "SupermatterProjectileHitEffect";
+
+    [DataField]
+    public SoundSpecifier ProjectileHitSound = new SoundCollectionSpecifier("sparks");
+
     [DataField("delamSound")]
     public SoundSpecifier DelamSound = new SoundPathSpecifier("/Audio/Backmen/Supermatter/delamming.ogg");
 

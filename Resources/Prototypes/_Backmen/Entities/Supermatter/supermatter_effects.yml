@@ -1,0 +1,12 @@
+- type: entity
+  id: SupermatterProjectileHitEffect
+  parent: EffectSparks
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.35
+  - type: Sprite
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      color: "#ffe000"

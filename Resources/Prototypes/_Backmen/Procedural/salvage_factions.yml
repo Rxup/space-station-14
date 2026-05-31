@@ -1,0 +1,71 @@
+- type: salvageFaction
+  id: Headcrabs
+  desc: salvage-faction-headcrabs
+  entries:
+    - proto: MobHeadcrabNPCSalvage
+    - proto: MobHeadcrabBossSalvage
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: HeadcrabSalvageStatue
+    Megafauna: MobHeadcrabBossSalvage
+
+- type: salvageFaction
+  id: HeadcrabZombies
+  desc: salvage-faction-headcrab-zombies
+  entries:
+    - proto: MobHeadcrabZombieSalvage
+    - proto: MobHeadcrabZombieCivilianOldSalvage
+    - proto: MobHeadcrabZombieScienceSalvage
+      cost: 2
+    - proto: MobHeadcrabZombieSecuritySalvage
+      cost: 3
+    - proto: MobHeadcrabZombieSecurityHeavySalvage
+      cost: 5
+      prob: 0.1
+    - proto: MobHeadcrabZombieHecuSalvage
+      cost: 5
+      prob: 0.1
+    - proto: MobHeadcrabZombieSecurityRangerSalvage
+      cost: 3
+      prob: 0.02
+    - proto: MobHeadcrabZombieHEVSalvage
+      cost: 10
+      prob: 0.05
+    - proto: MobHeadcrabZombieHEVBossSalvage
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: HeadcrabZombieSalvageStatue
+    Megafauna: MobHeadcrabZombieHEVBossSalvage
+
+- type: salvageFaction
+  id: BlackOps
+  desc: salvage-faction-black-ops
+  entries:
+    - proto: MobBlackOpsOperatorMeleeSalvage
+    - proto: MobBlackOpsOperatorSalvage
+      cost: 5
+      prob: 0.3
+    - proto: MobBlackOpsBossSalvage
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: BlackOpsSalvageStatue
+    Megafauna: MobBlackOpsBossSalvage
+
+- type: salvageFaction
+  id: XenCreatures
+  desc: salvage-faction-xen-creatures
+  entries:
+    - proto: MobBullSquidGhostlessSalvage
+      cost: 5
+    - proto: MobVortigauntGhostlessSalvage
+      cost: 5
+      prob: 0.5
+    - proto: MobVortigauntBossSalvage
+      cost: 10
+      prob: 0.02
+  configs:
+    DefenseStructure: VortigauntSalvageStatue
+    Megafauna: MobVortigauntBossSalvage

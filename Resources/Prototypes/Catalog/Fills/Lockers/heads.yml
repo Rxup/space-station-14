@@ -54,7 +54,6 @@
     - id: Eftpos # backmen edit
     - id: AntiPsychicKnife # backmen edit
     - id: ClothingHeadCage # backmen edit
-    - id: HandheldReinforcementCentCom # backmen edit
     - id: ClothingEyesGlassesCommand
     - id: HeadSkeleton # A skull to accompany your skeleton crew
       conditions:

@@ -1,0 +1,250 @@
+# Salvage expedition variants for Black Mesa / Xen mobs from _Lavaland.
+
+- type: entity
+  id: MobHeadcrabNPCSalvage
+  parent: MobHeadcrabNPC
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageHeadcrabs
+
+- type: entity
+  id: MobHeadcrabZombieSalvage
+  parent: MobHeadcrabZombie
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageHeadcrabZombies
+
+- type: entity
+  id: MobHeadcrabZombieCivilianOldSalvage
+  parent: MobHeadcrabZombieCivilianOld
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageHeadcrabZombies
+
+- type: entity
+  id: MobHeadcrabZombieScienceSalvage
+  parent: MobHeadcrabZombieScience
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageHeadcrabZombies
+
+- type: entity
+  id: MobHeadcrabZombieSecuritySalvage
+  parent: MobHeadcrabZombieSecurity
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageHeadcrabZombies
+
+- type: entity
+  id: MobHeadcrabZombieSecurityRangerSalvage
+  parent: MobHeadcrabZombieSecurityRanger
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageHeadcrabZombies
+
+- type: entity
+  id: MobHeadcrabZombieSecurityHeavySalvage
+  parent: MobHeadcrabZombieSecurityHeavy
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageHeadcrabZombies
+
+- type: entity
+  id: MobHeadcrabZombieHecuSalvage
+  parent: MobHeadcrabZombieHecu
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageHeadcrabZombies
+
+- type: entity
+  id: MobHeadcrabZombieHEVSalvage
+  parent: MobHeadcrabZombieHEV
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageHeadcrabZombies
+
+- type: entity
+  id: MobBlackOpsOperatorMeleeSalvage
+  parent: MobBlackOpsOperatorMelee
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageBlackOps
+
+- type: entity
+  id: MobBlackOpsOperatorSalvage
+  parent: MobBlackOpsOperator
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageBlackOps
+
+- type: entity
+  id: MobBullSquidGhostlessSalvage
+  parent: MobBullSquidGhostless
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageXenCreatures
+
+- type: entity
+  id: MobVortigauntGhostlessSalvage
+  parent: MobVortigauntGhostless
+  suffix: Salvage
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SalvageXenCreatures
+
+# Mini-bosses
+
+- type: entity
+  id: MobHeadcrabBossSalvage
+  parent: MobHeadcrabNPCSalvage
+  suffix: Salvage Boss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: headcrab
+    - state: headcrab
+      color: "#FF3333AA"
+      shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 10
+  - type: FleshWorm
+    damage:
+      types:
+        Piercing: 20
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 5
+  - type: Tag
+    tags:
+    - CannotSuicide
+
+- type: entity
+  id: MobHeadcrabZombieHEVBossSalvage
+  parent: MobHeadcrabZombieHEVSalvage
+  suffix: Salvage Boss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    layers:
+    - state: hev_zombie
+    - state: hev_zombie
+      color: "#FF3333AA"
+      shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      350: Dead
+  - type: MeleeWeapon
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 6
+        Structural: 35
+  - type: Tag
+    tags:
+    - CannotSuicide
+
+- type: entity
+  id: MobBlackOpsBossSalvage
+  parent: MobBlackOpsOperatorSalvage
+  suffix: Salvage Boss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - state: blackops_ranged
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    - state: blackops_ranged
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      color: "#FF3333AA"
+      shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: BasicEntityAmmoProvider
+    capacity: 5
+    count: 5
+  - type: Gun
+    fireRate: 4
+  - type: Tag
+    tags:
+    - CannotSuicide
+
+- type: entity
+  id: MobVortigauntBossSalvage
+  parent: MobVortigauntGhostlessSalvage
+  suffix: Salvage Boss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    layers:
+    - state: vortigaunt
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: vortigaunt
+      color: "#FF3333AA"
+      shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: BatterySelfRecharger
+    autoRechargeRate: 75
+  - type: Gun
+    fireRate: 0.55
+  - type: Tag
+    tags:
+    - CannotSuicide
