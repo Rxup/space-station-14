@@ -97,20 +97,6 @@
   id: DropPodStreetCleaner
   table: !type:AllSelector
     children:
-    - id: SupplyDropPodStreetCleaner
-
-- type: entity
-  id: SupplyDropPodStreetCleaner
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: AirDrop
-    supplyDropTable: StreetCleanerTeamSpawner
-    forceOpenSupplyDrop: true
-
-- type: entityTable
-  id: StreetCleanerTeamSpawner
-  table: !type:AllSelector
-    children:
     - id: MobStreetCleaner
     - id: MobStreetCleaner
     - id: MobStreetCleaner

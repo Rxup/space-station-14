@@ -8,10 +8,7 @@ public sealed class AirDropSpawnEvent : HandledEntityEventArgs
 {
     public MapCoordinates Pos { get; set; }
 }
-public sealed class AirDropTargetSpawnEvent : HandledEntityEventArgs
-{
-    public MapCoordinates Pos { get; set; }
-}
+
 public sealed class AirDropItemSpawnEvent : HandledEntityEventArgs
 {
     public required EntityTableSelector DropTable { get; set; }

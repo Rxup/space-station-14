@@ -6,7 +6,10 @@
   - type: TimedDespawn
     lifetime: 0.35
   - type: Sprite
+    scale: 1.5, 3
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
-      color: "#ffe000"
+      sprite: Effects/sparks.rsi
+      state: sparks
+      color: "#002fff"
