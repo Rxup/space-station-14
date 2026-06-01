@@ -65,6 +65,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         // To prevent people immediately falling down as rejuvenated
         SubscribeLocalEvent<ConsciousnessComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(SharedBodySystem)]);
         SubscribeLocalEvent<ConsciousnessComponent, HandleUnhandledWoundsEvent>(OnHandleUnhandledDamage);
+        SubscribeLocalEvent<ConsciousnessComponent, DamageableGetHealableDamageEvent>(OnGetHealableDamage);
 
         SubscribeLocalEvent<ConsciousnessRequiredComponent, BodyPartAddedEvent>(OnBodyPartAdded);
         SubscribeLocalEvent<ConsciousnessRequiredComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
@@ -106,7 +107,8 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
                                 out var mostDamaged,
                                 damageGroup?.ID))
                         {
-                            actuallyInducedDamage.DamageDict[damagePair.Key] = 0;
+                            actuallyInducedDamage.DamageDict[damagePair.Key] =
+                                TryApplyAsphyxiationChange((uid, component), damagePair);
                             continue;
                         }
 
@@ -119,8 +121,13 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
                         if (beforePart.Cancelled)
                             continue;
 
-                        actuallyInducedDamage.DamageDict[damagePair.Key] =
-                            Wound.GetWoundsChanged(mostDamaged.Value, args.Origin, damage, component: mostDamaged.Value).DamageDict[damagePair.Key];
+                        var woundHealed =
+                            Wound.GetWoundsChanged(mostDamaged.Value, args.Origin, damage, component: mostDamaged.Value)
+                                .DamageDict.GetValueOrDefault(damagePair.Key);
+
+                        actuallyInducedDamage.DamageDict[damagePair.Key] = woundHealed != 0
+                            ? woundHealed
+                            : TryApplyAsphyxiationChange((uid, component), damagePair);
                     }
                     else
                     {
@@ -218,7 +225,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
                 consciousness.AsNullable(),
                 consciousness.Comp.NerveSystem.Value,
                 out _,
-                "Suffocation"))
+                ConsciousnessModifierIds.Asphyxiation))
             return false;
 
         if (MobStateSys.IsDead(consciousness, mobState))
@@ -268,7 +275,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
         if (!TryGetNerveSystem(consciousness.AsNullable(), out var nerveSys))
             return;
-        var modifier = consciousness.Comp.Modifiers[(nerveSys.Value.Owner, "Suffocation")];
+        var modifier = consciousness.Comp.Modifiers[(nerveSys.Value.Owner, ConsciousnessModifierIds.Asphyxiation)];
 
         var sex = Sex.Unsexed;
         if (TryComp<HumanoidAppearanceComponent>(consciousness, out var humanoid))
@@ -371,12 +378,12 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
             consciousness.AsNullable(),
             nerveSys.Value,
             consciousness.Comp.CprSuffocationHealAmount,
-            "Suffocation");
+            ConsciousnessModifierIds.Asphyxiation);
 
-        if (consciousness.Comp.Modifiers[(nerveSys.Value, "Suffocation")].Change > 0)
+        if (consciousness.Comp.Modifiers[(nerveSys.Value, ConsciousnessModifierIds.Asphyxiation)].Change > 0)
         {
             // No fuck you
-            RemoveConsciousnessModifier(consciousness.AsNullable(), nerveSys.Value, "Suffocation");
+            RemoveConsciousnessModifier(consciousness.AsNullable(), nerveSys.Value, ConsciousnessModifierIds.Asphyxiation);
         }
 
         _popup.PopupEntity(
@@ -436,38 +443,130 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         ForceConscious(consciousness.AsNullable(), TimeSpan.FromSeconds(5f));
     }
 
-    private void OnHandleUnhandledDamage(Entity<ConsciousnessComponent> consciousness, ref HandleUnhandledWoundsEvent args)
+    private void OnGetHealableDamage(
+        Entity<ConsciousnessComponent> consciousness,
+        ref DamageableGetHealableDamageEvent args)
     {
-        if (!TryGetNerveSystem(consciousness.AsNullable(), out var nerveSys))
+        if (args.Target.Owner != consciousness.Owner)
             return;
 
+        args.Damage = GetHealableWoundDamage(consciousness, args.Group);
+        args.Handled = true;
+    }
+
+    /// <summary>
+    /// Healable damage from wounds and the Asphyxiation consciousness modifier (Airloss is not stored on body-part wounds).
+    /// </summary>
+    private DamageSpecifier GetHealableWoundDamage(
+        Entity<ConsciousnessComponent> consciousness,
+        ProtoId<DamageGroupPrototype>? group)
+    {
+        var damage = new DamageSpecifier();
+        var body = consciousness.Owner;
+
+        if (!TryComp<BodyComponent>(body, out var bodyComp))
+            return damage;
+
+        DamageGroupPrototype? groupProto = null;
+        if (group != null && !Proto.Resolve(group.Value, out groupProto))
+            return damage;
+
+        foreach (var wound in Wound.GetBodyWounds(body, bodyComp))
+        {
+            if (!Wound.CanHealWound(wound))
+                continue;
+
+            var severity = wound.Comp.WoundSeverityPoint;
+            if (severity <= FixedPoint2.Zero)
+                continue;
+
+            var type = wound.Comp.DamageType;
+            if (groupProto != null && !groupProto.DamageTypes.Contains(type))
+                continue;
+
+            damage.DamageDict.TryGetValue(type, out var existing);
+            damage.DamageDict[type] = existing + severity;
+        }
+
+        if (consciousness.Comp.NerveSystem is { } nerveSys
+            && consciousness.Comp.Modifiers.TryGetValue((nerveSys, ConsciousnessModifierIds.Asphyxiation), out var asphyxiationMod)
+            && asphyxiationMod.Change < FixedPoint2.Zero
+            && (groupProto == null || groupProto.DamageTypes.Contains(AsphyxiationDamageType)))
+        {
+            var asphyxiation = -asphyxiationMod.Change;
+            damage.DamageDict.TryGetValue(AsphyxiationDamageType, out var existing);
+            damage.DamageDict[AsphyxiationDamageType] = existing + asphyxiation;
+        }
+
+        return damage;
+    }
+
+    private void OnHandleUnhandledDamage(Entity<ConsciousnessComponent> consciousness, ref HandleUnhandledWoundsEvent args)
+    {
         foreach (var damagePiece in args.UnhandledDamage.ToArray())
         {
             if (damagePiece.Key != AsphyxiationDamageType)
                 continue;
 
-            if (!ChangeConsciousnessModifier(
-                    consciousness.AsNullable(),
-                    nerveSys.Value,
-                    -damagePiece.Value,
-                    "Suffocation"))
-            {
-                AddConsciousnessModifier(
-                    consciousness.AsNullable(),
-                    nerveSys.Value,
-                    -damagePiece.Value,
-                    "Suffocation",
-                    ConsciousnessModType.Pain);
-            }
-
-            if (consciousness.Comp.Modifiers.ContainsKey((nerveSys.Value, "Suffocation")) && consciousness.Comp.Modifiers[(nerveSys.Value, "Suffocation")].Change > 0)
-            {
-                // No fuck you
-                RemoveConsciousnessModifier(consciousness.AsNullable(), nerveSys.Value, "Suffocation");
-            }
-
+            ApplyAsphyxiationChange(consciousness, damagePiece.Value);
             args.UnhandledDamage.Remove(damagePiece.Key);
         }
+    }
+
+    /// <summary>
+    /// Applies Asphyxiation that cannot become a wound (consciousness modifier on the nerve system).
+    /// </summary>
+    /// <returns>Damage applied in the same convention as <see cref="DamageSpecifier"/> (negative = heal).</returns>
+    private FixedPoint2 TryApplyAsphyxiationChange(
+        Entity<ConsciousnessComponent> consciousness,
+        KeyValuePair<string, FixedPoint2> damagePair)
+    {
+        if (damagePair.Key != AsphyxiationDamageType)
+            return FixedPoint2.Zero;
+
+        return ApplyAsphyxiationChange(consciousness, damagePair.Value);
+    }
+
+    private FixedPoint2 ApplyAsphyxiationChange(
+        Entity<ConsciousnessComponent> consciousness,
+        FixedPoint2 damageValue)
+    {
+        if (!TryGetNerveSystem(consciousness.AsNullable(), out var nerveSys))
+            return FixedPoint2.Zero;
+
+        // Healing only applies when asphyxiation is already present.
+        if (damageValue < 0
+            && !consciousness.Comp.Modifiers.ContainsKey((nerveSys.Value, ConsciousnessModifierIds.Asphyxiation)))
+        {
+            return FixedPoint2.Zero;
+        }
+
+        var modifierDelta = -damageValue;
+
+        if (!ChangeConsciousnessModifier(
+                consciousness.AsNullable(),
+                nerveSys.Value,
+                modifierDelta,
+                ConsciousnessModifierIds.Asphyxiation))
+        {
+            if (damageValue <= 0)
+                return FixedPoint2.Zero;
+
+            AddConsciousnessModifier(
+                consciousness.AsNullable(),
+                nerveSys.Value,
+                modifierDelta,
+                ConsciousnessModifierIds.Asphyxiation,
+                ConsciousnessModType.Pain);
+        }
+
+        if (consciousness.Comp.Modifiers.TryGetValue((nerveSys.Value, ConsciousnessModifierIds.Asphyxiation), out var modifier)
+            && modifier.Change > 0)
+        {
+            RemoveConsciousnessModifier(consciousness.AsNullable(), nerveSys.Value, ConsciousnessModifierIds.Asphyxiation);
+        }
+
+        return damageValue;
     }
 
     private void OnBodyPartAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartAddedEvent args)

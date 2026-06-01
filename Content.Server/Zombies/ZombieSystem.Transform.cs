@@ -14,6 +14,7 @@ using Content.Server.NPC.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain;
@@ -267,7 +268,7 @@ public sealed partial class ZombieSystem
 
             if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
             {
-                _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "Suffocation");
+                _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, ConsciousnessModifierIds.Asphyxiation);
                 _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "WoundPain");
 
                 if (TryComp<BloodstreamComponent>(target, out var bloodstream))

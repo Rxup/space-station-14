@@ -362,6 +362,11 @@ public sealed partial class DamageableSystem
     /// <returns></returns>
     public DamageSpecifier GetDamage(Entity<DamageableComponent> ent, ProtoId<DamageGroupPrototype> group)
     {
+        var customDamageEv = new DamageableGetHealableDamageEvent(ent, group, new DamageSpecifier());
+        RaiseLocalEvent(ent.Owner, ref customDamageEv);
+        if (customDamageEv.Handled)
+            return customDamageEv.Damage;
+
         // No damage if no group exists...
         if (!_prototypeManager.Resolve(group, out var groupProto))
             return new DamageSpecifier();
@@ -387,6 +392,11 @@ public sealed partial class DamageableSystem
     /// <returns></returns>
     public DamageSpecifier GetDamage(Entity<DamageableComponent> ent)
     {
+        var customDamageEv = new DamageableGetHealableDamageEvent(ent, null, new DamageSpecifier());
+        RaiseLocalEvent(ent.Owner, ref customDamageEv);
+        if (customDamageEv.Handled)
+            return customDamageEv.Damage;
+
         var damage = new DamageSpecifier();
         damage.DamageDict.EnsureCapacity(ent.Comp.Damage.DamageDict.Count);
 

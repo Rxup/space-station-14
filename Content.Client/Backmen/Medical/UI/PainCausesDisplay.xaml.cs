@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.Message;
 using Content.Client.UserInterface.Systems.Guidebook; // backmen
+using Content.Shared.Backmen.Surgery.Consciousness; // backmen
 using Content.Shared.Backmen.Surgery.Consciousness.Systems; // backmen
 using Content.Shared.Backmen.Surgery.Pain.Components; // backmen
 using Content.Shared.Guidebook; // backmen
@@ -368,7 +369,7 @@ public sealed partial class PainCausesDisplay : Control
         return identifier switch
         {
             "WoundPain" => Loc.GetString("health-analyzer-window-pain-cause-wound-pain"),
-            "Suffocation" => Loc.GetString("health-analyzer-window-pain-cause-suffocation"),
+            ConsciousnessModifierIds.Asphyxiation => Loc.GetString("health-analyzer-window-pain-cause-suffocation"),
             "Bloodloss" => Loc.GetString("health-analyzer-window-pain-cause-bloodloss"),
             "DeathThreshold" => Loc.GetString("health-analyzer-window-pain-cause-death-threshold"),
             "Suicide" => Loc.GetString("health-analyzer-window-pain-cause-suicide"),
@@ -385,7 +386,7 @@ public sealed partial class PainCausesDisplay : Control
         return identifier switch
         {
             "WoundPain" => "MedicalDoctor",
-            "Suffocation" => "MedicalDoctor",
+            ConsciousnessModifierIds.Asphyxiation => "MedicalDoctor",
             "Bloodloss" => "MedicalDoctor",
             "DeathThreshold" => "MedicalDoctor",
             "Suicide" => "MedicalDoctor",
