@@ -110,7 +110,7 @@
   - type: NPCRetaliation
   - type: FactionException
   - type: HTN
-    planCooldown: 10
+    planCooldown: 0.5
     blackboard:
       NavClimb: !type:Bool
         true
@@ -153,12 +153,13 @@
 - type: htnCompound
   id: WispCombatCompound
   branches:
-  - tasks:
-    - !type:HTNCompoundTask
-      task: WispRangedCombatCompound
+  # Drain critical psionics first; fall back to shooting if none are drainable.
   - tasks:
     - !type:HTNCompoundTask
       task: DrainPsionicCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: WispRangedCombatCompound
   - tasks:
     - !type:HTNCompoundTask
       task: IdleCompound

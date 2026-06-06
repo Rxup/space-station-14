@@ -77,7 +77,6 @@ public sealed partial class ZombieSystem
     [Dependency] private NPCSystem _npc = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private ISharedPlayerManager _player = default!;
-    [Dependency] private SharedBodySystem _bodySystem = default!; // backmen
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
     private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
@@ -257,45 +256,6 @@ public sealed partial class ZombieSystem
         //Heals the zombie from all the damage it took while human
         _damageable.ClearAllDamage(target);
         _mobState.ChangeMobState(target, MobState.Alive);
-
-        // Backmen Edit start
-        _bodySystem.ForceRestoreBody(target, true);
-
-        if (TryComp<ConsciousnessComponent>(target, out var consciousness))
-        {
-            Entity<ConsciousnessComponent?> entConsciousness = (target, consciousness);
-            _consciousness.RemoveConsciousnessModifier(entConsciousness, target, "DeathThreshold");
-
-            if (_consciousness.TryGetNerveSystem(target, out var nerveSys))
-            {
-                _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, ConsciousnessModifierIds.Asphyxiation);
-                _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "WoundPain");
-
-                if (TryComp<BloodstreamComponent>(target, out var bloodstream))
-                {
-                    var bloodLevel = (FixedPoint2) _bloodstream.GetBloodLevel((target, bloodstream));
-                    var thresholdValue = bloodstream.LethalBloodlossThreshold * bloodstream.MaxVolumeModifier;
-                    if (bloodLevel >= thresholdValue)
-                        _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "Bloodloss");
-                }
-
-                _pain.TryAddPainMultiplier(
-                    nerveSys.Value,
-                    "Zombified",
-                    -1f,
-                    PainType.WoundPain,
-                    nerveSys.Value);
-                _pain.TryAddPainMultiplier(nerveSys.Value,
-                    "ZombifiedTraumatic",
-                    -1f,
-                    PainType.TraumaticPain,
-                    nerveSys.Value);
-            }
-
-            _consciousness.CheckConscious(entConsciousness);
-            _consciousness.AddConsciousnessMultiplier(target, target, 1.4f, "Zombified");
-        }
-        // Backmen Edit end
 
         _faction.ClearFactions(target, dirty: false);
         _faction.AddFaction(target, ZombieFaction);

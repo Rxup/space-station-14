@@ -8,6 +8,7 @@ using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Traumas;
@@ -28,6 +29,8 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
+using Content.Shared.Standing;
+using Content.Shared.Zombies;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
@@ -43,7 +46,10 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
     [Dependency] private DoAfterSystem _doAfter = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private TraumaSystem _trauma = default!;
-    [Dependency] private PainSystem _pain = default!; // backmen
+    [Dependency] private PainSystem _pain = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+
 
     private float _cprTraumaChance = 0.1f;
 
@@ -73,7 +79,18 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganAddedToBodyEvent>(OnOrganAdded);
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganRemovedFromBodyEvent>(OnOrganRemoved);
 
+        SubscribeLocalEvent<ConsciousnessComponent, EntityZombifiedEvent>(OnZombified);
+
         Subs.CVar(_cfg, CCVars.CprTraumaChance, value => _cprTraumaChance = value, true);
+    }
+
+    private void OnZombified(Entity<ConsciousnessComponent> ent, ref EntityZombifiedEvent args)
+    {
+        Body.ForceRestoreBody(ent.Owner, true);
+        RemComp<ConsciousnessComponent>(ent);
+        _damageable.ClearAllDamage(ent.Owner);
+        MobStateSys.ChangeMobState(ent, MobState.Alive);
+        _standing.Stand(ent, force: true);
     }
 
     private const string NerveSystemIdentifier = "nerveSystem";
