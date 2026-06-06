@@ -41,7 +41,7 @@ public sealed partial class CocoonerSystem : EntitySystem
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private BloodSuckerSystem _bloodSuckerSystem = default!;
 
-    private const string BodySlot = "body_slot";
+    public const string BodySlot = "body_slot";
 
     public override void Initialize()
     {
@@ -80,7 +80,7 @@ public sealed partial class CocoonerSystem : EntitySystem
         {
             Act = () =>
             {
-                _bloodSuckerSystem.StartSuccDoAfter(args.User, victim.Value, sucker, stream, false); // start doafter
+                _bloodSuckerSystem.StartSuccDoAfter(args.User, victim.Value, sucker, stream, false, uid); // start doafter
             },
             Text = Loc.GetString("action-name-suck-blood"),
             Icon = new SpriteSpecifier.Texture(new("/Textures/Nyanotrasen/Icons/verbiconfangs.png")),
@@ -129,6 +129,26 @@ public sealed partial class CocoonerSystem : EntitySystem
             Priority = 2
         };
         args.Verbs.Add(verb);
+    }
+
+    public bool CanCocoon(EntityUid uid, EntityUid target, CocoonerComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return false;
+
+        if (!HasComp<MobStateComponent>(target) || HasComp<CocoonComponent>(target))
+            return false;
+
+        return !_bloodSuckerSystem.IsInCocoon(target);
+    }
+
+    public bool NPCStartCocooning(EntityUid uid, EntityUid target, CocoonerComponent? component = null)
+    {
+        if (!Resolve(uid, ref component) || !CanCocoon(uid, target, component))
+            return false;
+
+        StartCocooning(uid, component, target);
+        return true;
     }
 
     private void StartCocooning(EntityUid uid, CocoonerComponent component, EntityUid target)

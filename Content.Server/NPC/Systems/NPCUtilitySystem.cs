@@ -28,7 +28,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Atmos.Components;
 using System.Linq;
+using Content.Server.Backmen.Cocoon;
 using Content.Server.Backmen.NPC.Queries.Considerations;
+using Content.Server.Backmen.Vampiric;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
 
@@ -338,6 +340,42 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             case TargetIsAliveOrSoftCritCon:
             {
                 return _mobState.IsAliveOrSoftCrit(targetUid) ? 1f : 0f;
+            }
+            case BloodPuddleValueCon:
+            {
+                var bloodSucker = EntityManager.System<BloodSuckerSystem>();
+                if (!bloodSucker.NeedsBlood(owner))
+                    return 0f;
+
+                return bloodSucker.PuddleHasBlood(targetUid) ? 1f : 0f;
+            }
+            case CocoonBloodValueCon:
+            {
+                var bloodSucker = EntityManager.System<BloodSuckerSystem>();
+                if (!bloodSucker.NeedsBlood(owner))
+                    return 0f;
+
+                if (!HasComp<CocoonComponent>(targetUid))
+                    return 0f;
+
+                return bloodSucker.CanSucc(owner, targetUid) ? 1f : 0f;
+            }
+            case CocoonVictimCon:
+            {
+                if (!_mobState.IsAlive(targetUid))
+                    return 0f;
+
+                if (EntityManager.System<CocoonerSystem>().CanCocoon(owner, targetUid))
+                {
+                    if (_mobState.IsCritical(targetUid) ||
+                        HasComp<KnockedDownComponent>(targetUid) ||
+                        HasComp<StunnedComponent>(targetUid))
+                    {
+                        return 1f;
+                    }
+                }
+
+                return 0f;
             }
             // end-backmen: soft crit
             case TargetIsAliveCon:

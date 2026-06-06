@@ -1,4 +1,5 @@
 using Content.Server.Interaction;
+using Content.Server.Wieldable;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Audio;
@@ -25,6 +26,7 @@ public sealed partial class NPCCombatSystem : EntitySystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private WieldableSystem _wield = default!;
 
     /// <summary>
     /// If disabled we'll move into range but not attack.

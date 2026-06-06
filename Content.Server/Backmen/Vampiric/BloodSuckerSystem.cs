@@ -36,7 +36,11 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
+using Content.Server.Backmen.Cocoon;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Fluids;
+using Content.Shared.Fluids.Components;
+using Content.Shared.Stunnable;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Forensics.Systems;
 using Content.Shared.HealthExaminable;
@@ -46,6 +50,7 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Roles;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
@@ -81,6 +86,8 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
     [Dependency] private ConsciousnessSystem _consciousness = default!;
     [Dependency] private SharedPuddleSystem _puddle = default!;
     [Dependency] private SharedForensicsSystem _forensics = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
     private EntityQuery<BloodSuckerComponent> _bsQuery;
 
     private readonly EntProtoId BloodsuckerMindRole = "MindRoleBloodsucker";
@@ -281,7 +288,10 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
         if (args.Cancelled || args.Handled || args.Args.Target == null)
             return;
 
-        args.Handled = TrySucc(uid, args.Args.Target.Value);
+        if (!TryGetSuccTarget(args.Args.Target.Value, out var victim))
+            return;
+
+        args.Handled = TrySucc(uid, victim);
     }
 
     private static readonly ProtoId<ReagentPrototype> Blood = "Blood";
@@ -309,25 +319,27 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
         return true;
     }
 
-    public void StartSuccDoAfter(EntityUid bloodsucker, EntityUid victim, BloodSuckerComponent? bloodSuckerComponent = null, BloodstreamComponent? stream = null, bool doChecks = true)
+    public bool StartSuccDoAfter(EntityUid bloodsucker, EntityUid victim, BloodSuckerComponent? bloodSuckerComponent = null, BloodstreamComponent? stream = null, bool doChecks = true, EntityUid? doAfterTarget = null)
     {
         if (!Resolve(bloodsucker, ref bloodSuckerComponent))
-            return;
+            return false;
 
         if (!Resolve(victim, ref stream) || stream.BloodReferenceSolution is not {} bloodReferenceSolution)
-            return;
+            return false;
+
+        var interactTarget = doAfterTarget ?? victim;
 
         if (doChecks)
         {
-            if (!_interactionSystem.InRangeUnobstructed(bloodsucker, victim))
+            if (!_interactionSystem.InRangeUnobstructed(bloodsucker, interactTarget))
             {
-                return;
+                return false;
             }
 
             if (_inventorySystem.TryGetSlotEntity(victim, "head", out var headUid) && HasComp<PressureProtectionComponent>(headUid))
             {
                 _popups.PopupEntity(Loc.GetString("bloodsucker-fail-helmet", ("helmet", headUid)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
-                return;
+                return false;
             }
 
             if (_inventorySystem.TryGetSlotEntity(bloodsucker, "mask", out var maskUid) &&
@@ -335,14 +347,14 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
                 blocker.Enabled)
             {
                 _popups.PopupEntity(Loc.GetString("bloodsucker-fail-mask", ("mask", maskUid)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
-                return;
+                return false;
             }
         }
 
         if (!CanBeSucked((victim,stream)))
         {
             _popups.PopupEntity(Loc.GetString("bloodsucker-fail-not-blood", ("target", victim)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
-            return;
+            return false;
         }
 
         if (bloodReferenceSolution.Volume <= 1)
@@ -352,8 +364,19 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
             else
                 _popups.PopupEntity(Loc.GetString("bloodsucker-fail-no-blood", ("target", victim)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
 
-            return;
+            return false;
         }
+
+        var ev = new BloodSuckDoAfterEvent();
+        var args = new DoAfterArgs(EntityManager, bloodsucker, bloodSuckerComponent.SuccDelay, ev, bloodsucker, target: interactTarget)
+        {
+            BreakOnMove = true,
+            DistanceThreshold = 2f,
+            NeedHand = false
+        };
+
+        if (!_doAfter.TryStartDoAfter(args))
+            return false;
 
         _popups.PopupEntity(Loc.GetString("bloodsucker-doafter-start-victim", ("sucker", bloodsucker)), victim, victim, Shared.Popups.PopupType.LargeCaution);
         _popups.PopupEntity(Loc.GetString("bloodsucker-doafter-start", ("target", victim)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
@@ -367,15 +390,7 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
             TryRetaliate((victim, npcRetaliationComponent), bloodsucker);
         }
 
-        var ev = new BloodSuckDoAfterEvent();
-        var args = new DoAfterArgs(EntityManager, bloodsucker, bloodSuckerComponent.SuccDelay, ev, bloodsucker, target: victim)
-        {
-            BreakOnMove = true,
-            DistanceThreshold = 2f,
-            NeedHand = false
-        };
-
-        _doAfter.TryStartDoAfter(args);
+        return true;
     }
 
     [ViewVariables(VVAccess.ReadWrite)]
@@ -550,5 +565,130 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
         pr *= unitsToDrain / SuckUnitDivisionCoef;
 
         return Math.Max(0f, pr);
+    }
+
+    private const float MinStomachBlood = 30f;
+
+    public bool NeedsBlood(EntityUid uid)
+    {
+        var stomach = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(uid).FirstOrNull();
+        if (stomach == null)
+            return true;
+
+        if (!_solutionSystem.TryGetSolution(stomach.Value.Owner, StomachSystem.DefaultSolutionName, out var sol))
+            return true;
+
+        return sol.Value.Comp.Solution.AvailableVolume > MinStomachBlood;
+    }
+
+    public bool IsInCocoon(EntityUid victim)
+    {
+        if (!_container.TryGetContainingContainer(victim, out var container))
+            return false;
+
+        return HasComp<CocoonComponent>(container.Owner);
+    }
+
+    public bool TryGetSuccTarget(EntityUid target, out EntityUid victim)
+    {
+        victim = target;
+
+        if (!HasComp<CocoonComponent>(target))
+            return true;
+
+        var body = _itemSlots.GetItemOrNull(target, CocoonerSystem.BodySlot);
+        if (body == null)
+            return false;
+
+        victim = body.Value;
+        return true;
+    }
+
+    public bool PuddleHasBlood(EntityUid puddle)
+    {
+        if (!TryComp<PuddleComponent>(puddle, out var puddleComp))
+            return false;
+
+        if (!_solutionSystem.TryGetSolution(puddle, puddleComp.SolutionName, out _, out var sol))
+            return false;
+
+        return sol.Volume > 5 && sol.ContainsPrototype(Blood);
+    }
+
+    public bool TryDrinkBloodPuddle(EntityUid bloodsucker, EntityUid puddle, BloodSuckerComponent? bloodSuckerComponent = null)
+    {
+        if (!Resolve(bloodsucker, ref bloodSuckerComponent) || !PuddleHasBlood(puddle))
+            return false;
+
+        if (!TryComp<PuddleComponent>(puddle, out var puddleComp) ||
+            !_solutionSystem.TryGetSolution(puddle, puddleComp.SolutionName, out var puddleSolution))
+        {
+            return false;
+        }
+
+        var stomach = _bodySystem.GetBodyOrganEntityComps<StomachComponent>(bloodsucker).FirstOrNull();
+        if (stomach == null)
+            return false;
+
+        if (!_solutionSystem.TryGetSolution(stomach.Value.Owner, StomachSystem.DefaultSolutionName, out var suckerStomachSolution))
+            return false;
+
+        var available = suckerStomachSolution.Value.Comp.Solution.AvailableVolume;
+        if (available <= 2)
+            return false;
+
+        var bloodVolume = puddleSolution.Value.Comp.Solution.GetTotalPrototypeQuantity(Blood);
+        var units = Math.Min(Math.Min(bloodVolume.Float(), bloodSuckerComponent.UnitsToSucc), available.Float());
+
+        if (units <= 2)
+            return false;
+
+        var temp = puddleSolution.Value.Comp.Solution.SplitSolutionWithOnly(units, Blood);
+        _solutionSystem.UpdateChemicals(puddleSolution.Value);
+        _reactiveSystem.DoEntityReaction(bloodsucker, temp, ReactionMethod.Ingestion);
+
+        if (!_stomachSystem.TryTransferSolution(stomach.Value.Owner, temp, stomach.Value))
+            return false;
+
+        _audio.PlayPvs("/Audio/Items/drink.ogg", bloodsucker);
+        return true;
+    }
+
+    public bool CanSucc(EntityUid bloodsucker, EntityUid target, BloodSuckerComponent? bloodSuckerComponent = null)
+    {
+        if (!Resolve(bloodsucker, ref bloodSuckerComponent))
+            return false;
+
+        if (!TryGetSuccTarget(target, out var victim))
+            return false;
+
+        if (!TryComp<BloodstreamComponent>(victim, out var stream))
+            return false;
+
+        if (bloodSuckerComponent.WebRequired && !IsInCocoon(victim))
+            return false;
+
+        if (!CanBeSucked((victim, stream)))
+            return false;
+
+        if (stream.BloodReferenceSolution is not {} bloodReferenceSolution || bloodReferenceSolution.Volume <= 1)
+            return false;
+
+        return _interactionSystem.InRangeUnobstructed(bloodsucker, HasComp<CocoonComponent>(target) ? target : victim);
+    }
+
+    public bool NPCStartSucc(EntityUid bloodsucker, EntityUid target, BloodSuckerComponent? bloodSuckerComponent = null)
+    {
+        if (!Resolve(bloodsucker, ref bloodSuckerComponent) || !CanSucc(bloodsucker, target, bloodSuckerComponent))
+            return false;
+
+        if (!TryGetSuccTarget(target, out var victim) ||
+            !TryComp<BloodstreamComponent>(victim, out var stream))
+        {
+            return false;
+        }
+
+        var doAfterTarget = HasComp<CocoonComponent>(target) ? target : victim;
+        return StartSuccDoAfter(bloodsucker, victim, bloodSuckerComponent, stream, false, doAfterTarget);
     }
 }

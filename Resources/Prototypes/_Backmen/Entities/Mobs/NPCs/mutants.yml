@@ -128,6 +128,7 @@
   - type: Puller
     needsHands: false
   - type: Arachne
+  - type: DoAfter
   - type: Cocooner
     cocoonDelay: 8
   - type: SolutionContainerManager
@@ -213,6 +214,7 @@
     isToggle: true
     color: "#808080"
     playSoundOn: false
+  - type: NoSlip
 
 - type: entity
   name: Чёрная вдова
@@ -227,7 +229,7 @@
     - type: MobMover
     - type: HTN
       rootTask:
-        task: SimpleHostileCompound
+        task: SpiderVampireCompound
     - type: GhostRole
       makeSentient: true
       name: ghost-role-information-giant-spider-vampire-name
@@ -276,6 +278,14 @@
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SpiderVampireCompound
     - type: SpiderVampire
       spawnEgg: FoodEggSpiderVampire
       charges: 10

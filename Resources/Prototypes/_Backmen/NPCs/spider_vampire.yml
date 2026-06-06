@@ -1,0 +1,131 @@
+- type: utilityQuery
+  id: NearbyBloodPuddles
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: Puddle
+    - !type:PuddleFilter
+  considerations:
+    - !type:BloodPuddleValueCon
+      curve: !type:QuadraticCurve
+        slope: 1.0
+        exponent: 0.4
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+- type: utilityQuery
+  id: NearbyCocoonMeals
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: Cocoon
+  considerations:
+    - !type:CocoonBloodValueCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+- type: utilityQuery
+  id: NearbyCocoonVictims
+  query:
+    - !type:NearbyHostilesQuery
+  considerations:
+    - !type:CocoonVictimCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+- type: htnCompound
+  id: SpiderVampireCompound
+  branches:
+    # Lay an egg when well-fed.
+    - preconditions:
+        - !type:SpiderLayEggPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:LayEggOperator
+
+    # Drink blood from a cocooned victim.
+    - preconditions:
+        - !type:BloodThirstyPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCocoonMeals
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: true
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: MeleeRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+          operator: !type:BloodSuccOperator
+            targetKey: Target
+
+    # Drink blood from puddles.
+    - preconditions:
+        - !type:BloodThirstyPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyBloodPuddles
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: true
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: MeleeRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: InteractRange
+          operator: !type:DrinkBloodPuddleOperator
+            targetKey: Target
+
+    # Cocoon incapacitated hostiles.
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCocoonVictims
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: true
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: MeleeRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+          operator: !type:CocoonOperator
+            targetKey: Target
+
+    # Attack to knock victims down.
+    - tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound

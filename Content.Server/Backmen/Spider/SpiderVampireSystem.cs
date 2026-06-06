@@ -11,6 +11,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Charges;
 using Robust.Shared.Random;
+using Content.Server.Backmen.Vampiric;
 using Content.Shared.Database;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Audio.Systems;
@@ -30,6 +31,7 @@ public sealed partial class SpiderVampireSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private ChargesSystem _charges = default!;
+    [Dependency] private BloodSuckerSystem _bloodSucker = default!;
 
     public override void Initialize()
     {
@@ -127,10 +129,50 @@ public sealed partial class SpiderVampireSystem : EntitySystem
         var xform = Transform(uid);
         var offspring = Spawn(component.SpawnEgg, xform.Coordinates.Offset(_random.NextVector2(0.3f)));
         _hunger.ModifyHunger(uid, -component.HungerPerBirth);
+        if (component.Charges > 0)
+            component.Charges--;
         _adminLog.Add(LogType.Action, $"{ToPrettyString(uid)} gave birth to {ToPrettyString(offspring)}.");
         _popupSystem.PopupEntity(
             Loc.GetString("reproductive-birth-popup", ("parent", Identity.Entity(uid, EntityManager))), uid);
+        args.Handled = true;
     }
 
     #endregion
+
+    public bool CanLayEgg(EntityUid uid, SpiderVampireComponent? component = null)
+    {
+        if (!Resolve(uid, ref component) || component.Charges <= 0)
+            return false;
+
+        if (_mobState.IsIncapacitated(uid))
+            return false;
+
+        if (TryComp<HungerComponent>(uid, out var hunger) && _hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
+            return false;
+
+        if (TryComp<ThirstComponent>(uid, out var thirst) && thirst.CurrentThirstThreshold < ThirstThreshold.Okay)
+            return false;
+
+        return !_bloodSucker.NeedsBlood(uid);
+    }
+
+    public bool NPCTryLayEgg(EntityUid uid, SpiderVampireComponent? component = null)
+    {
+        if (!CanLayEgg(uid, component))
+            return false;
+
+        if (!_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component!.UsingEggTime,
+                new SpiderVampireEggDoAfterEvent(), uid, used: uid)
+            {
+                BreakOnMove = true,
+                BreakOnDamage = true,
+            }))
+        {
+            return false;
+        }
+
+        _audio.PlayPvs(HairballPlay, uid, AudioParams.Default.WithVariation(0.025f));
+        return true;
+    }
+
 }
