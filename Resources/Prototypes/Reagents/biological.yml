@@ -29,6 +29,14 @@
           type: [ Bloodsucker ]
         reagent: Omnizine
         amount: 0.1
+      - !type:AdjustReagent # backmen: oneirophage spiders metabolize blood into more omnizine
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        - !type:TagCondition
+          tag: Oneirophage
+        reagent: Omnizine
+        amount: 0.4
       - !type:SatiateThirst # backmen
         factor: 1.5
         conditions:

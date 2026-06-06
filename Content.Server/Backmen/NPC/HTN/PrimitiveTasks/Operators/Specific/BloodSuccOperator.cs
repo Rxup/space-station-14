@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Content.Server.Backmen.Vampiric;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
@@ -32,6 +33,12 @@ public sealed partial class BloodSuccOperator : HTNOperator
     public override void TaskShutdown(NPCBlackboard blackboard, HTNOperatorStatus status)
     {
         blackboard.Remove<ushort>(CurrentDoAfter);
+
+        if (status == HTNOperatorStatus.Failed &&
+            blackboard.TryGetValue<EntityUid>(TargetKey, out var target, _entManager))
+        {
+            RememberFailedMeal(blackboard, target);
+        }
     }
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
@@ -43,7 +50,9 @@ public sealed partial class BloodSuccOperator : HTNOperator
             return _doAfter.GetStatus(owner, doAfterId, null) switch
             {
                 DoAfterStatus.Running => HTNOperatorStatus.Continuing,
-                DoAfterStatus.Finished => HTNOperatorStatus.Finished,
+                DoAfterStatus.Finished => _bloodSucker.NeedsBlood(owner)
+                    ? HTNOperatorStatus.Failed
+                    : HTNOperatorStatus.Finished,
                 _ => HTNOperatorStatus.Failed
             };
         }
@@ -69,4 +78,16 @@ public sealed partial class BloodSuccOperator : HTNOperator
 
         return HTNOperatorStatus.Failed;
     }
+
+    private void RememberFailedMeal(NPCBlackboard blackboard, EntityUid target)
+    {
+        if (!blackboard.TryGetValue<HashSet<EntityUid>>(BloodSuckerSystem.FailedCocoonMealsKey, out var failed, _entManager))
+        {
+            failed = new HashSet<EntityUid>();
+            blackboard.SetValue(BloodSuckerSystem.FailedCocoonMealsKey, failed);
+        }
+
+        failed.Add(target);
+    }
 }
+

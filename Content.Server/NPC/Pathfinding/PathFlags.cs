@@ -31,4 +31,14 @@ public enum PathFlags : byte
     Interact = 1 << 4,
 
     Blob = 1 << 5,
+
+    /// <summary>
+    /// Can traverse spider webs.
+    /// </summary>
+    Web = 1 << 6,
+
+    /// <summary>
+    /// Only traverse tiles that contain spider webs.
+    /// </summary>
+    WebOnly = 1 << 7,
 }

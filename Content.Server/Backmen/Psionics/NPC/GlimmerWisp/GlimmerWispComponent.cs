@@ -30,4 +30,9 @@ public sealed partial class GlimmerWispComponent : Component
     [DataField("whitelist")]
     public EntityWhitelist? Whitelist { get; set; }
     public DoAfterId? DoAfter { get; set; }
+
+    /// <summary>
+    /// Lateral strafe sign while flying during combat (-1 or 1).
+    /// </summary>
+    public int StrafeSign = 1;
 }

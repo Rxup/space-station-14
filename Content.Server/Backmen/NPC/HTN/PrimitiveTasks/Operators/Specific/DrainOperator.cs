@@ -1,8 +1,12 @@
-﻿using Content.Server.Backmen.Psionics.NPC.GlimmerWisp;
+﻿using Content.Server.Backmen.Cocoon;
+using Content.Server.Backmen.Psionics.NPC.GlimmerWisp;
 using Content.Server.NPC;
+using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks;
+using Content.Server.NPC.Systems;
 using Content.Shared.Mobs.Systems;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Backmen.NPC.HTN.PrimitiveTasks.Operators.Specific;
 
@@ -10,7 +14,9 @@ public sealed partial class DrainOperator : HTNOperator
 {
     [Dependency] private IEntityManager _entManager = default!;
     private GlimmerWispSystem _wispSystem = default!;
+    private CocoonerSystem _cocooner = default!;
     private MobStateSystem _mobState = default!;
+    private NPCSteeringSystem _steering = default!;
 
     [DataField("drainKey")]
     public string DrainKey = string.Empty;
@@ -21,7 +27,9 @@ public sealed partial class DrainOperator : HTNOperator
     {
         base.Initialize(sysManager);
         _wispSystem = sysManager.GetEntitySystem<GlimmerWispSystem>();
+        _cocooner = sysManager.GetEntitySystem<CocoonerSystem>();
         _mobState = sysManager.GetEntitySystem<MobStateSystem>();
+        _steering = sysManager.GetEntitySystem<NPCSteeringSystem>();
         _wispQuery = _entManager.GetEntityQuery<GlimmerWispComponent>();
     }
 
@@ -32,6 +40,9 @@ public sealed partial class DrainOperator : HTNOperator
 
         if (_wispQuery.TryComp(owner, out var wispComp))
             _wispSystem.CancelDrain(wispComp);
+
+        if (_entManager.TryGetComponent<NPCSteeringComponent>(owner, out _))
+            _steering.Unregister(owner);
     }
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
@@ -60,6 +71,14 @@ public sealed partial class DrainOperator : HTNOperator
                 return HTNOperatorStatus.Finished;
             }
 
+            var range = blackboard.GetValueOrDefault<float>("AggroVisionRadius", _entManager);
+            if (_cocooner.HasActiveNearbyHostiles(owner, range))
+            {
+                _wispSystem.CancelDrain(wispComp);
+                RequestFastReplan(owner);
+                return HTNOperatorStatus.Failed;
+            }
+
             return HTNOperatorStatus.Continuing;
         }
 
@@ -72,8 +91,28 @@ public sealed partial class DrainOperator : HTNOperator
 
         if (!_wispSystem.CanDrainTarget(wisp, target))
         {
-            return _mobState.IsDead(target) ? HTNOperatorStatus.Finished : HTNOperatorStatus.Failed;
+            if (!_wispSystem.CanDrainTarget(wisp, target, isInRange: false))
+                return _mobState.IsDead(target) ? HTNOperatorStatus.Finished : HTNOperatorStatus.Failed;
+
+            if (!_entManager.TryGetComponent<NPCSteeringComponent>(owner, out var steering))
+            {
+                var coords = _entManager.GetComponent<TransformComponent>(target).Coordinates;
+                steering = _steering.Register(owner, coords);
+                steering.Range = GlimmerWispSystem.DrainRange;
+            }
+
+            if (_entManager.TryGetComponent<NPCSteeringComponent>(owner, out steering) &&
+                steering.Status != SteeringStatus.InRange)
+            {
+                return HTNOperatorStatus.Continuing;
+            }
+
+            RequestFastReplan(owner);
+            return HTNOperatorStatus.Failed;
         }
+
+        if (_entManager.TryGetComponent<NPCSteeringComponent>(owner, out _))
+            _steering.Unregister(owner);
 
         if (!_wispSystem.NPCStartLifedrain(owner, target, wispComp))
         {

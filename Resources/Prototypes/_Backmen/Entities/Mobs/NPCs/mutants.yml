@@ -128,6 +128,8 @@
   - type: Puller
     needsHands: false
   - type: Arachne
+  - type: Hunger
+  - type: Thirst
   - type: DoAfter
   - type: Cocooner
     cocoonDelay: 8
@@ -225,9 +227,24 @@
     - type: NpcFactionMember
       factions:
         - SimpleHostile
+    - type: NPCRetaliation
+      attackMemoryLength: 10
+    - type: FactionException
     - type: InputMover
     - type: MobMover
     - type: HTN
+      planCooldown: 0.5
+      blackboard:
+        VisionRadius: !type:Single
+          10
+        AggroVisionRadius: !type:Single
+          14
+        IdleRange: !type:Single
+          10
+        WebExpandRadius: !type:Single
+          2
+        MinWebTiles: !type:Single
+          9
       rootTask:
         task: SpiderVampireCompound
     - type: GhostRole
@@ -270,6 +287,14 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 2
       baseSprintSpeed: 3
+    - type: Arachne
+      npcWebDelay: 1.5
+    - type: Cocooner
+      cocoonDelay: 5
+    - type: MeleeWeapon
+      damage:
+        types:
+          Piercing: 14
     - type: GhostRole
       makeSentient: true
       name: Босс павуков
@@ -281,9 +306,28 @@
     - type: NpcFactionMember
       factions:
         - SimpleHostile
+    - type: NPCRetaliation
+      attackMemoryLength: 10
+    - type: FactionException
     - type: InputMover
     - type: MobMover
     - type: HTN
+      planCooldown: 0.5
+      blackboard:
+        VisionRadius: !type:Single
+          12
+        AggroVisionRadius: !type:Single
+          16
+        IdleRange: !type:Single
+          14
+        WebExpandRadius: !type:Single
+          3
+        MinWebTiles: !type:Single
+          16
+        MinimumIdleTime: !type:Single
+          1
+        MaximumIdleTime: !type:Single
+          4
       rootTask:
         task: SpiderVampireCompound
     - type: SpiderVampire
