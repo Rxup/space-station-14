@@ -35,8 +35,11 @@ public sealed partial class GlimmerWispSystem : EntitySystem
     [Dependency] private MobStateSystem _mob = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private StunSystem _stun = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     private EntityQuery<PsionicComponent> _psiQuery;
+
+    public const float DrainRange = SharedInteractionSystem.InteractionRange;
 
     public override void Initialize()
     {
@@ -82,7 +85,24 @@ public sealed partial class GlimmerWispSystem : EntitySystem
             return false;
         }
 
-        return !isInRange || _interaction.InRangeAndAccessible(uid, target);
+        return !isInRange || _interaction.InRangeUnobstructed(uid, target, DrainRange);
+    }
+
+    public bool HasNearbyDrainTarget(EntityUid owner, float range)
+    {
+        if (!TryComp<GlimmerWispComponent>(owner, out var wisp))
+            return false;
+
+        foreach (var ent in _lookup.GetEntitiesInRange(owner, range))
+        {
+            if (ent == owner)
+                continue;
+
+            if (CanDrain((owner, wisp), ent, false))
+                return true;
+        }
+
+        return false;
     }
 
     public bool CanDrain(Entity<GlimmerWispComponent> ent, EntityUid target, bool isInRange = true)
@@ -126,9 +146,7 @@ public sealed partial class GlimmerWispSystem : EntitySystem
                 _npcFaction.AggroEntity(uid, pullable.Puller.Value);
             }
 
-            //if (TryComp<BeingCarriedComponent>(args.Args.Target.Value, out var carried))
-            //    _combatTargetSystem.StartHostility(uid, carried.Carrier);
-
+            component.DrainTarget = null;
             _audioSystem.PlayPvs(component.DrainCancelSoundPath, uid, AudioParams.Default.WithVariation(0.20f));
             return;
         }

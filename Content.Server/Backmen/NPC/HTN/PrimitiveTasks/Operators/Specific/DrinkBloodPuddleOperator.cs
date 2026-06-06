@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Content.Server.Backmen.Vampiric;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
@@ -19,6 +20,17 @@ public sealed partial class DrinkBloodPuddleOperator : HTNOperator
         _bloodSucker = sysManager.GetEntitySystem<BloodSuckerSystem>();
     }
 
+    public override void TaskShutdown(NPCBlackboard blackboard, HTNOperatorStatus status)
+    {
+        if (status != HTNOperatorStatus.Failed ||
+            !blackboard.TryGetValue<EntityUid>(TargetKey, out var target, _entManager))
+        {
+            return;
+        }
+
+        RememberFailedPuddle(blackboard, target);
+    }
+
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
@@ -32,6 +44,20 @@ public sealed partial class DrinkBloodPuddleOperator : HTNOperator
         if (!_bloodSucker.TryDrinkBloodPuddle(owner, target))
             return HTNOperatorStatus.Failed;
 
+        if (blackboard.TryGetValue<HashSet<EntityUid>>(BloodSuckerSystem.FailedBloodPuddlesKey, out var failed, _entManager))
+            failed.Remove(target);
+
         return HTNOperatorStatus.Finished;
+    }
+
+    private void RememberFailedPuddle(NPCBlackboard blackboard, EntityUid puddle)
+    {
+        if (!blackboard.TryGetValue<HashSet<EntityUid>>(BloodSuckerSystem.FailedBloodPuddlesKey, out var failed, _entManager))
+        {
+            failed = new HashSet<EntityUid>();
+            blackboard.SetValue(BloodSuckerSystem.FailedBloodPuddlesKey, failed);
+        }
+
+        failed.Add(puddle);
     }
 }

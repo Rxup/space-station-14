@@ -22,6 +22,8 @@ public sealed partial class NPCBlackboard : IEnumerable<KeyValuePair<string, obj
         {"FollowCloseRange", 3f},
         {"FollowRange", 7f},
         {"IdleRange", 7f},
+        {"WebExpandRadius", 2f},
+        {"MinWebTiles", 9f},
         {"InteractRange", SharedInteractionSystem.InteractionRange},
         {"MaximumIdleTime", 7f},
         {MedibotInjectRange, 4f},
@@ -320,6 +322,14 @@ public sealed partial class NPCBlackboard : IEnumerable<KeyValuePair<string, obj
     public const string NavClimb = "NavClimb";
 
     public const string NavBlob = "NavBlob";
+
+    public const string NavWeb = "NavWeb";
+
+    public const string NavWebOnly = "NavWebOnly";
+
+    public const string WebExpandRadius = "WebExpandRadius";
+
+    public const string MinWebTiles = "MinWebTiles";
 
     /// <summary>
     /// Default key storage for a movement pathfind.

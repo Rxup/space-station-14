@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Content.Server.Backmen.Vampiric;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN.Preconditions;
@@ -11,6 +12,13 @@ public sealed partial class BloodThirstyPrecondition : HTNPrecondition
     public override bool IsMet(NPCBlackboard blackboard)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        return _entManager.System<BloodSuckerSystem>().NeedsBlood(owner);
+        var bloodSucker = _entManager.System<BloodSuckerSystem>();
+
+        if (bloodSucker.NeedsBlood(owner))
+            return true;
+
+        blackboard.Remove<HashSet<EntityUid>>(BloodSuckerSystem.FailedBloodPuddlesKey);
+        blackboard.Remove<HashSet<EntityUid>>(BloodSuckerSystem.FailedCocoonMealsKey);
+        return false;
     }
 }

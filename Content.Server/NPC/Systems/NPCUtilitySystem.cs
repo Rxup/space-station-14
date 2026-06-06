@@ -29,6 +29,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Atmos.Components;
 using System.Linq;
 using Content.Server.Backmen.Cocoon;
+using Content.Server.Backmen.NPC.HTN;
 using Content.Server.Backmen.NPC.Queries.Considerations;
 using Content.Server.Backmen.Vampiric;
 using Content.Shared.Damage.Components;
@@ -347,7 +348,24 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 if (!bloodSucker.NeedsBlood(owner))
                     return 0f;
 
-                return bloodSucker.PuddleHasBlood(targetUid) ? 1f : 0f;
+                if (blackboard.TryGetValue<HashSet<EntityUid>>(BloodSuckerSystem.FailedBloodPuddlesKey, out var failed, EntityManager) &&
+                    failed.Contains(targetUid))
+                {
+                    return 0f;
+                }
+
+                if (!bloodSucker.CanDrinkBloodPuddle(owner, targetUid, checkRange: false))
+                    return 0f;
+
+                if (!TryComp(owner, out TransformComponent? ownerXform) ||
+                    !TryComp(targetUid, out TransformComponent? targetXform) ||
+                    !targetXform.Coordinates.TryDistance(EntityManager, _transform, ownerXform.Coordinates, out var distance) ||
+                    distance > BloodSuckerSystem.MaxPuddleSeekRange)
+                {
+                    return 0f;
+                }
+
+                return 1f;
             }
             case CocoonBloodValueCon:
             {
@@ -358,24 +376,41 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 if (!HasComp<CocoonComponent>(targetUid))
                     return 0f;
 
+                if (blackboard.TryGetValue<HashSet<EntityUid>>(BloodSuckerSystem.FailedCocoonMealsKey, out var failed, EntityManager) &&
+                    failed.Contains(targetUid))
+                {
+                    return 0f;
+                }
+
                 return bloodSucker.CanSucc(owner, targetUid) ? 1f : 0f;
             }
             case CocoonVictimCon:
             {
-                if (!_mobState.IsAlive(targetUid))
+                var cocooner = EntityManager.System<CocoonerSystem>();
+
+                if (!cocooner.IsCocoonableVictim(targetUid) || !cocooner.CanCocoon(owner, targetUid))
                     return 0f;
 
-                if (EntityManager.System<CocoonerSystem>().CanCocoon(owner, targetUid))
+                return 1f;
+            }
+            case NotCocoonVictimCon:
+            {
+                if (EntityManager.System<CocoonerSystem>().IsCocoonableVictim(targetUid))
+                    return 0f;
+
+                return 1f;
+            }
+            case FailedGunTargetCon:
+            {
+                if (blackboard.TryGetValue<HashSet<EntityUid>>(NPCRangedBlackboard.FailedGunTargetsKey, out var failed, EntityManager))
                 {
-                    if (_mobState.IsCritical(targetUid) ||
-                        HasComp<KnockedDownComponent>(targetUid) ||
-                        HasComp<StunnedComponent>(targetUid))
-                    {
-                        return 1f;
-                    }
+                    if (!EntityManager.EntityExists(targetUid))
+                        failed.Remove(targetUid);
+                    else if (failed.Contains(targetUid))
+                        return 0f;
                 }
 
-                return 0f;
+                return 1f;
             }
             // end-backmen: soft crit
             case TargetIsAliveCon:
@@ -634,7 +669,9 @@ public readonly record struct UtilityResult(Dictionary<EntityUid, float> Entitie
         if (Entities.Count == 0)
             return EntityUid.Invalid;
 
-        return Entities.MaxBy(x => x.Value).Key;
+        var (uid, score) = Entities.MaxBy(x => x.Value);
+
+        return score > 0f ? uid : EntityUid.Invalid;
     }
 
     /// <summary>

@@ -7,6 +7,7 @@ using Content.Server.Popups;
 using Content.Server.Speech.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Cocoon;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Containers.ItemSlots;
@@ -18,6 +19,8 @@ using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Storage;
 using Content.Shared.Stunnable;
@@ -40,6 +43,8 @@ public sealed partial class CocoonerSystem : EntitySystem
     [Dependency] private DestructibleSystem _destructibleSystem = default!;
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private BloodSuckerSystem _bloodSuckerSystem = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private NpcFactionSystem _npcFaction = default!;
 
     public const string BodySlot = "body_slot";
 
@@ -129,6 +134,58 @@ public sealed partial class CocoonerSystem : EntitySystem
             Priority = 2
         };
         args.Verbs.Add(verb);
+    }
+
+    public bool IsCocoonableVictim(EntityUid target)
+    {
+        if (!_mobState.IsAlive(target))
+            return false;
+
+        // Only fully asleep, not while still going down or under nocturine buildup.
+        if (HasComp<SleepingComponent>(target))
+            return true;
+
+        if (_mobState.IsCritical(target))
+            return true;
+
+        // Knockdown alone is too early (drowsy / falling over). Require stun as well.
+        if (HasComp<StunnedComponent>(target))
+            return true;
+
+        return false;
+    }
+
+    public bool HasNearbyCocoonVictims(EntityUid uid, float range, CocoonerComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return false;
+
+        foreach (var ent in _npcFaction.GetNearbyHostiles(uid, range))
+        {
+            if (!IsCocoonableVictim(ent) || !CanCocoon(uid, ent, component))
+                continue;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// Hostiles that are still able to fight back.
+    /// Incapacitated targets do not count.
+    /// </summary>
+    public bool HasActiveNearbyHostiles(EntityUid uid, float range)
+    {
+        foreach (var ent in _npcFaction.GetNearbyHostiles(uid, range))
+        {
+            if (!_mobState.IsAlive(ent) || IsCocoonableVictim(ent))
+                continue;
+
+            return true;
+        }
+
+        return false;
     }
 
     public bool CanCocoon(EntityUid uid, EntityUid target, CocoonerComponent? component = null)

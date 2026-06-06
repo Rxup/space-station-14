@@ -32,6 +32,26 @@
       curve: !type:BoolCurve
 
 - type: utilityQuery
+  id: NearbySpiderMeleeTargets
+  query:
+    - !type:NearbyHostilesQuery
+  considerations:
+    - !type:NotCocoonVictimCon
+      curve: !type:BoolCurve
+    - !type:TargetIsAliveCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetHealthCon
+      curve: !type:PresetCurve
+        preset: TargetHealth
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+    - !type:TargetInLOSOrCurrentCon
+      curve: !type:BoolCurve
+
+- type: utilityQuery
   id: NearbyCocoonVictims
   query:
     - !type:NearbyHostilesQuery
@@ -47,9 +67,39 @@
 - type: htnCompound
   id: SpiderVampireCompound
   branches:
-    # Lay an egg when well-fed.
+    # Cocoon incapacitated hostiles before doing anything else.
+    - preconditions:
+        - !type:SpiderNoActiveHostilesPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCocoonVictims
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: true
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: MeleeRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+          operator: !type:CocoonOperator
+            targetKey: Target
+
+    # Fight back only when a hostile can still fight.
+    - preconditions:
+        - !type:SpiderHasActiveHostilesPrecondition
+      tasks:
+        - !type:HTNCompoundTask
+          task: SpiderMeleeCombatCompound
+
+    # Lay an egg when well-fed and the area is safe.
     - preconditions:
         - !type:SpiderLayEggPrecondition
+        - !type:SpiderNoActiveHostilesPrecondition
       tasks:
         - !type:HTNPrimitiveTask
           operator: !type:LayEggOperator
@@ -76,9 +126,10 @@
           operator: !type:BloodSuccOperator
             targetKey: Target
 
-    # Drink blood from puddles.
+    # Drink blood from nearby puddles only when nobody can be cocooned.
     - preconditions:
         - !type:BloodThirstyPrecondition
+        - !type:SpiderNoCocoonVictimsPrecondition
       tasks:
         - !type:HTNPrimitiveTask
           operator: !type:UtilityOperator
@@ -101,31 +152,148 @@
           operator: !type:DrinkBloodPuddleOperator
             targetKey: Target
 
-    # Cocoon incapacitated hostiles.
+    # Attack to knock victims down.
+    - preconditions:
+        - !type:SpiderHasActiveHostilesPrecondition
+      tasks:
+        - !type:HTNCompoundTask
+          task: SpiderMeleeCombatCompound
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: SpiderWebIdleCompound
+
+- type: htnCompound
+  id: SpiderWebIdleCompound
+  branches:
+    # Build the web network first. Pick/move are planned only after enough tiles exist.
+    - preconditions:
+        - !type:SpiderWebInsufficientPrecondition
+          expandRadiusKey: WebExpandRadius
+          minWebTilesKey: MinWebTiles
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:SpinWebOperator
+            expandRadiusKey: WebExpandRadius
+            minWebTilesKey: MinWebTiles
+
+    - preconditions:
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:PickWebAccessibleOperator
+            rangeKey: IdleRange
+
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToWebOperator
+            pathfindInPlanning: true
+            rangeKey: MovementRange
+
+        - !type:HTNPrimitiveTask
+          operator: !type:RandomOperator
+            targetKey: IdleTime
+            minKey: MinimumIdleTime
+            maxKey: MaximumIdleTime
+
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: IdleTime
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: IdleTime
+
+- type: htnCompound
+  id: SpiderMeleeCombatCompound
+  branches:
     - tasks:
         - !type:HTNPrimitiveTask
           operator: !type:UtilityOperator
-            proto: NearbyCocoonVictims
+            proto: NearbySpiderMeleeTargets
+        - !type:HTNCompoundTask
+          task: SpiderBeforeMeleeAttackTargetCompound
+
+- type: htnCompound
+  id: SpiderBeforeMeleeAttackTargetCompound
+  branches:
+    - preconditions:
+        - !type:BuckledPrecondition
+          isBuckled: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UnbuckleOperator
+            shutdownState: TaskFinished
+
+    - preconditions:
+        - !type:PulledPrecondition
+          isPulled: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UnPullOperator
+            shutdownState: TaskFinished
+
+    - preconditions:
+        - !type:InContainerPrecondition
+          isInContainer: true
+      tasks:
+        - !type:HTNCompoundTask
+          task: EscapeCompound
+
+    - preconditions:
+        - !type:LaydownPrecondition
+          isDown: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:StandOperator
+            shutdownState: TaskFinished
+
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: MeleeWeapon
+              damage:
+                types:
+                  Blunt: 0
+          invert: true
+      tasks:
+        - !type:HTNCompoundTask
+          task: PickupMeleeCompound
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: SpiderMeleeAttackTargetCompound
+
+- type: htnCompound
+  id: SpiderMeleeAttackTargetCompound
+  branches:
+    - preconditions:
+        - !type:KeyExistsPrecondition
+          key: Target
+      tasks:
         - !type:HTNPrimitiveTask
           operator: !type:MoveToOperator
-            shutdownState: TaskFinished
+            shutdownState: PlanFinished
             pathfindInPlanning: true
             removeKeyOnFinish: false
             targetKey: TargetCoordinates
             pathfindKey: TargetPathfind
             rangeKey: MeleeRange
         - !type:HTNPrimitiveTask
+          operator: !type:JukeOperator
+            jukeType: Away
+        - !type:HTNPrimitiveTask
           preconditions:
             - !type:KeyExistsPrecondition
               key: Target
-          operator: !type:CocoonOperator
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: MeleeRange
+          operator: !type:MeleeOperator
             targetKey: Target
-
-    # Attack to knock victims down.
-    - tasks:
-        - !type:HTNCompoundTask
-          task: MeleeCombatCompound
-
-    - tasks:
-        - !type:HTNCompoundTask
-          task: IdleCompound
+          services:
+            - !type:UtilityService
+              id: MeleeService
+              proto: NearbySpiderMeleeTargets
+              key: Target

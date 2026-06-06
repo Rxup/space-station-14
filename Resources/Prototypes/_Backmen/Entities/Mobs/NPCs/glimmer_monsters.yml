@@ -108,6 +108,7 @@
   - type: BatterySelfRecharger
     autoRechargeRate: 100
   - type: NPCRetaliation
+    attackMemoryLength: 10
   - type: FactionException
   - type: HTN
     planCooldown: 0.5
@@ -131,7 +132,9 @@
       AggroVisionRadius: !type:Single
         20
       RangedRange: !type:Single
-        15.0
+        8.0
+      ZapRange: !type:Single
+        5
     rootTask:
       task: WispCombatCompound
   - type: NpcFactionMember
@@ -153,13 +156,19 @@
 - type: htnCompound
   id: WispCombatCompound
   branches:
-  # Drain critical psionics first; fall back to shooting if none are drainable.
-  - tasks:
-    - !type:HTNCompoundTask
-      task: DrainPsionicCompound
-  - tasks:
+  # Fight only while someone nearby can still fight back.
+  - preconditions:
+    - !type:SpiderHasActiveHostilesPrecondition
+    tasks:
     - !type:HTNCompoundTask
       task: WispRangedCombatCompound
+  # Drain critical psionics only when nobody nearby can fight back.
+  - preconditions:
+    - !type:SpiderNoActiveHostilesPrecondition
+    - !type:WispHasDrainTargetPrecondition
+    tasks:
+    - !type:HTNCompoundTask
+      task: DrainPsionicCompound
   - tasks:
     - !type:HTNCompoundTask
       task: IdleCompound
@@ -182,12 +191,11 @@
         shutdownState: TaskFinished
   - tasks:
     - !type:HTNCompoundTask
-      task: WispGunCombatCompound
+      task: WispFullCombatCompound
 
 - type: htnCompound
-  id: WispGunCombatCompound
+  id: WispFullCombatCompound
   branches:
-  # Pick target, then move into range and shoot them.
   - tasks:
     - !type:HTNPrimitiveTask
       operator: !type:UtilityOperator
@@ -200,18 +208,49 @@
         removeKeyOnFinish: false
         targetKey: TargetCoordinates
         pathfindKey: TargetPathfind
-        stopOnLineOfSight: false # 2
-        rangeKey: MeleeRange
+        stopOnLineOfSight: true
+        rangeKey: RangedRange
 
     - !type:HTNPrimitiveTask
       operator: !type:JukeOperator
+        shutdownState: PlanFinished
         jukeType: AdjacentTile
 
+    - !type:HTNCompoundTask
+      task: WispAttackChoiceCompound
+
+- type: htnCompound
+  id: WispAttackChoiceCompound
+  branches:
+  # Close range: NoosphericZap.
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: Target
+    - !type:TargetInRangePrecondition
+      targetKey: Target
+      rangeKey: ZapRange
+    - !type:TargetInLOSPrecondition
+      targetKey: Target
+      rangeKey: ZapRange
+    tasks:
     - !type:HTNPrimitiveTask
-      preconditions:
-      - !type:KeyExistsPrecondition
+      operator: !type:ZapOperator
+        targetKey: Target
+      services:
+      - !type:UtilityService
+        id: RangedService
+        proto: NearbyGunWispTargets
         key: Target
-      operator: !type:GunOperator
+
+  # Default: WispLash hitscan gun.
+  - preconditions:
+    - !type:KeyExistsPrecondition
+      key: Target
+    - !type:GunAmmoPrecondition
+      minPercent: 0.001
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:WispGunOperator
         targetKey: Target
       services:
       - !type:UtilityService
@@ -224,10 +263,17 @@
   query:
   - !type:NearbyHostilesQuery
   considerations:
-  - !type:TargetIsAliveOrSoftCritCon
+  - !type:TargetIsAliveCon
     curve: !type:BoolCurve
-  - !type:TargetIsCritCon
-    curve: !type:InverseBoolCurve
+  - !type:TargetDistanceCon
+    curve: !type:PresetCurve
+      preset: TargetDistance
+  - !type:TargetAccessibleCon
+    curve: !type:BoolCurve
+  - !type:TargetInLOSOrCurrentCon
+    curve: !type:BoolCurve
+  - !type:FailedGunTargetCon
+    curve: !type:BoolCurve
 
 - type: htnCompound
   id: DrainPsionicCompound
@@ -242,7 +288,10 @@
       operator: !type:MoveToOperator
         shutdownState: TaskFinished
         targetKey: TargetCoordinates
-        pathfindInPlanning: false
+        pathfindKey: TargetPathfind
+        pathfindInPlanning: true
+        removeKeyOnFinish: false
+        rangeKey: InteractRange
     - !type:HTNPrimitiveTask
       operator: !type:DrainOperator
         drainKey: DrainTarget
