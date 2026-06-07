@@ -206,6 +206,15 @@ public sealed partial class ArachneSystem : EntitySystem
         return count;
     }
 
+    public bool IsWebNestReady(EntityCoordinates origin, int expandRadius, int minWebTiles)
+    {
+        expandRadius = Math.Max(expandRadius, 1);
+        minWebTiles = Math.Max(minWebTiles, 1);
+        var coords = origin.SnapToGrid(EntityManager);
+
+        return CountWebbedTilesInRadius(coords, expandRadius) >= minWebTiles && IsTileWebbed(coords);
+    }
+
     /// <summary>
     /// Finds the next tile to extend the local web network.
     /// </summary>

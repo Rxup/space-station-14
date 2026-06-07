@@ -10,6 +10,7 @@ using Content.Shared.Examine;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Nutrition.Components;
@@ -31,6 +32,7 @@ using System.Linq;
 using Content.Server.Backmen.Cocoon;
 using Content.Server.Backmen.NPC.HTN;
 using Content.Server.Backmen.NPC.Queries.Considerations;
+using Content.Server.Backmen.NPC.Queries.Queries;
 using Content.Server.Backmen.Vampiric;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
@@ -370,11 +372,6 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             case CocoonBloodValueCon:
             {
                 var bloodSucker = EntityManager.System<BloodSuckerSystem>();
-                if (!bloodSucker.NeedsBlood(owner))
-                    return 0f;
-
-                if (!HasComp<CocoonComponent>(targetUid))
-                    return 0f;
 
                 if (blackboard.TryGetValue<HashSet<EntityUid>>(BloodSuckerSystem.FailedCocoonMealsKey, out var failed, EntityManager) &&
                     failed.Contains(targetUid))
@@ -382,7 +379,18 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                     return 0f;
                 }
 
-                return bloodSucker.CanSucc(owner, targetUid) ? 1f : 0f;
+                if (!bloodSucker.HasDrinkableCocoonMeal(owner, targetUid, checkRange: false))
+                    return 0f;
+
+                if (!TryComp(owner, out TransformComponent? ownerXform) ||
+                    !TryComp(targetUid, out TransformComponent? targetXform) ||
+                    !targetXform.Coordinates.TryDistance(EntityManager, _transform, ownerXform.Coordinates, out var distance) ||
+                    distance > blackboard.GetValueOrDefault<float>(blackboard.GetVisionRadiusKey(EntityManager), EntityManager))
+                {
+                    return 0f;
+                }
+
+                return 1f;
             }
             case CocoonVictimCon:
             {
@@ -562,6 +570,20 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 }
                 break;
             }
+            // start-backmen: cocoon victims include sleeping non-hostiles
+            case NearbyCocoonVictimsQuery:
+            {
+                foreach (var ent in _lookup.GetEntitiesInRange(owner, vision))
+                {
+                    if (ent == owner || !HasComp<MobStateComponent>(ent))
+                        continue;
+
+                    entities.Add(ent);
+                }
+
+                break;
+            }
+            // end-backmen
             default:
                 throw new NotImplementedException();
         }

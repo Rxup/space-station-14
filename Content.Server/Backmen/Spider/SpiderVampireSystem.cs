@@ -11,6 +11,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Charges;
 using Robust.Shared.Random;
+using Content.Server.Backmen.Arachne;
 using Content.Server.Backmen.Vampiric;
 using Content.Shared.Database;
 using Content.Shared.IdentityManagement;
@@ -32,6 +33,10 @@ public sealed partial class SpiderVampireSystem : EntitySystem
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private ChargesSystem _charges = default!;
     [Dependency] private BloodSuckerSystem _bloodSucker = default!;
+    [Dependency] private ArachneSystem _arachne = default!;
+
+    private const int DefaultWebExpandRadius = 2;
+    private const int DefaultMinWebTiles = 9;
 
     public override void Initialize()
     {
@@ -151,6 +156,9 @@ public sealed partial class SpiderVampireSystem : EntitySystem
             return false;
 
         if (TryComp<ThirstComponent>(uid, out var thirst) && thirst.CurrentThirstThreshold < ThirstThreshold.Okay)
+            return false;
+
+        if (!_arachne.IsWebNestReady(Transform(uid).Coordinates, DefaultWebExpandRadius, DefaultMinWebTiles))
             return false;
 
         return !_bloodSucker.NeedsBlood(uid);

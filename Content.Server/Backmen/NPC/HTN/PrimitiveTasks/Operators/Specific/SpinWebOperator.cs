@@ -56,12 +56,16 @@ public sealed partial class SpinWebOperator : HTNOperator
 
         if (blackboard.TryGetValue<ushort>(CurrentDoAfter, out var doAfterId, _entManager))
         {
-            return _doAfter.GetStatus(owner, doAfterId, null) switch
+            switch (_doAfter.GetStatus(owner, doAfterId, null))
             {
-                DoAfterStatus.Running => HTNOperatorStatus.Continuing,
-                DoAfterStatus.Finished => HTNOperatorStatus.Continuing,
-                _ => HTNOperatorStatus.Failed
-            };
+                case DoAfterStatus.Running:
+                    return HTNOperatorStatus.Continuing;
+                case DoAfterStatus.Finished:
+                    blackboard.Remove<ushort>(CurrentDoAfter);
+                    break;
+                default:
+                    return HTNOperatorStatus.Failed;
+            }
         }
 
         if (!_entManager.TryGetComponent<TransformComponent>(owner, out var xform))

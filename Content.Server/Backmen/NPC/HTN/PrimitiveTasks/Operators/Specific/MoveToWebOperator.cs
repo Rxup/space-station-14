@@ -105,6 +105,19 @@ public sealed partial class MoveToWebOperator : HTNOperator, IHtnConditionalShut
             cancelToken,
             GetWebFlags(blackboard));
 
+        // WebOnly often fails when the victim tile is not marked as a web nav poly.
+        if (path.Result != PathResult.Path)
+        {
+            var webFlags = _pathfind.GetFlags(blackboard) | PathFlags.Web;
+            path = await _pathfind.GetPath(
+                owner,
+                xform.Coordinates,
+                targetCoordinates,
+                range,
+                cancelToken,
+                webFlags);
+        }
+
         if (path.Result != PathResult.Path)
         {
             return (false, null);

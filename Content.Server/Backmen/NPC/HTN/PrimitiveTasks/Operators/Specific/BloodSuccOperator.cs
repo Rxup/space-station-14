@@ -37,7 +37,10 @@ public sealed partial class BloodSuccOperator : HTNOperator
         if (status == HTNOperatorStatus.Failed &&
             blackboard.TryGetValue<EntityUid>(TargetKey, out var target, _entManager))
         {
-            RememberFailedMeal(blackboard, target);
+            var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
+
+            if (!_bloodSucker.HasDrinkableCocoonMeal(owner, target, checkRange: false))
+                RememberFailedMeal(blackboard, target);
         }
     }
 
@@ -47,14 +50,26 @@ public sealed partial class BloodSuccOperator : HTNOperator
 
         if (blackboard.TryGetValue<ushort>(CurrentDoAfter, out var doAfterId, _entManager))
         {
-            return _doAfter.GetStatus(owner, doAfterId, null) switch
+            switch (_doAfter.GetStatus(owner, doAfterId, null))
             {
-                DoAfterStatus.Running => HTNOperatorStatus.Continuing,
-                DoAfterStatus.Finished => _bloodSucker.NeedsBlood(owner)
-                    ? HTNOperatorStatus.Failed
-                    : HTNOperatorStatus.Finished,
-                _ => HTNOperatorStatus.Failed
-            };
+                case DoAfterStatus.Running:
+                    return HTNOperatorStatus.Continuing;
+                case DoAfterStatus.Finished:
+                    if (!_bloodSucker.NeedsBlood(owner))
+                        return HTNOperatorStatus.Finished;
+
+                    // One sip succeeded but the stomach still wants blood — drink again, do not blacklist.
+                    if (blackboard.TryGetValue<EntityUid>(TargetKey, out var meal, _entManager) &&
+                        _bloodSucker.HasDrinkableCocoonMeal(owner, meal, checkRange: false))
+                    {
+                        blackboard.Remove<ushort>(CurrentDoAfter);
+                        return HTNOperatorStatus.Continuing;
+                    }
+
+                    return HTNOperatorStatus.Failed;
+                default:
+                    return HTNOperatorStatus.Failed;
+            }
         }
 
         if (!blackboard.TryGetValue<EntityUid>(TargetKey, out var target, _entManager) ||
@@ -68,7 +83,12 @@ public sealed partial class BloodSuccOperator : HTNOperator
             nextId = doAfter.NextId;
 
         if (!_bloodSucker.NPCStartSucc(owner, target))
+        {
+            if (_bloodSucker.HasDrinkableCocoonMeal(owner, target, checkRange: false))
+                return HTNOperatorStatus.Continuing;
+
             return HTNOperatorStatus.Failed;
+        }
 
         if (_entManager.TryGetComponent<DoAfterComponent>(owner, out doAfter) && nextId != doAfter.NextId)
         {

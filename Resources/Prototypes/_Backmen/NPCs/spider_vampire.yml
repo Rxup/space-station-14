@@ -51,10 +51,11 @@
     - !type:TargetInLOSOrCurrentCon
       curve: !type:BoolCurve
 
+# All nearby mobs (not only faction hostiles); CocoonVictimCon filters sleep/crit/stun.
 - type: utilityQuery
   id: NearbyCocoonVictims
   query:
-    - !type:NearbyHostilesQuery
+    - !type:NearbyCocoonVictimsQuery
   considerations:
     - !type:CocoonVictimCon
       curve: !type:BoolCurve
@@ -67,7 +68,7 @@
 - type: htnCompound
   id: SpiderVampireCompound
   branches:
-    # Cocoon incapacitated hostiles before doing anything else.
+    # Cocoon incapacitated targets before doing anything else.
     - preconditions:
         - !type:SpiderNoActiveHostilesPrecondition
       tasks:
@@ -75,13 +76,13 @@
           operator: !type:UtilityOperator
             proto: NearbyCocoonVictims
         - !type:HTNPrimitiveTask
-          operator: !type:MoveToOperator
+          operator: !type:MoveToWebOperator
             shutdownState: TaskFinished
-            pathfindInPlanning: true
+            pathfindInPlanning: false
             removeKeyOnFinish: false
             targetKey: TargetCoordinates
             pathfindKey: TargetPathfind
-            rangeKey: MeleeRange
+            rangeKey: InteractRange
         - !type:HTNPrimitiveTask
           preconditions:
             - !type:KeyExistsPrecondition
@@ -96,14 +97,6 @@
         - !type:HTNCompoundTask
           task: SpiderMeleeCombatCompound
 
-    # Lay an egg when well-fed and the area is safe.
-    - preconditions:
-        - !type:SpiderLayEggPrecondition
-        - !type:SpiderNoActiveHostilesPrecondition
-      tasks:
-        - !type:HTNPrimitiveTask
-          operator: !type:LayEggOperator
-
     # Drink blood from a cocooned victim.
     - preconditions:
         - !type:BloodThirstyPrecondition
@@ -114,15 +107,18 @@
         - !type:HTNPrimitiveTask
           operator: !type:MoveToOperator
             shutdownState: TaskFinished
-            pathfindInPlanning: true
+            pathfindInPlanning: false
             removeKeyOnFinish: false
             targetKey: TargetCoordinates
             pathfindKey: TargetPathfind
-            rangeKey: MeleeRange
+            rangeKey: InteractRange
         - !type:HTNPrimitiveTask
           preconditions:
             - !type:KeyExistsPrecondition
               key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: InteractRange
           operator: !type:BloodSuccOperator
             targetKey: Target
 
@@ -130,6 +126,7 @@
     - preconditions:
         - !type:BloodThirstyPrecondition
         - !type:SpiderNoCocoonVictimsPrecondition
+        - !type:SpiderNoCocoonMealsPrecondition
       tasks:
         - !type:HTNPrimitiveTask
           operator: !type:UtilityOperator
@@ -137,11 +134,11 @@
         - !type:HTNPrimitiveTask
           operator: !type:MoveToOperator
             shutdownState: TaskFinished
-            pathfindInPlanning: true
+            pathfindInPlanning: false
             removeKeyOnFinish: false
             targetKey: TargetCoordinates
             pathfindKey: TargetPathfind
-            rangeKey: MeleeRange
+            rangeKey: InteractRange
         - !type:HTNPrimitiveTask
           preconditions:
             - !type:KeyExistsPrecondition
@@ -166,7 +163,81 @@
 - type: htnCompound
   id: SpiderWebIdleCompound
   branches:
-    # Build the web network first. Pick/move are planned only after enough tiles exist.
+    # Drink from a cocoon while on the web nest (before cocoon/idle so thirst is not starved).
+    - preconditions:
+        - !type:BloodThirstyPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCocoonMeals
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: false
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: InteractRange
+          operator: !type:BloodSuccOperator
+            targetKey: Target
+
+    # Drink from blood puddles on/near the web nest.
+    - preconditions:
+        - !type:BloodThirstyPrecondition
+        - !type:SpiderNoCocoonVictimsPrecondition
+        - !type:SpiderNoCocoonMealsPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyBloodPuddles
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: false
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: InteractRange
+          operator: !type:DrinkBloodPuddleOperator
+            targetKey: Target
+
+    # Cocoon on the nest before spin / egg / roam.
+    - preconditions:
+        - !type:SpiderNoActiveHostilesPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCocoonVictims
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToWebOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: false
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+          operator: !type:CocoonOperator
+            targetKey: Target
+
+    # Expand web until SpiderWebInsufficientPrecondition is false.
     - preconditions:
         - !type:SpiderWebInsufficientPrecondition
           expandRadiusKey: WebExpandRadius
@@ -177,6 +248,18 @@
             expandRadiusKey: WebExpandRadius
             minWebTilesKey: MinWebTiles
 
+    # Lay an egg on the finished web nest when well-fed and the area is safe.
+    - preconditions:
+        - !type:SpiderWebReadyPrecondition
+          expandRadiusKey: WebExpandRadius
+          minWebTilesKey: MinWebTiles
+        - !type:SpiderLayEggPrecondition
+        - !type:SpiderNoActiveHostilesPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:LayEggOperator
+
+    # Idle roam on web.
     - preconditions:
         - !type:BuckledPrecondition
           isBuckled: false
@@ -189,7 +272,7 @@
 
         - !type:HTNPrimitiveTask
           operator: !type:MoveToWebOperator
-            pathfindInPlanning: true
+            pathfindInPlanning: false
             rangeKey: MovementRange
 
         - !type:HTNPrimitiveTask
