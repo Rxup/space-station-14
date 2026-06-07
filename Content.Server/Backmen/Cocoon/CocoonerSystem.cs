@@ -45,6 +45,7 @@ public sealed partial class CocoonerSystem : EntitySystem
     [Dependency] private BloodSuckerSystem _bloodSuckerSystem = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private NpcFactionSystem _npcFaction = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
 
     public const string BodySlot = "body_slot";
 
@@ -160,8 +161,11 @@ public sealed partial class CocoonerSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
-        foreach (var ent in _npcFaction.GetNearbyHostiles(uid, range))
+        foreach (var ent in _lookup.GetEntitiesInRange(uid, range))
         {
+            if (ent == uid || !HasComp<MobStateComponent>(ent))
+                continue;
+
             if (!IsCocoonableVictim(ent) || !CanCocoon(uid, ent, component))
                 continue;
 

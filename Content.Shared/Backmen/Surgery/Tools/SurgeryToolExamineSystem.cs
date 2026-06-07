@@ -32,6 +32,8 @@ public sealed partial class SurgeryToolExamineSystem : EntitySystem
         SubscribeLocalEvent<OrganComponent, SurgeryToolExaminedEvent>(OnExamined);
     }
 
+    private static readonly ResPath ScalpelIcon =
+        new("/Textures/_Shitmed/Objects/Specific/Medical/Surgery/scalpel.rsi/scalpel.png");
     private void OnGetVerbs(Entity<SurgeryToolComponent> ent, ref GetVerbsEvent<ExamineVerb> args)
     {
         if (!args.CanInteract || !args.CanAccess)
@@ -42,8 +44,11 @@ public sealed partial class SurgeryToolExamineSystem : EntitySystem
         var ev = new SurgeryToolExaminedEvent(msg);
         RaiseLocalEvent(ent, ref ev);
 
-        _examine.AddDetailedExamineVerb(args, ent.Comp, ev.Message,
-            Loc.GetString("surgery-tool-examinable-verb-text"), "/Textures/_Shitmed/Objects/Specific/Medical/Surgery/scalpel.rsi/scalpel.png",
+        _examine.AddDetailedExamineVerb(args,
+            ent.Comp,
+            ev.Message,
+            Loc.GetString("surgery-tool-examinable-verb-text"),
+            ScalpelIcon.CanonPath,
             Loc.GetString("surgery-tool-examinable-verb-message"));
     }
 
