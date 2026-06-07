@@ -1,9 +1,8 @@
 alert-level-announcement = Attention! Station alert level is now {$name}! {$announcement}
-
 alert-level-unknown = Unknown.
 alert-level-unknown-instructions = Unknown.
 
-alert-level-green = Green
+alert-level-unknown-instructions = Неизвестно.alert-level-green = Green
 alert-level-green-announcement = It is now safe to return to your workplaces.
 alert-level-green-instructions = Do your job.
 
