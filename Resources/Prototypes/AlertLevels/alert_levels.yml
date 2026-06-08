@@ -71,7 +71,7 @@
       color: DarkRed
       emergencyLightColor: Orange
       forceEnableEmergencyLights: true
-      shuttleTime: 90
+      shuttleTime: 1200
       
     epsilon:
       announcement: alert-level-epsilon-announcement
