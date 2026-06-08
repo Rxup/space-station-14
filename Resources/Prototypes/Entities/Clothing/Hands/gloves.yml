@@ -195,16 +195,6 @@
       flatReductions:
         Heat: 10
         Caustic: 5
-  - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
-    modifiers:
-      coefficients:
-        Heat: 0.4
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.9
-        Stun: 0.5
 
 - type: entity
   parent: ClothingHandsBase
@@ -311,16 +301,16 @@
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-insulative
-  - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
-    modifiers:
-      coefficients:
-        Heat: 0.4
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.7
-        Stun: 0.5
+  - type: MeleeWeapon
+    attackRate: 2
+    damage:
+      types:
+        Blunt: 6
+    bluntStaminaDamageFactor: 1.3
+    soundHit:
+      collection: Punch
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
 
 # can't parent combat gloves since they are butcherable
 - type: entity
@@ -336,16 +326,16 @@
   - type: Insulated
   - type: Fiber
     fiberColor: fibers-black
-  - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
-    modifiers:
-      coefficients:
-        Heat: 0.4
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.7
-        Stun: 0.5
+  - type: MeleeWeapon
+    attackRate: 2
+    damage:
+      types:
+        Blunt: 10
+    bluntStaminaDamageFactor: 1.3
+    soundHit:
+      collection: Punch
+    animation: WeaponArcFist
+    mustBeEquippedToUse: true
 
 - type: entity
   parent: [ BaseSecurityCargoContraband, ClothingHandsGlovesCombat ]
@@ -364,16 +354,6 @@
   - type: Fiber
     fiberMaterial: fibers-insulative
     fiberColor: fibers-olive
-  - type: Armor
-    coverage: # backmen: armour coverage
-    - Hand
-    modifiers:
-      coefficients:
-        Heat: 0.4
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.7
-        Stun: 0.5
 
 - type: entity
   parent: ClothingHandsButcherable
