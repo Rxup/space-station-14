@@ -301,16 +301,6 @@
   - type: Insulated
   - type: Fiber
     fiberMaterial: fibers-insulative
-  - type: MeleeWeapon
-    attackRate: 2
-    damage:
-      types:
-        Blunt: 6
-    bluntStaminaDamageFactor: 1.3
-    soundHit:
-      collection: Punch
-    animation: WeaponArcFist
-    mustBeEquippedToUse: true
 
 # can't parent combat gloves since they are butcherable
 - type: entity
@@ -326,16 +316,6 @@
   - type: Insulated
   - type: Fiber
     fiberColor: fibers-black
-  - type: MeleeWeapon
-    attackRate: 2
-    damage:
-      types:
-        Blunt: 10
-    bluntStaminaDamageFactor: 1.3
-    soundHit:
-      collection: Punch
-    animation: WeaponArcFist
-    mustBeEquippedToUse: true
 
 - type: entity
   parent: [ BaseSecurityCargoContraband, ClothingHandsGlovesCombat ]
