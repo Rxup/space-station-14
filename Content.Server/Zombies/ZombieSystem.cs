@@ -10,6 +10,7 @@ using Content.Shared.Armor;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Systems;
 using Content.Shared.Cloning.Events;
@@ -143,7 +144,7 @@ namespace Content.Server.Zombies
                     ? comp.CritDamageMultiplier
                     : 1f;
 
-                _damageable.ChangeDamage((uid, damage), comp.Damage * multiplier, true, false);
+                _damageable.ChangeDamage((uid, damage), comp.Damage * multiplier, true, false, targetPart: TargetBodyPart.Chest);
             }
 
             // Heal the zombified
@@ -164,7 +165,7 @@ namespace Content.Server.Zombies
                     : 1f;
 
                 // Gradual healing for living zombies.
-                _damageable.ChangeDamage((uid, damage), comp.PassiveHealing * multiplier, true, false);
+                _damageable.ChangeDamage((uid, damage), comp.PassiveHealing * multiplier, true, false, partMultiplier: 2, targetPart: TargetBodyPart.All);
             }
         }
 

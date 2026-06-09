@@ -100,17 +100,14 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
             && _useDelay.IsDelayed((absorbEnt.Owner, useDelay)))
             return;
 
-        // BACKMEN EDIT START
-        // Footsteps cleaning logic, try to grab from
-        if (TryFootStepInteract(user, absorbEnt, target, useDelay, absorberSoln.Value))
-            return;
-        // BACKMEN EDIT END
+        // backmen: footsteps — mop footprints and puddles in one action
+        var footHandled = TryFootStepInteract(user, absorbEnt, target, useDelay, absorberSoln.Value);
 
-        // Try to slurp up the puddle.
-        // We're then done if our mop doesn't use absorber solutions, since those don't need refilling.
-        if (TryPuddleInteract((absorbEnt.Owner, absorbEnt.Comp, useDelay), absorberSoln.Value, user, target)
-            || !absorbEnt.Comp.UseAbsorberSolution)
+        var puddleHandled = TryPuddleInteract((absorbEnt.Owner, absorbEnt.Comp, useDelay), absorberSoln.Value, user, target);
+
+        if (footHandled || puddleHandled || !absorbEnt.Comp.UseAbsorberSolution)
             return;
+        // backmen
 
         // If it's refillable try to transfer
         TryRefillableInteract((absorbEnt.Owner, absorbEnt.Comp, useDelay), absorberSoln.Value, user, target);
@@ -280,6 +277,10 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         if (!TryComp<PuddleComponent>(target, out var puddle))
             return false;
 
+        // backmen: footstep entities are handled by TryFootStepInteract
+        if (HasComp<FootPrintComponent>(target))
+            return false;
+
         if (!SolutionContainer.ResolveSolution(target, puddle.SolutionName, ref puddle.Solution, out var puddleSolution)
             || puddleSolution.Volume <= 0)
             return false;
@@ -363,25 +364,44 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         return true;
     }
 
-    // BACKMEN EDIT START
+    // backmen: mop footprint stains (also triggered when mopping nearby puddles)
     private static readonly ProtoId<ReagentPrototype> WaterSolutionId = "Water";
     private bool TryFootStepInteract(EntityUid user, Entity<AbsorbentComponent> used, EntityUid target, UseDelayComponent? useDelay, Entity<SolutionComponent> absorberSoln)
     {
-        if (!HasComp<FootPrintComponent>(target)) // Perform a check if it was a footprint that was clicked on
+        // backmen: allow cleaning footprints when clicking puddles on the same tile
+        if (!HasComp<FootPrintComponent>(target) && !HasComp<PuddleComponent>(target))
             return false;
 
-        var soundPlayed = false;
-
         var footPrints = new HashSet<Entity<FootPrintComponent>>();
-         _lookup.GetEntitiesInRange(Transform(target).Coordinates, 0.25f, footPrints, LookupFlags.Dynamic | LookupFlags.Uncontained);
+        _lookup.GetEntitiesInRange(Transform(target).Coordinates, 0.25f, footPrints, LookupFlags.Dynamic | LookupFlags.Uncontained);
+
+        if (footPrints.Count == 0)
+            return false;
+
+        var cleanedAny = false;
+        var soundPlayed = false;
+        var noWaterPopup = false;
 
         foreach (var (footstepUid, comp) in footPrints)
         {
-            if (!SolutionContainer.ResolveSolution(footstepUid, comp.SolutionName, ref comp.Solution, out var targetStepSolution) || targetStepSolution.Volume <= 0)
+            if (!SolutionContainer.ResolveSolution(footstepUid, comp.SolutionName, ref comp.Solution, out var targetStepSolution))
                 continue;
 
+            // backmen: visual stain with no reagent left
+            if (targetStepSolution.Volume <= FixedPoint2.Zero)
+            {
+                RemoveFootPrint(footstepUid, used);
+                cleanedAny = true;
+                continue;
+            }
+
+            // backmen: water-only footprint — remove instead of skipping
             if (Puddle.CanFullyEvaporate(targetStepSolution))
-                continue; // no spam
+            {
+                RemoveFootPrint(footstepUid, used);
+                cleanedAny = true;
+                continue;
+            }
 
             var absorberSolution = absorberSoln.Comp.Solution;
             var available = absorberSolution.GetTotalPrototypeQuantity(WaterSolutionId);
@@ -389,8 +409,13 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
             // No material
             if (available == FixedPoint2.Zero)
             {
-                _popups.PopupEntity(Loc.GetString("mopping-system-no-water", ("used", used)), user, user);
-                return true;
+                if (!noWaterPopup)
+                {
+                    _popups.PopupEntity(Loc.GetString("mopping-system-no-water", ("used", used)), user, user);
+                    noWaterPopup = true;
+                }
+
+                continue;
             }
 
             var transferMax = used.Comp.PickupAmount;
@@ -399,7 +424,7 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
             var puddleSplit = targetStepSolution.SplitSolutionWithout(transferAmount, WaterSolutionId);
             var absorberSplit = absorberSolution.SplitSolutionWithOnly(puddleSplit.Volume, WaterSolutionId);
 
-            var transform = Transform(target);
+            var transform = Transform(footstepUid);
             var gridUid = transform.GridUid;
             if (TryComp(gridUid, out MapGridComponent? mapGrid))
             {
@@ -407,19 +432,31 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
                 Puddle.DoTileReactions(tileRef, absorberSplit);
             }
 
-
             SolutionContainer.AddSolution(comp.Solution.Value, absorberSplit);
             SolutionContainer.AddSolution(absorberSoln, puddleSplit);
+
+            // backmen: delete footprint once fully cleaned
+            if (targetStepSolution.Volume <= FixedPoint2.Zero || Puddle.CanFullyEvaporate(targetStepSolution))
+                RemoveFootPrint(footstepUid, used);
+
+            cleanedAny = true;
 
             if (!soundPlayed)
             {
                 soundPlayed = true; // to prevent sound spam
                 _audio.PlayPvs(used.Comp.PickupSound, target);
             }
-
-            if (useDelay != null)
-                _useDelay.TryResetDelay((used, useDelay));
         }
+
+        if (noWaterPopup)
+            return true;
+
+        if (!cleanedAny)
+            return false;
+
+        if (useDelay != null)
+            _useDelay.TryResetDelay((used, useDelay));
+
         var userXform = Transform(user);
         var targetPos = _transform.GetWorldPosition(target);
         var localPos = Vector2.Transform(targetPos, _transform.GetInvWorldMatrix(userXform));
@@ -428,5 +465,12 @@ public abstract partial class SharedAbsorbentSystem : EntitySystem
         _melee.DoLunge(user, used, Angle.Zero, localPos, null, false);
         return true;
     }
-    // BACKMEN EDIT END
+
+    // backmen
+    private void RemoveFootPrint(EntityUid footstepUid, Entity<AbsorbentComponent> used)
+    {
+        PredictedSpawnAttachedTo(used.Comp.MoppedEffect, Transform(footstepUid).Coordinates);
+        PredictedQueueDel(footstepUid);
+    }
+    // backmen
 }

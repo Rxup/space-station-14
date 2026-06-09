@@ -31,12 +31,14 @@ using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
+using Robust.Shared.Random;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 using Robust.Server.Console;
-using Robust.Shared.Map.Components;
 using static Content.Shared.Examine.ExamineSystemShared;
 
 namespace Content.Server.Backmen.Arachne;
@@ -61,6 +63,20 @@ public sealed partial class ArachneSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private ExamineSystemShared _examine = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private IRobustRandom _random = default!;
+
+    private static readonly Vector2i[] NeighborOffsets =
+    [
+        new(1, 0),
+        new(-1, 0),
+        new(0, 1),
+        new(0, -1),
+        new(1, 1),
+        new(1, -1),
+        new(-1, 1),
+        new(-1, -1),
+    ];
 
 
     private const string BodySlot = "body_slot";
@@ -98,6 +114,227 @@ public sealed partial class ArachneSystem : EntitySystem
             _buckleSystem.StrapSetEnabled(uid, false, strap);
     }
 
+    public bool NPCTrySpinWeb(EntityUid uid, ArachneComponent? arachne = null)
+    {
+        if (!Resolve(uid, ref arachne, false))
+            return false;
+
+        return NPCTrySpinWebAt(uid, Transform(uid).Coordinates.SnapToGrid(EntityManager), arachne);
+    }
+
+    public bool NPCTrySpinWebAt(EntityUid uid, EntityCoordinates coords, ArachneComponent? arachne = null)
+    {
+        if (!Resolve(uid, ref arachne, false))
+            return false;
+
+        if (_containerSystem.IsEntityInContainer(uid))
+            return false;
+
+        coords = coords.SnapToGrid(EntityManager);
+
+        if (!CanSpinWebAt(uid, coords, false))
+            return false;
+
+        var ev = new ArachneWebDoAfterEvent(GetNetCoordinates(coords));
+        var doAfterArgs = new DoAfterArgs(EntityManager, uid, arachne.NpcWebDelay, ev, uid)
+        {
+            BreakOnMove = true,
+        };
+
+        return _doAfter.TryStartDoAfter(doAfterArgs);
+    }
+
+    public bool TryPickNearbyWebTile(EntityCoordinates origin, float maxRange, out EntityCoordinates coords)
+    {
+        coords = default;
+
+        if (!TryGetGridData(origin, out var gridUid, out _, out var center))
+            return false;
+
+        var current = origin.SnapToGrid(EntityManager);
+        var radius = (int) Math.Ceiling(maxRange);
+        var candidates = new List<EntityCoordinates>();
+        var others = new List<EntityCoordinates>();
+
+        for (var x = -radius; x <= radius; x++)
+        {
+            for (var y = -radius; y <= radius; y++)
+            {
+                if (Math.Abs(x) + Math.Abs(y) > maxRange)
+                    continue;
+
+                var candidate = new EntityCoordinates(gridUid, center + new Vector2i(x, y)).SnapToGrid(EntityManager);
+
+                if (!IsTileWebbed(candidate))
+                    continue;
+
+                candidates.Add(candidate);
+
+                if (candidate != current)
+                    others.Add(candidate);
+            }
+        }
+
+        if (candidates.Count == 0)
+            return false;
+
+        coords = others.Count > 0 ? _random.Pick(others) : _random.Pick(candidates);
+        return true;
+    }
+
+    public int CountWebbedTilesInRadius(EntityCoordinates origin, int radius)
+    {
+        if (radius <= 0)
+            return IsTileWebbed(origin.SnapToGrid(EntityManager)) ? 1 : 0;
+
+        if (!TryGetGridData(origin, out var gridUid, out var grid, out var center))
+            return 0;
+
+        var count = 0;
+
+        for (var x = -radius; x <= radius; x++)
+        {
+            for (var y = -radius; y <= radius; y++)
+            {
+                var coords = new EntityCoordinates(gridUid, center + new Vector2i(x, y)).SnapToGrid(EntityManager);
+
+                if (IsTileWebbed(coords))
+                    count++;
+            }
+        }
+
+        return count;
+    }
+
+    public bool IsWebNestReady(EntityCoordinates origin, int expandRadius, int minWebTiles)
+    {
+        expandRadius = Math.Max(expandRadius, 1);
+        minWebTiles = Math.Max(minWebTiles, 1);
+        var coords = origin.SnapToGrid(EntityManager);
+
+        return CountWebbedTilesInRadius(coords, expandRadius) >= minWebTiles && IsTileWebbed(coords);
+    }
+
+    /// <summary>
+    /// Finds the next tile to extend the local web network.
+    /// </summary>
+    public bool TryGetNextExpandableWebTile(EntityUid uid, EntityCoordinates origin, int radius, out EntityCoordinates coords)
+    {
+        coords = default;
+
+        if (!TryGetGridData(origin, out var gridUid, out var grid, out var center))
+            return false;
+
+        var current = origin.SnapToGrid(EntityManager);
+        var bestDist = int.MaxValue;
+        EntityCoordinates? best = null;
+
+        void Consider(EntityCoordinates candidate, int dist)
+        {
+            if (IsTileWebbed(candidate) || !CanSpinWebAt(uid, candidate, false))
+                return;
+
+            if (dist >= bestDist)
+                return;
+
+            bestDist = dist;
+            best = candidate;
+        }
+
+        for (var x = -radius; x <= radius; x++)
+        {
+            for (var y = -radius; y <= radius; y++)
+            {
+                if (x == 0 && y == 0)
+                    continue;
+
+                var candidate = new EntityCoordinates(gridUid, center + new Vector2i(x, y)).SnapToGrid(EntityManager);
+
+                if (!IsAdjacentToWebbedTile(candidate))
+                    continue;
+
+                Consider(candidate, Math.Abs(x) + Math.Abs(y));
+            }
+        }
+
+        if (best != null)
+        {
+            coords = best.Value;
+            return true;
+        }
+
+        if (!IsTileWebbed(current) && CanSpinWebAt(uid, current, false))
+        {
+            coords = current;
+            return true;
+        }
+
+        for (var x = -radius; x <= radius; x++)
+        {
+            for (var y = -radius; y <= radius; y++)
+            {
+                if (x == 0 && y == 0)
+                    continue;
+
+                var candidate = new EntityCoordinates(gridUid, center + new Vector2i(x, y)).SnapToGrid(EntityManager);
+                Consider(candidate, Math.Abs(x) + Math.Abs(y));
+            }
+        }
+
+        if (best == null)
+            return false;
+
+        coords = best.Value;
+        return true;
+    }
+
+    private bool IsAdjacentToWebbedTile(EntityCoordinates coords)
+    {
+        foreach (var offset in NeighborOffsets)
+        {
+            if (IsTileWebbed(coords.Offset(offset)))
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool TryGetGridData(
+        EntityCoordinates origin,
+        out EntityUid gridUid,
+        out MapGridComponent grid,
+        out Vector2i center)
+    {
+        gridUid = EntityUid.Invalid;
+        grid = default!;
+        center = default;
+
+        origin = origin.SnapToGrid(EntityManager);
+
+        if (_transform.GetGrid(origin) is not { } gridEnt)
+            return false;
+
+        if (!TryComp(gridEnt, out MapGridComponent? gridComp))
+            return false;
+
+        grid = gridComp;
+        gridUid = gridEnt;
+
+        center = _map.TileIndicesFor(gridUid, grid, _transform.ToMapCoordinates(origin));
+        return true;
+    }
+
+    public bool IsTileWebbed(EntityCoordinates coords)
+    {
+        foreach (var entity in _lookup.GetEntitiesIntersecting(coords))
+        {
+            if (HasComp<WebComponent>(entity))
+                return true;
+        }
+
+        return false;
+    }
+
     private void OnSpinWeb(SpinWebActionEvent args)
     {
         if (!TryComp<ArachneComponent>(args.Performer, out var arachne))
@@ -132,32 +369,8 @@ public sealed partial class ArachneSystem : EntitySystem
 
         var coords = args.Target;
 
-        if (!HasComp<MapGridComponent>(_transform.GetGrid(coords)))
-        {
-            _popupSystem.PopupEntity(Loc.GetString("action-name-spin-web-space"),
-                args.Performer,
-                args.Performer,
-                Shared.Popups.PopupType.MediumCaution);
+        if (!CanSpinWebAt(args.Performer, coords, true))
             return;
-        }
-
-
-        foreach (var entity in _lookup.GetEntitiesIntersecting(coords))
-        {
-            PhysicsComponent? physics = null; // We use this to check if it's impassable
-            if ((HasComp<WebComponent>(entity)) || // Is there already a web there?
-                ((Resolve(entity, ref physics, false) &&
-                  (physics.CollisionLayer & (int)CollisionGroup.Impassable) != 0) // Is it impassable?
-                 && !(TryComp<DoorComponent>(entity, out var door) &&
-                      door.State != DoorState.Closed))) // Is it a door that's open and so not actually impassable?
-            {
-                _popupSystem.PopupEntity(Loc.GetString("action-name-spin-web-blocked"),
-                    args.Performer,
-                    args.Performer,
-                    Shared.Popups.PopupType.MediumCaution);
-                return;
-            }
-        }
 
         _popupSystem.PopupEntity(
             Loc.GetString("spin-web-start-third-person", ("spider", Identity.Entity(args.Performer, EntityManager))),
@@ -179,6 +392,45 @@ public sealed partial class ArachneSystem : EntitySystem
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
+    }
+
+    private bool CanSpinWebAt(EntityUid uid, EntityCoordinates coords, bool showPopup)
+    {
+        if (!HasComp<MapGridComponent>(_transform.GetGrid(coords)))
+        {
+            if (showPopup)
+            {
+                _popupSystem.PopupEntity(Loc.GetString("action-name-spin-web-space"),
+                    uid,
+                    uid,
+                    Shared.Popups.PopupType.MediumCaution);
+            }
+
+            return false;
+        }
+
+        foreach (var entity in _lookup.GetEntitiesIntersecting(coords))
+        {
+            PhysicsComponent? physics = null;
+            if (HasComp<WebComponent>(entity) ||
+                (Resolve(entity, ref physics, false) &&
+                 (physics.CollisionLayer & (int) CollisionGroup.Impassable) != 0 &&
+                 !(TryComp<DoorComponent>(entity, out var door) &&
+                   door.State != DoorState.Closed)))
+            {
+                if (showPopup)
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("action-name-spin-web-blocked"),
+                        uid,
+                        uid,
+                        Shared.Popups.PopupType.MediumCaution);
+                }
+
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private readonly EntProtoId ArachneWeb = "ArachneWeb";

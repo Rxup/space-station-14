@@ -30,6 +30,7 @@ public abstract partial class SharedTdmTeamSystem : EntitySystem
 
     protected EntityQuery<TdmMemberComponent> TdmMemberComponentQuery { get; set; }
 
+    private static readonly ResPath TeamRsi = new("/Textures/Backmen/Interface/Misc/svs_icon.rsi");
     private void GetVerbs(GetVerbsEvent<Verb> args)
     {
         if (!_adminManager.HasAdminFlag(args.User, AdminFlags.Fun))
@@ -50,7 +51,7 @@ public abstract partial class SharedTdmTeamSystem : EntitySystem
             verb.Text = Loc.GetString("prayer-verbs-team-a");
             verb.Message = "Назначить команду красных";
             verb.Category = VerbCategory.Tricks;
-            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Backmen/Interface/Misc/svs_icon.rsi/team_a.png"));
+            verb.Icon = new SpriteSpecifier.Rsi(TeamRsi,"team_a");
             verb.Act = () =>
             {
                 SetTeam(target, StationTeamMarker.TeamA);
@@ -65,7 +66,7 @@ public abstract partial class SharedTdmTeamSystem : EntitySystem
             verb.Text = Loc.GetString("prayer-verbs-team-b");
             verb.Message = "Назначить команду синих";
             verb.Category = VerbCategory.Tricks;
-            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Backmen/Interface/Misc/svs_icon.rsi/team_b.png"));
+            verb.Icon = new SpriteSpecifier.Rsi(TeamRsi,"team_b");
             verb.Act = () =>
             {
                 SetTeam(target, StationTeamMarker.TeamB);
@@ -80,7 +81,7 @@ public abstract partial class SharedTdmTeamSystem : EntitySystem
             verb.Text = Loc.GetString("prayer-verbs-team-0");
             verb.Message = "Назначить команду нетральных";
             verb.Category = VerbCategory.Tricks;
-            verb.Icon = new SpriteSpecifier.Texture(new("/Textures/Backmen/Interface/Misc/svs_icon.rsi/team_0.png"));
+            verb.Icon = new SpriteSpecifier.Rsi(TeamRsi,"team_0");
             verb.Act = () =>
             {
                 SetTeam(target, StationTeamMarker.Neutral);

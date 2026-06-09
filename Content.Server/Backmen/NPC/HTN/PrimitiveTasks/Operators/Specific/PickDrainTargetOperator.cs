@@ -5,17 +5,13 @@ using Content.Server.NPC;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.Pathfinding;
 using Content.Server.NPC.Systems;
-using Content.Shared.Backmen.Abilities.Psionics;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.NPC.Systems;
+using Robust.Shared.Map;
 
 namespace Content.Server.Backmen.NPC.HTN.PrimitiveTasks.Operators.Specific;
 
 public sealed partial class PickDrainTargetOperator: HTNOperator
 {
     [Dependency] private IEntityManager _entManager = default!;
-    private NpcFactionSystem _npcFactonSystem = default!;
-    private MobStateSystem _mobSystem = default!;
 
     private EntityLookupSystem _lookup = default!;
     private PathfindingSystem _pathfinding = default!;
@@ -46,8 +42,6 @@ public sealed partial class PickDrainTargetOperator: HTNOperator
         base.Initialize(sysManager);
         _lookup = sysManager.GetEntitySystem<EntityLookupSystem>();
         _pathfinding = sysManager.GetEntitySystem<PathfindingSystem>();
-        _mobSystem = sysManager.GetEntitySystem<MobStateSystem>();
-        _npcFactonSystem = sysManager.GetEntitySystem<NpcFactionSystem>();
         _wispQuery = _entManager.GetEntityQuery<GlimmerWispComponent>();
         _xformQuery = _entManager.GetEntityQuery<TransformComponent>();
         _wispSystem = sysManager.GetEntitySystem<GlimmerWispSystem>();
@@ -64,26 +58,50 @@ public sealed partial class PickDrainTargetOperator: HTNOperator
         if (!blackboard.TryGetValue<float>(RangeKey, out var range, _entManager))
             return (false, null);
 
-        foreach (var target in _npcFactonSystem.GetNearbyHostiles(owner, range))
+        var approachRange = GlimmerWispSystem.DrainRange;
+        var bestTarget = EntityUid.Invalid;
+        var bestCoords = EntityCoordinates.Invalid;
+        PathResultEvent? bestPath = null;
+        var bestDistance = float.MaxValue;
+        var found = false;
+
+        foreach (var target in _lookup.GetEntitiesInRange(owner, range))
         {
-            if (!_wispSystem.CanDrain((owner,wispComponent), target, false))
+            if (target == owner)
                 continue;
 
-            if (!_xformQuery.TryComp(target, out var xform))
+            if (!_wispSystem.CanDrain((owner, wispComponent), target, false))
                 continue;
 
-            var targetCoords = xform.Coordinates;
-            var path = await _pathfinding.GetPath(owner, target, range, cancelToken);
+            if (!_xformQuery.TryComp(target, out var xform) ||
+                !_xformQuery.TryComp(owner, out var ownerXform))
+            {
+                continue;
+            }
+
+            var distance = (ownerXform.WorldPosition - xform.WorldPosition).Length();
+            if (distance >= bestDistance)
+                continue;
+
+            var path = await _pathfinding.GetPath(owner, target, approachRange, cancelToken);
             if (path.Result != PathResult.Path)
                 continue;
 
-            return (true, new Dictionary<string, object>()
-            {
-                { TargetKey, targetCoords },
-                { DrainKey, target },
-                { PathfindKey, path }
-            });
+            bestTarget = target;
+            bestCoords = xform.Coordinates;
+            bestPath = path;
+            bestDistance = distance;
+            found = true;
         }
-        return (false, null);
+
+        if (!found || bestPath == null)
+            return (false, null);
+
+        return (true, new Dictionary<string, object>()
+        {
+            { TargetKey, bestCoords },
+            { DrainKey, bestTarget },
+            { PathfindKey, bestPath }
+        });
     }
 }

@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server.Backmen.Cocoon;
 using Content.Server.NPC.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.NPC;
@@ -71,6 +72,13 @@ public sealed partial class NPCCombatSystem
             !xformQuery.TryGetComponent(component.Target, out var targetXform))
         {
             component.Status = CombatStatus.TargetUnreachable;
+            return;
+        }
+
+        if (TryComp<CocoonerComponent>(uid, out _) &&
+            EntityManager.System<CocoonerSystem>().IsCocoonableVictim(component.Target))
+        {
+            RemComp<NPCMeleeCombatComponent>(uid);
             return;
         }
 

@@ -100,9 +100,23 @@
     - preconditions:
         - !type:GunAmmoPrecondition
           minPercent: 0.001
+        - !type:GunWieldPrecondition
       tasks:
         - !type:HTNCompoundTask
           task: GunCombatCompound
+
+    # Discard gun if it requires two hands but we can't wield it
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: Gun
+        - !type:GunWieldPrecondition
+          invert: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:ActiveHandEntityPrecondition
+          operator: !type:DropOperator
 
     # Reload gun
     # TODO

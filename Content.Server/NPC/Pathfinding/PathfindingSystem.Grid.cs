@@ -520,6 +520,13 @@ public sealed partial class PathfindingSystem
                             }
                             // end-backmen: blob
 
+                            // start-backmen: web
+                            if (_webQuery.HasComponent(ent) || _spiderWebQuery.HasComponent(ent))
+                            {
+                                flags |= PathfindingBreadcrumbFlag.Web;
+                            }
+                            // end-backmen: web
+
                             if (_accessQuery.HasComponent(ent))
                             {
                                 flags |= PathfindingBreadcrumbFlag.Access;
