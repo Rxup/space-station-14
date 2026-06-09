@@ -139,14 +139,11 @@ public sealed partial class CocoonerSystem : EntitySystem
 
     public bool IsCocoonableVictim(EntityUid target)
     {
-        if (!_mobState.IsAlive(target))
-            return false;
-
         // Only fully asleep, not while still going down or under nocturine buildup.
         if (HasComp<SleepingComponent>(target))
             return true;
 
-        if (_mobState.IsCritical(target))
+        if (_mobState.IsIncapacitated(target))
             return true;
 
         // Knockdown alone is too early (drowsy / falling over). Require stun as well.
