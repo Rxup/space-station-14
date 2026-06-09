@@ -22,11 +22,15 @@ public sealed partial class CentCommSpawnSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<StationCentCommDirectorComponent, CentCommEvent>(OnCentCommEvent);
-        SubscribeLocalEvent<StationCentCommDirectorComponent, ComponentStartup>(OnComponentStartup);
+        SubscribeLocalEvent<StationInitializedEvent>(OnComponentStartup, before:[typeof(StationJobsSystem)]);
     }
 
-    private void OnComponentStartup(Entity<StationCentCommDirectorComponent> ent, ref ComponentStartup args)
+    private void OnComponentStartup(StationInitializedEvent ev)
     {
+        if(!TryComp<StationCentCommDirectorComponent>(ev.Station, out var comp))
+            return;
+
+        Entity<StationCentCommDirectorComponent> ent = (ev.Station, comp);
 #if DEBUG
         ent.Comp.isLowPop = false;
 #else
