@@ -89,3 +89,118 @@
   - Trinkets
   - GroupSpeciesBreathToolMedical
   - Inventory # Corvax-Loadouts
+
+- type: roleLoadout
+  id: JobBKCCOfficial
+  groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - BKCCOfficialHead
+  - BKCCOfficialJumpsuit
+  - BKCCOfficialShoes
+  - BKCCOfficialMask
+  - BKCCOfficialEyes
+  - BKCCOfficialGloves
+  - BKCCOfficialOuterClothing
+  - BKCCOfficialSuitStorage
+  - BKCCOfficialPDA
+  - BKCCOfficialEars
+  - BKCCOfficialPocket1
+  - BKCCOfficialPocket2
+  - Trinkets
+  - Medals #backmen
+  - Inventory # Corvax-Loadouts
+
+- type: roleLoadout
+  id: JobBKCCSecOfficer
+  groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - BKCCSecOfficerJumpsuit
+  - BKCCSecOfficerBackpack
+  - BKCCSecOfficerShoes
+  - BKCCSecOfficerNeck
+  - BKCCSecOfficerEyes
+  - BKCCSecOfficerGloves
+  - BKCCSecOfficerHead
+  - BKCCSecOfficerOuterClothing
+  - BKCCSecOfficerSuitStorage
+  - BKCCSecOfficerPDA
+  - BKCCSecOfficerEars
+  - BKCCSecOfficerBelt
+  - BKCCSecOfficerPocket1
+  - BKCCSecOfficerPocket2
+  - Trinkets
+  - SurvivalSecurity
+  - Medals #backmen
+  - Inventory # Corvax-Loadouts
+
+- type: roleLoadout
+  id: JobERTEngineer
+  groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - ERTEngineerJumpsuit
+  - ERTEngineerBackpack
+  - ERTEngineerShoes
+  - ERTEngineerHead
+  - ERTEngineerEyes
+  - ERTEngineerGloves
+  - ERTEngineerOuterClothing
+  - ERTEngineerPDA
+  - ERTEngineerEars
+  - ERTEngineerBelt
+  - ERTEngineerPocket1
+  - ERTEngineerPocket2
+  - Trinkets
+  - SurvivalExtended
+  - Medals #backmen
+  - GroupSpeciesBreathTool
+  - Inventory # Corvax-Loadouts
+
+- type: roleLoadout
+  id: JobERTMedical
+  groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - ERTMedicalJumpsuit
+  - ERTMedicalBackpack
+  - ERTMedicalShoes
+  - ERTMedicalHead
+  - ERTMedicalEyes
+  - ERTMedicalGloves
+  - ERTMedicalOuterClothing
+  - ERTMedicalPDA
+  - ERTMedicalEars
+  - ERTMedicalBelt
+  - ERTMedicalPocket1
+  - Trinkets
+  - SurvivalMedical
+  - Medals #backmen
+  - GroupSpeciesBreathToolMedical
+  - Inventory # Corvax-Loadouts
+
+- type: roleLoadout
+  id: JobERTJanitor
+  groups:
+  - Werx #backmen
+  - Niz #backmen
+  - Socks #backmen
+  - ERTJanitorJumpsuit
+  - ERTJanitorBackpack
+  - ERTJanitorShoes
+  - ERTJanitorHead
+  - ERTJanitorGloves
+  - ERTJanitorOuterClothing
+  - ERTJanitorPDA
+  - ERTJanitorEars
+  - ERTJanitorBelt
+  - ERTJanitorPocket1
+  - Trinkets
+  - Survival
+  - Medals #backmen
+  - Inventory # Corvax-Loadouts
