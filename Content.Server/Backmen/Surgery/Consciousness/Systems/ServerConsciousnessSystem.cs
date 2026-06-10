@@ -61,8 +61,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
         SubscribeLocalEvent<ConsciousnessComponent, ComponentInit>(OnConsciousnessInit);
         SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit);
-
-        SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<ConsciousnessComponent, HandleCustomDamage>(OnConsciousnessDamaged);
 
         SubscribeLocalEvent<ConsciousnessComponent, InteractHandEvent>(OnConsciousnessInteract);
@@ -208,7 +206,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         args.Handled = true;
     }
 
-    private void OnMobStateChanged(Entity<ConsciousnessComponent> consciousness, ref MobStateChangedEvent args)
+    protected override void OnMobStateChanged(Entity<ConsciousnessComponent> consciousness, ref MobStateChangedEvent args)
     {
         var (uid, component) = consciousness;
         if (args.NewMobState != MobState.Dead)

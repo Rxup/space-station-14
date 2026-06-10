@@ -35,6 +35,12 @@
   - type: Damageable
     damageContainer: Inorganic
   - type: MobState # can be npc targets
+    allowedStates:
+    - Alive
+  - type: MobThresholds # can be npc targets
+    thresholds:
+      0: Alive
+      600: Dead
   - type: Destructible
     thresholds:
     - trigger:

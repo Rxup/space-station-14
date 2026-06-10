@@ -1,4 +1,5 @@
-﻿using Content.Shared.Chat;
+﻿using Content.Client.Audio;
+using Content.Shared.Chat;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
@@ -32,11 +33,12 @@ public sealed partial class TTSSystem : EntitySystem
     private const float WhisperFade = 4f;
 
     /// <summary>
-    /// The volume at which the TTS sound will not be heard.
+    /// The minimum playback volume for regular TTS.
     /// </summary>
-    private const float MinimalVolume = -30f;
+    private const float MinimalVolume = -10f;
 
     private float _volume = 0.0f;
+    private float _headsetVolume = 0.0f;
     private ulong _fileIdx = 0;
     private static ulong _shareIdx = 0;
 
@@ -46,6 +48,7 @@ public sealed partial class TTSSystem : EntitySystem
         _sawmill = Logger.GetSawmill("tts");
         _res.AddRoot(_prefix, _contentRoot);
         _cfg.OnValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged, true);
+        _cfg.OnValueChanged(CCCVars.TTSHeadsetVolume, OnTtsHeadsetVolumeChanged, true);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
@@ -59,6 +62,7 @@ public sealed partial class TTSSystem : EntitySystem
     {
         base.Shutdown();
         _cfg.UnsubValueChanged(CCCVars.TTSVolume, OnTtsVolumeChanged);
+        _cfg.UnsubValueChanged(CCCVars.TTSHeadsetVolume, OnTtsHeadsetVolumeChanged);
         _contentRoot.Dispose();
     }
 
@@ -72,6 +76,11 @@ public sealed partial class TTSSystem : EntitySystem
         _volume = volume;
     }
 
+    private void OnTtsHeadsetVolumeChanged(float volume)
+    {
+        _headsetVolume = volume;
+    }
+
     private void OnPlayTTS(PlayTTSEvent ev)
     {
         _sawmill.Verbose($"Play TTS audio {ev.Data.Length} bytes from {ev.SourceUid} entity");
@@ -83,7 +92,7 @@ public sealed partial class TTSSystem : EntitySystem
         audioResource.Load(IoCManager.Instance!, _prefix / filePath);
 
         var audioParams = AudioParams.Default
-            .WithVolume(AdjustVolume(ev.IsWhisper))
+            .WithVolume(AdjustVolume(ev.IsWhisper, ev.IsHeadset))
             .WithMaxDistance(AdjustDistance(ev.IsWhisper));
 
         if (ev.SourceUid != null)
@@ -100,9 +109,12 @@ public sealed partial class TTSSystem : EntitySystem
         _contentRoot.RemoveFile(filePath);
     }
 
-    private float AdjustVolume(bool isWhisper)
+    private float AdjustVolume(bool isWhisper, bool isHeadset)
     {
-        var volume = Math.Max(MinimalVolume, SharedAudioSystem.GainToVolume(_volume));
+        var gain = isHeadset
+            ? _headsetVolume
+            : Math.Max(_volume, ContentAudioSystem.TtsMinSliderRatio * ContentAudioSystem.TtsMultiplier);
+        var volume = Math.Max(MinimalVolume, SharedAudioSystem.GainToVolume(gain));
 
         if (isWhisper)
         {

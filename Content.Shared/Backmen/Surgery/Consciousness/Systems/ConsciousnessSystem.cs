@@ -29,8 +29,8 @@ public abstract partial class ConsciousnessSystem : EntitySystem
     [Dependency] protected MobStateSystem MobStateSys = default!;
     [Dependency] protected MobThresholdSystem MobThresholds = default!;
 
-    protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery;
-    protected EntityQuery<MobStateComponent> MobStateQuery;
+    [Dependency] protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery = default!;
+    [Dependency] protected EntityQuery<MobStateComponent> MobStateQuery = default!;
 
     public override void Initialize()
     {
@@ -38,8 +38,23 @@ public abstract partial class ConsciousnessSystem : EntitySystem
 
         InitNet();
 
-        ConsciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
-        MobStateQuery = GetEntityQuery<MobStateComponent>();
+        SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnRelayState);
+    }
+
+    protected virtual void OnMobStateChanged(Entity<ConsciousnessComponent> consciousness,
+        ref MobStateChangedEvent args)
+    {
+        // do nothing
+    }
+
+    private void OnRelayState(Entity<ConsciousnessComponent> ent, ref MobStateChangedEvent args)
+    {
+        if (TryGetNerveSystem(ent.AsNullable(), out var nerveSys))
+        {
+            RaiseLocalEvent(nerveSys.Value, args);
+        }
+
+        OnMobStateChanged(ent, ref args);
     }
 
     protected void UpdateConsciousnessModifiers(Entity<ConsciousnessComponent?> uid)

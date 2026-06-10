@@ -15,5 +15,78 @@
     pocket2: BoxFolderSecretBlack
     innerClothingSkirt: ClothingUniformJumpskirtCentcomOfficer
 
+# Jumpsuit
+- type: loadout
+  id: BKCCOfficialJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficer
 
+- type: loadout
+  id: BKCCOfficialJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCentcomOfficer
 
+# Head
+- type: loadout
+  id: BKCCOfficialHead
+  equipment:
+    head: ClothingHeadHatCentcom
+
+# Shoes
+- type: loadout
+  id: BKCCOfficialShoes
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+
+# Mask
+- type: loadout
+  id: BKCCOfficialMask
+  equipment:
+    mask: ClothingMaskGasCentcom
+
+# Eyes
+- type: loadout
+  id: BKCCOfficialEyes
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses
+
+# Gloves
+- type: loadout
+  id: BKCCOfficialGloves
+  equipment:
+    gloves: ClothingHandsGlovesCentcomNaval
+
+# OuterClothing
+- type: loadout
+  id: BKCCOfficialOuterClothing
+  equipment:
+    outerClothing: ClothingOuterArmorCentcomCarapace
+
+# SuitStorage
+- type: loadout
+  id: BKCCOfficialSuitStorage
+  equipment:
+    suitstorage: OxygenTankFilled
+
+# PDA
+- type: loadout
+  id: BKCCOfficialPDA
+  equipment:
+    id: CentcomPDABackmen
+
+# Ears
+- type: loadout
+  id: BKCCOfficialEars
+  equipment:
+    ears: ClothingHeadsetAltCentCom
+
+# Pockets
+- type: loadout
+  id: BKCCOfficialPocket1
+  equipment:
+    pocket1: CyberPen
+
+- type: loadout
+  id: BKCCOfficialPocket2
+  equipment:
+    pocket2: BoxFolderSecretBlack

@@ -32,6 +32,8 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float BrutalDeathRattlesMultiplier = 4f; // Backmen: ReBELL
     public const float BoomboxVolumeMultiplier = 5f; // Backmen: Boombox audio can be changed
     public const float TtsMultiplier = 5f; // Corvax-TTS
+    public const float TtsHeadsetMultiplier = 5f; // Corvax-TTS
+    public const float TtsMinSliderRatio = 0.2f; // Corvax-TTS: 20% minimum so TTS cannot be fully muted
     public const float TtsAnnounceMultiplier = 2f; // Corvax-TTS
 
 

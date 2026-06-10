@@ -4,7 +4,6 @@
   description: job-description-centcomoffBK
   playTimeTracker: JobCentralCommandOfficial
   setPreference: true
-  startingGear: CentComCorvax
   icon: JobIconNT
   supervisors: job-supervisors-hoh
   canBeAntag: false
