@@ -173,13 +173,13 @@
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.5
-        ArmorPiercing: 0.85
+        Piercing: 0.7
+        ArmorPiercing: 0.7
         Heat: 0.7
-        Caustic: 0.75
-        Stun: 0.4
+        Caustic: 0.9
+        Stun: 0.7
   - type: ExplosionResistance
-    damageCoefficient: 0.9
+    damageCoefficient: 0.8
   - type: GroupExamine
 
 - type: entity

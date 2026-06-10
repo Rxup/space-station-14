@@ -10,7 +10,7 @@
       color: Green
       emergencyLightColor: LawnGreen
       shuttleTime: 600
-      
+
     blue:
       announcement: alert-level-blue-announcement
       sound:
@@ -72,7 +72,7 @@
       emergencyLightColor: Orange
       forceEnableEmergencyLights: true
       shuttleTime: 1200
-      
+
     epsilon:
       announcement: alert-level-epsilon-announcement
       selectable: false
