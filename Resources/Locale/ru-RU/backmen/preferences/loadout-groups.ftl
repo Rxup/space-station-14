@@ -28,3 +28,17 @@ loadout-group-virologist-backpack = Вирусолог, рюкзак
 loadout-group-surgeon-head = Хирург, головa
 loadout-group-surgeon-jumpsuit = Хирург, комбинезон
 loadout-group-surgeon-outerclothing = Хирург, верхняя одежда
+
+# CentCom reinforcement loadouts
+loadout-group-captain-shoes = Капитан, обувь
+loadout-group-survival-mask = Маска
+loadout-group-gloves = Перчатки
+loadout-group-id = ID
+loadout-group-ears = Гарнитура
+loadout-group-pockets = Карманы
+loadout-group-neck = Шея
+loadout-group-security-eyes = Охрана, глаза
+loadout-group-belt = Пояс
+loadout-group-medical-eyewear = Медицинские очки
+loadout-group-common-backpack = Рюкзак
+loadout-group-shoes = Обувь
