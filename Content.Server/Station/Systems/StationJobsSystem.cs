@@ -80,6 +80,38 @@ public sealed partial class StationJobsSystem : EntitySystem
         UpdateJobsAvailable();
     }
 
+    /// <summary>
+    /// Replaces <see cref="StationJobsComponent.SetupAvailableJobs"/> with the provided jobs.
+    /// </summary>
+    public void SetSetupAvailableJobs(
+        EntityUid station,
+        IEnumerable<KeyValuePair<ProtoId<JobPrototype>, int[]>>? jobs,
+        StationJobsComponent? stationJobs = null,
+        bool syncRuntime = false)
+    {
+        if (!Resolve(station, ref stationJobs, false))
+            return;
+
+        stationJobs.SetupAvailableJobs.Clear();
+
+        if (jobs != null)
+        {
+            foreach (var (job, slots) in jobs)
+                stationJobs.SetupAvailableJobs[job] = slots;
+        }
+
+        if (!syncRuntime)
+            return;
+
+        stationJobs.JobList = stationJobs.SetupAvailableJobs.ToDictionary(
+            x => x.Key,
+            x => (int?)(x.Value[1] < 0 ? null : x.Value[1]));
+
+        stationJobs.TotalJobs = stationJobs.JobList.Values.Select(x => x ?? 0).Sum();
+
+        UpdateJobsAvailable();
+    }
+
     #region Public API
 
     /// <inheritdoc cref="TryAssignJob(Robust.Shared.GameObjects.EntityUid,string,NetUserId,Content.Server.Station.Components.StationJobsComponent?)"/>
