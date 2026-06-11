@@ -240,7 +240,6 @@
     Heat: 0.05
     Radiation: 0
     Caustic: 0
-    Stun: 0
 
 - type: entity
   name: US marine
@@ -268,6 +267,9 @@
       210: 1
   - type: Damageable
     damageModifierSet: CombineArmor
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+    worn: false
   - type: MovementSpeedModifier
     baseSprintSpeed: 5
   - type: Loadout
@@ -320,6 +322,9 @@
       100: Dead
   - type: Damageable
     damageModifierSet: CombineArmorCP
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+    worn: false
   - type: Loadout
     prototypes: [NPCSecurity]
 
@@ -396,6 +401,9 @@
       sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: Damageable
     damageModifierSet: CombineArmorElite
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+    worn: false
   - type: Loadout
     prototypes: [NPCSecurityHeavy]
 
@@ -651,6 +659,9 @@
     damageCap: 0
   - type: Damageable
     damageModifierSet: CombineArmor
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+    worn: false
 
 - type: entity
   name: bullsquid
@@ -740,6 +751,9 @@
     damageCap: 0
   - type: Damageable
     damageModifierSet: CombineArmor
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+    worn: false
 
 - type: entity
   name: Vortigaunt

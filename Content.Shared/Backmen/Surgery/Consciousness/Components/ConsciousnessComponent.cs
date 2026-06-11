@@ -10,7 +10,7 @@ public sealed partial class ConsciousnessComponent : Component
     /// <summary>
     /// Represents the limit at which point the entity falls unconscious.
     /// </summary>
-    [DataField(required: true)]
+    [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 Threshold = 120;
 
@@ -40,6 +40,14 @@ public sealed partial class ConsciousnessComponent : Component
     [DataField]
     [ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 Cap = 220;
+
+    // start-backmen: sync mob thresholds
+    /// <summary>
+    /// Added to MobThresholds Dead when syncing Cap on MapInit.
+    /// </summary>
+    [DataField]
+    public FixedPoint2 CapBonus = 50;
+    // end-backmen
 
     /// <summary>
     /// the amount of SUFFOCATION damage the CPR will heal!

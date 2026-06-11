@@ -281,6 +281,20 @@ public sealed class ServerTraumaSystem : TraumaSystem
     #region Public API
 
     [PublicAPI]
+    public bool TryApplyTraumas(
+        Entity<WoundableComponent> target,
+        Entity<TraumaInflicterComponent> inflicter,
+        IReadOnlyList<TraumaType> traumas,
+        FixedPoint2 severity)
+    {
+        if (traumas.Count == 0)
+            return false;
+
+        ApplyTraumas(target, inflicter, traumas.ToList(), severity);
+        return true;
+    }
+
+    [PublicAPI]
     public override EntityUid AddTrauma(
         EntityUid target,
         Entity<WoundableComponent> holdingWoundable,

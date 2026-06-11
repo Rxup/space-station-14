@@ -288,21 +288,6 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (component.Critical)
             return;
 
-        // start-backmen: stamina dmg
-        // modify damage value by the entitys stun resistance, so certain armours can counter stunmeta
-        if (!chaosDamage)
-        {
-            var damage = new DamageSpecifier(_proto.Index<DamageTypePrototype>("Stun"), FixedPoint2.New(value));
-            var modifyEv = new DamageModifyEvent(damage);
-            RaiseLocalEvent(uid, modifyEv);
-            if (modifyEv.Damage.DamageDict.TryGetValue("Stun", out var val))
-            {
-                value = val.Float();
-            }
-        }
-        // end-backmen: stamina dmg
-
-
         var oldDamage = component.StaminaDamage;
         component.StaminaDamage = MathF.Max(0f, component.StaminaDamage + value);
 

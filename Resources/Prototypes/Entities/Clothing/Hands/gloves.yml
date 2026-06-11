@@ -108,6 +108,8 @@
     fiberMaterial: fibers-durathread
     fiberColor: fibers-regal-blue
   - type: FingerprintMask
+  - type: StaminaResistance
+    damageCoefficient: 0.5
   - type: Armor
     coverage: # backmen: armour coverage
     - Hand
@@ -117,7 +119,6 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.5
-        Stun: 0.5
 
 - type: entity
   parent: ClothingHandsBase
@@ -132,6 +133,8 @@
   - type: Fiber
     fiberMaterial: fibers-durathread
     fiberColor: fibers-black
+  - type: StaminaResistance
+    damageCoefficient: 0.5
   - type: Armor
     coverage: # backmen: armour coverage
     - Hand
@@ -141,7 +144,7 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.9
-        Stun: 0.5
+
   - type: FingerprintMask
 
 #### Medical

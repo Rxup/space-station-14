@@ -14,6 +14,8 @@
     sprite: Clothing/OuterClothing/Armor/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/security.rsi
+  - type: StaminaResistance
+    damageCoefficient: 0.9
   - type: Armor # Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14. :x:
     coverage: # backmen: armour coverage
     - Chest
@@ -31,7 +33,7 @@
         Piercing: 0.7 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
         ArmorPiercing: 0.7
         Heat: 0.8
-        Stun: 0.9
+
   - type: ExplosionResistance
     damageCoefficient: 0.90
   - type: Tag
@@ -261,6 +263,8 @@
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/captain_carapace.rsi
+  - type: StaminaResistance
+    damageCoefficient: 0.6
   - type: Armor
     coverage: # backmen: armour coverage
     - Chest
@@ -280,7 +284,7 @@
         ArmorPiercing: 0.6
         Heat: 0.5
         Caustic: 0.9
-        Stun: 0.6
+
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -328,9 +332,9 @@
         ArmorPiercing: 0.50
         Heat: 0.35
         Caustic: 0.5
-        Stun: 0.3
+
   - type: ExplosionResistance
-    damageCoefficient: 0.35
+    damageCoefficient: 0.3
   - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
     damageCoefficient: 0.45
   - type: ClothingSpeedModifier

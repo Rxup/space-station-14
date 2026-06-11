@@ -27,6 +27,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Standing;
@@ -49,6 +50,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
     [Dependency] private PainSystem _pain = default!;
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private MobThresholdSystem _mobThresholds = default!;
 
 
     private float _cprTraumaChance = 0.1f;
@@ -654,8 +656,31 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
     private void OnConsciousnessMapInit(Entity<ConsciousnessComponent> uid, ref MapInitEvent args)
     {
+        SyncConsciousnessFromMobThresholds(uid, uid.Comp);
         CheckConscious(uid.AsNullable());
     }
+
+    // start-backmen: sync mob thresholds
+    private void SyncConsciousnessFromMobThresholds(EntityUid uid, ConsciousnessComponent consciousness)
+    {
+        if (!TryComp<MobThresholdsComponent>(uid, out var thresholds))
+            return;
+
+        if (_mobThresholds.TryGetThresholdForState(uid, MobState.Dead, out var dead, thresholds))
+            consciousness.Cap = dead.Value + consciousness.CapBonus;
+
+        if (_mobThresholds.TryGetThresholdForState(uid, MobState.Critical, out var crit, thresholds)
+            || _mobThresholds.TryGetThresholdForState(uid, MobState.SoftCritical, out crit, thresholds))
+        {
+            consciousness.Threshold = crit.Value;
+        }
+
+        if (consciousness.RawConsciousness <= 0 || consciousness.RawConsciousness > consciousness.Cap)
+            consciousness.RawConsciousness = consciousness.Cap;
+
+        Dirty(uid, consciousness);
+    }
+    // end-backmen
 
     public override void Update(float frameTime)
     {

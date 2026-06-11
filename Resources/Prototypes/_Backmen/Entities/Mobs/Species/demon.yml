@@ -6,8 +6,12 @@
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
   - type: Consciousness # some fucking exclusivity for demons, harder to put them into crit, but they die more quickly.
-    cap: 220
-    threshold: 70
+    capBonus: 20
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      70: Critical
+      200: Dead
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Carshnil

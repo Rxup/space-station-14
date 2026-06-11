@@ -1068,6 +1068,9 @@
     bloodlossThreshold: 0
   - type: Damageable
     damageModifierSet: HolyArmor
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+    worn: false
   - type: CombatMode
     toggleMouseRotator: false
   - type: MeleeWeapon
@@ -1496,6 +1499,9 @@
     bloodlossThreshold: 0
   - type: Damageable
     damageModifierSet: HolyArmor
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+    worn: false
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Backmen/Bosses/uriilbehold.ogg

@@ -39,6 +39,8 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
+  - type: StaminaResistance
+    damageCoefficient: 0.7
   - type: Armor
     coverage:
     - Chest
@@ -51,7 +53,7 @@
         Piercing: 0.7
         Heat: 0.7
         ArmorPiercing: 0.7
-        Stun: 0.7
+
   - type: ExplosionResistance
     damageCoefficient: 0.8
   - type: GroupExamine

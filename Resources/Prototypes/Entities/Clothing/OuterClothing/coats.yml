@@ -67,6 +67,8 @@
   parent: AllowSuitStorageClothing
   id: ClothingOuterArmorHoS
   components:
+  - type: StaminaResistance
+    damageCoefficient: 0.7
   - type: Armor
     modifiers:
       coefficients:
@@ -75,7 +77,7 @@
         Piercing: 0.6
         ArmorPiercing: 0.6
         Heat: 0.7
-        Stun: 0.7
+
         Caustic: 0.75 # not the full 90% from ss13 because of the head
   - type: ExplosionResistance
     damageCoefficient: 0.9
@@ -85,6 +87,8 @@
   parent: AllowSuitStorageClothing
   id: ClothingOuterArmorWarden
   components:
+  - type: StaminaResistance
+    damageCoefficient: 0.8
   - type: Armor
     modifiers:
       coefficients:
@@ -93,7 +97,7 @@
         Piercing: 0.7
         Heat: 0.7
         Caustic: 0.9
-        Stun: 0.8
+
   - type: ExplosionResistance
     damageCoefficient: 0.9
 

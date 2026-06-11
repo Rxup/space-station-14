@@ -12,6 +12,9 @@
     soundCooldownTime: 0.1
   - type: Damageable
     damageModifierSet: CombineHuman
+  - type: StaminaResistance
+    damageCoefficient: 0.5
+    worn: false
   - type: Stamina
     baseCritThreshold: 250
   - type: MobState

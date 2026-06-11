@@ -19,6 +19,12 @@
       preconditions:
       - !type:KeyExistsPrecondition
         key: Target
+      operator: !type:ClearIngestionBlockersOperator
+
+    - !type:HTNPrimitiveTask
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: Target
       operator: !type:AltInteractOperator
 
     - !type:HTNPrimitiveTask
@@ -41,6 +47,12 @@
         targetKey: TargetCoordinates
         pathfindKey: TargetPathfind
         rangeKey: MeleeRange
+
+    - !type:HTNPrimitiveTask
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: Target
+      operator: !type:ClearIngestionBlockersOperator
 
     - !type:HTNPrimitiveTask
       preconditions:

@@ -195,6 +195,10 @@ public sealed partial class DamageableSystem
                 OnEntityDamageChanged((ent, ent.Comp), specialHandlerEvent.Damage, interruptsDoAfters, origin);
             return specialHandlerEvent.Damage;
         }
+
+        // start-backmen: damage type aliases
+        damage = Backmen.Damage.DamageSpecifierAliases.ApplyDamageTypeAliases(damage, _prototypeManager);
+        // end-backmen
         // backmen edit end
 
         damageDone.DamageDict.EnsureCapacity(damage.DamageDict.Count);

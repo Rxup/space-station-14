@@ -14,6 +14,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.70
     sprintModifier: 0.75
+  - type: StaminaResistance
+    damageCoefficient: 0.4
   - type: Armor
     coverage:
     - Groin
@@ -32,7 +34,7 @@
         Heat: 0.3
         Radiation: 0.25
         Caustic: 0.75
-        Stun: 0.4
+
   - type: TemperatureProtection
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
@@ -57,6 +59,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
+  - type: StaminaResistance
+    damageCoefficient: 0.15
   - type: Armor
     coverage:
     - Groin
@@ -75,7 +79,7 @@
         Heat: 0.30
         Radiation: 0.1
         Caustic: 0.15
-        Stun: 0.15
+
   - type: TemperatureProtection
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
@@ -100,6 +104,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
+  - type: StaminaResistance
+    damageCoefficient: 0.65
   - type: Armor
     coverage:
     - Groin
@@ -117,7 +123,7 @@
         Heat: 0.2
         Radiation: 0.25
         Caustic: 0.85
-        Stun: 0.65
+
   - type: TemperatureProtection
     heatingCoefficient: 0.01
     coolingCoefficient: 0.01
@@ -143,6 +149,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.3
+  - type: StaminaResistance
+    damageCoefficient: 0.4
   - type: Armor
     coverage:
     - Groin
@@ -161,7 +169,7 @@
         Radiation: 0.6
         Caustic: 0.6
         Heat: 0.4
-        Stun: 0.4
+
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -183,6 +191,8 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.3
+  - type: StaminaResistance
+    damageCoefficient: 0.24
   - type: Armor
     coverage:
     - Groin
@@ -201,7 +211,7 @@
         Radiation: 0.5
         Caustic: 0.5
         Heat: 0.24
-        Stun: 0.24
+
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
@@ -219,6 +229,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
+  - type: StaminaResistance
+    damageCoefficient: 0.2
   - type: Armor
     coverage:
     - Groin
@@ -236,7 +248,7 @@
         ArmorPiercing: 0.5
         Heat: 0.3
         Radiation: 0.3
-        Stun: 0.2
+
   - type: ExplosionResistance
     damageCoefficient: 0.8
 
@@ -333,6 +345,8 @@
     sprite: Backmen/Clothing/OuterClothing/Hardsuits/ERTSuits/ertTraumaTeamMedic.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedicTay39
+  - type: StaminaResistance
+    damageCoefficient: 0.1
   - type: Armor
     coverage:
     - Groin
@@ -351,7 +365,6 @@
         Heat: 0.2
         Radiation: 0
         Caustic: 0.2
-        Stun: 0.1
 
 - type: entity
   parent: ClothingOuterHardsuitDeathsquad

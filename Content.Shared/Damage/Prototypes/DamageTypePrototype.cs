@@ -25,6 +25,14 @@ namespace Content.Shared.Damage.Prototypes
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public FixedPoint2 WoundHealingMultiplier { get; set; } = 1;
 
+        // start-backmen: damage type aliases
+        /// <summary>
+        /// If set, damage is resisted under this type's ID but applied as the specified type.
+        /// </summary>
+        [DataField]
+        public ProtoId<DamageTypePrototype>? AppliesAs { get; private set; }
+        // end-backmen
+
         /// <summary>
         /// The price for each 1% damage reduction in armors
         /// </summary>

@@ -492,16 +492,25 @@
   name: мясной червь
   id: MobFleshWorm
   components:
+    - type: HTN
+      rootTask:
+        task: FleshWormCompound
     - type: FleshMob
       soundDeath: "/Audio/Animals/Flesh/flesh_worm_dead.ogg"
       deathMobSpawnId: "MobFleshWorm"
       deathMobSpawnCount: 0
+    - type: DoAfter
     - type: FleshWorm
       paralyzeTime: 3
       chansePounce: 33
+      removeDelay: 3
+      selfRemoveDelayMultiplier: 1.5
+      selfRemoveStaminaCost: 20
       damage:
         types:
-          Piercing: 2
+          Piercing: 6
+      headTraumaChance: 0.25
+      traumaSeverity: 12
       actionWormJump: ActionWormJump
     - type: Sprite
       sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi
@@ -529,6 +538,8 @@
       quickEquip: false
       sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi
       equippedPrefix: worm
+      unequipDelay: 3
+      stripDelay: 3
       slots:
         - MASK
     - type: Physics

@@ -68,6 +68,8 @@
       sprite: Corvax/Clothing/OuterClothing/Coats/sec_leather.rsi
     - type: Clothing
       sprite: Corvax/Clothing/OuterClothing/Coats/sec_leather.rsi
+    - type: StaminaResistance
+      damageCoefficient: 0.9
     - type: Armor # Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14. :x:
       coverage: # backmen: armour coverage
       - Chest
@@ -85,7 +87,7 @@
           Piercing: 0.7 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
           ArmorPiercing: 0.7
           Heat: 0.80
-          Stun: 0.9
+
     - type: ExplosionResistance
       damageCoefficient: 0.90
 
@@ -114,6 +116,8 @@
     sprite: Corvax/Clothing/OuterClothing/Coats/captain.rsi
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/Coats/captain.rsi
+  - type: StaminaResistance
+    damageCoefficient: 0.6
   - type: Armor
     coverage:
     - Groin
@@ -130,7 +134,7 @@
         ArmorPiercing: 0.6
         Heat: 0.5
         Caustic: 0.9
-        Stun: 0.6
+
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatHOP
