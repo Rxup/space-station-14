@@ -15,6 +15,8 @@ using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.FixedPoint;
+using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage.Components;
@@ -25,6 +27,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
@@ -56,6 +59,10 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
     [Dependency] private ServerWoundSystem _wound = default!;
     [Dependency] private ServerTraumaSystem _trauma = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private MaskSystem _mask = default!;
+    [Dependency] private ToggleableClothingSystem _toggleableClothing = default!;
+
+    private static readonly SlotFlags FaceSlots = SlotFlags.HEAD | SlotFlags.MASK;
 
     public override void Initialize()
     {
@@ -76,6 +83,11 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
 
     public bool CanPounce(EntityUid worm, EntityUid target, FleshWormComponent? component = null)
     {
+        return CanPounceBasic(worm, target, component) && !IsFaceBlocked(target);
+    }
+
+    private bool CanPounceBasic(EntityUid worm, EntityUid target, FleshWormComponent? component = null)
+    {
         if (!Resolve(worm, ref component) || component.IsDeath || component.EquipedOn.Valid)
             return false;
 
@@ -87,12 +99,6 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
 
         if (TryComp(target, out MobStateComponent? mobState) && mobState.CurrentState != MobState.Alive)
             return false;
-
-        if (_inventory.TryGetSlotEntity(target, "head", out var headUid) && headUid is { } head
-            && HasComp<IngestionBlockerComponent>(head))
-        {
-            return false;
-        }
 
         return true;
     }
@@ -113,10 +119,15 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
 
     public bool TryPounce(EntityUid worm, EntityUid target, bool rollChance = true, FleshWormComponent? component = null)
     {
-        if (!Resolve(worm, ref component) || !CanPounce(worm, target, component))
+        if (!CanPounceBasic(worm, target, component))
             return false;
 
         if (rollChance && _random.Next(1, 101) > component.ChansePounce)
+            return false;
+
+        TryClearFaceProtection(target);
+
+        if (IsFaceBlocked(target))
             return false;
 
         TryClearTargetMask(worm, target);
@@ -127,6 +138,49 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         component.EquipedOn = target;
         ApplyPounceEffects(worm, target, component);
         return true;
+    }
+
+    private bool IsFaceBlocked(EntityUid target)
+    {
+        var attempt = new IngestionAttemptEvent(FaceSlots);
+        RaiseLocalEvent(target, ref attempt);
+        return attempt.Cancelled;
+    }
+
+    private void TryClearFaceProtection(EntityUid target)
+    {
+        TryClearMaskBlocker(target);
+
+        if (IsFaceBlocked(target))
+            TryUnequipSlotBlocker(target, "head");
+    }
+
+    private void TryClearMaskBlocker(EntityUid target)
+    {
+        if (!_inventory.TryGetSlotEntity(target, "mask", out var maskUid) || maskUid is not { } mask)
+            return;
+
+        if (TryComp<MaskComponent>(mask, out var maskComp) && maskComp.IsToggleable && !maskComp.IsToggled)
+        {
+            _mask.SetToggled(mask, true);
+            return;
+        }
+
+        TryUnequipSlotBlocker(target, "mask");
+    }
+
+    private void TryUnequipSlotBlocker(EntityUid target, string slot)
+    {
+        if (_toggleableClothing.TryStowAttached(target, slot))
+            return;
+
+        if (!_inventory.TryGetSlotEntity(target, slot, out var itemUid) || itemUid is not { } item)
+            return;
+
+        if (!TryComp<IngestionBlockerComponent>(item, out var blocker) || !blocker.Enabled)
+            return;
+
+        _inventory.TryUnequip(target, slot, silent: true, force: true);
     }
 
     private void TryClearTargetMask(EntityUid worm, EntityUid target)
