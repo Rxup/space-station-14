@@ -5,7 +5,7 @@ namespace Content.Shared.Backmen.Blob.Components;
 /// <remarks>
 /// To add a new special blob tile you will need to change code in BlobNodeSystem and BlobTypedStorage.
 /// </remarks>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class BlobNodeComponent : Component
 {
     [DataField]

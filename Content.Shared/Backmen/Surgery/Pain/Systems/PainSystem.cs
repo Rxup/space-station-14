@@ -1,4 +1,5 @@
-﻿using Content.Shared.Backmen.Surgery.Pain.Components;
+﻿using System.Linq;
+using Content.Shared.Backmen.Surgery.Pain.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
@@ -20,40 +21,38 @@ public abstract partial class PainSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NerveComponent, ComponentHandleState>(OnComponentHandleState);
-        SubscribeLocalEvent<NerveComponent, ComponentGetState>(OnComponentGet);
+        SubscribeLocalEvent<NerveSystemComponent, AfterAutoHandleStateEvent>(OnNerveSystemAfterAutoHandleState);
+        SubscribeLocalEvent<NerveComponent, AfterAutoHandleStateEvent>(OnNerveAfterAutoHandleState);
 
         NerveSystemQuery = GetEntityQuery<NerveSystemComponent>();
         NerveQuery = GetEntityQuery<NerveComponent>();
     }
 
-    private void OnComponentHandleState(EntityUid uid, NerveComponent component, ref ComponentHandleState args)
+    private void OnNerveSystemAfterAutoHandleState(Entity<NerveSystemComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (args.Current is not NerveComponentState state)
-            return;
+        SanitizeNerveSystemDictionaries(ent.Comp);
+    }
 
-        component.ParentedNerveSystem = TryGetEntity(state.ParentedNerveSystem, out var e) ? e.Value : EntityUid.Invalid;
-        component.PainMultiplier = state.PainMultiplier;
+    private void OnNerveAfterAutoHandleState(Entity<NerveComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        SanitizeNerveDictionaries(ent.Comp);
+    }
 
-        component.PainFeelingModifiers.Clear();
-        foreach (var ((modEntity, id), modifier) in state.PainFeelingModifiers)
+    private void SanitizeNerveSystemDictionaries(NerveSystemComponent component)
+    {
+        foreach (var key in component.Modifiers.Keys.ToArray())
         {
-            component.PainFeelingModifiers.Add((TryGetEntity(modEntity, out var e1) ? e1.Value : EntityUid.Invalid, id), modifier);
+            if (TerminatingOrDeleted(key.Item1))
+                component.Modifiers.Remove(key);
         }
     }
 
-    private void OnComponentGet(EntityUid uid, NerveComponent comp, ref ComponentGetState args)
+    private void SanitizeNerveDictionaries(NerveComponent component)
     {
-        var state = new NerveComponentState();
-
-        state.ParentedNerveSystem = TryGetNetEntity(comp.ParentedNerveSystem, out var ne) ? ne.Value : NetEntity.Invalid;
-        state.PainMultiplier = comp.PainMultiplier;
-
-        foreach (var ((modEntity, id), modifier) in comp.PainFeelingModifiers)
+        foreach (var key in component.PainFeelingModifiers.Keys.ToArray())
         {
-            state.PainFeelingModifiers.Add((TryGetNetEntity(modEntity, out var ne1) ? ne1.Value : NetEntity.Invalid, id), modifier);
+            if (TerminatingOrDeleted(key.Item1))
+                component.PainFeelingModifiers.Remove(key);
         }
-
-        args.State = state;
     }
 }

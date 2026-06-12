@@ -4,7 +4,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared.Backmen.Economy;
 
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState(true)]
+[AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
 public sealed partial class BankAccountComponent : Component
 {
     [ViewVariables(VVAccess.ReadOnly)]

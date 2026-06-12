@@ -241,6 +241,6 @@ public sealed partial class ShadowkinPowerSystem : EntitySystem
             return;
 
         plr.PowerLevelGainMultiplier = ev.Modifier;
-        Dirty(uid, plr);
+        DirtyField(uid, plr, nameof(ShadowkinComponent.PowerLevelGainMultiplier));
     }
 }

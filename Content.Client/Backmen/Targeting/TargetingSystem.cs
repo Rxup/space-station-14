@@ -1,6 +1,7 @@
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Input;
 using Robust.Client.Player;
+using Robust.Shared.GameStates;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 
@@ -22,6 +23,7 @@ public sealed partial class TargetingSystem : SharedTargetingSystem
         SubscribeLocalEvent<TargetingComponent, LocalPlayerDetachedEvent>(HandlePlayerDetached);
         SubscribeLocalEvent<TargetingComponent, ComponentStartup>(OnTargetingStartup);
         SubscribeLocalEvent<TargetingComponent, ComponentShutdown>(OnTargetingShutdown);
+        SubscribeLocalEvent<TargetingComponent, AfterAutoHandleStateEvent>(OnTargetingState);
         SubscribeNetworkEvent<TargetIntegrityChangeEvent>(OnTargetIntegrityChange);
 
         CommandBinds.Builder
@@ -78,6 +80,14 @@ public sealed partial class TargetingSystem : SharedTargetingSystem
 
         TargetingShutdown?.Invoke();
         PartStatusShutdown?.Invoke();
+    }
+
+    private void OnTargetingState(Entity<TargetingComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        if (_playerManager.LocalEntity != ent.Owner)
+            return;
+
+        PartStatusUpdate?.Invoke(ent.Comp);
     }
 
     private void OnTargetIntegrityChange(TargetIntegrityChangeEvent args)

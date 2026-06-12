@@ -6,7 +6,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
 public sealed partial class NerveSystemComponent : Component
 {
     /// <summary>

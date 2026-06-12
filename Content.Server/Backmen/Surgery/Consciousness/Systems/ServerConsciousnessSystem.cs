@@ -650,7 +650,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         if (uid.Comp.RawConsciousness <= 0)
         {
             uid.Comp.RawConsciousness = uid.Comp.Cap;
-            Dirty(uid);
+            DirtyField(uid, uid.Comp, nameof(ConsciousnessComponent.RawConsciousness));
         }
     }
 
@@ -678,7 +678,10 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         if (consciousness.RawConsciousness <= 0 || consciousness.RawConsciousness > consciousness.Cap)
             consciousness.RawConsciousness = consciousness.Cap;
 
-        Dirty(uid, consciousness);
+        DirtyFields(uid, consciousness, null,
+            nameof(ConsciousnessComponent.Cap),
+            nameof(ConsciousnessComponent.Threshold),
+            nameof(ConsciousnessComponent.RawConsciousness));
     }
     // end-backmen
 
@@ -810,7 +813,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
             return false;
 
         UpdateConsciousnessModifiers(target);
-        Dirty(target);
 
         return true;
     }
@@ -827,7 +829,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
             return false;
 
         UpdateConsciousnessModifiers(target);
-        Dirty(target);
 
         return true;
     }
@@ -847,7 +848,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         target.Comp.Modifiers[(modifierOwner, identifier)] = newModifier;
 
         UpdateConsciousnessModifiers(target);
-        Dirty(target);
 
         return true;
     }
@@ -869,7 +869,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         target.Comp.Modifiers[(modifierOwner, identifier)] = newModifier;
 
         UpdateConsciousnessModifiers(target);
-        Dirty(target);
 
         return true;
     }
@@ -892,8 +891,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         UpdateConsciousnessMultipliers(target);
         UpdateConsciousnessModifiers(target);
 
-        Dirty(target);
-
         return true;
     }
 
@@ -910,8 +907,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
         UpdateConsciousnessMultipliers(target);
         UpdateConsciousnessModifiers(target);
-
-        Dirty(target);
 
         return true;
     }

@@ -233,7 +233,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
                 continue;
 
             blobTileComponent.Color = component.ChemСolors[newChem];
-            Dirty(blobTile, blobTileComponent);
+            DirtyField(blobTile, blobTileComponent, nameof(BlobTileComponent.Color));
 
             ChangeBlobEntChem(blobTile, newChem);
 
@@ -244,7 +244,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
                 continue;
 
             blobbernautComponent.Color = component.ChemСolors[newChem];
-            Dirty(blobFactoryComponent.Blobbernaut.Value, blobbernautComponent);
+            DirtyField(blobFactoryComponent.Blobbernaut.Value, blobbernautComponent, nameof(BlobbernautComponent.Color));
 
             if (TryComp<MeleeWeaponComponent>(blobFactoryComponent.Blobbernaut, out var meleeWeaponComponent))
             {
@@ -312,7 +312,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
 
         ConnectBlobTile((blobTileUid, blobTileComp), blobCore, nearNode);
         ChangeBlobEntChem(blobTileUid, blobCoreComp.CurrentChem);
-        Dirty(blobTileUid, blobTileComp);
+        DirtyField(blobTileUid, blobTileComp, nameof(BlobTileComponent.Color));
 
         var ev = new BlobTransformTileEvent();
         RaiseLocalEvent(blobTileUid, ev);
@@ -338,7 +338,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
 
         tileComp.Color = coreComp.ChemСolors[coreComp.CurrentChem];
         tileComp.Core = core;
-        Dirty(tile, tileComp);
+        DirtyField(tile, tileComp, nameof(BlobTileComponent.Color));
 
         if (node == null)
             return;
@@ -347,19 +347,19 @@ public sealed partial class BlobCoreSystem : EntitySystem
         {
             case BlobTileType.Factory:
                 node.Value.Comp.BlobFactory = tile;
-                Dirty(node.Value);
+                DirtyField(node.Value, node.Value.Comp, nameof(BlobNodeComponent.BlobFactory));
                 break;
             case BlobTileType.Resource:
                 node.Value.Comp.BlobResource = tile;
-                Dirty(node.Value);
+                DirtyField(node.Value, node.Value.Comp, nameof(BlobNodeComponent.BlobResource));
                 break;
             case BlobTileType.Storage:
                 node.Value.Comp.BlobStorage = tile;
-                Dirty(node.Value);
+                DirtyField(node.Value, node.Value.Comp, nameof(BlobNodeComponent.BlobStorage));
                 break;
             case BlobTileType.Turret:
                 node.Value.Comp.BlobTurret = tile;
-                Dirty(node.Value);
+                DirtyField(node.Value, node.Value.Comp, nameof(BlobNodeComponent.BlobTurret));
                 break;
         }
     }
@@ -500,7 +500,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
 
             blobTileComponent.Core = null;
             blobTileComponent.Color = Color.White;
-            Dirty(blobTile, blobTileComponent);
+            DirtyField(blobTile, blobTileComponent, nameof(BlobTileComponent.Color));
         }
 
         var blobCoreQuery = EntityQueryEnumerator<BlobCoreComponent, MetaDataComponent>();

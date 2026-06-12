@@ -6,3 +6,13 @@
   positionOnEnd: 0
   sound:
     path: /Audio/_Lavaland/Mobs/Bosses/hiero_bgm.ogg
+
+- type: bossMusic
+  id: BigJohn
+  fade: true
+  fadeInTime: 3
+  fadeOutTime: 5
+  sound:
+    path: /Audio/Backmen/Bosses/ThemeOfCancer.ogg
+    params:
+      volume: 5

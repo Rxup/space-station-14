@@ -8,7 +8,7 @@ namespace Content.Shared.Backmen.Item.PseudoItem;
 /// For entities that behave like an item under certain conditions,
 /// but not under most conditions.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class PseudoItemComponent : Component
 {
     [DataField("size")]

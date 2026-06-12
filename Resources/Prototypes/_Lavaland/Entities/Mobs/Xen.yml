@@ -29,7 +29,7 @@
     - type: MobMover
     - type: HTN
       rootTask:
-        task: HeadCrabCompound
+        task: FleshWormCompound
       blackboard:
         SoundTargetInLOS: !type:SoundPathSpecifier
           path: /Audio/Backmen/test/base/ogg/blackmesa/headcrab/alert1.ogg
@@ -113,28 +113,49 @@
       layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
         state: headcrab
+    - type: Item
+      sprite: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi
+      size: Normal
+    - type: Clothing
+      quickEquip: false
+      sprite: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi
+      equippedState: equipped-HELMET
+      slots:
+        - MASK
     - type: FleshWorm
       paralyzeTime: 3
       soundWormJump:
         collection: HeadcrabAttack
       chansePounce: 33
+      removeDelay: 3
+      selfRemoveDelayMultiplier: 1.5
+      selfRemoveStaminaCost: 20
       damage:
         types:
           Piercing: 10
-      actionWormJump: ActionHeadcrabJump
+      headTraumaChance: 0.25
+      traumaSeverity: 12
+      actionWormJump: ActionXenHeadcrabJump
 
-- type: htnCompound
-  id: HeadCrabCompound
-  branches:
-    - tasks:
-        - !type:HTNCompoundTask
-          task: MeleeCombatCompound
-    - tasks:
-        - !type:HTNCompoundTask
-          task: FoodCompound
-    - tasks:
-        - !type:HTNCompoundTask
-          task: IdleCompound
+- type: entity
+  id: ActionXenHeadcrabJump
+  parent: BaseAction
+  name: Jump
+  description: Leap at a target and latch onto an unprotected face.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Action
+      icon:
+        sprite: _White/Interface/Actions/headcrab.rsi
+        state: jump-off
+      iconOn:
+        sprite: _White/Interface/Actions/headcrab.rsi
+        state: jump-on
+      useDelay: 6
+    - type: WorldTargetAction
+      event: !type:FleshWormJumpActionEvent
+    - type: TargetAction
+      range: 160
 
 - type: entity
   name: зомбированный

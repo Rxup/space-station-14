@@ -6,7 +6,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared.Backmen.Eye.NightVision.Components;
 
 [RegisterComponent]
-[NetworkedComponent, AutoGenerateComponentState]
+[NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 [Access(typeof(NightVisionSystem), typeof(PNVSystem))]
 public sealed partial class NightVisionComponent : Component
 {

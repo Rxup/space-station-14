@@ -7,6 +7,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -60,213 +61,106 @@ public abstract partial class WoundSystem : EntitySystem
         { WoundSeverity.Loss, 100 },
     };
 
+    private readonly Dictionary<EntityUid, (EntityUid HoldingWoundable, FixedPoint2 SeverityPoint, WoundSeverity Severity)> _woundStateCache = new();
+    private readonly Dictionary<EntityUid, (FixedPoint2 Integrity, WoundableSeverity Severity)> _woundableStateCache = new();
+
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<WoundComponent, ComponentGetState>(OnWoundComponentGet);
-        SubscribeLocalEvent<WoundComponent, ComponentHandleState>(OnWoundComponentHandleState);
-
-        SubscribeLocalEvent<WoundableComponent, ComponentGetState>(OnWoundableComponentGet);
-        SubscribeLocalEvent<WoundableComponent, ComponentHandleState>(OnWoundableComponentHandleState);
+        SubscribeLocalEvent<WoundComponent, AfterAutoHandleStateEvent>(OnWoundAfterAutoHandleState);
+        SubscribeLocalEvent<WoundComponent, ComponentShutdown>(OnWoundShutdown);
+        SubscribeLocalEvent<WoundableComponent, AfterAutoHandleStateEvent>(OnWoundableAfterAutoHandleState);
+        SubscribeLocalEvent<WoundableComponent, ComponentShutdown>(OnWoundableShutdown);
 
         InitWounding();
     }
 
-    private void OnWoundComponentGet(EntityUid uid, WoundComponent comp, ref ComponentGetState args)
+    private void OnWoundShutdown(Entity<WoundComponent> ent, ref ComponentShutdown args)
     {
-        var state = new WoundComponentState
-        {
-            HoldingWoundable =
-                TryGetNetEntity(comp.HoldingWoundable, out var holdingWoundable)
-                    ? holdingWoundable.Value
-                    : NetEntity.Invalid,
-
-            WoundSeverityPoint = comp.WoundSeverityPoint,
-            WoundableIntegrityMultiplier = comp.WoundableIntegrityMultiplier,
-
-            WoundType = comp.WoundType,
-
-            DamageGroup = comp.DamageGroup?.ID,
-            DamageType = comp.DamageType,
-
-            ScarWound = comp.ScarWound,
-            IsScar = comp.IsScar,
-
-            WoundSeverity = comp.WoundSeverity,
-
-            WoundVisibility = comp.WoundVisibility,
-
-            CanBeHealed = comp.CanBeHealed,
-        };
-
-        args.State = state;
+        _woundStateCache.Remove(ent);
     }
 
-    private void OnWoundComponentHandleState(EntityUid uid, WoundComponent component, ref ComponentHandleState args)
+    private void OnWoundableShutdown(Entity<WoundableComponent> ent, ref ComponentShutdown args)
     {
-        if (args.Current is not WoundComponentState state)
-            return;
+        _woundableStateCache.Remove(ent);
+    }
 
-        // Predict events on client!!
-        var holdingWoundable = TryGetEntity(state.HoldingWoundable, out var e) ? e.Value : EntityUid.Invalid;
-        if (holdingWoundable != component.HoldingWoundable)
+    private void OnWoundAfterAutoHandleState(Entity<WoundComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        SyncWoundDamageGroup(ent.Comp);
+
+        if (!_net.IsClient)
+        {
+            _woundStateCache[ent] = (ent.Comp.HoldingWoundable, ent.Comp.WoundSeverityPoint, ent.Comp.WoundSeverity);
+            return;
+        }
+
+        var old = _woundStateCache.GetValueOrDefault(ent);
+        var holdingWoundable = ent.Comp.HoldingWoundable;
+
+        if (holdingWoundable != old.HoldingWoundable)
         {
             if (holdingWoundable == EntityUid.Invalid)
             {
-                if (TryComp(holdingWoundable, out WoundableComponent? oldParentWoundable) &&
-                    TryComp(oldParentWoundable.RootWoundable, out WoundableComponent? oldWoundableRoot))
+                if (old.HoldingWoundable != EntityUid.Invalid
+                    && TryComp(old.HoldingWoundable, out WoundableComponent? oldParentWoundable)
+                    && TryComp(oldParentWoundable.RootWoundable, out WoundableComponent? oldWoundableRoot))
                 {
-                    var ev2 = new WoundRemovedEvent(component, oldParentWoundable, oldWoundableRoot);
-                    RaiseLocalEvent(component.HoldingWoundable, ref ev2);
+                    var ev2 = new WoundRemovedEvent(ent.Comp, oldParentWoundable, oldWoundableRoot);
+                    RaiseLocalEvent(old.HoldingWoundable, ref ev2);
                 }
             }
-            else
+            else if (TryComp(holdingWoundable, out WoundableComponent? parentWoundable)
+                     && TryComp(parentWoundable.RootWoundable, out WoundableComponent? woundableRoot))
             {
-                if (TryComp(holdingWoundable, out WoundableComponent? parentWoundable) &&
-                    TryComp(parentWoundable.RootWoundable, out WoundableComponent? woundableRoot))
-                {
-                    var ev = new WoundAddedEvent(component, parentWoundable, woundableRoot);
-                    RaiseLocalEvent(uid, ref ev);
+                var ev = new WoundAddedEvent(ent.Comp, parentWoundable, woundableRoot);
+                RaiseLocalEvent(ent, ref ev);
 
-                    var ev1 = new WoundAddedEvent(component, parentWoundable, woundableRoot);
-                    RaiseLocalEvent(holdingWoundable, ref ev1);
-                }
+                var ev1 = new WoundAddedEvent(ent.Comp, parentWoundable, woundableRoot);
+                RaiseLocalEvent(holdingWoundable, ref ev1);
             }
         }
 
-        component.HoldingWoundable = holdingWoundable;
-
-        if (component.WoundSeverityPoint != state.WoundSeverityPoint)
+        if (ent.Comp.WoundSeverityPoint != old.SeverityPoint)
         {
-            var ev = new WoundSeverityPointChangedEvent(component,
-                component.WoundSeverityPoint,
-                state.WoundSeverityPoint);
-            RaiseLocalEvent(uid, ref ev);
-
-            // TODO: On body changed events aren't predicted, welp
+            var ev = new WoundSeverityPointChangedEvent(ent.Comp, old.SeverityPoint, ent.Comp.WoundSeverityPoint);
+            RaiseLocalEvent(ent, ref ev);
         }
 
-        component.WoundSeverityPoint = state.WoundSeverityPoint;
-        component.WoundableIntegrityMultiplier = state.WoundableIntegrityMultiplier;
-
-        if (component.HoldingWoundable != EntityUid.Invalid)
+        if (holdingWoundable != EntityUid.Invalid)
         {
-            UpdateWoundableIntegrity(component.HoldingWoundable);
-            CheckWoundableSeverityThresholds(component.HoldingWoundable);
+            UpdateWoundableIntegrity(holdingWoundable);
+            CheckWoundableSeverityThresholds(holdingWoundable);
         }
 
-        component.WoundType = state.WoundType;
-
-        if (_prototype.TryIndex(state.DamageGroup, out var damageGroup))
+        if (ent.Comp.WoundSeverity != old.Severity)
         {
-            component.DamageGroup = damageGroup;
-        }
-        if (state.DamageType != null)
-            component.DamageType = state.DamageType;
-
-        component.ScarWound = state.ScarWound;
-        component.IsScar = state.IsScar;
-
-        if (component.WoundSeverity != state.WoundSeverity)
-        {
-            var ev = new WoundSeverityChangedEvent(component.WoundSeverity, state.WoundSeverity);
-            RaiseLocalEvent(uid, ref ev);
+            var ev = new WoundSeverityChangedEvent(old.Severity, ent.Comp.WoundSeverity);
+            RaiseLocalEvent(ent, ref ev);
         }
 
-        component.WoundSeverity = state.WoundSeverity;
-
-        component.WoundVisibility = state.WoundVisibility;
-        component.CanBeHealed = state.CanBeHealed;
+        _woundStateCache[ent] = (holdingWoundable, ent.Comp.WoundSeverityPoint, ent.Comp.WoundSeverity);
     }
 
-    private void OnWoundableComponentGet(EntityUid uid, WoundableComponent comp, ref ComponentGetState args)
+    private void OnWoundableAfterAutoHandleState(Entity<WoundableComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        var state = new WoundableComponentState
+        SanitizeWoundableDictionaries(ent.Comp);
+
+        if (!_net.IsClient)
         {
-            ParentWoundable = TryGetNetEntity(comp.ParentWoundable, out var parentWoundable) ? parentWoundable : null,
-            RootWoundable = TryGetNetEntity(comp.RootWoundable, out var rootWoundable)
-                ? rootWoundable.Value
-                : NetEntity.Invalid,
-
-            ChildWoundables =
-                comp.ChildWoundables
-                    .Select(woundable => TryGetNetEntity(woundable, out var ne)
-                        ? ne.Value
-                        : NetEntity.Invalid)
-                    .ToHashSet(),
-            // Attached and Detached -Woundable events are handled on client with containers
-
-            AllowWounds = comp.AllowWounds,
-
-            DamageContainerID = comp.DamageContainerID,
-
-            DodgeChance = comp.DodgeChance,
-
-            WoundableIntegrity = comp.WoundableIntegrity,
-            HealAbility = comp.HealAbility,
-
-            SeverityMultipliers =
-                comp.SeverityMultipliers
-                    .Select(multiplier
-                        => (TryGetNetEntity(multiplier.Key, out var ne) ? ne.Value : NetEntity.Invalid,
-                            multiplier.Value))
-                    .ToDictionary(),
-            HealingMultipliers =
-                comp.HealingMultipliers
-                    .Select(multiplier
-                        => (TryGetNetEntity(multiplier.Key, out var ne) ? ne.Value : NetEntity.Invalid,
-                            multiplier.Value))
-                    .ToDictionary(),
-
-            WoundableSeverity = comp.WoundableSeverity,
-            HealingRateAccumulated = comp.HealingRateAccumulated,
-        };
-
-        args.State = state;
-    }
-
-    private void OnWoundableComponentHandleState(EntityUid uid,
-        WoundableComponent component,
-        ref ComponentHandleState args)
-    {
-        if (args.Current is not WoundableComponentState state)
+            _woundableStateCache[ent] = (ent.Comp.WoundableIntegrity, ent.Comp.WoundableSeverity);
             return;
+        }
 
-        TryGetEntity(state.ParentWoundable, out component.ParentWoundable);
-        TryGetEntity(state.RootWoundable, out var rootWoundable);
-        component.RootWoundable = rootWoundable ?? EntityUid.Invalid;
+        var old = _woundableStateCache.GetValueOrDefault(ent);
 
-        component.ChildWoundables = state.ChildWoundables
-            .Select(x => TryGetEntity(x, out var y) ? y.Value : EntityUid.Invalid)
-            .Where(x => x.Valid)
-            .ToHashSet();
-        // Attached and Detached -Woundable events are handled on client with containers
-
-        component.AllowWounds = state.AllowWounds;
-
-        component.DamageContainerID = state.DamageContainerID;
-
-        component.DodgeChance = state.DodgeChance;
-        component.HealAbility = state.HealAbility;
-
-        component.SeverityMultipliers =
-            state.SeverityMultipliers
-                .Select(multiplier
-                    => (TryGetEntity(multiplier.Key, out var ne) ? ne.Value : EntityUid.Invalid, multiplier.Value))
-                .ToDictionary();
-        component.HealingMultipliers =
-            state.HealingMultipliers
-                .Select(multiplier
-                    => (TryGetEntity(multiplier.Key, out var ne) ? ne.Value : EntityUid.Invalid, multiplier.Value))
-                .ToDictionary();
-
-        if (component.WoundableIntegrity != state.WoundableIntegrity)
+        if (ent.Comp.WoundableIntegrity != old.Integrity)
         {
-            var bodyPart = Comp<BodyPartComponent>(uid);
+            var bodyPart = Comp<BodyPartComponent>(ent);
 
-            var ev = new WoundableIntegrityChangedEvent(component.WoundableIntegrity, state.WoundableIntegrity);
-            RaiseLocalEvent(uid, ref ev);
+            var ev = new WoundableIntegrityChangedEvent(old.Integrity, ent.Comp.WoundableIntegrity);
+            RaiseLocalEvent(ent, ref ev);
 
             var bodySeverity = FixedPoint2.Zero;
             if (bodyPart.Body.HasValue)
@@ -279,7 +173,6 @@ public abstract partial class WoundSystem : EntitySystem
                         if (!MetaData(woundable).Initialized)
                             continue;
 
-                        // The first check is for the root (chest) part entities, the other one is for attached entities
                         if (woundable.Comp.RootWoundable == woundable.Owner && woundable.Owner != rootPart)
                             continue;
 
@@ -288,24 +181,51 @@ public abstract partial class WoundSystem : EntitySystem
                 }
 
                 var ev1 = new WoundableIntegrityChangedOnBodyEvent(
-                    (uid, component),
-                    bodySeverity - (component.WoundableIntegrity - state.WoundableIntegrity),
+                    ent,
+                    bodySeverity - (old.Integrity - ent.Comp.WoundableIntegrity),
                     bodySeverity);
                 RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
             }
         }
 
-        component.WoundableIntegrity = state.WoundableIntegrity;
-
-        if (component.WoundableSeverity != state.WoundableSeverity)
+        if (ent.Comp.WoundableSeverity != old.Severity)
         {
-            var ev = new WoundableSeverityChangedEvent(component.WoundableSeverity, state.WoundableSeverity);
-            RaiseLocalEvent(uid, ref ev);
+            var ev = new WoundableSeverityChangedEvent(old.Severity, ent.Comp.WoundableSeverity);
+            RaiseLocalEvent(ent, ref ev);
         }
 
-        component.WoundableSeverity = state.WoundableSeverity;
+        _woundableStateCache[ent] = (ent.Comp.WoundableIntegrity, ent.Comp.WoundableSeverity);
+    }
 
-        component.HealingRateAccumulated = state.HealingRateAccumulated;
+    private void SanitizeWoundableDictionaries(WoundableComponent component)
+    {
+        foreach (var key in component.SeverityMultipliers.Keys.ToArray())
+        {
+            if (TerminatingOrDeleted(key))
+                component.SeverityMultipliers.Remove(key);
+        }
+
+        foreach (var key in component.HealingMultipliers.Keys.ToArray())
+        {
+            if (TerminatingOrDeleted(key))
+                component.HealingMultipliers.Remove(key);
+        }
+
+        component.ChildWoundables.RemoveWhere(uid => TerminatingOrDeleted(uid));
+    }
+
+    protected void SyncWoundDamageGroup(WoundComponent wound)
+    {
+        if (wound.NetworkedDamageGroup != null && _prototype.TryIndex(wound.NetworkedDamageGroup, out var damageGroup))
+            wound.DamageGroup = damageGroup;
+        else
+            wound.DamageGroup = null;
+    }
+
+    protected void SetWoundDamageGroup(WoundComponent wound, DamageGroupPrototype? damageGroup)
+    {
+        wound.DamageGroup = damageGroup;
+        wound.NetworkedDamageGroup = damageGroup?.ID;
     }
 
     protected void CheckSeverityThresholds(EntityUid wound, WoundComponent? component = null)
@@ -331,7 +251,7 @@ public abstract partial class WoundSystem : EntitySystem
         component.WoundSeverity = nearestSeverity;
 
         if (!TerminatingOrDeleted(wound))
-            Dirty(wound, component);
+            DirtyField(wound, component, nameof(WoundComponent.WoundSeverity));
     }
 
     // NOTE: THIS SHOULD BE ONLY RAISED ON A CHANGE OF VALUES. OUTSIDE OF CLASSICAL DAMAGE HANDLING LIKE HEALING
@@ -402,7 +322,7 @@ public abstract partial class WoundSystem : EntitySystem
         }
 
         component.WoundableIntegrity = newIntegrity;
-        Dirty(uid, component);
+        DirtyField(uid, component, nameof(WoundableComponent.WoundableIntegrity));
     }
 
     protected void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
@@ -434,20 +354,21 @@ public abstract partial class WoundSystem : EntitySystem
 
         component.WoundableSeverity = nearestSeverity;
 
-        Dirty(woundable, component);
+        DirtyField(woundable, component, nameof(WoundableComponent.WoundableSeverity));
 
         var bodyPart = Comp<BodyPartComponent>(woundable);
         if (bodyPart.Body == null)
+            return;
+
+        if (!_net.IsServer)
             return;
 
         if (!TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
             return;
 
         targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
-        Dirty(bodyPart.Body.Value, targeting);
-
-        if (_net.IsServer)
-            RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+        DirtyField(bodyPart.Body.Value, targeting, nameof(TargetingComponent.BodyStatus));
+        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
     }
 
     protected void FixWoundableRoots(EntityUid targetEntity, WoundableComponent targetWoundable)
@@ -458,10 +379,10 @@ public abstract partial class WoundSystem : EntitySystem
         foreach (var (childEntity, childWoundable) in GetAllWoundableChildren(targetEntity, targetWoundable))
         {
             childWoundable.RootWoundable = targetWoundable.RootWoundable;
-            Dirty(childEntity, childWoundable);
+            DirtyField(childEntity, childWoundable, nameof(WoundableComponent.RootWoundable));
         }
 
-        Dirty(targetEntity, targetWoundable);
+        DirtyField(targetEntity, targetWoundable, nameof(WoundableComponent.RootWoundable));
     }
 
     protected void InternalAddWoundableToParent(
@@ -487,8 +408,13 @@ public abstract partial class WoundSystem : EntitySystem
             RaiseLocalEvent(woundId, ref ev);
         }
 
-        Dirty(childEntity, childWoundable);
-        Dirty(parentEntity, parentWoundable);
+        DirtyFields(childEntity, childWoundable, null,
+            nameof(WoundableComponent.ParentWoundable),
+            nameof(WoundableComponent.RootWoundable),
+            nameof(WoundableComponent.ChildWoundables));
+        DirtyFields(parentEntity, parentWoundable, null,
+            nameof(WoundableComponent.ChildWoundables),
+            nameof(WoundableComponent.RootWoundable));
     }
 
     protected void InternalRemoveWoundableFromParent(
@@ -520,8 +446,13 @@ public abstract partial class WoundSystem : EntitySystem
             RaiseLocalEvent(childWoundable.RootWoundable, ref ev2);
         }
 
-        Dirty(childEntity, childWoundable);
-        Dirty(parentEntity, parentWoundable);
+        DirtyFields(childEntity, childWoundable, null,
+            nameof(WoundableComponent.ParentWoundable),
+            nameof(WoundableComponent.RootWoundable),
+            nameof(WoundableComponent.ChildWoundables));
+        DirtyFields(parentEntity, parentWoundable, null,
+            nameof(WoundableComponent.ChildWoundables),
+            nameof(WoundableComponent.RootWoundable));
     }
 
     protected void DropWoundableOrgans(EntityUid woundable, WoundableComponent? woundableComp)

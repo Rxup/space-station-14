@@ -2,12 +2,14 @@ using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared._Lavaland.LimitedUsage;
 using Content.Shared.Backmen.AirDrop;
+using Content.Shared.Coordinates.Helpers;
 using Content.Shared.EntityTable;
 using Content.Shared.Interaction;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Timing;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
@@ -32,7 +34,7 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
     /// </summary>
     private readonly List<EntityUid> _advanceToDrop = new();
 
-    private readonly List<(EntityUid Uid, MapCoordinates Pos)> _finishDrop = new();
+    private readonly List<EntityUid> _finishDrop = new();
 
     public override void Initialize()
     {
@@ -47,6 +49,7 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
             after: [typeof(GhostRoleSystem)]);
 
         SubscribeLocalEvent<AirDropComponent, MapInitEvent>(OnInitialStartup);
+        SubscribeLocalEvent<AirDropComponent, ComponentShutdown>(OnAirDropShutdown);
     }
 
     public override void Update(float frameTime)
@@ -77,7 +80,7 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
                     break;
 
                 case AirDropPhase.Drop:
-                    _finishDrop.Add((uid, _transform.GetMapCoordinates(uid)));
+                    _finishDrop.Add(uid);
                     break;
             }
         }
@@ -87,25 +90,27 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
             if (!TryComp(uid, out AirDropComponent? comp))
                 continue;
 
+            SpawnInAirMarker((uid, comp));
             comp.Phase = AirDropPhase.Drop;
             comp.PhaseEndTime = curTime + TimeSpan.FromSeconds(comp.TimeToDrop);
-            Dirty(uid, comp);
+            DirtyFields(uid, comp, null,
+                nameof(AirDropComponent.Phase),
+                nameof(AirDropComponent.PhaseEndTime),
+                nameof(AirDropComponent.InAirMarker));
         }
 
-        foreach (var (uid, pos) in _finishDrop)
+        foreach (var uid in _finishDrop)
         {
             if (TerminatingOrDeleted(uid) || !TryComp(uid, out AirDropComponent? comp))
                 continue;
 
             comp.Phase = AirDropPhase.Done;
             comp.PhaseEndTime = TimeSpan.Zero;
-            Dirty(uid, comp);
+            DirtyFields(uid, comp, null,
+                nameof(AirDropComponent.Phase),
+                nameof(AirDropComponent.PhaseEndTime));
 
-            RaiseLocalEvent(uid,
-                new AirDropSpawnEvent
-                {
-                    Pos = pos
-                });
+            RaiseLocalEvent(uid, new AirDropSpawnEvent());
         }
     }
 
@@ -118,9 +123,61 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
     private void BeginAirDrop(Entity<AirDropComponent> ent)
     {
         var curTime = _timing.CurTime;
+        ent.Comp.InAirMarker = null;
+        ent.Comp.TargetMarker = SpawnMarker(ent.Comp.DropTargetProto, Transform(ent).Coordinates, ent.Comp.DropTarget);
         ent.Comp.Phase = AirDropPhase.Target;
         ent.Comp.PhaseEndTime = curTime + TimeSpan.FromSeconds(ent.Comp.TimeOfTarget);
-        Dirty(ent);
+        DirtyFields(ent, ent.Comp, null,
+            nameof(AirDropComponent.Phase),
+            nameof(AirDropComponent.PhaseEndTime),
+            nameof(AirDropComponent.TargetMarker),
+            nameof(AirDropComponent.InAirMarker));
+    }
+
+    private void SpawnInAirMarker(Entity<AirDropComponent> ent)
+    {
+        if (ent.Comp.InAirMarker is { } existing && !TerminatingOrDeleted(existing))
+            return;
+
+        if (ent.Comp.TargetMarker is not { } target || TerminatingOrDeleted(target))
+            return;
+
+        ent.Comp.InAirMarker = SpawnMarker(ent.Comp.InAirProto, Transform(target).Coordinates, ent.Comp.InAir);
+    }
+
+    private EntityUid SpawnMarker(EntProtoId proto, EntityCoordinates coords, ComponentRegistry overrides)
+    {
+        var uid = Spawn(proto, _transform.ToMapCoordinates(coords), overrides);
+        _transform.AttachToGridOrMap(uid);
+        return uid;
+    }
+
+    private MapCoordinates GetDropCoordinates(AirDropComponent comp)
+    {
+        if (comp.TargetMarker is { } target && !TerminatingOrDeleted(target))
+            return _transform.GetMapCoordinates(target);
+
+        if (comp.InAirMarker is { } inAir && !TerminatingOrDeleted(inAir))
+            return _transform.GetMapCoordinates(inAir);
+
+        return MapCoordinates.Nullspace;
+    }
+
+    private void CleanupMarkers(AirDropComponent comp)
+    {
+        if (comp.TargetMarker is { } target)
+            QueueDel(target);
+
+        if (comp.InAirMarker is { } inAir)
+            QueueDel(inAir);
+
+        comp.TargetMarker = null;
+        comp.InAirMarker = null;
+    }
+
+    private void OnAirDropShutdown(Entity<AirDropComponent> ent, ref ComponentShutdown args)
+    {
+        CleanupMarkers(ent.Comp);
     }
 
     private void OnInitialStartup(Entity<AirDropComponent> ent, ref MapInitEvent args)
@@ -129,19 +186,31 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
         if (_container.IsEntityInContainer(ent.Owner))
             return;
 
-        BeginAirDrop(ent);
+        // Spawning marker entities inside MapInit trips parent-init asserts in EntityManager.
+        var uid = ent.Owner;
+        Timer.Spawn(TimeSpan.Zero, () => StartAirDrop(uid));
+    }
 
-        if (!TryGetNetEntity(ent, out var airDrop))
+    private void StartAirDrop(EntityUid uid)
+    {
+        if (TerminatingOrDeleted(uid) || !TryComp(uid, out AirDropComponent? comp))
             return;
 
-        var coords = _transform.GetMapCoordinates(ent);
+        BeginAirDrop((uid, comp));
+
+        if (!TryGetNetEntity(uid, out var airDrop))
+            return;
+
+        var coords = GetDropCoordinates(comp);
+        if (coords.MapId == MapId.Nullspace)
+            coords = _transform.GetMapCoordinates(uid);
 
         RaiseNetworkEvent(new AirDropStartEvent
             {
                 Uid = airDrop.Value,
                 Pos = coords
             },
-            GetVisualNotifyFilter(ent, coords, ent.Comp.VisualNotifyRange)
+            GetVisualNotifyFilter(uid, coords, comp.VisualNotifyRange)
         );
     }
 
@@ -175,7 +244,13 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
             return;
 
         _delay.TryResetDelay((ent, useDelay));
-        Spawn(ent.Comp.AirDropProto, Transform(ent).Coordinates);
+
+        var coords = args.ClickLocation;
+        if (_transform.GetGrid(coords) is { } gridUid && TryComp<MapGridComponent>(gridUid, out var grid))
+            coords = coords.SnapToGrid(grid);
+
+        Spawn(ent.Comp.AirDropProto, coords);
+
         if (ent.Comp.DeleteOnUse)
         {
             QueueDel(ent);
@@ -200,7 +275,7 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
         if (args.Handled || TerminatingOrDeleted(uid))
             return;
 
-        var pos = args.Pos;
+        var pos = GetDropCoordinates(comp);
         var supply = Spawn(comp.SupplyDropProto, pos, comp.SupplyDrop);
         _transform.AttachToGridOrMap(supply);
         AirDropVisualizerComponent? supplyCompVis = null;
@@ -213,6 +288,11 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
                 dropGhost.SupplyDrop = proto.ID;
             }
         }
+
+        CleanupMarkers(comp);
+        DirtyFields(uid, comp, null,
+            nameof(AirDropComponent.TargetMarker),
+            nameof(AirDropComponent.InAirMarker));
 
         var ev = new TimedDespawnEvent();
         RaiseLocalEvent(uid, ref ev);
@@ -228,7 +308,9 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
                 () =>
                 {
                     if (supplyCompVis is not null)
-                        Dirty(supply, supplyCompVis);
+                        DirtyFields(supply, supplyCompVis, null,
+                            nameof(AirDropVisualizerComponent.SupplyDrop),
+                            nameof(AirDropVisualizerComponent.SupplyDropOverride));
                     QueueLocalEvent(new AirDropItemSpawnEvent
                     {
                         DropTable = _prototypeManager.Index(lootTable).Table,

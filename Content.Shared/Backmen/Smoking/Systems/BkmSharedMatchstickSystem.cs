@@ -12,7 +12,7 @@ public abstract class BkmSharedMatchstickSystem : EntitySystem
             return false;
 
         ent.Comp.CurrentState = state;
-        Dirty(ent);
+        DirtyField(ent, ent.Comp, nameof(BkmMatchstickComponent.CurrentState));
         return true;
     }
 }

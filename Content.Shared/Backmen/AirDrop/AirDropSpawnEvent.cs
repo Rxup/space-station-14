@@ -4,10 +4,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.AirDrop;
 
-public sealed class AirDropSpawnEvent : HandledEntityEventArgs
-{
-    public MapCoordinates Pos { get; set; }
-}
+public sealed class AirDropSpawnEvent : HandledEntityEventArgs;
 
 public sealed class AirDropItemSpawnEvent : HandledEntityEventArgs
 {

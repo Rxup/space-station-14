@@ -110,7 +110,7 @@ public abstract partial class SharedTdmTeamSystem : EntitySystem
 
         EnsureComp<StatusIconComponent>(ent);
         ent.Comp.Team = team;
-        Dirty(ent);
+        DirtyField(ent, ent.Comp, nameof(TdmMemberComponent.Team));
 
         Entity<NpcFactionMemberComponent?> factionEnt = (ent.Owner, EnsureComp<NpcFactionMemberComponent>(ent));
         _npcFactionSystem.ClearFactions(factionEnt, false);

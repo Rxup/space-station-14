@@ -714,7 +714,7 @@ public abstract partial class SharedSurgerySystem
                 healAmount -= bleeds.BleedingAmountRaw;
             }
 
-            Dirty(woundEnt, bleeds);
+            DirtyField(woundEnt, bleeds, nameof(BleedInflicterComponent.IsBleeding));
         }
     }
 

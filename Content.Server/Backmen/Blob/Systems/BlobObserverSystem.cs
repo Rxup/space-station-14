@@ -83,7 +83,7 @@ public sealed partial class BlobObserverSystem : SharedBlobObserverSystem
         ent.Comp.VirtualItem = Spawn(MobObserverBlobController, Transform(ent).Coordinates);
         var comp = EnsureComp<BlobObserverControllerComponent>(ent.Comp.VirtualItem);
         comp.Blob = ent;
-        Dirty(ent);
+        DirtyField(ent, ent.Comp, nameof(BlobObserverComponent.VirtualItem));
 
         if (!_hands.TryPickup(ent, ent.Comp.VirtualItem, "BlobHand", false, false, false))
         {
@@ -112,7 +112,6 @@ public sealed partial class BlobObserverSystem : SharedBlobObserverSystem
         }
 
         blobObserverComponent.Core = (blobCoreUid, core);
-        Dirty(observer,blobObserverComponent);
 
 
         var isNewMind = false;
