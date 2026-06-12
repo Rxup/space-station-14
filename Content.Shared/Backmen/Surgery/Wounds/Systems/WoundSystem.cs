@@ -72,6 +72,7 @@ public abstract partial class WoundSystem : EntitySystem
         SubscribeLocalEvent<WoundComponent, ComponentShutdown>(OnWoundShutdown);
         SubscribeLocalEvent<WoundableComponent, AfterAutoHandleStateEvent>(OnWoundableAfterAutoHandleState);
         SubscribeLocalEvent<WoundableComponent, ComponentShutdown>(OnWoundableShutdown);
+        SubscribeLocalEvent<WoundableComponent, EntityTerminatingEvent>(OnWoundableTerminating);
 
         InitWounding();
     }
@@ -84,6 +85,20 @@ public abstract partial class WoundSystem : EntitySystem
     private void OnWoundableShutdown(Entity<WoundableComponent> ent, ref ComponentShutdown args)
     {
         _woundableStateCache.Remove(ent);
+    }
+
+    private void OnWoundableTerminating(Entity<WoundableComponent> ent, ref EntityTerminatingEvent args)
+    {
+        SanitizeWoundableReferences(ent.Owner, ent.Comp);
+
+        if (ent.Comp.ParentWoundable is not { } parentUid
+            || !WoundableQuery.TryComp(parentUid, out var parentWoundable))
+            return;
+
+        if (!parentWoundable.ChildWoundables.Remove(ent.Owner) || TerminatingOrDeleted(parentUid))
+            return;
+
+        DirtyField(parentUid, parentWoundable, nameof(WoundableComponent.ChildWoundables));
     }
 
     private void OnWoundAfterAutoHandleState(Entity<WoundComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -145,7 +160,7 @@ public abstract partial class WoundSystem : EntitySystem
 
     private void OnWoundableAfterAutoHandleState(Entity<WoundableComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        SanitizeWoundableDictionaries(ent.Comp);
+        SanitizeWoundableReferences(ent.Owner, ent.Comp);
 
         if (!_net.IsClient)
         {
@@ -197,7 +212,7 @@ public abstract partial class WoundSystem : EntitySystem
         _woundableStateCache[ent] = (ent.Comp.WoundableIntegrity, ent.Comp.WoundableSeverity);
     }
 
-    private void SanitizeWoundableDictionaries(WoundableComponent component)
+    private void SanitizeWoundableReferences(EntityUid owner, WoundableComponent component)
     {
         foreach (var key in component.SeverityMultipliers.Keys.ToArray())
         {
@@ -212,6 +227,12 @@ public abstract partial class WoundSystem : EntitySystem
         }
 
         component.ChildWoundables.RemoveWhere(uid => TerminatingOrDeleted(uid));
+
+        if (component.ParentWoundable is { } parent && TerminatingOrDeleted(parent))
+            component.ParentWoundable = null;
+
+        if (TerminatingOrDeleted(component.RootWoundable))
+            component.RootWoundable = owner;
     }
 
     protected void SyncWoundDamageGroup(WoundComponent wound)
@@ -423,10 +444,15 @@ public abstract partial class WoundSystem : EntitySystem
         WoundableComponent parentWoundable,
         WoundableComponent childWoundable)
     {
-        if (TerminatingOrDeleted(childEntity) || TerminatingOrDeleted(parentEntity))
-            return;
+        var removedFromParent = parentWoundable.ChildWoundables.Remove(childEntity);
 
-        parentWoundable.ChildWoundables.Remove(childEntity);
+        if (TerminatingOrDeleted(childEntity) || TerminatingOrDeleted(parentEntity))
+        {
+            if (removedFromParent && !TerminatingOrDeleted(parentEntity))
+                DirtyField(parentEntity, parentWoundable, nameof(WoundableComponent.ChildWoundables));
+
+            return;
+        }
         childWoundable.ParentWoundable = null;
         childWoundable.RootWoundable = childEntity;
 
