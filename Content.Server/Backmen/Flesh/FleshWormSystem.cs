@@ -119,6 +119,9 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
 
     public bool TryPounce(EntityUid worm, EntityUid target, bool rollChance = true, FleshWormComponent? component = null)
     {
+        if (!Resolve(worm, ref component))
+            return false;
+
         if (!CanPounceBasic(worm, target, component))
             return false;
 
