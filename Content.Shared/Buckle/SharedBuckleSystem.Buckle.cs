@@ -475,7 +475,7 @@ public abstract partial class SharedBuckleSystem
         Appearance.SetData(strap, StrapVisuals.State, strap.Comp.BuckledEntities.Count != 0);
         Appearance.SetData(buckle, BuckleVisuals.Buckled, false);
 
-        if (HasComp<KnockedDownComponent>(buckle) || _mobState.IsIncapacitated(buckle))
+        if (HasComp<KnockedDownComponent>(buckle) || _mobState.IsCritical(buckle) || _mobState.IsDead(buckle))
             _standing.Down(buckle, playSound: false);
         else
             _standing.Stand(buckle);
@@ -561,7 +561,7 @@ public abstract partial class SharedBuckleSystem
             return;
 
         if (TryComp<CuffableComponent>(args.Target, out var targetCuffableComp) && targetCuffableComp.CuffedHandCount > 0
-            || _mobState.IsIncapacitated(args.Target.Value))
+            || _mobState.IsCritical(args.Target.Value) || _mobState.IsDead(args.Target.Value))
         {
             ev.Cancel();
             TryBuckle(args.Target.Value, args.User, args.Used.Value, popup: false);

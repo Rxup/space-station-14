@@ -143,7 +143,7 @@ public sealed partial class CocoonerSystem : EntitySystem
         if (HasComp<SleepingComponent>(target))
             return true;
 
-        if (_mobState.IsIncapacitated(target))
+        if (_mobState.IsCritical(target) || _mobState.IsDead(target))
             return true;
 
         // Knockdown alone is too early (drowsy / falling over). Require stun as well.

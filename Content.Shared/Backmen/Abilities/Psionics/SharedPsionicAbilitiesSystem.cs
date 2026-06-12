@@ -224,7 +224,7 @@ public abstract partial class SharedPsionicAbilitiesSystem : EntitySystem
         if (_statusEffects.HasEffectComp<PsionicInsulationComponent>(uid))
             return false;
 
-        return !_mobStateSystem.IsIncapacitated(uid);
+        return !_mobStateSystem.IsCritical(uid) && !_mobStateSystem.IsDead(uid);
     }
 
     public void LogPowerUsed(EntityUid uid, string power, int minGlimmer = 8, int maxGlimmer = 12)

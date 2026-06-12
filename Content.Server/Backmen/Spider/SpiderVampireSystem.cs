@@ -79,7 +79,7 @@ public sealed partial class SpiderVampireSystem : EntitySystem
             return;
         }
 
-        if (_mobState.IsIncapacitated(uid))
+        if (_mobState.IsCritical(uid) || _mobState.IsDead(uid))
         {
             _popupSystem.PopupEntity("хуйня какая-то", uid, uid);
             return;
@@ -149,7 +149,7 @@ public sealed partial class SpiderVampireSystem : EntitySystem
         if (!Resolve(uid, ref component) || component.Charges <= 0)
             return false;
 
-        if (_mobState.IsIncapacitated(uid))
+        if (_mobState.IsCritical(uid) || _mobState.IsDead(uid))
             return false;
 
         if (TryComp<HungerComponent>(uid, out var hunger) && _hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
