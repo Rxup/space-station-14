@@ -86,25 +86,6 @@
   - type: Inventory
     templateId: carman
 
-- type: startingGear
-  id: BigJohn
-  equipment:
-    pocket1: BigJohnFightMusic
-
-- type: entity
-  id: BigJohnFightMusic
-  parent: BaseItem
-  components:
-  - type: Sprite
-    sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
-    layers:
-      - state: NoId
-  - type: AmbientSound
-    volume: 5
-    range: 50
-    sound:
-      path: /Audio/Backmen/Bosses/ThemeOfCancer.ogg
-
 - type: entity
   id: HolyLightAnim
   name: holy light

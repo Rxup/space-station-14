@@ -92,8 +92,9 @@
   - type: Polymorphable
     innatePolymorphs:
     - SwoopFly
-  - type: Loadout
-    prototypes: [BigJohn]
+  - type: Aggressive
+  - type: BossMusic
+    soundId: BigJohn
   - type: Tag
     tags:
       - BigJohninator

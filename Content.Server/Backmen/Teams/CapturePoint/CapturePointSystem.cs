@@ -76,7 +76,9 @@ public sealed partial class CapturePointSystem : SharedCapturePointSystem
             // convert to teamA
             ent.Comp.Team = args.Team;
             ent.Comp.CaptureCurrent = ent.Comp.CaptureTick;
-            Dirty(ent);
+            DirtyFields(ent, ent.Comp, null,
+                nameof(BkmCapturePointComponent.Team),
+                nameof(BkmCapturePointComponent.CaptureCurrent));
 
         }
 
@@ -87,7 +89,9 @@ public sealed partial class CapturePointSystem : SharedCapturePointSystem
             ent.Comp.CaptureCurrent = ent.Comp.CaptureMax - ent.Comp.CaptureTick;
             _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamA, false);
             _deviceLink.SendSignal(ent, ent.Comp.OutputPortTeamB, false);
-            Dirty(ent);
+            DirtyFields(ent, ent.Comp, null,
+                nameof(BkmCapturePointComponent.Team),
+                nameof(BkmCapturePointComponent.CaptureCurrent));
         }
 
         if (args.Team == StationTeamMarker.TeamB && ent.Comp.Team == StationTeamMarker.Neutral && ent.Comp.CaptureCurrent <= 0)
@@ -95,7 +99,9 @@ public sealed partial class CapturePointSystem : SharedCapturePointSystem
             // convert to teamB
             ent.Comp.Team = args.Team;
             ent.Comp.CaptureCurrent = ent.Comp.CaptureTick;
-            Dirty(ent);
+            DirtyFields(ent, ent.Comp, null,
+                nameof(BkmCapturePointComponent.Team),
+                nameof(BkmCapturePointComponent.CaptureCurrent));
         }
 
         if (args.Team == ent.Comp.Team && ent.Comp.CaptureCurrent >= ent.Comp.CaptureMax)
@@ -110,7 +116,7 @@ public sealed partial class CapturePointSystem : SharedCapturePointSystem
         var appearance = EnsureComp<AppearanceComponent>(ent);
         UpdateAppearance(ent, true, appearance);
         _deviceLink.EnsureSourcePorts(ent, ent.Comp.OutputPortTeamA, ent.Comp.OutputPortTeamB);
-        Dirty(ent);
+        DirtyField(ent, ent.Comp, nameof(BkmCapturePointComponent.CaptureCurrent));
     }
 
     private void UpdateAppearance(Entity<BkmCapturePointComponent> ent, bool resetMoving = false, AppearanceComponent? component = null)
@@ -171,7 +177,9 @@ public sealed partial class CapturePointSystem : SharedCapturePointSystem
         {
             // if capture point is empty do rollback
             ent.Comp.CaptureCurrent = FixedPoint2.Clamp(ent.Comp.CaptureCurrent + ent.Comp.CaptureTick, 0, ent.Comp.CaptureMax);
-            Dirty(ent);
+            DirtyFields(ent, ent.Comp, null,
+                nameof(BkmCapturePointComponent.Team),
+                nameof(BkmCapturePointComponent.CaptureCurrent));
             UpdateAppearanceMoving(ent, ent.Comp.Team, ent.Comp.Team);
             return;
         }
@@ -189,7 +197,9 @@ public sealed partial class CapturePointSystem : SharedCapturePointSystem
                 ent.Comp.CaptureCurrent = FixedPoint2.Clamp(add ? ent.Comp.CaptureCurrent + ent.Comp.CaptureTick : ent.Comp.CaptureCurrent - ent.Comp.CaptureTick, 0, ent.Comp.CaptureMax);
             }
 
-            Dirty(ent);
+            DirtyFields(ent, ent.Comp, null,
+                nameof(BkmCapturePointComponent.Team),
+                nameof(BkmCapturePointComponent.CaptureCurrent));
             UpdateAppearanceMoving(ent, ent.Comp.Team, team);
             if (ent.Comp.CaptureCurrent == 0 || ent.Comp.CaptureMax == ent.Comp.CaptureCurrent)
             {

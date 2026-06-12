@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Backmen.StationAI.Components;
 
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState()]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class AICameraComponent : Component
 {
     [DataField("enabled"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]

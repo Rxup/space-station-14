@@ -407,7 +407,7 @@ public sealed partial class MoodSystem : EntitySystem
         component.CurrentMoodLevel = newMoodLevel;
 
         component.NeutralMoodThreshold = component.MoodThresholds.GetValueOrDefault(MoodThreshold.Neutral);
-        Dirty(uid, component);
+        DirtyFields(uid, component, null, nameof(MoodComponent.CurrentMoodLevel), nameof(MoodComponent.NeutralMoodThreshold));
         UpdateCurrentThreshold(uid, component);
 
         // Speed modifier uses CurrentMoodLevel, not just the threshold band — refresh on any mood change.

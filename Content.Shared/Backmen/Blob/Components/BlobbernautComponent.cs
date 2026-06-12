@@ -5,7 +5,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Blob.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true), Access(typeof(SharedBlobbernautSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true), Access(typeof(SharedBlobbernautSystem))]
 public sealed partial class BlobbernautComponent : Component
 {
     [DataField("color"), AutoNetworkedField]

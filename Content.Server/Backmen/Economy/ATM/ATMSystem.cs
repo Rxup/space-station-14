@@ -190,7 +190,9 @@ public sealed partial class ATMSystem : SharedATMSystem
                     bankAccount.Value.Comp.AccountName = idCardFullName;
                     idCardComponent.StoredBankAccountNumber = bankAccount.Value.Comp.AccountNumber;
                     Dirty(idCardEntityUid, idCardComponent);
-                    Dirty(bankAccount.Value);
+                    DirtyFields(bankAccount.Value, bankAccount.Value.Comp, null,
+                        nameof(BankAccountComponent.AccountName),
+                        nameof(BankAccountComponent.AccountNumber));
                 }
 
                 haveAccessToBankAccount = true;

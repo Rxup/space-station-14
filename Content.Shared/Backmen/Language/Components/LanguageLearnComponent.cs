@@ -1,9 +1,10 @@
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Backmen.Language.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class LanguageLearnComponent : Component
 {
     /// <summary>
@@ -39,7 +40,7 @@ public sealed partial class LanguageLearnComponent : Component
     /// <summary>
     /// Current number of uses remaining.
     /// </summary>
-    [ViewVariables]
+    [DataField, AutoNetworkedField]
     public int? UsesRemaining = null;
 
     public int GetUsesRemaining()

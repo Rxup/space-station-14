@@ -8,6 +8,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Zombies;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -36,9 +37,37 @@ public abstract partial class ConsciousnessSystem : EntitySystem
     {
         base.Initialize();
 
-        InitNet();
-
         SubscribeLocalEvent<ConsciousnessComponent, MobStateChangedEvent>(OnRelayState);
+        SubscribeLocalEvent<ConsciousnessComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
+    }
+
+    private void OnAfterAutoHandleState(Entity<ConsciousnessComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        SanitizeConsciousnessDictionaries(ent.Comp);
+    }
+
+    private void SanitizeConsciousnessDictionaries(ConsciousnessComponent component)
+    {
+        if (component.NerveSystem != null && TerminatingOrDeleted(component.NerveSystem.Value.Owner))
+            component.NerveSystem = null;
+
+        foreach (var key in component.Modifiers.Keys.ToArray())
+        {
+            if (TerminatingOrDeleted(key.Item1))
+                component.Modifiers.Remove(key);
+        }
+
+        foreach (var key in component.Multipliers.Keys.ToArray())
+        {
+            if (TerminatingOrDeleted(key.Item1))
+                component.Multipliers.Remove(key);
+        }
+
+        foreach (var (id, (entity, _, _)) in component.RequiredConsciousnessParts.ToArray())
+        {
+            if (entity != null && TerminatingOrDeleted(entity.Value))
+                component.RequiredConsciousnessParts.Remove(id);
+        }
     }
 
     protected virtual void OnMobStateChanged(Entity<ConsciousnessComponent> consciousness,
@@ -76,7 +105,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
         uid.Comp.RawConsciousness = newConsciousness;
 
         CheckConscious(uid);
-        Dirty(uid);
+        DirtyField(uid, uid.Comp, nameof(ConsciousnessComponent.RawConsciousness));
     }
 
     protected void UpdateConsciousnessMultipliers(Entity<ConsciousnessComponent?> uid)
@@ -90,7 +119,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             (current, multiplier) => current + multiplier.Value.Change) / uid.Comp.Multipliers.Count;
 
         CheckConscious(uid);
-        Dirty(uid);
+        DirtyField(uid, uid.Comp, nameof(ConsciousnessComponent.Multiplier));
     }
 
     /// <summary>
@@ -107,7 +136,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             return;
 
         target.Comp.IsConscious = isConscious;
-        Dirty(target);
+        DirtyField(target, target.Comp, nameof(ConsciousnessComponent.IsConscious));
     }
 
     protected void UpdateMobState(
@@ -166,7 +195,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             if (forcesDeath)
             {
                 bodyId.Comp.ForceDead = true;
-                Dirty(bodyId);
+                DirtyField(bodyId, bodyId.Comp, nameof(ConsciousnessComponent.ForceDead));
 
                 alive = false;
                 break;
@@ -180,7 +209,9 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             bodyId.Comp.ForceDead = false;
             bodyId.Comp.ForceUnconscious = !conscious;
 
-            Dirty(bodyId);
+            DirtyFields(bodyId, bodyId.Comp, null,
+                nameof(ConsciousnessComponent.ForceDead),
+                nameof(ConsciousnessComponent.ForceUnconscious));
         }
 
         CheckConscious(bodyId.AsNullable());

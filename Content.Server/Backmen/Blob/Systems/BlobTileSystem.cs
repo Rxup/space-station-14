@@ -204,8 +204,16 @@ public sealed partial class BlobTileSystem : SharedBlobTileSystem
         (from.Comp.BlobResource, to.Comp.BlobResource) = (to.Comp.BlobResource, from.Comp.BlobResource);
         (from.Comp.BlobStorage, to.Comp.BlobStorage) = (to.Comp.BlobStorage, from.Comp.BlobStorage);
         (from.Comp.BlobTurret, to.Comp.BlobTurret) = (to.Comp.BlobTurret, from.Comp.BlobTurret);
-        Dirty(from);
-        Dirty(to);
+        DirtyFields(from, from.Comp, null,
+            nameof(BlobNodeComponent.BlobFactory),
+            nameof(BlobNodeComponent.BlobResource),
+            nameof(BlobNodeComponent.BlobStorage),
+            nameof(BlobNodeComponent.BlobTurret));
+        DirtyFields(to, to.Comp, null,
+            nameof(BlobNodeComponent.BlobFactory),
+            nameof(BlobNodeComponent.BlobResource),
+            nameof(BlobNodeComponent.BlobStorage),
+            nameof(BlobNodeComponent.BlobTurret));
     }
 
     public bool IsEmptySpecial(Entity<BlobNodeComponent> node, BlobTileType tile)

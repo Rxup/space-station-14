@@ -464,7 +464,7 @@ public sealed partial class SupermatterSystem : SharedSupermatterSystem
         }
         finally
         {
-            Dirty(uid,sMcomponent);
+            DirtyField(uid, sMcomponent, nameof(BkmSupermatterComponent.Damage));
         }
     }
     #endregion

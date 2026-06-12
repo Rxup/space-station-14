@@ -11,13 +11,12 @@ public sealed partial class BlobObserverControllerComponent : Component
     public Entity<BlobObserverComponent> Blob;
 }
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class BlobObserverComponent : Component
 {
     [ViewVariables]
     public bool IsProcessingMoveEvent;
 
-    //[AutoNetworkedField]
     [ViewVariables]
     public Entity<BlobCoreComponent>? Core = default!;
 

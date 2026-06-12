@@ -810,7 +810,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
             return false;
 
         UpdateConsciousnessModifiers(target);
-        Dirty(target);
 
         return true;
     }
@@ -827,7 +826,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
             return false;
 
         UpdateConsciousnessModifiers(target);
-        Dirty(target);
 
         return true;
     }
@@ -847,7 +845,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         target.Comp.Modifiers[(modifierOwner, identifier)] = newModifier;
 
         UpdateConsciousnessModifiers(target);
-        Dirty(target);
 
         return true;
     }
@@ -869,7 +866,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         target.Comp.Modifiers[(modifierOwner, identifier)] = newModifier;
 
         UpdateConsciousnessModifiers(target);
-        Dirty(target);
 
         return true;
     }
@@ -892,8 +888,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         UpdateConsciousnessMultipliers(target);
         UpdateConsciousnessModifiers(target);
 
-        Dirty(target);
-
         return true;
     }
 
@@ -910,8 +904,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
         UpdateConsciousnessMultipliers(target);
         UpdateConsciousnessModifiers(target);
-
-        Dirty(target);
 
         return true;
     }

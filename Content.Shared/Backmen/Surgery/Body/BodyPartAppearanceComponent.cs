@@ -6,7 +6,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Body.Part;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
 public sealed partial class BodyPartAppearanceComponent : Component
 {
     /// <summary>

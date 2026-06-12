@@ -25,7 +25,7 @@ public sealed partial class AirDropItemComponent : Component
     public bool LavaLandOnly { get; private set; } = false;
 }
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class AirDropComponent : Component
 {
     [DataField, AutoNetworkedField]
@@ -38,15 +38,15 @@ public sealed partial class AirDropComponent : Component
     public TimeSpan PhaseEndTime = TimeSpan.Zero;
 
     /// <summary>
-    /// Client-side holographic target marker (with <c>AnimationPlayer</c>).
+    /// Grid-anchored holographic target marker. Server-spawned; supply pod lands here.
     /// </summary>
-    [ViewVariables]
+    [AutoNetworkedField, ViewVariables]
     public EntityUid? TargetMarker;
 
     /// <summary>
-    /// Client-side falling pod animation (with <c>AnimationPlayer</c>).
+    /// Grid-anchored falling pod animation entity.
     /// </summary>
-    [ViewVariables]
+    [AutoNetworkedField, ViewVariables]
     public EntityUid? InAirMarker;
 
     /// <summary>

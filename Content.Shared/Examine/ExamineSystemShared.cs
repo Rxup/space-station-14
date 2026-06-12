@@ -60,7 +60,7 @@ namespace Content.Shared.Examine
                 return true;
 
             // check if the mob is in critical or dead
-            if (MobStateSystem.IsIncapacitated(examiner))
+            if (MobStateSystem.IsCritical(examiner) || MobStateSystem.IsDead(examiner))
                 return false;
 
             if (!InRangeUnOccluded(examiner, entity, ExamineDetailsRange))

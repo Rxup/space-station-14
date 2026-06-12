@@ -86,6 +86,9 @@
             pathfindKey: TargetPathfind
             rangeKey: MeleeRange
         - !type:HTNPrimitiveTask
+          operator: !type:ClearIngestionBlockersOperator
+            targetKey: Target
+        - !type:HTNPrimitiveTask
           operator: !type:JukeOperator
             jukeType: Away
         - !type:HTNPrimitiveTask

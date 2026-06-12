@@ -93,7 +93,7 @@ public sealed partial class LanguageLearnSystem : EntitySystem
             usesRemaining--;
 
             component.UsesRemaining = usesRemaining;
-            Dirty(uid, component);
+            DirtyField(uid, component, nameof(LanguageLearnComponent.UsesRemaining));
 
             if (component.DeleteAfterUse && usesRemaining <= 0)
             {

@@ -8,7 +8,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared.Backmen.Smoking.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(BkmSharedMatchstickSystem))]
-[AutoGenerateComponentState]
+[AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class BkmMatchstickComponent : Component
 {
     /// <summary>
