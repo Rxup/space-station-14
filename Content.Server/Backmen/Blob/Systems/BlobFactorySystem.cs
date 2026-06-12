@@ -58,7 +58,7 @@ public sealed partial class BlobFactorySystem : EntitySystem
         {
             blobbernautComponent.Factory = uid;
             blobbernautComponent.Color = blobCoreComponent.ChemСolors[blobCoreComponent.CurrentChem];
-            DirtyField(blobbernaut, blobbernautComponent, nameof(BlobbernautComponent.Color));
+            Dirty(blobbernaut, blobbernautComponent);
         }
         if (TryComp<MeleeWeaponComponent>(blobbernaut, out var meleeWeaponComponent))
         {

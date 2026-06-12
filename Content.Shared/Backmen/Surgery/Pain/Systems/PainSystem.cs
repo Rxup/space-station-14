@@ -22,10 +22,22 @@ public abstract partial class PainSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<NerveSystemComponent, AfterAutoHandleStateEvent>(OnNerveSystemAfterAutoHandleState);
+        SubscribeLocalEvent<NerveSystemComponent, EntityTerminatingEvent>(OnNerveSystemTerminating);
         SubscribeLocalEvent<NerveComponent, AfterAutoHandleStateEvent>(OnNerveAfterAutoHandleState);
 
         NerveSystemQuery = GetEntityQuery<NerveSystemComponent>();
         NerveQuery = GetEntityQuery<NerveComponent>();
+    }
+
+    private void OnNerveSystemTerminating(Entity<NerveSystemComponent> ent, ref EntityTerminatingEvent args)
+    {
+        foreach (var (nerveUid, _) in ent.Comp.Nerves.ToArray())
+        {
+            if (!NerveQuery.TryComp(nerveUid, out var nerve))
+                continue;
+
+            nerve.ParentedNerveSystem = EntityUid.Invalid;
+        }
     }
 
     private void OnNerveSystemAfterAutoHandleState(Entity<NerveSystemComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -49,6 +61,9 @@ public abstract partial class PainSystem : EntitySystem
 
     private void SanitizeNerveDictionaries(NerveComponent component)
     {
+        if (component.ParentedNerveSystem != EntityUid.Invalid && TerminatingOrDeleted(component.ParentedNerveSystem))
+            component.ParentedNerveSystem = EntityUid.Invalid;
+
         foreach (var key in component.PainFeelingModifiers.Keys.ToArray())
         {
             if (TerminatingOrDeleted(key.Item1))

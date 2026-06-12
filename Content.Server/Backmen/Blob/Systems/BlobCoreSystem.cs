@@ -312,7 +312,6 @@ public sealed partial class BlobCoreSystem : EntitySystem
 
         ConnectBlobTile((blobTileUid, blobTileComp), blobCore, nearNode);
         ChangeBlobEntChem(blobTileUid, blobCoreComp.CurrentChem);
-        DirtyField(blobTileUid, blobTileComp, nameof(BlobTileComponent.Color));
 
         var ev = new BlobTransformTileEvent();
         RaiseLocalEvent(blobTileUid, ev);
@@ -338,7 +337,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
 
         tileComp.Color = coreComp.ChemСolors[coreComp.CurrentChem];
         tileComp.Core = core;
-        DirtyField(tile, tileComp, nameof(BlobTileComponent.Color));
+        Dirty(tile, tileComp);
 
         if (node == null)
             return;

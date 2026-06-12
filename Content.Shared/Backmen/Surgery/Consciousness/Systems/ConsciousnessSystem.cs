@@ -48,6 +48,9 @@ public abstract partial class ConsciousnessSystem : EntitySystem
 
     private void SanitizeConsciousnessDictionaries(ConsciousnessComponent component)
     {
+        if (component.NerveSystem != null && TerminatingOrDeleted(component.NerveSystem.Value.Owner))
+            component.NerveSystem = null;
+
         foreach (var key in component.Modifiers.Keys.ToArray())
         {
             if (TerminatingOrDeleted(key.Item1))

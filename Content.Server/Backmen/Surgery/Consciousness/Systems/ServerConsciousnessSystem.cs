@@ -650,7 +650,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         if (uid.Comp.RawConsciousness <= 0)
         {
             uid.Comp.RawConsciousness = uid.Comp.Cap;
-            DirtyField(uid, uid.Comp, nameof(ConsciousnessComponent.RawConsciousness));
+            Dirty(uid);
         }
     }
 
@@ -678,10 +678,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         if (consciousness.RawConsciousness <= 0 || consciousness.RawConsciousness > consciousness.Cap)
             consciousness.RawConsciousness = consciousness.Cap;
 
-        DirtyFields(uid, consciousness, null,
-            nameof(ConsciousnessComponent.Cap),
-            nameof(ConsciousnessComponent.Threshold),
-            nameof(ConsciousnessComponent.RawConsciousness));
+        Dirty(uid, consciousness);
     }
     // end-backmen
 
