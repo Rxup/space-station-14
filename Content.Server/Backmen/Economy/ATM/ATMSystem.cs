@@ -288,6 +288,9 @@ public sealed partial class ATMSystem : SharedATMSystem
         Entity<AtmComponent> atm,
         EntityUid actor)
     {
+        if (currency.Count == 0)
+            return false;
+
         foreach (var type in currency)
         {
             if (!atm.Comp.CurrencyWhitelist.Contains(type.Key))
