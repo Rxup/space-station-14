@@ -36,7 +36,7 @@ public sealed partial class NightVisionSystem : EntitySystem
         component.IsNightVision = !component.IsNightVision;
         var changeEv = new NightVisionnessChangedEvent(component.IsNightVision);
         RaiseLocalEvent(uid, ref changeEv);
-        Dirty(uid, component);
+        DirtyField(uid, component, nameof(NightVisionComponent.IsNightVision));
         _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1));
         if (component is { IsNightVision: true, PlaySoundOn: true })
         {
@@ -63,7 +63,7 @@ public sealed partial class NightVisionSystem : EntitySystem
 
         var changeEv = new NightVisionnessChangedEvent(component.IsNightVision);
         RaiseLocalEvent(uid, ref changeEv);
-        Dirty(uid, component);
+        DirtyField(uid, component, nameof(NightVisionComponent.IsNightVision));
     }
 }
 

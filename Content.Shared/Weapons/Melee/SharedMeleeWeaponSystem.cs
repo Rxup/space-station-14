@@ -849,7 +849,7 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         }
 
 
-        if (MobState.IsIncapacitated(target.Value))
+        if (MobState.IsCritical(target.Value) || MobState.IsDead(target.Value))
         {
             return false;
         }

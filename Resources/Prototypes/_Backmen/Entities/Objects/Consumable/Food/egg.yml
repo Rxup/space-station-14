@@ -80,3 +80,8 @@
     lifetime: 301
   - type: LimitedCharges
     maxCharges: 1
+  - type: PsionicInvisibleContacts
+    tileBased: true
+    whitelist:
+      tags:
+        - ArachneWeb

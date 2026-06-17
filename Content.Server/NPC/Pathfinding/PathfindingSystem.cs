@@ -69,6 +69,8 @@ namespace Content.Server.NPC.Pathfinding
         private readonly Dictionary<int, PathPortal> _portals = new();
 
         private EntityQuery<Shared.Backmen.Blob.Components.BlobTileComponent> _tilesQuery; // backmen: blob
+        private EntityQuery<Shared.Backmen.Arachne.WebComponent> _webQuery; // backmen: web
+        private EntityQuery<Shared.Spider.SpiderWebObjectComponent> _spiderWebQuery; // backmen: web
         private EntityQuery<AccessReaderComponent> _accessQuery;
         private EntityQuery<DestructibleComponent> _destructibleQuery;
         private EntityQuery<DoorComponent> _doorQuery;
@@ -82,6 +84,8 @@ namespace Content.Server.NPC.Pathfinding
             base.Initialize();
 
             _tilesQuery = GetEntityQuery<Shared.Backmen.Blob.Components.BlobTileComponent>(); // backmen: blob
+            _webQuery = GetEntityQuery<Shared.Backmen.Arachne.WebComponent>(); // backmen: web
+            _spiderWebQuery = GetEntityQuery<Shared.Spider.SpiderWebObjectComponent>(); // backmen: web
             _accessQuery = GetEntityQuery<AccessReaderComponent>();
             _destructibleQuery = GetEntityQuery<DestructibleComponent>();
             _doorQuery = GetEntityQuery<DoorComponent>();
@@ -480,6 +484,18 @@ namespace Content.Server.NPC.Pathfinding
                 flags |= PathFlags.Blob;
             }
             // end-backmen: blob
+
+            // start-backmen: web
+            if (blackboard.TryGetValue<bool>(NPCBlackboard.NavWeb, out var web, EntityManager) && web)
+            {
+                flags |= PathFlags.Web;
+            }
+
+            if (blackboard.TryGetValue<bool>(NPCBlackboard.NavWebOnly, out var webOnly, EntityManager) && webOnly)
+            {
+                flags |= PathFlags.WebOnly;
+            }
+            // end-backmen: web
 
             return flags;
         }

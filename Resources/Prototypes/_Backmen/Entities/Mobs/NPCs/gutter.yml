@@ -71,6 +71,9 @@
   - type: Transform
   - type: Damageable
     damageModifierSet: MachineArmor
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+    worn: false
   - type: RequireProjectileTarget
     active: true
 
@@ -81,9 +84,7 @@
     Heat: 0.01
     Radiation: 0.01
     Caustic: 0.01
-    Stun: 0.1
 
-#StreetCleaner
 - type: entity
   id: DropPodMarkerStreetCleaner
   suffix: Спавнер машины, Стритклинер
@@ -446,6 +447,9 @@
   - type: NoRotateOnMove
   - type: Damageable
     damageModifierSet: MachineGuttermanArmor
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+    worn: false
 
 - type: damageModifierSet
   id: MachineGuttermanArmor
@@ -455,7 +459,6 @@
     Heat: 0.01
     Radiation: 0.01
     Caustic: 0.01
-    Stun: 0.1
 
 - type: entity
   id: BulletRifleGutterman

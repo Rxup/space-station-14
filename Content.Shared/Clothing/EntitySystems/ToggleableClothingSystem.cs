@@ -8,6 +8,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
 using Content.Shared.Strip;
 using Content.Shared.Verbs;
+using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -220,6 +221,29 @@ public sealed partial class ToggleableClothingSystem : EntitySystem
         // So we delay it and process it during a system update:
         if (toggleComp.ClothingUid != null && toggleComp.Container != null)
             _containerSystem.Insert(toggleComp.ClothingUid.Value, toggleComp.Container);
+    }
+
+    /// <summary>
+    ///     Stows attached clothing (e.g. a hardsuit helmet) back into its parent when it is worn in a toggle slot.
+    /// </summary>
+    [PublicAPI]
+    public bool TryStowAttached(EntityUid wearer, string slot)
+    {
+        if (!_inventorySystem.TryGetSlotEntity(wearer, slot, out var equipped) || equipped is not { } equippedUid)
+            return false;
+
+        if (!TryComp<AttachedClothingComponent>(equippedUid, out var attached))
+            return false;
+
+        if (!TryComp<ToggleableClothingComponent>(attached.AttachedUid, out var toggle)
+            || toggle.Container == null
+            || toggle.Container.ContainedEntity != null)
+        {
+            return false;
+        }
+
+        ToggleClothing(wearer, attached.AttachedUid, toggle);
+        return true;
     }
 
     /// <summary>

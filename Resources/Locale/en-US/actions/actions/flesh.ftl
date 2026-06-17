@@ -8,6 +8,14 @@ flesh-pudge-throw-worm-hit-others = The worm has latched onto { CAPITALIZE($enti
 flesh-pudge-throw-worm-hit-mob = You have latched onto { CAPITALIZE($entity) }'s face!
 flesh-pudge-throw-worm-hit-user = The worm has latched onto your face!
 flesh-pudge-throw-worm-desc = Vomit a worm from your flesh and hold it in your hand to throw at enemies.
+
+flesh-worm-verb-remove = Pull off worm
+flesh-worm-remove-start-user = You start pulling the worm off {THE($worm)}.
+flesh-worm-remove-start-wearer = {CAPITALIZE(THE($user))} is trying to pull the worm off your face!
+flesh-worm-remove-self-start = You struggle to tear the worm off your face...
+flesh-worm-remove-self-too-tired = You're too exhausted to tear the worm off your face!
+flesh-worm-head-trauma-user = The worm burrows deeper — your head is badly injured!
+flesh-worm-head-trauma-others = The worm burrows into {CAPITALIZE($entity)}'s head!
 flesh-pudge-transform-user = You transform into { CAPITALIZE($EntityTransform) }.
 flesh-pudge-transform-others = { CAPITALIZE($Entity) } transforms into { CAPITALIZE($EntityTransform) }.
 flesh-pudge-transform-begin-user = You begin to transform.

@@ -88,8 +88,8 @@ public sealed partial class TargetingUIController : UIController, IOnStateEntere
 
     public void UpdatePartStatusControl(TargetingComponent component)
     {
-        if (TargetingControl != null && _targetingComponent != null)
-            TargetingControl.SetTextures(_targetingComponent.BodyStatus);
+        if (TargetingControl != null)
+            TargetingControl.SetTextures(component.BodyStatus);
     }
 
     public Texture GetTexture(SpriteSpecifier specifier)

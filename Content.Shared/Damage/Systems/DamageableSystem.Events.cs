@@ -7,6 +7,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Radiation.Events;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Damage.Systems;
 
@@ -226,6 +227,17 @@ public record struct HandleCustomDamage(
     EntityUid? Origin = null,
     bool Handled = false,
     DamageSpecifier? ResultDamage = null);
+
+/// <summary>
+/// Raised when gathering healable damage for <see cref="DamageableSystem.HealEvenly"/> and similar.
+/// Handled by wound-based bodies where <see cref="DamageableComponent.Damage"/> is not authoritative.
+/// </summary>
+[ByRefEvent]
+public record struct DamageableGetHealableDamageEvent(
+    Entity<DamageableComponent> Target,
+    ProtoId<DamageGroupPrototype>? Group,
+    DamageSpecifier Damage,
+    bool Handled = false);
 // backmen edit end
 
 /// <summary>

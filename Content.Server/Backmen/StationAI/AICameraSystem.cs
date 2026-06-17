@@ -88,7 +88,7 @@ public sealed partial class AICameraSystem : EntitySystem
                  continue;
              aiEye.FollowsCameras.Add((GetNetEntity(camUid), GetNetCoordinates(transformComponent.Coordinates)));
          }
-         Dirty(core.Comp.RemoteEntity.Value, aiEye);
+         DirtyField(core.Comp.RemoteEntity.Value, aiEye, nameof(AIEyeComponent.FollowsCameras));
      }
 
      private void OnOpenCamUi(Entity<StationAiHeldComponent> ent, ref AIEyeCampActionEvent args)
@@ -239,7 +239,7 @@ public sealed partial class AICameraSystem : EntitySystem
          _cameraSystem.UpdateVisuals(eye.Comp.Camera.Value, camera);
          EnsureComp<AICameraComponent>(eye.Comp.Camera.Value).ActiveViewers.Remove(eye);
          eye.Comp.Camera = null;
-         Dirty(eye,eye.Comp);
+         DirtyField(eye, eye.Comp, nameof(AIEyeComponent.Camera));
      }
      private void ChangeActiveCamera(Entity<AIEyeComponent> eye, EntityUid camUid, SurveillanceCameraComponent? cameraComponent = null)
      {
@@ -261,7 +261,7 @@ public sealed partial class AICameraSystem : EntitySystem
          var v = cameraComponent.ActiveViewers;
 
          eye.Comp.Camera = camUid;
-         Dirty(eye,eye.Comp);
+         DirtyField(eye, eye.Comp, nameof(AIEyeComponent.Camera));
          v.Add(eye);
          _cameraSystem.UpdateVisuals(camUid, cameraComponent);
          EnsureComp<AICameraComponent>(camUid).ActiveViewers.Add(eye);
@@ -297,6 +297,9 @@ public sealed partial class AICameraSystem : EntitySystem
          component.CameraCategories = camera.AvailableNetworks;
          component.Enabled = true;
 
-         Dirty(uid, component);
+         DirtyFields(uid, component, null,
+             nameof(AICameraComponent.Enabled),
+             nameof(AICameraComponent.CameraName),
+             nameof(AICameraComponent.CameraCategories));
      }
 }

@@ -4,7 +4,6 @@
   description: job-description-centcomsecofficer
   playTimeTracker: JobCentralCommandSecOfficer
   setPreference: true
-  startingGear: CentComPrivateOfficerGear
   icon: JobIconSecurityOfficer
   supervisors: job-supervisors-centcomSecGavna
   canBeAntag: false

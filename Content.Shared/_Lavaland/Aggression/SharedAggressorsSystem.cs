@@ -86,11 +86,27 @@ public abstract partial class SharedAggressorsSystem : EntitySystem
     public void RemoveAllAggressors(Entity<AggressiveComponent> ent)
     {
         var aggressors = ent.Comp.Aggressors;
+        StopBossMusicForAggressors(ent.Owner, aggressors);
         ent.Comp.Aggressors.Clear();
         foreach (var aggressor in aggressors)
         {
             _npcFaction.DeAggroEntity(ent.Owner, aggressor);
             RaiseLocalEvent(ent, new AggressorRemovedEvent(GetNetEntity(aggressor)));
+        }
+    }
+
+    private void StopBossMusicForAggressors(EntityUid boss, HashSet<EntityUid> aggressors)
+    {
+        if (!_net.IsServer || !HasComp<BossMusicComponent>(boss))
+            return;
+
+        var msg = new BossMusicStopEvent();
+        foreach (var aggressor in aggressors)
+        {
+            if (!_actorQuery.TryComp(aggressor, out var actor))
+                continue;
+
+            RaiseNetworkEvent(msg, actor.PlayerSession.Channel);
         }
     }
 

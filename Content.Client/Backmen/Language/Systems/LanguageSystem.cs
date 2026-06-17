@@ -3,6 +3,7 @@ using Content.Shared.Backmen.Language.Events;
 using Content.Shared.Backmen.Language.Systems;
 using Robust.Client;
 using Robust.Client.Player;
+using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -11,23 +12,10 @@ namespace Content.Client.Backmen.Language.Systems;
 /// <summary>
 ///   Client-side language system.
 /// </summary>
-/// <remarks>
-///   Unlike the server, the client is not aware of other entities' languages; it's only notified about the entity that it posesses.
-///   Due to that, this system stores such information in a static manner.
-/// </remarks>
 public sealed partial class LanguageSystem : SharedLanguageSystem
 {
-    /// <summary>
-    ///   The current language of the entity currently possessed by the player.
-    /// </summary>
     public ProtoId<LanguagePrototype> CurrentLanguage => GetCurrentLanguage()?.CurrentLanguage ?? default;
-    /// <summary>
-    ///   The list of languages the currently possessed entity can speak.
-    /// </summary>
     public HashSet<ProtoId<LanguagePrototype>> SpokenLanguages => GetCurrentLanguage()?.SpokenLanguages ?? [];
-    /// <summary>
-    ///   The list of languages the currently possessed entity can understand.
-    /// </summary>
     public HashSet<ProtoId<LanguagePrototype>> UnderstoodLanguages => GetCurrentLanguage()?.UnderstoodLanguages ?? [];
 
     public event EventHandler<Entity<LanguageSpeakerComponent>>? OnLanguagesChanged;
@@ -62,9 +50,12 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         OnLanguagesUpdated(ent);
     }
 
-    private void OnLanguagesUpdated(Entity<LanguageSpeakerComponent> message)
+    private void OnLanguagesUpdated(Entity<LanguageSpeakerComponent> ent)
     {
-        OnLanguagesChanged?.Invoke(this, message);
+        if (ent.Owner != _playerManager.LocalEntity)
+            return;
+
+        OnLanguagesChanged?.Invoke(this, ent);
     }
 
     public void RequestSetLanguage(LanguagePrototype language)
@@ -72,11 +63,19 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         if (language.ID == CurrentLanguage)
             return;
 
+        if (GetCurrentLanguage() is not { } comp)
+            return;
+
+        if (!comp.SpokenLanguages.Contains(language.ID))
+            return;
+
         RaiseNetworkEvent(new LanguagesSetMessage(language.ID));
 
-        // May cause some minor desync...
-        // So to reduce the probability of desync, we replicate the change locally too
-        if (GetCurrentLanguage() is {} cur && cur.SpokenLanguages.Contains(language.ID))
-            cur.CurrentLanguage = language.ID;
+        if (comp.CurrentLanguage == language.ID)
+            return;
+
+        comp.CurrentLanguage = language.ID;
+        if (_playerManager.LocalEntity is { } local)
+            OnLanguagesUpdated((local, comp));
     }
 }

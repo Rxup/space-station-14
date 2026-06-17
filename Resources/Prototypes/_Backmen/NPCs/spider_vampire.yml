@@ -1,0 +1,382 @@
+- type: utilityQuery
+  id: NearbyBloodPuddles
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: Puddle
+    - !type:PuddleFilter
+  considerations:
+    - !type:BloodPuddleValueCon
+      curve: !type:QuadraticCurve
+        slope: 1.0
+        exponent: 0.4
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+- type: utilityQuery
+  id: NearbyCocoonMeals
+  query:
+    - !type:ComponentQuery
+      components:
+        - type: Cocoon
+  considerations:
+    - !type:CocoonBloodValueCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+- type: utilityQuery
+  id: NearbySpiderMeleeTargets
+  query:
+    - !type:NearbyHostilesQuery
+  considerations:
+    - !type:NotCocoonVictimCon
+      curve: !type:BoolCurve
+    - !type:TargetIsAliveCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetHealthCon
+      curve: !type:PresetCurve
+        preset: TargetHealth
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+    - !type:TargetInLOSOrCurrentCon
+      curve: !type:BoolCurve
+
+# All nearby mobs (not only faction hostiles); CocoonVictimCon filters sleep/crit/stun.
+- type: utilityQuery
+  id: NearbyCocoonVictims
+  query:
+    - !type:NearbyCocoonVictimsQuery
+  considerations:
+    - !type:CocoonVictimCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+
+- type: htnCompound
+  id: SpiderVampireCompound
+  branches:
+    # Cocoon incapacitated targets before doing anything else.
+    - preconditions:
+        - !type:SpiderNoActiveHostilesPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCocoonVictims
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToWebOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: false
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+          operator: !type:CocoonOperator
+            targetKey: Target
+
+    # Fight back only when a hostile can still fight.
+    - preconditions:
+        - !type:SpiderHasActiveHostilesPrecondition
+      tasks:
+        - !type:HTNCompoundTask
+          task: SpiderMeleeCombatCompound
+
+    # Drink blood from a cocooned victim.
+    - preconditions:
+        - !type:BloodThirstyPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCocoonMeals
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: false
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: InteractRange
+          operator: !type:BloodSuccOperator
+            targetKey: Target
+
+    # Drink blood from nearby puddles only when nobody can be cocooned.
+    - preconditions:
+        - !type:BloodThirstyPrecondition
+        - !type:SpiderNoCocoonVictimsPrecondition
+        - !type:SpiderNoCocoonMealsPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyBloodPuddles
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: false
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: InteractRange
+          operator: !type:DrinkBloodPuddleOperator
+            targetKey: Target
+
+    # Attack to knock victims down.
+    - preconditions:
+        - !type:SpiderHasActiveHostilesPrecondition
+      tasks:
+        - !type:HTNCompoundTask
+          task: SpiderMeleeCombatCompound
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: SpiderWebIdleCompound
+
+- type: htnCompound
+  id: SpiderWebIdleCompound
+  branches:
+    # Drink from a cocoon while on the web nest (before cocoon/idle so thirst is not starved).
+    - preconditions:
+        - !type:BloodThirstyPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCocoonMeals
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: false
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: InteractRange
+          operator: !type:BloodSuccOperator
+            targetKey: Target
+
+    # Drink from blood puddles on/near the web nest.
+    - preconditions:
+        - !type:BloodThirstyPrecondition
+        - !type:SpiderNoCocoonVictimsPrecondition
+        - !type:SpiderNoCocoonMealsPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyBloodPuddles
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: false
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: InteractRange
+          operator: !type:DrinkBloodPuddleOperator
+            targetKey: Target
+
+    # Cocoon on the nest before spin / egg / roam.
+    - preconditions:
+        - !type:SpiderNoActiveHostilesPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyCocoonVictims
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToWebOperator
+            shutdownState: TaskFinished
+            pathfindInPlanning: false
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: InteractRange
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+          operator: !type:CocoonOperator
+            targetKey: Target
+
+    # Expand web until SpiderWebInsufficientPrecondition is false.
+    - preconditions:
+        - !type:SpiderWebInsufficientPrecondition
+          expandRadiusKey: WebExpandRadius
+          minWebTilesKey: MinWebTiles
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:SpinWebOperator
+            expandRadiusKey: WebExpandRadius
+            minWebTilesKey: MinWebTiles
+
+    # Lay an egg on the finished web nest when well-fed and the area is safe.
+    - preconditions:
+        - !type:SpiderWebReadyPrecondition
+          expandRadiusKey: WebExpandRadius
+          minWebTilesKey: MinWebTiles
+        - !type:SpiderLayEggPrecondition
+        - !type:SpiderNoActiveHostilesPrecondition
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:LayEggOperator
+
+    # Idle roam on web.
+    - preconditions:
+        - !type:BuckledPrecondition
+          isBuckled: false
+        - !type:PulledPrecondition
+          isPulled: false
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:PickWebAccessibleOperator
+            rangeKey: IdleRange
+
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToWebOperator
+            pathfindInPlanning: false
+            rangeKey: MovementRange
+
+        - !type:HTNPrimitiveTask
+          operator: !type:RandomOperator
+            targetKey: IdleTime
+            minKey: MinimumIdleTime
+            maxKey: MaximumIdleTime
+
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: IdleTime
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: IdleTime
+
+- type: htnCompound
+  id: SpiderMeleeCombatCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbySpiderMeleeTargets
+        - !type:HTNCompoundTask
+          task: SpiderBeforeMeleeAttackTargetCompound
+
+- type: htnCompound
+  id: SpiderBeforeMeleeAttackTargetCompound
+  branches:
+    - preconditions:
+        - !type:BuckledPrecondition
+          isBuckled: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UnbuckleOperator
+            shutdownState: TaskFinished
+
+    - preconditions:
+        - !type:PulledPrecondition
+          isPulled: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UnPullOperator
+            shutdownState: TaskFinished
+
+    - preconditions:
+        - !type:InContainerPrecondition
+          isInContainer: true
+      tasks:
+        - !type:HTNCompoundTask
+          task: EscapeCompound
+
+    - preconditions:
+        - !type:LaydownPrecondition
+          isDown: true
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:StandOperator
+            shutdownState: TaskFinished
+
+    - preconditions:
+        - !type:ActiveHandComponentPrecondition
+          components:
+            - type: MeleeWeapon
+              damage:
+                types:
+                  Blunt: 0
+          invert: true
+      tasks:
+        - !type:HTNCompoundTask
+          task: PickupMeleeCompound
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: SpiderMeleeAttackTargetCompound
+
+- type: htnCompound
+  id: SpiderMeleeAttackTargetCompound
+  branches:
+    - preconditions:
+        - !type:KeyExistsPrecondition
+          key: Target
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: PlanFinished
+            pathfindInPlanning: true
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: MeleeRange
+        - !type:HTNPrimitiveTask
+          operator: !type:JukeOperator
+            jukeType: Away
+        - !type:HTNPrimitiveTask
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: Target
+            - !type:TargetInRangePrecondition
+              targetKey: Target
+              rangeKey: MeleeRange
+          operator: !type:MeleeOperator
+            targetKey: Target
+          services:
+            - !type:UtilityService
+              id: MeleeService
+              proto: NearbySpiderMeleeTargets
+              key: Target

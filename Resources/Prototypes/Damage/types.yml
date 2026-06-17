@@ -85,13 +85,8 @@
   armorCoefficientPrice: 1
   armorFlatPrice: 1
 
-# Damage represents stamina of a mob.
-# Used by certain armor to counter stun weaponry.
-- type: damageType
-  id: Stun
-  name: damage-type-stun
-  armorCoefficientPrice: 5
-  armorFlatPrice: 20
+# start-backmen: removed Stun damage type (migrated to StaminaResistance)
+# end-backmen
 
 # Metaphysical damage. Damage represents supernatural injuries that emphasize the fantasy elements in the game
 - type: damageType

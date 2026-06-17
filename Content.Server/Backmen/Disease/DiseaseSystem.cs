@@ -604,7 +604,8 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         if (attemptSneezeCoughEvent.Cancelled)
             return false;
 
-        _chatSystem.TryEmoteWithChat(uid, emoteId);
+        if (!string.IsNullOrEmpty(emoteId))
+            _chatSystem.TryEmoteWithChat(uid, emoteId, forceEmote: true);
 
         var disease = _prototypeManager.Index(diseaseId);
 

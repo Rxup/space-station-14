@@ -350,7 +350,9 @@
     sprite: Backmen/Structures/Storage/supplypod.rsi
     layers:
     - state: missilepod
+      map: ["enum.StorageVisualLayers.Base"]
     - state: missilepod_door
+      map: ["enum.StorageVisualLayers.Door"]
   - type: Destructible
     thresholds:
     - trigger:

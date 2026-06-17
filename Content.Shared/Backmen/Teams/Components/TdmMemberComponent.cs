@@ -2,7 +2,7 @@
 
 namespace Content.Shared.Backmen.Teams.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(SharedTdmTeamSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), Access(typeof(SharedTdmTeamSystem))]
 public sealed partial class TdmMemberComponent : Component
 {
     [AutoNetworkedField]

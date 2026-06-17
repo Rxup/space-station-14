@@ -8,8 +8,12 @@
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
   - type: Consciousness
-    threshold: 110
-    cap: 220
+    capBonus: 20
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Critical
+      200: Dead
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - TauCetiBasic

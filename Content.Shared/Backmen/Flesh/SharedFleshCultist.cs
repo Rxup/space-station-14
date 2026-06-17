@@ -25,6 +25,12 @@ public sealed partial class FleshWormJumpActionEvent : WorldTargetActionEvent
 }
 
 [Serializable, NetSerializable]
+public sealed partial class FleshWormRemoveDoAfterEvent : SimpleDoAfterEvent
+{
+    public bool IsSelf;
+}
+
+[Serializable, NetSerializable]
 public sealed partial class FleshCultistDevourDoAfterEvent : SimpleDoAfterEvent
 {
 

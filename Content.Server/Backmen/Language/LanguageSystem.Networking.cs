@@ -26,6 +26,9 @@ public sealed partial class LanguageSystem
 
     private void OnNetSync(Entity<LanguageSpeakerComponent> ent, ref PlayerAttachedEvent args)
     {
-        Dirty(ent);
+        DirtyFields(ent, ent.Comp, null,
+            nameof(LanguageSpeakerComponent.CurrentLanguage),
+            nameof(LanguageSpeakerComponent.SpokenLanguages),
+            nameof(LanguageSpeakerComponent.UnderstoodLanguages));
     }
 }

@@ -1,0 +1,67 @@
+# Jumpsuit
+- type: loadout
+  id: ERTJanitorJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTJanitor
+
+# Backpack
+- type: loadout
+  id: ERTJanitorBackpack
+  equipment:
+    back: ClothingBackpackERTJanitor
+  storage:
+    back:
+    - LightReplacer
+    - BoxLightMixed
+    - BoxLightMixed
+    - Soap
+    - CrowbarRed
+    - AdvMopItem
+
+# Shoes
+- type: loadout
+  id: ERTJanitorShoes
+  equipment:
+    shoes: ClothingShoesGaloshes
+
+# Head
+- type: loadout
+  id: ERTJanitorHead
+  equipment:
+    head: ClothingHeadHelmetERTJanitor
+
+# Gloves
+- type: loadout
+  id: ERTJanitorGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorPurple
+
+# OuterClothing
+- type: loadout
+  id: ERTJanitorOuterClothing
+  equipment:
+    outerClothing: ClothingOuterArmorBasicSlim
+
+# PDA
+- type: loadout
+  id: ERTJanitorPDA
+  equipment:
+    id: ERTJanitorPDA
+
+# Ears
+- type: loadout
+  id: ERTJanitorEars
+  equipment:
+    ears: ClothingHeadsetAltCentCom
+
+# Belt
+- type: loadout
+  id: ERTJanitorBelt
+  equipment:
+    belt: ClothingBeltJanitorFilled
+
+# Pockets
+- type: loadout
+  id: ERTJanitorPocket1
+  equipment:
+    pocket1: Flare

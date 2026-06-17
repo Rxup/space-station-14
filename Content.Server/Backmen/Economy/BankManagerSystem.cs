@@ -51,7 +51,7 @@ namespace Content.Server.Backmen.Economy;
             }
 
             component.Comp.SetBalance(args.Balance);
-            Dirty(component);
+            DirtyField(component, component.Comp, nameof(BankAccountComponent.Balance));
 
             var ev = new ChangeBankAccountBalanceEvent(args.Balance - args.OldBalance, args.Balance);
             RaiseLocalEvent(component, ev);
@@ -154,7 +154,7 @@ namespace Content.Server.Backmen.Economy;
             bankAccount.AccountNumber = bankAccountNumber;
             bankAccount.AccountPin = bankAccountPin;
             bankAccount.IsInfinite = isInfinite;
-            Dirty(idCardId,bankAccount);
+            DirtyField(idCardId, bankAccount, nameof(BankAccountComponent.AccountNumber));
             return ActiveBankAccounts.TryAdd(bankAccountNumber, (idCardId,bankAccount))
                 ? (idCardId, bankAccount)
                 : null;

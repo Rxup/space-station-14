@@ -10,7 +10,6 @@ armor-damage-type-piercing = Piercing
 armor-damage-type-heat = Heat
 armor-damage-type-radiation = Radiation
 armor-damage-type-caustic = Caustic
-armor-damage-type-stun = Stunic
 armor-damage-type-armorpiercing = Punching
 armor-damage-type-bloodloss = Bloodloss
 armor-damage-type-asphyxiation = Asphyxiation

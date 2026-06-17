@@ -54,7 +54,10 @@ public sealed partial class ShadowkinBlackeyeSystem : EntitySystem
         _power.SetPowerLevel(ent, ShadowkinComponent.PowerThresholds[ShadowkinPowerThreshold.Min]);
 
         // Update client state
-        Dirty(ent, component);
+        DirtyFields(ent, component, null,
+            nameof(ShadowkinComponent.Blackeye),
+            nameof(ShadowkinComponent.PowerLevelGainEnabled),
+            nameof(ShadowkinComponent.PowerLevel));
 
         // Remove powers
         RemCompDeferred<ShadowkinDarkSwapPowerComponent>(ent);

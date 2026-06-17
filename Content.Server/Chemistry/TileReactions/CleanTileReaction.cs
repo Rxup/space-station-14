@@ -1,8 +1,10 @@
+using Content.Shared.Backmen.FootPrint;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
+using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -39,6 +41,8 @@ public sealed partial class CleanTileReaction : ITileReaction
     {
         var entities = entityManager.System<EntityLookupSystem>().GetLocalEntitiesIntersecting(tile, 0f).ToArray();
         var puddleQuery = entityManager.GetEntityQuery<PuddleComponent>();
+        var footPrintQuery = entityManager.GetEntityQuery<FootPrintComponent>();
+        var puddleSystem = entityManager.System<SharedPuddleSystem>();
         var solutionContainerSystem = entityManager.System<SharedSolutionContainerSystem>();
         // Multiply as the amount we can actually purge is higher than the react amount.
         var purgeAmount = reactVolume / CleanAmountMultiplier;
@@ -46,8 +50,17 @@ public sealed partial class CleanTileReaction : ITileReaction
         foreach (var entity in entities)
         {
             if (!puddleQuery.TryGetComponent(entity, out var puddle) ||
-                !solutionContainerSystem.TryGetSolution(entity, puddle.SolutionName, out var puddleSolution, out _))
+                !solutionContainerSystem.TryGetSolution(entity, puddle.SolutionName, out var puddleSolution, out var solution))
             {
+                continue;
+            }
+
+            var isFootprint = footPrintQuery.HasComponent(entity);
+
+            // Footprints can remain visible even with an empty solution.
+            if (isFootprint && solution.Volume <= FixedPoint2.Zero)
+            {
+                entityManager.QueueDeleteEntity(entity);
                 continue;
             }
 
@@ -56,6 +69,9 @@ public sealed partial class CleanTileReaction : ITileReaction
             purgeAmount -= purgeable.Volume;
 
             solutionContainerSystem.TryAddSolution(puddleSolution.Value, new Solution(ReplacementReagent, purgeable.Volume));
+
+            if (isFootprint && (solution.Volume <= FixedPoint2.Zero || puddleSystem.CanFullyEvaporate(solution)))
+                entityManager.QueueDeleteEntity(entity);
 
             if (purgeable.Volume <= FixedPoint2.Zero)
                 break;

@@ -5,6 +5,7 @@ using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Backmen.Cloning;
 using Content.Server.Backmen.Economy;
+using Content.Shared.Backmen.Economy;
 using Content.Server.Backmen.Fugitive;
 using Content.Server.CartridgeLoader.Cartridges;
 using Content.Server.Forensics;
@@ -144,7 +145,7 @@ public sealed partial class EvilTwinSystem : EntitySystem
                                 if (bank != null)
                                 {
                                     bank.Value.Comp.Balance = 1_000;
-                                    Dirty(bank.Value);
+                                    DirtyField(bank.Value, bank.Value.Comp, nameof(BankAccountComponent.Balance));
                                 }
                             });
 

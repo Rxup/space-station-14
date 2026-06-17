@@ -416,7 +416,7 @@
   - type: LimitedCharges
     maxCharges: 30
   - type: AutoRecharge
-    rechargeDuration: 10
+    rechargeDuration: 15
 
 - type: entity
   id: RCDExperimental

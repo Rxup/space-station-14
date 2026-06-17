@@ -64,6 +64,7 @@ public sealed partial class GenerateChildPartSystem : EntitySystem
         _bodySystem.AttachPart(uid, slotName, childPart, partComp, childPartComp);
         component.ChildPart = childPart;
         component.Active = true;
+        DirtyField(uid, component, nameof(GenerateChildPartComponent.ChildPart));
         Dirty(childPart, childPartComp);
     }
 }

@@ -55,7 +55,7 @@ public sealed partial class TTSSystem
             return;
         }
 
-        RaiseNetworkEvent(new PlayTTSEvent(soundData, null), Filter.SinglePlayer(args.Target), false);
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, null, isHeadset: true), Filter.SinglePlayer(args.Target), false);
     }
 
     private async Task<byte[]?> GenerateTtsRadio(string text, string speaker)

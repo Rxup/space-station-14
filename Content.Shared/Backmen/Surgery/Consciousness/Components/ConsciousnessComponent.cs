@@ -4,20 +4,20 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness.Components;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
 public sealed partial class ConsciousnessComponent : Component
 {
     /// <summary>
     /// Represents the limit at which point the entity falls unconscious.
     /// </summary>
-    [DataField(required: true)]
+    [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 Threshold = 120;
 
     /// <summary>
     /// Represents the base consciousness value before applying any modifiers.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 RawConsciousness = -1;
 
@@ -30,16 +30,24 @@ public sealed partial class ConsciousnessComponent : Component
     /// <summary>
     /// Represents the multiplier to be applied on the RawConsciousness.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 Multiplier = 1.0;
 
     /// <summary>
     /// Represents the maximum possible consciousness value. Also used as the default RawConsciousness value if it is set to -1.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadOnly)]
     public FixedPoint2 Cap = 220;
+
+    // start-backmen: sync mob thresholds
+    /// <summary>
+    /// Added to MobThresholds Dead when syncing Cap on MapInit.
+    /// </summary>
+    [DataField]
+    public FixedPoint2 CapBonus = 50;
+    // end-backmen
 
     /// <summary>
     /// the amount of SUFFOCATION damage the CPR will heal!
@@ -101,17 +109,17 @@ public sealed partial class ConsciousnessComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan ForceConsciousnessTime = TimeSpan.Zero;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public bool ForceDead;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public bool ForceUnconscious;
 
     // funny
     [ViewVariables(VVAccess.ReadOnly)]
     public bool ForceConscious;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public bool IsConscious = true;
     // Forceful control attributes, it's recommended not to use them directly.
 }

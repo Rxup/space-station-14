@@ -974,6 +974,49 @@
         - Stomach
         - Brain
         - Eyes
+      - !type:AdjustTraumas # backmen: oneirophage spiders heal wounds faster from omnizine
+        conditions:
+        - !type:TagCondition
+          tag: Oneirophage
+        traumaType: BoneDamage
+        amount: -4
+        identifier: "OmnizineOneirophage"
+        targetBodyParts: true
+        targetOrgans: false
+      - !type:AdjustTraumas # backmen
+        conditions:
+        - !type:TagCondition
+          tag: Oneirophage
+        traumaType: OrganDamage
+        amount: -2.5
+        identifier: "OmnizineOneirophage"
+        targetBodyParts: false
+        targetComponents:
+        - Lung
+        - Ears
+        - Liver
+        - Heart
+        - Stomach
+        - Brain
+        - Eyes
+      - !type:AdjustTraumas # backmen
+        conditions:
+        - !type:TagCondition
+          tag: Oneirophage
+        traumaType: VeinsDamage
+        amount: -2
+        identifier: "OmnizineOneirophage"
+        targetBodyParts: true
+        targetOrgans: false
+      - !type:AdjustTraumas # backmen
+        conditions:
+        - !type:TagCondition
+          tag: Oneirophage
+        traumaType: NerveDamage
+        amount: -2
+        identifier: "OmnizineOneirophage"
+        targetBodyParts: true
+        targetOrgans: false
 
 - type: reagent
   id: Ultravasculine

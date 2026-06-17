@@ -217,6 +217,8 @@
   - type: Construction
     graph: BananaClownJumpsuit
     node: jumpsuit
+  - type: StaminaResistance
+    damageCoefficient: 1.1
   - type: Armor
     coverage: # backmen: armour coverage
     - Chest
@@ -226,7 +228,7 @@
     modifiers:
       coefficients:
         Radiation: 0.8
-        Stun: 1.1 #Backmen-edit
+
 
 - type: entity
   parent: ClothingUniformBase

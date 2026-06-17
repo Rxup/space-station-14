@@ -72,7 +72,7 @@ public sealed partial class CargoOrderConsoleComponent : Component
     /// The stack representing cash dispensed on withdrawals.
     /// </summary>
     [DataField]
-    public ProtoId<StackPrototype> CashType = "Credit";
+    public ProtoId<StackPrototype> CashType = "BillOfExchange";
 
     /// <summary>
     /// All of the <see cref="CargoProductPrototype.Group"/>s that are supported.

@@ -352,10 +352,10 @@ public sealed partial class ServerPainSystem : PainSystem
                 continue;
 
             component.Nerves.Add(bodyPart.Id, nerve);
-            Dirty(uid, component);
 
             nerve.ParentedNerveSystem = uid;
-            Dirty(bodyPart.Id, nerve); // ヾ(≧▽≦*)o
+            DirtyField(bodyPart.Id, nerve, nameof(NerveComponent.ParentedNerveSystem));
+            UpdatePainFeels(bodyPart.Id, nerve);
         }
     }
 
@@ -368,6 +368,16 @@ public sealed partial class ServerPainSystem : PainSystem
         if (bodyPart.Body == null)
             return;
 
+        var painFeels = nerveComp.DefaultPainFeels;
+        foreach (var modifier in nerveComp.PainFeelingModifiers.Values)
+            painFeels += modifier.Change;
+
+        if (nerveComp.PainFeels != painFeels)
+        {
+            nerveComp.PainFeels = painFeels;
+            DirtyField(nerveUid, nerveComp, nameof(NerveComponent.PainFeels));
+        }
+
         var ev = new PainFeelsChangedEvent(nerveComp.ParentedNerveSystem, nerveUid, nerveComp.PainFeels);
         RaiseLocalEvent(nerveUid, ref ev);
 
@@ -375,7 +385,7 @@ public sealed partial class ServerPainSystem : PainSystem
             return;
 
         targeting.BodyStatus = _wound.GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
-        Dirty(bodyPart.Body.Value, targeting);
+        DirtyField(bodyPart.Body.Value, targeting, nameof(TargetingComponent.BodyStatus));
 
         RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
     }
@@ -409,7 +419,7 @@ public sealed partial class ServerPainSystem : PainSystem
             nerveSys.ReactionUpdateTime = Timing.CurTime + nerveSys.PainReactionTime;
         nerveSys.Pain = newPain;
 
-        Dirty(uid, nerveSys);
+        DirtyField(uid, nerveSys, nameof(NerveSystemComponent.Pain));
 
         if (!_consciousness.SetConsciousnessModifier(
                 organ.Body.Value,
@@ -459,8 +469,6 @@ public sealed partial class ServerPainSystem : PainSystem
         nerveSys.LastReflexType = nearestReflex;
 
         ApplyPainReflexesEffects(body, (uid, nerveSys), nearestReflex);
-
-        Dirty(uid, nerveSys);
     }
 
     private void ApplyPainReflexesEffects(EntityUid body, Entity<NerveSystemComponent> nerveSys, PainReflexType reaction)
@@ -654,7 +662,6 @@ public sealed partial class ServerPainSystem : PainSystem
         RaiseLocalEvent(uid, ref ev);
 
         UpdateNerveSystemPain(uid, nerveSys);
-        Dirty(uid, nerveSys);
 
         return true;
     }
@@ -680,7 +687,6 @@ public sealed partial class ServerPainSystem : PainSystem
         RaiseLocalEvent(uid, ref ev);
 
         UpdateNerveSystemPain(uid, nerveSys);
-        Dirty(uid, nerveSys);
 
         return true;
     }
@@ -703,7 +709,6 @@ public sealed partial class ServerPainSystem : PainSystem
 
         UpdatePainFeels(nerveUid);
 
-        Dirty(nerveUid, nerve);
         return true;
     }
 
@@ -727,7 +732,6 @@ public sealed partial class ServerPainSystem : PainSystem
 
         UpdatePainFeels(nerveUid);
 
-        Dirty(nerveUid, nerve);
         return true;
     }
 
@@ -751,7 +755,6 @@ public sealed partial class ServerPainSystem : PainSystem
 
         UpdatePainFeels(nerveUid);
 
-        Dirty(nerveUid, nerve);
         return true;
     }
 
@@ -775,7 +778,6 @@ public sealed partial class ServerPainSystem : PainSystem
 
         UpdatePainFeels(nerveUid);
 
-        Dirty(nerveUid, nerve);
         return true;
     }
 
@@ -792,7 +794,6 @@ public sealed partial class ServerPainSystem : PainSystem
         nerve.PainFeelingModifiers.Remove((effectOwner, identifier));
 
         UpdatePainFeels(nerveUid);
-        Dirty(nerveUid, nerve);
 
         return true;
     }
@@ -814,7 +815,6 @@ public sealed partial class ServerPainSystem : PainSystem
         RaiseLocalEvent(uid, ref ev);
 
         UpdateNerveSystemPain(uid, nerveSys);
-        Dirty(uid, nerveSys);
 
         return true;
     }
@@ -837,7 +837,6 @@ public sealed partial class ServerPainSystem : PainSystem
 
         UpdateNerveSystemPain(uid, nerveSys);
 
-        Dirty(uid, nerveSys);
         return true;
     }
 
@@ -861,7 +860,6 @@ public sealed partial class ServerPainSystem : PainSystem
         nerveSys.Multipliers[identifier] = multiplierToSet;
 
         UpdateNerveSystemPain(uid, nerveSys);
-        Dirty(uid, nerveSys);
 
         return true;
     }
@@ -886,7 +884,6 @@ public sealed partial class ServerPainSystem : PainSystem
         nerveSys.Multipliers[identifier] = multiplierToSet;
 
         UpdateNerveSystemPain(uid, nerveSys);
-        Dirty(uid, nerveSys);
 
         return true;
     }
@@ -911,7 +908,6 @@ public sealed partial class ServerPainSystem : PainSystem
         nerveSys.Multipliers[identifier] = multiplierToSet;
 
         UpdateNerveSystemPain(uid, nerveSys);
-        Dirty(uid, nerveSys);
 
         return true;
     }
@@ -929,7 +925,6 @@ public sealed partial class ServerPainSystem : PainSystem
             return false;
 
         UpdateNerveSystemPain(uid, nerveSys);
-        Dirty(uid, nerveSys);
 
         return true;
     }

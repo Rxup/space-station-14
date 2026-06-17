@@ -79,6 +79,14 @@ public sealed partial class NPCSteeringSystem
             var isDoor = (poly.Data.Flags & PathfindingBreadcrumbFlag.Door) != 0x0;
             var isAccessRequired = (poly.Data.Flags & PathfindingBreadcrumbFlag.Access) != 0x0;
             var isClimbable = (poly.Data.Flags & PathfindingBreadcrumbFlag.Climb) != 0x0;
+            var isWeb = (poly.Data.Flags & PathfindingBreadcrumbFlag.Web) != 0x0;
+
+            // start-backmen: web
+            if (isWeb && (component.Flags & PathFlags.Web) != 0x0)
+            {
+                return SteeringObstacleStatus.Completed;
+            }
+            // end-backmen: web
 
             // Just walk into it stupid
             if (isDoor && !isAccessRequired)

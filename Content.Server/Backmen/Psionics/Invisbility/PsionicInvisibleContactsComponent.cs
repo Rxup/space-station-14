@@ -14,4 +14,10 @@ public sealed partial class PsionicInvisibleContactsComponent : Component
     /// </summary>
     [DataField("stages")]
     public int Stages = 0;
+
+    /// <summary>
+    /// Also hide while intersecting whitelisted entities on the same tile (for items on webs).
+    /// </summary>
+    [DataField]
+    public bool TileBased;
 }

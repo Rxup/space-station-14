@@ -460,6 +460,7 @@
           tags:
           - Write
   - type: CargoOrderConsole
+    cashType: BillOfExchange
     removeLimitAccess: [ "Quartermaster" ]
   - type: ActivatableUI
     verbText: qm-clipboard-computer-verb-text

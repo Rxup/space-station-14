@@ -281,6 +281,20 @@ public sealed class ServerTraumaSystem : TraumaSystem
     #region Public API
 
     [PublicAPI]
+    public bool TryApplyTraumas(
+        Entity<WoundableComponent> target,
+        Entity<TraumaInflicterComponent> inflicter,
+        IReadOnlyList<TraumaType> traumas,
+        FixedPoint2 severity)
+    {
+        if (traumas.Count == 0)
+            return false;
+
+        ApplyTraumas(target, inflicter, traumas.ToList(), severity);
+        return true;
+    }
+
+    [PublicAPI]
     public override EntityUid AddTrauma(
         EntityUid target,
         Entity<WoundableComponent> holdingWoundable,
@@ -318,7 +332,11 @@ public sealed class ServerTraumaSystem : TraumaSystem
         var ev1 = new TraumaInducedEvent((traumaEnt, traumaComp), target, severity, traumaType);
         RaiseLocalEvent(inflicter, ref ev1);
 
-        Dirty(traumaEnt, traumaComp);
+        DirtyFields(traumaEnt, traumaComp, null,
+            nameof(TraumaComponent.TraumaSeverity),
+            nameof(TraumaComponent.TraumaTarget),
+            nameof(TraumaComponent.HoldingWoundable),
+            nameof(TraumaComponent.TraumaType));
         return traumaEnt;
     }
 
@@ -403,7 +421,6 @@ public sealed class ServerTraumaSystem : TraumaSystem
         }
 
         organ.OrganSeverity = nearestSeverity;
-        Dirty(uid, organ);
     }
 
     [PublicAPI]
@@ -514,7 +531,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
         }
         boneComp.BoneSeverity = nearestSeverity;
 
-        Dirty(bone, boneComp);
+        DirtyField(bone, boneComp, nameof(BoneComponent.BoneSeverity));
     }
 
 
@@ -555,7 +572,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
         boneComp.BoneIntegrity = newIntegrity;
         CheckBoneSeverity(bone, boneComp);
 
-        Dirty(bone, boneComp);
+        DirtyField(bone, boneComp, nameof(BoneComponent.BoneIntegrity));
         return true;
     }
 
@@ -580,7 +597,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
         boneComp.BoneIntegrity = newIntegrity;
         CheckBoneSeverity(bone, boneComp);
 
-        Dirty(bone, boneComp);
+        DirtyField(bone, boneComp, nameof(BoneComponent.BoneIntegrity));
         return true;
     }
 

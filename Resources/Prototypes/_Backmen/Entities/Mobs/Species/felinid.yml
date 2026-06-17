@@ -15,8 +15,12 @@
     - TauCetiBasic
     - Nekomimetic
   - type: Consciousness
-    cap: 220
-    threshold: 110
+    capBonus: 20
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Critical
+      200: Dead
   - type: Sprite
     scale: 0.8, 0.8
   - type: HumanoidAppearance

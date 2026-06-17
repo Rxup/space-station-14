@@ -139,7 +139,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
             return;
 
         speaker.Comp.CurrentLanguage = language;
-        Dirty(speaker);
+        DirtyField(speaker, speaker.Comp, nameof(LanguageSpeakerComponent.CurrentLanguage));
     }
 
     /// <summary>
@@ -197,7 +197,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
         if (!entity.Comp.SpokenLanguages.Contains(entity.Comp.CurrentLanguage ?? ""))
         {
             entity.Comp.CurrentLanguage = entity.Comp.SpokenLanguages.FirstOrDefault(UniversalPrototype);
-            Dirty(entity);
+            DirtyField(entity, entity.Comp, nameof(LanguageSpeakerComponent.CurrentLanguage));
             return true;
         }
 
@@ -247,8 +247,10 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
             entity.Comp1.UnderstoodLanguages.Add(language);
         }
 
-        if (!EnsureValidLanguage(entity))
-            Dirty(entity,entity.Comp1);
+        EnsureValidLanguage(entity);
+        DirtyFields(entity, entity.Comp1, null,
+            nameof(LanguageSpeakerComponent.SpokenLanguages),
+            nameof(LanguageSpeakerComponent.UnderstoodLanguages));
     }
 
     #endregion

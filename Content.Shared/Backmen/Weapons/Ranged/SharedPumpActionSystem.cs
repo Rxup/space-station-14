@@ -35,7 +35,7 @@ public abstract partial class SharedPumpActionSystem : EntitySystem
     private void OnGunShot(Entity<PumpActionComponent> ent, ref GunShotEvent args)
     {
         ent.Comp.Pumped = false;
-        Dirty(ent);
+        DirtyField(ent, ent.Comp, nameof(PumpActionComponent.Pumped));
     }
 
     private void OnUniqueAction(Entity<PumpActionComponent> ent, ref UniqueActionEvent args)
@@ -57,7 +57,7 @@ public abstract partial class SharedPumpActionSystem : EntitySystem
             return;
 
         ent.Comp.Pumped = true;
-        Dirty(ent);
+        DirtyField(ent, ent.Comp, nameof(PumpActionComponent.Pumped));
 
         args.Handled = true;
 

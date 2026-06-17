@@ -8,6 +8,7 @@ using Content.Server.Ghost;
 using Content.Server.Popups;
 using Content.Server.Revenant.Components;
 
+using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
@@ -238,7 +239,7 @@ public sealed partial class DefibrillatorSystem : EntitySystem
                     && _consciousness.TryGetNerveSystem(target, out var nerveSys))
                 {
                     Entity<ConsciousnessComponent?> entConsciousness = (target, consciousness);
-                    _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "Suffocation");
+                    _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, ConsciousnessModifierIds.Asphyxiation);
                     _consciousness.RemoveConsciousnessModifier(entConsciousness, target, "DeathThreshold");
 
                     // Remove Bloodloss modifier if blood is restored
@@ -287,7 +288,7 @@ public sealed partial class DefibrillatorSystem : EntitySystem
                     }
                     _consciousness.ForcePassOut(entConsciousness, TimeSpan.FromSeconds(10));
                     _consciousness.RemoveConsciousnessModifier(entConsciousness, target, "DeathThreshold");
-                    _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "Suffocation");
+                    _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, ConsciousnessModifierIds.Asphyxiation);
                 }
                 else // backmen edit end
                 {

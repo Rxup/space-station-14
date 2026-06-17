@@ -23,7 +23,6 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IComponentFactory _componentFactory = default!;
     [Dependency] private AppearanceSystem _appearance = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
 
     private readonly Queue<Entity<AirDropVisualizerComponent>> _updateQueue = new();
 
@@ -32,7 +31,6 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
         base.Initialize();
 
         SubscribeLocalEvent<AirDropComponent, ComponentShutdown>(OnAirDropShutdown);
-        SubscribeLocalEvent<AirDropEffectComponent, AnimationCompletedEvent>(OnEffectAnimComplete);
         SubscribeLocalEvent<AirDropVisualizerComponent, AfterAutoHandleStateEvent>(OnUpdate,
             after: [typeof(SpriteSystem)]);
         SubscribeNetworkEvent<AirDropStartEvent>(OnStartAirDrop);
@@ -76,26 +74,7 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
 
     private void OnAirDropShutdown(Entity<AirDropComponent> ent, ref ComponentShutdown args)
     {
-        CleanupClientVisuals(ent);
-    }
-
-    private void OnEffectAnimComplete(Entity<AirDropEffectComponent> ent, ref AnimationCompletedEvent args)
-    {
-        if (args.Key != FallingAnimKey)
-            return;
-
-        if (!TryComp(ent.Comp.Controller, out AirDropComponent? controller))
-        {
-            QueueDel(ent);
-            return;
-        }
-
-        // Target marker is removed only in CleanupClientVisuals when the drop finishes.
-        if (ent.Comp.Kind == AirDropEffectKind.Falling && controller.InAirMarker == ent)
-        {
-            controller.InAirMarker = null;
-            QueueDel(ent);
-        }
+        ent.Comp.ClientLastPhase = AirDropPhase.Inactive;
     }
 
     private void SyncVisuals(Entity<AirDropComponent> ent)
@@ -112,31 +91,37 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
         switch (ent.Comp.Phase)
         {
             case AirDropPhase.Target:
-                CleanupClientVisuals(ent);
-                ent.Comp.TargetMarker = SpawnEffect(ent, ent.Comp.DropTargetProto, ent.Comp.DropTarget,
-                    AirDropEffectKind.Target, ent.Comp.TimeOfTarget);
+                EnsureTargetAnimation(ent);
                 break;
 
             case AirDropPhase.Drop:
-                EnsureTargetMarker(ent);
-                ent.Comp.InAirMarker = SpawnEffect(ent, ent.Comp.InAirProto, ent.Comp.InAir,
-                    AirDropEffectKind.Falling, ent.Comp.TimeToDrop);
+                EnsureTargetAnimation(ent);
+                EnsureFallingAnimation(ent);
                 break;
 
             default:
                 if (previous is AirDropPhase.Target or AirDropPhase.Drop)
-                    CleanupClientVisuals(ent);
+                    ent.Comp.ClientLastPhase = ent.Comp.Phase;
                 break;
         }
     }
 
-    private void EnsureTargetMarker(Entity<AirDropComponent> ent)
+    private void EnsureTargetAnimation(Entity<AirDropComponent> ent)
     {
-        if (ent.Comp.TargetMarker is { } existing && Exists(existing))
+        if (ent.Comp.TargetMarker is not { } marker || !TryComp<SpriteComponent>(marker, out var sprite))
             return;
 
-        ent.Comp.TargetMarker = SpawnEffect(ent, ent.Comp.DropTargetProto, ent.Comp.DropTarget,
-            AirDropEffectKind.Target, 0);
+        ApplyEffectSpriteSettings(sprite);
+        PlayTargetMarkerLoop(marker, sprite);
+    }
+
+    private void EnsureFallingAnimation(Entity<AirDropComponent> ent)
+    {
+        if (ent.Comp.InAirMarker is not { } marker || !TryComp<SpriteComponent>(marker, out var sprite))
+            return;
+
+        ApplyEffectSpriteSettings(sprite);
+        PlaySpriteAnimation(marker, sprite, FallingAnimKey, ent.Comp.TimeToDrop);
     }
 
     private void EnsureVisualsForPhase(Entity<AirDropComponent> ent)
@@ -144,46 +129,14 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
         switch (ent.Comp.Phase)
         {
             case AirDropPhase.Target:
-                if (ent.Comp.TargetMarker is not { } target || !Exists(target))
-                    ent.Comp.TargetMarker = SpawnEffect(ent, ent.Comp.DropTargetProto, ent.Comp.DropTarget,
-                        AirDropEffectKind.Target, ent.Comp.TimeOfTarget);
+                EnsureTargetAnimation(ent);
                 break;
 
             case AirDropPhase.Drop:
-                EnsureTargetMarker(ent);
-                if (ent.Comp.InAirMarker is not { } falling || !Exists(falling))
-                    ent.Comp.InAirMarker = SpawnEffect(ent, ent.Comp.InAirProto, ent.Comp.InAir,
-                        AirDropEffectKind.Falling, ent.Comp.TimeToDrop);
+                EnsureTargetAnimation(ent);
+                EnsureFallingAnimation(ent);
                 break;
         }
-    }
-
-    private EntityUid SpawnEffect(
-        Entity<AirDropComponent> controller,
-        EntProtoId proto,
-        ComponentRegistry overrides,
-        AirDropEffectKind kind,
-        float durationSeconds)
-    {
-        var pos = _transform.GetMapCoordinates(controller);
-        var uid = Spawn(proto, pos, overrides);
-        _transform.AttachToGridOrMap(uid);
-
-        var effect = EnsureComp<AirDropEffectComponent>(uid);
-        effect.Controller = controller;
-        effect.Kind = kind;
-
-        if (TryComp<SpriteComponent>(uid, out var sprite))
-        {
-            ApplyEffectSpriteSettings(sprite);
-
-            if (kind == AirDropEffectKind.Target)
-                PlayTargetMarkerLoop(uid, sprite);
-            else
-                PlaySpriteAnimation(uid, sprite, FallingAnimKey, durationSeconds);
-        }
-
-        return uid;
     }
 
     private void ApplyEffectSpriteSettings(SpriteComponent sprite)
@@ -238,6 +191,9 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
             return;
 
         var player = EnsureComp<AnimationPlayerComponent>(uid);
+        if (_animation.HasRunningAnimation(uid, player, animKey))
+            return;
+
         _spriteSystem.LayerSetAutoAnimated(ent, layerIndex, false);
 
         var state = _spriteSystem.LayerGetRsiState(ent, layerIndex);
@@ -258,23 +214,6 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
         };
 
         _animation.Play((uid, player), anim, animKey);
-    }
-
-    private void RemoveEffect(ref EntityUid? uid)
-    {
-        if (uid is not { } entity)
-            return;
-
-        if (Exists(entity))
-            QueueDel(entity);
-
-        uid = null;
-    }
-
-    private void CleanupClientVisuals(Entity<AirDropComponent> ent)
-    {
-        RemoveEffect(ref ent.Comp.TargetMarker);
-        RemoveEffect(ref ent.Comp.InAirMarker);
     }
 
     private void OnUpdate(Entity<AirDropVisualizerComponent> ent, ref AfterAutoHandleStateEvent args)
