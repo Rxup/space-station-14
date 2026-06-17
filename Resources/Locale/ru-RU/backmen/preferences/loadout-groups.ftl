@@ -2,7 +2,7 @@
 loadout-group-security-pocket = Табельное оружие
 loadout-group-security-pocket2 = Обойма
 loadout-group-brigmedic-jumpsuit = Униформа
-loadout-group-brigmedic-backpack = Униформа
+loadout-group-brigmedic-backpack = Рюкзак
 loadout-group-brigmedic-hat = Головной убор
 loadout-group-brigmedic-outer = Верхняя одежда
 loadout-group-brigmedic-ear = Гарнитура
