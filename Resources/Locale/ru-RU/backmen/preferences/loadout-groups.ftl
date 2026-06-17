@@ -1,30 +1,30 @@
 # Security
 loadout-group-security-pocket = Табельное оружие
-loadout-group-security-pocket2 = Вторичный магазин
-loadout-group-brigmedic-jumpsuit = Бригмедик, комбинезон
-loadout-group-brigmedic-backpack = Бригмедик, рюкзак
-loadout-group-brigmedic-hat = Бригмедик, голова
-loadout-group-brigmedic-outer = Бригмедик, верхняя одежда
-loadout-group-brigmedic-ear = Бригмедик, гарнитура
-loadout-group-brigmedic-mask = Бригмедик, маска
+loadout-group-security-pocket2 = Обойма
+loadout-group-brigmedic-jumpsuit = Униформа
+loadout-group-brigmedic-backpack = Униформа
+loadout-group-brigmedic-hat = Головной убор
+loadout-group-brigmedic-outer = Верхняя одежда
+loadout-group-brigmedic-ear = Гарнитура
+loadout-group-brigmedic-mask = Маска
 # Misc
 loadout-group-medals = Медали
-loadout-group-werx = Нижняя, вверх
-loadout-group-niz = Нижняя,низ
-loadout-group-socks = Нижняя, ноги
+loadout-group-werx = Бюстгальтер
+loadout-group-niz = Трусы
+loadout-group-socks = Носки
 # CentCom
-loadout-group-blueshield-hat = ОСЩ, голова
-loadout-group-blueshield-eyes = ОСЩ, глаза
-loadout-group-blueshield-neck = ОСЩ, шея
-loadout-group-blueshield-jumpsuit = ОСЩ, комбинезон
-loadout-group-blueshield-backpack = ОСЩ, рюкзак
-loadout-group-blueshield-outer = ОСЩ, верхняя одежда
-loadout-group-blueshield-shoes = ОСЩ, обувь
+loadout-group-blueshield-hat = Головной убор
+loadout-group-blueshield-eyes = Очки
+loadout-group-blueshield-neck = Шея
+loadout-group-blueshield-jumpsuit = Униформа
+loadout-group-blueshield-backpack = Рюкзак
+loadout-group-blueshield-outer = Верхняя одежда
+loadout-group-blueshield-shoes = Ботинки
 # Virilogist
-loadout-group-virologist-jumpsuit = Вирусолог, комбинезон
-loadout-group-virologist-outerclothing = Вирусолог, верхняя одежда
-loadout-group-virologist-backpack = Вирусолог, рюкзак
+loadout-group-virologist-jumpsuit = Униформа
+loadout-group-virologist-outerclothing = Верхняя одежда
+loadout-group-virologist-backpack = Рюкзак
 # Surgeon
-loadout-group-surgeon-head = Хирург, головa
-loadout-group-surgeon-jumpsuit = Хирург, комбинезон
-loadout-group-surgeon-outerclothing = Хирург, верхняя одежда
+loadout-group-surgeon-head = Головной убор
+loadout-group-surgeon-jumpsuit = Униформа
+loadout-group-surgeon-outerclothing = Верхняя одежда

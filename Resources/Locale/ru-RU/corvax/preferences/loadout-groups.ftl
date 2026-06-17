@@ -1,3 +1,3 @@
-loadout-group-inventory = Мой инвентарь
-loadout-group-psychologist-backpack = Рюкзак психолога
-loadout-group-chief-engineer-backpack = Рюкзак старшего инженера
+loadout-group-inventory = Специальное
+loadout-group-psychologist-backpack = Рюкзак
+loadout-group-chief-engineer-backpack = Рюкзак
