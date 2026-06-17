@@ -3,9 +3,13 @@
   id: BaseMobPlaf
   abstract: true
   components:
-  - type: Consciousness # some fucking exclusivity for demons, harder to put them into crit, but they die more quickly.
-    cap: 180
-    threshold: 130
+  - type: Consciousness
+    capBonus: -20
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      130: Critical
+      200: Dead
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge #backmen: languages

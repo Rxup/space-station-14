@@ -96,6 +96,367 @@
   - WeaponPistolUCS
   - WeaponPistolVP78
 
+# BKCCOfficial
+- type: loadoutGroup
+  id: BKCCOfficialJumpsuit
+  name: loadout-group-captain-jumpsuit
+  loadouts:
+  - BKCCOfficialJumpsuit
+  - BKCCOfficialJumpskirt
+
+- type: loadoutGroup
+  id: BKCCOfficialHead
+  name: loadout-group-captain-head
+  loadouts:
+  - BKCCOfficialHead
+
+- type: loadoutGroup
+  id: BKCCOfficialShoes
+  name: loadout-group-captain-shoes
+  loadouts:
+  - BKCCOfficialShoes
+
+- type: loadoutGroup
+  id: BKCCOfficialMask
+  name: loadout-group-survival-mask
+  minLimit: 0
+  loadouts:
+  - BKCCOfficialMask
+
+- type: loadoutGroup
+  id: BKCCOfficialEyes
+  name: loadout-group-glasses
+  loadouts:
+  - BKCCOfficialEyes
+
+- type: loadoutGroup
+  id: BKCCOfficialGloves
+  name: loadout-group-gloves
+  loadouts:
+  - BKCCOfficialGloves
+
+- type: loadoutGroup
+  id: BKCCOfficialOuterClothing
+  name: loadout-group-captain-outerclothing
+  loadouts:
+  - BKCCOfficialOuterClothing
+
+- type: loadoutGroup
+  id: BKCCOfficialSuitStorage
+  name: loadout-group-survival-extended
+  loadouts:
+  - BKCCOfficialSuitStorage
+
+- type: loadoutGroup
+  id: BKCCOfficialPDA
+  name: loadout-group-id
+  loadouts:
+  - BKCCOfficialPDA
+
+- type: loadoutGroup
+  id: BKCCOfficialEars
+  name: loadout-group-ears
+  loadouts:
+  - BKCCOfficialEars
+
+- type: loadoutGroup
+  id: BKCCOfficialPocket1
+  name: loadout-group-pockets
+  loadouts:
+  - BKCCOfficialPocket1
+
+- type: loadoutGroup
+  id: BKCCOfficialPocket2
+  name: loadout-group-pockets
+  loadouts:
+  - BKCCOfficialPocket2
+
+# BKCCSecOfficer
+- type: loadoutGroup
+  id: BKCCSecOfficerJumpsuit
+  name: loadout-group-security-jumpsuit
+  loadouts:
+  - BKCCSecOfficerJumpsuit
+
+- type: loadoutGroup
+  id: BKCCSecOfficerBackpack
+  name: loadout-group-security-backpack
+  loadouts:
+  - BKCCSecOfficerBackpack
+
+- type: loadoutGroup
+  id: BKCCSecOfficerShoes
+  name: loadout-group-security-shoes
+  loadouts:
+  - BKCCSecOfficerShoes
+
+- type: loadoutGroup
+  id: BKCCSecOfficerNeck
+  name: loadout-group-neck
+  loadouts:
+  - BKCCSecOfficerNeck
+
+- type: loadoutGroup
+  id: BKCCSecOfficerEyes
+  name: loadout-group-security-eyes
+  loadouts:
+  - BKCCSecOfficerEyes
+
+- type: loadoutGroup
+  id: BKCCSecOfficerGloves
+  name: loadout-group-gloves
+  loadouts:
+  - BKCCSecOfficerGloves
+
+- type: loadoutGroup
+  id: BKCCSecOfficerHead
+  name: loadout-group-security-head
+  loadouts:
+  - BKCCSecOfficerHead
+
+- type: loadoutGroup
+  id: BKCCSecOfficerOuterClothing
+  name: loadout-group-security-outerclothing
+  loadouts:
+  - BKCCSecOfficerOuterClothing
+
+- type: loadoutGroup
+  id: BKCCSecOfficerSuitStorage
+  name: loadout-group-security-pocket
+  loadouts:
+  - BKCCSecOfficerSuitStorage
+
+- type: loadoutGroup
+  id: BKCCSecOfficerPDA
+  name: loadout-group-security-id
+  loadouts:
+  - BKCCSecOfficerPDA
+
+- type: loadoutGroup
+  id: BKCCSecOfficerEars
+  name: loadout-group-ears
+  loadouts:
+  - BKCCSecOfficerEars
+
+- type: loadoutGroup
+  id: BKCCSecOfficerBelt
+  name: loadout-group-security-belt
+  loadouts:
+  - BKCCSecOfficerBelt
+
+- type: loadoutGroup
+  id: BKCCSecOfficerPocket1
+  name: loadout-group-security-pocket
+  loadouts:
+  - BKCCSecOfficerPocket1
+
+- type: loadoutGroup
+  id: BKCCSecOfficerPocket2
+  name: loadout-group-security-pocket2
+  loadouts:
+  - BKCCSecOfficerPocket2
+
+# ERTEngineer
+- type: loadoutGroup
+  id: ERTEngineerJumpsuit
+  name: loadout-group-station-engineer-jumpsuit
+  loadouts:
+  - ERTEngineerJumpsuit
+
+- type: loadoutGroup
+  id: ERTEngineerBackpack
+  name: loadout-group-station-engineer-backpack
+  loadouts:
+  - ERTEngineerBackpack
+
+- type: loadoutGroup
+  id: ERTEngineerShoes
+  name: loadout-group-station-engineer-shoes
+  loadouts:
+  - ERTEngineerShoes
+
+- type: loadoutGroup
+  id: ERTEngineerHead
+  name: loadout-group-station-engineer-head
+  loadouts:
+  - ERTEngineerHead
+
+- type: loadoutGroup
+  id: ERTEngineerEyes
+  name: loadout-group-glasses
+  loadouts:
+  - ERTEngineerEyes
+
+- type: loadoutGroup
+  id: ERTEngineerGloves
+  name: loadout-group-gloves
+  loadouts:
+  - ERTEngineerGloves
+
+- type: loadoutGroup
+  id: ERTEngineerOuterClothing
+  name: loadout-group-station-engineer-outerclothing
+  loadouts:
+  - ERTEngineerOuterClothing
+
+- type: loadoutGroup
+  id: ERTEngineerPDA
+  name: loadout-group-station-engineer-id
+  loadouts:
+  - ERTEngineerPDA
+
+- type: loadoutGroup
+  id: ERTEngineerEars
+  name: loadout-group-ears
+  loadouts:
+  - ERTEngineerEars
+
+- type: loadoutGroup
+  id: ERTEngineerBelt
+  name: loadout-group-belt
+  loadouts:
+  - ERTEngineerBelt
+
+- type: loadoutGroup
+  id: ERTEngineerPocket1
+  name: loadout-group-pockets
+  loadouts:
+  - ERTEngineerPocket1
+
+- type: loadoutGroup
+  id: ERTEngineerPocket2
+  name: loadout-group-pockets
+  loadouts:
+  - ERTEngineerPocket2
+
+# ERTMedical
+- type: loadoutGroup
+  id: ERTMedicalJumpsuit
+  name: loadout-group-medical-doctor-jumpsuit
+  loadouts:
+  - ERTMedicalJumpsuit
+
+- type: loadoutGroup
+  id: ERTMedicalBackpack
+  name: loadout-group-medical-doctor-backpack
+  loadouts:
+  - ERTMedicalBackpack
+
+- type: loadoutGroup
+  id: ERTMedicalShoes
+  name: loadout-group-medical-doctor-shoes
+  loadouts:
+  - ERTMedicalShoes
+
+- type: loadoutGroup
+  id: ERTMedicalHead
+  name: loadout-group-medical-doctor-head
+  loadouts:
+  - ERTMedicalHead
+
+- type: loadoutGroup
+  id: ERTMedicalEyes
+  name: loadout-group-medical-eyewear
+  loadouts:
+  - ERTMedicalEyes
+
+- type: loadoutGroup
+  id: ERTMedicalGloves
+  name: loadout-group-medical-gloves
+  loadouts:
+  - ERTMedicalGloves
+
+- type: loadoutGroup
+  id: ERTMedicalOuterClothing
+  name: loadout-group-medical-doctor-outerclothing
+  loadouts:
+  - ERTMedicalOuterClothing
+
+- type: loadoutGroup
+  id: ERTMedicalPDA
+  name: loadout-group-medical-doctor-id
+  loadouts:
+  - ERTMedicalPDA
+
+- type: loadoutGroup
+  id: ERTMedicalEars
+  name: loadout-group-ears
+  loadouts:
+  - ERTMedicalEars
+
+- type: loadoutGroup
+  id: ERTMedicalBelt
+  name: loadout-group-belt
+  loadouts:
+  - ERTMedicalBelt
+
+- type: loadoutGroup
+  id: ERTMedicalPocket1
+  name: loadout-group-pockets
+  loadouts:
+  - ERTMedicalPocket1
+
+# ERTJanitor
+- type: loadoutGroup
+  id: ERTJanitorJumpsuit
+  name: loadout-group-janitor-jumpsuit
+  loadouts:
+  - ERTJanitorJumpsuit
+
+- type: loadoutGroup
+  id: ERTJanitorBackpack
+  name: loadout-group-common-backpack
+  loadouts:
+  - ERTJanitorBackpack
+
+- type: loadoutGroup
+  id: ERTJanitorShoes
+  name: loadout-group-shoes
+  loadouts:
+  - ERTJanitorShoes
+
+- type: loadoutGroup
+  id: ERTJanitorHead
+  name: loadout-group-janitor-head
+  loadouts:
+  - ERTJanitorHead
+
+- type: loadoutGroup
+  id: ERTJanitorGloves
+  name: loadout-group-janitor-gloves
+  loadouts:
+  - ERTJanitorGloves
+
+- type: loadoutGroup
+  id: ERTJanitorOuterClothing
+  name: loadout-group-janitor-outerclothing
+  loadouts:
+  - ERTJanitorOuterClothing
+
+- type: loadoutGroup
+  id: ERTJanitorPDA
+  name: loadout-group-id
+  loadouts:
+  - ERTJanitorPDA
+
+- type: loadoutGroup
+  id: ERTJanitorEars
+  name: loadout-group-ears
+  loadouts:
+  - ERTJanitorEars
+
+- type: loadoutGroup
+  id: ERTJanitorBelt
+  name: loadout-group-belt
+  loadouts:
+  - ERTJanitorBelt
+
+- type: loadoutGroup
+  id: ERTJanitorPocket1
+  name: loadout-group-pockets
+  loadouts:
+  - ERTJanitorPocket1
+
 # Operator
 #- type: loadoutGroup
 #  id: BKCCOperatorGavnaJumpsuit

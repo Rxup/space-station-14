@@ -52,6 +52,14 @@ public sealed partial class PathfindingSystem
             return 0f;
         }
 
+        // start-backmen: web
+        if ((request.Flags & PathFlags.WebOnly) != 0x0 &&
+            (end.Data.Flags & PathfindingBreadcrumbFlag.Web) == 0x0)
+        {
+            return 0f;
+        }
+        // end-backmen: web
+
         if ((request.CollisionLayer & end.Data.CollisionMask) != 0x0 ||
             (request.CollisionMask & end.Data.CollisionLayer) != 0x0)
         {
@@ -66,6 +74,13 @@ public sealed partial class PathfindingSystem
             }
             else
             // end-backmen: blob
+            // start-backmen: web
+            if ((end.Data.Flags & PathfindingBreadcrumbFlag.Web) != 0x0 && (request.Flags & PathFlags.Web) != 0x0)
+            {
+                modifier += 0f;
+            }
+            else
+            // end-backmen: web
             // TODO: Handling power + door prying
             // Door we should be able to open
             if (isDoor && !isAccess && (request.Flags & PathFlags.Interact) != 0x0)

@@ -6,10 +6,11 @@
   levels:
     green:
       announcement: alert-level-green-announcement
-      sound: /Audio/Announcements/announce.ogg
+      sound: /Audio/Misc/greenalert.ogg
       color: Green
       emergencyLightColor: LawnGreen
       shuttleTime: 600
+
     blue:
       announcement: alert-level-blue-announcement
       sound:
@@ -19,6 +20,7 @@
       color: DodgerBlue
       emergencyLightColor: DodgerBlue
       shuttleTime: 600
+
     violet:
       announcement: alert-level-violet-announcement
       sound: /Audio/Backmen/Misc/new-style-alerts/purple_code_new_style.ogg
@@ -26,6 +28,7 @@
       emergencyLightColor: Violet
       forceEnableEmergencyLights: true
       shuttleTime: 600
+
     yellow:
       announcement: alert-level-yellow-announcement
       sound: /Audio/Backmen/Misc/new-style-alerts/yellow_code_new_style.ogg
@@ -33,26 +36,18 @@
       emergencyLightColor: Goldenrod
       forceEnableEmergencyLights: true
       shuttleTime: 600
-    amber:
-      announcement: alert-level-amber-announcement
-      sound:
-        path: /Audio/Backmen/Misc/new-style-alerts/amber_code_new_style.ogg
-        params:
-          volume: -2
-      color: Orange
-      emergencyLightColor: Orange
-      forceEnableEmergencyLights: true
-      shuttleTime: 600
+
     red:
       announcement: alert-level-red-announcement
       sound:
-        path: /Audio/Backmen/Misc/new-style-alerts/red_code_new_style.ogg
+        path: /Audio/Misc/redalert_2.ogg
         params:
           volume: -2
       color: Red
       emergencyLightColor: Red
       forceEnableEmergencyLights: true
       shuttleTime: 600 #No reduction in time as we don't have swiping for red alert like in /tg/. Shuttle times are intended to create friction, so having a way to brainlessly bypass that would be dumb.
+
     gamma:
       announcement: alert-level-gamma-announcement
       selectable: false
@@ -64,6 +59,7 @@
       color: PaleVioletRed
       emergencyLightColor: PaleVioletRed
       forceEnableEmergencyLights: true
+
     delta:
       announcement: alert-level-delta-announcement
       selectable: false
@@ -76,6 +72,7 @@
       emergencyLightColor: Orange
       forceEnableEmergencyLights: true
       shuttleTime: 1200
+
     epsilon:
       announcement: alert-level-epsilon-announcement
       selectable: false
@@ -88,15 +85,7 @@
       emergencyLightColor: DarkViolet
       forceEnableEmergencyLights: true
       shuttleTime: 1200
-    sigma:
-      announcement: alert-level-sigma-announcement
-      selectable: false
-      sound: /Audio/Backmen/Misc/new-style-alerts/sigma_code_new_style.ogg
-      disableSelection: true
-      color: Pink
-      emergencyLightColor: Aqua
-      forceEnableEmergencyLights: true
-      shuttleTime: 1200
+
     white:
       announcement: alert-level-white-announcement
       sound:

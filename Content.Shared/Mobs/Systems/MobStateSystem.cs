@@ -95,11 +95,12 @@ public partial class MobStateSystem : EntitySystem
     }
 
     /// <summary>
-    ///  Check if a Mob is Critical or Dead
+    ///  Check if a Mob is unconscious (hard critical) or dead.
+    ///  Soft critical (pain crit) is excluded; use <see cref="IsCritical"/> to include it.
     /// </summary>
     /// <param name="target">Target Entity</param>
     /// <param name="component">The MobState component owned by the target</param>
-    /// <returns>If the entity is Critical or Dead</returns>
+    /// <returns>If the entity is hard critical or dead</returns>
     public bool IsIncapacitated(EntityUid target, MobStateComponent? component = null)
     {
         if (!_mobStateQuery.Resolve(target, ref component, false))

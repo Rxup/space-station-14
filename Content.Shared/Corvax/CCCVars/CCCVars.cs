@@ -50,6 +50,12 @@ public sealed class CCCVars
         CVarDef.Create("tts.volume", 0f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Default volume setting of headset (рация) TTS sound
+    /// </summary>
+    public static readonly CVarDef<float> TTSHeadsetVolume =
+        CVarDef.Create("tts.headset_volume", 0.6f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Count of in-memory cached tts voice lines.
     /// </summary>
     public static readonly CVarDef<int> TTSMaxCache =

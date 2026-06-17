@@ -140,7 +140,7 @@ public sealed partial class ShadowkinSystem : EntitySystem
             if (oldPowerLevel != _power.GetLevelName(shadowkin.PowerLevel))
             {
                 _power.TryBlackeye(uid);
-                Dirty(uid, shadowkin);
+                DirtyField(uid, shadowkin, nameof(ShadowkinComponent.PowerLevel));
             }
             // I can't figure out how to get this to go to the 100% filled state in the above if statement 😢
             _power.UpdateAlert(uid, true, shadowkin.PowerLevel);

@@ -1,0 +1,82 @@
+# Jumpsuit
+- type: loadout
+  id: ERTEngineerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTEngineer
+
+# Backpack
+- type: loadout
+  id: ERTEngineerBackpack
+  equipment:
+    back: ClothingBackpackERTEngineer
+  storage:
+    back:
+    - trayScanner
+    - RCD
+    - RCDAmmo
+    - RCDAmmo
+    - CableMVStack
+    - CableHVStack
+    - CableApcStack
+    - SheetPlasteel
+    - SheetSteel
+    - SheetGlass
+
+# Shoes
+- type: loadout
+  id: ERTEngineerShoes
+  equipment:
+    shoes: ClothingShoesBootsWork
+
+# Head
+- type: loadout
+  id: ERTEngineerHead
+  equipment:
+    head: ClothingHeadHelmetERTEngineer
+
+# Eyes
+- type: loadout
+  id: ERTEngineerEyes
+  equipment:
+    eyes: ClothingEyesGlassesMeson
+
+# Gloves
+- type: loadout
+  id: ERTEngineerGloves
+  equipment:
+    gloves: ClothingHandsGlovesCombat
+
+# OuterClothing
+- type: loadout
+  id: ERTEngineerOuterClothing
+  equipment:
+    outerClothing: ClothingOuterArmorBasicSlim
+
+# PDA
+- type: loadout
+  id: ERTEngineerPDA
+  equipment:
+    id: ERTEngineerPDA
+
+# Ears
+- type: loadout
+  id: ERTEngineerEars
+  equipment:
+    ears: ClothingHeadsetAltCentCom
+
+# Belt
+- type: loadout
+  id: ERTEngineerBelt
+  equipment:
+    belt: ClothingBeltChiefEngineerFilled
+
+# Pockets
+- type: loadout
+  id: ERTEngineerPocket1
+  equipment:
+    pocket1: Flare
+
+- type: loadout
+  id: ERTEngineerPocket2
+  equipment:
+    pocket2: GasAnalyzer

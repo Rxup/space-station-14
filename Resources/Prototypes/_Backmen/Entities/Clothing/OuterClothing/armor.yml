@@ -39,6 +39,8 @@
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
+  - type: StaminaResistance
+    damageCoefficient: 0.7
   - type: Armor
     coverage:
     - Chest
@@ -46,13 +48,14 @@
     - Tail
     modifiers:
       coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.3
-        Heat: 0.4
-        ArmorPiercing: 0.6
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        ArmorPiercing: 0.7
+
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.8
   - type: GroupExamine
   - type: Contraband
     allowedJobs: [ BlueShield ]

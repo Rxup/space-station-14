@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Content.Server.NPC.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.CombatMode;
+using Content.Shared.Storage.Components; // backmen
 using Robust.Server.Containers;
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat.Melee;
@@ -19,6 +20,14 @@ public sealed partial class EscapeOperator : HTNOperator, IHtnConditionalShutdow
     [DataField("targetKey", required: true)]
     public string TargetKey = default!;
 
+    // start-backmen
+    private bool TryOpenEscapeStorage(EntityUid user, EntityUid target)
+    {
+        return _entManager.TryGetComponent(target, out EntityStorageComponent? _)
+            && _entityStorage.TryOpenStorage(user, target);
+    }
+    // end-backmen
+
     public override void Initialize(IEntitySystemManager sysManager)
     {
         base.Initialize(sysManager);
@@ -32,7 +41,7 @@ public sealed partial class EscapeOperator : HTNOperator, IHtnConditionalShutdow
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
         var target = blackboard.GetValue<EntityUid>(TargetKey);
 
-        if (_entityStorage.TryOpenStorage(owner, target))
+        if (TryOpenEscapeStorage(owner, target)) // backmen
         {
             TaskShutdown(blackboard, HTNOperatorStatus.Finished);
             return;
@@ -57,7 +66,7 @@ public sealed partial class EscapeOperator : HTNOperator, IHtnConditionalShutdow
             return (false, null);
         }
 
-        if (_entityStorage.TryOpenStorage(owner, target))
+        if (TryOpenEscapeStorage(owner, target)) // backmen
         {
             return (false, null);
         }
@@ -105,7 +114,7 @@ public sealed partial class EscapeOperator : HTNOperator, IHtnConditionalShutdow
             }
             else
             {
-                if (_entityStorage.TryOpenStorage(owner, target))
+                if (TryOpenEscapeStorage(owner, target)) // backmen
                 {
                     status = HTNOperatorStatus.Finished;
                 }

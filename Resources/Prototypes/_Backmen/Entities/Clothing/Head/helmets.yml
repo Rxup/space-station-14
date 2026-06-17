@@ -56,11 +56,10 @@
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.60
+        Blunt: 0.8
         Slash: 0.8
-        Piercing: 0.9
-        Heat: 0.80
-        ArmorPiercing: 0.80
+        Piercing: 0.95
+        ArmorPiercing: 0.95
 
 - type: entity
   parent: ClothingHeadBase

@@ -1,11 +1,25 @@
 ﻿using System.Linq;
 using Content.Server.Actions;
+using Content.Server.Backmen.Surgery.Trauma.Systems;
+using Content.Server.Backmen.Surgery.Wounds.Systems;
+using Content.Server.Hands.Systems;
 using Content.Server.NPC.Components;
+using Content.Server.NPC.Systems;
 using Content.Server.Popups;
-using Content.Shared.CombatMode;
-using Content.Shared.Damage;
+using Content.Shared.Backmen.Damage;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
+using Content.Shared.FixedPoint;
+using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing.EntitySystems;
+using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Hands;
 using Content.Shared.Humanoid;
@@ -13,6 +27,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Stunnable;
@@ -20,11 +35,12 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Flesh;
 
-public sealed partial class FleshWormSystem : EntitySystem
+public sealed partial class FleshWormSystem : SharedFleshWormSystem
 {
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedStunSystem _stunSystem = default!;
@@ -35,10 +51,23 @@ public sealed partial class FleshWormSystem : EntitySystem
     [Dependency] private ThrowingSystem _throwing = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private ActionsSystem _action = default!;
+    [Dependency] private NPCSystem _npc = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private ServerWoundSystem _wound = default!;
+    [Dependency] private ServerTraumaSystem _trauma = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private MaskSystem _mask = default!;
+    [Dependency] private ToggleableClothingSystem _toggleableClothing = default!;
+
+    private static readonly SlotFlags FaceSlots = SlotFlags.HEAD | SlotFlags.MASK;
 
     public override void Initialize()
     {
+        base.Initialize();
+
         SubscribeLocalEvent<FleshWormComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<FleshWormComponent, MeleeHitEvent>(OnMeleeHit);
         SubscribeLocalEvent<FleshWormComponent, ThrowDoHitEvent>(OnWormDoHit);
@@ -49,6 +78,189 @@ public sealed partial class FleshWormSystem : EntitySystem
         SubscribeLocalEvent<FleshWormComponent, BeingUnequippedAttemptEvent>(OnUnequipAttempt);
         SubscribeLocalEvent<FleshWormComponent, FleshWormJumpActionEvent>(OnJumpWorm);
         SubscribeLocalEvent<FleshWormComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<FleshWormComponent, FleshWormRemoveDoAfterEvent>(OnRemoveDoAfter);
+    }
+
+    public bool CanPounce(EntityUid worm, EntityUid target, FleshWormComponent? component = null)
+    {
+        return CanPounceBasic(worm, target, component) && !IsFaceBlocked(target);
+    }
+
+    private bool CanPounceBasic(EntityUid worm, EntityUid target, FleshWormComponent? component = null)
+    {
+        if (!Resolve(worm, ref component) || component.IsDeath || component.EquipedOn.Valid)
+            return false;
+
+        if (HasComp<FleshCultistComponent>(target))
+            return false;
+
+        if (!HasComp<HumanoidAppearanceComponent>(target))
+            return false;
+
+        if (TryComp(target, out MobStateComponent? mobState) && mobState.CurrentState != MobState.Alive)
+            return false;
+
+        return true;
+    }
+
+    public bool NPCTryPounce(EntityUid worm, EntityUid target, FleshWormComponent? component = null)
+    {
+        if (!Resolve(worm, ref component))
+            return false;
+
+        if (component.PendingPounceTarget is { Valid: true })
+        {
+            target = component.PendingPounceTarget;
+            component.PendingPounceTarget = EntityUid.Invalid;
+        }
+
+        return TryPounce(worm, target, rollChance: false, component);
+    }
+
+    public bool TryPounce(EntityUid worm, EntityUid target, bool rollChance = true, FleshWormComponent? component = null)
+    {
+        if (!Resolve(worm, ref component))
+            return false;
+
+        if (!CanPounceBasic(worm, target, component))
+            return false;
+
+        if (rollChance && _random.Next(1, 101) > component.ChansePounce)
+            return false;
+
+        TryClearFaceProtection(target);
+
+        if (IsFaceBlocked(target))
+            return false;
+
+        TryClearTargetMask(worm, target);
+
+        if (!_inventory.TryEquip(target, worm, "mask", silent: true, force: true))
+            return false;
+
+        component.EquipedOn = target;
+        ApplyPounceEffects(worm, target, component);
+        return true;
+    }
+
+    private bool IsFaceBlocked(EntityUid target)
+    {
+        var attempt = new IngestionAttemptEvent(FaceSlots);
+        RaiseLocalEvent(target, ref attempt);
+        return attempt.Cancelled;
+    }
+
+    private void TryClearFaceProtection(EntityUid target)
+    {
+        TryClearMaskBlocker(target);
+
+        if (IsFaceBlocked(target))
+            TryUnequipSlotBlocker(target, "head");
+    }
+
+    private void TryClearMaskBlocker(EntityUid target)
+    {
+        if (!_inventory.TryGetSlotEntity(target, "mask", out var maskUid) || maskUid is not { } mask)
+            return;
+
+        if (TryComp<MaskComponent>(mask, out var maskComp) && maskComp.IsToggleable && !maskComp.IsToggled)
+        {
+            _mask.SetToggled(mask, true);
+            return;
+        }
+
+        TryUnequipSlotBlocker(target, "mask");
+    }
+
+    private void TryUnequipSlotBlocker(EntityUid target, string slot)
+    {
+        if (_toggleableClothing.TryStowAttached(target, slot))
+            return;
+
+        if (!_inventory.TryGetSlotEntity(target, slot, out var itemUid) || itemUid is not { } item)
+            return;
+
+        if (!TryComp<IngestionBlockerComponent>(item, out var blocker) || !blocker.Enabled)
+            return;
+
+        _inventory.TryUnequip(target, slot, silent: true, force: true);
+    }
+
+    private void TryClearTargetMask(EntityUid worm, EntityUid target)
+    {
+        if (!_inventory.TryGetSlotEntity(target, "mask", out var maskUid) || maskUid is not { } mask || mask == worm)
+            return;
+
+        _inventory.TryUnequip(target, "mask", silent: true, force: true);
+    }
+
+    private void ApplyPounceEffects(EntityUid worm, EntityUid target, FleshWormComponent component)
+    {
+        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-hit-user"),
+            target, target, PopupType.LargeCaution);
+
+        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-hit-mob", ("entity", target)),
+            worm, worm, PopupType.LargeCaution);
+
+        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-others",
+            ("entity", target)), target, Filter.PvsExcept(worm), true, PopupType.Large);
+
+        EnsureComp<PacifiedComponent>(worm);
+        _stunSystem.TryUpdateParalyzeDuration(target, TimeSpan.FromSeconds(component.ParalyzeTime));
+        ApplyHeadDamage(worm, target, component);
+    }
+
+    private void ApplyHeadDamage(EntityUid worm, EntityUid target, FleshWormComponent component)
+    {
+        _damageableSystem.TryChangeDamage(target, component.Damage, out _, ignoreResistances: true,
+            interruptsDoAfters: false, origin: worm, targetPart: TargetBodyPart.Head);
+        TryRollHeadTrauma(target, component);
+    }
+
+    private void TryRollHeadTrauma(EntityUid victim, FleshWormComponent component)
+    {
+        if (component.HeadTraumaChance <= 0 || !_random.Prob(component.HeadTraumaChance))
+            return;
+
+        var headPart = _body.GetBodyChildrenOfType(victim, BodyPartType.Head).FirstOrDefault();
+        if (headPart == default || !TryComp<WoundableComponent>(headPart.Id, out var headWoundable))
+            return;
+
+        Entity<WoundComponent>? piercingWound = null;
+        foreach (var wound in _wound.GetWoundableWounds(headPart.Id, headWoundable))
+        {
+            if (DamageSpecifierAliases.IsPiercingDamageType(wound.Comp.DamageType, _prototype))
+            {
+                piercingWound = wound;
+                break;
+            }
+        }
+
+        if (piercingWound == null
+            && !_wound.TryInduceWound(headPart.Id, "Piercing", component.TraumaSeverity, out piercingWound, headWoundable))
+        {
+            return;
+        }
+
+        if (!TryComp<TraumaInflicterComponent>(piercingWound.Value.Owner, out var inflicterComp))
+            return;
+
+        var severity = FixedPoint2.New(component.TraumaSeverity);
+        var traumaType = _random.Prob(0.5f) ? TraumaType.OrganDamage : TraumaType.BoneDamage;
+
+        if (!_trauma.TryApplyTraumas(
+                (headPart.Id, headWoundable),
+                (piercingWound.Value.Owner, inflicterComp),
+                [traumaType],
+                severity))
+        {
+            return;
+        }
+
+        _popup.PopupEntity(Loc.GetString("flesh-worm-head-trauma-user"),
+            victim, victim, PopupType.MediumCaution);
+        _popup.PopupEntity(Loc.GetString("flesh-worm-head-trauma-others", ("entity", victim)),
+            victim, Filter.PvsExcept(victim), true, PopupType.MediumCaution);
     }
 
     private void OnShutdown(Entity<FleshWormComponent> ent, ref ComponentShutdown args)
@@ -65,61 +277,55 @@ public sealed partial class FleshWormSystem : EntitySystem
     {
         if (component.IsDeath)
             return;
-        if (HasComp<FleshCultistComponent>(args.Target))
-            return;
-        if (!HasComp<HumanoidAppearanceComponent>(args.Target))
-            return;
-        if (TryComp(args.Target, out MobStateComponent? mobState))
-        {
-            if (mobState.CurrentState is not MobState.Alive)
-            {
-                return;
-            }
-        }
 
-        _inventory.TryGetSlotEntity(args.Target, "head", out var headItem);
-        if (HasComp<IngestionBlockerComponent>(headItem))
-            return;
-
-        if (!_inventory.TryEquip(args.Target, uid, "mask", true))
-            return;
-
-        component.EquipedOn = args.Target;
-
-        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-hit-user"),
-            args.Target, args.Target, PopupType.LargeCaution);
-
-        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-hit-mob",
-                ("entity", args.Target)),
-            uid, uid, PopupType.LargeCaution);
-
-        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-others",
-            ("entity", args.Target)), args.Target, Filter.PvsExcept(uid), true, PopupType.Large);
-
-        EnsureComp<PacifiedComponent>(uid);
-        _stunSystem.TryUpdateParalyzeDuration(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime));
-        _damageableSystem.TryChangeDamage(args.Target, component.Damage);
+        TryPounce(uid, args.Target, rollChance: false, component);
     }
 
     private void OnGotEquipped(EntityUid uid, FleshWormComponent component, GotEquippedEvent args)
     {
         if (args.Slot != "mask")
             return;
+
         component.EquipedOn = args.Equipee;
+        component.PendingPounceTarget = EntityUid.Invalid;
         EnsureComp<PacifiedComponent>(uid);
+
+        _npc.SleepNPC(uid);
     }
 
-    private void OnUnequipAttempt(EntityUid uid, FleshWormComponent component, BeingUnequippedAttemptEvent args)
+    private void OnUnequipAttempt(Entity<FleshWormComponent> ent, ref BeingUnequippedAttemptEvent args)
     {
-        if (args.Slot != "mask")
+        if (args.Slot != "mask" || ent.Comp.EquipedOn != args.UnEquipTarget)
             return;
-        if (component.EquipedOn != args.Unequipee)
+
+        if (args.Unequipee != args.UnEquipTarget)
             return;
-        if (HasComp<FleshCultistComponent>(args.Unequipee))
-            return;
-        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-try-unequip"),
-            args.Unequipee, args.Unequipee, PopupType.Large);
+
         args.Cancel();
+
+        if (!HasActiveWormRemoveDoAfter(args.UnEquipTarget))
+            StartRemoveDoAfter(args.UnEquipTarget, ent.Owner, args.UnEquipTarget, ent.Comp);
+    }
+
+    private void OnRemoveDoAfter(Entity<FleshWormComponent> ent, ref FleshWormRemoveDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Args.Target is not { } wearer)
+            return;
+
+        var user = args.User;
+        var isSelf = args.IsSelf;
+
+        if (!TryComp<FleshWormComponent>(ent.Owner, out var comp) || comp.EquipedOn != wearer)
+            return;
+
+        if (isSelf)
+            _stamina.TakeStaminaDamage(wearer, comp.SelfRemoveStaminaCost, with: ent.Owner);
+
+        if (!_inventory.TryUnequip(user, wearer, "mask", force: isSelf, triggerHandContact: !isSelf))
+            return;
+
+        if (!isSelf)
+            _hands.TryPickup(user, ent.Owner);
     }
 
     private void OnGotEquippedHand(EntityUid uid, FleshWormComponent component, GotEquippedHandEvent args)
@@ -130,8 +336,8 @@ public sealed partial class FleshWormSystem : EntitySystem
             return;
         if (component.IsDeath)
             return;
-        // _handsSystem.TryDrop(args.User, uid, checkActionBlocker: false);
-        _damageableSystem.TryChangeDamage(args.User, component.Damage);
+
+        _damageableSystem.TryChangeDamage(args.User, component.Damage, interruptsDoAfters: false);
         _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-bite-user"),
             args.User, args.User);
     }
@@ -140,72 +346,42 @@ public sealed partial class FleshWormSystem : EntitySystem
     {
         if (args.Slot != "mask")
             return;
+
         component.EquipedOn = EntityUid.Invalid;
+        component.PendingPounceTarget = EntityUid.Invalid;
         RemCompDeferred<PacifiedComponent>(uid);
         var combatMode = EnsureComp<CombatModeComponent>(uid);
         _combat.SetInCombatMode(uid, true, combatMode);
-        EnsureComp<NPCMeleeCombatComponent>(uid);
+        _npc.WakeNPC(uid);
     }
 
     private void OnMeleeHit(EntityUid uid, FleshWormComponent component, MeleeHitEvent args)
     {
-        if (!args.HitEntities.Any())
+        if (!HasComp<NPCMeleeCombatComponent>(uid))
             return;
 
         foreach (var entity in args.HitEntities)
         {
-            if (!HasComp<HumanoidAppearanceComponent>(entity))
+            if (!CanPounce(uid, entity, component))
+                continue;
+
+            if (_random.Next(1, 101) > component.ChansePounce)
                 return;
 
-            if (TryComp(entity, out MobStateComponent? mobState))
-            {
-                if (mobState.CurrentState is not MobState.Alive)
-                {
-                    return;
-                }
-            }
-
-            _inventory.TryGetSlotEntity(entity, "head", out var headItem);
-            if (HasComp<IngestionBlockerComponent>(headItem))
-                return;
-
-
-            var shouldEquip = _random.Next(1, 101) <= component.ChansePounce;
-            if (!shouldEquip)
-                return;
-
-            var equipped = _inventory.TryEquip(entity, uid, "mask", true);
-            if (!equipped)
-                return;
-
-            component.EquipedOn = entity;
-
-            _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-hit-user"),
-                entity, entity, PopupType.LargeCaution);
-
-            _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-hit-mob", ("entity", entity)),
-                uid, uid, PopupType.LargeCaution);
-
-            _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-others",
-                ("entity", entity)), entity, Filter.PvsExcept(entity), true, PopupType.Large);
-
-            EnsureComp<PacifiedComponent>(uid);
-            _stunSystem.TryUpdateParalyzeDuration(entity, TimeSpan.FromSeconds(component.ParalyzeTime));
-            _damageableSystem.TryChangeDamage(entity, component.Damage, origin: entity);
-            break;
+            component.PendingPounceTarget = entity;
+            return;
         }
     }
 
     private static void OnMobStateChanged(EntityUid uid, FleshWormComponent component, MobStateChangedEvent args)
     {
         if (args.NewMobState == MobState.Dead)
-        {
             component.IsDeath = true;
-        }
     }
+
     private void OnJumpWorm(EntityUid uid, FleshWormComponent component, FleshWormJumpActionEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || component.EquipedOn.Valid)
             return;
 
         args.Handled = true;
@@ -215,16 +391,15 @@ public sealed partial class FleshWormSystem : EntitySystem
 
         _throwing.TryThrow(uid, direction, 7F, uid, 10F);
         if (component.SoundWormJump != null)
-        {
             _audioSystem.PlayPvs(component.SoundWormJump, uid, component.SoundWormJump.Params);
-        }
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        foreach (var comp in EntityQuery<FleshWormComponent>())
+        var query = EntityQueryEnumerator<FleshWormComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
             comp.Accumulator += frameTime;
 
@@ -235,18 +410,18 @@ public sealed partial class FleshWormSystem : EntitySystem
 
             if (comp.EquipedOn is not { Valid: true } targetId)
                 continue;
+
             if (HasComp<FleshCultistComponent>(comp.EquipedOn))
-                return;
-            if (TryComp(targetId, out MobStateComponent? mobState))
+                continue;
+
+            if (TryComp(targetId, out MobStateComponent? mobState) && mobState.CurrentState != MobState.Alive)
             {
-                if (mobState.CurrentState is not MobState.Alive)
-                {
-                    _inventory.TryUnequip(targetId, "mask", true, true);
-                    comp.EquipedOn = EntityUid.Invalid;
-                    return;
-                }
+                _inventory.TryUnequip(targetId, "mask", silent: true, force: true);
+                comp.EquipedOn = EntityUid.Invalid;
+                continue;
             }
-            _damageableSystem.TryChangeDamage(targetId, comp.Damage);
+
+            ApplyHeadDamage(uid, targetId, comp);
             _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-user"),
                 targetId, targetId, PopupType.LargeCaution);
             _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-others",

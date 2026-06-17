@@ -18,6 +18,7 @@
                 <ui:OptionSlider Name="SliderMaxAmbienceSounds" Title="{Loc 'ui-options-ambience-max-sounds'}"
                                  Margin="0 0 0 8" />
                 <ui:OptionSlider Name="SliderTtsVolume" Title="{Loc 'ui-options-tts-volume'}" />
+                <ui:OptionSlider Name="SliderTtsHeadsetVolume" Title="{Loc 'ui-options-tts-headset-volume'}" />
                 <ui:OptionSlider Name="SliderTtsAnnounceVolume" Title="{Loc 'ui-options-tts-announce-volume'}"
                                  Margin="0 0 0 8" />
                 <CheckBox Name="LobbyMusicCheckBox" Text="{Loc 'ui-options-lobby-music'}" />

@@ -14,6 +14,6 @@
       state: jump-on
     useDelay: 6
   - type: WorldTargetAction
-    event: !type:JumpActionEvent
+    event: !type:FleshWormJumpActionEvent
   - type: TargetAction
     range: 160

@@ -13,7 +13,7 @@ namespace Content.Shared.Backmen.Language;
 ///     All fields of this component are populated during a DetermineEntityLanguagesEvent.
 ///     They are not to be modified externally.
 /// </remarks>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
 public sealed partial class LanguageSpeakerComponent : Component
 {
     /// <summary>

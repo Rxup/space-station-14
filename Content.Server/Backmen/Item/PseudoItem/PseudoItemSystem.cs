@@ -91,7 +91,7 @@ public sealed partial class PseudoItemSystem : SharedPseudoItemSystem
         }
 
         ent.Comp.Active = false;
-        Dirty(ent);
+        DirtyField(ent, ent.Comp, nameof(PseudoItemComponent.Active));
 
         RemCompDeferred<ItemComponent>(ent.Owner);
         RemCompDeferred<CanEscapeInventoryComponent>(ent.Owner);
@@ -202,7 +202,7 @@ public sealed partial class PseudoItemSystem : SharedPseudoItemSystem
 
         _itemSystem.SetSize(toInsert, toInsert.Comp.SizeInBackpack, item);
         toInsert.Comp.Active = true;
-        Dirty(toInsert);
+        DirtyField(toInsert, toInsert.Comp, nameof(PseudoItemComponent.Active));
         _transformSystem.AttachToGridOrMap(storageUid);
         return true;
     }

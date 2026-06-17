@@ -37,7 +37,7 @@ public sealed class MegafaunaSystem : EntitySystem
             foreach (var aggressor in aggresive.Aggressors)
             {
                 if (!TryComp<ActorComponent>(aggressor, out var actor))
-                    return;
+                    continue;
 
                 RaiseNetworkEvent(msg, actor.PlayerSession.Channel);
             }

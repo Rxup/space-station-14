@@ -27,36 +27,7 @@ public partial class TraumaSystem
     {
         SubscribeLocalEvent<TraumaInflicterComponent, ComponentStartup>(OnTraumaInflicterStartup);
 
-        SubscribeLocalEvent<TraumaComponent, ComponentGetState>(OnComponentGet);
-        SubscribeLocalEvent<TraumaComponent, ComponentHandleState>(OnComponentHandleState);
-
         Subs.CVar(_cfg, CCVars.NerveDamageThreshold, value => _nerveDamageThreshold = value, true);
-    }
-
-    private void OnComponentHandleState(EntityUid uid, TraumaComponent component, ref ComponentHandleState args)
-    {
-        if (args.Current is not TraumaComponentState state)
-            return;
-
-        component.TraumaTarget = TryGetEntity(state.TraumaTarget, out var e) ? e.Value : EntityUid.Invalid;
-        component.HoldingWoundable = TryGetEntity(state.HoldingWoundable, out var e1) ? e1.Value : EntityUid.Invalid;
-
-        component.TraumaType = state.TraumaType;
-        component.TraumaSeverity = state.TraumaSeverity;
-    }
-
-    private void OnComponentGet(EntityUid uid, TraumaComponent comp, ref ComponentGetState args)
-    {
-        var state = new TraumaComponentState
-        {
-            TraumaTarget = TryGetNetEntity(comp.TraumaTarget, out var ne) ? ne.Value : NetEntity.Invalid,
-            HoldingWoundable = TryGetNetEntity(comp.HoldingWoundable, out var ne1) ? ne1.Value : NetEntity.Invalid,
-
-            TraumaType = comp.TraumaType,
-            TraumaSeverity = comp.TraumaSeverity,
-        };
-
-        args.State = state;
     }
 
     private void OnTraumaInflicterStartup(

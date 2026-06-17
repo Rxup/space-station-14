@@ -6,6 +6,12 @@ public sealed partial class ArachneComponent : Component
     [DataField("webDelay")]
     public float WebDelay = 5f;
 
+    /// <summary>
+    /// Shorter web spin delay used by NPC operators.
+    /// </summary>
+    [DataField]
+    public float NpcWebDelay = 2.5f;
+
     [DataField("cocoonDelay")]
     public float CocoonDelay = 12f;
 

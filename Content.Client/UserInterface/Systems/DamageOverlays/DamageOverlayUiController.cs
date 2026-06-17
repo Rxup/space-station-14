@@ -1,4 +1,5 @@
 using Content.Client.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Damage;
@@ -171,7 +172,7 @@ public sealed partial class DamageOverlayUiController : UIController
                         .Float();
 
                     if (_consciousness.TryGetNerveSystem(entity, out var nerveSys) &&
-                        _consciousness.TryGetConsciousnessModifier(entity, nerveSys.Value, out var modifier, "Suffocation"))
+                        _consciousness.TryGetConsciousnessModifier(entity, nerveSys.Value, out var modifier, ConsciousnessModifierIds.Asphyxiation))
                     {
                         _overlay.OxygenLevel = FixedPoint2.Min(1f, modifier.Value.Change / (consciousness.Cap - consciousness.Threshold)).Float();
                     }

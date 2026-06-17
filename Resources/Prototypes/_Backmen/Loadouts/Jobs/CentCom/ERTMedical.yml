@@ -1,0 +1,74 @@
+# Jumpsuit
+- type: loadout
+  id: ERTMedicalJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTMedic
+
+# Backpack
+- type: loadout
+  id: ERTMedicalBackpack
+  equipment:
+    back: ClothingBackpackERTMedical
+  storage:
+    back:
+    - Hypospray
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - CrowbarRed
+    - ChemistryBottleOmnizine
+    - ChemistryBottleEpinephrine
+    - ChemistryBottleEpinephrine
+
+# Shoes
+- type: loadout
+  id: ERTMedicalShoes
+  equipment:
+    shoes: ClothingShoesBootsCombatFilled
+
+# Head
+- type: loadout
+  id: ERTMedicalHead
+  equipment:
+    head: ClothingHeadHelmetERTMedic
+
+# Eyes
+- type: loadout
+  id: ERTMedicalEyes
+  equipment:
+    eyes: ClothingEyesHudMedical
+
+# Gloves
+- type: loadout
+  id: ERTMedicalGloves
+  equipment:
+    gloves: ClothingHandsGlovesNitrile
+
+# OuterClothing
+- type: loadout
+  id: ERTMedicalOuterClothing
+  equipment:
+    outerClothing: ClothingOuterArmorBasicSlim
+
+# PDA
+- type: loadout
+  id: ERTMedicalPDA
+  equipment:
+    id: ERTMedicPDA
+
+# Ears
+- type: loadout
+  id: ERTMedicalEars
+  equipment:
+    ears: ClothingHeadsetAltCentCom
+
+# Belt
+- type: loadout
+  id: ERTMedicalBelt
+  equipment:
+    belt: ClothingBeltMedicalFilled
+
+# Pockets
+- type: loadout
+  id: ERTMedicalPocket1
+  equipment:
+    pocket1: Flare

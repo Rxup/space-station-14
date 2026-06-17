@@ -3,7 +3,6 @@
   id: Thief
   components:
   - type: GameRule
-    minPlayers: 15 # backmen change
   - type: ThiefRule
   - type: AntagObjectives
     objectives:
@@ -27,7 +26,7 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
-      components: 
+      components:
       #- type: Pacified # backmen: thief is not pacified
       - type: Thieving
         stripTimeReduction: 2

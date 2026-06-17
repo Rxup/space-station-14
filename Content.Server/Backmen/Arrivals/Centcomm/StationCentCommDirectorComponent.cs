@@ -28,5 +28,5 @@ public sealed partial class StationCentCommDirectorComponent : Component
     public List<(TimeSpan timeOffset, CentComEventId eventId)> EventSchedule = new();
 
     [ViewVariables]
-    public bool isLowPop = false;
+    public bool isLowPop = true;
 }

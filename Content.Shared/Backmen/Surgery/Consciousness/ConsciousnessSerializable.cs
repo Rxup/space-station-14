@@ -12,24 +12,6 @@ public enum ConsciousnessModType
     Pain, // Pain is affected only by pain multipliers
 }
 
-// The networking on consciousness is rather silly.
-[Serializable, NetSerializable]
-public sealed class ConsciousnessComponentState : ComponentState
-{
-    public FixedPoint2 Threshold;
-    public FixedPoint2 RawConsciousness;
-    public FixedPoint2 Multiplier;
-    public FixedPoint2 Cap;
-
-    public readonly Dictionary<(NetEntity, string), ConsciousnessModifier> Modifiers = new();
-    public readonly Dictionary<(NetEntity, string), ConsciousnessMultiplier> Multipliers = new();
-    public readonly Dictionary<string, (NetEntity?, bool, bool)> RequiredConsciousnessParts = new();
-
-    public bool ForceDead;
-    public bool ForceUnconscious;
-    public bool IsConscious;
-}
-
 [Serializable, NetSerializable]
 public sealed partial class CprDoAfterEvent : SimpleDoAfterEvent;
 

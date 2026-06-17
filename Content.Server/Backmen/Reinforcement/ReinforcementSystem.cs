@@ -18,7 +18,6 @@ using Content.Shared.Backmen.Reinforcement;
 using Content.Shared.Backmen.Reinforcement.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
-using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -65,7 +64,6 @@ public sealed partial class ReinforcementSystem : SharedReinforcementSystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IBanManager _banManager = default!;
     [Dependency] private PlayTimeTrackingSystem _playTimeTrackings = default!;
-    [Dependency] private SharedHumanoidAppearanceSystem _appearance = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private SharedJobSystem _jobs = default!;
@@ -74,6 +72,8 @@ public sealed partial class ReinforcementSystem : SharedReinforcementSystem
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private GameTicker _ticker = default!;
     [Dependency] private JobWhitelistManager _jobWhitelistManager = default!;
+    [Dependency] private StationSpawningSystem _stationSpawning = default!;
+
 
     public override void Initialize()
     {
@@ -177,7 +177,6 @@ public sealed partial class ReinforcementSystem : SharedReinforcementSystem
         var mob = spawnEv.SpawnResult ?? Spawn("MobHuman", Transform(ent).Coordinates);
 
         EnsureComp<ReinforcementMemberComponent>(mob).Linked = ent.Comp.Linked;
-        _appearance.LoadProfile(mob, character);
 
         _mind.TransferTo(newMind, mob);
 

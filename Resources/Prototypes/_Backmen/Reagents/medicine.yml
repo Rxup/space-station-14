@@ -73,9 +73,9 @@
 
 - type: reagent
   id: TranexamicAcidPlus
-  name: reagent-name-tranexamic-acid
+  name: reagent-name-tranexamic-acid-plus
   group: Medicine
-  desc: reagent-desc-tranexamic-acid
+  desc: reagent-desc-tranexamic-acid-plus
   physicalDesc: reagent-physical-desc-viscous
   flavor: medicine
   color: "#ba7d7d"

@@ -4,7 +4,7 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Surgery.Traumas.Components;
 
-[RegisterComponent, AutoGenerateComponentState, NetworkedComponent]
+[RegisterComponent, AutoGenerateComponentState(fieldDeltas: true), NetworkedComponent]
 public sealed partial class BoneComponent : Component
 {
     [AutoNetworkedField, ViewVariables]

@@ -2,23 +2,17 @@
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Components;
 
-[RegisterComponent, NetworkedComponent]
-public sealed partial class WoundComponent : Component, IComponentDelta
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
+public sealed partial class WoundComponent : Component
 {
-    public GameTick LastFieldUpdate { get; set; }
-    public GameTick[] LastModifiedFields { get; set; }
-
     /// <summary>
     /// 'Parent' of wound. Basically the entity to which the wound was applied.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public EntityUid HoldingWoundable;
 
     /// <summary>
@@ -30,20 +24,20 @@ public sealed partial class WoundComponent : Component, IComponentDelta
     /// Actually, severity of the wound. The more the worse.
     /// Directly depends on <see cref="WoundSeverity"/>
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public FixedPoint2 WoundSeverityPoint;
 
     /// <summary>
     /// How much damage this wound does to it's parent woundable?
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), DataField("integrityMultiplier")]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly), DataField("integrityMultiplier")]
     public FixedPoint2 WoundableIntegrityMultiplier = 1;
 
     /// <summary>
     /// maybe some cool mechanical stuff to treat those wounds later. I genuinely have no idea
     /// Wound type. External/Internal basically.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), DataField]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly), DataField]
     public WoundType WoundType = WoundType.External;
 
     /// <summary>
@@ -64,81 +58,44 @@ public sealed partial class WoundComponent : Component, IComponentDelta
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public DamageGroupPrototype? DamageGroup;
 
+    [AutoNetworkedField]
+    public ProtoId<DamageGroupPrototype>? NetworkedDamageGroup;
+
     /// <summary>
     /// Damage group of this wound.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<DamageTypePrototype>))]
-    public string DamageType;
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly), DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<DamageTypePrototype>))]
+    public string DamageType = default!;
 
     /// <summary>
     /// Scar wound prototype, what will be spawned upon healing this wound.
     /// If null - no scar wound will be spawned.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), DataField]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly), DataField]
     public EntProtoId? ScarWound;
 
     /// <summary>
     /// Well, name speaks for this.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), DataField]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly), DataField]
     public bool IsScar;
 
     /// <summary>
     /// Wound severity. Has six severities: Healed/Minor/Moderate/Severe/Critical and Loss.
     /// Directly depends on <see cref="WoundSeverityPoint"/>
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
     public WoundSeverity WoundSeverity;
 
     /// <summary>
     /// When wound is visible. Always/HandScanner/AdvancedScanner.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField]
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite), DataField]
     public WoundVisibility WoundVisibility = WoundVisibility.Always;
 
     /// <summary>
     /// "Can be healed".
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [AutoNetworkedField, DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool CanBeHealed = true;
-}
-
-[Serializable, NetSerializable]
-public sealed class WoundComponentState : ComponentState
-{
-    public NetEntity HoldingWoundable;
-
-    public FixedPoint2 WoundSeverityPoint;
-    public FixedPoint2 WoundableIntegrityMultiplier;
-
-    public WoundType WoundType;
-
-    public ProtoId<DamageGroupPrototype>? DamageGroup;
-    public string? DamageType;
-
-    public EntProtoId? ScarWound;
-
-    public bool IsScar;
-
-    public WoundSeverity WoundSeverity;
-
-    public WoundVisibility WoundVisibility;
-
-    public bool CanBeHealed;
-
-    public WoundComponentState() { }
-    public WoundComponentState(WoundComponentState existing)
-    {
-        HoldingWoundable = existing.HoldingWoundable;
-        WoundSeverityPoint = existing.WoundSeverityPoint;
-        WoundableIntegrityMultiplier = existing.WoundableIntegrityMultiplier;
-        WoundType = existing.WoundType;
-        DamageGroup = existing.DamageGroup;
-        DamageType = existing.DamageType;
-        ScarWound = existing.ScarWound;
-        IsScar = existing.IsScar;
-        WoundSeverity = existing.WoundSeverity;
-        WoundVisibility = existing.WoundVisibility;
-        CanBeHealed = existing.CanBeHealed;
-    }
 }

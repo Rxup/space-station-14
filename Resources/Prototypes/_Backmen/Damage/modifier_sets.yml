@@ -134,7 +134,7 @@
     Blunt: 0.8
     Slash: 0.8
     Piercing: 0.6
-    Stun: 0.5
+
     Cold: 0.0
     Poison: 0.0
     Radiation: 0.0
@@ -176,7 +176,6 @@
     Heat: 0.1
     Radiation: 0.1
     Caustic: 0.1
-    Stun: 0.1
 
 - type: damageModifierSet
   id: CombineArmorCP
@@ -188,7 +187,6 @@
     Heat: 0.3
     Radiation: 0.1
     Caustic: 0.1
-    Stun: 0.1
 
 - type: damageModifierSet
   id: CombineArmorElite
@@ -200,7 +198,6 @@
     Heat: 0.01
     Radiation: 0.1
     Caustic: 0.1
-    Stun: 0.1
 
 - type: damageModifierSet
   id: RaceDemon

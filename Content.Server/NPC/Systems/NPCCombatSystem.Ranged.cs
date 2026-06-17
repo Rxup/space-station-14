@@ -4,6 +4,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Wieldable.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 
@@ -179,10 +180,30 @@ public sealed partial class NPCCombatSystem
             // TODO: LOS
             // TODO: Ammo checks
             // TODO: Burst fire
-            // TODO: Cycling
             // Max rotation speed
 
             // TODO: Check if we can face
+
+            // Chambered guns spawn with an open bolt; close it before shooting.
+            if (TryComp<ChamberMagazineAmmoProviderComponent>(gunUid, out var chamber)
+                && chamber.BoltClosed == false)
+            {
+                _gun.SetBoltClosed(gunUid, chamber, true, uid);
+            }
+
+            // Two-handed weapons must be wielded before shooting.
+            if (TryComp<WieldableComponent>(gunUid, out var wieldable) && !wieldable.Wielded)
+            {
+                if (HasComp<GunRequiresWieldComponent>(gunUid)
+                    && !_wield.CanWield(gunUid, wieldable, uid, quiet: true))
+                {
+                    comp.Status = CombatStatus.Unspecified;
+                    comp.ShootAccumulator = 0f;
+                    continue;
+                }
+
+                _wield.TryWield(gunUid, wieldable, uid);
+            }
 
             if (!Enabled || !_gun.CanShoot(gun))
                 continue;

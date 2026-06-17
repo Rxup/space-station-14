@@ -110,7 +110,9 @@ public sealed partial class EconomySystem : EntitySystem
                 bankAccount.Value.Comp.AccountName = card.Comp.FullName;
                 card.Comp.StoredBankAccountNumber = bankAccount.Value.Comp.AccountNumber;
                 Dirty(card);
-                Dirty(bankAccount.Value);
+                DirtyFields(bankAccount.Value, bankAccount.Value.Comp, null,
+                    nameof(BankAccountComponent.AccountName),
+                    nameof(BankAccountComponent.AccountNumber));
                 var msg = $"Новый счет в банке №{bankAccount.Value.Comp.AccountNumber}, пин-код {bankAccount.Value.Comp.AccountPin}";
                 _chatManager.ChatMessageToOne(ChatChannel.Admin, msg, msg, EntityUid.FirstUid, false, actor.PlayerSession.Channel);
             };
@@ -237,7 +239,7 @@ public sealed partial class EconomySystem : EntitySystem
             account.Comp.AccountName = MetaData(player).EntityName;
         }
 
-        Dirty(bankAccount.Value);
+        DirtyField(bankAccount.Value, bankAccount.Value.Comp, nameof(BankAccountComponent.AccountName));
         return true;
     }
 

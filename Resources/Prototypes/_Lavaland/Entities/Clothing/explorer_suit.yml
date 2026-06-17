@@ -305,6 +305,8 @@
     equippedState: hev2-equipped-OUTERCLOTHING
   - type: ExplosionResistance
     damageCoefficient: 0.2
+  - type: StaminaResistance
+    damageCoefficient: 0.7
   - type: Armor
     coverage:
     - Groin
@@ -323,7 +325,7 @@
         Cold: 0.1
         Radiation: 0.1
         Caustic: 0.1
-        Stun: 0.7
+
   - type: ClothingGrant
     component:
     - type: FleshWorm

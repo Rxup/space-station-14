@@ -1,0 +1,87 @@
+# Jumpsuit
+- type: loadout
+  id: BKCCSecOfficerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomPrivateOfficer
+
+# Backpack
+- type: loadout
+  id: BKCCSecOfficerBackpack
+  equipment:
+    back: ClothingCentcomBackpack
+  storage:
+    back:
+    - MedkitCombatFilled
+    - MagazineRifleFamas556UEG
+    - MagazinePistol9x17
+
+# Shoes
+- type: loadout
+  id: BKCCSecOfficerShoes
+  equipment:
+    shoes: ClothingShoesBootsCentcom
+
+# Neck
+- type: loadout
+  id: BKCCSecOfficerNeck
+  equipment:
+    neck: CombatKnifeSpetsnaz
+
+# Eyes
+- type: loadout
+  id: BKCCSecOfficerEyes
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+
+# Gloves
+- type: loadout
+  id: BKCCSecOfficerGloves
+  equipment:
+    gloves: ClothingHandsGlovesCombat
+
+# Head
+- type: loadout
+  id: BKCCSecOfficerHead
+  equipment:
+    head: ClothingHeadHelmetCentcom
+
+# OuterClothing
+- type: loadout
+  id: BKCCSecOfficerOuterClothing
+  equipment:
+    outerClothing: ClothingOuterArmorCentcom
+
+# SuitStorage
+- type: loadout
+  id: BKCCSecOfficerSuitStorage
+  equipment:
+    suitstorage: WeaponRifleFamas
+
+# PDA
+- type: loadout
+  id: BKCCSecOfficerPDA
+  equipment:
+    id: CentComPrivateOfficerPDA
+
+# Ears
+- type: loadout
+  id: BKCCSecOfficerEars
+  equipment:
+    ears: ClothingHeadsetCentComCC
+
+# Belt
+- type: loadout
+  id: BKCCSecOfficerBelt
+  equipment:
+    belt: ClothingBeltSecuritySuper
+
+# Pockets
+- type: loadout
+  id: BKCCSecOfficerPocket1
+  equipment:
+    pocket1: WeaponPistolG23
+
+- type: loadout
+  id: BKCCSecOfficerPocket2
+  equipment:
+    pocket2: MagazinePistol9x17

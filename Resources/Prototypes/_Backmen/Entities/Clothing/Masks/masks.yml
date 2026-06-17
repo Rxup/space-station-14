@@ -69,7 +69,8 @@
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.65
-        Slash: 0.65
-        Piercing: 0.70
-        Heat: 0.70
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.95
+        ArmorPiercing: 0.95
+        Heat: 0.95

@@ -181,6 +181,6 @@ public sealed partial class PsionicsSystem : SharedPsionicsSystem
 
         RollPsionics(ent!, multiplier: bonusMuliplier);
         ent.Comp.Rerolled = true;
-        Dirty(ent);
+        DirtyField(ent, ent.Comp, nameof(PotentialPsionicComponent.Rerolled));
     }
 }

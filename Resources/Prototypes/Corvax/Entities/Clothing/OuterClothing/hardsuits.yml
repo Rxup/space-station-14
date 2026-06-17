@@ -17,6 +17,8 @@
   - type: TemperatureProtection
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
+  - type: StaminaResistance
+    damageCoefficient: 0.2
   - type: Armor
     coverage:
     - Groin
@@ -36,7 +38,7 @@
         Cold: 0.1
         Shock: 0.1
         Radiation: 0.1
-        Stun: 0.2
+
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: ToggleableClothing

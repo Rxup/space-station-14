@@ -246,8 +246,6 @@
   abstract: true
   components:
   - type: Consciousness # backmen
-    cap: 250
-    threshold: 100
   - type: Absorbable # Changeling
   - type: DiseaseCarrier # backmen
   - type: Targeting # backmen: surgery

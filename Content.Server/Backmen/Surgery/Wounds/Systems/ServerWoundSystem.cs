@@ -441,11 +441,14 @@ public sealed partial class ServerWoundSystem : WoundSystem
         // if wounds amount somehow changes it triggers an enumeration error. owch
         woundableComp.AllowWounds = false;
         woundableComp.WoundableSeverity = WoundableSeverity.Loss;
+        DirtyFields(woundableEntity, woundableComp, null,
+            nameof(WoundableComponent.AllowWounds),
+            nameof(WoundableComponent.WoundableSeverity));
 
         if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
         {
             targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
-            Dirty(bodyPart.Body.Value, targeting);
+            DirtyField(bodyPart.Body.Value, targeting, nameof(TargetingComponent.BodyStatus));
 
             RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
         }
@@ -547,7 +550,9 @@ public sealed partial class ServerWoundSystem : WoundSystem
         AmputateWoundableSafely(parentWoundableEntity, woundableEntity, woundableComp, parentWoundableComp);
         Throwing.TryThrow(woundableEntity, Random.NextAngle().ToWorldVec() * 7f, Random.Next(8, 24));
 
-        Dirty(woundableEntity, woundableComp);
+        DirtyFields(woundableEntity, woundableComp, null,
+            nameof(WoundableComponent.WoundableSeverity),
+            nameof(WoundableComponent.AllowWounds));
     }
 
     [PublicAPI]
@@ -573,7 +578,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
         if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
         {
             targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
-            Dirty(bodyPart.Body.Value, targeting);
+            DirtyField(bodyPart.Body.Value, targeting, nameof(TargetingComponent.BodyStatus));
 
             RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
         }
@@ -598,7 +603,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
         // Still does the funny popping, if the children are critted. for the funny :3
         DestroyWoundableChildren(woundableEntity, woundableComp);
 
-        Dirty(woundableEntity, woundableComp);
+        DirtyField(woundableEntity, woundableComp, nameof(WoundableComponent.WoundableSeverity));
 
         var bodyPartId = container.ID;
         Body.DetachPart(
@@ -748,7 +753,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
         Xform.SetParent(wound, target);
         woundComponent.HoldingWoundable = target;
-        woundComponent.DamageGroup = damageGroup;
+        SetWoundDamageGroup(woundComponent, damageGroup);
 
         if (!Containers.Insert(wound, woundableComponent.Wounds))
             return false;
@@ -760,8 +765,12 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
         Log.Debug($"Wound: {woundMeta.EntityPrototype!.ID}({wound}) created on {targetMeta.EntityPrototype!.ID}({target})");
 
-        Dirty(wound, woundComponent);
-        Dirty(target, woundableComponent);
+        DirtyFields(wound, woundComponent, null,
+            nameof(WoundComponent.HoldingWoundable),
+            nameof(WoundComponent.NetworkedDamageGroup),
+            nameof(WoundComponent.WoundSeverityPoint),
+            nameof(WoundComponent.WoundSeverity));
+        SyncWoundDamageGroup(woundComponent);
 
         return true;
     }
