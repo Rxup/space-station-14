@@ -15,3 +15,33 @@
     gloves: ClothingHandsGlovesColorYellowBudget
   inhand:
     - WeaponSniperMosinAI
+
+- type: startingGear
+  id: GreyTideAIRifle
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    mask: ClothingMaskGas
+    gloves: ClothingHandsGlovesColorYellowBudget
+  inhand:
+    - WeaponAKMSRifleAI
+
+- type: startingGear
+  id: GreyTideAIShotgun
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    mask: ClothingMaskGas
+    gloves: ClothingHandsGlovesColorYellowBudget
+  inhand:
+    - WeaponShotgun39AI
+
+- type: startingGear
+  id: GreyTideAIDeagle
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    mask: ClothingMaskGas
+    gloves: ClothingHandsGlovesColorYellowBudget
+  inhand:
+    - WeaponPistolDEagleAI
