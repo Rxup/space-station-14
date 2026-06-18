@@ -1,0 +1,14 @@
+vent-crawler-verb-enter = Залезть в вентиляцию
+vent-crawler-verb-exit = Вылезти из вентиляции
+vent-crawler-entered = Вы протискиваетесь в вентиляционную шахту.
+vent-crawler-exited = Вы вылезаете из вентиля.
+vent-crawler-dead-end = Труба здесь заканчивается.
+vent-crawler-welded = Вентиль заварен.
+vent-crawler-too-far = Вы слишком далеко от вентиля.
+vent-crawler-no-pipe = Этот вентиль не подключён к трубам.
+vent-crawler-not-vent = Это не вентиль.
+vent-crawler-already-inside = Вы уже внутри вентиляции.
+vent-crawler-cooldown = Нужно подождать, прежде чем снова залезать в вентиль.
+vent-crawler-exit-fail = Вылезти можно только через воздушный вентиль.
+vent-crawler-equipped = Нельзя ползать по вентиляции, пока вы на чьём-то лице.
+vent-crawler-pipe-broken = Труба ломается — вас выбрасывает наружу!

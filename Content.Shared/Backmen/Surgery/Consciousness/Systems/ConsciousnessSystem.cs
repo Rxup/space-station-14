@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Systems;
@@ -32,6 +33,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
 
     [Dependency] protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery = default!;
     [Dependency] protected EntityQuery<MobStateComponent> MobStateQuery = default!;
+    [Dependency] protected EntityQuery<PainImmuneComponent> PainImmuneQuery = default!;
 
     public override void Initialize()
     {
@@ -152,7 +154,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             return;
 
         var newMobState = MobState.Alive;
-        if (TryGetNerveSystem(target, out var nerveSys))
+        if (!PainImmuneQuery.HasComp(target) && TryGetNerveSystem(target, out var nerveSys))
         {
             var comp = nerveSys.Value.Comp;
             if (comp.Pain >= comp.SoftPainCap || comp.ForcePainCrit)

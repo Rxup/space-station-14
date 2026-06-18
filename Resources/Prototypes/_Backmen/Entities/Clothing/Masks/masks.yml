@@ -16,6 +16,8 @@
   - type: Clothing
     sprite: Backmen/Clothing/Mask/inteq_infiltrator.rsi
   - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
     modifiers:
       coefficients:
         Blunt: 0.95

@@ -17,7 +17,7 @@
   - type: GhostRole
     allowSpeech: false
     name: ghost-role-information-headcrab-name
-    description: ghost-role-information-headcrab-description 
+    description: ghost-role-information-headcrab-description
     raffle:
       settings: short
   - type: Sprite
@@ -66,6 +66,10 @@
     size: Large
   - type: Clothing
     quickEquip: false
+    equippedState: equipped-MASK
+    clothingVisuals:
+      mask:
+        - state: equipped-MASK
     unequipDelay: 3
     stripDelay: 3
     slots:

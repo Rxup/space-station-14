@@ -21,6 +21,10 @@
   # backmen edit end
   - type: StaticPrice
     price: 25
+  - type: Armor
+    coverage: # backmen: armour coverage
+    - Head
+    modifiers: {}
 
 - type: entity
   abstract: true

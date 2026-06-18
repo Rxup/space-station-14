@@ -63,6 +63,7 @@
   parent: MobHuman
   components:
     - type: SpellbookUser
+    - type: PainImmune
     - type: GhostRole
       name: Urist McWizard
       description: |
@@ -142,6 +143,7 @@
   parent: MobHuman
   components:
     - type: AutoPsi # backmen: SuperPsi
+    - type: PainImmune
     - type: GhostTakeoverAvailable
     - type: GhostRole
       name: Urist McNars

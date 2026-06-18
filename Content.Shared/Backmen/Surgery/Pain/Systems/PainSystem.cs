@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.HealthExaminable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
@@ -24,9 +25,18 @@ public abstract partial class PainSystem : EntitySystem
         SubscribeLocalEvent<NerveSystemComponent, AfterAutoHandleStateEvent>(OnNerveSystemAfterAutoHandleState);
         SubscribeLocalEvent<NerveSystemComponent, EntityTerminatingEvent>(OnNerveSystemTerminating);
         SubscribeLocalEvent<NerveComponent, AfterAutoHandleStateEvent>(OnNerveAfterAutoHandleState);
+        SubscribeLocalEvent<PainImmuneComponent, HealthBeingExaminedEvent>(OnPainImmuneHealthExamined);
 
         NerveSystemQuery = GetEntityQuery<NerveSystemComponent>();
         NerveQuery = GetEntityQuery<NerveComponent>();
+    }
+
+    private void OnPainImmuneHealthExamined(Entity<PainImmuneComponent> ent, ref HealthBeingExaminedEvent args)
+    {
+        if (!args.Message.IsEmpty)
+            args.Message.PushNewline();
+
+        args.Message.TryAddMarkup(Loc.GetString("pain-immune-health-examine", ("target", ent.Owner)), out _);
     }
 
     private void OnNerveSystemTerminating(Entity<NerveSystemComponent> ent, ref EntityTerminatingEvent args)

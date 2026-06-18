@@ -15,6 +15,7 @@ health-analyzer-window-damage-type-text = { $damageType }: { $amount }
 health-analyzer-window-entity-unrevivable-text = [color=red]Обнаружено уникальное строение тела! Пациент не может быть реанимирован стандартными средствами![/color]
 health-analyzer-window-entity-bleeding-text = У пациента кровотечение!
 health-analyzer-window-entity-diseased-text = [color=orange]Пациент заражён болезнью![/color]
+health-analyzer-window-entity-pain-immune-text = [color=yellow]Похоже, пациент не чувствует боли.[/color]
 health-analyzer-window-organ-damage-present = В организме присутствуют травмы органов!
 health-analyzer-window-bone-damage-present = В организме присутствуют травмы костей!
 health-analyzer-window-scan-mode-text = Режим сканирования:

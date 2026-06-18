@@ -9,6 +9,8 @@ flesh-pudge-throw-worm-hit-mob = You have latched onto { CAPITALIZE($entity) }'s
 flesh-pudge-throw-worm-hit-user = The worm has latched onto your face!
 flesh-pudge-throw-worm-desc = Vomit a worm from your flesh and hold it in your hand to throw at enemies.
 
+flesh-worm-wearer-examine = [color=red]{ CAPITALIZE(THE($ent)) } is latched onto { SUBJECT($target) } face![/color]
+
 flesh-worm-verb-remove = Pull off worm
 flesh-worm-remove-start-user = You start pulling the worm off {THE($worm)}.
 flesh-worm-remove-start-wearer = {CAPITALIZE(THE($user))} is trying to pull the worm off your face!

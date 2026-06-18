@@ -120,6 +120,9 @@
       quickEquip: false
       sprite: Backmen/test/base/rsi/Textures/Mob/headcrab.rsi
       equippedState: equipped-HELMET
+      clothingVisuals:
+        mask:
+          - state: equipped-HELMET
       slots:
         - MASK
     - type: FleshWorm
@@ -288,9 +291,6 @@
       210: 1
   - type: Damageable
     damageModifierSet: CombineArmor
-  - type: StaminaResistance
-    damageCoefficient: 0.1
-    worn: false
   - type: MovementSpeedModifier
     baseSprintSpeed: 5
   - type: Loadout
@@ -343,9 +343,6 @@
       100: Dead
   - type: Damageable
     damageModifierSet: CombineArmorCP
-  - type: StaminaResistance
-    damageCoefficient: 0.1
-    worn: false
   - type: Loadout
     prototypes: [NPCSecurity]
 
@@ -422,9 +419,6 @@
       sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: Damageable
     damageModifierSet: CombineArmorElite
-  - type: StaminaResistance
-    damageCoefficient: 0.1
-    worn: false
   - type: Loadout
     prototypes: [NPCSecurityHeavy]
 
@@ -681,7 +675,7 @@
   - type: Damageable
     damageModifierSet: CombineArmor
   - type: StaminaResistance
-    damageCoefficient: 0.1
+    damageCoefficient: 0.75
     worn: false
 
 - type: entity
@@ -773,7 +767,7 @@
   - type: Damageable
     damageModifierSet: CombineArmor
   - type: StaminaResistance
-    damageCoefficient: 0.1
+    damageCoefficient: 0.75
     worn: false
 
 - type: entity

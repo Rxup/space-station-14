@@ -1,5 +1,6 @@
 ﻿using Content.Server.Fluids.EntitySystems;
 using Content.Server.Popups;
+using System.Linq;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
@@ -30,6 +31,8 @@ namespace Content.Server.Body.Systems;
 public sealed partial class BloodstreamSystem : SharedBloodstreamSystem
 {
     // backmen edit start
+    private static readonly HashSet<string> CauterizingDamageTypes = ["Heat", "Cold"];
+
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private WoundSystem _wound = default!;
@@ -53,6 +56,7 @@ public sealed partial class BloodstreamSystem : SharedBloodstreamSystem
         // backmen edit start
         SubscribeLocalEvent<BleedInflicterComponent, WoundHealAttemptEvent>(OnWoundHealAttempt);
         SubscribeLocalEvent<BleedInflicterComponent, WoundChangedEvent>(OnWoundChanged);
+        SubscribeLocalEvent<WoundableComponent, WoundsChangedEvent>(OnWoundsChanged);
 
         Subs.CVar(_cfg, CCVars.BleedingSeverityTrade, value => _bleedingSeverityTrade = value, true);
         Subs.CVar(_cfg, CCVars.BleedsScalingTime, value => _bleedsScalingTime = value, true);
@@ -113,41 +117,36 @@ public sealed partial class BloodstreamSystem : SharedBloodstreamSystem
             args.Cancelled = true;
     }
 
+    private void OnWoundsChanged(Entity<WoundableComponent> ent, ref WoundsChangedEvent args)
+    {
+        if (!args.DamageIncreased)
+            return;
+
+        var cauterizers = new HashSet<string>();
+
+        foreach (var wound in args.AddedWounds)
+        {
+            if (wound.Comp.WoundSeverityPoint > 0 && CauterizingDamageTypes.Contains(wound.Comp.DamageType))
+                cauterizers.Add(wound.Comp.DamageType);
+        }
+
+        foreach (var (wound, delta) in args.ChangedWounds)
+        {
+            if (delta > 0 && CauterizingDamageTypes.Contains(wound.Comp.DamageType))
+                cauterizers.Add(wound.Comp.DamageType);
+        }
+
+        if (cauterizers.Count == 0)
+            return;
+
+        TryCauterizeBleedingWounds(ent, cauterizers);
+    }
+
     private void OnWoundChanged(EntityUid uid, BleedInflicterComponent component, ref WoundChangedEvent args)
     {
         if (args.Component.WoundSeverityPoint < component.SeverityThreshold)
         {
-            var woundable = args.Component.HoldingWoundable;
-            if (!_woundableQuery.TryComp(woundable, out var woundableComp)
-                || !TryComp(woundable, out BodyPartComponent? bodyPart) || !bodyPart.Body.HasValue)
-                return;
-
-            var bodyEnt = bodyPart.Body.Value;
-            var bloodstream = Comp<BloodstreamComponent>(bodyEnt);
-
-            if (args.Delta <= bloodstream.BloodHealedSoundThreshold
-                     && component.IsBleeding && component.CauterizedBy.Contains(args.Component.DamageType))
-            {
-                foreach (var wound in
-                         _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(woundable, woundableComp))
-                {
-                    var bleeds = wound.Comp2;
-                    if (!bleeds.IsBleeding)
-                        continue;
-
-                    if (!bleeds.CauterizedBy.Contains(args.Component.DamageType))
-                        continue;
-
-                    bleeds.BleedingAmountRaw = 0;
-                    bleeds.SeverityPenalty = 0;
-                    bleeds.Scaling = 0;
-
-                    bleeds.IsBleeding = false;
-                }
-
-                _audio.PlayPvs(bloodstream.BloodHealedSound, bodyEnt);
-                _popupSystem.PopupEntity(Loc.GetString("bloodstream-component-wounds-cauterized"), bodyEnt, bodyEnt, PopupType.Medium);
-            }
+            return;
         }
         else
         {
@@ -203,6 +202,49 @@ public sealed partial class BloodstreamSystem : SharedBloodstreamSystem
         }
 
         Dirty(uid, component);
+    }
+
+    private void TryCauterizeBleedingWounds(Entity<WoundableComponent> woundable, HashSet<string> cauterizers)
+    {
+        if (!TryComp<BodyPartComponent>(woundable, out var bodyPart) || !bodyPart.Body.HasValue)
+            return;
+
+        if (!TryComp<BloodstreamComponent>(bodyPart.Body.Value, out var bloodstream))
+            return;
+
+        var anyCauterized = false;
+
+        foreach (var wound in _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(woundable, woundable.Comp))
+        {
+            var bleeds = wound.Comp2;
+            if (!bleeds.IsBleeding)
+                continue;
+
+            if (!bleeds.CauterizedBy.Any(cauterizers.Contains))
+                continue;
+
+            StopWoundBleeding(wound, bleeds);
+            anyCauterized = true;
+        }
+
+        if (!anyCauterized)
+            return;
+
+        _audio.PlayPvs(bloodstream.BloodHealedSound, bodyPart.Body.Value);
+        _popupSystem.PopupEntity(
+            Loc.GetString("bloodstream-component-wounds-cauterized"),
+            bodyPart.Body.Value,
+            bodyPart.Body.Value,
+            PopupType.Medium);
+    }
+
+    private void StopWoundBleeding(EntityUid wound, BleedInflicterComponent bleeds)
+    {
+        bleeds.BleedingAmountRaw = 0;
+        bleeds.SeverityPenalty = 0;
+        bleeds.Scaling = 0;
+        bleeds.IsBleeding = false;
+        Dirty(wound, bleeds);
     }
 
     /// <summary>

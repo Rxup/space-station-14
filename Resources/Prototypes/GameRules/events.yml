@@ -345,6 +345,7 @@
         #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
       # TODO: WizardComp as needed
       components:
+      - type: PainImmune
       - type: NpcFactionMember
         factions:
         - Wizard

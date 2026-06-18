@@ -16,9 +16,6 @@
         rangeKey: MeleeRange
 
     - !type:HTNPrimitiveTask
-      preconditions:
-      - !type:KeyExistsPrecondition
-        key: Target
       operator: !type:ClearIngestionBlockersOperator
 
     - !type:HTNPrimitiveTask
@@ -49,9 +46,6 @@
         rangeKey: MeleeRange
 
     - !type:HTNPrimitiveTask
-      preconditions:
-      - !type:KeyExistsPrecondition
-        key: Target
       operator: !type:ClearIngestionBlockersOperator
 
     - !type:HTNPrimitiveTask

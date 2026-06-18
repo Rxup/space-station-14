@@ -24,6 +24,10 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+  - type: Armor
+    coverage: # backmen: armor coverage
+    - Head
+    modifiers: {}
 
 - type: entity
   abstract: true
@@ -272,6 +276,8 @@
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.90
   - type: Armor # so zombification resistance shows up
+    coverage: # backmen: armor coverage
+    - Head
     modifiers:
       coefficients: { }
   - type: GroupExamine

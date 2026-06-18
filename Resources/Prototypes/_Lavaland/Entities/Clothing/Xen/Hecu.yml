@@ -15,7 +15,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: StaminaResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.75
   - type: Armor
     coverage:
     - Groin

@@ -1,5 +1,6 @@
 using Content.Server.Medical.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -50,6 +51,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private ServerConsciousnessSystem _consciousnessSystem = default!; // backmen: pain
+
+    [Dependency] private EntityQuery<PainImmuneComponent> _painImmuneQuery = default!;
 
     public override void Initialize()
     {
@@ -277,6 +280,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         // Start-backmen: pain
         var painCauses = _consciousnessSystem.GetPainCauses(target);
         var totalPain = _consciousnessSystem.GetTotalPain(target);
+        var painImmune = _painImmuneQuery.HasComp(target);
         // End-backmen: pain
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
@@ -289,7 +293,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             body, // backmen: surgery
             part != null ? GetNetEntity(part) : null, // backmen: surgery
             painCauses, // backmen: pain
-            totalPain // backmen: pain
+            totalPain, // backmen: pain
+            painImmune // backmen: pain
         ));
     }
 }

@@ -53,7 +53,7 @@
         Blunt: 1.5
     deactivatedSecret: true
   - type: StaminaDamageOnHit
-    damage: 16
+    damage: 22
     sound: /Audio/Weapons/boxingpunch1.ogg
   - type: UseDelay
     delay: 0.4

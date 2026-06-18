@@ -1,0 +1,6 @@
+- type: soundCollection
+  id: VentCrawlerStep
+  files:
+  - /Audio/Effects/metal_scrape1.ogg
+  - /Audio/Effects/metal_scrape2.ogg
+  - /Audio/Effects/metal_scrape3.ogg

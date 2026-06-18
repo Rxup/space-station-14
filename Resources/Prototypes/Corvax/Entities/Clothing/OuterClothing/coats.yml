@@ -68,8 +68,8 @@
       sprite: Corvax/Clothing/OuterClothing/Coats/sec_leather.rsi
     - type: Clothing
       sprite: Corvax/Clothing/OuterClothing/Coats/sec_leather.rsi
-    - type: StaminaResistance
-      damageCoefficient: 0.9
+  - type: StaminaResistance
+    damageCoefficient: 0.92
     - type: Armor # Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14. :x:
       coverage: # backmen: armour coverage
       - Chest
@@ -117,7 +117,7 @@
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/Coats/captain.rsi
   - type: StaminaResistance
-    damageCoefficient: 0.6
+    damageCoefficient: 0.85
   - type: Armor
     coverage:
     - Groin
