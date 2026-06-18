@@ -29,6 +29,31 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtCapFormalDress
 
+- type: loadout
+  id: JumpsuitCommandCaptain
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCommandCaptain
+
+- type: loadout
+  id: JumpsuitSheriff
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSheriff
+
+- type: loadout
+  id: JumpsuitWhiteCapTurtleneck
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitWhiteCapTurtleneck
+
+- type: loadout
+  id: JumpsuitWhiteCaptain
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitWhiteCaptain
+
+- type: loadout
+  id: JumpskirtWhiteCaptain
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtWhiteCaptain
+
 # Head
 - type: loadout
   id: CaptainHead
@@ -39,6 +64,31 @@
   id: CaptainCap
   equipment:
     head: ClothingHeadHatCapcap
+
+- type: loadout
+  id: CaptainHat
+  equipment:
+    head: ClothingHeadCaptainHat
+    
+- type: loadout
+  id: CapcapSheriff
+  equipment:
+    head: ClothingHeadHatCapcapSheriff
+    
+- type: loadout
+  id: BeretSheriff
+  equipment:
+    head: ClothingHeadHatBeretSheriff
+    
+- type: loadout
+  id: CapcapWhite
+  equipment:
+    head: ClothingHeadHatCapcapWhite
+    
+- type: loadout
+  id: BeretCaptainWhite
+  equipment:
+    head: ClothingHeadHatBeretCaptainWhite
 
 # Neck
 - type: loadout
@@ -80,6 +130,11 @@
   equipment:
     back: ClothingBackpackDuffelCaptain
 
+- type: loadout
+  id: CaptainDuffelWhite
+  equipment:
+    back: ClothingBackpackDuffelWhiteCaptain
+
 # Outer clothing
 - type: loadout
   id: CaptainOuterClothing
@@ -87,6 +142,58 @@
     outerClothing: ClothingOuterArmorCaptainCarapace
 
 - type: loadout
+  id: CaptainOuterClothingWhite
+  equipment:
+    outerClothing: ClothingOuterArmorCaptainCarapaceWhite
+
+- type: loadout
+  id: CaptainOuterClothingCoat
+  equipment:
+    outerClothing: ClothingOuterCoatCaptain
+
+- type: loadout
+  id: CaptainOuterClothingCoatSheriff
+  equipment:
+    outerClothing: ClothingOuterCoatCaptainSheriff
+
+- type: loadout
+  id: CaptainOuterClothingCoatWhite
+  equipment:
+    outerClothing: ClothingOuterCoatCaptainWhite
+
+- type: loadout
   id: CaptainWintercoat
   equipment:
     outerClothing: ClothingOuterWinterCap
+
+# Плюшки
+- type: loadout
+  id: PlushieJobCaptain
+  equipment:
+    outerClothing: PlushieLizardJobCaptain
+
+- type: loadout
+  id: ToyCaptain
+  equipment:
+    outerClothing: ToyFigurineCaptain
+
+- type: loadout
+  id: DrinkFlask
+  equipment:
+    outerClothing: DrinkFlask
+
+# Перчатки
+- type: loadout
+  id: CaptainGloves
+  equipment:
+    gloves: ClothingHandsGlovesCaptain
+
+- type: loadout
+  id: SheriffGloves
+  equipment:
+    gloves: ClothingHandsGlovesSheriff
+
+- type: loadout
+  id: CaptainWhiteGloves
+  equipment:
+    gloves: ClothingHandsGlovesCaptainWhite

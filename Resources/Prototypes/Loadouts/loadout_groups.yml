@@ -133,6 +133,11 @@
   loadouts:
   - CaptainHead
   - CaptainCap
+  - CaptainHat 
+  - CapcapSheriff
+  - BeretSheriff
+  - CapcapWhite
+  - BeretCaptainWhite
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -146,6 +151,11 @@
   - CaptainJumpsuitTurtleneck
   - CaptainJumpskirtTurtleneck
   # Corvax-Loadouts-End
+  - JumpsuitCommandCaptain
+  - JumpsuitSheriff
+  - JumpsuitWhiteCapTurtleneck
+  - JumpsuitWhiteCaptain
+  - JumpskirtWhiteCaptain
 
 - type: loadoutGroup
   id: CaptainNeck
@@ -164,13 +174,34 @@
   - CaptainSatchel
   - CaptainDuffel
   - CaptainMessenger # Backmen
+  - CaptainDuffelWhite
 
 - type: loadoutGroup
   id: CaptainOuterClothing
   name: loadout-group-captain-outerclothing
   loadouts:
   - CaptainOuterClothing
+  - CaptainOuterClothingWhite
+  - CaptainOuterClothingCoat
+  - CaptainOuterClothingCoatSheriff
+  - CaptainOuterClothingCoatWhite
   - CaptainWintercoat
+
+- type: loadoutGroup
+  id: CaptainBonus
+  name: loadout-group-captain-bonus
+  loadouts:
+  - PlushieJobCaptain
+  - ToyCaptain
+  - DrinkFlask
+
+- type: loadoutGroup
+  id: CaptainShoes
+  name: loadout-group-captain-glasses
+  loadouts:
+  - CaptainGloves
+  - SheriffGloves
+  - CaptainWhiteGloves
 
 - type: loadoutGroup
   id: HoPHead
