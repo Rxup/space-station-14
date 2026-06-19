@@ -11,11 +11,7 @@
       "name": "full"
     },
     {
-      "name": "head_f",
-      "directions": 4
-    },
-    {
-      "name": "head_m",
+      "name": "head",
       "directions": 4
     },
     {
@@ -51,19 +47,7 @@
       "directions": 4
     },
     {
-      "name": "chest_f",
-      "directions": 4
-    },
-    {
-      "name": "chest_m",
-      "directions": 4
-    },
-    {
-      "name": "groin_f",
-      "directions": 4
-    },
-    {
-      "name": "groin_m",
+      "name": "torso",
       "directions": 4
     },
     {
