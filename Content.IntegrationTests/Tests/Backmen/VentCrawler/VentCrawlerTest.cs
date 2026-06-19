@@ -181,14 +181,14 @@ public sealed class VentCrawlerTest
 
         await pair.RunTicksSync(30);
 
-        await server.WaitAssertion(() =>
+        await server.WaitPost(() =>
         {
             var damage = new DamageSpecifier();
-            damage.DamageDict.Add("Blunt", 100);
+            damage.DamageDict.Add("Blunt", 200);
             server.EntMan.System<DamageableSystem>().TryChangeDamage(pipe, damage);
         });
 
-        await pair.RunTicksSync(10);
+        await pair.RunTicksSync(15);
 
         await server.WaitAssertion(() =>
         {

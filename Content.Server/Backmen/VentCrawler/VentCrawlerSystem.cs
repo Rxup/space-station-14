@@ -359,7 +359,7 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
 
     public bool IsValidCrawlPipe(EntityUid uid)
     {
-        if (!uid.IsValid() || TerminatingOrDeleted(uid))
+        if (!uid.IsValid() || TerminatingOrDeleted(uid) || EntityManager.IsQueuedForDeletion(uid))
             return false;
 
         if (MetaData(uid).EntityPrototype is { ID: var protoId } && protoId == GasPipeBrokenPrototype)
