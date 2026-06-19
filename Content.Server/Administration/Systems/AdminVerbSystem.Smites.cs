@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using System.Threading;
 using Content.Server.Atmos.EntitySystems;
@@ -20,9 +21,8 @@ using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clumsy;
 using Content.Shared.Cluwne;
@@ -65,38 +65,39 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    private static readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
-    private static readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
+    private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
+    private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
 
-    [Dependency] private SharedActionsSystem _actions = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private BodySystem _bodySystem = default!;
-    [Dependency] private CreamPieSystem _creamPieSystem = default!;
-    [Dependency] private ElectrocutionSystem _electrocutionSystem = default!;
-    [Dependency] private EntityStorageSystem _entityStorageSystem = default!;
-    [Dependency] private ExplosionSystem _explosionSystem = default!;
-    [Dependency] private FixtureSystem _fixtures = default!;
-    [Dependency] private FlammableSystem _flammableSystem = default!;
-    [Dependency] private GhostKickManager _ghostKickManager = default!;
-    [Dependency] private SharedGodmodeSystem _sharedGodmodeSystem = default!;
-    [Dependency] private InventorySystem _inventorySystem = default!;
-    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
-    [Dependency] private PolymorphSystem _polymorphSystem = default!;
-    [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private PopupSystem _popupSystem = default!;
-    [Dependency] private SharedPhysicsSystem _physics = default!;
-    [Dependency] private RoleSystem _role = default!;
-    [Dependency] private TabletopSystem _tabletopSystem = default!;
-    [Dependency] private VomitSystem _vomitSystem = default!;
-    [Dependency] private WeldableSystem _weldableSystem = default!;
-    [Dependency] private SharedContentEyeSystem _eyeSystem = default!;
-    [Dependency] private SharedTransformSystem _transformSystem = default!;
-    [Dependency] private SuperBonkSystem _superBonkSystem = default!;
-    [Dependency] private SlipperySystem _slipperySystem = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
+    [Dependency] private readonly CreamPieSystem _creamPieSystem = default!;
+    [Dependency] private readonly ElectrocutionSystem _electrocutionSystem = default!;
+    [Dependency] private readonly EntityStorageSystem _entityStorageSystem = default!;
+    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
+    [Dependency] private readonly FixtureSystem _fixtures = default!;
+    [Dependency] private readonly FlammableSystem _flammableSystem = default!;
+    [Dependency] private readonly GhostKickManager _ghostKickManager = default!;
+    [Dependency] private readonly SharedGodmodeSystem _sharedGodmodeSystem = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
+    [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly RoleSystem _role = default!;
+    [Dependency] private readonly TabletopSystem _tabletopSystem = default!;
+    [Dependency] private readonly VomitSystem _vomitSystem = default!;
+    [Dependency] private readonly WeldableSystem _weldableSystem = default!;
+    [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly SuperBonkSystem _superBonkSystem = default!;
+    [Dependency] private readonly SlipperySystem _slipperySystem = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
-    private static readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
+    private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
 
     private readonly EntProtoId _siliconMindRole = "MindRoleSiliconBrain";
     private const string SiliconLawBoundUserInterface = "SiliconLawBoundUserInterface";
@@ -307,7 +308,6 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(bloodRemoval);
         }
 
-        // bobby...
         if (TryComp<BodyComponent>(args.Target, out var body))
         {
             var vomitOrgansName = Loc.GetString("admin-smite-vomit-organs-name").ToLowerInvariant();
@@ -319,14 +319,14 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     _vomitSystem.Vomit(args.Target, -1000, -1000); // You feel hollow!
-                    var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, body));
+                    _bodySystem.TryGetOrgansWithComponent<TransformComponent>((args.Target, body), out var organs);
                     var baseXform = Transform(args.Target);
                     foreach (var organ in organs)
                     {
                         if (HasComp<BrainComponent>(organ.Owner) || HasComp<EyeComponent>(organ.Owner))
                             continue;
 
-                        _transformSystem.PlaceNextTo((organ.Owner, organ.Comp1), (args.Target, baseXform));
+                        _transformSystem.PlaceNextTo((organ.Owner, organ.Comp), (args.Target, baseXform));
                     }
 
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-vomit-organs-self"), args.Target,
@@ -348,9 +348,11 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand))
+                    var parts = new HashSet<ProtoId<OrganCategoryPrototype>>() { "HandRight", "HandLeft" };
+                    _bodySystem.TryGetOrgansWithComponent<OrganComponent>((args.Target, body), out var organs);
+                    foreach (var organ in organs.Where(it => it.Comp.Category is { } category && parts.Contains(category)))
                     {
-                        _transformSystem.AttachToGridOrMap(part.Id);
+                        _transformSystem.AttachToGridOrMap(organ);
                     }
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-remove-hands-self"), args.Target,
                         args.Target, PopupType.LargeCaution);
@@ -371,9 +373,11 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand, body))
+                    var parts = new HashSet<ProtoId<OrganCategoryPrototype>>() { "HandRight", "HandLeft" };
+                    _bodySystem.TryGetOrgansWithComponent<OrganComponent>((args.Target, body), out var organs);
+                    foreach (var organ in organs.Where(it => it.Comp.Category is { } category && parts.Contains(category)))
                     {
-                        _transformSystem.AttachToGridOrMap(part.Id);
+                        _transformSystem.AttachToGridOrMap(organ);
                         break;
                     }
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-remove-hands-self"), args.Target,
@@ -394,7 +398,8 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "stomach"),
                 Act = () =>
                 {
-                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((args.Target, body)))
+                    _bodySystem.TryGetOrgansWithComponent<StomachComponent>((args.Target, body), out var organs);
+                    foreach (var entity in organs)
                     {
                         QueueDel(entity.Owner);
                     }
@@ -415,7 +420,8 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "lung-r"),
                 Act = () =>
                 {
-                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<LungComponent>((args.Target, body)))
+                    _bodySystem.TryGetOrgansWithComponent<LungComponent>((args.Target, body), out var organs);
+                    foreach (var entity in organs)
                     {
                         QueueDel(entity.Owner);
                     }
@@ -739,47 +745,6 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(reptilian);
 
-        Verb dwarf = new()
-        {
-            Text = "Dwarf Species Swap",
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Plushies/lizard.rsi"), "icon"),
-            Act = () =>
-            {
-                _polymorphSystem.PolymorphEntity(args.Target, "BDwarfMorph");
-            },
-            Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-dwarf-species-swap-description"),
-        };
-        args.Verbs.Add(dwarf);
-
-        Verb vox = new()
-        {
-            Text = "Vox Species Swap",
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Plushies/lizard.rsi"), "icon"),
-            Act = () =>
-            {
-                _polymorphSystem.PolymorphEntity(args.Target, "BVoxMorph");
-            },
-            Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-vox-species-swap-description"),
-        };
-        args.Verbs.Add(vox);
-
-        Verb skilet = new()
-        {
-            Text = "Skilet Species Swap",
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Plushies/lizard.rsi"), "icon"),
-            Act = () =>
-            {
-                _polymorphSystem.PolymorphEntity(args.Target, "BSkeletonMorph");
-            },
-            Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-skilet-species-swap-description"),
-        };
-        args.Verbs.Add(skilet);
         var vulpName = Loc.GetString("admin-smite-vulpkanin-species-swap-name").ToLowerInvariant();
         Verb vulp = new()
         {

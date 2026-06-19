@@ -1,8 +1,4 @@
 using System.Linq;
-using Content.Server.Body.Systems;
-using Content.Server.Hands.Systems;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Destructible;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
@@ -13,7 +9,6 @@ using Content.Shared.Tag;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Tools.Innate;
 
@@ -21,11 +16,11 @@ namespace Content.Server.Tools.Innate;
 ///     Spawns a list unremovable tools in hands if possible. Used for drones,
 ///     borgs, or maybe even stuff like changeling armblades!
 /// </summary>
-public sealed partial class InnateToolSystem : EntitySystem
+public sealed class InnateToolSystem : EntitySystem
 {
-    [Dependency] private IRobustRandom _robustRandom = default!;
-    [Dependency] private SharedHandsSystem _sharedHandsSystem = default!;
-    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private readonly IRobustRandom _robustRandom = default!;
+    [Dependency] private readonly SharedHandsSystem _sharedHandsSystem = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     private static readonly ProtoId<TagPrototype> InnateDontDeleteTag = "InnateDontDelete";
 
@@ -38,34 +33,12 @@ public sealed partial class InnateToolSystem : EntitySystem
         SubscribeLocalEvent<InnateToolComponent, DestructionEventArgs>(OnDestroyed);
     }
 
-    //start-backmen: fix
-
-    public readonly EntProtoId DefaultHandPrototype = "LeftHandHuman";
-
-
-    private void AddHand(Entity<HandsComponent?> ent, int handCounter)
-    {
-        var handId = $"it-{ent.Owner}-item{handCounter}";
-        _sharedHandsSystem.AddHand(ent, handId, HandLocation.Middle);
-    }
-
-    //end-backmen: fix
-
-
     private void OnMapInit(EntityUid uid, InnateToolComponent component, MapInitEvent args)
     {
         if (component.Tools.Count == 0)
             return;
 
         component.ToSpawn = EntitySpawnCollection.GetSpawns(component.Tools, _robustRandom);
-
-        //start-backmen: fix
-        var hands = EnsureComp<HandsComponent>(uid);
-        for (var i = 0; i < component.Tools.Count; i++)
-        {
-            AddHand((uid, hands), i);
-        }
-        //end-backmen: fix
     }
 
     private void OnHandCountChanged(EntityUid uid, InnateToolComponent component, HandCountChangedEvent args)
@@ -78,13 +51,12 @@ public sealed partial class InnateToolSystem : EntitySystem
         var toSpawn = component.ToSpawn.First();
 
         var item = Spawn(toSpawn, spawnCoord);
+        AddComp<UnremoveableComponent>(item);
         if (!_sharedHandsSystem.TryPickupAnyHand(uid, item, checkActionBlocker: false))
         {
-            Del(item);
-            component.ToSpawn.Remove(toSpawn);
-            return;
+            QueueDel(item);
+            component.ToSpawn.Clear();
         }
-        AddComp<UnremoveableComponent>(item);
         component.ToSpawn.Remove(toSpawn);
         component.ToolUids.Add(item);
     }

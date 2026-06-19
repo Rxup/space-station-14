@@ -7,66 +7,6 @@
 # Window: WallSolid
 # WallSolid: Window
 # Table: null
-#
-chem_dispenser: ChemDispenser
-
-
-# 2023-05-03
-ClothingBackpackBrigmedicFilled: null
-
-
-# 2023-05-04
-WeaponSubMachineGunVector: WeaponSubMachineGunDrozd
-
-MagazineBoxAntiMaterial: MagazineBoxAntiMateriel
-CartridgeAntiMaterial: CartridgeAntiMateriel
-BulletAntiMaterial: BulletAntiMateriel
-
-# 2023-05-10
-FoodCondimentBottleSmallHotsauce: FoodCondimentBottleHotsauce
-FoodBakedCookieFortune: FoodSnackCookieFortune
-# GunSafeSubMachineGunVector: GunSafeSubMachineGunDrozd
-
-# 2023-05-24
-AMEController: AmeController
-AMEJar: AmeJar
-#AMEPart: AmePart
-AMEShielding: AmeShielding
-
-# 2023-05-29
-OrGate: null
-
-# 2023-05-31
-IHSVoidsuit: null
-ClothingHeadHelmetIHSVoidHelm: null
-ClothingHandsGlovesIhscombat: null
-
-# 2023-06-02
-# Yes, this is right. They were, in fact, reversed because the default orientation of the particle accelerator was _down_ relative to the screen.
-# This resulted in the parts being named assuming that the person building the accelerator treated it like a rocket with the particles coming out the _back_.
-# As this was confusing they were converted to nautical orientation with forward being towards the emitters.
-MachineParticleAcceleratorEmitterCenterCircuitboard: MachineParticleAcceleratorEmitterForeCircuitboard
-MachineParticleAcceleratorEmitterLeftCircuitboard: MachineParticleAcceleratorEmitterStarboardCircuitboard
-MachineParticleAcceleratorEmitterRightCircuitboard: MachineParticleAcceleratorEmitterPortCircuitboard
-ParticleAcceleratorEmitterCenter: ParticleAcceleratorEmitterFore
-ParticleAcceleratorEmitterCenterUnfinished: ParticleAcceleratorEmitterForeUnfinished
-ParticleAcceleratorEmitterLeft: ParticleAcceleratorEmitterStarboard
-ParticleAcceleratorEmitterLeftUnfinished: ParticleAcceleratorEmitterStarboardUnfinished
-ParticleAcceleratorEmitterRight: ParticleAcceleratorEmitterPort
-ParticleAcceleratorEmitterRightUnfinished: ParticleAcceleratorEmitterPortUnfinished
-
-# 2023-06-21
-WindoorArmoryLocked: WindoorSecureArmoryLocked
-WindoorBrigLocked: WindoorSecureBrigLocked
-WindoorChemistryLocked: WindoorSecureChemistryLocked
-WindoorCommandLocked: WindoorSecureCommandLocked
-WindoorEngineeringLocked: WindoorSecureEngineeringLocked
-WindoorExternalLocked: WindoorSecureExternalLocked
-WindoorMedicalLocked: WindoorSecureMedicalLocked
-WindoorSecurityLocked: WindoorSecureSecurityLocked
-WindoorScienceLocked: WindoorSecureScienceLocked
-WindoorHeadOfPersonnelLocked: WindoorSecureHeadOfPersonnelLocked
-WindoorAtmosphericsLocked: WindoorSecureAtmosphericsLocked
 
 # 2023-07-03
 ClothingHeadHelmetHelmet: ClothingHeadHelmetBasic
@@ -75,33 +15,6 @@ ClothingHeadHelmetHelmetOld: ClothingHeadHelmetBasic
 # 2023-07-04
 # Bulletproof armor is almost statistically identical to kevlar, however, before this kevlar armor was the closest thing there was to "basic" armor. It makes the most sense to replace it with this.
 ClothingOuterVestKevlar: ClothingOuterArmorBasic
-
-# 2023-07-12
-# New Vendings
-VendingMachineCigs: BackmenVendingMachineCigs
-VendingMachineCoffee: BackmenVendingMachineCoffee
-VendingMachineCola: BackmenVendingMachineCola
-VendingMachineColaBlack: BackmenVendingMachineColaBlack
-VendingMachineDiscount: BackmenVendingMachineDiscount
-VendingMachineSnack: BackmenVendingMachineSnack
-VendingMachineSnackBlue: BackmenVendingMachineSnackBlue
-VendingMachineSnackGreen: BackmenVendingMachineSnackGreen
-VendingMachineSnackOrange: BackmenVendingMachineSnackOrange
-VendingMachineSnackTeal: BackmenVendingMachineSnackTeal
-VendingMachineSovietSoda: BackmenVendingMachineSovietSoda
-VendingMachineChang: BackmenVendingMachineChang
-VendingMachineDonut: BackmenVendingMachineDonut
-VendingMachineSoda: BackmenVendingMachineSoda
-VendingMachineStarkist: BackmenVendingMachineStarkist
-VendingMachineDrGibb: BackmenVendingMachineDrGibb
-VendingMachinePwrGame: BackmenVendingMachinePwrGame
-VendingMachineShamblersJuice: BackmenVendingMachineShamblersJuice
-VendingMachineColaRed: BackmenVendingMachineColaRed
-VendingMachineSpaceUp: BackmenVendingMachineSpaceUp
-VendingMachineHappyHonk: BackmenVendingMachineHappyHonk
-# 2023-07-11 - Corvax
-# New cargo pet
-SpawnMobRaccoonMorticia: SpawnMobGorillaLargo
 
 # 2023-07-10
 Intercom: IntercomCommon
@@ -174,33 +87,6 @@ GeneratorPlasma: PortableGeneratorPacman
 GeneratorUranium: PortableGeneratorSuperPacman
 GeneratorPlasmaMachineCircuitboard: PortableGeneratorPacmanMachineCircuitboard
 GeneratorUraniumMachineCircuitboard: PortableGeneratorSuperPacmanMachineCircuitboard
-
-
-FoodTinBeansOpen: FoodTinBeans
-FoodTinMREOpen: FoodTinMRE
-
-# 2023-11-05
-WeaponRifleAk: WeaponAKMSRifle
-WeaponXrayCannon: WeaponEarthGovXRay
-WeaponLaserCarbine: WeaponEarthGovLaserRifle
-WeaponLaserCannon: WeaponEarthGovLaserSniper
-WeaponRifleLecter: WeaponRifleAR18
-WeaponSubMachineGunAtreides: WeaponSubMachineGunMP7
-WeaponPistolViper: WeaponPistolHIB88M4
-WeaponPistolMk58: WeaponPistolACP14
-WeaponSubMachineGunDrozd: WeaponSubMachineGunVectorSpecial
-WeaponShotgunEnforcer: WeaponShotgun39
-WeaponShotgunEnforcerRubber: WeaponShotgun39NonLethal
-WeaponSubMachineGunWt550: WeaponSubMachineGunP90
-MagazinePistolSubMachineGunTopMounted: MagazinePistolTopSubMachineGun
-WeaponShotgunKammerer: WeaponShotguntrenchgun4034
-WeaponSubMachineGunC20r: WeaponSubMachineGunMP7
-WeaponRevolverMateba: WeaponRevolverMatebaNew
-WeaponSniperMosin: WeaponSniperMosinNew
-WeaponShotgunBulldog: WeaponShotgunZauer
-
-# 2023-11-26
-WeaponSniperHristov: WeaponRifleSR127
 
 # 2023-12-10
 SpawnPointSeniorResearcher: null
@@ -325,10 +211,6 @@ VehicleJanicartDestroyed: null
 YellowOxygenTank: OxygenTank
 YellowOxygenTankFilled: OxygenTankFilled
 
-# 2024-01-30 Backmen
-AirlockHatch: AirlockHatchBasik
-AirlockHatchMaintenance: AirlockHatchMaint
-
 # 2024-02-12
 FoodDonutBlumpkin: FoodDonutBluePumpkin
 FoodDonutJellyBlumpkin: FoodDonutJellyBluePumpkin
@@ -346,13 +228,6 @@ Observationskit: null
 
 # 2024-02-26
 CrateBaseWeldable: CrateGenericSteel
-
-
-# 2024-09-03 Backmen
-WeaponTaser: WeaponDominatorNT
-
-# 2024-03-11
-WeaponLauncherRocket: WeaponLauncherRL5
 
 # 2024-03-05
 BookBotanicalTextbook: BookRandomStory
@@ -388,12 +263,6 @@ FoodChilly: FoodChillyPepper
 ImprovisedExplosive: FireBomb
 ImprovisedExplosiveEmpty: FireBombEmpty
 ImprovisedExplosiveFuel: FireBombFuel
-
-#2024-03-15
-ClothingBackpackDuffelSyndicateFilledShotgun: ClothingBackpackDuffelSyndicateFilledZauer
-ClothingBackpackDuffelSyndicateFilledSMG: ClothingBackpackDuffelSyndicateFilledMP7
-ClothingBackpackDuffelSyndicateFilledLMG: ClothingBackpackDuffelSyndicateFilledRPD
-ClothingBackpackDuffelSyndicateFilledGrenadeLauncher: ClothingBackpackDuffelSyndicateFilledGL79
 
 # 2024-03-16
 ClothingHeadHatHairflower: FoodPoppy
@@ -456,10 +325,8 @@ BoxMagazineCaselessRifleRubber: BoxMagazinePistolCaselessRifle
 BoxMagazineMagnumSubMachineGunRubber: null
 WeaponPistolMk58Nonlethal: WeaponPistolMk58
 WeaponPistolN1984Nonlethal: WeaponPistolN1984
-WeaponSubMachineGunVectorRubber: WeaponSubMachineGunMP5 #Backmen-migration
-WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunMP5 #Backmen-migration
-WeaponRifleLecterRubber: WeaponRifleFamas #Backmen-migration
-
+WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunDrozd
+WeaponRifleLecterRubber: WeaponRifleLecter
 
 # 2024-04-26
 GlassBoxLaserBroken: GlassBoxBroken
@@ -501,9 +368,6 @@ BookChefGaming: BookHowToCookForFortySpaceman
 #2024-06-29
 IntercomAssesmbly: IntercomAssembly
 
-#2024-07-13 Corvax
-HyperLinkBookCorporateLaw: BookSpaceLaw
-
 # 2024-07-7
 SignScience1: SignScience
 SignScience2: SignScience
@@ -526,10 +390,6 @@ LogicGate: LogicGateOr
 # 2024-08-08
 MaterialReclaimer: null
 MaterialReclaimerMachineCircuitboard: null
-
-# 2024-06-08 | EE toys migration
-CrateFunPlushie: CrateFunToyBox
-CrateFunLizardPlushieBulk: CrateFunToyBox
 
 # 2024-08-11
 FoodTacoBeef: FoodTacoShell
@@ -554,10 +414,6 @@ ClothingBeltSuspenders: ClothingBeltSuspendersRed
 # 2024-08-19
 ClothingNeckShockCollar: ClothingBackpackElectropack
 
-# 2024-08-28 backmen
-SpawnPointStationAI: PlayerStationAi
-WeaponTurretLaserNanoTrasenAI: WeaponTurretSyndicateBroken
-
 # 2024-08-22
 ComputerShuttleSalvage: null
 SalvageShuttleConsoleCircuitboard: null
@@ -576,39 +432,11 @@ OverlordCircuitBoard: null
 # 2024-09-08
 HatBase: null
 
-# 2024-09-13 backmen
-PlastitanedWindow: PlastitaniumWindow
-
-# 2024-09-19 backmen
-BookPassionsP1: null
-BookPassionsP2: null
-BookPaperworkP1: null
-BookPaperworkP2: null
-BookPaperworkP4: null
-
 # 2024-09-19
 BlueprintFlare: null
 
 # 2024-10-04
 BaseAdvancedPen: Pen
-
-# 2024-10-04 backmen
-GunSafeRifleLecter: GunSafeRifleAR18
-GunSafeSubMachineGunDrozd: GunSafeSubMachineGunVector
-GunSafeShotgunEnforcer: GunSafeShotgunShotgun39
-GunSafeShotgunKammerer: GunSafeShotgunTrenchgun
-GunSafeSubMachineGunWt550: GunSafeSubMachineGunMP5
-GunSafeLaserCarbine: GunSafeLaserCarbineUEG
-GunSafePistolMk58: GunSafePistolGlock
-ShotGunCabinetFilled: ShotGunCabinetFilledBackmen
-ShotGunCabinetFilledOpen: ShotGunCabinetFilledOpenBackmen
-
-# 2024-10-05 - Corvax
-SheetPrinter: SheetPaper
-SheetPrinter1: SheetPaper1
-
-# 2024-11-14 - # Backmen
-DresserCaptainFilled: CaptainDrobe
 
 # 2024-10-09
 # Removal of separate borg chassis parts, replace them with generic borg parts.
@@ -707,11 +535,7 @@ LightTree04: LightTree
 LightTree05: LightTree
 LightTree06: LightTree
 
-# 2024-12-12 - Corvax-next
-NTFlag: FlagNanoTrasen
-SyndieFlag: FlagSyndicate
-
-#2024-12-28
+# 2024-12-28
 DrinkIrishCarBomb: DrinkIrishSlammer
 
 # 2025-01-06
@@ -725,132 +549,22 @@ ClothingMaskSexyMime: ClothingMaskBlushingMime
 # 2025-01-27
 FoodCondimentPacketFrostoil: FoodCondimentPacketColdsauce
 
-# 2025-02-05 backmen
-MagazineRifle: MagazineRifle556UEG
-MagazineRifleEmpty: null
-MagazineRifleIncendiary: MagazineRifle556UEGIncendiary
-MagazineRiflePractice: MagazineRifle556UEG
-MagazineRifleUranium: MagazineRifle556UEG
-MagazinePistolSubMachineGunTopMountedEmpty: null
-MagazinePistol: MagazinePistol9x17
-MagazinePistolEmpty: null
-MagazinePistolIncendiary: MagazinePistol9x17Incendiary
-MagazinePistolPractice: MagazinePistol9x17
-MagazinePistolUranium: MagazinePistol9x17
-MagazinePistolHighCapacityEmpty: null
-MagazinePistolHighCapacity: MagazinePistol57x28Extd
-MagazinePistolHighCapacityPractice: MagazinePistol57x28Extd
-MagazinePistolSubMachineGun: MagazinePistolSubMachineGun9x17
-MagazinePistolSubMachineGunEmpty: null
-MagazinePistolSubMachineGunPractice: MagazinePistolSubMachineGun9x17
-MagazinePistolSubMachineGunUranium: MagazinePistolSubMachineGun9x17
-MagazineLightRifleBox: MagazineLightMachineGun762x39
-MagazineLightRifle: MagazineRifleLight762x39
-MagazineLightRifleEmpty: null
-MagazineLightRiflePractice: MagazineRifleLight762x39
-MagazineLightRifleUranium: MagazineRifleLight762x39
-MagazineLightRifleIncendiary: MagazineRifleLight762x39Incendiary
-CartridgeRifle: CartridgeRifleLight556UEG
-CartridgeRiflePractice: CartridgeRifleLight556UEG
-CartridgeRifleIncendiary: CartridgeRifleLight556UEGIncendiary
-CartridgeRifleUranium: CartridgeRifleLight556UEG
-CartridgePistol: CartridgePistol9x17
-CartridgePistolPractice: CartridgePistol9x17
-CartridgePistolIncendiary: CartridgePistol9x17Incendiary
-CartridgePistolUranium: CartridgePistol9x17
-CartridgeLightRifle: CartridgeRifleLight762x39
-CartridgeLightRiflePractice: CartridgeRifleLight762x39
-CartridgeLightRifleIncendiary: CartridgeRifleLight762x39Incendiary
-CartridgeLightRifleUranium: CartridgeRifleLight762x39
-CartridgeAntiMateriel: Cartridge50BMG
-MagazineBoxRifleBig: MagazineBoxRifle556UEG
-MagazineBoxRifle: MagazinePacketRifle556UEG
-MagazineBoxRiflePractice: MagazinePacketRifle556UEG
-MagazineBoxRifleIncendiary: MagazinePacketRifle556UEGIncendiary
-MagazineBoxRifleUranium: MagazinePacketRifle556UEG
-MagazineBoxPistol: MagazinePacketPistol9x17
-MagazineBoxPistolPractice: MagazinePacketPistol9x17
-MagazineBoxPistolIncendiary: MagazinePacketPistol9x17Incendiary
-MagazineBoxPistolUranium: MagazinePacketPistol9x17
-MagazineBoxLightRifleBig: MagazineBoxRifle762x39
-MagazineBoxLightRifle: MagazinePacketRifle762x39
-MagazineBoxLightRiflePractice: MagazinePacketRifle762x39
-MagazineBoxLightRifleIncendiary: MagazinePacketRifle762x39Incendiary
-MagazineBoxLightRifleUranium: MagazinePacketRifle762x39
-MagazineBoxAntiMateriel: MagazinePacketHeavyRifle50BMG
-
-#2025-02-05
-#WeaponSubMachineGunVector: null
-#WeaponSubMachineGunVectorRubber: null
-MagazineBoxAntiMaterielBig: MagazineBoxAntiMateriel
-
-#2025-02-06 backmen: no pride
-LGBTQFlag: null
-LGBTQHandyFlag: null
-ClothingNeckLGBTPin: null
-ClothingNeckAromanticPin: null
-ClothingNeckAsexualPin: null
-ClothingNeckBisexualPin: null
-ClothingNeckGayPin: null
-ClothingNeckIntersexPin: null
-ClothingNeckLesbianPin: null
-ClothingNeckNonBinaryPin: null
-ClothingNeckPansexualPin: null
-ClothingNeckOmnisexualPin: null
-ClothingNeckTransPin: null
-ClothingNeckAutismPin: null
-ClothingNeckGoldAutismPin: null
-ClothingNeckScarfStripedAce: null
-ClothingNeckScarfStripedAro: null
-ClothingNeckScarfStripedBiSexual: null
-ClothingNeckScarfStripedGay: null
-ClothingNeckScarfStripedInter: null
-ClothingNeckScarfStripedLesbian: null
-ClothingNeckScarfStripedPan: null
-ClothingNeckScarfStripedNonBinary: null
-ClothingNeckScarfStripedRainbow: null
-ClothingNeckScarfStripedTrans: null
-ClothingNeckCloakAce: null
-ClothingNeckCloakAro: null
-ClothingNeckCloakBi: null
-ClothingNeckCloakIntersex: null
-ClothingNeckCloakLesbian: null
-ClothingNeckCloakTrans: null
-ClothingNeckCloakGay: null
-ClothingNeckCloakEnby: null
-ClothingNeckCloakPan: null
-VendingMachinePride: null
-#WeaponSubMachineGunVector: null
-#WeaponSubMachineGunVectorRubber: null
-
+# 2025-02-05
+WeaponSubMachineGunVector: null
+WeaponSubMachineGunVectorRubber: null
 
 # 2025-02-11
 WallShuttleInterior: WallShuttle
 
-# 2025-02-18 | Backmen-Edit
-PosterContrabandLustyExomorph: PosterContrabandLustyXenomorph
-PosterContrabandBustyBackdoorExoBabes6: PosterContrabandBustyBackdoorXenoBabes6
+# 2025-02-18
+PosterContrabandLustyExomorph: PosterContrabandRealExomorph
+PosterContrabandBustyBackdoorExoBabes6: PosterContrabandRouny
 
 # 2025-02-20
-#MagazineBoxAntiMaterielBig: null
+MagazineBoxAntiMaterielBig: null
 MagazineBoxCaselessRifle10x24: null
 MagazineBoxCaselessRifleBig: null
 MagazinePistolHighCapacityRubber: null
-
-# 2025-03-25 | Backmen
-SpawnPointInteQVanguardSolderSizo37: SpawnPointInteQVanguardSoldierSizo37
-ClothinNeckCloakInteQ: ClothingNeckCloakInteQ
-EnergySwordDoubleScythe: PlasmaScythe
-
-# 2024-12-22 # Lavaland Change: Migrations
-VendingMachineRestockSalvageEquipment: null
-CrateVendingMachineRestockSalvageEquipmentFilled: null
-ComputerSalvageExpedition: ComputerShuttleMiningLavaland
-SalvageExpeditionsComputerCircuitboard: LavalandShuttleConsoleCircuitboard
-WallRockBasaltBSCrystal: WallRockBasalt
-
-# 2025-04-07 | Backmen
-OracleRecycler: OracleEvil
 
 # 2025-03-18
 EpinephrineChemistryBottle: ChemistryBottleEpinephrine
@@ -888,7 +602,6 @@ MailAllAccessSpam: MailSpamLetter
 MailCentcommRetributionSpam: MailSpamLetter
 MailEvilLizardSpam: MailSpamLetter
 MailParentsNeedMoneySpam: MailSpamLetter
-ClothingBeltMythistophelRapier: null
 
 # 2025-04-15
 SimpleXenoArtifact: ComplexXenoArtifact
@@ -905,37 +618,6 @@ AirlockMaintIntLocked: AirlockMaintLocked
 # 2025-04-26
 ComputerCargoShuttle: ComputerShuttleCargo
 CargoShuttleComputerCircuitboard: CargoShuttleConsoleCircuitboard
-
-# 2025-04-16 | Backmen
-PrinterDoc: PhotocopierCommand
-SyringeGun: LauncherSyringe
-RapidSyringeGun: LauncherSyringe
-PlayerStationAiPilgrim: PlayerStationAi
-TorsoSkeleton: ChestSkeleton
-TorsoHarpy: ChestHarpy
-TorsoMonkey: ChestMonkey
-TorsoKobold: ChestKobold
-TorsoVox: ChestVox
-TorsoRat: ChestRat
-TorsoMoth: ChestMoth
-TorsoAnimal: ChestAnimal
-TorsoArachnid: ChestArachnid
-TorsoSlime: ChestSlime
-TorsoVulpkanin: ChestVulpkanin
-TorsoHuman: ChestHuman
-TorsoGingerbread: ChestGingerbread
-TorsoReptilian: ChestReptilian
-TorsoCarp: ChestCarp
-TorsoGolemCult: ChestGolemCult
-TorsoDiona: ChestDiona
-
-# 2025-05-05 | Backmen
-SpeedLoaderMagnum: SpeedLoader357Magnum
-SpeedLoaderMagnumIncendiary: SpeedLoader357Magnum
-SpeedLoaderMagnumPractice: SpeedLoader357Magnum
-SpeedLoaderMagnumAP: SpeedLoader357MagnumAP
-SpeedLoaderMagnumUranium: SpeedLoader357Magnum
-MagazineBoxMagnum: MagazinePacketRevolver357Magnum
 
 # 2025-05-02
 CigPackMixedNasty: CigPackMixed
@@ -1040,6 +722,9 @@ ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
 # 2025-08-29
 PrefilledSyringe: Syringe
 
+# 2025-09-12
+BaseChemistryEmptyVial: ChemistryEmptyVial
+
 # 2025-10-6
 BibleTanakh: null
 BibleSatanic: null
@@ -1078,6 +763,23 @@ FigureSpawner: MechFigurineSpawner50
 ToySpawner: PlushieSpawner50
 SpacemenFigureSpawner: SpacemenFigurineSpawner90
 
-# 2026-04-01 Backmen
-ClothingNeckScarfStripedAroace: null
-ClothingNeckScarfStripedLesbianLong: null
+# 2026-01-07
+HandheldHealthAnalyzerUnpowered: HandheldHealthAnalyzer
+HandheldHealthAnalyzerEmpty: HandheldHealthAnalyzer
+
+#2026-01-09
+BorgModuleAdvancedChemical: BorgModuleAdvancedTopical
+
+# 2026-01-14
+HeadHuman: OrganHumanHead
+HeadSkeleton: OrganSkeletonPersonHead
+LeftArmHuman: OrganHumanArmLeft
+LeftArmSkeleton: OrganSkeletonPersonArmLeft
+LeftHandSkeleton: OrganSkeletonPersonHandLeft
+LeftLegHuman: OrganHumanLegLeft
+LeftLegSkeleton: OrganSkeletonPersonLegLeft
+RightArmHuman: OrganHumanArmRight
+RightHandSkeleton: OrganSkeletonPersonHandRight
+RightLegHuman: OrganHumanLegRight
+TorsoSkeleton: OrganSkeletonPersonTorso
+RightArmSkeleton: OrganSkeletonPersonArmRight

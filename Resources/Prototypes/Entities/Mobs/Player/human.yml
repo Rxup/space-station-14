@@ -1,12 +1,3 @@
-- type: entity
-  save: false
-  name: Urist McHands
-  parent: BaseMobHuman
-  id: MobHuman
-  components:
-    - type: PotentialPsionic
-    - type: FootPrints
-
 #Syndie
 - type: entity
   parent: MobHuman
@@ -21,7 +12,7 @@
     prototypes: [SyndicateOperativeGearExtremelyBasic]
     roleLoadout: [ RoleSurvivalSyndicate ]
   - type: RandomMetadata
-    nameSegments: [ NamesFirstMale, names_last_male ] # Corvax-MRP
+    nameSegments: [NamesDeathCommando]
   - type: NpcFactionMember
     factions:
     - Syndicate
@@ -75,37 +66,6 @@
     nameFormat: name-format-nukie-operator
   - type: Loadout
     prototypes: [SyndicateOperativeGearFullNoUplink]
-
-#Flesh Cultist
-- type: entity
-  parent: MobHuman
-  id: MobHumanFleshCultist
-  name: Flesh Cultist
-  components:
-    - type: FleshCultist
-      startingEvolutionPoint: 300
-    - type: NpcFactionMember
-      factions:
-        - Flesh
-    - type: UserInterface
-      interfaces:
-        enum.StoreUiKey.Key:
-          type: StoreBoundUserInterface
-    - type: Store
-      categories:
-        - FleshCultistAbilities
-      currencyWhitelist:
-        - StolenMutationPoint
-    - type: IntrinsicRadioReceiver
-    - type: IntrinsicRadioTransmitter
-      channels:
-        - Flesh
-    - type: ActiveRadio
-      channels:
-        - Flesh
-    - type: Psionic
-      channel: Flesh
-      channelColor: "#cf1b48"
 
 # Nuclear Operative
 - type: entity
