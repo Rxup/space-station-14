@@ -101,10 +101,10 @@ public sealed partial class StandingStateSystem : EntitySystem
         // Optional component.
         Resolve(uid, ref appearance, ref hands, false);
 
-        if (!standingState.Standing)
+        if (!standingState.Standing && standingState.CurrentState != StandingState.GettingUp)
             return true;
 
-        if (!force)
+        if (!force && standingState.CurrentState != StandingState.GettingUp)
         {
             var msg = new DownAttemptEvent();
             RaiseLocalEvent(uid, msg, false);
