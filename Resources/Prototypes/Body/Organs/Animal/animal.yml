@@ -1,5 +1,5 @@
 - type: entity
-  id: BaseAnimalOrganUnGibbable
+  id: BaseAnimalOrgan
   parent: BaseItem
   abstract: true
   components:

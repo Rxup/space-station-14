@@ -4,7 +4,6 @@ using Content.Server.Ghost;
 using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Server.Wires;
-using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -25,6 +24,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared.Gibbing;
 using Content.Shared.Humanoid;
 
 namespace Content.Server.Materials;
@@ -112,7 +112,7 @@ public sealed partial class MaterialReclaimerSystem : SharedMaterialReclaimerSys
             Filter.PvsExcept(victim, entityManager: EntityManager),
             true);
 
-        _body.GibBody(victim, true);
+        _gibbing.Gib(victim);
         _appearance.SetData(entity.Owner, RecyclerVisuals.Bloody, true);
         args.Handled = true;
     }
@@ -193,7 +193,7 @@ public sealed partial class MaterialReclaimerSystem : SharedMaterialReclaimerSys
             _adminLogger.Add(LogType.Gib, logImpact, $"{ToPrettyString(item):victim} was gibbed by {ToPrettyString(uid):entity} ");
             if (component.ReclaimSolutions)
                 SpawnChemicalsFromComposition(uid, item, completion, false, component, xform);
-            _body.GibBody(item, true);
+            _gibbing.Gib(item);
             _appearance.SetData(uid, RecyclerVisuals.Bloody, true);
         }
         else

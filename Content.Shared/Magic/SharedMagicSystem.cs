@@ -1,12 +1,11 @@
 using System.Numerics;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Examine;
+using Content.Shared.Gibbing;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -390,11 +389,7 @@ public abstract partial class SharedMagicSystem : EntitySystem
         var impulseVector = direction * 10000;
 
         _physics.ApplyLinearImpulse(ev.Target, impulseVector);
-
-        if (!TryComp<BodyComponent>(ev.Target, out var body))
-            return;
-
-        _body.GibBody(ev.Target, true, body);
+        _gibbing.Gib(ev.Target);
     }
 
     // End Touch Spells

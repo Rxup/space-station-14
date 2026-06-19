@@ -1,4 +1,4 @@
-using Content.Shared.Body.Systems;
+using Content.Shared.Gibbing;
 using Content.Shared.Inventory;
 using Content.Shared.Trigger.Components.Effects;
 
@@ -20,7 +20,7 @@ public sealed partial class GibOnTriggerSystem : XOnTriggerSystem<GibOnTriggerCo
             }
         }
 
-        _body.GibBody(target, true);
+        _gibbing.Gib(target, user: args.User);
         args.Handled = true;
     }
 }

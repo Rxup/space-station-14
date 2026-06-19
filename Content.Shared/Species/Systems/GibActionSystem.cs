@@ -2,6 +2,7 @@ using Content.Shared.Species.Components;
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Systems;
+using Content.Shared.Gibbing;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
@@ -53,7 +54,7 @@ public sealed partial class GibActionSystem : EntitySystem
     {
         // When they use the action, gib them.
         _popupSystem.PopupClient(Loc.GetString(comp.PopupText, ("name", uid)), uid, uid);
-        _bodySystem.GibBody(uid, true);
+        _gibbing.Gib(uid, user: args.Performer);
     }
 
 

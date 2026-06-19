@@ -519,18 +519,8 @@ public partial class SharedBodySystem
         List<string>? allowedContainers = null,
         List<string>? excludedContainers = null)
     {
-        var gibs = new HashSet<EntityUid>();
-
-        if (!Resolve(bodyId, ref body, logMissing: false))
-            return gibs;
-
-        var root = GetRootPartOrNull(bodyId, body);
-        if (root != null && TryComp(root.Value.Entity, out GibbableComponent? gibbable))
-        {
-            gibSoundOverride ??= gibbable.GibSound;
-        }
-        var parts = GetBodyChildren(bodyId, body).ToArray();
-        gibs.EnsureCapacity(parts.Length);
+        var parts = GetBodyChildren(ent, ent).ToArray();
+        args.Giblets.EnsureCapacity(args.Giblets.Capacity + parts.Length);
         foreach (var part in parts)
         {
 
@@ -549,10 +539,10 @@ public partial class SharedBodySystem
                     launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone,
                     allowedContainers: allowedContainers, excludedContainers: excludedContainers);
             }
+            PredictedQueueDel(part.Id);
         }
 
-        var bodyTransform = Transform(bodyId);
-        if (TryComp<InventoryComponent>(bodyId, out var inventory))
+        foreach (var item in _inventory.GetHandOrInventoryEntities(ent.Owner))
         {
             foreach (var item in _inventorySystem.GetHandOrInventoryEntities(bodyId))
             {
@@ -560,8 +550,6 @@ public partial class SharedBodySystem
                 gibs.Add(item);
             }
         }
-        _audioSystem.PlayPredicted(gibSoundOverride, bodyTransform.Coordinates, null);
-        return gibs;
     }
 
     public virtual HashSet<EntityUid> GibPart(
