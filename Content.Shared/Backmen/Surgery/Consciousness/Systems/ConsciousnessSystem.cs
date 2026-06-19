@@ -4,7 +4,6 @@ using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Systems;
-using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -181,10 +180,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             newMobState = MobState.Dead;
 
         MobStateSys.ChangeMobState(target, newMobState, target);
-
-        DamageableComponent? damageable = null;
-        TryComp(target, out damageable);
-        MobThresholds.VerifyThresholds(target, mobState: target.Comp2, damageable: damageable);
+        MobThresholds.VerifyThresholds(target, mobState: target.Comp2);
     }
 
     protected void CheckRequiredParts(
