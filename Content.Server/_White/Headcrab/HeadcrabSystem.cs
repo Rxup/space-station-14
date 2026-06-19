@@ -13,7 +13,9 @@ using Content.Shared.Damage;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
+using Content.Server.Backmen.VentCrawler;
 using Content.Shared._White.Headcrab;
+using Content.Shared.Backmen.VentCrawler;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -54,6 +56,7 @@ public sealed partial class HeadcrabSystem : EntitySystem
     [Dependency] private ActionsSystem _action = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private AutoEmoteSystem _autoEmote = default!;
+    [Dependency] private VentCrawlerSystem _ventCrawler = default!;
 
     public override void Initialize()
     {
@@ -81,6 +84,9 @@ public sealed partial class HeadcrabSystem : EntitySystem
     {
         if (args.Slot != "mask")
             return;
+
+        if (HasComp<VentCrawlingComponent>(uid))
+            RemComp<VentCrawlingComponent>(uid);
 
         if (!_mobState.IsAlive(uid))
             return;

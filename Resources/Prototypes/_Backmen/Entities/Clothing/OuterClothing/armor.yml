@@ -40,7 +40,7 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Armor/armor_blueshield.rsi
   - type: StaminaResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.9
   - type: Armor
     coverage:
     - Chest

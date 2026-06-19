@@ -19,6 +19,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -657,7 +658,36 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
     private void OnConsciousnessMapInit(Entity<ConsciousnessComponent> uid, ref MapInitEvent args)
     {
         SyncConsciousnessFromMobThresholds(uid, uid.Comp);
+        ApplyInitialPrototypeDamage(uid);
         CheckConscious(uid.AsNullable());
+    }
+
+    /// <summary>
+    /// Prototype-set damage on <see cref="DamageableComponent"/> is initialized without raising
+    /// <see cref="DamageChangedEvent"/>, so consciousness/mob-threshold systems never see it until
+    /// something else damages the mob (e.g. salvage corpses spawning alive).
+    /// </summary>
+    /// <remarks>
+    /// Do not route this through <see cref="DamageableSystem.ChangeDamage"/> — brute wound creation
+    /// can dismember body parts, leaving detached entities when the mob is deleted.
+    /// </remarks>
+    private void ApplyInitialPrototypeDamage(EntityUid uid)
+    {
+        if (!TryComp<DamageableComponent>(uid, out var damageable) || damageable.TotalDamage <= 0)
+            return;
+
+        if (ConsciousnessQuery.TryComp(uid, out var consciousness))
+        {
+            foreach (var (type, amount) in damageable.Damage.DamageDict)
+            {
+                if (amount <= 0)
+                    continue;
+
+                TryApplyAsphyxiationChange((uid, consciousness), new KeyValuePair<string, FixedPoint2>(type, amount));
+            }
+        }
+
+        _mobThresholds.VerifyThresholds(uid, damageable: damageable);
     }
 
     // start-backmen: sync mob thresholds

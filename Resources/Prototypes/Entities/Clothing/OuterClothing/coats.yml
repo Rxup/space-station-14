@@ -68,7 +68,7 @@
   id: ClothingOuterArmorHoS
   components:
   - type: StaminaResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.88
   - type: Armor
     modifiers:
       coefficients:
@@ -88,7 +88,7 @@
   id: ClothingOuterArmorWarden
   components:
   - type: StaminaResistance
-    damageCoefficient: 0.8
+    damageCoefficient: 0.92
   - type: Armor
     modifiers:
       coefficients:

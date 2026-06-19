@@ -163,7 +163,7 @@
   - type: Clothing
     sprite: Backmen/Clothing/OuterClothing/Coats/bluecoat.rsi
   - type: StaminaResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.9
   - type: Armor
     coverage:
     - Groin

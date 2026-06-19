@@ -20,8 +20,9 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     public NetEntity? Part; // backmen: surgery
     public Dictionary<string, float>? PainCauses; // backmen: pain
     public float? TotalPain; // backmen: pain
+    public bool? PainImmune; // backmen: pain
 
-    public HealthAnalyzerScannedUserMessage(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null)
+    public HealthAnalyzerScannedUserMessage(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null)
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -33,6 +34,7 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
         Part = part; // backmen: surgery
         PainCauses = painCauses; // backmen: pain
         TotalPain = totalPain; // backmen: pain
+        PainImmune = painImmune; // backmen: pain
     }
 }
 

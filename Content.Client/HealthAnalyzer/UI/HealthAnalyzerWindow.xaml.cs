@@ -296,7 +296,7 @@ namespace Content.Client.HealthAnalyzer.UI
             var hasDisease = _entityManager.HasComponent<DiseasedComponent>(_target.Value); // backmen
             var hasTrauma = _trauma.HasBodyTrauma(_target.Value, TraumaType.OrganDamage); // backmen
             var hasBoneDmg = _trauma.HasBodyTrauma(_target.Value, TraumaType.BoneDamage); // backmenm
-            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || hasDisease || hasTrauma || hasBoneDmg; // backmen
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || hasDisease || hasTrauma || hasBoneDmg || msg.PainImmune == true; // backmen
 
             AlertsDivider.Visible = showAlerts;
             AlertsContainer.Visible = showAlerts;
@@ -360,6 +360,17 @@ namespace Content.Client.HealthAnalyzer.UI
                 };
                 boneTraumaLabel.SetMessage(Loc.GetString("health-analyzer-window-bone-damage-present"), defaultColor: Color.Red);
                 AlertsContainer.AddChild(boneTraumaLabel);
+            }
+
+            if (msg.PainImmune == true)
+            {
+                var painImmuneLabel = new RichTextLabel
+                {
+                    Margin = new Thickness(0, 4),
+                    MaxWidth = 300,
+                };
+                painImmuneLabel.SetMarkup(Loc.GetString("health-analyzer-window-entity-pain-immune-text"));
+                AlertsContainer.AddChild(painImmuneLabel);
             }
         }
 

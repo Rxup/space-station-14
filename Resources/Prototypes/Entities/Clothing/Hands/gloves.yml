@@ -109,7 +109,7 @@
     fiberColor: fibers-regal-blue
   - type: FingerprintMask
   - type: StaminaResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.92
   - type: Armor
     coverage: # backmen: armour coverage
     - Hand
@@ -134,7 +134,7 @@
     fiberMaterial: fibers-durathread
     fiberColor: fibers-black
   - type: StaminaResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.92
   - type: Armor
     coverage: # backmen: armour coverage
     - Hand
@@ -679,10 +679,10 @@
     bluntStaminaDamageFactor: 2.0
     animation: WeaponArcFist
   - type: StaminaDamageOnHit
-    damage: 35
+    damage: 42
     sound: /Audio/Weapons/egloves.ogg
   - type: StaminaDamageOnCollide
-    damage: 35
+    damage: 42
     sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
   - type: Battery

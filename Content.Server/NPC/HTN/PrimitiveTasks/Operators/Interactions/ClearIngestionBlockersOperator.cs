@@ -42,37 +42,45 @@ public sealed partial class ClearIngestionBlockersOperator : HTNOperator
         if (!IsMouthBlocked(subject))
             return HTNOperatorStatus.Finished;
 
-        TryClearMask(subject);
-
-        if (!IsMouthBlocked(subject))
-            return HTNOperatorStatus.Finished;
-
-        TryUnequipBlocker(subject, "head");
+        TryClearFaceProtection(subject);
 
         return IsMouthBlocked(subject) ? HTNOperatorStatus.Failed : HTNOperatorStatus.Finished;
     }
 
     private bool IsMouthBlocked(EntityUid uid)
     {
+        if (!_entManager.TryGetComponent<InventoryComponent>(uid, out var inventory))
+            return false;
+
         var attempt = new IngestionAttemptEvent(MouthSlots);
-        _entManager.EventBus.RaiseLocalEvent(uid, ref attempt);
+        _inventory.RelayEvent((uid, inventory), ref attempt);
         return attempt.Cancelled;
     }
 
-    private void TryClearMask(EntityUid owner)
+    private void TryClearFaceProtection(EntityUid owner)
+    {
+        TryPullDownMask(owner);
+
+        if (IsMouthBlocked(owner))
+            TryUnequipBlocker(owner, "head");
+
+        if (IsMouthBlocked(owner))
+            TryUnequipBlocker(owner, "mask");
+    }
+
+    private void TryPullDownMask(EntityUid owner)
     {
         if (!_inventory.TryGetSlotEntity(owner, "mask", out var maskUid) || maskUid is not { } mask)
             return;
 
-        if (_entManager.TryGetComponent<MaskComponent>(mask, out var maskComp)
-            && maskComp.IsToggleable
-            && !maskComp.IsToggled)
-        {
-            _mask.SetToggled(mask, true);
+        if (!_entManager.TryGetComponent<MaskComponent>(mask, out var maskComp) || maskComp.IsToggled)
             return;
-        }
 
-        TryUnequipBlocker(owner, "mask");
+        _mask.SetToggled(mask, true);
+
+        // Non-toggleable masks still have MaskComponent but ignore SetToggled without force.
+        if (_entManager.TryGetComponent<MaskComponent>(mask, out maskComp) && !maskComp.IsToggled)
+            _mask.SetToggled(mask, true, force: true);
     }
 
     private void TryUnequipBlocker(EntityUid owner, string slot)

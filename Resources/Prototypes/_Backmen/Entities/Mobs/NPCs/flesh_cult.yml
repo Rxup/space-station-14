@@ -538,6 +538,9 @@
       quickEquip: false
       sprite: Mobs/Aliens/FleshCult/flesh_cult_mobs.rsi
       equippedPrefix: worm
+      clothingVisuals:
+        mask:
+          - state: worm-equipped-MASK
       unequipDelay: 3
       stripDelay: 3
       slots:

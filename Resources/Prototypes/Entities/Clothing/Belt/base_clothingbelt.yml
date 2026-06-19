@@ -28,6 +28,9 @@
       Cloth: 50
   - type: StaticPrice
     price: 20
+  - type: Armor
+    coverage: []
+    modifiers: {}
 
 - type: entity
   abstract: true

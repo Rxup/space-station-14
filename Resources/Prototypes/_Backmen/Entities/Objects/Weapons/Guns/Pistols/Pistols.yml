@@ -179,6 +179,33 @@
       gun_chamber: !type:ContainerSlot
 
 - type: entity
+  categories: [ HideSpawnMenu ]
+  parent: WeaponPistolDEagle
+  id: WeaponPistolDEagleAI
+  name: desert eagle AI
+  components:
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol50AEAI
+        insertSound: /Audio/Weapons/Guns64/Pistols/deagle_reload.ogg
+        ejectSound: /Audio/Weapons/Guns64/Pistols/deagle_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol50AE
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol50AE
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol50AE
+
+- type: entity
   name: G-22
   parent: BaseWeaponPistol
   id: WeaponPistolG22

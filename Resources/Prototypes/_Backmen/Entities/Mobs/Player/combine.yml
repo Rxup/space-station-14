@@ -13,7 +13,7 @@
   - type: Damageable
     damageModifierSet: CombineHuman
   - type: StaminaResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.85
     worn: false
   - type: Stamina
     baseCritThreshold: 250

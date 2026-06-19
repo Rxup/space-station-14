@@ -207,10 +207,10 @@
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85
+        Blunt: 0.92
+        Slash: 0.92
+        Piercing: 0.95
+        Heat: 0.95
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.2
 
@@ -313,10 +313,10 @@
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85
+        Blunt: 0.92
+        Slash: 0.92
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: ClothingMaskBase
@@ -496,10 +496,10 @@
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.85
-        Heat: 0.85
+        Blunt: 0.92
+        Slash: 0.92
+        Piercing: 0.95
+        Heat: 0.95
 
 - type: entity
   parent: [ ClothingMaskGas, BaseCentcommContraband ]
@@ -567,10 +567,10 @@
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
-        Heat: 0.6
+        Blunt: 0.88
+        Slash: 0.88
+        Piercing: 0.92
+        Heat: 0.9
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.2
 

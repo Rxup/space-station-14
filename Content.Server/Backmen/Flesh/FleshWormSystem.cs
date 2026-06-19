@@ -8,6 +8,7 @@ using Content.Server.NPC.Systems;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Damage;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Backmen.VentCrawler;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -288,6 +289,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
 
         component.EquipedOn = args.Equipee;
         component.PendingPounceTarget = EntityUid.Invalid;
+        RemComp<VentCrawlingComponent>(uid);
         EnsureComp<PacifiedComponent>(uid);
 
         _npc.SleepNPC(uid);
@@ -352,7 +354,9 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         RemCompDeferred<PacifiedComponent>(uid);
         var combatMode = EnsureComp<CombatModeComponent>(uid);
         _combat.SetInCombatMode(uid, true, combatMode);
-        _npc.WakeNPC(uid);
+
+        if (!HasComp<ActorComponent>(uid))
+            _npc.WakeNPC(uid);
     }
 
     private void OnMeleeHit(EntityUid uid, FleshWormComponent component, MeleeHitEvent args)

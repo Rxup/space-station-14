@@ -375,6 +375,7 @@
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:
+      - type: PainImmune
       - type: NpcFactionMember
         factions:
         - Wizard

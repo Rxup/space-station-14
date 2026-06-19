@@ -4,6 +4,7 @@
   suffix: AI
   id: MobPMCGreyTide
   components:
+    - type: PainImmune
     - type: NpcFactionMember
       factions:
         - Syndicate
@@ -24,6 +25,7 @@
   suffix: AISuperZloy
   id: MobPMCGreyTideSuperZloy
   components:
+    - type: PainImmune
     - type: NpcFactionMember
       factions:
         - SuperZloy
@@ -44,12 +46,76 @@
   suffix: AIMosin
   id: MobPMCGreyTideMosin
   components:
+    - type: PainImmune
     - type: NpcFactionMember
       factions:
         - Syndicate
     - type: Loadout
       prototypes:
         - GreyTideAIMosin
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+
+- type: entity
+  name: ГрейТайд
+  parent: BaseMobHuman
+  suffix: AIRifle
+  id: MobPMCGreyTideRifle
+  components:
+    - type: PainImmune
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - GreyTideAIRifle
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+
+- type: entity
+  name: ГрейТайд
+  parent: BaseMobHuman
+  suffix: AIShotgun
+  id: MobPMCGreyTideShotgun
+  components:
+    - type: PainImmune
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - GreyTideAIShotgun
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: SimpleHumanoidHostileCompound
+    - type: RandomHumanoidAppearance
+      randomizeName: true
+
+- type: entity
+  name: ГрейТайд
+  parent: BaseMobHuman
+  suffix: AIDeagle
+  id: MobPMCGreyTideDeagle
+  components:
+    - type: PainImmune
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: Loadout
+      prototypes:
+        - GreyTideAIDeagle
     - type: InputMover
     - type: MobMover
     - type: HTN

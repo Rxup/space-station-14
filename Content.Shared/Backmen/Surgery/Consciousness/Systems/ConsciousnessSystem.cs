@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Systems;
+using Content.Shared.Damage.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -32,6 +34,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
 
     [Dependency] protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery = default!;
     [Dependency] protected EntityQuery<MobStateComponent> MobStateQuery = default!;
+    [Dependency] protected EntityQuery<PainImmuneComponent> PainImmuneQuery = default!;
 
     public override void Initialize()
     {
@@ -152,7 +155,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             return;
 
         var newMobState = MobState.Alive;
-        if (TryGetNerveSystem(target, out var nerveSys))
+        if (!PainImmuneQuery.HasComp(target) && TryGetNerveSystem(target, out var nerveSys))
         {
             var comp = nerveSys.Value.Comp;
             if (comp.Pain >= comp.SoftPainCap || comp.ForcePainCrit)
@@ -178,7 +181,10 @@ public abstract partial class ConsciousnessSystem : EntitySystem
             newMobState = MobState.Dead;
 
         MobStateSys.ChangeMobState(target, newMobState, target);
-        MobThresholds.VerifyThresholds(target, mobState: target);
+
+        DamageableComponent? damageable = null;
+        TryComp(target, out damageable);
+        MobThresholds.VerifyThresholds(target, mobState: target.Comp2, damageable: damageable);
     }
 
     protected void CheckRequiredParts(

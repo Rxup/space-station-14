@@ -1,0 +1,15 @@
+vent-crawler-verb-enter = Climb into vent
+vent-crawler-verb-exit = Climb out of vent
+vent-crawler-entered = You squeeze into the ventilation shaft.
+vent-crawler-exited = You climb out of the vent.
+vent-crawler-dead-end = The pipe ends here.
+vent-crawler-welded = The vent is welded shut.
+vent-crawler-too-far = You are too far from the vent.
+vent-crawler-no-pipe = This vent is not connected to any pipes.
+vent-crawler-not-vent = That is not a vent.
+vent-crawler-already-inside = You are already inside the vents.
+vent-crawler-cooldown = You need to wait before entering a vent again.
+vent-crawler-exit-fail = You can only exit through an air vent.
+vent-crawler-equipped = You cannot crawl through vents while attached to someone's face.
+vent-crawler-pipe-broken = The pipe breaks apart and forces you out!
+vent-crawler-wrong-direction = The pipe does not go that way.

@@ -46,6 +46,7 @@ public sealed partial class ServerPainSystem : PainSystem
 
     [Dependency] private ConsciousnessSystem _consciousness = default!;
     [Dependency] private WoundSystem _wound = default!;
+    [Dependency] private EntityQuery<PainImmuneComponent> _painImmuneQuery = default!;
 
     private const string PainAdrenalineIdentifier = "PainAdrenaline";
     private const string PainPhantomPainIdentifier = "PhantomPain";
@@ -439,6 +440,9 @@ public sealed partial class ServerPainSystem : PainSystem
 
     private void UpdatePainThreshold(EntityUid uid, EntityUid body, NerveSystemComponent nerveSys)
     {
+        if (_painImmuneQuery.HasComp(body))
+            return;
+
         var painInput = nerveSys.Pain - nerveSys.LastPainThreshold;
 
         var nearestReflex = PainReflexType.None;

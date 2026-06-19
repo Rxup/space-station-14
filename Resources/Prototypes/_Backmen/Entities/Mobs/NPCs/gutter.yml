@@ -72,7 +72,7 @@
   - type: Damageable
     damageModifierSet: MachineArmor
   - type: StaminaResistance
-    damageCoefficient: 0.1
+    damageCoefficient: 0.65
     worn: false
   - type: RequireProjectileTarget
     active: true
@@ -448,7 +448,7 @@
   - type: Damageable
     damageModifierSet: MachineGuttermanArmor
   - type: StaminaResistance
-    damageCoefficient: 0.1
+    damageCoefficient: 0.65
     worn: false
 
 - type: damageModifierSet

@@ -33,6 +33,9 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+  - type: Armor
+    coverage: []
+    modifiers: {}
 
 - type: entity
   abstract: true

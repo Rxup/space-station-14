@@ -6,8 +6,10 @@ using Content.Server.Mind;
 using Content.Server.Points;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
+using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
+using Content.Shared.Light.Components;
 using Content.Shared.Points;
 using Content.Shared.Storage;
 using Robust.Server.GameObjects;
@@ -30,6 +32,8 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
     [Dependency] private TransformSystem _transform = default!;
 
+    [Dependency] private EntityQuery<PainImmuneComponent> _painImmuneQuery = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -38,6 +42,57 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
         SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
         SubscribeLocalEvent<DeathMatchRuleComponent, PlayerPointChangedEvent>(OnPointChanged);
+        SubscribeLocalEvent<LightCycleComponent, ComponentStartup>(OnLightCycleStartup);
+    }
+
+    protected override void Started(EntityUid uid, DeathMatchRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    {
+        base.Started(uid, component, gameRule, args);
+        DisableMapDayNightCycle();
+    }
+
+    private void OnLightCycleStartup(EntityUid uid, LightCycleComponent component, ComponentStartup args)
+    {
+        if (!IsDeathmatchActive())
+            return;
+
+        DisableDayNightCycle(uid);
+    }
+
+    private void DisableMapDayNightCycle()
+    {
+        var query = AllEntityQuery<LightCycleComponent>();
+        while (query.MoveNext(out var mapUid, out _))
+        {
+            DisableDayNightCycle(mapUid);
+        }
+    }
+
+    private void DisableDayNightCycle(EntityUid mapUid)
+    {
+        RemComp<LightCycleComponent>(mapUid);
+        RemComp<SunShadowCycleComponent>(mapUid);
+        RemComp<SunShadowComponent>(mapUid);
+    }
+
+    private bool IsDeathmatchActive()
+    {
+        var query = EntityQueryEnumerator<DeathMatchRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out _, out var rule))
+        {
+            if (GameTicker.IsGameRuleActive(uid, rule))
+                return true;
+        }
+
+        return false;
+    }
+
+    private void EnsurePainImmune(EntityUid mob)
+    {
+        if (_painImmuneQuery.HasComp(mob))
+            return;
+
+        EnsureComp<PainImmuneComponent>(mob);
     }
 
     private void OnBeforeSpawn(PlayerBeforeSpawnEvent ev)
@@ -58,6 +113,7 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
             _mind.TransferTo(newMind, mob);
             _outfitSystem.SetOutfit(mob, dm.Gear);
             EnsureComp<KillTrackerComponent>(mob);
+            EnsurePainImmune(mob);
             _respawn.AddToTracker(ev.Player.UserId, (uid, tracker));
 
             _point.EnsurePlayer(ev.Player.UserId, uid, point);
@@ -70,6 +126,9 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
     private void OnSpawnComplete(PlayerSpawnCompleteEvent ev)
     {
         EnsureComp<KillTrackerComponent>(ev.Mob);
+
+        if (IsDeathmatchActive())
+            EnsurePainImmune(ev.Mob);
         var query = EntityQueryEnumerator<DeathMatchRuleComponent, RespawnTrackerComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out _, out var tracker, out var rule))
         {

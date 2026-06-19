@@ -202,13 +202,15 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnStunEndAttempt(Entity<SleepingComponent> ent, ref StunEndAttemptEvent args)
     {
-        args.Cancelled = true;
+        if (ent.Comp.LifeStage <= ComponentLifeStage.Running)
+            args.Cancelled = true;
     }
 
     private void OnStandUpAttempt(Entity<SleepingComponent> ent, ref StandUpAttemptEvent args)
     {
         // Shh the Urist McHands is sleeping...
-        args.Cancelled = true;
+        if (ent.Comp.LifeStage <= ComponentLifeStage.Running)
+            args.Cancelled = true;
     }
 
     private void OnExamined(Entity<SleepingComponent> ent, ref ExaminedEvent args)

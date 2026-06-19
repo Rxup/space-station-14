@@ -211,6 +211,16 @@
     proto: CartridgePistol50AEAP
 
 - type: entity
+  id: MagazinePistol50AEAI
+  categories: [ HideSpawnMenu ]
+  name: pistol magazine (.50 AE)
+  parent: MagazinePistol50AE
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistol50AE
+    capacity: 1000
+
+- type: entity
   id: MagazinePistol9x17
   name: pistol magazine (9x17 mm)
   parent: BaseMagazinePistol
