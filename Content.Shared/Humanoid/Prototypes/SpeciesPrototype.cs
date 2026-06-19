@@ -1,3 +1,4 @@
+using Content.Shared.Body;
 using Content.Shared.Dataset;
 using Content.Shared.Humanoid.Markings;
 using Robust.Shared.Prototypes;
@@ -34,26 +35,6 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField(required: true)]
     public bool RoundStart { get; private set; } = false;
 
-    // Corvax-Sponsors-Start
-    /// <summary>
-    /// Whether the species is available only for sponsors
-    /// </summary>
-    [DataField]
-    public bool SponsorOnly { get; private set; } = false;
-    // Corvax-Sponsors-End
-
-    // The below two are to avoid fetching information about the species from the entity
-    // prototype.
-
-    // This one here is a utility field, and is meant to *avoid* having to duplicate
-    // the massive SpriteComponent found in every species.
-    // Species implementors can just override SpriteComponent if they want a custom
-    // sprite layout, and leave this null. Keep in mind that this will disable
-    // sprite accessories.
-
-    [DataField("sprites")]
-    public ProtoId<HumanoidSpeciesBaseSpritesPrototype> SpriteSet { get; private set; } = default!;
-
     /// <summary>
     ///     Default skin tone for this species. This applies for non-human skin tones.
     /// </summary>
@@ -61,23 +42,11 @@ public sealed partial class SpeciesPrototype : IPrototype
     public Color DefaultSkinTone { get; private set; } = Color.White;
 
     /// <summary>
-    ///     Default eye tone for this species. This applies for non-human skin tones.
-    /// </summary>
-    [DataField]
-    public Color DefaultEyeTone { get; private set; } = Color.Black;
-
-    /// <summary>
     ///     Default human skin tone for this species. This applies for human skin tones.
     ///     See <see cref="SkinColor.HumanSkinTone"/> for the valid range of skin tones.
     /// </summary>
     [DataField]
     public int DefaultHumanSkinTone { get; private set; } = 20;
-
-    /// <summary>
-    ///     The limit of body markings that you can place on this species.
-    /// </summary>
-    [DataField("markingLimits")]
-    public ProtoId<MarkingPointsPrototype> MarkingPoints { get; private set; } = default!;
 
     /// <summary>
     ///     Humanoid species variant used by this entity.
@@ -102,14 +71,6 @@ public sealed partial class SpeciesPrototype : IPrototype
 
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> FemaleFirstNames { get; private set; } = "NamesFirstFemale";
-
-    // Corvax-LastnameGender-Start: Split lastname field by gender
-    [DataField]
-    public ProtoId<LocalizedDatasetPrototype> MaleLastNames { get; private set; } = "names_last_male";
-
-    [DataField]
-    public ProtoId<LocalizedDatasetPrototype> FemaleLastNames { get; private set; } = "names_last_female";
-    // Corvax-LastnameGender-End
 
     [DataField]
     public ProtoId<LocalizedDatasetPrototype> LastNames { get; private set; } = "NamesLast";
@@ -151,7 +112,5 @@ public enum SpeciesNaming : byte
     First,
     FirstLast,
     FirstDashFirst,
-    XnoY, //backmen: oni
     TheFirstofLast,
-    FirstDashLast, // Parkstation-IPC
 }

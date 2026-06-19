@@ -6,10 +6,10 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Clothing.EntitySystems;
 
-public sealed partial class HideLayerClothingSystem : EntitySystem
+public sealed class HideLayerClothingSystem : EntitySystem
 {
-    [Dependency] private SharedHumanoidAppearanceSystem _humanoid = default!;
-    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private readonly SharedHideableHumanoidLayersSystem _hideableHumanoidLayers = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -36,7 +36,7 @@ public sealed partial class HideLayerClothingSystem : EntitySystem
 
     private void SetLayerVisibility(
         Entity<HideLayerClothingComponent?, ClothingComponent?> clothing,
-        Entity<HumanoidAppearanceComponent?> user,
+        Entity<HideableHumanoidLayersComponent?> user,
         bool hideLayers)
     {
         if (_timing.ApplyingState)
@@ -60,8 +60,6 @@ public sealed partial class HideLayerClothingSystem : EntitySystem
         DebugTools.AssertNotNull(clothing.Comp2.InSlotFlag);
         DebugTools.AssertNotEqual(inSlot, SlotFlags.NONE);
 
-        var dirty = false;
-
         // iterate the HideLayerClothingComponent's layers map and check that
         // the clothing is (or was)equipped in a matching slot.
         foreach (var (layer, validSlots) in clothing.Comp1.Layers)
@@ -71,7 +69,7 @@ public sealed partial class HideLayerClothingSystem : EntitySystem
 
             // Only update this layer if we are currently equipped to the relevant slot.
             if (validSlots.HasFlag(inSlot))
-                _humanoid.SetLayerVisibility(user!, layer, !hideLayers, inSlot, ref dirty);
+                _hideableHumanoidLayers.SetLayerVisibility(user, layer, !hideLayers, inSlot);
         }
 
         // Fallback for obsolete field: assume we want to hide **all** layers, as long as we are equipped to any
@@ -83,12 +81,9 @@ public sealed partial class HideLayerClothingSystem : EntitySystem
             foreach (var layer in slots)
             {
                 if (hideable.Contains(layer))
-                    _humanoid.SetLayerVisibility(user!, layer, !hideLayers, inSlot, ref dirty);
+                    _hideableHumanoidLayers.SetLayerVisibility(user, layer, !hideLayers, inSlot);
             }
         }
-
-        if (dirty)
-            Dirty(user!);
     }
 
     private bool IsEnabled(Entity<HideLayerClothingComponent, ClothingComponent> clothing)

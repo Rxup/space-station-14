@@ -9,11 +9,9 @@ using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Stylesheets;
 using Content.Client.Sprite;
 using Content.Client.UserInterface.Systems.Guidebook;
-using Content.Corvax.Interfaces.Client;
-using Content.Corvax.Interfaces.Shared;
+using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
-using Content.Shared.Corvax.CCCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.Guidebook;
 using Content.Shared.Humanoid;
@@ -53,7 +51,6 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
-        private readonly ISharedSponsorsManager _clientSponsorsManager;
 
         private readonly SpriteSystem _sprite;
 
@@ -113,6 +110,8 @@ namespace Content.Client.Lobby.UI
 
         private ISawmill _sawmill;
 
+        private MarkingsViewModel _markingsModel = new();
+
         public HumanoidProfileEditor(
             IClientPreferencesManager preferencesManager,
             IConfigurationManager configurationManager,
@@ -123,8 +122,7 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings,
-            ISharedSponsorsManager clientSponsorsManager)
+            MarkingManager markings)
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -134,7 +132,6 @@ namespace Content.Client.Lobby.UI
             _playerManager = playerManager;
             _prototypeManager = prototypeManager;
             _markingManager = markings;
-            _clientSponsorsManager = clientSponsorsManager;
             _preferencesManager = preferencesManager;
             _resManager = resManager;
             _requirements = requirements;
@@ -143,6 +140,8 @@ namespace Content.Client.Lobby.UI
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
+
+            Markings.SetModel(_markingsModel);
 
             ImportButton.OnPressed += args =>
             {
@@ -227,27 +226,12 @@ namespace Content.Client.Lobby.UI
 
             #endregion Gender
 
-            // Corvax-TTS-Start
-            #region Voice
-
-            if (configurationManager.GetCVar(CCCVars.TTSEnabled))
-            {
-                TTSContainer.Visible = true;
-                InitializeVoice();
-            }
-
-            #endregion
-            // Corvax-TTS-End
-
-            InitializeBkm(); // backmen: antag
-
             RefreshSpecies();
 
             SpeciesButton.OnItemSelected += args =>
             {
                 SpeciesButton.SelectId(args.Id);
                 SetSpecies(_species[args.Id].ID);
-                UpdateHairPickers();
                 OnSkinColorOnValueChanged();
             };
 
@@ -266,112 +250,6 @@ namespace Content.Client.Lobby.UI
             };
 
             #endregion
-
-            #region Hair
-
-            HairStylePicker.OnMarkingSelect += newStyle =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairStyleName(newStyle.id));
-                ReloadPreview();
-            };
-
-            HairStylePicker.OnColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairColor(newColor.marking.MarkingColors[0]));
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnMarkingSelect += newStyle =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairStyleName(newStyle.id));
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnColorChanged += newColor =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairColor(newColor.marking.MarkingColors[0]));
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-
-            HairStylePicker.OnSlotRemove += _ =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairStyleName(HairStyles.DefaultHairStyle)
-                );
-                UpdateHairPickers();
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnSlotRemove += _ =>
-            {
-                if (Profile is null)
-                    return;
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairStyleName(HairStyles.DefaultFacialHairStyle)
-                );
-                UpdateHairPickers();
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-
-            HairStylePicker.OnSlotAdd += delegate()
-            {
-                if (Profile is null)
-                    return;
-
-                var hair = _markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.Hair, Profile.Species).Keys
-                    .FirstOrDefault();
-
-                if (string.IsNullOrEmpty(hair))
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithHairStyleName(hair)
-                );
-
-                UpdateHairPickers();
-                UpdateCMarkingsHair();
-                ReloadPreview();
-            };
-
-            FacialHairPicker.OnSlotAdd += delegate()
-            {
-                if (Profile is null)
-                    return;
-
-                var hair = _markingManager.MarkingsByCategoryAndSpecies(MarkingCategories.FacialHair, Profile.Species).Keys
-                    .FirstOrDefault();
-
-                if (string.IsNullOrEmpty(hair))
-                    return;
-
-                Profile = Profile.WithCharacterAppearance(
-                    Profile.Appearance.WithFacialHairStyleName(hair)
-                );
-
-                UpdateHairPickers();
-                UpdateCMarkingsFacialHair();
-                ReloadPreview();
-            };
-
-            #endregion Hair
 
             #region SpawnPriority
 
@@ -396,7 +274,7 @@ namespace Content.Client.Lobby.UI
                     return;
                 Profile = Profile.WithCharacterAppearance(
                     Profile.Appearance.WithEyeColor(newColor));
-                Markings.CurrentEyeColor = Profile.Appearance.EyeColor;
+                _markingsModel.SetOrganEyeColor(Profile.Appearance.EyeColor);
                 ReloadProfilePreview();
             };
 
@@ -438,10 +316,8 @@ namespace Content.Client.Lobby.UI
 
             TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
 
-            Markings.OnMarkingAdded += OnMarkingChange;
-            Markings.OnMarkingRemoved += OnMarkingChange;
-            Markings.OnMarkingColorChange += OnMarkingChange;
-            Markings.OnMarkingRankChange += OnMarkingChange;
+            _markingsModel.MarkingsChanged += (_, _) => OnMarkingChange();
+            _markingsModel.MarkingsReset += OnMarkingChange;
 
             #endregion Markings
 
@@ -607,16 +483,6 @@ namespace Content.Client.Lobby.UI
                     if (selector == null)
                         continue;
 
-                    //backmen-start: sponsor traits
-                    if (selector.Trait.SponsorOnly && !_clientSponsorsManager.GetClientPrototypes().Contains(selector.Trait.ID))
-                    {
-                        selector.Checkbox.Label.FontColorOverride = Color.Gray;
-                        selector.Checkbox.Disabled = true;
-                        selector.Checkbox.Pressed = false;
-                        selector.Checkbox.Label.Text += $" ({Loc.GetString("sponsor-only")})";
-                    }
-                    //backmen-end: sponsor traits
-
                     if (category is { MaxTraitPoints: >= 0 } &&
                         selector.Cost + selectionCount > category.MaxTraitPoints)
                     {
@@ -640,11 +506,6 @@ namespace Content.Client.Lobby.UI
             _species.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.CurrentCultureIgnoreCase));
             var speciesIds = _species.Select(o => o.ID).ToList();
 
-            // Corvax-Sponsors-Start
-            if (_sponsorsMgr != null)
-                _species = _species.Where(p => !p.SponsorOnly || _sponsorsMgr.GetClientPrototypes().Contains(p.ID)).ToList();
-            // Corvax-Sponsors-End
-
             for (var i = 0; i < _species.Count; i++)
             {
                 var name = Loc.GetString(_species[i].Name);
@@ -661,7 +522,7 @@ namespace Content.Client.Lobby.UI
             {
                 if (!speciesIds.Contains(Profile.Species))
                 {
-                    SetSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies);
+                    SetSpecies(HumanoidCharacterProfile.DefaultSpecies);
                 }
             }
         }
@@ -696,23 +557,12 @@ namespace Content.Client.Lobby.UI
                 selector.Setup(items, title, 250, description, guides: antag.Guides);
                 selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
-                var unlocked = true;
-
-                // start-backmen: antag lock
                 if (!_requirements.IsAllowed(
                         antag,
                         (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter,
                         out var reason))
                 {
-                    unlocked = false;
-                }
-
-                BkmCheckReq(antag,ref unlocked, ref reason);
-                // end-backmen: antag lock
-
-                if (!unlocked)
-                {
-                    selector.LockRequirements(reason!);
+                    selector.LockRequirements(reason);
                     Profile = Profile?.WithAntagPreference(antag.ID, false);
                     SetDirty();
                 }
@@ -814,10 +664,6 @@ namespace Content.Client.Lobby.UI
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateMarkings();
-            UpdateTTSVoicesControls(); // Corvax-TTS
-            UpdateHairPickers();
-            UpdateCMarkingsHair();
-            UpdateCMarkingsFacialHair();
 
             RefreshAntags();
             RefreshJobs();
@@ -842,7 +688,7 @@ namespace Content.Client.Lobby.UI
             if (Profile == null || !_entManager.EntityExists(PreviewDummy))
                 return;
 
-            _entManager.System<HumanoidAppearanceSystem>().LoadProfile(PreviewDummy, Profile);
+            _entManager.System<SharedVisualBodySystem>().ApplyProfileTo(PreviewDummy, Profile);
 
             // Check and set the dirty flag to enable the save/reset buttons as appropriate.
             SetDirty();
@@ -855,7 +701,7 @@ namespace Content.Client.Lobby.UI
             // I.e., do what jobs/antags do.
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
-            var species = Profile?.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
+            var species = Profile?.Species ?? HumanoidCharacterProfile.DefaultSpecies;
             var page = DefaultSpeciesGuidebook;
             if (_prototypeManager.HasIndex<GuideEntryPrototype>(species))
                 page = new ProtoId<GuideEntryPrototype>(species.Id); // Gross. See above todo comment.
@@ -927,7 +773,7 @@ namespace Content.Client.Lobby.UI
 
                     category.AddChild(new PanelContainer
                     {
-                        PanelOverride = new StyleBoxFlat {BackgroundColor = Color.FromHex("#232323")},
+                        PanelOverride = new StyleBoxFlat {BackgroundColor = Color.FromHex("#464966")},
                         Children =
                         {
                             new Label
@@ -1124,13 +970,14 @@ namespace Content.Client.Lobby.UI
             SetDirty();
         }
 
-        private void OnMarkingChange(MarkingSet markings)
+        private void OnMarkingChange()
         {
             if (Profile is null)
                 return;
 
-            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithMarkings(markings.GetForwardEnumerator().ToList()));
+            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithMarkings(_markingsModel.Markings));
             ReloadProfilePreview();
+            SetDirty();
         }
 
         private void OnSkinColorOnValueChanged()
@@ -1152,7 +999,7 @@ namespace Content.Client.Lobby.UI
 
                     var color = strategy.FromUnary(Skin.Value);
 
-                    Markings.CurrentSkinColor = color;
+                    _markingsModel.SetOrganSkinColor(color);
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
 
                     break;
@@ -1167,7 +1014,7 @@ namespace Content.Client.Lobby.UI
 
                     var color = strategy.ClosestSkinColor(_rgbSkinColorSelector.Color);
 
-                    Markings.CurrentSkinColor = color;
+                    _markingsModel.SetOrganSkinColor(color);
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
 
                     break;
@@ -1224,8 +1071,7 @@ namespace Content.Client.Lobby.UI
             }
 
             UpdateGenderControls();
-            UpdateTTSVoicesControls(); // Corvax-TTS
-            Markings.SetSex(newSex);
+            _markingsModel.SetOrganSexes(newSex);
             ReloadPreview();
         }
 
@@ -1235,19 +1081,12 @@ namespace Content.Client.Lobby.UI
             ReloadPreview();
         }
 
-        // Corvax-TTS-Start
-        private void SetVoice(string newVoice)
-        {
-            Profile = Profile?.WithVoice(newVoice);
-            IsDirty = true;
-        }
-        // Corvax-TTS-End
-
         private void SetSpecies(string newSpecies)
         {
             Profile = Profile?.WithSpecies(newSpecies);
             OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
-            Markings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
+            _markingsModel.OrganData = _markingManager.GetMarkingData(newSpecies);
+            _markingsModel.ValidateMarkings();
             // In case there's job restrictions for the species
             RefreshJobs();
             // In case there's species restrictions for loadouts
@@ -1414,9 +1253,9 @@ namespace Content.Client.Lobby.UI
                 return;
             }
 
-            Markings.SetData(Profile.Appearance.Markings, Profile.Species,
-                Profile.Sex, Profile.Appearance.SkinColor, Profile.Appearance.EyeColor
-            );
+            _markingsModel.OrganData = _markingManager.GetMarkingData(Profile.Species);
+            _markingsModel.OrganProfileData = _markingManager.GetProfileData(Profile.Species, Profile.Sex, Profile.Appearance.SkinColor, Profile.Appearance.EyeColor);
+            _markingsModel.Markings = Profile.Appearance.Markings;
         }
 
         private void UpdateGenderControls()
@@ -1439,99 +1278,6 @@ namespace Content.Client.Lobby.UI
             SpawnPriorityButton.SelectId((int) Profile.SpawnPriority);
         }
 
-        private void UpdateHairPickers()
-        {
-            if (Profile == null)
-            {
-                return;
-            }
-            var hairMarking = Profile.Appearance.HairStyleId == HairStyles.DefaultHairStyle
-                ? new List<Marking>()
-                : new() { new(Profile.Appearance.HairStyleId, new List<Color>() { Profile.Appearance.HairColor }) };
-
-            var facialHairMarking = Profile.Appearance.FacialHairStyleId == HairStyles.DefaultFacialHairStyle
-                ? new List<Marking>()
-                : new() { new(Profile.Appearance.FacialHairStyleId, new List<Color>() { Profile.Appearance.FacialHairColor }) };
-
-            HairStylePicker.UpdateData(
-                hairMarking,
-                Profile.Species,
-                1);
-            FacialHairPicker.UpdateData(
-                facialHairMarking,
-                Profile.Species,
-                1);
-        }
-
-        private void UpdateCMarkingsHair()
-        {
-            if (Profile == null)
-            {
-                return;
-            }
-
-            // hair color
-            Color? hairColor = null;
-            if ( Profile.Appearance.HairStyleId != HairStyles.DefaultHairStyle &&
-                _markingManager.Markings.TryGetValue(Profile.Appearance.HairStyleId, out var hairProto)
-            )
-            {
-                if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, hairProto, _prototypeManager))
-                {
-                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
-                    {
-                        hairColor = Profile.Appearance.SkinColor;
-                    }
-                    else
-                    {
-                        hairColor = Profile.Appearance.HairColor;
-                    }
-                }
-            }
-            if (hairColor != null)
-            {
-                Markings.HairMarking = new (Profile.Appearance.HairStyleId, new List<Color>() { hairColor.Value });
-            }
-            else
-            {
-                Markings.HairMarking = null;
-            }
-        }
-
-        private void UpdateCMarkingsFacialHair()
-        {
-            if (Profile == null)
-            {
-                return;
-            }
-
-            // facial hair color
-            Color? facialHairColor = null;
-            if ( Profile.Appearance.FacialHairStyleId != HairStyles.DefaultFacialHairStyle &&
-                _markingManager.Markings.TryGetValue(Profile.Appearance.FacialHairStyleId, out var facialHairProto))
-            {
-                if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, facialHairProto, _prototypeManager))
-                {
-                    if (_markingManager.MustMatchSkin(Profile.Species, HumanoidVisualLayers.Hair, out var _, _prototypeManager))
-                    {
-                        facialHairColor = Profile.Appearance.SkinColor;
-                    }
-                    else
-                    {
-                        facialHairColor = Profile.Appearance.FacialHairColor;
-                    }
-                }
-            }
-            if (facialHairColor != null)
-            {
-                Markings.FacialHairMarking = new (Profile.Appearance.FacialHairStyleId, new List<Color>() { facialHairColor.Value });
-            }
-            else
-            {
-                Markings.FacialHairMarking = null;
-            }
-        }
-
         private void UpdateEyePickers()
         {
             if (Profile == null)
@@ -1539,7 +1285,7 @@ namespace Content.Client.Lobby.UI
                 return;
             }
 
-            Markings.CurrentEyeColor = Profile.Appearance.EyeColor;
+            _markingsModel.SetOrganEyeColor(Profile.Appearance.EyeColor);
             EyeColorPicker.SetData(Profile.Appearance.EyeColor);
         }
 
@@ -1598,7 +1344,7 @@ namespace Content.Client.Lobby.UI
 
             try
             {
-                var profile = _entManager.System<HumanoidAppearanceSystem>().FromStream(file, _playerManager.LocalSession!);
+                var profile = HumanoidCharacterProfile.FromStream(file, _playerManager.LocalSession!);
                 var oldProfile = Profile;
                 SetProfile(profile, CharacterSlot);
 
@@ -1630,7 +1376,7 @@ namespace Content.Client.Lobby.UI
 
             try
             {
-                var dataNode = _entManager.System<HumanoidAppearanceSystem>().ToDataNode(Profile);
+                var dataNode = Profile.ToDataNode();
                 await using var writer = new StreamWriter(file.Value.fileStream);
                 dataNode.Write(writer);
             }
