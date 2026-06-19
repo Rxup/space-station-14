@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Backmen.Fugitive;
 using Content.Server.Chat.Managers;
 using Content.Server.EUI;
@@ -15,6 +15,7 @@ using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
+using Content.Shared.Body;
 using Content.Shared.Mind;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -44,7 +45,7 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
     [Dependency] private ActorSystem _actorSystem = default!;
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private PlayTimeTrackingSystem _playTimeTrackings = default!;
-    [Dependency] private SharedHumanoidAppearanceSystem _appearance = default!;
+    [Dependency] private SharedVisualBodySystem _appearance = default!;
     [Dependency] private StationJobsSystem _stationJobs = default!;
     [Dependency] private SharedJobSystem _jobs = default!;
     [Dependency] private IRobustRandom _random = default!;

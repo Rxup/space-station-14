@@ -7,10 +7,10 @@ using Content.Server.Stunnable;
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Anomaly.Effects;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
+using BodySystem = Content.Server.Body.Systems.BodySystem;
 using Content.Shared.Chat;
 using Content.Shared.Database;
-using Content.Shared.Gibbing;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Whitelist;
@@ -132,7 +132,10 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
     private void OnAnomalySupercritical(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySupercriticalEvent args)
     {
-        _gibbing.Gib(ent.Owner);
+        if (!TryComp<BodyComponent>(ent, out var body))
+            return;
+
+        _body.GibBody(ent, true, body, splatModifier: 5f);
     }
 
     private void OnSeverityChanged(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySeverityChangedEvent args)

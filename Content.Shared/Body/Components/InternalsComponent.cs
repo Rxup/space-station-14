@@ -2,7 +2,7 @@ using Content.Shared.Alert;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Body.Components;
+namespace Content.Shared.Body;
 
 /// <summary>
 /// Handles hooking up a mask (breathing tool) / gas tank together and allowing the Owner to breathe through it.

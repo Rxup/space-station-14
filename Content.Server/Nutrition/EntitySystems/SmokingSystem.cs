@@ -2,7 +2,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Forensics;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Chemistry;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;

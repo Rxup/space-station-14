@@ -11,7 +11,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Disease; // backmen
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -164,9 +164,9 @@ namespace Content.Client.HealthAnalyzer.UI
             NameLabel.SetMessage(name);
 
             SpeciesLabel.Text =
-                _entityManager.TryGetComponent<HumanoidAppearanceComponent>(_target.Value,
-                    out var humanoidAppearanceComponent)
-                    ? Loc.GetString(_prototypes.Index<SpeciesPrototype>(humanoidAppearanceComponent.Species).Name)
+                _entityManager.TryGetComponent<HumanoidProfileComponent>(_target.Value,
+                    out var HumanoidProfileComponent)
+                    ? Loc.GetString(_prototypes.Index<SpeciesPrototype>(HumanoidProfileComponent.Species).Name)
                     : Loc.GetString("health-analyzer-window-entity-unknown-species-text");
 
             // Basic Diagnostic

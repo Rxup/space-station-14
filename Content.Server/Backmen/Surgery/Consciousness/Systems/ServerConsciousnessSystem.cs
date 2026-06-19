@@ -15,7 +15,7 @@ using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
@@ -296,7 +296,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         var modifier = consciousness.Comp.Modifiers[(nerveSys.Value.Owner, ConsciousnessModifierIds.Asphyxiation)];
 
         var sex = Sex.Unsexed;
-        if (TryComp<HumanoidAppearanceComponent>(consciousness, out var humanoid))
+        if (TryComp<HumanoidProfileComponent>(consciousness, out var humanoid))
             sex = humanoid.Sex;
 
         var lungs = Body.GetBodyOrganEntityComps<LungComponent>(consciousness.Owner);

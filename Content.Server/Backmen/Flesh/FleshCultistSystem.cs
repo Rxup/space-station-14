@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
 using Content.Server.Backmen.Language;
@@ -12,7 +12,7 @@ using Content.Server.Store.Systems;
 using Content.Server.Temperature.Components;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Alert;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
@@ -66,11 +66,11 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private PuddleSystem _puddleSystem = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private HumanoidAppearanceSystem _sharedHuApp = default!;
+    [Dependency] private HumanoidProfileSystem _sharedHuApp = default!;
     [Dependency] private SharedAppearanceSystem _sharedAppearance = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
-    [Dependency] private BodySystem _body = default!;
+    [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private GunSystem _gunSystem = default!;
     [Dependency] private TagSystem _tagSystem = default!;
@@ -112,7 +112,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     private void OnCultistCloning(EntityUid uid, FleshCultistComponent component, ref CloningEvent args)
     {
         // If the cultist ate the body we need to visually reset it after cloning
-        if (!TryComp<HumanoidAppearanceComponent>(args.CloneUid, out var huAppComponent))
+        if (!TryComp<HumanoidProfileComponent>(args.CloneUid, out var huAppComponent))
             return;
 
         var speciesProto = _proto.Index(huAppComponent.Species);
@@ -303,7 +303,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
             switch (targetState.CurrentState)
             {
                 case MobState.Dead:
-                    if (EntityManager.TryGetComponent(target, out HumanoidAppearanceComponent? humanoidAppearance))
+                    if (EntityManager.TryGetComponent(target, out HumanoidProfileComponent? humanoidAppearance))
                     {
                         if (!component.SpeciesWhitelist.Contains(humanoidAppearance.Species))
                         {
@@ -394,7 +394,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
         _popupSystem.PopupEntity(Loc.GetString("flesh-cultist-devour-target",
                 ("Entity", uid), ("Target", args.Args.Target)), uid);
 
-        if (TryComp<HumanoidAppearanceComponent>(args.Args.Target, out var humanoidAppearanceComponent))
+        if (TryComp<HumanoidProfileComponent>(args.Args.Target, out var HumanoidProfileComponent))
         {
             if (TryComp<ContainerManagerComponent>(args.Args.Target.Value, out var container))
             {
@@ -445,7 +445,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
             {
                 if (key != HumanoidVisualLayers.Head)
                 {
-                    _sharedHuApp.SetBaseLayerId(args.Args.Target.Value, key, id, humanoid: humanoidAppearanceComponent);
+                    _sharedHuApp.SetBaseLayerId(args.Args.Target.Value, key, id, humanoid: HumanoidProfileComponent);
                 }
             }
 

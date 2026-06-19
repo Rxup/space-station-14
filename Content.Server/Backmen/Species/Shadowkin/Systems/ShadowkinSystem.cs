@@ -44,7 +44,7 @@ public sealed partial class ShadowkinSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<ShadowkinComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<ShadowkinComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<ShadowkinComponent, PlayerAttachedEvent>(OnMapInit, after: new[]{ typeof(SharedHumanoidAppearanceSystem) });
+        SubscribeLocalEvent<ShadowkinComponent, PlayerAttachedEvent>(OnMapInit, after: [typeof(SharedVisualBodySystem)]);
 
         _activeHandcuff = GetEntityQuery<HandcuffComponent>();
         _activeSleeping = GetEntityQuery<SleepingComponent>();
@@ -52,7 +52,7 @@ public sealed partial class ShadowkinSystem : EntitySystem
 
     private void OnMapInit(Entity<ShadowkinComponent> ent, ref PlayerAttachedEvent args)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(ent, out var sprite))
+        if (!TryComp<HumanoidProfileComponent>(ent, out var sprite))
             return;
 
         // Blackeye if none of the RGB values are greater than 75

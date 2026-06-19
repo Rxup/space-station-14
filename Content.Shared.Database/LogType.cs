@@ -391,6 +391,7 @@ public enum LogType
     /// Tiles related interactions.
     /// </summary>
     Tile = 86,
+
     /// <summary>
     /// A client has sent too many chat messages recently and is temporarily blocked from sending more.
     /// </summary>
@@ -410,6 +411,7 @@ public enum LogType
     /// A player had a refund at the "store".
     /// </summary>
     StoreRefund = 90,
+
     /// <summary>
     /// User was rate-limited for some spam action.
     /// </summary>
@@ -417,24 +419,21 @@ public enum LogType
     /// This is a default value used by <c>PlayerRateLimitManager</c>, though users can use different log types.
     /// </remarks>
     RateLimited = 91,
+
     /// <summary>
     /// A player did an item-use interaction of an item they were holding onto another object.
     /// </summary>
     InteractUsing = 92,
+
     /// <summary>
     /// Storage & entity-storage related interactions
     /// </summary>
     Storage = 93,
+
     /// <summary>
     /// A player got hit by an explosion and was dealt damage.
     /// </summary>
     ExplosionHit = 94,
-
-
-    //backmen
-    Transactions = 120,
-    Psionics = 121,
-
 
     /// <summary>
     /// A ghost warped to an entity through the ghost warp menu.
@@ -479,4 +478,13 @@ public enum LogType
     /// Events relating to midi playback.
     /// </summary>
     Instrument = 103,
+
+    /// <summary>
+    /// Events related to players connecting/disconnecting.
+    /// </summary>
+    Connection = 104,
+
+    //backmen
+    Transactions = 120,
+    Psionics = 121,
 }

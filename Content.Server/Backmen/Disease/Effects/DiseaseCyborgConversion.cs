@@ -1,4 +1,4 @@
-﻿using Content.Server.Humanoid;
+using Content.Server.Humanoid;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -20,7 +20,7 @@ public sealed partial class DiseaseCyborgConversion : DiseaseEffect
 
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private HumanoidAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private HumanoidProfileSystem _appearanceSystem = default!;
     [Dependency] private MetaDataSystem _metaDataSystem = default!;
 
     private void DiseaseCyborgConversion(Entity<DiseaseCarrierComponent> ent,
@@ -42,7 +42,7 @@ public sealed partial class DiseaseEffectSystem
         repairableComponent.DoAfterDelay = 8;
 
         _disease.CureDisease(ent, args.Disease);
-        if (TryComp<HumanoidAppearanceComponent>(ent, out var appearanceComponent))
+        if (TryComp<HumanoidProfileComponent>(ent, out var appearanceComponent))
         {
             _appearanceSystem.SetSex(ent, Sex.Female, true, appearanceComponent);
             _appearanceSystem.SetSkinColor(ent, Color.Red, true, true, appearanceComponent);

@@ -186,7 +186,10 @@ namespace Content.Server.Preferences.Managers
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts
-            );
+            )
+            {
+                Voice = profile.Voice,
+            };
         }
 
         private async void HandleSelectCharacterMessage(MsgSelectCharacter message)

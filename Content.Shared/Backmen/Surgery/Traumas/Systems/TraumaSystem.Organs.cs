@@ -1,7 +1,7 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
-using Content.Shared.Body.Organ;
+using Content.Shared.Body;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Movement.Systems;
@@ -83,7 +83,7 @@ public partial class TraumaSystem
         if (Consciousness.TryGetNerveSystem(body.Value, out var nerveSys) && !MobState.IsDead(body.Value))
         {
             var sex = Sex.Unsexed;
-            if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
+            if (TryComp<HumanoidProfileComponent>(body, out var humanoid))
                 sex = humanoid.Sex;
 
             Pain.CleanupPainSounds(nerveSys.Value, nerveSys);

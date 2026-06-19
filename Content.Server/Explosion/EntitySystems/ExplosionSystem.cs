@@ -10,7 +10,7 @@ using Content.Shared.Armor;
 using Content.Shared.Body.Systems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Camera;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;

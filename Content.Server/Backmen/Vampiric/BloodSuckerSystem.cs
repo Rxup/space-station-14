@@ -28,7 +28,7 @@ using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Vampiric.Components;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry;
@@ -65,7 +65,7 @@ namespace Content.Server.Backmen.Vampiric;
 public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
 {
     [Dependency] private AntagSelectionSystem _antag = default!;
-    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private PopupSystem _popups = default!;
     [Dependency] private DoAfterSystem _doAfter = default!;

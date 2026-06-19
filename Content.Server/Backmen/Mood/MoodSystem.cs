@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Chat.Managers;
 using Content.Server.Popups;
 using Content.Shared.Alert;
@@ -22,7 +22,7 @@ using Robust.Shared.Configuration;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
@@ -316,7 +316,7 @@ public sealed partial class MoodSystem : EntitySystem
 
         if (args.Origin == null ||
             args.NewMobState != MobState.Alive ||
-            !HasComp<HumanoidAppearanceComponent>(uid) ||
+            !HasComp<HumanoidProfileComponent>(uid) ||
             !HasComp<MoodComponent>(args.Origin))
             return;
 

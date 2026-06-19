@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Forensics;
 using Content.Server.StationRecords;
@@ -48,7 +48,7 @@ public sealed class StationRecordCommand : ToolshedCommand
         var playerUid = player.AttachedEntity.Value;
 
         if (
-            !TryComp<HumanoidAppearanceComponent>(playerUid, out var humanoidAppearanceComponent) ||
+            !TryComp<HumanoidProfileComponent>(playerUid, out var HumanoidProfileComponent) ||
             !TryComp<MetaDataComponent>(playerUid, out var metaDataComponent)
         )
             return input;
@@ -67,20 +67,20 @@ public sealed class StationRecordCommand : ToolshedCommand
             _recordsSystem.CreateGeneralRecord(input,
                 pda.ContainedId,
                 metaDataComponent.EntityName,
-                humanoidAppearanceComponent.Age,
-                humanoidAppearanceComponent.Species,
-                humanoidAppearanceComponent.Gender,
+                HumanoidProfileComponent.Age,
+                HumanoidProfileComponent.Species,
+                HumanoidProfileComponent.Gender,
                 job.Id,
                 dnaComponent?.DNA,
                 fingerprintComponent?.Fingerprint,
                 new HumanoidCharacterProfile(
                     metaDataComponent.EntityName,
                     "",
-                    humanoidAppearanceComponent.Species,
+                    HumanoidProfileComponent.Species,
                     "",
-                    humanoidAppearanceComponent.Age,
-                    humanoidAppearanceComponent.Sex,
-                    humanoidAppearanceComponent.Gender,
+                    HumanoidProfileComponent.Age,
+                    HumanoidProfileComponent.Sex,
+                    HumanoidProfileComponent.Gender,
                     new HumanoidCharacterAppearance
                     {
                         HairStyleId = "",

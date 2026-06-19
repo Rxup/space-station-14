@@ -11,7 +11,6 @@ namespace Content.Client.Lobby.UI
     public sealed partial class LobbyGui : UIScreen
     {
         [Dependency] private IClientConsoleHost _consoleHost = default!;
-        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
 
         public LobbyGui()
         {
@@ -20,45 +19,38 @@ namespace Content.Client.Lobby.UI
             SetAnchorPreset(MainContainer, LayoutPreset.Wide);
             SetAnchorPreset(Background, LayoutPreset.Wide);
 
+            LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
 
+            LeaveButton.OnPressed += _ => _consoleHost.ExecuteCommand("disconnect");
+            OptionsButton.OnPressed += _ => UserInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
 
-            OptionsButton.OnPressed += _ => _userInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
-            // BACKMEN Edit Start
-            VotemenuButton.OnPressed += _ => _consoleHost.ExecuteCommand("votemenu");
-            ChangelogButton.OnPressed += _ => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
-            QuitButton.OnPressed += _ => _consoleHost.ExecuteCommand("disconnect");
-            // BACKMEN Edit End
+            CollapseButton.OnPressed += _ => TogglePanel(false);
+            ExpandButton.OnPressed += _ => TogglePanel(true);
         }
 
         public void SwitchState(LobbyGuiState state)
         {
+            DefaultState.Visible = false;
+            CharacterSetupState.Visible = false;
+
             switch (state)
             {
                 case LobbyGuiState.Default:
+                    DefaultState.Visible = true;
                     RightSide.Visible = true;
-                    // BACKMEN EDIT START
-                    CharacterSetupState.Visible = false;
-                    Center.Visible = true;
-                    LabelName.Visible = true;
-                    Changelog.Visible = false;
-                    // BACKMEN EDIT END
                     break;
                 case LobbyGuiState.CharacterSetup:
                     CharacterSetupState.Visible = true;
-                    // BACKMEN EDIT START
-                    Center.Visible = false;
-                    RightSide.Visible = true;
-                    LabelName.Visible = false;
-                    Changelog.Visible = false;
-                    // BACKMEN EDIT END
 
-                    var actualWidth = (float) _userInterfaceManager.RootControl.PixelWidth;
+                    var actualWidth = (float) UserInterfaceManager.RootControl.PixelWidth;
                     var setupWidth = (float) LeftSide.PixelWidth;
 
                     if (1 - (setupWidth / actualWidth) > 0.30)
                     {
                         RightSide.Visible = false;
                     }
+
+                    UserInterfaceManager.GetUIController<LobbyUIController>().ReloadCharacterSetup();
 
                     break;
             }

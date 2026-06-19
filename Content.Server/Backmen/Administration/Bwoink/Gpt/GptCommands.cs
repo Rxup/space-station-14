@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
@@ -300,13 +300,13 @@ public sealed partial class GptCommands : EntitySystem
         }
 
         if (isHaveAttachedEntity &&
-            TryComp<HumanoidAppearanceComponent>(attachedEntity, out var humanoidAppearanceComponent))
+            TryComp<HumanoidProfileComponent>(attachedEntity, out var HumanoidProfileComponent))
         {
-            info["age"] = humanoidAppearanceComponent.Age;
-            info["gender"] = humanoidAppearanceComponent.Gender.ToString();
-            info["skinColor"] = humanoidAppearanceComponent.SkinColor.ToHex();
-            info["eyeColor"] = humanoidAppearanceComponent.EyeColor.ToHex();
-            info["hairColor"] = humanoidAppearanceComponent.CachedHairColor?.ToHex();
+            info["age"] = HumanoidProfileComponent.Age;
+            info["gender"] = HumanoidProfileComponent.Gender.ToString();
+            info["skinColor"] = HumanoidProfileComponent.SkinColor.ToHex();
+            info["eyeColor"] = HumanoidProfileComponent.EyeColor.ToHex();
+            info["hairColor"] = HumanoidProfileComponent.CachedHairColor?.ToHex();
         }
 
         ev.History.Messages.Add(new GptMessageFunction(PlayerInfoFn, info));

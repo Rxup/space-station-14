@@ -642,7 +642,7 @@ public abstract partial class SharedMindSystem : EntitySystem
     /// </summary>
     public void AddAliveHumans(HashSet<Entity<MindComponent>> allHumans, EntityUid? exclude = null)
     {
-        // HumanoidProfileComponent is used to prevent mice, pAIs, etc from being chosen
+        // HumanoidAppearanceComponent is used to prevent mice, pAIs, etc from being chosen
         var query = EntityQueryEnumerator<HumanoidProfileComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out _, out var mobState))
         {

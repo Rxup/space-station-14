@@ -12,7 +12,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Medical.Surgery.Steps;
 using Content.Shared.Body.Part;
 using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
@@ -256,14 +256,8 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
     private void OnMarkingPresentValid(Entity<SurgeryMarkingConditionComponent> ent, ref SurgeryValidEvent args)
     {
-        var markingCategory = MarkingCategoriesConversion.FromHumanoidVisualLayers(ent.Comp.MarkingCategory);
-
-        var hasMarking = TryComp(args.Body, out HumanoidAppearanceComponent? bodyAppearance)
-            && bodyAppearance.MarkingSet.Markings.TryGetValue(markingCategory, out var markingList)
-            && markingList.Any(marking => marking.MarkingId.Contains(ent.Comp.MatchString));
-
-        if ((!ent.Comp.Inverse && hasMarking) || (ent.Comp.Inverse && !hasMarking))
-            args.Cancelled = true;
+        // Marking validation disabled until nubody markings migration.
+        args.Cancelled = true;
     }
 
     /*private void OnRemoveLarva(Entity<SurgeryRemoveLarvaComponent> ent, ref SurgeryCompletedEvent args)

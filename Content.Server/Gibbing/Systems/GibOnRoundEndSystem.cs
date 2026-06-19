@@ -2,7 +2,7 @@
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Systems;
-using Content.Shared.Gibbing;
+using Content.Server.Body.Systems;
 
 namespace Content.Server.Gibbing.Systems;
 public sealed partial class GibOnRoundEndSystem : EntitySystem
@@ -49,7 +49,7 @@ public sealed partial class GibOnRoundEndSystem : EntitySystem
             if (gibComp.SpawnProto != null)
                 SpawnAtPosition(gibComp.SpawnProto, Transform(uid).Coordinates);
 
-            _gibbing.Gib(uid);
+            _body.GibBody(uid, splatModifier: 5f);
         }
     }
 }

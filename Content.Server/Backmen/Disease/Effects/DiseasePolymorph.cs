@@ -1,4 +1,4 @@
-﻿using Content.Server.Polymorph.Systems;
+using Content.Server.Polymorph.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Humanoid;
@@ -66,10 +66,10 @@ public sealed partial class DiseaseEffectSystem
                 PopupType.Large);
 
         if (polyUid != null && args.DiseaseEffect.PolymorphRandomAppereance &&
-            TryComp<HumanoidAppearanceComponent>(polyUid, out var newHumanoid))
+            TryComp<HumanoidProfileComponent>(polyUid, out var newHumanoid))
         {
             var pref = HumanoidCharacterProfile.RandomWithSpecies(newHumanoid.Species);
-            if (TryComp<HumanoidAppearanceComponent>(ent, out var humanoid))
+            if (TryComp<HumanoidProfileComponent>(ent, out var humanoid))
             {
                 // if (oldSpecies.Sex.Contains(humanoid.Sex))
                 pref = pref.WithSex(humanoid.Sex);

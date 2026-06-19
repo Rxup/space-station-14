@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Content.Server.Access.Systems;
@@ -507,7 +507,7 @@ public sealed partial class EvilTwinSystem : EntitySystem
     {
         var targets = new List<EntityUid>();
         {
-            var query = AllEntityQuery<ActorComponent, MindContainerComponent, HumanoidAppearanceComponent>();
+            var query = AllEntityQuery<ActorComponent, MindContainerComponent, HumanoidProfileComponent>();
             while (query.MoveNext(out var entityUid, out var actor, out var mindContainer, out _))
             {
                 if (!IsEligibleHumanoid(entityUid))
@@ -543,7 +543,7 @@ public sealed partial class EvilTwinSystem : EntitySystem
     private (EntityUid?, HumanoidCharacterProfile? pref) SpawnEvilTwin(EntityUid target, EntityCoordinates coords)
     {
         if (!_mindSystem.TryGetMind(target, out var mindId, out var mind) ||
-            !HasComp<HumanoidAppearanceComponent>(target))
+            !HasComp<HumanoidProfileComponent>(target))
         {
             return (null, null);
         }
@@ -651,7 +651,7 @@ public sealed partial class EvilTwinSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IServerPreferencesManager _prefs = default!;
-    [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private HumanoidProfileSystem _humanoid = default!;
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
     [Dependency] private StationSystem _stationSystem = default!;
     [Dependency] private PrayerSystem _prayerSystem = default!;

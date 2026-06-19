@@ -38,7 +38,7 @@ public sealed partial class MetempsychoticMachineSystem : EntitySystem
 
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidSystem = default!;
 
     public override void Initialize()
     {
@@ -52,12 +52,12 @@ public sealed partial class MetempsychoticMachineSystem : EntitySystem
     {
 
         EnsureComp<PotentialPsionicComponent>(ev.CloneUid);
-        if (!TryComp<HumanoidAppearanceComponent>(ent, out var humanoid) || !_prototypeManager.TryIndex(humanoid.Species, out var oldSpecies))
+        if (!TryComp<HumanoidProfileComponent>(ent, out var humanoid) || !_prototypeManager.TryIndex(humanoid.Species, out var oldSpecies))
         {
             return;
         }
 
-        if (!TryComp<HumanoidAppearanceComponent>(ev.CloneUid, out var newHumanoid) || !_prototypeManager.TryIndex(newHumanoid.Species, out var newSpecies)) //non human fix
+        if (!TryComp<HumanoidProfileComponent>(ev.CloneUid, out var newHumanoid) || !_prototypeManager.TryIndex(newHumanoid.Species, out var newSpecies)) //non human fix
         {
             RemComp<ReplacementAccentComponent>(ev.CloneUid);
             RemComp<MonkeyAccentComponent>(ev.CloneUid);
@@ -104,7 +104,7 @@ public sealed partial class MetempsychoticMachineSystem : EntitySystem
 
         TryComp<MetempsychosisKarmaComponent>(args.Source, out var oldKarma);
 
-        if (!TryComp<HumanoidAppearanceComponent>(args.Source, out var humanoid) ||
+        if (!TryComp<HumanoidProfileComponent>(args.Source, out var humanoid) ||
             !_prototypeManager.TryIndex(humanoid.Species, out var speciesPrototype))
         {
             return;

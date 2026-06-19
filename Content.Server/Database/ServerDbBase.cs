@@ -1,20 +1,28 @@
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Net;
+using System.Net.Http;
+using System.Net.Http.Json;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
+using Content.Server.Administration.Managers;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Body;
 using Content.Shared.Construction.Prototypes;
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
+using Content.Shared.Traits;
 using Microsoft.EntityFrameworkCore;
+using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
@@ -25,14 +33,19 @@ namespace Content.Server.Database
     public abstract class ServerDbBase
     {
         private readonly ISawmill _opsLog;
-        public event Action<DatabaseNotification>? OnNotificationReceived;
         private readonly ISerializationManager _serialization;
+        protected string _playtimeServerUrl = String.Empty;
+        protected bool _playtimeServerSaveLocally = false;
+        protected bool _playtimeServerEnabled = false;
+        protected readonly HttpClient _httpClient = new();
+
+        public event Action<DatabaseNotification>? OnNotificationReceived;
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
         public ServerDbBase(ISawmill opsLog, ISerializationManager serialization)
         {
-            _serialization = serialization;
             _opsLog = opsLog;
+            _serialization = serialization;
         }
 
         #region Preferences
@@ -60,30 +73,6 @@ namespace Content.Server.Database
             await using var db = await GetDb();
 
             await SetSelectedCharacterSlotAsync(userId, index, db.DbContext);
-
-            await db.DbContext.SaveChangesAsync();
-        }
-
-        /// <summary>
-        /// Only intended for use in unit tests - drops the organ marking data from a profile in the given slot
-        /// </summary>
-        /// <param name="userId">The user whose profile to modify</param>
-        /// <param name="slot">The slot index to modify</param>
-        public async Task MakeCharacterSlotLegacyAsync(NetUserId userId, int slot)
-        {
-            await using var db = await GetDb();
-
-            var oldProfile = await db.DbContext.Profile
-                .Include(p => p.Preference)
-                .Where(p => p.Preference.UserId == userId.UserId)
-                .AsSplitQuery()
-                .SingleOrDefaultAsync(h => h.Slot == slot);
-
-            if (oldProfile == null)
-                return;
-
-            oldProfile.OrganMarkings = null;
-            oldProfile.Markings = JsonSerializer.SerializeToDocument(new List<string>());
 
             await db.DbContext.SaveChangesAsync();
         }
@@ -143,7 +132,7 @@ namespace Content.Server.Database
         {
             await using var db = await GetDb();
 
-            var profile = ConvertProfiles((HumanoidCharacterProfile) defaultProfile, 0);
+            var profile = ConvertProfiles(defaultProfile, 0);
             var prefs = new Preference
             {
                 UserId = userId.UserId,
@@ -212,6 +201,7 @@ namespace Content.Server.Database
             profile.CharacterName = humanoid.Name;
             profile.FlavorText = humanoid.FlavorText;
             profile.Species = humanoid.Species;
+            profile.Voice = humanoid.Voice;
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();
@@ -228,8 +218,8 @@ namespace Content.Server.Database
                 .ToList();
             var flattenedMarkings = appearance.Markings.SelectMany(it => it.Value)
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-            var hairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.Hair)?.Value.FirstOrNull();
-            var facialHairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.FacialHair)?.Value.FirstOrNull();
+            var hairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.Hair)?.Value.FirstOrDefault();
+            var facialHairMarking = flattenedMarkings.FirstOrNull(kvp => kvp.Key == HumanoidVisualLayers.FacialHair)?.Value.FirstOrDefault();
             profile.Markings =
                 JsonSerializer.SerializeToDocument(legacyMarkings.Select(marking => marking.ToString()).ToList());
             profile.HairName = hairMarking?.MarkingId ?? HairStyles.DefaultHairStyle;
@@ -327,7 +317,7 @@ namespace Content.Server.Database
         /// </summary>
         /// <param name="id">The ban id to look for.</param>
         /// <returns>The ban with the given id or null if none exist.</returns>
-        public abstract Task<BanDef?> GetBanAsync(int id);
+        public abstract Task<ServerBanDef?> GetServerBanAsync(int id);
 
         /// <summary>
         ///     Looks up an user's most recent received un-pardoned ban.
@@ -339,12 +329,11 @@ namespace Content.Server.Database
         /// <param name="hwId">The legacy HWId of the user.</param>
         /// <param name="modernHWIds">The modern HWIDs of the user.</param>
         /// <returns>The user's latest received un-pardoned ban, or null if none exist.</returns>
-        public abstract Task<BanDef?> GetBanAsync(
+        public abstract Task<ServerBanDef?> GetServerBanAsync(
             IPAddress? address,
             NetUserId? userId,
             ImmutableArray<byte>? hwId,
-            ImmutableArray<ImmutableArray<byte>>? modernHWIds,
-            BanType type);
+            ImmutableArray<ImmutableArray<byte>>? modernHWIds);
 
         /// <summary>
         ///     Looks up an user's ban history.
@@ -357,18 +346,17 @@ namespace Content.Server.Database
         /// <param name="modernHWIds">The modern HWIDs of the user.</param>
         /// <param name="includeUnbanned">Include pardoned and expired bans.</param>
         /// <returns>The user's ban history.</returns>
-        public abstract Task<List<BanDef>> GetBansAsync(
+        public abstract Task<List<ServerBanDef>> GetServerBansAsync(
             IPAddress? address,
             NetUserId? userId,
             ImmutableArray<byte>? hwId,
             ImmutableArray<ImmutableArray<byte>>? modernHWIds,
-            bool includeUnbanned,
-            BanType type);
+            bool includeUnbanned);
 
-        public abstract Task<BanDef> AddBanAsync(BanDef ban);
-        public abstract Task AddUnbanAsync(UnbanDef unban);
+        public abstract Task AddServerBanAsync(ServerBanDef serverBan);
+        public abstract Task AddServerUnbanAsync(ServerUnbanDef serverUnban);
 
-        public async Task EditBan(int id, string reason, NoteSeverity severity, DateTimeOffset? expiration, Guid editedBy, DateTimeOffset editedAt)
+        public async Task EditServerBan(int id, string reason, NoteSeverity severity, DateTimeOffset? expiration, Guid editedBy, DateTimeOffset editedAt)
         {
             await using var db = await GetDb();
 
@@ -431,28 +419,78 @@ namespace Content.Server.Database
             return flags ?? ServerBanExemptFlags.None;
         }
 
-        protected static List<Expression<Func<Ban, object>>> GetBanDefIncludes(BanType? type = null)
+        #endregion
+
+        #region Role Bans
+        /*
+         * ROLE BANS
+         */
+        /// <summary>
+        ///     Looks up a role ban by id.
+        ///     This will return a pardoned role ban as well.
+        /// </summary>
+        /// <param name="id">The role ban id to look for.</param>
+        /// <returns>The role ban with the given id or null if none exist.</returns>
+        public abstract Task<ServerRoleBanDef?> GetServerRoleBanAsync(int id);
+
+        /// <summary>
+        ///     Looks up an user's role ban history.
+        ///     This will return pardoned role bans based on the <see cref="includeUnbanned"/> bool.
+        ///     Requires one of <see cref="address"/>, <see cref="userId"/>, or <see cref="hwId"/> to not be null.
+        /// </summary>
+        /// <param name="address">The IP address of the user.</param>
+        /// <param name="userId">The NetUserId of the user.</param>
+        /// <param name="hwId">The Hardware Id of the user.</param>
+        /// <param name="modernHWIds">The modern HWIDs of the user.</param>
+        /// <param name="includeUnbanned">Whether expired and pardoned bans are included.</param>
+        /// <returns>The user's role ban history.</returns>
+        public abstract Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(IPAddress? address,
+            NetUserId? userId,
+            ImmutableArray<byte>? hwId,
+            ImmutableArray<ImmutableArray<byte>>? modernHWIds,
+            bool includeUnbanned);
+
+        public abstract Task<ServerRoleBanDef> AddServerRoleBanAsync(ServerRoleBanDef serverRoleBan);
+        public abstract Task AddServerRoleUnbanAsync(ServerRoleUnbanDef serverRoleUnban);
+
+        public async Task EditServerRoleBan(int id, string reason, NoteSeverity severity, DateTimeOffset? expiration, Guid editedBy, DateTimeOffset editedAt)
         {
-            List<Expression<Func<Ban, object>>> list =
-            [
-                b => b.Players!,
-                b => b.Rounds!,
-                b => b.Hwids!,
-                b => b.Unban!,
-                b => b.Addresses!,
-            ];
+            await using var db = await GetDb();
+            var roleBanDetails = await db.DbContext.RoleBan
+                .Where(b => b.Id == id)
+                .Select(b => new { b.BanTime, b.PlayerUserId })
+                .SingleOrDefaultAsync();
 
-            if (type != BanType.Server)
-                list.Add(b => b.Roles!);
+            if (roleBanDetails == default)
+                return;
 
-            return list;
+            await db.DbContext.RoleBan
+                .Where(b => b.BanTime == roleBanDetails.BanTime && b.PlayerUserId == roleBanDetails.PlayerUserId)
+                .ExecuteUpdateAsync(setters => setters
+                    .SetProperty(b => b.Severity, severity)
+                    .SetProperty(b => b.Reason, reason)
+                    .SetProperty(b => b.ExpirationTime, expiration.HasValue ? expiration.Value.UtcDateTime : (DateTime?)null)
+                    .SetProperty(b => b.LastEditedById, editedBy)
+                    .SetProperty(b => b.LastEditedAt, editedAt.UtcDateTime)
+                );
         }
-
         #endregion
 
         #region Playtime
         public async Task<List<PlayTime>> GetPlayTimes(Guid player, CancellationToken cancel)
         {
+            if (_playtimeServerEnabled)
+            {
+                var requestUrl = $"{_playtimeServerUrl}?playerId={WebUtility.UrlEncode(player.ToString())}";
+                var response = await _httpClient.GetAsync(requestUrl, cancel);
+                if (!response.IsSuccessStatusCode)
+                {
+                    return [];
+                }
+                var data = await response.Content.ReadFromJsonAsync<List<PlayTime>>(cancel);
+                return data!;
+            }
+
             await using var db = await GetDb(cancel);
 
             return await db.DbContext.PlayTime
@@ -462,6 +500,21 @@ namespace Content.Server.Database
 
         public async Task UpdatePlayTimes(IReadOnlyCollection<PlayTimeUpdate> updates)
         {
+            if (_playtimeServerEnabled)
+            {
+                var data = updates.Select(x => new PlayTime()
+                {
+                    PlayerId = x.User.UserId,
+                    Tracker = x.Tracker,
+                    TimeSpent = x.Time
+                });
+                await _httpClient.PostAsJsonAsync(_playtimeServerUrl, data);
+                if (!_playtimeServerSaveLocally)
+                {
+                    return;
+                }
+            }
+
             await using var db = await GetDb();
 
             // Ideally I would just be able to send a bunch of UPSERT commands, but EFCore is a pile of garbage.
@@ -568,19 +621,6 @@ namespace Content.Server.Database
             if (player == null)
                 return null;
 
-            return MakePlayerRecord(player.UserId, player);
-        }
-
-        protected PlayerRecord MakePlayerRecord(Guid userId, Player? player)
-        {
-            if (player == null)
-            {
-                // We don't have a record for this player in the database.
-                // This is possible, for example, when banning people that never connected to the server.
-                // Just return fallback data here, I guess.
-                return new PlayerRecord(new NetUserId(userId), default, userId.ToString(), default, null, null);
-            }
-
             return new PlayerRecord(
                 new NetUserId(player.UserId),
                 new DateTimeOffset(NormalizeDatabaseTime(player.FirstSeenTime)),
@@ -604,7 +644,7 @@ namespace Content.Server.Database
             ConnectionDenyReason? denied,
             int serverId);
 
-        public async Task AddServerBanHitsAsync(int connection, IEnumerable<BanDef> bans)
+        public async Task AddServerBanHitsAsync(int connection, IEnumerable<ServerBanDef> bans)
         {
             await using var db = await GetDb();
 
@@ -1218,17 +1258,81 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 entity.Dismissed);
         }
 
-        public async Task<BanNoteRecord?> GetBanAsNoteAsync(int id)
+        public async Task<ServerBanNoteRecord?> GetServerBanAsNoteAsync(int id)
         {
             await using var db = await GetDb();
 
-            var ban = await BanRecordQuery(db.DbContext)
+            var ban = await db.DbContext.Ban
+                .Include(ban => ban.Unban)
+                .Include(ban => ban.Round)
+                .ThenInclude(r => r!.Server)
+                .Include(ban => ban.CreatedBy)
+                .Include(ban => ban.LastEditedBy)
+                .Include(ban => ban.Unban)
                 .SingleOrDefaultAsync(b => b.Id == id);
 
             if (ban is null)
                 return null;
 
-            return await MakeBanNoteRecord(db.DbContext, ban);
+            var player = await db.DbContext.Player.SingleOrDefaultAsync(p => p.UserId == ban.PlayerUserId);
+            return new ServerBanNoteRecord(
+                ban.Id,
+                MakeRoundRecord(ban.Round),
+                MakePlayerRecord(player),
+                ban.PlaytimeAtNote,
+                ban.Reason,
+                ban.Severity,
+                MakePlayerRecord(ban.CreatedBy),
+                ban.BanTime,
+                MakePlayerRecord(ban.LastEditedBy),
+                ban.LastEditedAt,
+                ban.ExpirationTime,
+                ban.Hidden,
+                MakePlayerRecord(ban.Unban?.UnbanningAdmin == null
+                    ? null
+                    : await db.DbContext.Player.SingleOrDefaultAsync(p =>
+                        p.UserId == ban.Unban.UnbanningAdmin.Value)),
+                ban.Unban?.UnbanTime);
+        }
+
+        public async Task<ServerRoleBanNoteRecord?> GetServerRoleBanAsNoteAsync(int id)
+        {
+            await using var db = await GetDb();
+
+            var ban = await db.DbContext.RoleBan
+                .Include(ban => ban.Unban)
+                .Include(ban => ban.Round)
+                .ThenInclude(r => r!.Server)
+                .Include(ban => ban.CreatedBy)
+                .Include(ban => ban.LastEditedBy)
+                .Include(ban => ban.Unban)
+                .SingleOrDefaultAsync(b => b.Id == id);
+
+            if (ban is null)
+                return null;
+
+            var player = await db.DbContext.Player.SingleOrDefaultAsync(p => p.UserId == ban.PlayerUserId);
+            var unbanningAdmin =
+                ban.Unban is null
+                ? null
+                : await db.DbContext.Player.SingleOrDefaultAsync(b => b.UserId == ban.Unban.UnbanningAdmin);
+
+            return new ServerRoleBanNoteRecord(
+                ban.Id,
+                MakeRoundRecord(ban.Round),
+                MakePlayerRecord(player),
+                ban.PlaytimeAtNote,
+                ban.Reason,
+                ban.Severity,
+                MakePlayerRecord(ban.CreatedBy),
+                ban.BanTime,
+                MakePlayerRecord(ban.LastEditedBy),
+                ban.LastEditedAt,
+                ban.ExpirationTime,
+                ban.Hidden,
+                new [] { ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null) },
+                MakePlayerRecord(unbanningAdmin),
+                ban.Unban?.UnbanTime);
         }
 
         public async Task<List<IAdminRemarksRecord>> GetAllAdminRemarks(Guid player)
@@ -1249,7 +1353,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     .ToListAsync()).Select(MakeAdminNoteRecord));
             notes.AddRange(await GetActiveWatchlistsImpl(db, player));
             notes.AddRange(await GetMessagesImpl(db, player));
-            notes.AddRange(await GetBansAsNotesForUser(db, player));
+            notes.AddRange(await GetServerBansAsNotesForUser(db, player));
+            notes.AddRange(await GetGroupedServerRoleBansAsNotesForUser(db, player));
             return notes;
         }
         public async Task EditAdminNote(int id, string message, NoteSeverity severity, bool secret, Guid editedBy, DateTimeOffset editedAt, DateTimeOffset? expiryTime)
@@ -1332,7 +1437,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             await db.DbContext.SaveChangesAsync();
         }
 
-        public async Task HideBanFromNotes(int id, Guid deletedBy, DateTimeOffset deletedAt)
+        public async Task HideServerBanFromNotes(int id, Guid deletedBy, DateTimeOffset deletedAt)
         {
             await using var db = await GetDb();
 
@@ -1341,6 +1446,19 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             ban.Hidden = true;
             ban.LastEditedById = deletedBy;
             ban.LastEditedAt = deletedAt.UtcDateTime;
+
+            await db.DbContext.SaveChangesAsync();
+        }
+
+        public async Task HideServerRoleBanFromNotes(int id, Guid deletedBy, DateTimeOffset deletedAt)
+        {
+            await using var db = await GetDb();
+
+            var roleBan = await db.DbContext.RoleBan.Where(roleBan => roleBan.Id == id).SingleAsync();
+
+            roleBan.Hidden = true;
+            roleBan.LastEditedById = deletedBy;
+            roleBan.LastEditedAt = deletedAt.UtcDateTime;
 
             await db.DbContext.SaveChangesAsync();
         }
@@ -1362,7 +1480,8 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     .Include(note => note.Player)
                     .ToListAsync()).Select(MakeAdminNoteRecord));
             notesCol.AddRange(await GetMessagesImpl(db, player));
-            notesCol.AddRange(await GetBansAsNotesForUser(db, player));
+            notesCol.AddRange(await GetServerBansAsNotesForUser(db, player));
+            notesCol.AddRange(await GetGroupedServerRoleBansAsNotesForUser(db, player));
             return notesCol;
         }
 
@@ -1425,70 +1544,98 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
             await db.DbContext.SaveChangesAsync();
         }
 
-        private static IQueryable<Ban> BanRecordQuery(ServerDbContext dbContext)
-        {
-            return dbContext.Ban
-                .Include(ban => ban.Unban)
-                .Include(ban => ban.Rounds!)
-                .ThenInclude(r => r.Round)
-                .ThenInclude(r => r!.Server)
-                .Include(ban => ban.Addresses)
-                .Include(ban => ban.Players)
-                .Include(ban => ban.Roles)
-                .Include(ban => ban.Hwids)
-                .Include(ban => ban.CreatedBy)
-                .Include(ban => ban.LastEditedBy)
-                .Include(ban => ban.Unban);
-        }
-
-        private async Task<BanNoteRecord> MakeBanNoteRecord(ServerDbContext dbContext, Ban ban)
-        {
-            var playerRecords = await AsyncSelect(ban.Players,
-                async bp => MakePlayerRecord(bp.UserId,
-                    await dbContext.Player.SingleOrDefaultAsync(p => p.UserId == bp.UserId)));
-
-            return new BanNoteRecord(
-                ban.Id,
-                ban.Type,
-                [..ban.Rounds!.Select(br => MakeRoundRecord(br.Round!))],
-                [..playerRecords],
-                ban.PlaytimeAtNote,
-                ban.Reason,
-                ban.Severity,
-                MakePlayerRecord(ban.CreatedBy!),
-                NormalizeDatabaseTime(ban.BanTime),
-                MakePlayerRecord(ban.LastEditedBy!),
-                NormalizeDatabaseTime(ban.LastEditedAt),
-                NormalizeDatabaseTime(ban.ExpirationTime),
-                ban.Hidden,
-                ban.Unban?.UnbanningAdmin == null
-                    ? null
-                    : MakePlayerRecord(
-                        ban.Unban.UnbanningAdmin.Value,
-                        await dbContext.Player.SingleOrDefaultAsync(p => p.UserId == ban.Unban.UnbanningAdmin.Value)),
-                NormalizeDatabaseTime(ban.Unban?.UnbanTime),
-                [..ban.Roles!.Select(br => new BanRoleDef(br.RoleType, br.RoleId))]);
-        }
-
         // These two are here because they get converted into notes later
-        protected async Task<List<BanNoteRecord>> GetBansAsNotesForUser(DbGuard db, Guid user)
+        protected async Task<List<ServerBanNoteRecord>> GetServerBansAsNotesForUser(DbGuard db, Guid user)
         {
             // You can't group queries, as player will not always exist. When it doesn't, the
             // whole query returns nothing
-            var bans = await BanRecordQuery(db.DbContext)
-                .AsSplitQuery()
-                .Where(ban => ban.Players!.Any(bp => bp.UserId == user) && !ban.Hidden)
+            var player = await db.DbContext.Player.SingleOrDefaultAsync(p => p.UserId == user);
+            var bans = await db.DbContext.Ban
+                .Where(ban => ban.PlayerUserId == user && !ban.Hidden)
+                .Include(ban => ban.Unban)
+                .Include(ban => ban.Round)
+                .ThenInclude(r => r!.Server)
+                .Include(ban => ban.CreatedBy)
+                .Include(ban => ban.LastEditedBy)
+                .Include(ban => ban.Unban)
                 .ToArrayAsync();
 
-            var banNotes = new List<BanNoteRecord>();
+            var banNotes = new List<ServerBanNoteRecord>();
             foreach (var ban in bans)
             {
-                var banNote = await MakeBanNoteRecord(db.DbContext, ban);
+                var banNote = new ServerBanNoteRecord(
+                    ban.Id,
+                    MakeRoundRecord(ban.Round),
+                    MakePlayerRecord(player),
+                    ban.PlaytimeAtNote,
+                    ban.Reason,
+                    ban.Severity,
+                    MakePlayerRecord(ban.CreatedBy),
+                    NormalizeDatabaseTime(ban.BanTime),
+                    MakePlayerRecord(ban.LastEditedBy),
+                    NormalizeDatabaseTime(ban.LastEditedAt),
+                    NormalizeDatabaseTime(ban.ExpirationTime),
+                    ban.Hidden,
+                    MakePlayerRecord(ban.Unban?.UnbanningAdmin == null
+                        ? null
+                        : await db.DbContext.Player.SingleOrDefaultAsync(
+                            p => p.UserId == ban.Unban.UnbanningAdmin.Value)),
+                    NormalizeDatabaseTime(ban.Unban?.UnbanTime));
 
                 banNotes.Add(banNote);
             }
 
             return banNotes;
+        }
+
+        protected async Task<List<ServerRoleBanNoteRecord>> GetGroupedServerRoleBansAsNotesForUser(DbGuard db, Guid user)
+        {
+            // Server side query
+            var bansQuery = await db.DbContext.RoleBan
+                .Where(ban => ban.PlayerUserId == user && !ban.Hidden)
+                .Include(ban => ban.Unban)
+                .Include(ban => ban.Round)
+                .ThenInclude(r => r!.Server)
+                .Include(ban => ban.CreatedBy)
+                .Include(ban => ban.LastEditedBy)
+                .Include(ban => ban.Unban)
+                .ToArrayAsync();
+
+            // Client side query, as EF can't do groups yet
+            var bansEnumerable = bansQuery
+                    .GroupBy(ban => new { ban.BanTime, CreatedBy = (Player?)ban.CreatedBy, ban.Reason, Unbanned = ban.Unban == null })
+                    .Select(banGroup => banGroup)
+                    .ToArray();
+
+            List<ServerRoleBanNoteRecord> bans = new();
+            var player = await db.DbContext.Player.SingleOrDefaultAsync(p => p.UserId == user);
+            foreach (var banGroup in bansEnumerable)
+            {
+                var firstBan = banGroup.First();
+                Player? unbanningAdmin = null;
+
+                if (firstBan.Unban?.UnbanningAdmin is not null)
+                    unbanningAdmin = await db.DbContext.Player.SingleOrDefaultAsync(p => p.UserId == firstBan.Unban.UnbanningAdmin.Value);
+
+                bans.Add(new ServerRoleBanNoteRecord(
+                    firstBan.Id,
+                    MakeRoundRecord(firstBan.Round),
+                    MakePlayerRecord(player),
+                    firstBan.PlaytimeAtNote,
+                    firstBan.Reason,
+                    firstBan.Severity,
+                    MakePlayerRecord(firstBan.CreatedBy),
+                    NormalizeDatabaseTime(firstBan.BanTime),
+                    MakePlayerRecord(firstBan.LastEditedBy),
+                    NormalizeDatabaseTime(firstBan.LastEditedAt),
+                    NormalizeDatabaseTime(firstBan.ExpirationTime),
+                    firstBan.Hidden,
+                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null)).ToArray(),
+                    MakePlayerRecord(unbanningAdmin),
+                    NormalizeDatabaseTime(firstBan.Unban?.UnbanTime)));
+            }
+
+            return bans;
         }
 
         #endregion
@@ -1661,20 +1808,6 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         public virtual void Shutdown()
         {
 
-        }
-
-        private static async Task<IEnumerable<TResult>> AsyncSelect<T, TResult>(
-            IEnumerable<T>? enumerable,
-            Func<T, Task<TResult>> selector)
-        {
-            var results = new List<TResult>();
-
-            foreach (var item in enumerable ?? [])
-            {
-                results.Add(await selector(item));
-            }
-
-            return [..results];
         }
     }
 }

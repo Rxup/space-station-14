@@ -1,9 +1,9 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Body.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Popups;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Forensics.Components;
@@ -49,7 +49,7 @@ public sealed partial class TransformInFleshPudgeOnDeathSystem : EntitySystem
         if (HasComp<ZombieComponent>(uid))
             return;
 
-        if (TryComp<HumanoidAppearanceComponent>(uid, out var huApComp))
+        if (TryComp<HumanoidProfileComponent>(uid, out var huApComp))
         {
             var golem = Spawn(component.FleshPudgeId, Transform(uid).Coordinates);
             if (TryComp<MindContainerComponent>(uid, out var mindComp))

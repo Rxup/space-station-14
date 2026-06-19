@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Server.AlertLevel;
 using Content.Server.Body.Systems;
@@ -8,7 +8,7 @@ using Content.Server.Humanoid;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
@@ -54,9 +54,9 @@ public sealed partial class FleshHeartSystem : EntitySystem
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
-    [Dependency] private BodySystem _body = default!;
+    [Dependency] private SharedBodySystem _body = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private HumanoidAppearanceSystem _sharedHuApp = default!;
+    [Dependency] private HumanoidProfileSystem _sharedHuApp = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private StationSystem _stationSystem = default!;
     [Dependency] private AlertLevelSystem _alertLevel = default!;
@@ -263,7 +263,7 @@ public sealed partial class FleshHeartSystem : EntitySystem
         }
 
         if (
-            TryComp<HumanoidAppearanceComponent>(args.Climber, out var huAppComponent) &&
+            TryComp<HumanoidProfileComponent>(args.Climber, out var huAppComponent) &&
             TryComp<BodyComponent>(args.Climber, out var bodyComponent))
         {
             var parts = _body.GetBodyChildren(args.Climber, bodyComponent).ToArray();
@@ -323,7 +323,7 @@ public sealed partial class FleshHeartSystem : EntitySystem
         if (!Transform(uid).Anchored)
             return false;
 
-        if (!TryComp<HumanoidAppearanceComponent>(dragged, out var humanoidAppearance))
+        if (!TryComp<HumanoidProfileComponent>(dragged, out var humanoidAppearance))
             return false;
 
         if (!(component.SpeciesWhitelist.Contains(humanoidAppearance.Species)))

@@ -12,7 +12,7 @@ using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body.Organ;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.FixedPoint;
@@ -61,7 +61,7 @@ public sealed partial class ServerPainSystem : PainSystem
     private bool _painReflexesEnabled = true;
 
     private EntityQuery<MobStateComponent> _mobStateQuery;
-    private EntityQuery<HumanoidAppearanceComponent> _humanoidAppearanceQuery;
+    private EntityQuery<HumanoidProfileComponent> _humanoidAppearanceQuery;
 
     public override void Initialize()
     {
@@ -81,7 +81,7 @@ public sealed partial class ServerPainSystem : PainSystem
         Subs.CVar(Cfg, CCVars.PainReflexesEnabled, value => _painReflexesEnabled = value, true);
 
         _mobStateQuery = GetEntityQuery<MobStateComponent>();
-        _humanoidAppearanceQuery = GetEntityQuery<HumanoidAppearanceComponent>();
+        _humanoidAppearanceQuery = GetEntityQuery<HumanoidProfileComponent>();
     }
 
     public override void Update(float frameTime)
@@ -481,7 +481,7 @@ public sealed partial class ServerPainSystem : PainSystem
             return;
 
         var sex = Sex.Unsexed;
-        if (TryComp<HumanoidAppearanceComponent>(body, out var humanoid))
+        if (TryComp<HumanoidProfileComponent>(body, out var humanoid))
             sex = humanoid.Sex;
 
         switch (reaction)

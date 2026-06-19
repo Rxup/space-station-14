@@ -1,6 +1,5 @@
 using Content.Shared.Species.Components;
 using Content.Shared.Actions;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Systems;
 using Content.Shared.Gibbing;
 using Content.Shared.Mobs;
@@ -14,7 +13,7 @@ namespace Content.Shared.Species;
 public sealed partial class GibActionSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;
 
@@ -22,8 +21,7 @@ public sealed partial class GibActionSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GibActionComponent, MobStateChangedEvent>(OnMobStateChanged, after: [typeof(WoundSystem)]);
-        // backmen edit, make sure there is still something remaining of the entity after mob state change
+        SubscribeLocalEvent<GibActionComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<GibActionComponent, GibActionEvent>(OnGibAction);
     }
 
@@ -36,14 +34,15 @@ public sealed partial class GibActionSystem : EntitySystem
         if (!_protoManager.TryIndex<EntityPrototype>(comp.ActionPrototype, out var actionProto))
             return;
 
+
         foreach (var allowedState in comp.AllowedStates)
         {
-            if (allowedState != mobState.CurrentState)
-                continue;
-
-            // The mob should never have more than 1 state so I don't see this being an issue
-            _actionsSystem.AddAction(uid, ref comp.ActionEntity, comp.ActionPrototype);
-            return;
+            if(allowedState == mobState.CurrentState)
+            {
+                // The mob should never have more than 1 state so I don't see this being an issue
+                _actionsSystem.AddAction(uid, ref comp.ActionEntity, comp.ActionPrototype);
+                return;
+            }
         }
 
         // If they aren't given the action, remove it.

@@ -1,7 +1,8 @@
 using Content.Server.Backmen.Cloning;
 using Content.Shared.Verbs;
 using Content.Shared.DoAfter;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
+using BodySystem = Content.Server.Body.Systems.BodySystem;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Buckle.Components;

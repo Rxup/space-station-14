@@ -1,5 +1,7 @@
+using Content.Server.Body.Systems;
 using Content.Server.Stack;
-using Content.Shared.Gibbing;
+using Content.Shared.Body;
+using BodySystem = Content.Server.Body.Systems.BodySystem;
 using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using Content.Shared.Xenoarchaeology.Equipment;
@@ -40,7 +42,10 @@ public sealed partial class ArtifactCrusherSystem : SharedArtifactCrusherSystem
                 }
             }
 
-            var gibs = _gibbing.Gib(contained);
+            if (!TryComp<BodyComponent>(contained, out var body))
+                Del(contained);
+
+            var gibs = _body.GibBody(contained, body: body, gibOrgans: true);
             foreach (var gib in gibs)
             {
                 ContainerSystem.Insert((gib, null, null, null), crusher.OutputContainer);

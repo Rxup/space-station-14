@@ -1,6 +1,7 @@
 using Content.Server.Body.Systems;
 using Content.Shared.Body.Organ;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
+using BodySystem = Content.Server.Body.Systems.BodySystem;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Eye.Blinding.Components;

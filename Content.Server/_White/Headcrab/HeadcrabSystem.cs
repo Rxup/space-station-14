@@ -283,7 +283,7 @@ public sealed partial class HeadcrabSystem : EntitySystem
     {
         if (_mobState.IsDead(uid)
             || !_mobState.IsAlive(target)
-            || !HasComp<HumanoidAppearanceComponent>(target)
+            || !HasComp<HumanoidProfileComponent>(target)
             || HasComp<ZombieComponent>(target))
             return false;
 

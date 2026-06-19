@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Diagnostics;
 using System.Linq;
 using Content.Server.Administration;
@@ -17,7 +17,7 @@ namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
 public sealed class ChangeSexCommand : ToolshedCommand
 {
-    private HumanoidAppearanceSystem? _appearanceSystem;
+    private HumanoidProfileSystem? _appearanceSystem;
 
     #region base
 
@@ -27,15 +27,15 @@ public sealed class ChangeSexCommand : ToolshedCommand
         Sex sex
     )
     {
-        if (!EntityManager.TryGetComponent<HumanoidAppearanceComponent>(input, out var humanoidAppearanceComponent))
+        if (!EntityManager.TryGetComponent<HumanoidProfileComponent>(input, out var HumanoidProfileComponent))
         {
             ctx.ReportError(new NotHumanoidError());
             return null;
         }
 
-        _appearanceSystem ??= GetSys<HumanoidAppearanceSystem>();
+        _appearanceSystem ??= GetSys<HumanoidProfileSystem>();
 
-        humanoidAppearanceComponent.Gender = sex switch
+        HumanoidProfileComponent.Gender = sex switch
         {
             Sex.Male => Gender.Male,
             Sex.Female => Gender.Female,
@@ -45,12 +45,12 @@ public sealed class ChangeSexCommand : ToolshedCommand
 
         if (EntityManager.TryGetComponent<GrammarComponent>(input, out var grammarComponent))
         {
-            grammarComponent.Gender = humanoidAppearanceComponent.Gender;
+            grammarComponent.Gender = HumanoidProfileComponent.Gender;
             EntityManager.Dirty(input, grammarComponent);
         }
 
-        _appearanceSystem.SetSex(input, sex, humanoid: humanoidAppearanceComponent);
-        EntityManager.Dirty(input, humanoidAppearanceComponent);
+        _appearanceSystem.SetSex(input, sex, humanoid: HumanoidProfileComponent);
+        EntityManager.Dirty(input, HumanoidProfileComponent);
         return input;
     }
 
@@ -117,7 +117,7 @@ public record struct NotHumanoidError : IConError
     public FormattedMessage DescribeInner()
     {
         return FormattedMessage.FromMarkup(
-            "У сущности нет компонента HumanoidAppearanceComponent.");
+            "У сущности нет компонента HumanoidProfileComponent.");
     }
 
     public string? Expression { get; set; }

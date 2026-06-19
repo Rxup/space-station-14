@@ -5,7 +5,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Part;
-using Content.Shared.Body.Organ;
+using Content.Shared.Body;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -573,7 +573,7 @@ public abstract partial class SharedSurgerySystem
     // TODO: Refactor bodies to include ears as a prototype instead of doing whatever the hell this is.
     private void OnAddMarkingStep(Entity<SurgeryAddMarkingStepComponent> ent, ref SurgeryStepEvent args)
     {
-        if (!TryComp(args.Body, out HumanoidAppearanceComponent? bodyAppearance)
+        if (!TryComp(args.Body, out HumanoidProfileComponent? bodyAppearance)
             || ent.Comp.Organ == null)
             return;
 
@@ -587,22 +587,17 @@ public abstract partial class SharedSurgerySystem
             if (TryComp(tool, out MarkingContainerComponent? markingComp)
                 && HasComp(tool, organType.Component.GetType()))
             {
-                if (!bodyAppearance.MarkingSet.Markings.TryGetValue(markingCategory, out var markingList)
-                    || !markingList.Any(marking => marking.MarkingId.Contains(ent.Comp.MatchString)))
+                _body.ModifyMarkings(args.Body, args.Part, bodyAppearance, ent.Comp.MarkingCategory, markingComp.Marking);
+
+                if (ent.Comp.Accent != null
+                    && ent.Comp.Accent.Values.FirstOrDefault() is { } accent)
                 {
-                    EnsureComp<BodyPartAppearanceComponent>(args.Part);
-                    _body.ModifyMarkings(args.Body, args.Part, bodyAppearance, ent.Comp.MarkingCategory, markingComp.Marking);
-
-                    if (ent.Comp.Accent != null
-                        && ent.Comp.Accent.Values.FirstOrDefault() is { } accent)
-                    {
-                        var compType = accent.Component.GetType();
-                        if (!HasComp(args.Body, compType))
-                            AddComp(args.Body, _compFactory.GetComponent(compType));
-                    }
-
-                    QueueDel(tool); // Again since this isnt actually being inserted we just delete it lol.
+                    var compType = accent.Component.GetType();
+                    if (!HasComp(args.Body, compType))
+                        AddComp(args.Body, _compFactory.GetComponent(compType));
                 }
+
+                QueueDel(tool);
             }
         }
 
@@ -610,11 +605,7 @@ public abstract partial class SharedSurgerySystem
 
     private void OnAddMarkingCheck(Entity<SurgeryAddMarkingStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        var markingCategory = MarkingCategoriesConversion.FromHumanoidVisualLayers(ent.Comp.MarkingCategory);
-
-        if (!TryComp(args.Body, out HumanoidAppearanceComponent? bodyAppearance)
-            || !bodyAppearance.MarkingSet.Markings.TryGetValue(markingCategory, out var markingList)
-            || !markingList.Any(marking => marking.MarkingId.Contains(ent.Comp.MatchString)))
+        if (!TryComp(args.Body, out HumanoidProfileComponent? _))
             args.Cancelled = true;
     }
 

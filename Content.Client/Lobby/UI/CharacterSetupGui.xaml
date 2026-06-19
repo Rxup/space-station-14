@@ -20,12 +20,6 @@
                                   Command="adminremarks"
                                   Text="{Loc 'character-setup-gui-character-setup-adminremarks-button'}"
                                   StyleClasses="ButtonBig" />
-                <!-- Corvax-Sponsor-Start -->
-                <Button Name="SponsorButton"
-                        Text="{Loc 'character-setup-gui-character-setup-sponsor-button'}"
-                        Visible="False"
-                        StyleClasses="ButtonBig" />
-                <!-- Corvax-Sponsor-End -->
                 <Button Name="RulesButton"
                         Text="{Loc 'character-setup-gui-character-setup-rules-button'}"
                         StyleClasses="ButtonBig"/>
@@ -34,8 +28,7 @@
                         Text="{Loc 'character-setup-gui-character-setup-close-button'}"
                         StyleClasses="ButtonBig"/>
             </BoxContainer>
-            <PanelContainer StyleClasses="highlight">
-            </PanelContainer>
+            <PanelContainer StyleClasses="highlight" MinHeight="2" />
             <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="0">
                 <ScrollContainer MinSize="325 0" Margin="5 5 0 0">
                     <BoxContainer Name="Characters" Orientation="Vertical" />

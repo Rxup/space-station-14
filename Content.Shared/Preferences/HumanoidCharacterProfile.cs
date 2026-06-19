@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
+using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
@@ -28,7 +29,7 @@ namespace Content.Shared.Preferences
     /// </summary>
     [DataDefinition]
     [Serializable, NetSerializable]
-    public sealed partial class HumanoidCharacterProfile : ICharacterProfile
+    public sealed partial class HumanoidCharacterProfile
     {
         public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
         private static readonly Regex RestrictedNameRegex = new(@"[^A-Za-z0-9 '\-]");
@@ -89,10 +90,8 @@ namespace Content.Shared.Preferences
         [DataField]
         public Gender Gender { get; private set; } = Gender.Male;
 
-        /// <summary>
-        /// <see cref="Appearance"/>
-        /// </summary>
-        public ICharacterAppearance CharacterAppearance => Appearance;
+        [DataField]
+        public string Voice { get; set; } = string.Empty;
 
         /// <summary>
         /// Stores markings, eye colors, etc for the profile.
@@ -188,6 +187,7 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts))
         {
+            Voice = other.Voice;
         }
 
         /// <summary>
@@ -262,6 +262,12 @@ namespace Content.Shared.Preferences
 
             var name = GetName(species, gender);
 
+            var voiceId = random.Pick(prototypeManager
+                .EnumeratePrototypes<TTSVoicePrototype>()
+                .Where(x => x.RoundStart)
+                .Where(o => CanHaveVoice(o, sex)).ToArray()
+            ).ID;
+
             return new HumanoidCharacterProfile()
             {
                 Name = name,
@@ -269,6 +275,7 @@ namespace Content.Shared.Preferences
                 Age = age,
                 Gender = gender,
                 Species = species,
+                Voice = voiceId,
                 Appearance = HumanoidCharacterAppearance.Random(species, sex),
             };
         }
@@ -296,6 +303,16 @@ namespace Content.Shared.Preferences
         public HumanoidCharacterProfile WithGender(Gender gender)
         {
             return new(this) { Gender = gender };
+        }
+
+        public HumanoidCharacterProfile WithVoice(string voice)
+        {
+            return new(this) { Voice = voice };
+        }
+
+        public static bool CanHaveVoice(TTSVoicePrototype voice, Sex sex)
+        {
+            return voice.RoundStart && (sex == Sex.Unsexed || voice.Sex == sex || voice.Sex == Sex.Unsexed);
         }
 
         public HumanoidCharacterProfile WithSpecies(string species)
@@ -465,9 +482,8 @@ namespace Content.Shared.Preferences
                 ("age", Age)
             );
 
-        public bool MemberwiseEquals(ICharacterProfile maybeOther)
+        public bool MemberwiseEquals(HumanoidCharacterProfile other)
         {
-            if (maybeOther is not HumanoidCharacterProfile other) return false;
             if (Name != other.Name) return false;
             if (Age != other.Age) return false;
             if (Sex != other.Sex) return false;
@@ -480,7 +496,8 @@ namespace Content.Shared.Preferences
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
-            return Appearance.MemberwiseEquals(other.Appearance);
+            if (Voice != other.Voice) return false;
+            return Appearance.Equals(other.Appearance);
         }
 
         public void EnsureValid(ICommonSession session, IDependencyCollection collection)
@@ -516,6 +533,14 @@ namespace Content.Shared.Preferences
                 Gender.Neuter => Gender.Neuter,
                 _ => Gender.Epicene // Invalid enum values.
             };
+
+            if (!prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voiceProto) || !CanHaveVoice(voiceProto, sex))
+            {
+                Voice = prototypeManager
+                    .EnumeratePrototypes<TTSVoicePrototype>()
+                    .FirstOrDefault(v => CanHaveVoice(v, sex) && v.RoundStart)?.ID
+                    ?? string.Empty;
+            }
 
             string name;
             var maxNameLength = configManager.GetCVar(CCVars.MaxNameLength);
@@ -692,7 +717,7 @@ namespace Content.Shared.Preferences
             return result;
         }
 
-        public ICharacterProfile Validated(ICommonSession session, IDependencyCollection collection)
+        public HumanoidCharacterProfile Validated(ICommonSession session, IDependencyCollection collection)
         {
             var profile = new HumanoidCharacterProfile(this);
             profile.EnsureValid(session, collection);
@@ -728,6 +753,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(_loadouts);
             hashCode.Add(Name);
             hashCode.Add(FlavorText);
+            hashCode.Add(Voice);
             hashCode.Add(Species);
             hashCode.Add(Age);
             hashCode.Add((int)Sex);

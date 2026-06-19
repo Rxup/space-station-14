@@ -14,7 +14,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Radiation.Events;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Damage.Components;
 using Content.Shared.Explosion.EntitySystems;
 using Robust.Shared.Configuration;

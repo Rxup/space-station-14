@@ -1,5 +1,5 @@
 using Content.Shared.Atmos.Prototypes;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
 using Robust.Shared.Prototypes;
 

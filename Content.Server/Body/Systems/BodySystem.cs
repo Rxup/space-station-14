@@ -1,0 +1,165 @@
+using System.Linq;
+using System.Numerics;
+using Content.Server.Ghost;
+using Content.Shared.Body;
+using Content.Shared.Body.Events;
+using Content.Shared.Body.Part;
+using Content.Shared.Body.Systems;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Gibbing;
+using Content.Shared.Gibbing.Events;
+using Content.Shared.Humanoid;
+using Content.Shared.Mind;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Systems;
+using Robust.Shared.Audio;
+using Robust.Shared.Timing;
+
+namespace Content.Server.Body.Systems;
+
+public sealed partial class BodySystem : SharedBodySystem
+{
+    [Dependency] private GhostSystem _ghostSystem = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<BodyComponent, MoveInputEvent>(OnRelayMoveInput);
+        SubscribeLocalEvent<BodyComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
+        SubscribeLocalEvent<BodyPartComponent, AttemptEntityGibEvent>(OnGibTorsoAttempt);
+    }
+
+    private void OnGibTorsoAttempt(Entity<BodyPartComponent> ent, ref AttemptEntityGibEvent args)
+    {
+        if (ent.Comp.PartType == BodyPartType.Chest)
+            args.GibType = GibType.Skip;
+    }
+
+    private void OnRelayMoveInput(Entity<BodyComponent> ent, ref MoveInputEvent args)
+    {
+        if ((args.Entity.Comp.HeldMoveButtons &
+             (MoveButtons.Down | MoveButtons.Left | MoveButtons.Up | MoveButtons.Right)) == 0x0)
+            return;
+
+        if (_mobState.IsDead(ent) && _mindSystem.TryGetMind(ent, out var mindId, out var mind))
+        {
+            mind.TimeOfDeath ??= _gameTiming.RealTime.Now;
+            _ghostSystem.OnGhostAttempt(mindId, canReturnGlobal: true, mind: mind);
+        }
+    }
+
+    private void OnApplyMetabolicMultiplier(
+        Entity<BodyComponent> ent,
+        ref ApplyMetabolicMultiplierEvent args)
+    {
+        foreach (var organ in GetBodyOrgans(ent, ent))
+            RaiseLocalEvent(organ.Id, ref args);
+    }
+
+    protected override void AddPart(
+        Entity<BodyComponent?> bodyEnt,
+        Entity<BodyPartComponent> partEnt,
+        string slotId)
+    {
+        base.AddPart(bodyEnt, partEnt, slotId);
+    }
+
+    protected override void RemovePart(
+        Entity<BodyComponent?> bodyEnt,
+        Entity<BodyPartComponent> partEnt,
+        string slotId)
+    {
+        base.RemovePart(bodyEnt, partEnt, slotId);
+    }
+
+    public override HashSet<EntityUid> GibBody(
+        EntityUid bodyId,
+        bool gibOrgans = false,
+        BodyComponent? body = null,
+        bool launchGibs = true,
+        Vector2? splatDirection = null,
+        float splatModifier = 1,
+        Angle splatCone = default,
+        SoundSpecifier? gibSoundOverride = null,
+        GibType gib = GibType.Gib,
+        GibContentsOption contents = GibContentsOption.Drop,
+        List<string>? allowedContainers = null,
+        List<string>? excludedContainers = null)
+    {
+        if (!Resolve(bodyId, ref body, logMissing: false)
+            || TerminatingOrDeleted(bodyId)
+            || EntityManager.IsQueuedForDeletion(bodyId))
+            return new HashSet<EntityUid>();
+
+        if (HasComp<GodmodeComponent>(bodyId))
+            return new HashSet<EntityUid>();
+
+        if (Transform(bodyId).MapUid is null)
+            return new HashSet<EntityUid>();
+
+        var gibs = base.GibBody(bodyId, gibOrgans, body, launchGibs: launchGibs, splatDirection: splatDirection,
+            splatModifier: splatModifier, splatCone: splatCone, gib: gib, contents: contents,
+            allowedContainers: allowedContainers, excludedContainers: excludedContainers);
+
+        var ev = new BeingGibbedEvent(gibs);
+        RaiseLocalEvent(bodyId, ref ev);
+
+        QueueDel(bodyId);
+
+        return gibs;
+    }
+
+    public override HashSet<EntityUid> GibPart(
+        EntityUid partId,
+        BodyPartComponent? part = null,
+        bool launchGibs = true,
+        Vector2? splatDirection = null,
+        float splatModifier = 1,
+        Angle splatCone = default,
+        SoundSpecifier? gibSoundOverride = null)
+    {
+        if (!Resolve(partId, ref part, logMissing: false)
+            || TerminatingOrDeleted(partId)
+            || EntityManager.IsQueuedForDeletion(partId))
+            return new HashSet<EntityUid>();
+
+        if (Transform(partId).MapUid is null)
+            return new HashSet<EntityUid>();
+
+        var gibs = base.GibPart(partId, part, launchGibs: launchGibs,
+            splatDirection: splatDirection, splatModifier: splatModifier, splatCone: splatCone);
+
+        var ev = new BeingGibbedEvent(gibs);
+        RaiseLocalEvent(partId, ref ev);
+
+        if (gibs.Any())
+            QueueDel(partId);
+
+        return gibs;
+    }
+
+    public override bool BurnPart(EntityUid partId, BodyPartComponent? part = null)
+    {
+        if (!Resolve(partId, ref part, logMissing: false)
+            || TerminatingOrDeleted(partId)
+            || EntityManager.IsQueuedForDeletion(partId))
+            return false;
+
+        return base.BurnPart(partId, part);
+    }
+
+    protected override void ApplyPartMarkings(EntityUid target, EntityUid part)
+    {
+    }
+
+    protected override void RemoveBodyMarkings(EntityUid target, EntityUid part, EntityUid body)
+    {
+    }
+}

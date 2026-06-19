@@ -1,8 +1,10 @@
-﻿using Content.Shared.Administration.Logs;
+using Content.Server.Body.Systems;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Body;
+using BodySystem = Content.Server.Body.Systems.BodySystem;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
-using Content.Shared.Gibbing;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Kitchen;
@@ -133,7 +135,7 @@ public sealed partial class SharpSystem : EntitySystem
             args.Args.User,
             popupType);
 
-        _gibbing.Gib(args.Args.Target.Value); // does nothing if ent can't be gibbed
+        _bodySystem.GibBody(args.Args.Target.Value); // does nothing if ent can't be gibbed
         _destructibleSystem.DestroyEntity(args.Args.Target.Value);
 
         args.Handled = true;

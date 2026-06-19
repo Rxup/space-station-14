@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Backmen.Surgery.Trauma.Systems;
 using Content.Server.Backmen.Surgery.Wounds.Systems;
@@ -95,7 +95,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         if (HasComp<FleshCultistComponent>(target))
             return false;
 
-        if (!HasComp<HumanoidAppearanceComponent>(target))
+        if (!HasComp<HumanoidProfileComponent>(target))
             return false;
 
         if (TryComp(target, out MobStateComponent? mobState) && mobState.CurrentState != MobState.Alive)

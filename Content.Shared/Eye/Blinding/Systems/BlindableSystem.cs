@@ -1,7 +1,3 @@
-using Content.Shared.Body.Systems;
-using Content.Shared.Body.Components;
-using Content.Shared.Backmen.Surgery.Body.Organs;
-using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Camera;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
@@ -14,8 +10,7 @@ public sealed partial class BlindableSystem : EntitySystem
 {
     [Dependency] private BlurryVisionSystem _blurriness = default!;
     [Dependency] private EyeClosingSystem _eyelids = default!;
-    [Dependency] private SharedBodySystem _body = default!;
-    [Dependency] private TraumaSystem _trauma = default!; // backmen edit
+
     public override void Initialize()
     {
         base.Initialize();
@@ -25,7 +20,6 @@ public sealed partial class BlindableSystem : EntitySystem
         SubscribeLocalEvent<BlindableComponent, GetEyeOffsetAttemptEvent>(OnGetEyeOffsetAttemptEvent);
     }
 
-    // Might need to keep this one because of slimes since their eyes arent an organ, so they wouldnt get rejuvenated.
     private void OnRejuvenate(Entity<BlindableComponent> ent, ref RejuvenateEvent args)
     {
         AdjustEyeDamage((ent.Owner, ent.Comp), -ent.Comp.EyeDamage);
@@ -84,32 +78,7 @@ public sealed partial class BlindableSystem : EntitySystem
 
         blindable.Comp.EyeDamage += amount;
         UpdateEyeDamage(blindable, true);
-
-        // backmen edit start
-        // If the entity has eye organs, then we also damage those.
-        if (!TryComp(blindable, out BodyComponent? body)
-            || !_body.TryGetBodyOrganEntityComps<EyesComponent>((blindable, body), out var eyes))
-            return;
-
-        foreach (var eye in eyes)
-            // for now
-            _trauma.TryAddOrganDamageModifier(eye.Owner, amount, blindable.Owner, "BlindableDamage", eye.Comp2);
-        // backmen edit end
     }
-
-    // backmen edit start
-    // Alternative version of the method intended to be used with Eye Organs, so that you can just pass in
-    // the severity and set that.
-    public void SetEyeDamage(Entity<BlindableComponent?> blindable, int amount)
-    {
-        if (!Resolve(blindable, ref blindable.Comp, false))
-            return;
-
-        blindable.Comp.EyeDamage = amount;
-        UpdateEyeDamage(blindable, true);
-    }
-    // backmen edit end
-
     private void UpdateEyeDamage(Entity<BlindableComponent?> blindable, bool isDamageChanged)
     {
         if (!Resolve(blindable, ref blindable.Comp, false))

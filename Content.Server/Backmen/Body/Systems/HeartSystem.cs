@@ -1,7 +1,7 @@
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Events;
-using Content.Shared.Body.Organ;
+using Content.Shared.Body;
 using Content.Server.Backmen.DelayedDeath;
 using Content.Server.Body.Components;
 using Content.Shared.Backmen.Surgery.Body.Organs;

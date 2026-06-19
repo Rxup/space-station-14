@@ -11,7 +11,7 @@ public sealed partial class BodySystem
     {
         SubscribeLocalEvent<BodyComponent, ApplyMetabolicMultiplierEvent>(RefRelayBodyEvent);
         SubscribeLocalEvent<BodyComponent, TryVomitEvent>(RefRelayBodyEvent);
-        SubscribeLocalEvent<BodyComponent, BeingGibbedEvent>(RefRelayBodyEvent);
+        SubscribeLocalEvent<BodyComponent, Gibbing.BeingGibbedEvent>(RefRelayBodyEvent);
         SubscribeLocalEvent<BodyComponent, ApplyOrganProfileDataEvent>(RefRelayBodyEvent);
         SubscribeLocalEvent<BodyComponent, ApplyOrganMarkingsEvent>(RefRelayBodyEvent);
         SubscribeLocalEvent<BodyComponent, OrganCopyAppearanceEvent>(RefRelayBodyEvent);

@@ -226,7 +226,7 @@ public sealed partial class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleCo
                 continue;
             }
 
-            if (TryComp<HumanoidAppearanceComponent>(mind.OwnedEntity, out var appearanceComponent))
+            if (TryComp<HumanoidProfileComponent>(mind.OwnedEntity, out var appearanceComponent))
             {
                 if (!component.SpeciesWhitelist.Contains(appearanceComponent.Species))
                     continue;
@@ -284,7 +284,7 @@ public sealed partial class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleCo
                 continue;
             }
 
-            if (TryComp<HumanoidAppearanceComponent>(mind.OwnedEntity, out var appearanceComponent))
+            if (TryComp<HumanoidProfileComponent>(mind.OwnedEntity, out var appearanceComponent))
             {
                 if (!component.SpeciesWhitelist.Contains(appearanceComponent.Species))
                     continue;

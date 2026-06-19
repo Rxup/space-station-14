@@ -1,10 +1,11 @@
+using Content.Shared.Body.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Body;
 
-[RegisterComponent, NetworkedComponent]
-[Access(typeof(BodySystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[Access(typeof(BodySystem), typeof(SharedBodySystem))]
 public sealed partial class BodyComponent : Component
 {
     public const string ContainerID = "body_organs";

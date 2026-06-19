@@ -1,5 +1,5 @@
-﻿using Content.Shared.Atmos;
-using Content.Shared.Body.Components;
+using Content.Shared.Atmos;
+using Content.Shared.Body;
 
 namespace Content.Shared.EntityEffects.Effects.Body;
 
