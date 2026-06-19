@@ -12,3 +12,4 @@ vent-crawler-cooldown = You need to wait before entering a vent again.
 vent-crawler-exit-fail = You can only exit through an air vent.
 vent-crawler-equipped = You cannot crawl through vents while attached to someone's face.
 vent-crawler-pipe-broken = The pipe breaks apart and forces you out!
+vent-crawler-wrong-direction = The pipe does not go that way.

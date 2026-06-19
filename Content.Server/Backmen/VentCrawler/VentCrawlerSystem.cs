@@ -7,6 +7,7 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Atmos;
 using Content.Shared.Backmen.VentCrawler;
 using Content.Shared.Eye;
 using Content.Shared.Interaction.Events;
@@ -301,6 +302,12 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
 
         Resolve(user, ref crawler, false);
 
+        if (!CanCrawlInDirection(crawling.CurrentPipe, direction))
+        {
+            _popup.PopupEntity(Loc.GetString("vent-crawler-wrong-direction"), user, user);
+            return false;
+        }
+
         if (!TryGetNextPipe(crawling.CurrentPipe, direction, out var nextPipe))
         {
             if (TryGetTargetPipeTile(crawling.CurrentPipe, direction, out var gridUid, out var grid, out var targetPos) &&
@@ -359,6 +366,14 @@ public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
             return false;
 
         return TryGetPipeNode(uid, out _);
+    }
+
+    public bool CanCrawlInDirection(EntityUid currentPipe, Direction direction)
+    {
+        if (!TryGetPipeNode(currentPipe, out var pipeNode) || pipeNode == null)
+            return false;
+
+        return pipeNode.CurrentPipeDirection.HasDirection(direction.ToPipeDirection());
     }
 
     public bool CanEnterVent(EntityUid user, EntityUid vent, VentCrawlerComponent crawler, out string? reason)

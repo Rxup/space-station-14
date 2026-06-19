@@ -1,7 +1,8 @@
 using Content.IntegrationTests.Pair;
 using Content.Server.Backmen.VentCrawler;
 using Content.Shared.Backmen.VentCrawler;
-using Content.Shared.Coordinates;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Tools.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -48,6 +49,8 @@ public sealed class VentCrawlerTest
             Assert.That(ventCrawler.TryEnterVent(headcrab, vent), Is.True);
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.True);
         });
+
+        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -83,6 +86,8 @@ public sealed class VentCrawlerTest
             var headcrabCoords = server.EntMan.GetComponent<TransformComponent>(headcrab).Coordinates;
             Assert.That(headcrabCoords, Is.EqualTo(pipeCoords));
         });
+
+        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -101,6 +106,8 @@ public sealed class VentCrawlerTest
             Assert.That(ventCrawler.TryExitVent(headcrab), Is.True);
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.False);
         });
+
+        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -121,6 +128,8 @@ public sealed class VentCrawlerTest
             Assert.That(ventCrawler.TryEnterVent(headcrab, vent), Is.False);
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.False);
         });
+
+        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -149,6 +158,8 @@ public sealed class VentCrawlerTest
             Assert.That(ventCrawler.TryStep(headcrab, Direction.South), Is.True);
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.False);
         });
+
+        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -172,15 +183,53 @@ public sealed class VentCrawlerTest
 
         await server.WaitAssertion(() =>
         {
-            server.EntMan.DeleteEntity(pipe);
+            var damage = new DamageSpecifier();
+            damage.DamageDict.Add("Blunt", 100);
+            server.EntMan.System<DamageableSystem>().TryChangeDamage(pipe, damage);
         });
 
-        await pair.RunTicksSync(5);
+        await pair.RunTicksSync(10);
 
         await server.WaitAssertion(() =>
         {
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.False);
         });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task PerpendicularStep_BlockedOnStraightPipe()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var (vent, _, ventCoords) = await SetupVentLine(pair);
+
+        EntityUid headcrab = default;
+
+        await server.WaitAssertion(() =>
+        {
+            var ventCrawler = server.EntMan.System<VentCrawlerSystem>();
+            headcrab = server.EntMan.SpawnEntity("VentCrawlerTestMob", ventCoords);
+
+            Assert.That(ventCrawler.TryEnterVent(headcrab, vent), Is.True);
+            Assert.That(ventCrawler.TryStep(headcrab, Direction.South), Is.True);
+        });
+
+        await pair.RunTicksSync(30);
+
+        await server.WaitAssertion(() =>
+        {
+            var ventCrawler = server.EntMan.System<VentCrawlerSystem>();
+            var coordsBefore = server.EntMan.GetComponent<TransformComponent>(headcrab).Coordinates;
+
+            Assert.That(ventCrawler.TryStep(headcrab, Direction.East), Is.False);
+            Assert.That(ventCrawler.TryStep(headcrab, Direction.West), Is.False);
+            Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.True);
+            Assert.That(server.EntMan.GetComponent<TransformComponent>(headcrab).Coordinates, Is.EqualTo(coordsBefore));
+        });
+
+        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -216,6 +265,8 @@ public sealed class VentCrawlerTest
             var tile = mapSys.TileIndicesFor(gridUid, grid, headcrabXform.Coordinates);
             Assert.That(tile, Is.EqualTo(new Vector2i(0, -1)));
         });
+
+        await pair.CleanReturnAsync();
     }
 
     private static async Task<(EntityUid Vent, EntityUid Pipe, EntityCoordinates VentCoords)> SetupVentLine(
@@ -223,6 +274,7 @@ public sealed class VentCrawlerTest
         Vector2i? extraPipeTile = null,
         bool broken = false)
     {
+        var testMap = await pair.CreateTestMap();
         EntityUid vent = default;
         EntityUid pipe = default;
         EntityCoordinates ventCoords = default;
@@ -231,25 +283,22 @@ public sealed class VentCrawlerTest
         {
             var entMan = pair.Server.EntMan;
             var mapSys = entMan.System<SharedMapSystem>();
-            var mapManager = pair.Server.ResolveDependency<IMapManager>();
-
-            var grid = mapManager.CreateGridEntity(mapSys.CreateMap(out var mapId));
-            var gridUid = grid.Owner;
+            var gridUid = testMap.Grid.Owner;
+            var grid = testMap.Grid.Comp;
 
             var ventTile = new Vector2i(0, 1);
             var pipeTile = Vector2i.Zero;
 
-            mapSys.SetTile(gridUid, grid.Comp, pipeTile, new Tile(1));
-            mapSys.SetTile(gridUid, grid.Comp, ventTile, new Tile(1));
+            mapSys.SetTile(gridUid, grid, pipeTile, new Tile(1));
+            mapSys.SetTile(gridUid, grid, ventTile, new Tile(1));
 
-            vent = entMan.SpawnEntity("GasVentPump", gridUid.ToCoordinates(ventTile));
-
-            pipe = entMan.SpawnEntity("GasPipeStraight", gridUid.ToCoordinates(pipeTile));
+            vent = entMan.SpawnEntity("GasVentPump", new EntityCoordinates(gridUid, ventTile));
+            pipe = entMan.SpawnEntity("GasPipeStraight", new EntityCoordinates(gridUid, pipeTile));
 
             if (extraPipeTile is { } extraTile)
             {
-                mapSys.SetTile(gridUid, grid.Comp, extraTile, new Tile(1));
-                entMan.SpawnEntity(broken ? "GasPipeBroken" : "GasPipeStraight", gridUid.ToCoordinates(extraTile));
+                mapSys.SetTile(gridUid, grid, extraTile, new Tile(1));
+                entMan.SpawnEntity(broken ? "GasPipeBroken" : "GasPipeStraight", new EntityCoordinates(gridUid, extraTile));
             }
 
             ventCoords = entMan.GetComponent<TransformComponent>(vent).Coordinates;

@@ -19,6 +19,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -657,7 +658,23 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
     private void OnConsciousnessMapInit(Entity<ConsciousnessComponent> uid, ref MapInitEvent args)
     {
         SyncConsciousnessFromMobThresholds(uid, uid.Comp);
+        ApplyInitialPrototypeDamage(uid);
         CheckConscious(uid.AsNullable());
+    }
+
+    /// <summary>
+    /// Prototype-set damage on <see cref="DamageableComponent"/> is initialized without raising
+    /// <see cref="DamageChangedEvent"/>, so wound/consciousness systems never see it until something
+    /// else damages the mob (e.g. salvage corpses spawning alive).
+    /// </summary>
+    private void ApplyInitialPrototypeDamage(EntityUid uid)
+    {
+        if (!TryComp<DamageableComponent>(uid, out var damageable) || damageable.TotalDamage <= 0)
+            return;
+
+        var initialDamage = new DamageSpecifier(damageable.Damage);
+        _damageable.SetAllDamage(uid, FixedPoint2.Zero);
+        _damageable.ChangeDamage(uid, initialDamage, ignoreResistances: true, ignoreGlobalModifiers: true);
     }
 
     // start-backmen: sync mob thresholds
