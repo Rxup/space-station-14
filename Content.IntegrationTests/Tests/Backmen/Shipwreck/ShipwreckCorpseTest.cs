@@ -20,6 +20,7 @@ namespace Content.IntegrationTests.Tests.Backmen.Shipwreck;
 public sealed class ShipwreckCorpseTest : GameTest
 {
     private static readonly EntProtoId SalvageHumanCorpse = "SalvageHumanCorpse";
+    private static readonly EntProtoId MobRandomEngineerCorpse = "MobRandomEngineerCorpse";
 
     public override PoolSettings PoolSettings => new()
     {
@@ -46,6 +47,45 @@ public sealed class ShipwreckCorpseTest : GameTest
             Assert.That(Server.EntMan.TryGetComponent(corpse, out MobStateComponent? mobState), Is.True);
             Assert.That(mobState!.CurrentState, Is.EqualTo(MobState.Dead),
                 "Unidentified salvage corpses must be dead immediately on spawn.");
+        });
+    }
+
+    [Test]
+    public async Task SalvageCorpse_Delete_DoesNotLeakEntities()
+    {
+        var map = await Pair.CreateTestMap();
+
+        static int CountEntities(IEntityManager entMan) =>
+            entMan.EntityCount - entMan.Count<Robust.Shared.Audio.Components.AudioComponent>();
+
+        var count = 0;
+        await Server.WaitPost(() => count = CountEntities(Server.EntMan));
+
+        await Server.WaitPost(() => Server.EntMan.Spawn(MobRandomEngineerCorpse, map.MapCoords));
+        await Pair.RunTicksSync(5);
+
+        EntityUid corpse = default;
+        await Server.WaitPost(() =>
+        {
+            foreach (var uid in Server.EntMan.GetEntities())
+            {
+                if (Server.EntMan.GetComponent<MetaDataComponent>(uid).EntityPrototype?.ID == MobRandomEngineerCorpse)
+                {
+                    corpse = uid;
+                    break;
+                }
+            }
+
+            Assert.That(corpse, Is.Not.EqualTo(EntityUid.Invalid));
+            Server.EntMan.DeleteEntity(corpse);
+        });
+
+        await Pair.RunTicksSync(5);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(CountEntities(Server.EntMan), Is.EqualTo(count),
+                "Deleting a salvage corpse must not leave detached body parts, bones, or wounds.");
         });
     }
 
