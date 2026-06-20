@@ -1,0 +1,8 @@
+ent-SurgeryGraftArachneAbdomen = Пришить паучье брюшко
+    .desc = { ent-SurgeryBase.desc }
+ent-SurgeryGraftArachneFront = Пришить паучью головогрудь
+    .desc = { ent-SurgeryBase.desc }
+ent-SurgeryGraftSpiderLegLeft = Пришить левую паучью ногу
+    .desc = { ent-SurgeryBase.desc }
+ent-SurgeryGraftSpiderLegRight = Пришить правую паучью ногу
+    .desc = { ent-SurgeryBase.desc }

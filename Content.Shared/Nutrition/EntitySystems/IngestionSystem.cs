@@ -2,6 +2,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Body;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -56,10 +57,11 @@ public sealed partial class IngestionSystem : EntitySystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
-    // Body Component Dependencies
-    [Dependency] private SharedBodySystem _body = default!;
+    // start-backmen: body
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private ReactiveSystem _reaction = default!;
     [Dependency] private StomachSystem _stomach = default!;
+    // end-backmen: body
 
     /// <inheritdoc/>
     public override void Initialize()

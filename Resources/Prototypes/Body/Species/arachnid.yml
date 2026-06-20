@@ -69,10 +69,19 @@
 - type: entity
   parent:
   - AppearanceArachnid
-  - BaseSpeciesMobOrganic
+  - BaseSpeciesMobSurgery
   id: MobArachnid
   name: Urist McWebs
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Spider
+    understands:
+    - TauCetiBasic
+    - Spider
   - type: Respirator
     damage:
       types:
@@ -181,10 +190,27 @@
 - type: entity
   parent: [ OrganBaseTorso, OrganArachnidExternal ]
   id: OrganArachnidTorso
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Arachnid
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
 
 - type: entity
   parent: [ OrganBaseHead, OrganArachnidExternal ]
   id: OrganArachnidHead
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Arachnid
+      layers:
+      - Head
+      - HeadSide
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganArachnidExternal ]

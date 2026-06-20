@@ -83,30 +83,9 @@
   components:
   - type: Sprite
     layers:
-    - state: chest_m
+    - state: torso_m
   - type: BodyPart
     partType: Chest
-  - type: Damageable
-    damageContainer: Biological
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 10
-      - ReagentId: Blood
-        Quantity: 20
-
-- type: entity
-  id: GroinAnimal
-  name: animal groin
-  parent: PartAnimal
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    layers:
-    - state: groin_m
-  - type: BodyPart
-    partType: Groin
   - type: Damageable
     damageContainer: Biological
   - type: Extractable

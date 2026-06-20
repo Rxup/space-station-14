@@ -1,0 +1,18 @@
+# Spawnable IPC mob for tests and NPC spawners.
+- type: entity
+  id: MobIPC
+  parent: PlayerSiliconHumanoidBase
+  name: IPC
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Consciousness
+  - type: LayingDown
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Binary
+    understands:
+    - TauCetiBasic
+    - Binary

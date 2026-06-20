@@ -55,7 +55,7 @@ namespace Content.Client.Lobby.UI
             _createNewCharacterButton.OnPressed += args =>
             {
                 _preferencesManager.CreateCharacter(HumanoidCharacterProfile.Random());
-                ReloadCharacterPickers();
+                SelectCharacter?.Invoke(_preferencesManager.Preferences!.SelectedCharacterIndex);
                 args.Event.Handle();
             };
 

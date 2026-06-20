@@ -12,16 +12,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Changeling.Systems;
 
-public abstract class SharedChangelingIdentitySystem : EntitySystem
+public abstract partial class SharedChangelingIdentitySystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly NameModifierSystem _nameMod = default!;
-    [Dependency] private readonly SharedCloningSystem _cloningSystem = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
-    [Dependency] private readonly SharedPvsOverrideSystem _pvsOverrideSystem = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private NameModifierSystem _nameMod = default!;
+    [Dependency] private SharedCloningSystem _cloningSystem = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvsOverrideSystem = default!;
 
     public MapId? PausedMapId;
 

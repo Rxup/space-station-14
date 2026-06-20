@@ -1,20 +1,22 @@
 species-name-harpy = Гарпия
-ent-OrganHarpyLungs = лёгкие
+
+ent-OrganHarpyTorso = грудь гарпии
+ent-OrganHarpyHead = голова гарпии
+ent-OrganHarpyArmLeft = левая рука гарпии
+ent-OrganHarpyArmRight = правая рука гарпии
+ent-OrganHarpyHandLeft = левая кисть гарпии
+ent-OrganHarpyHandRight = правая кисть гарпии
+ent-OrganHarpyLegLeft = левая нога гарпии
+ent-OrganHarpyLegRight = правая нога гарпии
+ent-OrganHarpyFootLeft = левая стопа гарпии
+ent-OrganHarpyFootRight = правая стопа гарпии
+ent-OrganHarpyLungs = лёгкие гарпии
     .desc = Продвинутая пара птичьих лёгких. Фильтруют кислород, постоянно прогоняя воздух через воздушные мешки.
-ent-ChestHarpy = грудь гарпии
-    .desc = Кибернетическая грудь гарпии.
-ent-HeadHarpy = голова гарпии
-ent-LeftArmHarpy = левая рука гарпии
-ent-RightArmHarpy = правая рука гарпии
-ent-LeftHandHarpy = левая кисть гарпии
-ent-RightHandHarpy = правая кисть гарпии
-ent-LeftLegHarpy = левая нога гарпии
-ent-RightLegHarpy = правая нога гарпии
-ent-LeftFootHarpy = левая стопа гарпии
-ent-RightFootHarpy = правая стопа гарпии
+
 ent-MobHarpy = Урист МакГарпия
 ent-MobHarpyDummy = Урист МакХэндс
-    .desc = Манекен гарпии, предназначенный для использования в настройке персонажа.
+    .desc = Манекен гарпии для настройки персонажа.
+
 ent-ActionHarpyPlayMidi = Сыграть MIDI
     .desc = Спойте от души! Кликните правой кнопкой на себя, чтобы выбрать инструмент.
 ent-ActionSyrinxChangeVoiceMask = Установить имя

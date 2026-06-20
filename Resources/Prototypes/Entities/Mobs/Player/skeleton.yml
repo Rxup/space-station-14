@@ -14,7 +14,7 @@
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [PirateGear]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
 
 
 - type: entity
@@ -33,7 +33,7 @@
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [SkeletonBiker]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
 
 - type: entity
   parent: MobSkeletonPerson
@@ -51,4 +51,4 @@
   - type: GhostTakeoverAvailable
   - type: Loadout
     prototypes: [LimitedPassengerGear]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile

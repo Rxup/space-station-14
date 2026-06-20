@@ -62,14 +62,6 @@
     enum.HumanoidVisualLayers.TailOverlay:
       limit: 1
       required: false
-    enum.HumanoidVisualLayers.UndergarmentTop:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentTopTanktopVox ]
-    enum.HumanoidVisualLayers.UndergarmentBottom:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentBottomBoxersVox ]
 
 - type: entity
   parent: BaseSpeciesAppearance
@@ -158,10 +150,19 @@
 - type: entity
   parent:
   - AppearanceVox
-  - BaseSpeciesMobOrganic
+  - BaseSpeciesMobSurgery
   id: MobVox
   name: Uristititi McVox
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Freespeak
+    understands:
+    - TauCetiBasic
+    - Freespeak
   - type: Damageable
     damageModifierSet: Vox
   - type: Speech
@@ -200,7 +201,6 @@
             min: 3
             max: 5
       - !type:BurnBodyBehavior
-        popupMessage: bodyburn-vox-text-others
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact

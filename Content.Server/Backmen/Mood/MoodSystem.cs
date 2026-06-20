@@ -22,6 +22,7 @@ using Robust.Shared.Configuration;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -42,6 +43,7 @@ public sealed partial class MoodSystem : EntitySystem
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private WoundSystem _wound = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private EntityQuery<GodmodeComponent> _godmodeQuery = default!;
 
     private bool _enabled = false;
@@ -544,15 +546,11 @@ public sealed partial class MoodSystem : EntitySystem
         if (!TryComp<BodyComponent>(uid, out var body))
             return;
 
-        var rootPart = body.RootContainer.ContainedEntity;
-        if (!rootPart.HasValue)
-            return;
-
-        var bodySeverity =
-            _wound.GetAllWoundableChildren(rootPart.Value)
-                .Aggregate(
-                    FixedPoint2.Zero,
-                    (current, woundable) => current + _wound.GetWoundableSeverityPoint(woundable, woundable));
+        var bodySeverity = FixedPoint2.Zero;
+        foreach (var woundable in _body.GetWoundableTargets(uid, body))
+        {
+            bodySeverity += _wound.GetWoundableSeverityPoint(woundable);
+        }
 
         if (!_mobThreshold.TryGetPercentageForState(uid, MobState.Critical, bodySeverity, out var damage))
             return;

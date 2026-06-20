@@ -1,13 +1,14 @@
 using System.Numerics;
+using Content.Shared.Body.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 
 namespace Content.Shared.Body;
 
-public sealed class InitialBodySystem : EntitySystem
+public sealed partial class InitialBodySystem : EntitySystem
 {
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -44,5 +45,7 @@ public sealed class InitialBodySystem : EntitySystem
                 Del(spawn);
             }
         }
+
+        RaiseLocalEvent(ent, new InitialBodySpawnedEvent());
     }
 }

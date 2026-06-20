@@ -90,6 +90,7 @@ namespace Content.Client.Lobby
             Preferences = new PlayerPreferences(characters, Preferences.SelectedCharacterIndex, Preferences.AdminOOCColor, Preferences.ConstructionFavorites);
 
             UpdateCharacter(profile, l);
+            SelectCharacter(l);
         }
 
         public void DeleteCharacter(HumanoidCharacterProfile profile)

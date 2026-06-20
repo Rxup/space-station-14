@@ -1,6 +1,7 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -38,7 +39,7 @@ public sealed partial class HealingSystem : EntitySystem
     [Dependency] private SharedStackSystem _stacks = default!;
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
-    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySharedSystem _bodySystem = default!; // backmen: body
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
@@ -155,15 +156,14 @@ public sealed partial class HealingSystem : EntitySystem
         if (TryComp<TargetingComponent>(args.User, out var targeting))
         {
             var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
-            var targetedBodyPart = _bodySystem.GetBodyChildrenOfType(ent, partType, comp, symmetry).ToList().FirstOrDefault();
+            if (!_bodySystem.TryGetWoundableTargetByType(ent, partType, symmetry, out targetedWoundable))
+                return;
 
             foreach (var damage in
-                     healing.Damage.DamageDict.Where(damage => _wounds.HasDamageOfType(targetedBodyPart.Id, damage.Key)))
+                     healing.Damage.DamageDict.Where(damage => _wounds.HasDamageOfType(targetedWoundable, damage.Key)))
             {
                 stuffToHeal.Add(damage.Key, damage.Value);
             }
-
-            targetedWoundable = targetedBodyPart.Id;
         }
 
         if (!TryComp<WoundableComponent>(targetedWoundable, out var woundableComp))
@@ -364,9 +364,7 @@ public sealed partial class HealingSystem : EntitySystem
             return false;
 
         var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
-        var targetedBodyPart = _bodySystem.GetBodyChildrenOfType(target, partType, target, symmetry).ToList().FirstOrNull();
-
-        if (targetedBodyPart == null)
+        if (!_bodySystem.TryGetWoundableTargetByType(target, partType, symmetry, out var targetedWoundable))
         {
             if (throwPopups)
                 _popupSystem.PopupEntity(Loc.GetString("does-not-exist-rebell"), target, user, PopupType.MediumCaution);
@@ -374,14 +372,14 @@ public sealed partial class HealingSystem : EntitySystem
         }
 
         var totalBleeds =
-            _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(targetedBodyPart.Value.Id)
+            _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(targetedWoundable)
                 .Select(woundEnt => woundEnt.Comp2)
                 .Where(bleeds => bleeds.IsBleeding)
                 .Aggregate(FixedPoint2.Zero, (current, bleeds) => current + bleeds.BleedingAmountRaw);
 
         var stuffToHeal =
             healing.Comp.Damage.DamageDict
-                .Where(damage => _wounds.HasDamageOfType(targetedBodyPart.Value.Id, damage.Key))
+                .Where(damage => _wounds.HasDamageOfType(targetedWoundable, damage.Key))
                 .ToDictionary(damage => damage.Key, damage => damage.Value);
 
         if (totalBleeds < healing.Comp.UnableToHealBleedsThreshold)

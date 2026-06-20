@@ -51,16 +51,16 @@
   components:
   - type: InitialBody
     organs:
-      Torso: OrganHumanTorso
-      Head: OrganHumanHead
-      ArmLeft: OrganHumanArmLeft
-      ArmRight: OrganHumanArmRight
-      HandRight: OrganHumanHandRight
-      HandLeft: OrganHumanHandLeft
-      LegLeft: OrganHumanLegLeft
-      LegRight: OrganHumanLegRight
-      FootLeft: OrganHumanFootLeft
-      FootRight: OrganHumanFootRight
+      Torso: OrganFelinidTorso
+      Head: OrganFelinidHead
+      ArmLeft: OrganFelinidArmLeft
+      ArmRight: OrganFelinidArmRight
+      HandRight: OrganFelinidHandRight
+      HandLeft: OrganFelinidHandLeft
+      LegLeft: OrganFelinidLegLeft
+      LegRight: OrganFelinidLegRight
+      FootLeft: OrganFelinidFootLeft
+      FootRight: OrganFelinidFootRight
       Brain: OrganHumanBrain
       Eyes: OrganHumanEyes
       Tongue: OrganHumanTongue
@@ -79,10 +79,12 @@
 - type: entity
   parent:
   - AppearanceFelinid
-  - BaseSpeciesMobOrganic
+  - BaseSpeciesMobSurgery
   id: MobFelinid
   name: Urist McFelinid
   components:
+  - type: HumanoidProfile
+    species: Felinid
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge
@@ -171,4 +173,7 @@
   id: MobFelinidDummy
   categories: [ HideSpawnMenu ]
   name: Urist McHands
+  components:
+  - type: HumanoidProfile
+    species: Felinid
   description: A dummy felinid meant to be used in character setup.

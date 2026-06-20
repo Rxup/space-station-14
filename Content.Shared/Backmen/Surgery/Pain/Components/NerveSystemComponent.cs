@@ -44,7 +44,7 @@ public sealed partial class NerveSystemComponent : Component
     public TimeSpan ForcePainCritEnd;
 
     // Don't change, OR I will break your knees, filled up upon initialization.
-    public Dictionary<EntityUid, NerveComponent> Nerves = new();
+    public Dictionary<EntityUid, NerveOrganComponent> Nerves = new();
 
     // Don't add manually!! Use built-in functions.
     public Dictionary<string, PainMultiplier> Multipliers = new();

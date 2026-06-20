@@ -89,7 +89,7 @@ public partial class PainSystem
         FixedPoint2 pain,
         NerveSystemComponent nerveSys,
         PainType painType,
-        NerveComponent? nerve = null)
+        NerveOrganComponent? nerve = null)
     {
         if (!NerveQuery.Resolve(nerveUid, ref nerve, false))
             return pain;
@@ -200,7 +200,7 @@ public partial class PainSystem
         string identifier,
         EntityUid nerveUid,
         FixedPoint2 change,
-        NerveComponent? nerve = null,
+        NerveOrganComponent? nerve = null,
         TimeSpan? time = null)
     {
         // Server-only execution
@@ -221,7 +221,7 @@ public partial class PainSystem
         EntityUid effectOwner,
         string identifier,
         [NotNullWhen(true)] out PainFeelingModifier? modifier,
-        NerveComponent? nerve = null)
+        NerveOrganComponent? nerve = null)
     {
         modifier = null;
         if (!Resolve(nerveEnt, ref nerve, false))
@@ -249,7 +249,7 @@ public partial class PainSystem
         string identifier,
         EntityUid nerveUid,
         FixedPoint2 change,
-        NerveComponent? nerve = null)
+        NerveOrganComponent? nerve = null)
     {
         // Server-only execution
         return false;
@@ -272,7 +272,7 @@ public partial class PainSystem
         EntityUid nerveUid,
         FixedPoint2 change,
         TimeSpan? time = null,
-        NerveComponent? nerve = null)
+        NerveOrganComponent? nerve = null)
     {
         // Server-only execution
         return false;
@@ -294,7 +294,7 @@ public partial class PainSystem
         string identifier,
         EntityUid nerveUid,
         TimeSpan time,
-        NerveComponent? nerve = null,
+        NerveOrganComponent? nerve = null,
         FixedPoint2? change = null)
     {
         // Server-only execution
@@ -314,7 +314,7 @@ public partial class PainSystem
         EntityUid effectOwner,
         string identifier,
         EntityUid nerveUid,
-        NerveComponent? nerve = null)
+        NerveOrganComponent? nerve = null)
     {
         // Server-only execution
         return false;

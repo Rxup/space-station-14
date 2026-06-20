@@ -113,7 +113,6 @@
   - type: Crawler
   - type: Dna
   - type: MindContainer
-  - type: MindExaminable
   - type: CanEnterCryostorage
   - type: InteractionPopup
     successChance: 1
@@ -129,12 +128,6 @@
     parcelPrototype: WrappedParcelHumanoid
     wrapDelay: 5
   - type: Stripping
-  - type: UserInterface
-    interfaces:
-      enum.HumanoidMarkingModifierKey.Key:
-        type: HumanoidMarkingModifierBoundUserInterface
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -153,6 +146,14 @@
   - type: MobPrice
     price: 1500 # Kidnapping a living person and selling them for cred is a good move.
     deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
+  - type: PotentialPsionic
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
   - type: Tag
     tags:
     - CanPilot
@@ -192,7 +193,6 @@
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 42
-  - type: TemperatureDamage
     heatDamageThreshold: 325
     coldDamageThreshold: 260
     coldDamage:
@@ -215,6 +215,7 @@
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 2
   - type: Perishable
+  - type: DiseaseCarrier
   - type: Butcherable
     butcheringType: Spike
     spawned:

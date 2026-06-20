@@ -38,10 +38,19 @@
 - type: entity
   parent:
   - AppearanceGingerbread
-  - BaseSpeciesMobOrganic
+  - BaseSpeciesMobSurgery
   id: MobGingerbread
   name: Urist McCookie
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - SolCommon
+    understands:
+    - TauCetiBasic
+    - SolCommon
   - type: Butcherable
     spawned:
     - id: FoodBakedCookie

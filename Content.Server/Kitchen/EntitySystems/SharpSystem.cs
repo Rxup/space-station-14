@@ -1,7 +1,7 @@
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body;
-using BodySystem = Content.Server.Body.Systems.BodySystem;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
@@ -25,7 +25,7 @@ namespace Content.Server.Kitchen.EntitySystems;
 
 public sealed partial class SharpSystem : EntitySystem
 {
-    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySystem _bodySystem = default!;
     [Dependency] private SharedDestructibleSystem _destructibleSystem = default!;
     [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private SharedPopupSystem _popupSystem = default!;

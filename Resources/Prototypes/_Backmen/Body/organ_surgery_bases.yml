@@ -1,0 +1,310 @@
+# Surgery/wounding components for nubody external organs (Backmen).
+
+- type: entity
+  id: OrganRelationParent
+  abstract: true
+  components:
+  - type: ParentOrgan
+  - type: DetachableOrgan
+    detachedBody: BackmenDetachedBody
+
+- type: entity
+  id: OrganRelationChild
+  abstract: true
+  components:
+  - type: ChildOrgan
+  - type: DetachableOrgan
+    detachedBody: BackmenDetachedBody
+
+- type: entity
+  id: OrganRelationInternalChild
+  abstract: true
+  components:
+  - type: InternalChildOrgan
+
+- type: entity
+  id: OrganSurgeryCapable
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: OrganicPart
+  - type: Woundable
+    damageContainer: Biological
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
+  - type: NerveOrgan
+  - type: SurgeryTool
+    startSound:
+      path: /Audio/Medical/Surgery/organ1.ogg
+    endSound:
+      path: /Audio/Medical/Surgery/organ2.ogg
+  - type: ContainerContainer
+    containers:
+      Wounds: !type:Container
+        ents: []
+      Bone: !type:Container
+        ents: []
+  - type: Appearance
+  - type: Gibbable
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationParent]
+  id: OrganSurgeryTorso
+  abstract: true
+  components:
+  - type: Woundable
+    integrity: 100
+    integrityCap: 100
+    thresholds:
+      Minor: 84
+      Moderate: 70
+      Severe: 55
+      Critical: 30
+      Loss: 0
+    passiveTraumaChances:
+      BoneDamage: 0
+      OrganDamage: 0
+      Dismemberment: -1
+      NerveDamage: -0.2
+      VeinsDamage: 0
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.Chest
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  - type: ConsciousnessRequired
+    identifier: chest
+    causesDeath: true
+  - type: ItemSlots
+    slots:
+      cavity_slot:
+        name: surgery-cavity-slot-name
+        whitelist:
+          sizes:
+          - Tiny
+          - Small
+        blacklist:
+          components:
+          - NukeDisk
+  - type: ContainerContainer
+    containers:
+      Wounds: !type:Container
+      Bone: !type:Container
+      cavity_slot: !type:ContainerSlot
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationParent, OrganRelationChild]
+  id: OrganSurgeryHead
+  abstract: true
+  components:
+  - type: Woundable
+    integrity: 42
+    integrityCap: 42
+    thresholds:
+      Minor: 36
+      Moderate: 30
+      Severe: 24
+      Critical: 12
+      Loss: 0
+    passiveTraumaChances:
+      BoneDamage: 0.4
+      OrganDamage: 0.4
+      Dismemberment: -0.2
+      NerveDamage: 1
+      VeinsDamage: 0
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.Head
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  - type: ConsciousnessRequired
+    identifier: head
+    causesDeath: true
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationParent, OrganRelationChild]
+  id: OrganSurgeryArmLeft
+  abstract: true
+  components:
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.LArm
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationParent, OrganRelationChild]
+  id: OrganSurgeryArmRight
+  abstract: true
+  components:
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.RArm
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationChild]
+  id: OrganSurgeryHandLeft
+  abstract: true
+  components:
+  - type: Woundable
+    integrity: 50
+    integrityCap: 50
+    thresholds:
+      Minor: 42
+      Moderate: 36
+      Severe: 26
+      Critical: 15
+      Loss: 0
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.LHand
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationChild]
+  id: OrganSurgeryHandRight
+  abstract: true
+  components:
+  - type: Woundable
+    integrity: 50
+    integrityCap: 50
+    thresholds:
+      Minor: 42
+      Moderate: 36
+      Severe: 26
+      Critical: 15
+      Loss: 0
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.RHand
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationParent, OrganRelationChild]
+  id: OrganSurgeryLegLeft
+  abstract: true
+  components:
+  - type: MovementBodyPart
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.LLeg
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationParent, OrganRelationChild]
+  id: OrganSurgeryLegRight
+  abstract: true
+  components:
+  - type: MovementBodyPart
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.RLeg
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationChild]
+  id: OrganSurgeryFootLeft
+  abstract: true
+  components:
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.LFoot
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationChild]
+  id: OrganSurgeryFootRight
+  abstract: true
+  components:
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.RFoot
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+
+- type: entity
+  parent: [OrganSurgeryCapable, OrganRelationChild]
+  id: OrganSurgerySpiderLeg
+  abstract: true
+  components:
+  - type: Woundable
+    integrity: 35
+    integrityCap: 35
+    thresholds:
+      Minor: 30
+      Moderate: 24
+      Severe: 18
+      Critical: 10
+      Loss: 0
+  - type: WoundableVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    occupiedLayer: enum.HumanoidVisualLayers.LLeg
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#FF0000"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+    bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
+  - type: MovementBodyPart
+    walkSpeed: 3.0
+    sprintSpeed: 5.0

@@ -100,6 +100,28 @@
   parent: PlayerSiliconBase
   suffix: VovaMech
   components:
+  - type: Hands
+    showInHands: false
+    hands:
+      mech-1:
+        location: Left
+      mech-2:
+        location: Right
+      mech-3:
+        location: Middle
+      mech-4:
+        location: Left
+      mech-5:
+        location: Right
+      mech-6:
+        location: Middle
+    sortedHands:
+    - mech-1
+    - mech-2
+    - mech-3
+    - mech-4
+    - mech-5
+    - mech-6
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.75

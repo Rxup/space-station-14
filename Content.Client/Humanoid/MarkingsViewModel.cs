@@ -244,7 +244,7 @@ public sealed partial class MarkingsViewModel
         if (!markingSet.TryGetValue(layer, out var markings))
             return null;
 
-        return markings.FirstOrNull(it => it.MarkingId == markingId);
+        return markings.FirstOrDefault(it => it.MarkingId == markingId);
     }
 
     /// <summary>
@@ -384,7 +384,9 @@ public sealed partial class MarkingsViewModel
         if (markingIdx == -1)
             return;
 
-        markings[markingIdx] = markings[markingIdx].WithColorAt(colorIndex, color);
+        var marking = markings[markingIdx];
+        marking.SetColor(colorIndex, color);
+        markings[markingIdx] = marking;
         MarkingsChanged?.Invoke(organ, layer);
     }
 

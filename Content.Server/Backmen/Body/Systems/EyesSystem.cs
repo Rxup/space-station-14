@@ -1,7 +1,7 @@
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body;
-using BodySystem = Content.Server.Body.Systems.BodySystem;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Eye.Blinding.Components;
@@ -14,7 +14,7 @@ namespace Content.Server.Backmen.Body.Systems
     {
         [Dependency] private IEntityManager _entityManager = default!;
         [Dependency] private BlindableSystem _blindableSystem = default!;
-        [Dependency] private BodySystem _bodySystem = default!;
+        [Dependency] private BkmBodySystem _bodySystem = default!;
 
         public override void Initialize()
         {

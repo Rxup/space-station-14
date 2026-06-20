@@ -15,6 +15,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
@@ -56,7 +57,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
     [Dependency] private HandsSystem _hands = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private ServerWoundSystem _wound = default!;
     [Dependency] private ServerTraumaSystem _trauma = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
@@ -223,12 +224,13 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         if (component.HeadTraumaChance <= 0 || !_random.Prob(component.HeadTraumaChance))
             return;
 
-        var headPart = _body.GetBodyChildrenOfType(victim, BodyPartType.Head).FirstOrDefault();
-        if (headPart == default || !TryComp<WoundableComponent>(headPart.Id, out var headWoundable))
+        EntityUid headTarget;
+        if (!_body.TryGetWoundableTargetByType(victim, BodyPartType.Head, null, out headTarget)
+            || !TryComp<WoundableComponent>(headTarget, out var headWoundable))
             return;
 
         Entity<WoundComponent>? piercingWound = null;
-        foreach (var wound in _wound.GetWoundableWounds(headPart.Id, headWoundable))
+        foreach (var wound in _wound.GetWoundableWounds(headTarget, headWoundable))
         {
             if (DamageSpecifierAliases.IsPiercingDamageType(wound.Comp.DamageType, _prototype))
             {
@@ -238,7 +240,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         }
 
         if (piercingWound == null
-            && !_wound.TryInduceWound(headPart.Id, "Piercing", component.TraumaSeverity, out piercingWound, headWoundable))
+            && !_wound.TryInduceWound(headTarget, "Piercing", component.TraumaSeverity, out piercingWound, headWoundable))
         {
             return;
         }
@@ -250,7 +252,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         var traumaType = _random.Prob(0.5f) ? TraumaType.OrganDamage : TraumaType.BoneDamage;
 
         if (!_trauma.TryApplyTraumas(
-                (headPart.Id, headWoundable),
+                (headTarget, headWoundable),
                 (piercingWound.Value.Owner, inflicterComp),
                 [traumaType],
                 severity))

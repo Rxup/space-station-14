@@ -5,6 +5,7 @@ using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
@@ -212,7 +213,7 @@ public partial class TraumaSystem
         TraumaType? traumaType = null,
         BodyComponent? bodyComp = null)
     {
-        return Resolve(body, ref bodyComp, false) && Body.GetBodyChildren(body, bodyComp).Any(bodyPart => HasWoundableTrauma(bodyPart.Id, traumaType));
+        return Resolve(body, ref bodyComp, false) && Body.GetWoundableTargets(body, bodyComp).Any(id => HasWoundableTrauma(id, traumaType));
     }
 
     [PublicAPI]
@@ -227,9 +228,9 @@ public partial class TraumaSystem
             return false;
 
         traumas = new List<Entity<TraumaComponent>>();
-        foreach (var bodyPart in Body.GetBodyChildren(body, bodyComp))
+        foreach (var woundable in Body.GetWoundableTargets(body, bodyComp))
         {
-            if (TryGetWoundableTrauma(bodyPart.Id, out var traumasFound, traumaType))
+            if (TryGetWoundableTrauma(woundable, out var traumasFound, traumaType))
                 traumas.AddRange(traumasFound);
         }
 
@@ -317,9 +318,8 @@ public partial class TraumaSystem
     [PublicAPI]
     public bool RandomBoneTraumaChance(Entity<WoundableComponent> target, Entity<TraumaInflicterComponent> woundInflicter)
     {
-        var bodyPart = Comp<BodyPartComponent>(target);
-        if (!bodyPart.Body.HasValue)
-            return false; // Can't sever if already severed
+        if (!Body.TryGetWoundableBodyPartInfo(target, out var bodyUid, out var partType, out _))
+            return false;
 
         var bone = target.Comp.Bone.ContainedEntities.FirstOrNull();
         if (bone == null || !TryComp<BoneComponent>(bone, out var boneComp))
@@ -330,11 +330,11 @@ public partial class TraumaSystem
 
         var deduction = GetTraumaChanceDeduction(
             woundInflicter,
-            bodyPart.Body.Value,
+            bodyUid,
             target,
             Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
             TraumaType.BoneDamage,
-            bodyPart.PartType);
+            partType);
 
         // We do complete random to get the chance for trauma to happen,
         // We combine multiple parameters and do some math, to get the chance.
@@ -370,24 +370,19 @@ public partial class TraumaSystem
         Entity<WoundableComponent> target,
         Entity<TraumaInflicterComponent> woundInflicter)
     {
-        var bodyPart = Comp<BodyPartComponent>(target);
-        if (!bodyPart.Body.HasValue)
-            return false; // No entity to apply pain to
+        if (!TryGetWoundableTraumaContext(target, out var bodyUid, out var partType, out var totalIntegrity))
+            return false;
 
-        var totalIntegrity =
-            Body.GetPartOrgans(target, bodyPart)
-                .Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.OrganIntegrity);
-
-        if (totalIntegrity <= 0) // No surviving organs
+        if (totalIntegrity <= 0)
             return false;
 
         var deduction = GetTraumaChanceDeduction(
             woundInflicter,
-            bodyPart.Body.Value,
+            bodyUid,
             target,
             Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
             TraumaType.OrganDamage,
-            bodyPart.PartType);
+            partType);
 
         if (target.Comp.WoundableIntegrity <= 0)
             return false;
@@ -412,9 +407,8 @@ public partial class TraumaSystem
         Entity<WoundableComponent> target,
         Entity<TraumaInflicterComponent> woundInflicter)
     {
-        var bodyPart = Comp<BodyPartComponent>(target);
-        if (!bodyPart.Body.HasValue)
-            return false; // Can't sever if already severed
+        if (!Body.TryGetWoundableBodyPartInfo(target, out var bodyUid, out var partType, out _))
+            return false;
 
         var parentWoundable = target.Comp.ParentWoundable;
         if (!parentWoundable.HasValue)
@@ -422,11 +416,11 @@ public partial class TraumaSystem
 
         var deduction = GetTraumaChanceDeduction(
             woundInflicter,
-            bodyPart.Body.Value,
+            bodyUid,
             target,
             Comp<WoundComponent>(woundInflicter).WoundSeverityPoint,
             TraumaType.Dismemberment,
-            bodyPart.PartType);
+            partType);
 
         var bonePenalty = FixedPoint2.New(0.1);
 
@@ -452,6 +446,43 @@ public partial class TraumaSystem
         // getting hit again increases the chance
 
         return Random.Prob((float) chance);
+    }
+
+    private bool TryGetWoundableTraumaContext(
+        EntityUid woundable,
+        out EntityUid bodyUid,
+        out BodyPartType partType,
+        out FixedPoint2 totalOrganIntegrity)
+    {
+        bodyUid = default;
+        partType = BodyPartType.Chest;
+        totalOrganIntegrity = FixedPoint2.Zero;
+
+        if (TryComp<BodyPartComponent>(woundable, out var bodyPart))
+        {
+            if (!bodyPart.Body.HasValue)
+                return false;
+
+            bodyUid = bodyPart.Body.Value;
+            partType = bodyPart.PartType;
+            totalOrganIntegrity = Body.GetPartOrgans(woundable, bodyPart)
+                .Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.OrganIntegrity);
+            return true;
+        }
+
+        if (!TryComp<OrganComponent>(woundable, out var organ) || organ.Body is not { } body)
+            return false;
+
+        bodyUid = body;
+        if (organ.Category is { } category
+            && SurgeryBodyPartMapping.TryGetBodyPartType(category, out var mappedType, out _))
+        {
+            partType = mappedType;
+        }
+
+        totalOrganIntegrity = Body.GetOrgansForWoundable(woundable)
+            .Aggregate(FixedPoint2.Zero, (current, o) => current + o.Component.OrganIntegrity);
+        return true;
     }
 
     #endregion

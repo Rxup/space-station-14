@@ -16,24 +16,23 @@ namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
 public sealed class ChangeTTSCommand : ToolshedCommand
 {
-    private HumanoidProfileSystem? _appearanceSystem;
-
     [CommandImplementation]
     public EntityUid? ChangeTTS(
         [PipedArgument] EntityUid input,
         [CommandArgument] ProtoId<TTSVoicePrototype> prototype
     )
     {
-        if (EntityManager.TryGetComponent<HumanoidProfileComponent>(input, out var HumanoidProfileComponent))
+        if (EntityManager.TryGetComponent<HumanoidProfileComponent>(input, out _))
         {
-            _appearanceSystem ??= GetSys<HumanoidProfileSystem>();
-
-            _appearanceSystem.SetTTSVoice(input, prototype.Id, humanoid: HumanoidProfileComponent);
+            var ttsComp = EnsureComp<TTSComponent>(input);
+            ttsComp.VoicePrototypeId = prototype.Id;
+            EntityManager.Dirty(input, ttsComp);
             return input;
         }
 
-        var tts = EnsureComp<TTSComponent>(input);
-        tts.VoicePrototypeId = prototype.Id;
+        var fallbackTts = EnsureComp<TTSComponent>(input);
+        fallbackTts.VoicePrototypeId = prototype.Id;
+        EntityManager.Dirty(input, fallbackTts);
 
         return input;
     }

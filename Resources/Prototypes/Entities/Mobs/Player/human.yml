@@ -5,7 +5,7 @@
   name: syndicate agent
   suffix: Human, Base
   components:
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: false
   - type: Loadout
     prototypes: [SyndicateOperativeGearExtremelyBasic]
@@ -74,7 +74,7 @@
   id: MobHumanNukeOp
   components:
   - type: NukeOperative
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -82,7 +82,7 @@
   id: MobHumanLoneNuclearOperative
   name: Lone Operative
   components:
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: false
   - type: NukeOperative
   - type: Loadout
@@ -104,7 +104,7 @@
   parent: MobHuman
   id: MobHumanWizard
   components:
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
   - type: NpcFactionMember
     factions:
     - Wizard

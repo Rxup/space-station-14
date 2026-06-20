@@ -53,10 +53,14 @@
   name: medical biofabricator
   description: Produces organs and other organic matter that can be surgically grafted onto patients with biomass.
   components:
+  - type: BkmBiofabricator
   - type: Sprite
     sprite: Structures/Machines/limbgrower.rsi
     snapCardinals: true
     layers:
+    - state: limbgrower_fill
+      map: ["enum.BkmBiofabricatorVisualLayers.Fill"]
+      visible: false
     - state: limbgrower_idleoff
       map: ["enum.LatheVisualLayers.IsRunning"]
 #    - state: limbgrower_idleoff

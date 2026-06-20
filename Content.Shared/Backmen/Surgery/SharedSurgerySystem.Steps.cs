@@ -6,6 +6,7 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Part;
 using Content.Shared.Body;
+using Content.Shared.Body.Organ;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -18,10 +19,12 @@ using Content.Shared.StatusEffectNew;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Backmen.Mood;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Backmen.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -348,43 +351,116 @@ public abstract partial class SharedSurgerySystem
 
     private void OnCavityStep(Entity<SurgeryStepCavityEffectComponent> ent, ref SurgeryStepEvent args)
     {
-        if (!TryComp(args.Part, out BodyPartComponent? partComp) || partComp.PartType != BodyPartType.Chest)
+        if (!TryGetTorsoCavityEntity(args.Part, out var cavityEntity)
+            || !_itemSlotsSystem.TryGetSlot(cavityEntity, SurgeryStepCavityEffectComponent.SlotId, out var slot))
             return;
 
         var activeHandEntity = _hands.EnumerateHeld(args.User).FirstOrDefault();
-        if (activeHandEntity != default
-            && ent.Comp.Action == "Insert"
+        if (ent.Comp.Action == "Insert"
+            && activeHandEntity != default
             && TryComp(activeHandEntity, out ItemComponent? itemComp)
-            && (itemComp.Size.Id == "Tiny"
-            || itemComp.Size.Id == "Small"))
-            _itemSlotsSystem.TryInsert(ent, partComp.ItemInsertionSlot, activeHandEntity, args.User);
+            && (itemComp.Size.Id == "Tiny" || itemComp.Size.Id == "Small"))
+        {
+            _itemSlotsSystem.TryInsert(cavityEntity, slot, activeHandEntity, args.User);
+        }
         else if (ent.Comp.Action == "Remove")
-            _itemSlotsSystem.TryEjectToHands(ent, partComp.ItemInsertionSlot, args.User);
+        {
+            _itemSlotsSystem.TryEjectToHands(cavityEntity, slot, args.User);
+        }
     }
 
     private void OnCavityCheck(Entity<SurgeryStepCavityEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
-        // Normally this check would simply be partComp.ItemInsertionSlot.HasItem, but as mentioned before,
-        // For whatever reason it's not instantiating the field on the clientside after the wizmerge.
-        if (!TryComp(args.Part, out BodyPartComponent? partComp)
-            || !TryComp(args.Part, out ItemSlotsComponent? itemComp)
-            || ent.Comp.Action == "Insert"
-            && !itemComp.Slots[partComp.ContainerName].HasItem
-            || ent.Comp.Action == "Remove"
-            && itemComp.Slots[partComp.ContainerName].HasItem)
+        if (!TryGetTorsoCavityEntity(args.Part, out var cavityEntity)
+            || !_itemSlotsSystem.TryGetSlot(cavityEntity, SurgeryStepCavityEffectComponent.SlotId, out var slot))
+        {
             args.Cancelled = true;
+            return;
+        }
+
+        var hasItem = slot.HasItem;
+        if (ent.Comp.Action == "Insert" && !hasItem
+            || ent.Comp.Action == "Remove" && hasItem)
+            args.Cancelled = true;
+    }
+
+    private bool TryGetTorsoCavityEntity(EntityUid part, out EntityUid cavityEntity)
+    {
+        if (TryComp<OrganComponent>(part, out var organ) && organ.Category == "Torso")
+        {
+            cavityEntity = part;
+            return true;
+        }
+
+        if (TryComp<BodyPartComponent>(part, out var bodyPart) && bodyPart.PartType == BodyPartType.Chest)
+        {
+            cavityEntity = part;
+            return true;
+        }
+
+        cavityEntity = default;
+        return false;
     }
 
     private void OnAddPartStep(Entity<SurgeryAddPartStepComponent> ent, ref SurgeryStepEvent args)
     {
+        if (TryComp(args.Surgery, out SurgeryOrganGraftAttachComponent? graftComp))
+        {
+            TryGraftOrganAttach(args.Body, args.Surgery, graftComp, args.Tools);
+            return;
+        }
+
         if (!TryComp(args.Surgery, out SurgeryPartRemovedConditionComponent? removedComp))
             return;
 
         foreach (var tool in args.Tools)
         {
+            var attachOrgan = tool;
+            EntityUid? bundleEnt = null;
+
+            if (_detachedBodies.TryGetMatchingOrgan(tool, removedComp.Part, removedComp.Symmetry, out var bundledOrgan))
+            {
+                attachOrgan = bundledOrgan;
+                bundleEnt = tool;
+            }
+            else if (TryComp<OrganComponent>(attachOrgan, out var attachOrganComp)
+                && attachOrganComp.Body is { } host
+                && HasComp<BkmDetachedBodyComponent>(host))
+            {
+                bundleEnt = host;
+            }
+
+            if (TryComp<OrganComponent>(attachOrgan, out var organ)
+                && organ.Body != args.Body
+                && _targeting.MatchesBodyPartType(attachOrgan, removedComp.Part, removedComp.Symmetry)
+                && !(organ.Category is { } attachCategory
+                    && (SurgeryBodyPartMapping.IsSpiderLegCategory(attachCategory)
+                        || SurgeryBodyPartMapping.IsHumanLegOrFootCategory(attachCategory)
+                            && _body.BodyHasArachneOrgan(args.Body)))
+                && _body.InsertOrganIntoBody(args.Body, attachOrgan))
+            {
+                if (bundleEnt is { } bundle)
+                    TransferDetachedSubtreeOrgans(args.Body, attachOrgan, bundle);
+
+                _wounds.RestoreWoundableAfterReattachment(attachOrgan);
+                EnsureComp<OrganReattachedComponent>(attachOrgan);
+                if (TryComp<BodyComponent>(args.Body, out var bodyComp))
+                    _organRelations.WireRelationships((args.Body, bodyComp));
+                RefreshBodyAppearance(args.Body, attachOrgan);
+                _wounds.RefreshBodyTargetingStatus(args.Body);
+
+                if (bundleEnt is { } emptyBundle)
+                    TryCleanupEmptyDetachedBody(emptyBundle);
+
+                return;
+            }
+
             if (TryComp(tool, out BodyPartComponent? partComp)
                 && partComp.PartType == removedComp.Part
-                && (removedComp.Symmetry == null || partComp.Symmetry == removedComp.Symmetry))
+                && (removedComp.Symmetry == null || partComp.Symmetry == removedComp.Symmetry)
+                && !(_body.BodyHasArachneOrgan(args.Body)
+                    && SurgeryBodyPartMapping.TryGetCategory(removedComp.Part, removedComp.Symmetry, out var blockedCategory)
+                    && SurgeryBodyPartMapping.IsHumanLegOrFootCategory(blockedCategory)))
             {
                 var slotName = removedComp.Symmetry != null
                     ? $"{removedComp.Symmetry?.ToString().ToLower()} {removedComp.Part.ToString().ToLower()}"
@@ -396,41 +472,240 @@ public abstract partial class SharedSurgerySystem
         }
     }
 
+    /// <summary>
+    /// Moves internal organs still stored in a detached bundle into the patient when reattaching a limb.
+    /// </summary>
+    private void TransferDetachedSubtreeOrgans(EntityUid patient, EntityUid rootOrgan, EntityUid bundleEnt)
+    {
+        foreach (var child in _organRelation.AllChildren(rootOrgan))
+        {
+            if (!TryComp<OrganComponent>(child, out var organ) || organ.Body != bundleEnt)
+                continue;
+
+            _body.InsertOrganIntoBody(patient, child);
+        }
+    }
+
+    private void TryCleanupEmptyDetachedBody(EntityUid bundleEnt)
+    {
+        if (!_net.IsServer
+            || !TryComp<BodyComponent>(bundleEnt, out var body)
+            || body.Organs == null
+            || body.Organs.Count > 0)
+        {
+            return;
+        }
+
+        QueueDel(bundleEnt);
+    }
+
     private void OnAffixPartStep(Entity<SurgeryAffixPartStepComponent> ent, ref SurgeryStepEvent args)
     {
+        if (TryGetGraftAttachOrgan(args.Body, args.Surgery, out var partId))
+        {
+            _wounds.TryHealWoundsOnWoundable(partId, 12f, out _, damageGroup: _prototypes.Index<DamageGroupPrototype>("Brute"));
+            RemComp<OrganReattachedComponent>(partId);
+            RemComp<BodyPartReattachedComponent>(partId);
+            RefreshBodyAppearance(args.Body, partId);
+            _wounds.RefreshBodyTargetingStatus(args.Body);
+            return;
+        }
+
         if (!TryComp(args.Surgery, out SurgeryPartRemovedConditionComponent? removedComp))
             return;
 
-        var targetPart = _body.GetBodyChildrenOfType(args.Body, removedComp.Part, symmetry: removedComp.Symmetry).FirstOrDefault();
-        if (targetPart != default)
-        {
-            // We reward players for properly affixing the parts by healing a little bit of damage, and enabling the part temporarily.
-            _wounds.TryHealWoundsOnWoundable(targetPart.Id, 12f, out _, damageGroup: _prototypes.Index<DamageGroupPrototype>("Brute"));
-            RemComp<BodyPartReattachedComponent>(targetPart.Id);
-        }
+        if (!_targeting.TryGetEntityByBodyPartType(args.Body, removedComp.Part, removedComp.Symmetry, out var legacyPartId))
+            return;
+
+        _wounds.TryHealWoundsOnWoundable(legacyPartId, 12f, out _, damageGroup: _prototypes.Index<DamageGroupPrototype>("Brute"));
+
+        RemComp<OrganReattachedComponent>(legacyPartId);
+        RemComp<BodyPartReattachedComponent>(legacyPartId);
+        RefreshBodyAppearance(args.Body, legacyPartId);
+        _wounds.RefreshBodyTargetingStatus(args.Body);
     }
 
     private void OnAffixPartCheck(Entity<SurgeryAffixPartStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
+        if (TryComp(args.Surgery, out SurgeryOrganGraftAttachComponent? graftComp))
+        {
+            if (!TryGetGraftAttachOrgan(args.Body, args.Surgery, out var partId))
+            {
+                args.Cancelled = true;
+                return;
+            }
+
+            if (HasComp<OrganReattachedComponent>(partId) || HasComp<BodyPartReattachedComponent>(partId))
+                args.Cancelled = true;
+            return;
+        }
+
         if (!TryComp(args.Surgery, out SurgeryPartRemovedConditionComponent? removedComp))
             return;
 
-        var targetPart = _body.GetBodyChildrenOfType(args.Body, removedComp.Part, symmetry: removedComp.Symmetry).FirstOrDefault();
+        if (!_targeting.TryGetEntityByBodyPartType(args.Body, removedComp.Part, removedComp.Symmetry, out var legacyPartId))
+            return;
 
-        if (targetPart != default
-            && HasComp<BodyPartReattachedComponent>(targetPart.Id))
+        if (HasComp<OrganReattachedComponent>(legacyPartId) || HasComp<BodyPartReattachedComponent>(legacyPartId))
             args.Cancelled = true;
     }
 
     private void OnAddPartCheck(Entity<SurgeryAddPartStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
+        if (TryComp(args.Surgery, out SurgeryOrganGraftAttachComponent? graftComp))
+        {
+            if (IsGraftAttachPending(args.Body, graftComp))
+                args.Cancelled = true;
+            return;
+        }
+
         if (!TryComp(args.Surgery, out SurgeryPartRemovedConditionComponent? removedComp)
-            || !_body.GetBodyChildrenOfType(args.Body, removedComp.Part, symmetry: removedComp.Symmetry).Any())
+            || !_targeting.TryGetEntityByBodyPartType(args.Body, removedComp.Part, removedComp.Symmetry, out var attachedPart)
+            || TryComp<OrganComponent>(attachedPart, out var attachedOrgan)
+                && attachedOrgan.Category is { } attachedCategory
+                && SurgeryBodyPartMapping.IsSpiderLegCategory(attachedCategory))
             args.Cancelled = true;
+    }
+
+    private bool IsGraftAttachPending(EntityUid body, SurgeryOrganGraftAttachComponent graft)
+    {
+        if (graft.RequiredCategory is { } requiredCategory)
+            return !_organBody.TryGetOrganByCategory(body, requiredCategory, out _);
+
+        if (graft.SpiderLegSide is { } side)
+            return TryGetFirstMissingSpiderLegSlot(body, side, out _);
+
+        return false;
+    }
+
+    private bool TryGetFirstMissingSpiderLegSlot(
+        EntityUid body,
+        BodyPartSymmetry side,
+        out ProtoId<OrganCategoryPrototype> slot)
+    {
+        slot = default;
+        var slots = side == BodyPartSymmetry.Left
+            ? SurgeryBodyPartMapping.SpiderLegLeftSlots
+            : SurgeryBodyPartMapping.SpiderLegRightSlots;
+
+        foreach (var candidate in slots)
+        {
+            if (_organBody.TryGetOrganByCategory(body, candidate, out _))
+                continue;
+
+            slot = candidate;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryGetGraftAttachOrgan(EntityUid body, EntityUid surgery, out EntityUid organ)
+    {
+        organ = default;
+
+        if (!TryComp(surgery, out SurgeryOrganGraftAttachComponent? graft))
+            return false;
+
+        if (graft.RequiredCategory is { } requiredCategory
+            && _organBody.TryGetOrganByCategory(body, requiredCategory, out var requiredOrgan))
+        {
+            organ = requiredOrgan;
+            return true;
+        }
+
+        if (graft.SpiderLegSide is { } side)
+        {
+            var slots = side == BodyPartSymmetry.Left
+                ? SurgeryBodyPartMapping.SpiderLegLeftSlots
+                : SurgeryBodyPartMapping.SpiderLegRightSlots;
+
+            foreach (var slot in slots)
+            {
+                if (_organBody.TryGetOrganByCategory(body, slot, out var legOrgan))
+                {
+                    organ = legOrgan;
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private void TryGraftOrganAttach(EntityUid body, EntityUid surgery, SurgeryOrganGraftAttachComponent graft, IReadOnlyList<EntityUid> tools)
+    {
+        foreach (var tool in tools)
+        {
+            var attachOrgan = tool;
+            EntityUid? bundleEnt = null;
+
+            if (!TryComp<OrganComponent>(attachOrgan, out var organComp) || organComp.Body == body)
+                continue;
+
+            ProtoId<OrganCategoryPrototype>? targetCategory = null;
+
+            if (graft.SpiderLegSide is { } side)
+            {
+                if (organComp.Category is not { } legCategory
+                    || !SurgeryBodyPartMapping.IsSpiderLegCategory(legCategory))
+                    continue;
+
+                if (!TryGetFirstMissingSpiderLegSlot(body, side, out var slot))
+                    continue;
+
+                targetCategory = slot;
+                _organBody.SetOrganCategory(attachOrgan, slot);
+            }
+            else if (graft.RequiredCategory is { } required)
+            {
+                if (organComp.Category != required)
+                    continue;
+
+                targetCategory = required;
+            }
+            else
+            {
+                continue;
+            }
+
+            if (organComp.Body is { } host && HasComp<BkmDetachedBodyComponent>(host))
+                bundleEnt = host;
+
+            if (targetCategory is not { } category
+                || _organBody.TryGetOrganByCategory(body, category, out _)
+                || !_body.InsertOrganIntoBody(body, attachOrgan))
+                continue;
+
+            if (bundleEnt is { } bundle)
+                TransferDetachedSubtreeOrgans(body, attachOrgan, bundle);
+
+            _wounds.RestoreWoundableAfterReattachment(attachOrgan);
+            EnsureComp<OrganReattachedComponent>(attachOrgan);
+            if (TryComp<BodyComponent>(body, out var bodyComp))
+            {
+                _organRelations.WireRelationships((body, bodyComp));
+                _organRelations.WireGraftRelationships((body, bodyComp));
+            }
+
+            RefreshBodyAppearance(body, attachOrgan);
+            _wounds.RefreshBodyTargetingStatus(body);
+
+            if (bundleEnt is { } emptyBundle)
+                TryCleanupEmptyDetachedBody(emptyBundle);
+
+            return;
+        }
     }
 
     private void OnRemovePartStep(Entity<SurgeryRemovePartStepComponent> ent, ref SurgeryStepEvent args)
     {
+        if (TryComp<OrganComponent>(args.Part, out var organ) && organ.Body == args.Body)
+        {
+            AmputateNubodyExternalOrgan(args.Body, args.User, args.Part);
+            return;
+        }
+
         if (!TryComp(args.Part, out BodyPartComponent? partComp)
             || partComp.Body != args.Body)
             return;
@@ -444,59 +719,188 @@ public abstract partial class SharedSurgerySystem
 
     private void OnRemovePartCheck(Entity<SurgeryRemovePartStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
+        if (TryComp<OrganComponent>(args.Part, out var organ))
+        {
+            if (organ.Body == args.Body)
+                args.Cancelled = true;
+            return;
+        }
+
         if (!TryComp(args.Part, out BodyPartComponent? partComp)
             || partComp.Body == args.Body)
             args.Cancelled = true;
     }
 
+    /// <summary>
+    /// Resolves the woundable to receive transferred damage when amputating a nubody external organ.
+    /// </summary>
+    private bool TryGetAmputationParentWoundable(
+        EntityUid body,
+        EntityUid part,
+        [NotNullWhen(true)] out EntityUid parentWoundable)
+    {
+        parentWoundable = default;
+
+        if (!_targeting.TryGetEntityByBodyPartType(body, BodyPartType.Chest, null, out parentWoundable))
+            return false;
+
+        var partType = _targeting.GetBodyPartType(part);
+        var symmetry = _targeting.GetBodyPartSymmetry(part);
+
+        if (partType is not { } type)
+            return true;
+
+        parentWoundable = (type, symmetry) switch
+        {
+            (BodyPartType.Hand, BodyPartSymmetry.Left)
+                when _targeting.TryGetEntityByBodyPartType(body, BodyPartType.Arm, BodyPartSymmetry.Left, out var arm) => arm,
+            (BodyPartType.Hand, BodyPartSymmetry.Right)
+                when _targeting.TryGetEntityByBodyPartType(body, BodyPartType.Arm, BodyPartSymmetry.Right, out var arm) => arm,
+            (BodyPartType.Foot, BodyPartSymmetry.Left)
+                when _targeting.TryGetEntityByBodyPartType(body, BodyPartType.Leg, BodyPartSymmetry.Left, out var leg) => leg,
+            (BodyPartType.Foot, BodyPartSymmetry.Right)
+                when _targeting.TryGetEntityByBodyPartType(body, BodyPartType.Leg, BodyPartSymmetry.Right, out var leg) => leg,
+            _ => parentWoundable,
+        };
+
+        return true;
+    }
+
+    private void AmputateNubodyExternalOrgan(EntityUid body, EntityUid user, EntityUid part)
+    {
+        if (TryComp<OrganComponent>(part, out var organ) && organ.Category is { } organCategory)
+            TransferAmputationSurgeryState(body, part, organCategory);
+
+        RemoveExternalOrgan(body, user, part);
+    }
+
+    private void RemoveExternalOrgan(EntityUid body, EntityUid user, EntityUid organEnt)
+    {
+        if (!TryComp<OrganComponent>(organEnt, out var organ) || organ.Body != body)
+            return;
+
+        if (TryGetAmputationParentWoundable(body, organEnt, out var parentWoundable))
+            _wounds.AmputateWoundableSafely(parentWoundable, organEnt);
+
+        TryPickupAmputatedOrgan(user, organEnt);
+    }
+
+    private void TryPickupAmputatedOrgan(EntityUid user, EntityUid organEnt)
+    {
+        if (TryComp<OrganComponent>(organEnt, out var organ)
+            && organ.Body is { } bundle
+            && HasComp<BkmDetachedBodyComponent>(bundle)
+            && _hands.TryPickupAnyHand(user, bundle))
+        {
+            return;
+        }
+
+        if (_hands.TryPickupAnyHand(user, organEnt))
+            return;
+
+        if (TryComp<OrganComponent>(organEnt, out organ)
+            && organ.Body is { } holder
+            && HasComp<ItemComponent>(holder))
+            _hands.TryPickupAnyHand(user, holder);
+    }
+
+    private void TransferAmputationSurgeryState(
+        EntityUid body,
+        EntityUid part,
+        ProtoId<OrganCategoryPrototype> category)
+    {
+        if (!TryGetSurgeryStateTransferTarget(body, category, out var target) || target == part)
+            return;
+
+        CopySurgeryStateComponent<IncisionOpenComponent>(part, target);
+        CopySurgeryStateComponent<SkinRetractedComponent>(part, target);
+        CopySurgeryStateComponent<RibcageSawedComponent>(part, target);
+        CopySurgeryStateComponent<RibcageOpenComponent>(part, target);
+        CopySurgeryStateComponent<InternalBleedersClampedComponent>(part, target);
+        CopySurgeryStateComponent<BleedersClampedComponent>(part, target);
+        CopySurgeryStateComponent<BodyPartSawedComponent>(part, target);
+    }
+
+    private void CopySurgeryStateComponent<T>(EntityUid from, EntityUid to) where T : IComponent, new()
+    {
+        if (!HasComp<T>(from) || HasComp<T>(to))
+            return;
+
+        EnsureComp<T>(to);
+    }
+
+    private bool TryGetSurgeryStateTransferTarget(
+        EntityUid body,
+        ProtoId<OrganCategoryPrototype> category,
+        [NotNullWhen(true)] out EntityUid target)
+    {
+        target = default;
+
+        if (!SurgeryBodyPartMapping.TryGetBodyPartType(category, out var type, out var symmetry))
+            return false;
+
+        var sym = symmetry == BodyPartSymmetry.None ? null : symmetry;
+
+        if (type == BodyPartType.Hand
+            && _targeting.TryGetEntityByBodyPartType(body, BodyPartType.Arm, sym, out target))
+            return true;
+
+        if (type == BodyPartType.Foot
+            && _targeting.TryGetEntityByBodyPartType(body, BodyPartType.Leg, sym, out target))
+            return true;
+
+        return _targeting.TryGetEntityByBodyPartType(body, BodyPartType.Chest, null, out target);
+    }
+
     private void OnAddOrganStep(Entity<SurgeryAddOrganStepComponent> ent, ref SurgeryStepEvent args)
     {
-        if (!TryComp(args.Part, out BodyPartComponent? partComp)
-            || partComp.Body != args.Body
-            || !TryComp(args.Surgery, out SurgeryOrganConditionComponent? organComp)
+        if (!TryComp(args.Surgery, out SurgeryOrganConditionComponent? organComp)
             || organComp.Organ == null)
             return;
 
-        // Adding organs is generally done for a single one at a time, so we only need to check for the first.
         var firstOrgan = organComp.Organ.Values.FirstOrDefault();
         if (firstOrgan == default)
             return;
 
         foreach (var tool in args.Tools)
         {
-            if (HasComp(tool, firstOrgan.Component.GetType())
-                && TryComp<OrganComponent>(tool, out var insertedOrgan)
-                && _body.InsertOrgan(args.Part, tool, insertedOrgan.SlotId, partComp, insertedOrgan))
+            if (!HasComp(tool, firstOrgan.Component.GetType())
+                || !TryComp<OrganComponent>(tool, out var insertedOrgan))
+                continue;
+
+            if (insertedOrgan.Body == args.Body)
+                continue;
+
+            if (!_body.InsertOrganIntoBody(args.Body, tool))
+                continue;
+
+            EnsureComp<OrganReattachedComponent>(tool);
+            if (TryComp<BodyComponent>(args.Body, out var bodyComp))
+                _organRelations.WireRelationships((args.Body, bodyComp));
+
+            if (_body.TrySetOrganUsed(tool, true, insertedOrgan)
+                && insertedOrgan.OriginalBody != args.Body)
             {
-                EnsureComp<OrganReattachedComponent>(tool);
-                if (_body.TrySetOrganUsed(tool, true, insertedOrgan)
-                    && insertedOrgan.OriginalBody != args.Body)
-                {
-                    var ev = new SurgeryStepDamageChangeEvent(args.User, args.Body, args.Part, ent);
-                    RaiseLocalEvent(ent, ref ev);
-                }
-                break;
+                var ev = new SurgeryStepDamageChangeEvent(args.User, args.Body, args.Part, ent);
+                RaiseLocalEvent(ent, ref ev);
             }
+
+            break;
         }
     }
 
     private void OnAddOrganCheck(Entity<SurgeryAddOrganStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
         if (!TryComp<SurgeryOrganConditionComponent>(args.Surgery, out var organComp)
-            || organComp.Organ is null
-            || !TryComp(args.Part, out BodyPartComponent? partComp)
-            || partComp.Body != args.Body)
+            || organComp.Organ is null)
             return;
 
-        // For now we naively assume that every entity will only have one of each organ type.
-        // that we do surgery on, but in the future we'll need to reference their prototype somehow
-        // to know if they need 2 hearts, 2 lungs, etc.
+        var lookup = args.Body;
+
         foreach (var reg in organComp.Organ.Values)
         {
-            if (!_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var _))
-            {
+            if (!_body.TryGetBodyPartOrgans(lookup, reg.Component.GetType(), out var _))
                 args.Cancelled = true;
-            }
         }
     }
 
@@ -507,13 +911,20 @@ public abstract partial class SharedSurgerySystem
             || !removedOrganComp.Reattaching)
             return;
 
+        var lookup = args.Body;
+
         foreach (var reg in removedOrganComp.Organ.Values)
         {
-            _body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs);
+            _body.TryGetBodyPartOrgans(lookup, reg.Component.GetType(), out var organs);
             if (organs != null && organs.Count > 0)
+            {
                 RemComp<OrganReattachedComponent>(organs[0].Id);
+                RefreshBodyAppearance(args.Body, organs[0].Id);
+            }
         }
 
+        if (TryComp<BodyComponent>(args.Body, out var bodyComp))
+            _organRelations.WireRelationships((args.Body, bodyComp));
     }
 
     private void OnAffixOrganCheck(Entity<SurgeryAffixOrganStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
@@ -523,9 +934,11 @@ public abstract partial class SharedSurgerySystem
             || !removedOrganComp.Reattaching)
             return;
 
+        var lookup = args.Body;
+
         foreach (var reg in removedOrganComp.Organ.Values)
         {
-            _body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs);
+            _body.TryGetBodyPartOrgans(lookup, reg.Component.GetType(), out var organs);
             if (organs != null
                 && organs.Count > 0
                 && organs.Any(organ => HasComp<OrganReattachedComponent>(organ.Id)))
@@ -539,9 +952,11 @@ public abstract partial class SharedSurgerySystem
             || organComp.Organ == null)
             return;
 
+        var lookup = args.Body;
+
         foreach (var reg in organComp.Organ.Values)
         {
-            _body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs);
+            _body.TryGetBodyPartOrgans(lookup, reg.Component.GetType(), out var organs);
             if (organs != null && organs.Count > 0)
             {
                 _body.RemoveOrgan(organs[0].Id, organs[0].Organ);
@@ -553,14 +968,14 @@ public abstract partial class SharedSurgerySystem
     private void OnRemoveOrganCheck(Entity<SurgeryRemoveOrganStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
         if (!TryComp<SurgeryOrganConditionComponent>(args.Surgery, out var organComp)
-            || organComp.Organ == null
-            || !TryComp(args.Part, out BodyPartComponent? partComp)
-            || partComp.Body != args.Body)
+            || organComp.Organ == null)
             return;
+
+        var lookup = args.Body;
 
         foreach (var reg in organComp.Organ.Values)
         {
-            if (_body.TryGetBodyPartOrgans(args.Part, reg.Component.GetType(), out var organs)
+            if (_body.TryGetBodyPartOrgans(lookup, reg.Component.GetType(), out var organs)
                 && organs != null
                 && organs.Count > 0)
             {
@@ -779,6 +1194,22 @@ public abstract partial class SharedSurgerySystem
         if (!CanPerformStep(user, body, part, step, true, out _, out _, out var validTools))
             return;
 
+        if (HasComp<SurgeryAddPartStepComponent>(step)
+            && !TryValidateAttachablePartInHands(user, body, surgery, out var attachPopup))
+        {
+            if (attachPopup != null)
+                _popup.PopupEntity(attachPopup, user, user);
+            return;
+        }
+
+        if (TryComp<SurgeryStepCavityEffectComponent>(step, out var cavityStep)
+            && cavityStep.Action == "Insert"
+            && !HasTinyOrSmallItemInHands(user))
+        {
+            _popup.PopupEntity(Loc.GetString("surgery-error-cavity-no-item"), user, user);
+            return;
+        }
+
         var speed = 1f;
         var usedEv = new SurgeryToolUsedEvent(user, body);
         // We need to check for nullability because of surgeries that dont require a tool, like Cavity Implants
@@ -848,6 +1279,76 @@ public abstract partial class SharedSurgerySystem
         }
     }
 
+    private bool TryValidateAttachablePartInHands(EntityUid user, EntityUid body, Entity<SurgeryComponent> surgery, out string? popup)
+    {
+        popup = null;
+
+        if (TryComp(surgery, out SurgeryOrganGraftAttachComponent? graftComp))
+        {
+            foreach (var tool in GetTools(user))
+            {
+                if (!TryComp<OrganComponent>(tool, out var organ) || organ.Body == body)
+                    continue;
+
+                if (graftComp.RequiredCategory is { } requiredCategory && organ.Category == requiredCategory)
+                    return true;
+
+                if (graftComp.SpiderLegSide is { } side
+                    && organ.Category is { } legCategory
+                    && IsSpiderLegGraftCategory(legCategory, side))
+                    return true;
+            }
+
+            popup = Loc.GetString("surgery-error-missing-attachable-part");
+            return false;
+        }
+
+        if (!TryComp<SurgeryPartRemovedConditionComponent>(surgery, out var removedComp))
+            return true;
+
+        foreach (var tool in GetTools(user))
+        {
+            if (TryComp<OrganComponent>(tool, out var organ)
+                && organ.Body != body
+                && _targeting.MatchesBodyPartType(tool, removedComp.Part, removedComp.Symmetry)
+                && !(organ.Category is { } organCategory
+                    && SurgeryBodyPartMapping.IsSpiderLegCategory(organCategory)))
+                return true;
+
+            if (TryComp<BodyPartComponent>(tool, out var partComp)
+                && partComp.PartType == removedComp.Part
+                && (removedComp.Symmetry == null || partComp.Symmetry == removedComp.Symmetry))
+                return true;
+        }
+
+        popup = Loc.GetString("surgery-error-missing-attachable-part");
+        return false;
+    }
+
+    private static bool IsSpiderLegGraftCategory(ProtoId<OrganCategoryPrototype> category, BodyPartSymmetry side)
+    {
+        if (!SurgeryBodyPartMapping.IsSpiderLegCategory(category))
+            return false;
+
+        var slots = side == BodyPartSymmetry.Left
+            ? SurgeryBodyPartMapping.SpiderLegLeftSlots
+            : SurgeryBodyPartMapping.SpiderLegRightSlots;
+
+        return slots.Contains(category);
+    }
+
+    private bool HasTinyOrSmallItemInHands(EntityUid user)
+    {
+        foreach (var held in _hands.EnumerateHeld(user))
+        {
+            if (TryComp<ItemComponent>(held, out var item)
+                && (item.Size.Id == "Tiny" || item.Size.Id == "Small"))
+                return true;
+        }
+
+        return false;
+    }
+
     private float GetSurgeryDuration(EntityUid surgeryStep, EntityUid user, EntityUid target, float toolSpeed)
     {
         if (!TryComp(surgeryStep, out SurgeryStepComponent? stepComp))
@@ -892,6 +1393,48 @@ public abstract partial class SharedSurgerySystem
         return GetNextStep(body, part, surgery, new List<EntityUid>());
     }
 
+    /// <summary>
+    /// Returns the index of the next incomplete step within a specific surgery for UI highlighting.
+    /// Unlike <see cref="GetNextStep"/>, does not return steps from requirement surgeries.
+    /// </summary>
+    public int? GetNextIncompleteStepIndex(EntityUid body, EntityUid part, EntityUid surgeryEnt)
+    {
+        if (!TryComp(surgeryEnt, out SurgeryComponent? surgeryComp))
+            return null;
+
+        if (surgeryComp.Requirement is { } requirementId
+            && GetSingleton(requirementId) is { } requirementEnt
+            && !IsSurgeryStepsComplete(body, part, requirementEnt))
+            return null;
+
+        for (var i = 0; i < surgeryComp.Steps.Count; i++)
+        {
+            if (!IsStepComplete(body, part, surgeryComp.Steps[i], surgeryEnt))
+                return i;
+        }
+
+        return null;
+    }
+
+    public bool IsSurgeryStepsComplete(EntityUid body, EntityUid part, EntityUid surgeryEnt)
+    {
+        if (!TryComp(surgeryEnt, out SurgeryComponent? surgeryComp))
+            return true;
+
+        if (surgeryComp.Requirement is { } requirementId
+            && GetSingleton(requirementId) is { } requirementEnt
+            && !IsSurgeryStepsComplete(body, part, requirementEnt))
+            return false;
+
+        foreach (var step in surgeryComp.Steps)
+        {
+            if (!IsStepComplete(body, part, step, surgeryEnt))
+                return false;
+        }
+
+        return true;
+    }
+
     public bool PreviousStepsComplete(EntityUid body, EntityUid part, Entity<SurgeryComponent> surgery, EntProtoId step)
     {
         // TODO RMC14 use index instead of the prototype id
@@ -921,11 +1464,7 @@ public abstract partial class SharedSurgerySystem
         EntityUid step, bool doPopup, out string? popup, out StepInvalidReason reason,
         out Dictionary<EntityUid, float>? validTools)
     {
-        var type = BodyPartType.Other;
-        if (TryComp(part, out BodyPartComponent? partComp))
-        {
-            type = partComp.PartType;
-        }
+        var type = _targeting.GetBodyPartType(part) ?? BodyPartType.Other;
 
         var slot = type switch
         {
@@ -989,5 +1528,29 @@ public abstract partial class SharedSurgerySystem
         withComp = EntityUid.Invalid;
         speed = 1f;
         return false;
+    }
+
+    /// <summary>
+    /// Re-applies profile and markings so reattached external organs match the mob appearance.
+    /// </summary>
+    private void RefreshBodyAppearance(EntityUid body, EntityUid? reattachedPart = null)
+    {
+        if (!TryComp<VisualBodyComponent>(body, out var visualBody))
+            return;
+
+        if (!_visualBody.TryGatherMarkingsData((body, visualBody), null, out var profiles, out _, out var applied))
+            return;
+
+        if (reattachedPart is { } partId
+            && TryComp<OrganComponent>(partId, out var organ)
+            && organ.Category is { } category
+            && !profiles.ContainsKey(category)
+            && profiles.TryGetValue("Torso", out var torsoProfile))
+        {
+            profiles[category] = torsoProfile;
+        }
+
+        _visualBody.ApplyProfiles(body, profiles);
+        _visualBody.ApplyMarkings(body, applied);
     }
 }

@@ -14,6 +14,7 @@ using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Climbing.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
@@ -54,7 +55,7 @@ public sealed partial class FleshHeartSystem : EntitySystem
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private HumanoidProfileSystem _sharedHuApp = default!;
     [Dependency] private IPrototypeManager _proto = default!;
@@ -266,38 +267,12 @@ public sealed partial class FleshHeartSystem : EntitySystem
             TryComp<HumanoidProfileComponent>(args.Climber, out var huAppComponent) &&
             TryComp<BodyComponent>(args.Climber, out var bodyComponent))
         {
-            var parts = _body.GetBodyChildren(args.Climber, bodyComponent).ToArray();
-
-            foreach (var part in parts)
-            {
-                if (part.Component.PartType == BodyPartType.Head)
-                    continue;
-
-                if (part.Component.PartType == BodyPartType.Chest)
-                {
-                    foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
-                    {
-                        _body.RemoveOrgan(organ.Id, organ.Component);
-                    }
-                }
-                else
-                {
-                    QueueDel(part.Id);
-                }
-            }
+            _body.StripBodyForSkeleton(args.Climber, bodyComponent);
 
 
             _bloodstreamSystem.TryModifyBloodLevel(args.Climber, -300);
 
-            var skeletonSprites = _proto.Index<HumanoidSpeciesBaseSpritesPrototype>("MobSkeletonSprites");
-            foreach (var (key, id) in skeletonSprites.Sprites)
-            {
-                if (key != HumanoidVisualLayers.Head)
-                {
-                    _sharedHuApp.SetBaseLayerId(args.Climber, key, id, humanoid: huAppComponent);
-                }
-            }
-
+            // nubody: skeleton visual overlay deferred
             _physics.SetDensity(args.Climber, "fix1", fixturesComponent.Fixtures["fix1"], 50);
 
             if (TryComp<AppearanceComponent>(args.Climber, out var appComponent))

@@ -2,6 +2,7 @@ using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
@@ -16,7 +17,7 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 public sealed partial class SuppressPainEntityEffectSystem : EntityEffectSystem<MobStateComponent, SuppressPain>
 {
     [Dependency] private ConsciousnessSystem _consciousness = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private PainSystem _pain = default!;
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<SuppressPain> args)
@@ -26,16 +27,14 @@ public sealed partial class SuppressPainEntityEffectSystem : EntityEffectSystem<
         if (!_consciousness.TryGetNerveSystem(entity.Owner, out var nerveSys))
             return;
 
-        var bodyPart = _body.GetBodyChildrenOfType(entity, BodyPartType.Head).FirstOrNull();
-
-        if (bodyPart == null)
+        if (!_body.TryGetWoundableTargetByType(entity, BodyPartType.Head, null, out var headId))
             return;
 
-        if (!_pain.TryGetPainModifier(nerveSys.Value, bodyPart.Value.Id, args.Effect.ModifierIdentifier, out var modifier))
+        if (!_pain.TryGetPainModifier(nerveSys.Value, headId, args.Effect.ModifierIdentifier, out var modifier))
         {
             _pain.TryAddPainModifier(
                     nerveSys.Value,
-                    bodyPart.Value.Id,
+                    headId,
                     args.Effect.ModifierIdentifier,
                     FixedPoint2.Clamp(-args.Effect.Amount * scale, -args.Effect.MaximumSuppression, args.Effect.MaximumSuppression),
                     time: args.Effect.Time);
@@ -44,7 +43,7 @@ public sealed partial class SuppressPainEntityEffectSystem : EntityEffectSystem<
         {
             _pain.TryChangePainModifier(
                     nerveSys.Value,
-                    bodyPart.Value.Id,
+                    headId,
                     args.Effect.ModifierIdentifier,
                     FixedPoint2.Clamp(modifier.Value.Change - args.Effect.Amount * scale, -args.Effect.MaximumSuppression, args.Effect.MaximumSuppression),
                     time: args.Effect.Time);

@@ -1,7 +1,10 @@
 using Content.Server.Polymorph.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Backmen.Disease;
+using Content.Shared.Body;
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;
@@ -77,7 +80,7 @@ public sealed partial class DiseaseEffectSystem
                 pref = pref.WithAge(humanoid.Age);
             }
 
-            _appearanceSystem.LoadProfile(polyUid.Value, pref);
+            _visualBody.ApplyProfileTo(polyUid.Value, pref);
         }
 
         if (args.DiseaseEffect.CureAfter)

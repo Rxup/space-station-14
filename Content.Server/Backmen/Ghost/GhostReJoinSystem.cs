@@ -189,7 +189,7 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
         DebugTools.Assert(spawnEv.SpawnResult is { Valid: true } or null);
 
         var mob = spawnEv.SpawnResult!.Value;
-        _appearance.LoadProfile(mob, character);
+        _appearance.ApplyProfileTo(mob, character);
         _mind.TransferTo(newMind, mob);
         _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
 

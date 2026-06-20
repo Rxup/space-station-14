@@ -59,6 +59,24 @@ public sealed class HumanoidProfileTests : GameTest
     }
 
     [Test]
+    [TestOf(typeof(NamingSystem))]
+    [Description("Random profiles should get a non-empty localized name, not a missing-locale placeholder.")]
+    public async Task RandomProfileHasValidName()
+    {
+        await Server.WaitIdleAsync();
+
+        await Server.WaitAssertion(() =>
+        {
+            var naming = Server.System<NamingSystem>();
+            var profile = HumanoidCharacterProfile.RandomWithSpecies("Human");
+
+            Assert.That(profile.Name, Is.Not.Empty);
+            Assert.That(profile.Name, Does.Not.Contain("--"));
+            Assert.That(naming.GetName(profile.Species, profile.Gender), Is.Not.Empty);
+        });
+    }
+
+    [Test]
     [TestOf(typeof(HumanoidCharacterProfile)), TestOf(typeof(VisualBodyComponent))]
     [Description("Tests that the game can generate a completely random profile with a completely random species and apply it to a blank body.")]
     public async Task EnsureValidRandom()
@@ -141,7 +159,7 @@ public sealed class HumanoidProfileTests : GameTest
 
             foreach (var marking in markingOrgan.AppliedMarkings)
             {
-                var markingProto = Server.ProtoMan.Index(marking.MarkingId);
+                var markingProto = Server.ProtoMan.Index<MarkingPrototype>(marking.MarkingId);
 
                 Assert.That(markingProto.Sprites.Count, Is.EqualTo(marking.MarkingColors.Count));
                 Assert.That(_markingManager.CanBeApplied(data.Group, profile.Sex, markingProto), Is.True);
@@ -166,7 +184,7 @@ public sealed class HumanoidProfileTests : GameTest
                 if (freeMarkings.Contains(marking))
                     continue;
 
-                var markingProto = Server.ProtoMan.Index(marking.MarkingId);
+                var markingProto = Server.ProtoMan.Index<MarkingPrototype>(marking.MarkingId);
 
                 Assert.That(marking.MarkingColors,
                     Is.EqualTo(MarkingColoring.GetMarkingLayerColors(markingProto, profile.Appearance.SkinColor, profile.Appearance.EyeColor, markingOrgan.AppliedMarkings)));

@@ -1,7 +1,7 @@
-﻿using Content.Server.Actions;
+using Content.Server.Actions;
 using Content.Server.Backmen.Blob.Components;
 using Content.Server.Backmen.Language;
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
@@ -21,7 +21,7 @@ public sealed partial class BlobCarrierSystem : SharedBlobCarrierSystem
     [Dependency] private BlobCoreSystem _blobCoreSystem = default!;
     [Dependency] private MindSystem _mind = default!;
     [Dependency] private GhostRoleSystem _ghost = default!;
-    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySystem _bodySystem = default!;
     [Dependency] private ActionsSystem _action = default!;
     [Dependency] private LanguageSystem _language = default!;
 

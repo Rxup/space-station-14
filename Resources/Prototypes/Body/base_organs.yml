@@ -23,7 +23,7 @@
   - type: Organ
 
 - type: entity
-  parent: OrganBase
+  parent: [OrganBase, OrganSurgeryTorso]
   id: OrganBaseTorso
   name: torso
   abstract: true
@@ -38,17 +38,16 @@
       state: torso
   - type: VisualOrganMarkings
     markingData:
+      group: None
       layers:
       - Chest
       - Tail
       - Overlay
       - TailOverlay
-      - UndergarmentTop
-      - UndergarmentBottom
       - Special
 
 - type: entity
-  parent: OrganBase
+  parent: [OrganBase, OrganSurgeryHead]
   id: OrganBaseHead
   name: head
   abstract: true
@@ -65,6 +64,7 @@
     hideableLayers:
     - enum.HumanoidVisualLayers.Hair
     markingData:
+      group: None
       layers:
       - Head
       - Hair
@@ -75,7 +75,7 @@
       - HeadTop
 
 - type: entity
-  parent: OrganBase
+  parent: [OrganBase, OrganSurgeryArmLeft]
   id: OrganBaseArmLeft
   name: left arm
   abstract: true
@@ -90,11 +90,12 @@
       state: l_arm
   - type: VisualOrganMarkings
     markingData:
+      group: None
       layers:
       - LArm
 
 - type: entity
-  parent: OrganBase
+  parent: [OrganBase, OrganSurgeryArmRight]
   id: OrganBaseArmRight
   name: right arm
   abstract: true
@@ -109,11 +110,12 @@
       state: r_arm
   - type: VisualOrganMarkings
     markingData:
+      group: None
       layers:
       - RArm
 
 - type: entity
-  parent: OrganBase
+  parent: [OrganBase, OrganSurgeryHandLeft]
   id: OrganBaseHandLeft
   name: left hand
   abstract: true
@@ -132,11 +134,12 @@
       state: l_hand
   - type: VisualOrganMarkings
     markingData:
+      group: None
       layers:
       - LHand
 
 - type: entity
-  parent: OrganBase
+  parent: [OrganBase, OrganSurgeryHandRight]
   id: OrganBaseHandRight
   name: right hand
   abstract: true
@@ -155,11 +158,12 @@
       state: r_hand
   - type: VisualOrganMarkings
     markingData:
+      group: None
       layers:
       - RHand
 
 - type: entity
-  parent: OrganBase
+  parent: [OrganBase, OrganSurgeryLegLeft]
   id: OrganBaseLegLeft
   name: left leg
   abstract: true
@@ -174,11 +178,12 @@
       state: l_leg
   - type: VisualOrganMarkings
     markingData:
+      group: None
       layers:
       - LLeg
 
 - type: entity
-  parent: OrganBase
+  parent: [OrganBase, OrganSurgeryLegRight]
   id: OrganBaseLegRight
   name: right leg
   abstract: true
@@ -193,11 +198,12 @@
       state: r_leg
   - type: VisualOrganMarkings
     markingData:
+      group: None
       layers:
       - RLeg
 
 - type: entity
-  parent: OrganBase
+  parent: [OrganBase, OrganSurgeryFootLeft]
   id: OrganBaseFootLeft
   name: left foot
   abstract: true
@@ -212,11 +218,12 @@
       state: l_foot
   - type: VisualOrganMarkings
     markingData:
+      group: None
       layers:
       - LFoot
 
 - type: entity
-  parent: OrganBase
+  parent: [OrganBase, OrganSurgeryFootRight]
   id: OrganBaseFootRight
   name: right foot
   abstract: true
@@ -231,6 +238,7 @@
       state: r_foot
   - type: VisualOrganMarkings
     markingData:
+      group: None
       layers:
       - RFoot
 
@@ -251,6 +259,10 @@
   - type: Input
     context: "ghost"
   - type: Brain
+  - type: NerveOrgan
+  - type: ConsciousnessRequired
+    identifier: nerveSystem
+    causesDeath: true
   - type: InputMover
   - type: Examiner
   - type: BlockMovement
@@ -280,6 +292,7 @@
       state: eyes
   - type: VisualOrganMarkings
     markingData:
+      group: None
       layers:
       - Eyes
 

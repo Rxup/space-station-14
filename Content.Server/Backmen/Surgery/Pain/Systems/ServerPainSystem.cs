@@ -15,6 +15,7 @@ using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Jittering;
@@ -40,7 +41,7 @@ public sealed partial class ServerPainSystem : PainSystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedJitteringSystem _jitter = default!;
 
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
 
     [Dependency] private MobStateSystem _mobState = default!;
 
@@ -67,8 +68,8 @@ public sealed partial class ServerPainSystem : PainSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NerveComponent, BodyPartAddedEvent>(OnBodyPartAdded, after: [typeof(ConsciousnessSystem)]);
-        SubscribeLocalEvent<NerveComponent, BodyPartRemovedEvent>(OnBodyPartRemoved, after: [typeof(ConsciousnessSystem)]);
+        SubscribeLocalEvent<NerveOrganComponent, BodyPartAddedEvent>(OnBodyPartAdded, after: [typeof(ConsciousnessSystem)]);
+        SubscribeLocalEvent<NerveOrganComponent, BodyPartRemovedEvent>(OnBodyPartRemoved, after: [typeof(ConsciousnessSystem)]);
 
         SubscribeLocalEvent<PainInflicterComponent, WoundChangedEvent>(OnPainChanged);
 
@@ -104,8 +105,11 @@ public sealed partial class ServerPainSystem : PainSystem
             if (!_mobStateQuery.TryComp(body.Value, out var mobState))
                 continue;
 
-            if (nerveSys.ForcePainCritEnd < Timing.CurTime)
+            if (nerveSys.ForcePainCrit && nerveSys.ForcePainCritEnd < Timing.CurTime)
+            {
                 nerveSys.ForcePainCrit = false;
+                _consciousness.CheckConscious(body.Value);
+            }
 
             if (nerveSys.LastPainThreshold != nerveSys.Pain)
             {
@@ -225,7 +229,7 @@ public sealed partial class ServerPainSystem : PainSystem
 
     #region Event Handling
 
-    private void OnBodyPartAdded(Entity<NerveComponent> nerve, ref BodyPartAddedEvent args)
+    private void OnBodyPartAdded(Entity<NerveOrganComponent> nerve, ref BodyPartAddedEvent args)
     {
         var bodyPart = args.Part.Comp;
         if (!bodyPart.Body.HasValue)
@@ -237,7 +241,7 @@ public sealed partial class ServerPainSystem : PainSystem
         UpdateNerveSystemNerves(brainUid.Value, bodyPart.Body.Value, Comp<NerveSystemComponent>(brainUid.Value));
     }
 
-    private void OnBodyPartRemoved(Entity<NerveComponent> nerve, ref BodyPartRemovedEvent args)
+    private void OnBodyPartRemoved(Entity<NerveOrganComponent> nerve, ref BodyPartRemovedEvent args)
     {
         var bodyPart = args.Part.Comp;
         if (!bodyPart.Body.HasValue)
@@ -282,13 +286,16 @@ public sealed partial class ServerPainSystem : PainSystem
 
     private void OnPainChanged(EntityUid uid, PainInflicterComponent component, ref WoundChangedEvent args)
     {
-        if (!TryComp<BodyPartComponent>(args.Component.HoldingWoundable, out var bodyPart))
+        EntityUid? bodyUid = null;
+        if (TryComp<BodyPartComponent>(args.Component.HoldingWoundable, out var bodyPart))
+            bodyUid = bodyPart.Body;
+        else if (TryComp<OrganComponent>(args.Component.HoldingWoundable, out var organ))
+            bodyUid = organ.Body;
+
+        if (bodyUid == null)
             return;
 
-        if (bodyPart.Body == null)
-            return;
-
-        if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSys))
+        if (!_consciousness.TryGetNerveSystem(bodyUid.Value, out var nerveSys))
             return;
 
         component.RawPain = FixedPoint2.Clamp(component.RawPain + args.Delta * _universalPainMultiplier, 0, _maxPainPerInflicter);
@@ -344,29 +351,42 @@ public sealed partial class ServerPainSystem : PainSystem
 
     #region Private Handling
 
+    public override void RefreshNerveSystem(EntityUid nerveSystemUid, EntityUid body)
+    {
+        if (!NerveSystemQuery.TryComp(nerveSystemUid, out var nerveSys))
+            return;
+
+        UpdateNerveSystemNerves(nerveSystemUid, body, nerveSys);
+    }
+
     private void UpdateNerveSystemNerves(EntityUid uid, EntityUid body, NerveSystemComponent component)
     {
         component.Nerves.Clear();
-        foreach (var bodyPart in _body.GetBodyChildren(body))
+        foreach (var bodyPartId in _body.GetWoundableTargets(body))
         {
-            if (!NerveQuery.TryComp(bodyPart.Id, out var nerve))
+            if (!NerveQuery.TryComp(bodyPartId, out var nerve))
                 continue;
 
-            component.Nerves.Add(bodyPart.Id, nerve);
+            component.Nerves.Add(bodyPartId, nerve);
 
             nerve.ParentedNerveSystem = uid;
-            DirtyField(bodyPart.Id, nerve, nameof(NerveComponent.ParentedNerveSystem));
-            UpdatePainFeels(bodyPart.Id, nerve);
+            DirtyField(bodyPartId, nerve, nameof(NerveOrganComponent.ParentedNerveSystem));
+            UpdatePainFeels(bodyPartId, nerve);
         }
     }
 
-    private void UpdatePainFeels(EntityUid nerveUid, NerveComponent? nerveComp = null)
+    private void UpdatePainFeels(EntityUid nerveUid, NerveOrganComponent? nerveComp = null)
     {
         if (!NerveQuery.Resolve(nerveUid, ref nerveComp))
             return;
 
-        var bodyPart = Comp<BodyPartComponent>(nerveUid);
-        if (bodyPart.Body == null)
+        EntityUid? bodyUid = null;
+        if (TryComp<BodyPartComponent>(nerveUid, out var bodyPart))
+            bodyUid = bodyPart.Body;
+        else if (TryComp<OrganComponent>(nerveUid, out var organ))
+            bodyUid = organ.Body;
+
+        if (bodyUid == null)
             return;
 
         var painFeels = nerveComp.DefaultPainFeels;
@@ -376,19 +396,19 @@ public sealed partial class ServerPainSystem : PainSystem
         if (nerveComp.PainFeels != painFeels)
         {
             nerveComp.PainFeels = painFeels;
-            DirtyField(nerveUid, nerveComp, nameof(NerveComponent.PainFeels));
+            DirtyField(nerveUid, nerveComp, nameof(NerveOrganComponent.PainFeels));
         }
 
         var ev = new PainFeelsChangedEvent(nerveComp.ParentedNerveSystem, nerveUid, nerveComp.PainFeels);
         RaiseLocalEvent(nerveUid, ref ev);
 
-        if (!TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
+        if (!TryComp<TargetingComponent>(bodyUid.Value, out var targeting))
             return;
 
-        targeting.BodyStatus = _wound.GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
-        DirtyField(bodyPart.Body.Value, targeting, nameof(TargetingComponent.BodyStatus));
+        targeting.BodyStatus = _wound.GetWoundableStatesOnBodyPainFeels(bodyUid.Value);
+        DirtyField(bodyUid.Value, targeting, nameof(TargetingComponent.BodyStatus));
 
-        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyUid.Value)), bodyUid.Value);
     }
 
     private void UpdateNerveSystemPain(EntityUid uid, NerveSystemComponent? nerveSys = null)
@@ -701,7 +721,7 @@ public sealed partial class ServerPainSystem : PainSystem
         string identifier,
         EntityUid nerveUid,
         FixedPoint2 change,
-        NerveComponent? nerve = null,
+        NerveOrganComponent? nerve = null,
         TimeSpan? time = null)
     {
         if (!NerveQuery.Resolve(nerveUid, ref nerve, false))
@@ -722,7 +742,7 @@ public sealed partial class ServerPainSystem : PainSystem
         string identifier,
         EntityUid nerveUid,
         FixedPoint2 change,
-        NerveComponent? nerve = null)
+        NerveOrganComponent? nerve = null)
     {
         if (!NerveQuery.Resolve(nerveUid, ref nerve))
             return false;
@@ -746,7 +766,7 @@ public sealed partial class ServerPainSystem : PainSystem
         EntityUid nerveUid,
         FixedPoint2 change,
         TimeSpan? time = null,
-        NerveComponent? nerve = null)
+        NerveOrganComponent? nerve = null)
     {
         if (!NerveQuery.Resolve(nerveUid, ref nerve, false))
             return false;
@@ -768,7 +788,7 @@ public sealed partial class ServerPainSystem : PainSystem
         string identifier,
         EntityUid nerveUid,
         TimeSpan time,
-        NerveComponent? nerve = null,
+        NerveOrganComponent? nerve = null,
         FixedPoint2? change = null)
     {
         if (!NerveQuery.Resolve(nerveUid, ref nerve, false))
@@ -790,7 +810,7 @@ public sealed partial class ServerPainSystem : PainSystem
         EntityUid effectOwner,
         string identifier,
         EntityUid nerveUid,
-        NerveComponent? nerve = null)
+        NerveOrganComponent? nerve = null)
     {
         if (!NerveQuery.Resolve(nerveUid, ref nerve, false))
             return false;

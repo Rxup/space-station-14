@@ -1,6 +1,6 @@
 - type: entity
   name: Remilia
-  parent: MobBat
+  parent: [ MobBat, BaseMobNpcVampiricAnimalFill ]
   id: MobBatRemilia
   description: The chaplain's familiar. Likes fruit.
   components:
@@ -16,8 +16,6 @@
     mindRoles:
     - MindRoleGhostRoleFamiliar
   - type: GhostTakeoverAvailable
-  - type: Body
-    prototype: VampiricAnimal
   - type: Dispellable
   - type: Psionic
     removable: false

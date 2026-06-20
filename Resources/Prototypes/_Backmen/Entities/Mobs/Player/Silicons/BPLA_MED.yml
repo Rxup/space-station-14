@@ -52,13 +52,23 @@
   name: Blue Space Drone MED
   id: DroneBPLAMED
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
-  parent: [ PlayerSiliconBase, ShowMedicalIcons ]
+  parent: [ PlayerSiliconBase, BaseMobDroneBody, ShowMedicalIcons ]
   components:
   - type: Targeting
   - type: BatteryDrainer
   - type: AntagImmune
   - type: BSSDrone
     noPowerPopup: ninja-no-power
+  - type: Hands
+    showInHands: false
+    hands:
+      left:
+        location: Left
+      right:
+        location: Right
+    sortedHands:
+    - left
+    - right
   - type: NameIdentifier
     group: BSSDroneMED
   - type: MetaData

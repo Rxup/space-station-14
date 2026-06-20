@@ -11,7 +11,9 @@ using Content.Server.Station.Components;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Guidebook;
+using Content.Server.Preferences.Managers;
 using Content.Shared.Humanoid;
+using Content.Shared.Preferences;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.Player;
@@ -35,6 +37,7 @@ public sealed partial class GptCommands : EntitySystem
     [Dependency] private IConfigurationManager _configuration = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IResourceManager _resourceManager = default!;
+    [Dependency] private IServerPreferencesManager _prefs = default!;
 
     public override void Initialize()
     {
@@ -299,14 +302,16 @@ public sealed partial class GptCommands : EntitySystem
             info["desc"] = md.EntityDescription;
         }
 
-        if (isHaveAttachedEntity &&
-            TryComp<HumanoidProfileComponent>(attachedEntity, out var HumanoidProfileComponent))
+        if (isHaveAttachedEntity)
         {
-            info["age"] = HumanoidProfileComponent.Age;
-            info["gender"] = HumanoidProfileComponent.Gender.ToString();
-            info["skinColor"] = HumanoidProfileComponent.SkinColor.ToHex();
-            info["eyeColor"] = HumanoidProfileComponent.EyeColor.ToHex();
-            info["hairColor"] = HumanoidProfileComponent.CachedHairColor?.ToHex();
+            var profile = _prefs.GetPreferences(ev.UserId).SelectedCharacter;
+            if (profile is HumanoidCharacterProfile charProfile)
+            {
+                info["age"] = charProfile.Age;
+                info["gender"] = charProfile.Gender.ToString();
+                info["skinColor"] = charProfile.Appearance.SkinColor.ToHex();
+                info["eyeColor"] = charProfile.Appearance.EyeColor.ToHex();
+            }
         }
 
         ev.History.Messages.Add(new GptMessageFunction(PlayerInfoFn, info));

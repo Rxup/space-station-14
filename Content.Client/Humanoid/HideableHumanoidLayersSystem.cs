@@ -4,9 +4,9 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client.Humanoid;
 
-public sealed class HideableHumanoidLayersSystem : SharedHideableHumanoidLayersSystem
+public sealed partial class HideableHumanoidLayersSystem : SharedHideableHumanoidLayersSystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -48,7 +48,7 @@ public sealed class HideableHumanoidLayersSystem : SharedHideableHumanoidLayersS
             var evt = new HumanoidLayerVisibilityChangedEvent(item, true);
             RaiseLocalEvent(ent, ref evt);
 
-            if (!_sprite.LayerMapTryGet(ent.Owner, item, out var index, true))
+            if (!_sprite.LayerMapTryGet(ent.Owner, item, out var index, false)) // backmen: snout-overlay
                 continue;
 
             _sprite.LayerSetVisible(ent.Owner, index, true);
@@ -62,7 +62,7 @@ public sealed class HideableHumanoidLayersSystem : SharedHideableHumanoidLayersS
             var evt = new HumanoidLayerVisibilityChangedEvent(item, false);
             RaiseLocalEvent(ent, ref evt);
 
-            if (!_sprite.LayerMapTryGet(ent.Owner, item, out var index, true))
+            if (!_sprite.LayerMapTryGet(ent.Owner, item, out var index, false)) // backmen: snout-overlay
                 continue;
 
             _sprite.LayerSetVisible(ent.Owner, index, false);

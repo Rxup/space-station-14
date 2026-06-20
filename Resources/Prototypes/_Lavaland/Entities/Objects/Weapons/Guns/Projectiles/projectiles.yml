@@ -83,7 +83,7 @@
   - type: DamageContacts
     ignoreWhitelist:
       components:
-      - HumanoidAppearance
+      - HumanoidProfile
     damage:
       types:
         Heat: 10

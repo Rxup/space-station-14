@@ -92,7 +92,7 @@
                                 </TextureButton>
                                 <TextureButton
                                     Name="ChestButton"
-                                    SetSize="28 30"
+                                    SetSize="28 45"
                                     Margin="0 18 0 0"
                                     VerticalAlignment="Top"
                                     HorizontalAlignment="Center"
@@ -102,13 +102,6 @@
                                     MinSize="38 35"
                                     VerticalAlignment="Bottom"
                                     HorizontalAlignment="Center">
-                                    <TextureButton
-                                        Name="GroinButton"
-                                        MinSize="28 15"
-                                        VerticalAlignment="Top"
-                                        HorizontalAlignment="Center"
-                                        StyleClasses="TargetDollButtonGroin">
-                                    </TextureButton>
                                     <PanelContainer
                                         MinSize="20 30"
                                         VerticalAlignment="Bottom"

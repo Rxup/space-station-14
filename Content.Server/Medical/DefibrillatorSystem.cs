@@ -16,6 +16,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.PowerCell;
@@ -64,7 +65,7 @@ public sealed partial class DefibrillatorSystem : EntitySystem
     [Dependency] private ConsciousnessSystem _consciousness = default!; // backmen edit:
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstream = default!; // backmen edit: for blood level check
-    [Dependency] private SharedBodySystem _body = default!; // backmen edit: for checking body parts
+    [Dependency] private BkmBodySharedSystem _body = default!; // backmen: body
     [Dependency] private WoundSystem _wound = default!; // backmen edit: for checking wounds
 
     /// <inheritdoc/>
@@ -264,7 +265,7 @@ public sealed partial class DefibrillatorSystem : EntitySystem
                     var hasPainfulWounds = false;
                     if (TryComp<BodyComponent>(target, out var body))
                     {
-                        foreach (var (bodyPartId, _) in _body.GetBodyChildren(target, body))
+                        foreach (var bodyPartId in _body.GetDistributedDamageTargets(target, body))
                         {
                             if (_wound.GetWoundableWoundsWithComp<PainInflicterComponent>(bodyPartId).Any())
                             {

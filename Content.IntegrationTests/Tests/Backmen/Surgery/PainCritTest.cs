@@ -101,6 +101,40 @@ public sealed class PainCritTest : GameTest
     }
 
     [Test]
+    public async Task SoftPainCap_EntersSoftCriticalWithoutForcePainCrit()
+    {
+        var map = await Pair.CreateTestMap();
+        var painSys = Server.EntMan.System<ServerPainSystem>();
+        EntityUid human = default;
+
+        await Server.WaitPost(() =>
+        {
+            human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            Assert.That(Server.EntMan.TryGetComponent(human, out ConsciousnessComponent? consciousness), Is.True);
+            Assert.That(consciousness!.NerveSystem, Is.Not.Null);
+
+            var nerveSysEnt = consciousness.NerveSystem.Value;
+            var nerveSys = Server.EntMan.GetComponent<NerveSystemComponent>(nerveSysEnt);
+            Assert.That(
+                painSys.TryAddPainModifier(nerveSysEnt, human, "PainCritTest", nerveSys.SoftPainCap),
+                Is.True,
+                "Pain at SoftPainCap should be applied.");
+        });
+
+        await Pair.RunTicksSync(5);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(Server.EntMan.TryGetComponent(human, out MobStateComponent? mobState), Is.True);
+            Assert.That(mobState!.CurrentState, Is.EqualTo(MobState.SoftCritical),
+                "Pain at SoftPainCap should enter SoftCritical, not regular Critical.");
+
+            Assert.That(Server.EntMan.TryGetComponent(human, out StandingStateComponent? standing), Is.True);
+            Assert.That(standing!.Standing, Is.False);
+        });
+    }
+
+    [Test]
     public async Task ForcePainCrit_CancelsStandUpAttempt()
     {
         var map = await Pair.CreateTestMap();

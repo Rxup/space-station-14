@@ -14,6 +14,7 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.EntityTable;
 using Content.Shared.Interaction.Events;
@@ -37,7 +38,7 @@ public sealed partial class OracleSystem : EntitySystem
     [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private GlimmerSystem _glimmerSystem = default!;
     [Dependency] private PuddleSystem _puddleSystem = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private AppearanceSystem _appearance = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;

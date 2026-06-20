@@ -10,6 +10,7 @@
     # Head
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutOverlay" ] # Backmen
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
 
     # Limbs
@@ -21,6 +22,9 @@
     # Underwear & clothing
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: [ "socks" ] # Backmen
+    - map: [ "underpants" ] # Backmen
+    - map: [ "undershirt" ] # Backmen
     - map: ["jumpsuit"]
 
     # Extremities
@@ -71,6 +75,11 @@
       state: "creampie_human"
       visible: false
 
+    - map: [ "singingLayer" ] # Backmen: harpy singing notes
+      sprite: Backmen/Effects/harpysinger.rsi
+      state: singing_music_notes
+      visible: false
+
 - type: entity
   id: BaseSpeciesAppearance
   parent:
@@ -80,6 +89,7 @@
   save: false
   components:
   - type: Body
+    requiredLegs: 2
   - type: VisualBody
   - type: Hands
   - type: ComplexInteraction

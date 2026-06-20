@@ -44,11 +44,11 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
         var loadoutSystem = collection.Resolve<IEntityManager>().System<LoadoutSystem>();
         RestrictionsContainer.RemoveAllChildren();
 
-        if (_groupProto.MinLimit > 0)
+        if (_groupProto.GetMinLimit(profile) > 0) // backmen
         {
             RestrictionsContainer.AddChild(new Label()
             {
-                Text = Loc.GetString("loadouts-min-limit", ("count", _groupProto.MinLimit)),
+                Text = Loc.GetString("loadouts-min-limit", ("count", _groupProto.GetMinLimit(profile))), // backmen
                 Margin = new Thickness(5, 0, 5, 5),
             });
         }

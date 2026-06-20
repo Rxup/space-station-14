@@ -3,5 +3,5 @@
   name: species-name-felinid
   roundStart: true
   prototype: MobFelinid
-  dollPrototype: MobFelinidDummy
+  dollPrototype: AppearanceFelinid
   skinColoration: HumanToned

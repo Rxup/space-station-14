@@ -32,7 +32,7 @@ namespace Content.Shared.Preferences
     public sealed partial class HumanoidCharacterProfile
     {
         public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
-        private static readonly Regex RestrictedNameRegex = new(@"[^A-Za-z0-9 '\-]");
+        private static readonly Regex RestrictedNameRegex = new(@"[^А-Яа-яЁё '\-]");
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
         /// <summary>
@@ -561,7 +561,7 @@ namespace Content.Shared.Preferences
 
             if (configManager.GetCVar(CCVars.RestrictedNames))
             {
-                name = RestrictedNameRegex.Replace(name, string.Empty);
+                name = RestrictedNameRegex.Replace(name, string.Empty).Trim();
             }
 
             if (configManager.GetCVar(CCVars.ICNameCase))
@@ -570,7 +570,7 @@ namespace Content.Shared.Preferences
                 name = ICNameCaseRegex.Replace(name, m => m.Groups["word"].Value.ToUpper());
             }
 
-            if (string.IsNullOrEmpty(name))
+            if (string.IsNullOrWhiteSpace(name))
             {
                 name = GetName(Species, gender);
             }

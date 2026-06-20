@@ -3,6 +3,7 @@ using Content.Client.Message;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Sprite;
 using Content.Shared.CCVar;
+using Content.Shared.Corvax.CCCVars;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -231,6 +232,14 @@ namespace Content.Client.Lobby.UI
 
             #endregion SpawnPriority
 
+            if (configurationManager.GetCVar(CCCVars.TTSEnabled))
+            {
+                TTSContainer.Visible = true;
+                InitializeVoice();
+            }
+
+            InitializeBkm();
+
             #region Eyes
 
             EyeColorPicker.OnEyeColorPicked += newColor =>
@@ -376,6 +385,7 @@ namespace Content.Client.Lobby.UI
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateMarkings();
+            UpdateTTSVoicesControls();
 
             RefreshAntags();
             RefreshJobs();

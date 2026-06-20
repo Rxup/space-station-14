@@ -9,6 +9,7 @@ using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -28,7 +29,7 @@ namespace Content.Server.Backmen.Tourniquet;
 /// </summary>
 public sealed partial class TourniquetSystem : EntitySystem
 {
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private WoundSystem _wound = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
@@ -140,73 +141,32 @@ public sealed partial class TourniquetSystem : EntitySystem
 
         var (partType, symmetry) = _body.ConvertTargetBodyPart(targeting.Target);
 
-        var targetPart = _body.GetBodyChildrenOfType(ent, partType, symmetry: symmetry).FirstOrNull();
+        EntityUid? targetPart = null;
+        if (_body.TryGetWoundableTargetByType(ent, partType, symmetry, out var woundableTarget))
+            targetPart = woundableTarget;
+
         if (targetPart == null)
         {
-            var tourniquetable = EntityUid.Invalid;
-            foreach (var bodyPart in _body.GetBodyChildren(ent, comp))
-            {
-                if (!bodyPart.Component.Children
-                        .Any(bodyPartSlot =>
-                            bodyPartSlot.Value.Type == partType && bodyPartSlot.Value.Symmetry == symmetry))
-                    continue;
-
-                tourniquetable = bodyPart.Id;
-                break;
-            }
-
-            if (tourniquetable == EntityUid.Invalid)
-            {
-                _popup.PopupEntity(Loc.GetString("does-not-exist-rebell"), ent, args.User, PopupType.MediumCaution);
-                return;
-            }
-
-            var tourniquetableWounds = new List<Entity<WoundComponent, TourniquetableComponent>>();
-            foreach (var woundEnt in _wound.GetWoundableWounds(tourniquetable))
-            {
-                if (!TryComp<TourniquetableComponent>(woundEnt, out var tourniquetableComp))
-                    continue;
-
-                if (tourniquetableComp.SeveredSymmetry == symmetry && tourniquetableComp.SeveredPartType == partType)
-                    tourniquetableWounds.Add((woundEnt.Owner, woundEnt.Comp, tourniquetableComp));
-            }
-
-            if (tourniquetableWounds.Count <= 0 || !_container.Insert(args.Used.Value, container))
-            {
-                _popup.PopupEntity(Loc.GetString("cant-tourniquet"), ent, PopupType.Medium);
-                return;
-            }
-
-            foreach (var woundEnt in tourniquetableWounds)
-            {
-                if (!TryComp<BleedInflicterComponent>(woundEnt, out var bleedInflicter))
-                    continue;
-
-                _bloodstream.TryAddBleedModifier(woundEnt, "TourniquetPresent", 100, false, bleedInflicter);
-                woundEnt.Comp2.CurrentTourniquetEntity = args.Used;
-            }
-
-            tourniquet.BodyPartTourniqueted = tourniquetable;
+            _popup.PopupEntity(Loc.GetString("does-not-exist-rebell"), ent, args.User, PopupType.MediumCaution);
+            return;
         }
-        else
+
+        if (!_container.Insert(args.Used.Value, container))
         {
-            if (!_container.Insert(args.Used.Value, container))
-            {
-                _popup.PopupEntity(Loc.GetString("cant-tourniquet"), ent, PopupType.Medium);
-                return;
-            }
-
-            _pain.TryAddPainFeelsModifier(args.Used.Value, "Tourniquet", targetPart.Value.Id, -10f);
-            _bloodstream.TryAddBleedModifier(targetPart.Value.Id, "TourniquetPresent", 100, false, true);
-
-            foreach (var woundable in _wound.GetAllWoundableChildren(targetPart.Value.Id))
-            {
-                _pain.TryAddPainFeelsModifier(args.Used.Value, "Tourniquet", woundable, -10f);
-                _bloodstream.TryAddBleedModifier(woundable, "TourniquetPresent", 100, false, true, woundable);
-            }
-
-            tourniquet.BodyPartTourniqueted = targetPart.Value.Id;
+            _popup.PopupEntity(Loc.GetString("cant-tourniquet"), ent, PopupType.Medium);
+            return;
         }
+
+        _pain.TryAddPainFeelsModifier(args.Used.Value, "Tourniquet", targetPart.Value, -10f);
+        _bloodstream.TryAddBleedModifier(targetPart.Value, "TourniquetPresent", 100, false, true);
+
+        foreach (var childWoundable in _wound.GetAllWoundableChildren(targetPart.Value))
+        {
+            _pain.TryAddPainFeelsModifier(args.Used.Value, "Tourniquet", childWoundable, -10f);
+            _bloodstream.TryAddBleedModifier(childWoundable, "TourniquetPresent", 100, false, true, childWoundable);
+        }
+
+        tourniquet.BodyPartTourniqueted = targetPart.Value;
 
         args.Handled = true;
     }
@@ -226,8 +186,10 @@ public sealed partial class TourniquetSystem : EntitySystem
         if (tourniquetedBodyPart == null)
             return;
 
-        var bodyPartComp = Comp<BodyPartComponent>(tourniquetedBodyPart.Value);
-        if (tourniquet.BlockedBodyParts.Contains(bodyPartComp.PartType))
+        var isSeveredLimbTourniquet = TryComp<BodyPartComponent>(tourniquetedBodyPart.Value, out var bodyPartComp)
+            && tourniquet.BlockedBodyParts.Contains(bodyPartComp.PartType);
+
+        if (isSeveredLimbTourniquet)
         {
             foreach (var woundEnt in _wound.GetWoundableWounds(tourniquetedBodyPart.Value))
             {

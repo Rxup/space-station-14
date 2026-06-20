@@ -1,3 +1,4 @@
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using System.Linq;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Surgery.Consciousness;
@@ -48,14 +49,14 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
 
-    // backmen edit start
+    // start-backmen: body
     [Dependency] private ConsciousnessSystem _consciousness = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private WoundSystem _wound = default!;
 
     protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery;
     protected EntityQuery<BleedInflicterComponent> BleedsQuery;
-    // backmen edit end
+    // end-backmen: body
 
     public override void Initialize()
     {
@@ -181,7 +182,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
 
         // Calculate total bleeding from all wounds on body parts
         var total = FixedPoint2.Zero;
-        foreach (var (bodyPart, _) in _body.GetBodyChildren(entity.Owner))
+        foreach (var bodyPart in _body.GetDistributedDamageTargets(entity.Owner))
         {
             total = _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart)
                     .Aggregate(total, (current, wound) => current + wound.Comp2.BleedingAmount);

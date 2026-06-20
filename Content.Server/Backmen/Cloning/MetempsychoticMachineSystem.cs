@@ -1,6 +1,6 @@
 using Content.Server.Backmen.Psionics;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Humanoid;
+using Content.Shared.Body;
 using Content.Server.Speech.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Backmen.Psionics.Components;
@@ -38,7 +38,7 @@ public sealed partial class MetempsychoticMachineSystem : EntitySystem
 
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private HumanoidProfileSystem _humanoidSystem = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
 
     public override void Initialize()
     {
@@ -82,7 +82,7 @@ public sealed partial class MetempsychoticMachineSystem : EntitySystem
             pref = pref.WithAge(humanoid.Age);
 
 
-            _humanoidSystem.LoadProfile(ev.CloneUid, pref);
+            _visualBody.ApplyProfileTo(ev.CloneUid, pref);
             applyKarma = true;
         }
 

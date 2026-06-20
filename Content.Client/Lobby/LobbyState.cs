@@ -1,11 +1,17 @@
+using System.Linq;
+using System.Numerics;
+using Content.Client.Backmen.UI.Buttons;
 using Content.Client.Audio;
+using Content.Client.Changelog;
 using Content.Client.GameTicking.Managers;
 using Content.Client.LateJoin;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
+using Content.Client.Resources;
 using Content.Client.Playtime;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
+using Content.Shared.Backmen.Lobby;
 using Content.Shared.CCVar;
 using Robust.Client;
 using Robust.Client.Console;
@@ -15,6 +21,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Lobby
 {
@@ -28,6 +35,7 @@ namespace Content.Client.Lobby
         [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private IVoteManager _voteManager = default!;
+        [Dependency] private ChangelogManager _changelog = default!; // BACKMEN EDIT
         [Dependency] private ClientsidePlaytimeTrackingManager _playtimeTracking = default!;
         [Dependency] private IPrototypeManager _protoMan = default!;
 
@@ -68,13 +76,15 @@ namespace Content.Client.Lobby
 
             UpdateLobbyUi();
 
-            Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
+            Lobby.CharacterSetupButton.OnPressed += OnSetupPressed; // BACKMEN EDIT
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
             Lobby.ReadyButton.OnToggled += OnReadyToggled;
 
             _gameTicker.InfoBlobUpdated += UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
+
+            PopulateChangelog();
         }
 
         protected override void Shutdown()
@@ -88,7 +98,7 @@ namespace Content.Client.Lobby
 
             _voteManager.ClearPopupContainer();
 
-            Lobby!.CharacterPreview.CharacterSetupButton.OnPressed -= OnSetupPressed;
+            Lobby!.CharacterSetupButton.OnPressed -= OnSetupPressed;
             Lobby!.ReadyButton.OnPressed -= OnReadyPressed;
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
 
@@ -180,7 +190,7 @@ namespace Content.Client.Lobby
         {
             if (_gameTicker.IsGameStarted)
             {
-                Lobby!.ReadyButton.Text = Loc.GetString("lobby-state-ready-button-join-state");
+                MakeButtonJoinGame(Lobby!.ReadyButton); // BACKMEN EDIT
                 Lobby!.ReadyButton.ToggleMode = false;
                 Lobby!.ReadyButton.Pressed = false;
                 Lobby!.ObserveButton.Disabled = false;
@@ -189,7 +199,7 @@ namespace Content.Client.Lobby
             {
                 Lobby!.StartTime.Text = string.Empty;
                 Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
-                Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
+                Lobby!.ReadyButton.ButtonText = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = false;
                 Lobby!.ObserveButton.Disabled = true;
@@ -198,9 +208,18 @@ namespace Content.Client.Lobby
             if (_gameTicker.ServerInfoBlob != null)
             {
                 Lobby!.ServerInfo.SetInfoBlob(_gameTicker.ServerInfoBlob);
+                Lobby!.LabelName.SetMarkup("[font=\"Bedstead\" size=20] Backmen [/font]"); // BACKMEN EDIT
+                    // Don't forget that you're the BACKMEN, that you've always gone against the system and made the best build.
+                    // Don't forget that you're the Ataraxia, that you have always stood for the players to be happy and get what they deserve.
+                    // Glory to BACKMEN, HOP on Ataraxia
+                Lobby!.ChangelogLabel.SetMarkup(Loc.GetString("ui-lobby-changelog")); // BACKMEN EDIT
             }
 
             var minutesToday = _playtimeTracking.PlaytimeMinutesToday;
+            if (minutesToday <= 60)
+            {
+                Lobby!.PlaytimeComment.Visible = false;
+            }
             if (minutesToday > 60)
             {
                 Lobby!.PlaytimeComment.Visible = true;
@@ -223,11 +242,8 @@ namespace Content.Client.Lobby
 
         private void UpdateLobbySoundtrackInfo(LobbySoundtrackChangedEvent ev)
         {
-            if (ev.SoundtrackFilename == null)
-            {
-                Lobby!.LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
-            }
-            else if (
+
+             if (
                 ev.SoundtrackFilename != null
                 && _resourceCache.TryGetResource<AudioResource>(ev.SoundtrackFilename, out var lobbySongResource)
                 )
@@ -246,27 +262,20 @@ namespace Content.Client.Lobby
                     ("songTitle", title),
                     ("songArtist", artist));
 
-                Lobby!.LobbySong.SetMarkup(markup);
+
             }
         }
 
         private void UpdateLobbyBackground()
         {
-            if (_protoMan.TryIndex(_gameTicker.LobbyBackground, out var proto))
+            if (_gameTicker.LobbyBackground != null &&
+                _protoMan.TryIndex(_gameTicker.LobbyBackground, out AnimatedLobbyScreenPrototype? proto))
             {
-                Lobby!.Background.Texture = _resourceCache.GetResource<TextureResource>(proto.Background);
-
-                var markup = Loc.GetString("lobby-state-background-text",
-                    ("backgroundTitle", Loc.GetString(proto.Title)),
-                    ("backgroundArtist", Loc.GetString(proto.Artist)));
-
-                Lobby!.LobbyBackground.SetMarkup(markup);
+                Lobby!.Background.SetRSI(proto.Path);
             }
             else
             {
-                Lobby!.Background.Texture = null;
-
-                Lobby!.LobbyBackground.SetMarkup(Loc.GetString("lobby-state-background-no-background-text"));
+                Lobby!.Background.RandomizeBackground();
             }
         }
 
@@ -279,5 +288,98 @@ namespace Content.Client.Lobby
 
             _consoleHost.ExecuteCommand($"toggleready {newReady}");
         }
+
+        // BACKMEN EDIT START
+        private void MakeButtonJoinGame(WhiteLobbyTextButton button)
+        {
+            button.ButtonText = Loc.GetString("lobby-state-ready-button-join-state");
+        }
+
+        private async void PopulateChangelog()
+        {
+            if (Lobby?.ChangelogContainer?.Children is null)
+                return;
+
+            Lobby.ChangelogContainer.Children.Clear();
+
+            var changelogs = await _changelog.LoadChangelog();
+            var whiteChangelog = changelogs.Find(cl => cl.Name == "Changelog");
+
+            if (whiteChangelog is null)
+            {
+                Lobby.ChangelogContainer.Children.Add(
+                    new RichTextLabel().SetMarkup(Loc.GetString("ui-lobby-changelog-not-found")));
+
+                return;
+            }
+
+            var entries = whiteChangelog.Entries
+                .OrderByDescending(c => c.Time)
+                .Take(5);
+
+            foreach (var entry in entries)
+            {
+                var box = new BoxContainer
+                {
+                    Orientation = BoxContainer.LayoutOrientation.Vertical,
+                    HorizontalAlignment = Control.HAlignment.Left,
+                    Children =
+                    {
+                        new Label
+                        {
+                            Align = Label.AlignMode.Left,
+                            Text = $"{entry.Author} {entry.Time.ToShortDateString()}",
+                            FontColorOverride = Color.FromHex("#888"),
+                            Margin = new Thickness(0, 10)
+                        }
+                    }
+                };
+
+                foreach (var change in entry.Changes)
+                {
+                    var container = new BoxContainer
+                    {
+                        Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                        HorizontalAlignment = Control.HAlignment.Left
+                    };
+
+                    var text = new RichTextLabel();
+                    text.SetMessage(FormattedMessage.FromMarkup(change.Message));
+                    text.MaxWidth = 350;
+
+                    container.AddChild(GetIcon(change.Type));
+                    container.AddChild(text);
+
+                    box.AddChild(container);
+                }
+
+                if (Lobby?.ChangelogContainer is null)
+                    return;
+
+                Lobby.ChangelogContainer.AddChild(box);
+            }
+        }
+
+        private TextureRect GetIcon(ChangelogManager.ChangelogLineType type)
+        {
+            var (file, color) = type switch
+            {
+                ChangelogManager.ChangelogLineType.Add => ("plus.svg.192dpi.png", "#6ED18D"),
+                ChangelogManager.ChangelogLineType.Remove => ("minus.svg.192dpi.png", "#D16E6E"),
+                ChangelogManager.ChangelogLineType.Fix => ("bug.svg.192dpi.png", "#D1BA6E"),
+                ChangelogManager.ChangelogLineType.Tweak => ("wrench.svg.192dpi.png", "#6E96D1"),
+                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+            };
+
+            return new TextureRect
+            {
+                Texture = _resourceCache.GetTexture(new ResPath($"/Textures/Interface/Changelog/{file}")),
+                VerticalAlignment = Control.VAlignment.Top,
+                TextureScale = new Vector2(0.5f, 0.5f),
+                Margin = new Thickness(2, 4, 6, 2),
+                ModulateSelfOverride = Color.FromHex(color)
+            };
+        }
+        // BACKMEN EDIT END
     }
 }

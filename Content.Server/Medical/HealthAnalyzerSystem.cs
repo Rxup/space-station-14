@@ -6,6 +6,7 @@ using Content.Shared.Body;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Damage;
 using Content.Shared.Body;
 using Content.Shared.Chemistry.EntitySystems;
@@ -44,7 +45,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private ItemToggleSystem _toggle = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySharedSystem _bodySystem = default!; // backmen: body
     [Dependency] private WoundSystem _woundSystem = default!; // backmen edit
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
     [Dependency] private TransformSystem _transformSystem = default!;
@@ -233,9 +234,10 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         }
         else
         {
-            var (targetType, targetSymmetry) = _bodySystem.ConvertTargetBodyPart(args.BodyPart.Value);
-            if (_bodySystem.GetBodyChildrenOfType(owner.Value, targetType, symmetry: targetSymmetry) is { } part)
-                BeginAnalyzingEntity(healthAnalyzer, owner.Value, part.FirstOrDefault().Id);
+            var bodyPart = SharedTargetingSystem.NormalizeTarget(args.BodyPart.Value);
+            var (targetType, targetSymmetry) = _bodySystem.ConvertTargetBodyPart(bodyPart);
+            if (_bodySystem.TryGetWoundableTargetByType(owner.Value, targetType, targetSymmetry, out var part))
+                BeginAnalyzingEntity(healthAnalyzer, owner.Value, part);
         }
     }
 // End-backmen: surgery

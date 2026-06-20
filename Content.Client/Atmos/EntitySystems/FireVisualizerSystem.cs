@@ -1,6 +1,7 @@
 using Content.Client.Atmos.Components;
 using Content.Shared.Atmos;
 using Robust.Client.GameObjects;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 
@@ -18,6 +19,7 @@ public sealed partial class FireVisualizerSystem : VisualizerSystem<FireVisualsC
         base.Initialize();
 
         SubscribeLocalEvent<FireVisualsComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<FireVisualsComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<FireVisualsComponent, ComponentShutdown>(OnShutdown);
     }
 
@@ -52,6 +54,14 @@ public sealed partial class FireVisualizerSystem : VisualizerSystem<FireVisualsC
         UpdateAppearance(uid, component, sprite, appearance);
     }
 
+    private void OnStartup(EntityUid uid, FireVisualsComponent component, ComponentStartup args)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite) || !TryComp(uid, out AppearanceComponent? appearance))
+            return;
+
+        UpdateAppearance(uid, component, sprite, appearance);
+    }
+
     protected override void OnAppearanceChange(EntityUid uid, FireVisualsComponent component, ref AppearanceChangeEvent args)
     {
         if (args.Sprite != null)
@@ -69,7 +79,7 @@ public sealed partial class FireVisualizerSystem : VisualizerSystem<FireVisualsC
 
         if (!onFire)
         {
-            if (component.LightEntity != null)
+            if (component.LightEntity != null && LifeStage(uid) >= EntityLifeStage.Initialized)
             {
                 Del(component.LightEntity.Value);
                 component.LightEntity = null;
@@ -82,6 +92,10 @@ public sealed partial class FireVisualizerSystem : VisualizerSystem<FireVisualsC
             SpriteSystem.LayerSetRsiState((uid, sprite), index, component.AlternateState);
         else
             SpriteSystem.LayerSetRsiState((uid, sprite), index, component.NormalState);
+
+        // Spawning/deleting child entities during initialization can crash the client.
+        if (LifeStage(uid) < EntityLifeStage.Initialized)
+            return;
 
         component.LightEntity ??= Spawn(null, new EntityCoordinates(uid, default));
         var light = EnsureComp<PointLightComponent>(component.LightEntity.Value);

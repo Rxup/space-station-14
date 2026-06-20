@@ -5,7 +5,7 @@ namespace Content.Shared.CCVar;
 public sealed partial class CCVars
 {
     /// <summary>
-    ///     Restricts IC character names to alphanumeric chars.
+    ///     Restricts IC character names to Cyrillic letters and a small set of punctuation (space, apostrophe, hyphen).
     /// </summary>
     public static readonly CVarDef<bool> RestrictedNames =
         CVarDef.Create("ic.restricted_names", true, CVar.SERVER | CVar.REPLICATED);

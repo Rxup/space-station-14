@@ -5,10 +5,10 @@ using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client.Backmen.VentCrawler;
 
-public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
+public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
 {
-    [Dependency] private readonly SharedVisibilitySystem _visibility = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SharedVisibilitySystem _visibility = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

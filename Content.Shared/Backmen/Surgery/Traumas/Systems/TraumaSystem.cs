@@ -8,6 +8,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.VirtualItem;
@@ -31,7 +32,7 @@ public abstract partial class TraumaSystem : EntitySystem
     [Dependency] private IConfigurationManager _cfg = default!;
 
     [Dependency] protected SharedContainerSystem Container = default!;
-    [Dependency] protected SharedBodySystem Body = default!;
+    [Dependency] protected BkmBodySharedSystem Body = default!;
 
     [Dependency] protected WoundSystem Wound = default!;
     [Dependency] protected PainSystem Pain = default!;

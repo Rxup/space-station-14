@@ -9,7 +9,9 @@ public sealed partial class BodySystem
 {
     private void InitializeRelay()
     {
-        SubscribeLocalEvent<BodyComponent, ApplyMetabolicMultiplierEvent>(RefRelayBodyEvent);
+        // start-backmen: body
+        SubscribeLocalEvent<BodyComponent, ApplyMetabolicMultiplierEvent>(OnRelayApplyMetabolicMultiplier);
+        // end-backmen: body
         SubscribeLocalEvent<BodyComponent, TryVomitEvent>(RefRelayBodyEvent);
         SubscribeLocalEvent<BodyComponent, Gibbing.BeingGibbedEvent>(RefRelayBodyEvent);
         SubscribeLocalEvent<BodyComponent, ApplyOrganProfileDataEvent>(RefRelayBodyEvent);
@@ -17,6 +19,16 @@ public sealed partial class BodySystem
         SubscribeLocalEvent<BodyComponent, OrganCopyAppearanceEvent>(RefRelayBodyEvent);
         SubscribeLocalEvent<BodyComponent, HumanoidLayerVisibilityChangedEvent>(RefRelayBodyEvent);
     }
+
+    // start-backmen: body
+    private void OnRelayApplyMetabolicMultiplier(Entity<BodyComponent> ent, ref ApplyMetabolicMultiplierEvent args)
+    {
+        RelayEvent(ent, ref args);
+        RelayApplyMetabolicMultiplierToHierarchy(ent, ref args);
+    }
+
+    partial void RelayApplyMetabolicMultiplierToHierarchy(Entity<BodyComponent> ent, ref ApplyMetabolicMultiplierEvent args);
+    // end-backmen: body
 
     private void RefRelayBodyEvent<T>(EntityUid uid, BodyComponent component, ref T args) where T : struct
     {

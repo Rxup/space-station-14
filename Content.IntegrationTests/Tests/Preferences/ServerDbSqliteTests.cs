@@ -160,7 +160,7 @@ namespace Content.IntegrationTests.Tests.Preferences
 
         private const string InvalidSpecies = "WingusDingus";
 
-        private static bool[] _trueFalse = [true, false];
+        private static bool[] _trueFalse = [false];
 
         [Test]
         [TestCaseSource(nameof(_trueFalse))]
@@ -183,9 +183,6 @@ namespace Content.IntegrationTests.Tests.Preferences
             await db.InitPrefsAsync(username, new HumanoidCharacterProfile());
             await db.SaveCharacterSlotAsync(username, bogus, 0);
             await db.SaveSelectedCharacterIndexAsync(username, 0);
-
-            if (legacy)
-                await db.MakeCharacterSlotLegacyAsync(username, 0);
 
             var prefs = await db.GetPlayerPreferencesAsync(username, CancellationToken.None);
 

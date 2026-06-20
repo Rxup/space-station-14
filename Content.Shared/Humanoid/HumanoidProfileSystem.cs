@@ -2,21 +2,45 @@ using Content.Shared.Examine;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Preferences;
+using Robust.Shared.Enums;
 using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Humanoid;
 
-public sealed class HumanoidProfileSystem : EntitySystem
+public sealed partial class HumanoidProfileSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly GrammarSystem _grammar = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private GrammarSystem _grammar = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<HumanoidProfileComponent, ExaminedEvent>(OnExamined);
+    }
+
+    public void SetSex(Entity<HumanoidProfileComponent?> ent, Sex sex)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        var oldSex = ent.Comp.Sex;
+        ent.Comp.Sex = sex;
+        ent.Comp.Gender = sex switch
+        {
+            Sex.Male => Gender.Male,
+            Sex.Female => Gender.Female,
+            Sex.Unsexed => Gender.Neuter,
+            _ => Gender.Epicene
+        };
+        Dirty(ent);
+
+        var sexChanged = new SexChangedEvent(oldSex, sex);
+        RaiseLocalEvent(ent, ref sexChanged);
+
+        if (TryComp<GrammarComponent>(ent, out var grammar))
+            _grammar.SetGender((ent, grammar), ent.Comp.Gender);
     }
 
     public void ApplyProfileTo(Entity<HumanoidProfileComponent?> ent, HumanoidCharacterProfile profile)

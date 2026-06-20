@@ -1,11 +1,20 @@
 - type: markingsGroup
   parent: Undergarments
   id: Slime
+  onlyGroupWhitelisted: true
   limits:
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
+      onlyGroupWhitelisted: false
     enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+      onlyGroupWhitelisted: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.Tail:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Chest:
@@ -75,10 +84,19 @@
 - type: entity
   parent:
   - AppearanceSlimePerson
-  - BaseSpeciesMobOrganic
+  - BaseSpeciesMobSurgery
   id: MobSlimePerson
   name: Urist McWobble
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Slime
+    understands:
+    - TauCetiBasic
+    - Slime
   - type: Storage
     clickInsert: false
     grid:
@@ -212,10 +230,29 @@
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganSlimePersonExternal ]
   id: OrganSlimePersonTorso
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Slime
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
 
 - type: entity
   parent: [ OrganBaseHead, OrganSlimePersonExternal ]
   id: OrganSlimePersonHead
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Slime
+      layers:
+      - Head
+      - Hair
+      - FacialHair
+      - HeadTop
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganSlimePersonExternal ]

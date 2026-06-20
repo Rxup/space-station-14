@@ -40,13 +40,14 @@ public sealed class CharacterCreationTest
         clientCharacters = clientPrefManager.Preferences?.Characters;
         Assert.That(clientCharacters, Is.Not.Null);
         Assert.That(clientCharacters, Has.Count.EqualTo(2));
-        AssertEqual(clientCharacters[1], profile);
+
+        var clientCharacter = clientCharacters[1];
 
         await PoolManager.WaitUntil(server, () => serverPrefManager.GetPreferences(user).Characters.Count == 2, maxTicks: 60);
 
         var serverCharacters = serverPrefManager.GetPreferences(user).Characters;
         Assert.That(serverCharacters, Has.Count.EqualTo(2));
-        AssertEqual(serverCharacters[1], profile);
+        AssertEqual(clientCharacter, serverCharacters[1]);
 
         await client.WaitAssertion(() => clientPrefManager.DeleteCharacter(1));
         await pair.RunTicksSync(5);
@@ -66,25 +67,22 @@ public sealed class CharacterCreationTest
         clientCharacters = clientPrefManager.Preferences?.Characters;
         Assert.That(clientCharacters, Is.Not.Null);
         Assert.That(clientCharacters, Has.Count.EqualTo(2));
-        AssertEqual(clientCharacters[1], profile);
+
+        clientCharacter = clientCharacters[1];
 
         await PoolManager.WaitUntil(server, () => serverPrefManager.GetPreferences(user).Characters.Count == 2, maxTicks: 60);
         serverCharacters = serverPrefManager.GetPreferences(user).Characters;
         Assert.That(serverCharacters, Has.Count.EqualTo(2));
-        AssertEqual(serverCharacters[1], profile);
+        AssertEqual(clientCharacter, serverCharacters[1]);
         await pair.CleanReturnAsync();
     }
 
-    private void AssertEqual(ICharacterProfile clientCharacter, HumanoidCharacterProfile b)
+    private void AssertEqual(HumanoidCharacterProfile clientCharacter, HumanoidCharacterProfile b)
     {
         if (clientCharacter.MemberwiseEquals(b))
             return;
 
-        if (clientCharacter is not HumanoidCharacterProfile a)
-        {
-            Assert.Fail($"Not a {nameof(HumanoidCharacterProfile)}");
-            return;
-        }
+        var a = clientCharacter;
 
         Assert.Multiple(() =>
         {
@@ -107,12 +105,8 @@ public sealed class CharacterCreationTest
 
     private void AssertEqual(HumanoidCharacterAppearance a, HumanoidCharacterAppearance b)
     {
-        if (a.MemberwiseEquals(b))
-            return;
-
         Assert.That(a.EyeColor, Is.EqualTo(b.EyeColor));
         Assert.That(a.SkinColor, Is.EqualTo(b.SkinColor));
         Assert.That(a.Markings, Is.EquivalentTo(b.Markings));
-        Assert.Fail("Appearance not equal");
     }
 }

@@ -478,7 +478,7 @@ public sealed partial class DamageableSystem
         // Синхронизация severity ран с общим уроном (для rejuvenate и т.п.)
         if (TryComp<BodyComponent>(ent, out var body) && TryComp<ConsciousnessComponent>(ent, out _))
         {
-            foreach (var (part, _) in _body.GetBodyChildren(ent.Owner, body))
+            foreach (var part in _body.GetDistributedDamageTargets(ent.Owner, body))
             {
                 if (!TryComp(part, out WoundableComponent? woundable))
                     continue;

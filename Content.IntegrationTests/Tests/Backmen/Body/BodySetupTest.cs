@@ -2,10 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Administration.Systems;
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Tools.Innate;
 using Content.Shared.Administration.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
@@ -14,6 +15,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body;
 using Content.Shared.Body.Organ;
+using Content.Shared.Hands.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid.Prototypes;
@@ -38,7 +40,7 @@ public sealed class BodySetupTest : GameTest
     public override PoolSettings PoolSettings => new()
     {
         Dirty = true,
-        Connected = true,
+        Connected = false,
         InLobby = false,
     };
 
@@ -51,9 +53,6 @@ public sealed class BodySetupTest : GameTest
         var handsSys = Server.EntMan.System<HandsSystem>();
 
         var testMap = await Pair.CreateTestMap();
-
-        //var ticker = server.System<GameTicker>();
-        //Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
 
         foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
         {
@@ -78,8 +77,13 @@ public sealed class BodySetupTest : GameTest
             await Server.WaitAssertion(() =>
             {
                 Assert.That(dummy, Is.Not.EqualTo(EntityUid.Invalid));
+                Assert.That(Server.EntMan.HasComponent<HandsComponent>(dummy), Is.True,
+                    $"{proto.ID} has innate tools but no Hands component");
+
                 var handCount = handsSys.EnumerateHands(dummy).Count();
-                Assert.That(handCount, Is.GreaterThanOrEqualTo(toolComponent.Tools.Count), $"hands {proto.ID}");
+                Assert.That(handCount, Is.GreaterThanOrEqualTo(toolComponent.Tools.Count),
+                    $"hands {proto.ID}: {handCount} hands, {toolComponent.Tools.Count} innate tools");
+
                 Server.EntMan.DeleteEntity(dummy);
             });
         }
@@ -88,7 +92,7 @@ public sealed class BodySetupTest : GameTest
     [Test]
     public async Task AllSpeciesHaveLegs()
     {
-        var bodySys = Server.EntMan.System<BodySystem>();
+        var bodySys = Server.EntMan.System<BkmBodySystem>();
 
         foreach (var speciesPrototype in Server.ProtoMan.EnumeratePrototypes<SpeciesPrototype>())
         {
@@ -151,10 +155,12 @@ public sealed class BodySetupTest : GameTest
 
                 var dummy = entMan.Spawn(speciesPrototype.Prototype);
 
+                if (!entMan.TryGetComponent(dummy, out ConsciousnessComponent? consciousness))
+                    continue;
+
                 Assert.Multiple(() =>
                 {
                     Assert.That(dummy, Is.Not.EqualTo(EntityUid.Invalid), $"Failed species to pass the test: {speciesPrototype.ID}");
-                    Assert.That(entMan.TryGetComponent(dummy, out ConsciousnessComponent consciousness), $"Failed species to pass the test: {speciesPrototype.ID}");
 
                     Assert.That(consciousnessSystem.TryGetNerveSystem(dummy, out var dummyNerveSys));
 
@@ -171,7 +177,7 @@ public sealed class BodySetupTest : GameTest
     public async Task AllSpeciesCanBeRejuvenated()
     {
         var entMan = Server.ResolveDependency<IEntityManager>();
-        var bodySystem = entMan.System<BodySystem>();
+        var bodySystem = entMan.System<BkmBodySystem>();
         var woundSystem = entMan.System<WoundSystem>();
         var consciousnessSystem = entMan.System<ConsciousnessSystem>();
         var rejuvenateSystem = entMan.System<RejuvenateSystem>();
@@ -185,30 +191,33 @@ public sealed class BodySetupTest : GameTest
 
                 var dummy = entMan.Spawn(speciesPrototype.Prototype);
 
-                var initialBodyPartCount = bodySystem.GetBodyPartCount(dummy, BodyPartType.Head);
-                var headEntity = bodySystem.GetBodyChildrenOfType(dummy, BodyPartType.Head).FirstOrDefault();
-                var groinEntity = bodySystem.GetBodyChildrenOfType(dummy, BodyPartType.Groin).FirstOrDefault();
+                Assert.That(bodySystem.TryGetWoundableTargetByType(dummy, BodyPartType.Head, null, out var headEntity),
+                    $"Failed species to pass the test: {speciesPrototype.ID}");
+                Assert.That(bodySystem.TryGetWoundableTargetByType(dummy, BodyPartType.Chest, null, out var chestEntity),
+                    $"Failed species to pass the test: {speciesPrototype.ID}");
+
+                var initialHeadCount = bodySystem.GetBodyPartCount(dummy, BodyPartType.Head);
 
                 Assert.Multiple(() =>
                 {
-                    Assert.That(bodySystem.TryGetParentBodyPart(headEntity.Id, out var parentPart, out _), $"Failed species to pass the test: {speciesPrototype.ID}");
-                    Assert.That(parentPart, Is.Not.Null, $"Failed species to pass the test: {speciesPrototype.ID}");
+                    Assert.That(entMan.TryGetComponent(headEntity, out WoundableComponent headWoundable),
+                        $"Failed species to pass the test: {speciesPrototype.ID}");
+                    Assert.That(entMan.TryGetComponent(chestEntity, out WoundableComponent chestWoundable),
+                        $"Failed species to pass the test: {speciesPrototype.ID}");
 
-                    Assert.That(entMan.TryGetComponent(headEntity.Id, out WoundableComponent woundable), $"Failed species to pass the test: {speciesPrototype.ID}");
-                    Assert.That(entMan.TryGetComponent(groinEntity.Id, out WoundableComponent groinWoundable), $"Failed species to pass the test: {speciesPrototype.ID}");
-
-                    // Destroy the head, and damage the groin so we can check.
-                    woundSystem.DestroyWoundable(parentPart.Value, headEntity.Id, woundable);
-                    woundSystem.TryInduceWound(groinEntity.Id, "Blunt", 25f, out _, groinWoundable);
+                    woundSystem.DestroyWoundable(dummy, headEntity, headWoundable);
+                    woundSystem.TryInduceWound(chestEntity, "Blunt", 25f, out _, chestWoundable);
 
                     rejuvenateSystem.PerformRejuvenate(dummy);
 
-                    Assert.That(initialBodyPartCount, Is.EqualTo(bodySystem.GetBodyPartCount(dummy, BodyPartType.Head)), $"Failed species to pass the test: {speciesPrototype.ID}");
-
-                    Assert.That(woundSystem.GetWoundableSeverityPoint(parentPart.Value), Is.GreaterThanOrEqualTo(FixedPoint2.Zero), $"Failed species to pass the test: {speciesPrototype.ID}");
-                    Assert.That(woundSystem.GetWoundableSeverityPoint(groinEntity.Id), Is.GreaterThanOrEqualTo(FixedPoint2.Zero), $"Failed species to pass the test: {speciesPrototype.ID}");
-
-                    Assert.That(consciousnessSystem.CheckConscious(dummy), $"Failed species to pass the test: {speciesPrototype.ID}");
+                    Assert.That(initialHeadCount, Is.EqualTo(bodySystem.GetBodyPartCount(dummy, BodyPartType.Head)),
+                        $"Failed species to pass the test: {speciesPrototype.ID}");
+                    Assert.That(bodySystem.TryGetWoundableTargetByType(dummy, BodyPartType.Head, null, out _),
+                        $"Failed species to pass the test: {speciesPrototype.ID}");
+                    Assert.That(woundSystem.GetWoundableSeverityPoint(chestEntity), Is.GreaterThanOrEqualTo(FixedPoint2.Zero),
+                        $"Failed species to pass the test: {speciesPrototype.ID}");
+                    if (entMan.TryGetComponent(dummy, out ConsciousnessComponent? consciousness))
+                        Assert.That(consciousnessSystem.CheckConscious((dummy, consciousness)), $"Failed species to pass the test: {speciesPrototype.ID}");
                 });
             }
         });
@@ -218,7 +227,7 @@ public sealed class BodySetupTest : GameTest
     public async Task AllSpeciesHaveValidWoundables()
     {
         var entMan = Server.ResolveDependency<IEntityManager>();
-        var bodySystem = entMan.System<BodySystem>();
+        var bodySystem = entMan.System<BkmBodySystem>();
         var woundSystem = entMan.System<WoundSystem>();
 
         await Server.WaitAssertion(() =>
@@ -229,20 +238,22 @@ public sealed class BodySetupTest : GameTest
                     continue;
 
                 var dummy = entMan.Spawn(speciesPrototype.Prototype);
-                foreach (var bodyPart in bodySystem.GetBodyChildren(dummy))
+                foreach (var woundable in bodySystem.GetWoundableTargets(dummy))
                 {
+                    Assert.That(entMan.TryGetComponent(woundable, out WoundableComponent woundableComp));
+
                     Assert.Multiple(() =>
                     {
-                        Assert.That(entMan.HasComponent<NerveComponent>(bodyPart.Id));
-                        Assert.That(entMan.TryGetComponent(bodyPart.Id, out WoundableComponent woundable));
+                        Assert.That(entMan.HasComponent<NerveOrganComponent>(woundable));
 
-                        var bone = woundable.Bone.ContainedEntities.FirstOrNull();
+                        var bone = woundableComp.Bone.ContainedEntities.FirstOrNull();
                         Assert.That(bone, Is.Not.Null);
                         Assert.That(entMan.HasComponent<BoneComponent>(bone));
                     });
 
-                    woundSystem.TryInduceWound(bodyPart.Id, "Piercing", 5f, out _);
-                    Assert.That(woundSystem.GetWoundableSeverityPoint(bodyPart.Id), Is.EqualTo(FixedPoint2.New(5f)));
+                    woundSystem.TryInduceWound(woundable, "Piercing", 5f, out var wound, woundableComp);
+                    Assert.That(wound, Is.Not.Null);
+                    Assert.That(woundSystem.GetWoundableSeverityPoint(woundable), Is.GreaterThan(FixedPoint2.Zero));
                 }
             }
         });

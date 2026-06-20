@@ -1,13 +1,15 @@
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
-using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Body;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(BodySystem), typeof(SharedBodySystem), typeof(TraumaSystem))]
+// start-backmen: body
+[Access(typeof(BodySystem), typeof(BkmBodySharedSystem), typeof(TraumaSystem))]
+// end-backmen: body
 public sealed partial class OrganComponent : Component, ISurgeryToolComponent
 {
     /// <summary>

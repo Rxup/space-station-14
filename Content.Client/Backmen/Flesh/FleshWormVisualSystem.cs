@@ -17,9 +17,9 @@ namespace Content.Client.Backmen.Flesh;
 /// <summary>
 /// Fallback mask visuals for face-attached flesh worms and headcrabs when clothing RSI lacks equipped states.
 /// </summary>
-public sealed class FleshWormVisualSystem : EntitySystem
+public sealed partial class FleshWormVisualSystem : EntitySystem
 {
-    [Dependency] private readonly IResourceCache _cache = default!;
+    [Dependency] private IResourceCache _cache = default!;
 
     public override void Initialize()
     {

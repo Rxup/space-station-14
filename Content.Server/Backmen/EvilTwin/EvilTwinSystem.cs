@@ -18,6 +18,7 @@ using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Database;
+using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mobs;
@@ -562,14 +563,14 @@ public sealed partial class EvilTwinSystem : EntitySystem
         }
 
         var twinUid = Spawn(species.Prototype, coords);
-        _humanoid.LoadProfile(twinUid, pref);
+        _visualBody.ApplyProfileTo(twinUid, pref);
         _metaSystem.SetEntityName(twinUid, MetaData(target).EntityName);
         if (TryComp<DetailExaminableComponent>(target, out var detail))
         {
             EnsureComp<DetailExaminableComponent>(twinUid).Content = detail.Content;
         }
 
-        _humanoid.LoadProfile(twinUid, pref);
+        _visualBody.ApplyProfileTo(twinUid, pref);
 
         if (pref.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
         {
@@ -651,7 +652,7 @@ public sealed partial class EvilTwinSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IServerPreferencesManager _prefs = default!;
-    [Dependency] private HumanoidProfileSystem _humanoid = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
     [Dependency] private StationSystem _stationSystem = default!;
     [Dependency] private PrayerSystem _prayerSystem = default!;

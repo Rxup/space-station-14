@@ -28,7 +28,7 @@
       prototypes: [CentComCorvax]
     - type: GhostTakeoverAvailable
     - type: RandomMetadata
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
     - type: NpcFactionMember
       factions:
         - CentralCommand
@@ -66,7 +66,7 @@
       prototypes: [OperatorGavna]
     - type: GhostTakeoverAvailable
     - type: RandomMetadata
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
     - type: NpcFactionMember
       factions:
         - CentralCommand
@@ -109,7 +109,7 @@
       - CentralCommand
   - type: Loadout
     prototypes: [SFOForma]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: False
   - type: AntagImmune
 
@@ -142,7 +142,7 @@
       prototypes: [HeadOfSecurityCentComGear]
     - type: GhostTakeoverAvailable
     - type: RandomMetadata
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
     - type: NpcFactionMember
       factions:
         - CentralCommand

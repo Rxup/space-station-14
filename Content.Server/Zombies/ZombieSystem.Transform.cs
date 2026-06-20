@@ -15,13 +15,13 @@ using Content.Server.NPC.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.Speech.Components;
 using Content.Shared.Body;
-using Content.Shared.Body;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Pulling.Components;
@@ -44,7 +44,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
-using Content.Shared.Temperature.Components;
 
 namespace Content.Server.Zombies;
 
@@ -56,22 +55,22 @@ namespace Content.Server.Zombies;
 /// </remarks>
 public sealed partial class ZombieSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IBanManager _ban = default!;
-    [Dependency] private readonly IChatManager _chatMan = default!;
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
-    [Dependency] private readonly NpcFactionSystem _faction = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly ServerInventorySystem _inventory = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly NameModifierSystem _nameMod = default!;
-    [Dependency] private readonly NPCSystem _npc = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IBanManager _ban = default!;
+    [Dependency] private IChatManager _chatMan = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!;
+    [Dependency] private NpcFactionSystem _faction = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private IdentitySystem _identity = default!;
+    [Dependency] private ServerInventorySystem _inventory = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private NameModifierSystem _nameMod = default!;
+    [Dependency] private NPCSystem _npc = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
     private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
@@ -262,7 +261,7 @@ public sealed partial class ZombieSystem
         _mind.MakeSentient(target);
 
         //Make the zombie not die in the cold. Good for space zombies
-        if (TryComp<TemperatureDamageComponent>(target, out var tempComp))
+        if (TryComp<TemperatureComponent>(target, out var tempComp))
             tempComp.ColdDamage.ClampMax(0);
 
         //Heals the zombie from all the damage it took while human

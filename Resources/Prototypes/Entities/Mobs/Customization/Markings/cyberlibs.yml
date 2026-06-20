@@ -2,9 +2,7 @@
 - type: marking
   id: CyberlimbRArmBishop
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -17,9 +15,7 @@
 - type: marking
   id: CyberlimbLArmBishop
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -32,9 +28,7 @@
 - type: marking
   id: CyberlimbRHandBishop
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -47,9 +41,7 @@
 - type: marking
   id: CyberlimbLHandBishop
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -62,9 +54,7 @@
 - type: marking
   id: CyberlimbRLegBishop
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -77,9 +67,7 @@
 - type: marking
   id: CyberlimbLLegBishop
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -92,9 +80,7 @@
 - type: marking
   id: CyberlimbLFootBishop
   bodyPart: LFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -107,9 +93,7 @@
 - type: marking
   id: CyberlimbRFootBishop
   bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -122,9 +106,7 @@
 - type: marking
   id: CyberlimbTorsoBishop
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -138,9 +120,7 @@
 - type: marking
   id: CyberlimbRArmHephaestus
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -153,9 +133,7 @@
 - type: marking
   id: CyberlimbLArmHephaestus
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -168,9 +146,7 @@
 - type: marking
   id: CyberlimbRHandHephaestus
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -183,9 +159,7 @@
 - type: marking
   id: CyberlimbLHandHephaestus
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -198,9 +172,7 @@
 - type: marking
   id: CyberlimbRLegHephaestus
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -213,9 +185,7 @@
 - type: marking
   id: CyberlimbLLegHephaestus
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -228,9 +198,7 @@
 - type: marking
   id: CyberlimbLFootHephaestus
   bodyPart: LFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -243,9 +211,7 @@
 - type: marking
   id: CyberlimbRFootHephaestus
   bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -258,9 +224,7 @@
 - type: marking
   id: CyberlimbTorsoHephaestus
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -274,9 +238,7 @@
 - type: marking
   id: CyberlimbRArmHephaestusTitan
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -289,9 +251,7 @@
 - type: marking
   id: CyberlimbLArmHephaestusTitan
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -304,9 +264,7 @@
 - type: marking
   id: CyberlimbRHandHephaestusTitan
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -319,9 +277,7 @@
 - type: marking
   id: CyberlimbLHandHephaestusTitan
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -334,9 +290,7 @@
 - type: marking
   id: CyberlimbRLegHephaestusTitan
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -349,9 +303,7 @@
 - type: marking
   id: CyberlimbLLegHephaestusTitan
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -364,9 +316,7 @@
 - type: marking
   id: CyberlimbLFootHephaestusTitan
   bodyPart: LFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -379,9 +329,7 @@
 - type: marking
   id: CyberlimbRFootHephaestusTitan
   bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -394,9 +342,7 @@
 - type: marking
   id: CyberlimbTorsoHephaestusTitan
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -410,9 +356,7 @@
 - type: marking
   id: CyberlimbRArmMorpheus
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -425,9 +369,7 @@
 - type: marking
   id: CyberlimbLArmMorpheus
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -440,9 +382,7 @@
 - type: marking
   id: CyberlimbRHandMorpheus
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -455,9 +395,7 @@
 - type: marking
   id: CyberlimbLHandMorpheus
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -470,9 +408,7 @@
 - type: marking
   id: CyberlimbRLegMorpheus
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -485,9 +421,7 @@
 - type: marking
   id: CyberlimbLLegMorpheus
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -500,9 +434,7 @@
 - type: marking
   id: CyberlimbLFootMorpheus
   bodyPart: LFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -515,9 +447,7 @@
 - type: marking
   id: CyberlimbRFootMorpheus
   bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -530,9 +460,7 @@
 - type: marking
   id: CyberlimbTorsoMorpheus
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -547,9 +475,7 @@
 - type: marking
   id: CyberlimbRArmWardtakahashi
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -562,9 +488,7 @@
 - type: marking
   id: CyberlimbLArmWardtakahashi
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -577,9 +501,7 @@
 - type: marking
   id: CyberlimbRHandWardtakahashi
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -592,9 +514,7 @@
 - type: marking
   id: CyberlimbLHandWardtakahashi
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -607,9 +527,7 @@
 - type: marking
   id: CyberlimbRLegWardtakahashi
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -622,9 +540,7 @@
 - type: marking
   id: CyberlimbLLegWardtakahashi
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -637,9 +553,7 @@
 - type: marking
   id: CyberlimbLFootWardtakahashi
   bodyPart: LFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -652,9 +566,7 @@
 - type: marking
   id: CyberlimbRFootWardtakahashi
   bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -667,10 +579,8 @@
 - type: marking
   id: CyberlimbTorsoWardtakahashiMale
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   sexRestriction: Male
-  sponsorOnly: true
   coloring:
     default:
       type:
@@ -683,10 +593,8 @@
 - type: marking
   id: CyberlimbTorsoWardtakahashiFemale
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   sexRestriction: Female
-  sponsorOnly: true
   coloring:
     default:
       type:
@@ -700,9 +608,7 @@
 - type: marking
   id: CyberlimbRArmZenghu
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -715,9 +621,7 @@
 - type: marking
   id: CyberlimbLArmZenghu
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -730,9 +634,7 @@
 - type: marking
   id: CyberlimbRHandZenghu
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -745,9 +647,7 @@
 - type: marking
   id: CyberlimbLHandZenghu
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -760,9 +660,7 @@
 - type: marking
   id: CyberlimbRLegZenghu
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -775,9 +673,7 @@
 - type: marking
   id: CyberlimbLLegZenghu
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -790,9 +686,7 @@
 - type: marking
   id: CyberlimbLFootZenghu
   bodyPart: LFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -805,9 +699,7 @@
 - type: marking
   id: CyberlimbRFootZenghu
   bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -820,9 +712,7 @@
 - type: marking
   id: CyberlimbTorsoZenghu
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -836,9 +726,7 @@
 - type: marking
   id: CyberlimbRArmNanotrasen
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -851,9 +739,7 @@
 - type: marking
   id: CyberlimbLArmNanotrasen
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -866,9 +752,7 @@
 - type: marking
   id: CyberlimbRHandNanotrasen
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -881,9 +765,7 @@
 - type: marking
   id: CyberlimbLHandNanotrasen
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -896,9 +778,7 @@
 - type: marking
   id: CyberlimbRLegNanotrasen
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -911,9 +791,7 @@
 - type: marking
   id: CyberlimbLLegNanotrasen
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -926,9 +804,7 @@
 - type: marking
   id: CyberlimbLFootNanotrasen
   bodyPart: LFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -941,9 +817,7 @@
 - type: marking
   id: CyberlimbRFootNanotrasen
   bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -956,9 +830,7 @@
 - type: marking
   id: CyberlimbTorsoNanotrasen
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -972,9 +844,7 @@
 - type: marking
   id: CyberlimbRArmXion
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -987,9 +857,7 @@
 - type: marking
   id: CyberlimbLArmXion
   bodyPart: LArm
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -1002,9 +870,7 @@
 - type: marking
   id: CyberlimbRHandXion
   bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -1017,9 +883,7 @@
 - type: marking
   id: CyberlimbLHandXion
   bodyPart: LHand
-  markingCategory: Arms
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -1032,9 +896,7 @@
 - type: marking
   id: CyberlimbRLegXion
   bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -1047,9 +909,7 @@
 - type: marking
   id: CyberlimbLLegXion
   bodyPart: LLeg
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -1062,9 +922,7 @@
 - type: marking
   id: CyberlimbLFootXion
   bodyPart: LFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -1077,9 +935,7 @@
 - type: marking
   id: CyberlimbRFootXion
   bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:
@@ -1092,9 +948,7 @@
 - type: marking
   id: CyberlimbTorsoXion
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [ Human, Dwarf, Arachnid ]
-  sponsorOnly: true
+  groupWhitelist: [ Human, Dwarf, Arachnid ]
   coloring:
     default:
       type:

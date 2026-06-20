@@ -1,5 +1,6 @@
 using Content.Client.Xenonids.UI;
 using Content.Client.Administration.UI.CustomControls;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
@@ -116,6 +117,11 @@ public sealed partial class SurgeryBui : BoundUserInterface
             {
                 if (_entities.TryGetComponent(ent, out BodyPartComponent? part))
                     options.Add((choice, ent.Value, _entities.GetComponent<MetaDataComponent>(ent.Value).EntityName, part.PartType));
+                else if (_entities.TryGetComponent(ent, out OrganComponent? organ))
+                {
+                    var partType = _entities.System<SharedTargetingSystem>().GetBodyPartType(ent.Value);
+                    options.Add((choice, ent.Value, _entities.GetComponent<MetaDataComponent>(ent.Value).EntityName, partType));
+                }
                 else if (_entities.TryGetComponent(ent, out BodyComponent? body))
                     options.Add((choice, ent.Value, _entities.GetComponent<MetaDataComponent>(ent.Value).EntityName, null));
             }
@@ -165,6 +171,29 @@ public sealed partial class SurgeryBui : BoundUserInterface
 
             if (oldPart == entity && oldSurgery == null)
                 OnPartPressed(netEntity, surgeries);
+        }
+
+        foreach (var missing in state.MissingParts)
+        {
+            var partButton = new XenoChoiceControl();
+            partButton.Set(missing.Label, null);
+            partButton.Button.OnPressed += _ => OnPartPressed(missing.AnchorPart, missing.Surgeries);
+
+            _window.Parts.AddChild(partButton);
+
+            var anchorEntity = _entities.GetEntity(missing.AnchorPart);
+            foreach (var surgeryId in missing.Surgeries)
+            {
+                if (_system.GetSingleton(surgeryId) is not { } surgery ||
+                    !_entities.TryGetComponent(surgery, out SurgeryComponent? surgeryComp))
+                    continue;
+
+                if (oldPart == anchorEntity && oldSurgery?.Proto == surgeryId)
+                    OnSurgeryPressed((surgery, surgeryComp), missing.AnchorPart, surgeryId);
+            }
+
+            if (oldPart == anchorEntity && oldSurgery == null && missing.Surgeries.Count > 0)
+                OnPartPressed(missing.AnchorPart, missing.Surgeries);
         }
 
 
@@ -281,7 +310,7 @@ public sealed partial class SurgeryBui : BoundUserInterface
             || !surgeryComp.CanOperate)
             return;
 
-        var next = _system.GetNextStep(Owner, _part.Value, _surgery.Value.Ent);
+        var nextIndex = _system.GetNextIncompleteStepIndex(Owner, _part.Value, _surgery.Value.Ent);
         var i = 0;
         foreach (var child in _window.Steps.Children)
         {
@@ -289,13 +318,15 @@ public sealed partial class SurgeryBui : BoundUserInterface
                 continue;
 
             var status = StepStatus.Incomplete;
-            if (next == null)
-                status = StepStatus.Complete;
-            else if (next.Value.Surgery.Owner != _surgery.Value.Ent)
-                status = StepStatus.Incomplete;
-            else if (next.Value.Step == i)
+            if (nextIndex == null)
+            {
+                status = _system.IsSurgeryStepsComplete(Owner, _part.Value, _surgery.Value.Ent)
+                    ? StepStatus.Complete
+                    : StepStatus.Incomplete;
+            }
+            else if (nextIndex == i)
                 status = StepStatus.Next;
-            else if (i < next.Value.Step)
+            else if (i < nextIndex)
                 status = StepStatus.Complete;
 
             stepButton.Button.Disabled = status != StepStatus.Next;
@@ -336,13 +367,19 @@ public sealed partial class SurgeryBui : BoundUserInterface
         _window.Steps.Visible = type == ViewType.Steps;
         _window.StepsButton.Disabled = type != ViewType.Steps || _previousSurgeries.Count == 0;
 
+        var title = Loc.GetString("surgery-ui-window-title");
         if (_entities.TryGetComponent(_part, out MetaDataComponent? partMeta) &&
             _entities.TryGetComponent(_surgery?.Ent, out MetaDataComponent? surgeryMeta))
-            _window.Title = $"Surgery - {partMeta.EntityName}, {surgeryMeta.EntityName}";
+            _window.Title = Loc.GetString("surgery-ui-window-title-detail",
+                ("title", title),
+                ("part", partMeta.EntityName),
+                ("surgery", surgeryMeta.EntityName));
         else if (partMeta != null)
-            _window.Title = $"Surgery - {partMeta.EntityName}";
+            _window.Title = Loc.GetString("surgery-ui-window-title-part",
+                ("title", title),
+                ("part", partMeta.EntityName));
         else
-            _window.Title = "Surgery";
+            _window.Title = title;
     }
 
     private enum ViewType

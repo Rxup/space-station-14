@@ -1,8 +1,7 @@
 - type: marking
   id: PawSocks
-  markingCategory: Overlay
   bodyPart: RFoot #highest possible layer
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
     - sprite: Backmen/Mobs/Customization/fox_markings.rsi
       state: pawsocks
@@ -10,8 +9,7 @@
 - type: marking
   id: FoxTail
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
     - sprite: Backmen/Mobs/Customization/fox_markings.rsi
       state: vulp_tail
@@ -19,8 +17,7 @@
 - type: marking
   id: FoxEar
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
     - sprite: Backmen/Mobs/Customization/fox_markings.rsi
       state: vulp_ear
@@ -30,8 +27,7 @@
 - type: marking
   id: WolfTail
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
     - sprite: Backmen/Mobs/Customization/fox_markings.rsi
       state: wolf_tail
@@ -41,8 +37,7 @@
 - type: marking
   id: FoxBelly
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
     - sprite: Backmen/Mobs/Customization/fox_markings.rsi
       state: vulp_belly-torso
@@ -50,8 +45,7 @@
 - type: marking
   id: FoxSnout
   bodyPart: Snout
-  markingCategory: Snout
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
     - sprite: Backmen/Mobs/Customization/fox_markings.rsi
       state: vulp_face
@@ -59,8 +53,7 @@
 - type: marking
   id: FoxTailinner
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
     - sprite: Corvax/Mobs/Customization/vulpkanin.rsi
       state: vulp_tail
@@ -70,8 +63,6 @@
 - type: marking
   id: FoxTailinnerAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
   sprites:
     - sprite: Corvax/Mobs/Customization/vulpkanin.rsi
       state: tail_fox_waggin
@@ -81,8 +72,7 @@
 - type: marking
   id: FoxesEarFade
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: vulp
@@ -92,8 +82,7 @@
 - type: marking
   id: FoxesEarSharp
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: vulp
@@ -103,8 +92,7 @@
 - type: marking
   id: FoxesEarJackal
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: jackal
@@ -114,8 +102,7 @@
 - type: marking
   id: FoxesEarJackalAlt
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: jackal_alt
@@ -125,8 +112,7 @@
 - type: marking
   id: FoxesEarTerrier
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: terrier
@@ -136,8 +122,7 @@
 - type: marking
   id: FoxesEarWolf
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: wolf
@@ -147,8 +132,7 @@
 - type: marking
   id: FoxesEarFennec
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: fennec
@@ -158,8 +142,7 @@
 - type: marking
   id: FoxesEarFox
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: fox
@@ -167,8 +150,7 @@
 - type: marking
   id: FoxesEarOtie
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: otie
@@ -178,8 +160,7 @@
 - type: marking
   id: FoxesEarTajaran
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: msai
@@ -189,8 +170,7 @@
 - type: marking
   id: FoxesEarCoyote
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: coyote
@@ -198,8 +178,7 @@
 - type: marking
   id: FoxesEarShock
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: shock
@@ -207,8 +186,7 @@
 - type: marking
   id: FoxesEarDalmatian
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: dalmatian
@@ -216,80 +194,71 @@
 - type: marking
   id: FoxesBellyFull
   bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: belly_full
 
 - type: marking
   id: FoxesPointsFeet
-  markingCategory: Overlay
   bodyPart: RFoot
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: points_feet
 
 - type: marking
   id: FoxesPointsCrestLegs
-  markingCategory: Legs
   bodyPart: LLeg
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: points_crest-legs
 
 - type: marking
   id: FoxesPointsFadeLegs
-  markingCategory: Legs
   bodyPart: LLeg
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: points_fade-legs
 
 - type: marking
   id: FoxesPointsSharpLegs
-  markingCategory: Legs
   bodyPart: LLeg
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: points_sharp-legs
 
 - type: marking
   id: FoxesPointsHands
-  markingCategory: Overlay
   bodyPart: RHand
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: points_hands
 
 - type: marking
   id: FoxesPointsCrestArms
-  markingCategory: Arms
   bodyPart: LArm
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: points_crest-arms
 
 - type: marking
   id: FoxesPointsFadeArms
-  markingCategory: Arms
   bodyPart: LArm
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: points_fade-arms
 
 - type: marking
   id: FoxesPointsSharpArms
-  markingCategory: Arms
   bodyPart: LArm
-  speciesRestriction: [HumanoidFoxes]
+  groupWhitelist: [HumanoidFoxes]
   sprites:
   - sprite: Backmen/Mobs/Customization/fox_markings.rsi
     state: points_sharp-arms

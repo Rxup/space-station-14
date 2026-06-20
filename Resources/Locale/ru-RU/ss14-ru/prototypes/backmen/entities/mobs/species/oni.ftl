@@ -1,4 +1,4 @@
-ent-MobOniBase = Урист МакОни
+ent-MobOni = Урист МакОни
     .desc = { ent-BaseMobSpeciesOrganic.desc }
 ent-MobOniDummy = { ent-BaseSpeciesDummy }
     .desc = { ent-BaseSpeciesDummy.desc }

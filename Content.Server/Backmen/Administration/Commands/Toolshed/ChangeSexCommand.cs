@@ -2,11 +2,9 @@ using System.Collections;
 using System.Diagnostics;
 using System.Linq;
 using Content.Server.Administration;
-using Content.Server.Humanoid;
 using Content.Shared.Administration;
 using Content.Shared.Humanoid;
 using Robust.Shared.Enums;
-using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Errors;
 using Robust.Shared.Toolshed.Syntax;
@@ -17,8 +15,6 @@ namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
 public sealed class ChangeSexCommand : ToolshedCommand
 {
-    private HumanoidProfileSystem? _appearanceSystem;
-
     #region base
 
     private EntityUid? ChangeSex(
@@ -27,30 +23,13 @@ public sealed class ChangeSexCommand : ToolshedCommand
         Sex sex
     )
     {
-        if (!EntityManager.TryGetComponent<HumanoidProfileComponent>(input, out var HumanoidProfileComponent))
+        if (!EntityManager.TryGetComponent<HumanoidProfileComponent>(input, out _))
         {
             ctx.ReportError(new NotHumanoidError());
             return null;
         }
 
-        _appearanceSystem ??= GetSys<HumanoidProfileSystem>();
-
-        HumanoidProfileComponent.Gender = sex switch
-        {
-            Sex.Male => Gender.Male,
-            Sex.Female => Gender.Female,
-            Sex.Unsexed => Gender.Neuter,
-            _ => Gender.Epicene
-        };
-
-        if (EntityManager.TryGetComponent<GrammarComponent>(input, out var grammarComponent))
-        {
-            grammarComponent.Gender = HumanoidProfileComponent.Gender;
-            EntityManager.Dirty(input, grammarComponent);
-        }
-
-        _appearanceSystem.SetSex(input, sex, humanoid: HumanoidProfileComponent);
-        EntityManager.Dirty(input, HumanoidProfileComponent);
+        EntityManager.System<HumanoidProfileSystem>().SetSex((input, null), sex);
         return input;
     }
 

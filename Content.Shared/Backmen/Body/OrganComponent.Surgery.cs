@@ -1,7 +1,7 @@
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
-using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;

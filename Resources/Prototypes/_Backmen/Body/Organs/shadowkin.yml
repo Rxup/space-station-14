@@ -48,7 +48,8 @@
   components:
   - type: Sprite
     sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
-    state: heart
+    layers:
+    - state: heart
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Shadowkin]

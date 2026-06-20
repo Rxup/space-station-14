@@ -12,7 +12,7 @@ public sealed partial class ParallaxManager : IParallaxManager
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IDependencyCollection _deps = null!;
+    [Dependency] private IDependencyCollection _deps = null!;
 
     private ISawmill _sawmill = Logger.GetSawmill("parallax");
 

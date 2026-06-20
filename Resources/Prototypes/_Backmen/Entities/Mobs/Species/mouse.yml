@@ -1,6 +1,6 @@
 - type: entity
   name: оперативник мышь
-  parent: [ SimpleMobBase, StripableInventoryBase ]
+  parent: [ SimpleMobBase, StripableInventoryBase, BaseMobMouseOpsBody ]
   id: MobNyrMouseOps
   description: ЭТО ЯДЕРНАЯ МЫШЬ ОНА ПРИШЛА ЗА СЫРОМ!
   components:
@@ -82,9 +82,6 @@
       100: Dead
   - type: Stamina
     baseCritThreshold: 200
-  - type: Body
-    prototype: SindSiliconMouseops
-    requiredLegs: 2
   - type: Inventory
     templateId: InvMouseops
   - type: IdExaminable

@@ -8,6 +8,7 @@ using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
@@ -25,14 +26,14 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 [UsedImplicitly]
 public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem<MobStateComponent, AdjustTraumas>
 {
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private TraumaSystem _trauma = default!;
     [Dependency] private PainSystem _pain = default!;
     [Dependency] private IRobustRandom _random = default!;
 
     private EntityQuery<WoundableComponent> _woundableQuery;
     private EntityQuery<OrganComponent> _organQuery;
-    private EntityQuery<NerveComponent> _nerveQuery;
+    private EntityQuery<NerveOrganComponent> _nerveQuery;
     private EntityQuery<BoneComponent> _boneQuery;
 
     public override void Initialize()
@@ -40,7 +41,7 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
         base.Initialize();
         _woundableQuery = GetEntityQuery<WoundableComponent>();
         _organQuery = GetEntityQuery<OrganComponent>();
-        _nerveQuery = GetEntityQuery<NerveComponent>();
+        _nerveQuery = GetEntityQuery<NerveOrganComponent>();
         _boneQuery = GetEntityQuery<BoneComponent>();
     }
 
@@ -54,10 +55,10 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
 
         if (effect.TargetBodyParts)
         {
-            foreach (var uid in from bodyPart in _body.GetBodyChildren(entity)
-                     where _woundableQuery.HasComponent(bodyPart.Id)
-                     where CheckForTargetedComponents(bodyPart.Id, effect)
-                     select bodyPart.Id)
+            foreach (var uid in from woundable in _body.GetWoundableTargets(entity)
+                     where _woundableQuery.HasComponent(woundable)
+                     where CheckForTargetedComponents(woundable, effect)
+                     select woundable)
             {
                 possibleTraumaTargets.Add(uid);
             }
@@ -105,7 +106,7 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                     _trauma.ApplyDamageToBone(bone.Value, changeAmount, boneComp);
                     break;
                 case TraumaType.OrganDamage:
-                    var organs = _body.GetPartOrgans(target).ToList();
+                    var organs = _body.GetOrgansForWoundable(target).ToList();
                     if (organs.Count == 0)
                         break;
 
@@ -140,22 +141,22 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                 case TraumaType.NerveDamage:
                     if (changeAmount > 0)
                     {
-                        foreach (var bodyPart in _body.GetBodyChildren(body))
+                        foreach (var woundable in _body.GetWoundableTargets(body))
                         {
-                            if (!_nerveQuery.TryComp(bodyPart.Id, out var nerve))
+                            if (!_nerveQuery.TryComp(woundable, out var nerve))
                                 continue;
 
                             // you actually have AdjustPainFeels for this, but fine
                             if (!_pain.TryChangePainFeelsModifier(
                                     body,
                                     effect.ModifierIdentifier,
-                                    bodyPart.Id,
+                                    woundable,
                                     changeAmount,
                                     nerve))
                             {
                                 _pain.TryAddPainFeelsModifier(body,
                                     effect.ModifierIdentifier,
-                                    bodyPart.Id,
+                                    woundable,
                                     changeAmount,
                                     nerve);
                             }
@@ -164,9 +165,9 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                     else
                     {
                         var available = changeAmount;
-                        foreach (var bodyPart in _body.GetBodyChildren(body))
+                        foreach (var woundable in _body.GetWoundableTargets(body))
                         {
-                            if (!_nerveQuery.TryComp(bodyPart.Id, out var nerve))
+                            if (!_nerveQuery.TryComp(woundable, out var nerve))
                                 continue;
 
                             foreach (var painFeelsMod in nerve.PainFeelingModifiers)
@@ -178,7 +179,7 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                                     _pain.TrySetPainFeelsModifier(
                                         painFeelsMod.Key.Item1,
                                         painFeelsMod.Key.Item2,
-                                        bodyPart.Id,
+                                        woundable,
                                         newChange,
                                         nerve: nerve);
                                     break;
@@ -188,7 +189,7 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                                 _pain.TryRemovePainFeelsModifier(
                                     painFeelsMod.Key.Item1,
                                     painFeelsMod.Key.Item2,
-                                    bodyPart.Id,
+                                    woundable,
                                     nerve);
                             }
                         }

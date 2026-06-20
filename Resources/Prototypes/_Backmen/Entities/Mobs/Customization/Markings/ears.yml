@@ -1,8 +1,7 @@
 - type: marking
   id: EarsAvali
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [SlimePerson, Reptilian]
+  groupWhitelist: [Slime, Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: avali_inner
@@ -12,8 +11,7 @@
 - type: marking
   id: EarsBunny
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Felinid]
+  groupWhitelist: [Felinid]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: bunny
@@ -21,8 +19,7 @@
 - type: marking
   id: EarsBunny2
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Felinid]
+  groupWhitelist: [Felinid]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: bunny2
@@ -30,8 +27,7 @@
 - type: marking
   id: EarsChemlight
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: chemlight_outer
@@ -41,8 +37,7 @@
 - type: marking
   id: EarsDragonLong
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: dragonlong
@@ -50,8 +45,7 @@
 - type: marking
   id: EarsEasternD
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: easternd_ears
@@ -61,8 +55,7 @@
 - type: marking
   id: EarsJackal
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Felinid]
+  groupWhitelist: [Felinid]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: jackal_outer
@@ -72,8 +65,7 @@
 - type: marking
   id: EarsMagus
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, Oni]
+  groupWhitelist: [Reptilian, Oni]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: magus_ears
@@ -83,8 +75,7 @@
 - type: marking
   id: EarsMouse
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Felinid]
+  groupWhitelist: [Felinid]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: mouse
@@ -92,8 +83,7 @@
 - type: marking
   id: EarsShadowkin
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Shadowkin]
+  groupWhitelist: [Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: shadowkin
@@ -101,8 +91,7 @@
 - type: marking
   id: EarsShadowkinStriped
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Shadowkin]
+  groupWhitelist: [Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: shadowkin
@@ -112,8 +101,7 @@
 - type: marking
   id: EarsSylveon
   bodyPart: HeadTop
-  markingCategory: HeadTop
-  speciesRestriction: [Reptilian, SlimePerson, Oni]
+  groupWhitelist: [Reptilian, Slime, Oni]
   sprites:
     - sprite: Backmen/Mobs/Customization/ears.rsi
       state: sylveon_primary

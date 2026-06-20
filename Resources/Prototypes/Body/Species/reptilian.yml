@@ -20,6 +20,9 @@
       limit: 1
       required: true
       default: [ LizardSnoutRound ]
+    enum.HumanoidVisualLayers.SnoutOverlay: # Backmen
+      limit: 1
+      required: false
     enum.HumanoidVisualLayers.HeadTop:
       limit: 2
       required: false
@@ -113,10 +116,19 @@
 - type: entity
   parent:
   - AppearanceReptilian
-  - BaseSpeciesMobOrganic
+  - BaseSpeciesMobSurgery
   id: MobReptilian
   name: Urissst Mz'Hand
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Dragon
+    understands:
+    - TauCetiBasic
+    - Dragon
   - type: Puller
     needsHands: false
   - type: Butcherable
@@ -151,7 +163,6 @@
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 42
-  - type: TemperatureDamage
     heatDamageThreshold: 400
     coldDamageThreshold: 285
     coldDamage:
@@ -207,6 +218,14 @@
   id: OrganReptilianTorso
   components:
   - type: VisualOrganMarkings
+    markingData:
+      group: Reptilian
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
     hideableLayers:
     - enum.HumanoidVisualLayers.Tail
 
@@ -215,8 +234,17 @@
   id: OrganReptilianHead
   components:
   - type: VisualOrganMarkings
+    markingData:
+      group: Reptilian
+      layers:
+      - Head
+      - Snout
+      - SnoutCover
+      - HeadSide
+      - HeadTop
     hideableLayers:
     - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.SnoutOverlay # Backmen
     - enum.HumanoidVisualLayers.HeadTop
     - enum.HumanoidVisualLayers.HeadSide
 
@@ -267,6 +295,11 @@
 - type: entity
   parent: [ OrganBaseTongue, OrganReptilianInternal ]
   id: OrganReptilianTongue
+  components:
+  - type: Sprite
+    sprite: Backmen/Items/Misc/lizardtongue.rsi
+    layers:
+    - state: tonguelizard
 
 - type: entity
   parent: [ OrganBaseAppendix, OrganSpriteHumanInternal, OrganReptilianInternal ]

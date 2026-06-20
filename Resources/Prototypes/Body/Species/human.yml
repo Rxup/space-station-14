@@ -88,14 +88,29 @@
 - type: entity
   parent:
   - AppearanceHuman
-  - BaseSpeciesMobOrganic
+  - BaseSpeciesMobSurgery
   id: MobHuman
   name: Urist McHands
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - SolCommon
+    understands:
+    - TauCetiBasic
+    - SolCommon
   - type: Butcherable
     spawned:
     - id: FoodMeatHuman
       amount: 5
+
+- type: entity
+  parent: MobHuman
+  id: MobHumanDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy human meant to be used in character setup.
 
 - type: entity
   parent: OrganBase
@@ -141,6 +156,16 @@
   id: OrganHumanHead
   components:
   - type: VisualOrganMarkings
+    markingData:
+      group: Human
+      layers:
+      - Head
+      - Hair
+      - FacialHair
+      - Snout
+      - SnoutCover
+      - HeadSide
+      - HeadTop
     hideableLayers:
     - enum.HumanoidVisualLayers.Hair
     - enum.HumanoidVisualLayers.Snout

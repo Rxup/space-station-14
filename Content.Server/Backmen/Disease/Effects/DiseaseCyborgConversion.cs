@@ -1,9 +1,13 @@
-using Content.Server.Humanoid;
 using Content.Shared.Backmen.Disease;
+using Content.Shared.Body;
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
+using Content.Shared.Roles;
 using Content.Shared.Repairable;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
@@ -20,7 +24,8 @@ public sealed partial class DiseaseCyborgConversion : DiseaseEffect
 
 public sealed partial class DiseaseEffectSystem
 {
-    [Dependency] private HumanoidProfileSystem _appearanceSystem = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
     [Dependency] private MetaDataSystem _metaDataSystem = default!;
 
     private void DiseaseCyborgConversion(Entity<DiseaseCarrierComponent> ent,
@@ -42,36 +47,36 @@ public sealed partial class DiseaseEffectSystem
         repairableComponent.DoAfterDelay = 8;
 
         _disease.CureDisease(ent, args.Disease);
-        if (TryComp<HumanoidProfileComponent>(ent, out var appearanceComponent))
+        if (TryComp<HumanoidProfileComponent>(ent, out var humanoid))
         {
-            _appearanceSystem.SetSex(ent, Sex.Female, true, appearanceComponent);
-            _appearanceSystem.SetSkinColor(ent, Color.Red, true, true, appearanceComponent);
-            _appearanceSystem.SetTTSVoice(ent, "Baya", appearanceComponent);
-            if (appearanceComponent.MarkingSet.Markings.TryGetValue(MarkingCategories.Tail, out var tails))
+            var appearance = new HumanoidCharacterAppearance(Color.Red, Color.Red, new());
+            var profile = new HumanoidCharacterProfile(
+                MetaData(ent).EntityName,
+                MetaData(ent).EntityDescription ?? string.Empty,
+                humanoid.Species,
+                1,
+                Sex.Female,
+                Gender.Epicene,
+                appearance,
+                SpawnPriorityPreference.None,
+                new Dictionary<ProtoId<JobPrototype>, JobPriority>(),
+                PreferenceUnavailableMode.SpawnAsOverflow,
+                [],
+                [],
+                new Dictionary<string, RoleLoadout>())
             {
-                foreach (var marking in tails.ToArray())
-                {
-                    _appearanceSystem.RemoveMarking(ent, marking.MarkingId);
-                }
-            }
+                Voice = "Baya",
+            };
 
-            if (appearanceComponent.MarkingSet.Markings.TryGetValue(MarkingCategories.HeadTop, out var headtop))
-            {
-                foreach (var marking in headtop.ToArray())
-                {
-                    _appearanceSystem.RemoveMarking(ent, marking.MarkingId);
-                }
-            }
+            _humanoidProfile.ApplyProfileTo((ent, humanoid), profile);
+            _visualBody.ApplyProfileTo((ent, TryComp<VisualBodyComponent>(ent, out var visualBody) ? visualBody : null), profile);
 
-            _appearanceSystem.AddMarking(ent, "LongEarsWide", Color.Red, true, true, appearanceComponent);
-            _appearanceSystem.AddMarking(ent, "MothAntennasFeathery", Color.Red, true, true, appearanceComponent);
-            _appearanceSystem.AddMarking(ent, "TailSuccubus", Color.Red, true, true, appearanceComponent);
-            appearanceComponent.Age = 1;
-            appearanceComponent.EyeColor = Color.Red;
-            appearanceComponent.Gender = Gender.Epicene;
+            var tts = EnsureComp<TTSComponent>(ent);
+            tts.VoicePrototypeId = "Baya";
+            Dirty(ent, tts);
+
             _metaDataSystem.SetEntityDescription(ent,
                 "Рободьявол. Кажется, это можно починить сваркой даже если оно умерло");
-            Dirty(ent, appearanceComponent);
             _popup.PopupPredicted("Кажется у вас в теле что-то поменялось....", ent, null, PopupType.LargeCaution);
         }
     }

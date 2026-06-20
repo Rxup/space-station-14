@@ -77,20 +77,13 @@ public sealed class StationRecordCommand : ToolshedCommand
                     metaDataComponent.EntityName,
                     "",
                     HumanoidProfileComponent.Species,
-                    "",
                     HumanoidProfileComponent.Age,
                     HumanoidProfileComponent.Sex,
                     HumanoidProfileComponent.Gender,
-                    new HumanoidCharacterAppearance
-                    {
-                        HairStyleId = "",
-                        HairColor = default,
-                        FacialHairStyleId = "",
-                        FacialHairColor = default,
-                        EyeColor = default,
-                        SkinColor = default,
-                        Markings = []
-                    },
+                    new HumanoidCharacterAppearance(
+                        Color.Black,
+                        Color.White,
+                        new()),
                     SpawnPriorityPreference.None,
                     new Dictionary<ProtoId<JobPrototype>, JobPriority>
                     {

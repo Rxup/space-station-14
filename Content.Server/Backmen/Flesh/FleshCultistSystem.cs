@@ -23,6 +23,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Backmen.Language;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cloning.Events;
@@ -70,7 +71,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _sharedAppearance = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private GunSystem _gunSystem = default!;
     [Dependency] private TagSystem _tagSystem = default!;
@@ -111,16 +112,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
     private void OnCultistCloning(EntityUid uid, FleshCultistComponent component, ref CloningEvent args)
     {
-        // If the cultist ate the body we need to visually reset it after cloning
-        if (!TryComp<HumanoidProfileComponent>(args.CloneUid, out var huAppComponent))
-            return;
-
-        var speciesProto = _proto.Index(huAppComponent.Species);
-        var skeletonSprites = _proto.Index<HumanoidSpeciesBaseSpritesPrototype>(speciesProto.SpriteSet);
-        foreach (var (key, id) in skeletonSprites.Sprites)
-        {
-            _sharedHuApp.SetBaseLayerId(args.CloneUid, key, id, humanoid: huAppComponent);
-        }
+        // nubody: visual reset after flesh cultist cloning deferred until flesh species uses organ visuals
     }
 
     private void OnMobStateChanged(EntityUid uid, FleshCultistComponent component, MobStateChangedEvent args)
@@ -416,39 +408,11 @@ public sealed partial class FleshCultistSystem : EntitySystem
             }
 
             if (TryComp<BodyComponent>(args.Args.Target, out var bodyComponent))
-            {
-                var parts = _body.GetBodyChildren(args.Args.Target, bodyComponent).ToArray();
-
-                foreach (var part in parts)
-                {
-                    if (part.Component.PartType == BodyPartType.Head)
-                        continue;
-
-                    if (part.Component.PartType == BodyPartType.Chest)
-                    {
-                        foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
-                        {
-                            _body.RemoveOrgan(organ.Id, organ.Component);
-                        }
-                    }
-                    else
-                    {
-                        QueueDel(part.Id);
-                    }
-                }
-            }
+                _body.StripBodyForSkeleton(args.Args.Target.Value, bodyComponent);
 
             _bloodstreamSystem.TryModifyBloodLevel(args.Args.Target.Value, -300);
 
-            var skeletonSprites = _proto.Index<HumanoidSpeciesBaseSpritesPrototype>("MobSkeletonSprites");
-            foreach (var (key, id) in skeletonSprites.Sprites)
-            {
-                if (key != HumanoidVisualLayers.Head)
-                {
-                    _sharedHuApp.SetBaseLayerId(args.Args.Target.Value, key, id, humanoid: HumanoidProfileComponent);
-                }
-            }
-
+            // nubody: skeleton visual overlay deferred
             if (TryComp<FixturesComponent>(args.Args.Target, out var fixturesComponent))
             {
                 _physics.SetDensity(args.Args.Target.Value, "fix1", fixturesComponent.Fixtures["fix1"], 50);

@@ -7,10 +7,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Humanoid.Markings;
 
-public sealed class MarkingManager
+public sealed partial class MarkingManager
 {
-    [Dependency] private readonly IComponentFactory _component = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IComponentFactory _component = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private FrozenDictionary<HumanoidVisualLayers, FrozenDictionary<string, MarkingPrototype>> _categorizedMarkings = default!;
     private FrozenDictionary<string, MarkingPrototype> _markings = default!;

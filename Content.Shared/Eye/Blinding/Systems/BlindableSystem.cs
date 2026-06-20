@@ -79,6 +79,20 @@ public sealed partial class BlindableSystem : EntitySystem
         blindable.Comp.EyeDamage += amount;
         UpdateEyeDamage(blindable, true);
     }
+
+    // backmen edit start
+    // Alternative version of the method intended to be used with Eye Organs, so that you can just pass in
+    // the severity and set that.
+    public void SetEyeDamage(Entity<BlindableComponent?> blindable, int amount)
+    {
+        if (!Resolve(blindable, ref blindable.Comp, false))
+            return;
+
+        blindable.Comp.EyeDamage = amount;
+        UpdateEyeDamage(blindable, true);
+    }
+    // backmen edit end
+
     private void UpdateEyeDamage(Entity<BlindableComponent?> blindable, bool isDamageChanged)
     {
         if (!Resolve(blindable, ref blindable.Comp, false))

@@ -51,14 +51,6 @@
     enum.HumanoidVisualLayers.RFoot:
       limit: 2
       required: false
-    enum.HumanoidVisualLayers.UndergarmentTop:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentTopTanktopVulpkanin ]
-    enum.HumanoidVisualLayers.UndergarmentBottom:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentBottomBoxersVulpkanin ]
 
 - type: entity
   parent: BaseSpeciesAppearance
@@ -141,10 +133,20 @@
 - type: entity
   parent:
   - AppearanceVulpkanin
-  - BaseSpeciesMobOrganic
+  - BaseSpeciesMobSurgery
   id: MobVulpkanin
   name: Urist McArfArf
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Canilunzt
+    understands:
+    - TauCetiBasic
+    - Canilunzt
+    - Dog
   - type: MessyDrinker
     spillChance: 0.33
   - type: Speech
@@ -168,7 +170,6 @@
         Slash: 3
   - type: Temperature # Same as moth temperatures until below is solved.
     specificHeat: 44
-  - type: TemperatureDamage
     heatDamageThreshold: 320 # TODO: 315 when there is a way to make the temperature alert not blink to the side of the screen and disappear when you "sweat" at 39C.
     coldDamageThreshold: 230 # TODO: 220 when the above is solved.
     coldDamage:
@@ -236,12 +237,39 @@
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganVulpkaninExternal ]
   id: OrganVulpkaninTorso
+  components:
+  - type: Sprite
+    state: torso_m
+  - type: VisualOrgan
+    data:
+      state: torso_m
+    sexStateOverrides:
+      Male: torso_m
+      Female: torso_f
+  - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
 
 - type: entity
   parent: [ OrganBaseHead, OrganVulpkaninExternal ]
   id: OrganVulpkaninHead
   components:
   - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+      layers:
+      - Head
+      - Hair
+      - FacialHair
+      - Snout
+      - SnoutCover
+      - HeadTop
     hideableLayers:
     - enum.HumanoidVisualLayers.Snout
     - enum.HumanoidVisualLayers.HeadTop
@@ -261,34 +289,82 @@
 - type: entity
   parent: [ OrganBaseArmLeft, OrganVulpkaninExternal ]
   id: OrganVulpkaninArmLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+      layers:
+      - LArm
 
 - type: entity
   parent: [ OrganBaseArmRight, OrganVulpkaninExternal ]
   id: OrganVulpkaninArmRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+      layers:
+      - RArm
 
 - type: entity
   parent: [ OrganBaseHandLeft, OrganVulpkaninExternal ]
   id: OrganVulpkaninHandLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+      layers:
+      - LHand
 
 - type: entity
   parent: [ OrganBaseHandRight, OrganVulpkaninExternal ]
   id: OrganVulpkaninHandRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+      layers:
+      - RHand
 
 - type: entity
   parent: [ OrganBaseLegLeft, OrganVulpkaninExternal ]
   id: OrganVulpkaninLegLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+      layers:
+      - LLeg
 
 - type: entity
   parent: [ OrganBaseLegRight, OrganVulpkaninExternal ]
   id: OrganVulpkaninLegRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+      layers:
+      - RLeg
 
 - type: entity
   parent: [ OrganBaseFootLeft, OrganVulpkaninExternal ]
   id: OrganVulpkaninFootLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+      layers:
+      - LFoot
 
 - type: entity
   parent: [ OrganBaseFootRight, OrganVulpkaninExternal ]
   id: OrganVulpkaninFootRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Vulpkanin
+      layers:
+      - RFoot
 
 - type: entity
   parent: [ OrganBaseBrain, OrganSpriteHumanInternal, OrganVulpkaninInternal ]

@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
@@ -61,6 +62,7 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
 
     [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
 
     public override void Initialize()
     {
@@ -85,7 +87,8 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
         if (!TryComp<BodyComponent>(ent, out var body))
             return false;
 
-        return HasComp<BorgChassisComponent>(ent) || body.LegEntities.Count >= body.RequiredLegs && body.LegEntities.Count != 0;
+        return HasComp<BorgChassisComponent>(ent)
+            || body.LegEntities.Count >= _body.GetEffectiveRequiredLegs(ent, body) && body.LegEntities.Count != 0;
     }
 
     private void OnCheckLegs(Entity<LayingDownComponent> ent, ref StandAttemptEvent args)
@@ -130,7 +133,7 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
             return;
 
         if (TryComp<BodyComponent>(ent, out var body) &&
-            (body.RequiredLegs > 0 && body.LegEntities.Count < body.RequiredLegs || body.LegEntities.Count == 0)
+            (body.LegEntities.Count < _body.GetEffectiveRequiredLegs(ent, body) || body.LegEntities.Count == 0)
             && standingStateComponent.CurrentState != StandingState.Lying)
         {
             _standing.Down(ent, true, true, true);

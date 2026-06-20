@@ -73,6 +73,15 @@
   id: MobSkeletonPerson
   name: Urist McSkelly
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Tradeband
+    understands:
+    - TauCetiBasic
+    - Tradeband
   - type: Damageable
     damageContainer: BiologicalMetaphysical
     damageModifierSet: Skeleton

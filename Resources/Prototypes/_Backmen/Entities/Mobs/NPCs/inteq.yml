@@ -3,6 +3,7 @@
   - BaseSimpleMob
   - MobCombat
   - MobAtmosStandard
+  - BaseMobNpcAnimalFill
   id: MobInteQAgent
   name: InteQ agent
   description: UGH!? AGH!! BREAK THINGS!!!
@@ -44,8 +45,6 @@
   - type: NpcFactionMember
     factions:
       - InteQHostile
-  - type: Body
-    prototype: Animal
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: HellSpawn

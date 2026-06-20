@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
@@ -131,11 +132,12 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         // Damage Groups
 
-        var damageSortedGroups =
-            damageable.DamagePerGroup.OrderByDescending(damage => damage.Value)
-                .ToDictionary(x => x.Key, x => x.Value);
+        var damageSortedGroups = damageable.DamagePerGroup
+            .OrderByDescending(damage => damage.Value)
+            .ToDictionary(x => new ProtoId<DamageGroupPrototype>(x.Key), x => x.Value);
 
-        IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
+        var damagePerType = damageable.Damage.DamageDict
+            .ToDictionary(x => new ProtoId<DamageTypePrototype>(x.Key), x => x.Value);
 
         DrawDiagnosticGroups(damageSortedGroups, damagePerType);
     }
@@ -152,8 +154,8 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     }
 
     private void DrawDiagnosticGroups(
-        Dictionary<string, FixedPoint2> groups,
-        IReadOnlyDictionary<string, FixedPoint2> damageDict)
+        Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> groups,
+        IReadOnlyDictionary<ProtoId<DamageTypePrototype>, FixedPoint2> damageDict)
     {
         GroupsContainer.RemoveAllChildren();
 

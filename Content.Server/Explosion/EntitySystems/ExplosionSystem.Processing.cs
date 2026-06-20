@@ -467,39 +467,31 @@ public sealed partial class ExplosionSystem
                     continue;
 
                 // TODO EXPLOSIONS turn explosions into entities, and pass the the entity in as the damage origin.
-                // backmen edit start
+                // start-backmen: body
                 if (_bodyQuery.TryComp(entity, out var body) && _consciousnessQuery.HasComp(entity))
                 {
-                    var bodyParts = _body.GetBodyChildren(entity, body).ToList();
-                    _robustRandom.Shuffle(bodyParts);
-
-                    var prioritisedParts = new List<EntityUid>();
-                    var chosenPart = bodyParts.First();
-
-                    prioritisedParts.Add(chosenPart.Id);
-                    bodyParts.Remove(chosenPart);
-
-                    if (_body.TryGetParentBodyPart(chosenPart.Id, out var parent, out var parentComponent))
+                    var bodyParts = _body.GetDistributedDamageTargets(entity, body).ToList();
+                    // backmen: surgery
+                    if (bodyParts.Count == 0)
                     {
-                        prioritisedParts.Add(parent.Value);
-                        bodyParts.Remove((parent.Value, parentComponent));
+                        _damageableSystem.TryChangeDamage((entity, damageable), damage, ignoreResistances: true, ignoreGlobalModifiers: true);
+                        continue;
                     }
 
-                    var children = _body.GetBodyPartChildren(chosenPart.Id, chosenPart.Component).ToList();
-                    _robustRandom.Shuffle(children);
+                    _robustRandom.Shuffle(bodyParts);
 
-                    prioritisedParts.Add(children.First().Id);
-                    bodyParts.Remove(children.First());
+                    var prioritisedCount = Math.Min(3, bodyParts.Count);
+                    var prioritisedParts = bodyParts.Take(prioritisedCount).ToList();
+                    var remainingParts = bodyParts.Skip(prioritisedCount).ToList();
 
                     foreach (var part in prioritisedParts)
                     {
                         _damageableSystem.TryChangeDamage(part, damage / prioritisedParts.Count, ignoreResistances: true, ignoreGlobalModifiers: true);
                     }
 
-                    foreach (var bodyPart in bodyParts)
+                    foreach (var part in remainingParts)
                     {
-                        // Distribute the last damage on the other parts... for the cinematic effect :3
-                        _damageableSystem.TryChangeDamage(bodyPart.Id, damage / bodyParts.Count, ignoreResistances: true, ignoreGlobalModifiers: true);
+                        _damageableSystem.TryChangeDamage(part, damage / bodyParts.Count, ignoreResistances: true, ignoreGlobalModifiers: true);
                     }
                 }
                 else
@@ -507,7 +499,7 @@ public sealed partial class ExplosionSystem
                     _damageableSystem.TryChangeDamage((entity, damageable), damage, ignoreResistances: true, ignoreGlobalModifiers: true);
                 }
 
-                // backmen edit end
+                // end-backmen: body
                 if (_actorQuery.HasComp(entity))
                 {
                     // Log damage to player entities only; this will create a massive amount of log spam otherwise.

@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Backmen.Drone.Actions;
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Hands.Systems;
@@ -14,7 +14,7 @@ using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Drone;
 using Content.Shared.Body;
-using BodySystem = Content.Server.Body.Systems.BodySystem;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Emoting;
@@ -38,7 +38,7 @@ namespace Content.Server.Backmen.Drone;
 
 public sealed partial class BSSDroneSystem : SharedDroneSystem
 {
-    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySystem _bodySystem = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private InnateToolSystem _innateToolSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Construction;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
@@ -34,6 +35,7 @@ namespace Content.Server.Destructible
 
         [Dependency] public readonly AtmosphereSystem AtmosphereSystem = default!;
         [Dependency] public readonly AudioSystem AudioSystem = default!;
+        [Dependency] public readonly BkmBodySystem BodySystem = default!;
         [Dependency] public readonly GibbingSystem Gibbing = default!;
         [Dependency] public readonly ConstructionSystem ConstructionSystem = default!;
         [Dependency] public readonly ExplosionSystem ExplosionSystem = default!;

@@ -78,6 +78,9 @@ marking-TailSnakeUnder = Lizard, snake tail (Under)
 marking-TailSnakeUnder-snake_under = Inner
 marking-TailSnakeUnder-snake_under_secondary = Outer
 
+marking-TailMaw = Lizard, maw tail
+marking-TailMaw-maw = Main
+
 # SPIKES
 marking-LizardChestSpinesAquaticWithoutTail = Lizard, chest, spines (Aquatic, without tail)
 marking-LizardChestSpinesAquaticWithoutTail-spines_aquatic = Spikes

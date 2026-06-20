@@ -1,20 +1,23 @@
 {
-    "version": 1,
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from and modified by deltanedas (github) for GoobStation",
-    "size": {
-        "x": 32,
-        "y": 32
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from and modified by deltanedas (github) for GoobStation",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "tail"
     },
-    "states": [
-        {
-            "name": "tail"
-        },
-        {
-            "name": "chest"
-        },
-        {
-            "name": "groin"
-        }
-    ]
+    {
+      "name": "torso"
+    },
+    {
+      "name": "chest"
+    },
+    {
+      "name": "groin"
+    }
+  ]
 }

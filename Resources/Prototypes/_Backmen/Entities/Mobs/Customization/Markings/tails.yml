@@ -1,8 +1,7 @@
 - type: marking
   id: TailAxolotl
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: axolotl
@@ -10,8 +9,7 @@
 - type: marking
   id: TailDatashark
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: datashark_ears_inner
@@ -27,8 +25,7 @@
 - type: marking
   id: TailEasternDragon
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: easternd_primary
@@ -38,8 +35,7 @@
 - type: marking
   id: TailFennec
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Felinid]
+  groupWhitelist: [Felinid]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: fennec
@@ -47,8 +43,7 @@
 - type: marking
   id: TailFish
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: fish_primary
@@ -58,8 +53,7 @@
 - type: marking
   id: TailFluffy
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Felinid]
+  groupWhitelist: [Felinid]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: fluffy
@@ -67,8 +61,7 @@
 - type: marking
   id: TailFox
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Felinid]
+  groupWhitelist: [Felinid]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: fox_primary
@@ -78,8 +71,7 @@
 - type: marking
   id: TailGecko
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: gecko_primary
@@ -91,8 +83,7 @@
 - type: marking
   id: TailKitsune
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Felinid]
+  groupWhitelist: [Felinid]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: kitsune_primary
@@ -102,8 +93,7 @@
 - type: marking
   id: TailMaw
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, SlimePerson]
+  groupWhitelist: [Reptilian, Slime]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: maw
@@ -111,8 +101,7 @@
 - type: marking
   id: TailShark
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  groupWhitelist: [Reptilian, Shark]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: shark_fin
@@ -122,8 +111,7 @@
 - type: marking
   id: TailSnake
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, SlimePerson]
+  groupWhitelist: [Reptilian, Slime]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: snake
@@ -131,8 +119,6 @@
 - type: marking
   id: TailSnakeAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: snake_wagging
@@ -140,8 +126,7 @@
 - type: marking
   id: TailSnakeStripe
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, SlimePerson]
+  groupWhitelist: [Reptilian, Slime]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: snake_stripe
@@ -151,8 +136,6 @@
 - type: marking
   id: TailSnakeStripeAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: snake_stripe_wagging
@@ -162,8 +145,7 @@
 - type: marking
   id: TailSnakeStripeAlt
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, SlimePerson]
+  groupWhitelist: [Reptilian, Slime]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: snake_stripe_alt
@@ -173,8 +155,6 @@
 - type: marking
   id: TailSnakeStripeAltAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: snake_stripe_alt_wagging
@@ -184,8 +164,7 @@
 - type: marking
   id: TailSnakeDual
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, SlimePerson]
+  groupWhitelist: [Reptilian, Slime]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: snake_dual
@@ -195,8 +174,6 @@
 - type: marking
   id: TailSnakeDualAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: snake_dual_wagging
@@ -206,8 +183,7 @@
 - type: marking
   id: TailSnakeUnder
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Reptilian, SlimePerson]
+  groupWhitelist: [Reptilian, Slime]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: snake_under
@@ -217,8 +193,6 @@
 - type: marking
   id: TailSnakeUnderAnimated
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: []
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: snake_under_wagging
@@ -228,8 +202,7 @@
 - type: marking
   id: TailSuccubus
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Moth, Felinid]
+  groupWhitelist: [Moth, Felinid]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: succubus
@@ -237,8 +210,7 @@
 - type: marking
   id: TailTentacle
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [nHuman, Oni]
+  groupWhitelist: [Human, Oni]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: tentacle
@@ -246,8 +218,7 @@
 - type: marking
   id: TailShadowkin
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Shadowkin]
+  groupWhitelist: [Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails64x32.rsi
       state: shadowkin
@@ -255,8 +226,7 @@
 - type: marking
   id: TailShadowkinBig
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Shadowkin]
+  groupWhitelist: [Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails64x32.rsi
       state: shadowkin_big
@@ -264,8 +234,7 @@
 - type: marking
   id: TailShadowkinBigFluff
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Shadowkin]
+  groupWhitelist: [Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails64x32.rsi
       state: shadowkin_big_fluff
@@ -273,8 +242,7 @@
 - type: marking
   id: TailShadowkinShorter
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Shadowkin]
+  groupWhitelist: [Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: shadowkin_shorter
@@ -282,8 +250,7 @@
 - type: marking
   id: TailShadowkinMedium
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Shadowkin]
+  groupWhitelist: [Shadowkin]
   sprites:
     - sprite: Backmen/Mobs/Customization/tails32x32.rsi
       state: shadowkin_medium

@@ -1,11 +1,13 @@
-using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Body;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(BodySystem), typeof(SharedBodySystem))]
+// start-backmen: body
+[Access(typeof(BodySystem), typeof(BkmBodySharedSystem))]
+// end-backmen: body
 public sealed partial class BodyComponent : Component
 {
     public const string ContainerID = "body_organs";

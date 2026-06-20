@@ -135,10 +135,21 @@
 - type: entity
   parent:
   - AppearanceMoth
-  - BaseSpeciesMobOrganic
+  - BaseSpeciesMobSurgery
   id: MobMoth
   name: Urist McFluff
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Moffic
+    understands:
+    - TauCetiBasic
+    - Moffic
+  - type: HumanoidProfile
+    species: Moth
   - type: Damageable
     damageModifierSet: Moth
   - type: ZombieAccentOverride
@@ -177,7 +188,6 @@
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 46
-  - type: TemperatureDamage # Moths hate the heat and thrive in the cold.
     heatDamageThreshold: 320
     coldDamageThreshold: 230
     coldDamage:
@@ -235,12 +245,32 @@
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganMothExternal ]
   id: OrganMothTorso
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Moth
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
 
 - type: entity
   parent: [ OrganBaseHead, OrganMothExternal ]
   id: OrganMothHead
   components:
   - type: VisualOrganMarkings
+    markingData:
+      group: Moth
+      layers:
+      - Head
+      - Hair
+      - FacialHair
+      - Snout
+      - SnoutCover
+      - HeadSide
+      - HeadTop
     hideableLayers:
     - enum.HumanoidVisualLayers.HeadTop
 

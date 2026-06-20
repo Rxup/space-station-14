@@ -723,7 +723,7 @@ ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
 PrefilledSyringe: Syringe
 
 # 2025-09-12
-BaseChemistryEmptyVial: ChemistryEmptyVial
+# BaseChemistryEmptyVial: ChemistryEmptyVial # ChemistryEmptyVial prototype not defined in fork
 
 # 2025-10-6
 BibleTanakh: null
@@ -783,3 +783,27 @@ RightHandSkeleton: OrganSkeletonPersonHandRight
 RightLegHuman: OrganHumanLegRight
 TorsoSkeleton: OrganSkeletonPersonTorso
 RightArmSkeleton: OrganSkeletonPersonArmRight
+
+# 2026-06-21 nubody: arachnid body parts -> organs
+ChestArachnid: OrganArachnidTorso
+HeadArachnid: OrganArachnidHead
+LeftArmArachnid: OrganArachnidArmLeft
+RightArmArachnid: OrganArachnidArmRight
+LeftHandArachnid: OrganArachnidHandLeft
+RightHandArachnid: OrganArachnidHandRight
+LeftLegArachnid: OrganArachnidLegLeft
+RightLegArachnid: OrganArachnidLegRight
+LeftFootArachnid: OrganArachnidFootLeft
+RightFootArachnid: OrganArachnidFootRight
+
+# 2026-06-21 nubody: vox body parts -> organs
+ChestVox: OrganVoxTorso
+HeadVox: OrganVoxHead
+LeftArmVox: OrganVoxArmLeft
+RightArmVox: OrganVoxArmRight
+LeftHandVox: OrganVoxHandLeft
+RightHandVox: OrganVoxHandRight
+LeftLegVox: OrganVoxLegLeft
+RightLegVox: OrganVoxLegRight
+LeftFootVox: OrganVoxFootLeft
+RightFootVox: OrganVoxFootRight
