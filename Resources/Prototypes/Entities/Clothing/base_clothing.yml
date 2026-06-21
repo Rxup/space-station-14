@@ -11,10 +11,7 @@
       - WhitelistChameleon
   - type: Armor
     modifiers: {}
-    coverage: # backmen: armour coverage
-      - Other
-      - Chest
-      - Groin
+    coverage: [] # backmen: armour coverage
   - type: StaticPrice
     price: 10
   - type: FlavorProfile #yes not every piece of clothing is edible, but this way every edible piece of clothing should have the flavor without me having to track down what specific clothing can and cannot be eaten.
