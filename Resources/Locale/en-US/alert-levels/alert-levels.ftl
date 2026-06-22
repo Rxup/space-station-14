@@ -34,9 +34,13 @@ alert-level-delta = Delta
 alert-level-delta-announcement = The station is under threat of imminent destruction. Command is to immediately organize evacuation measures for civilian personnel. Security personnel are to contact their head or other authorized person for further instructions.
 alert-level-delta-instructions = Crewmembers are advised to listen to heads of staff for more information.
 
-alert-level-epsilon = Epsilon
-alert-level-epsilon-announcement = Protocol Epsilon has been declared. The system is under serious threat and may be lost. Sector Central Command revokes all rights of sentient beings and establishes absolute rule of military law on the facility. All personnel are required to obey their superiors without question. Any violations are punishable by court-martial with possible death penalty.
-alert-level-epsilon-instructions = Submit to the forces of the corporation or be destroyed.
+alert-level-epsilon-foxtrot = Epsilon
+alert-level-epsilon-foxtrot-announcement = Protocol Epsilon has been declared. The system is under serious threat and may be lost. Sector Central Command revokes all rights of sentient beings and establishes absolute rule of military law on the facility. All personnel are required to obey their superiors without question. Any violations are punishable by court-martial with possible death penalty.
+alert-level-epsilon-foxtrot-instructions = Submit to the forces of the corporation or be destroyed.
+
+alert-level-epsilon-tango = Epsilon
+alert-level-epsilon-tango-announcement = Protocol Epsilon has been declared. The system is under serious threat and may be lost. Sector Central Command revokes all rights of sentient beings and establishes absolute rule of military law on the facility. All personnel are required to obey their superiors without question. Any violations are punishable by court-martial with possible death penalty.
+alert-level-epsilon-tango-instructions = Submit to the forces of the corporation or be destroyed.
 
 alert-level-sigma = Lockdown
 alert-level-sigma-announcement = Central Command has ordered a complete lockdown of the station. All personnel must go to their department. Security personnel are allowed to use lethal weapons.
