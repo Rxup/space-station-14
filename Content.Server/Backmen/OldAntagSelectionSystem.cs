@@ -1,4 +1,4 @@
-﻿using Content.Server.GameTicking.Rules;
+using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Preferences.Managers;
@@ -155,7 +155,7 @@ public sealed partial class OldAntagSelectionSystem : EntitySystem
         }
 
         //Unless explictly allowed, ignore non humanoids (eg pets)
-        if (!allowNonHumanoids && !HasComp<HumanoidAppearanceComponent>(playerEntity))
+        if (!allowNonHumanoids && !HasComp<HumanoidProfileComponent>(playerEntity))
             return false;
 
         //If a custom condition was provided, test it and exclude the player if it returns true

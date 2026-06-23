@@ -1,0 +1,183 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Harpy
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: true
+      default: [ HarpyEarsDefault ]
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ HarpyTailPhoenix ]
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: true
+      default: [ HarpyWingDefault ]
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceHarpy
+  name: harpy appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganHarpyTorso
+      Head: OrganHarpyHead
+      ArmLeft: OrganHarpyArmLeft
+      ArmRight: OrganHarpyArmRight
+      HandRight: OrganHarpyHandRight
+      HandLeft: OrganHarpyHandLeft
+      LegLeft: OrganHarpyLegLeft
+      LegRight: OrganHarpyLegRight
+      FootLeft: OrganHarpyFootLeft
+      FootRight: OrganHarpyFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Lungs: OrganHarpyLungs
+      Heart: OrganHumanHeart
+      Stomach: OrganAnimalStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+  - type: HumanoidProfile
+    species: Harpy
+  - type: Inventory
+    speciesId: harpy
+
+- type: entity
+  parent:
+  - AppearanceHarpy
+  - BaseSpeciesMobSurgery
+  id: MobHarpy
+  name: Urist McHarpy
+  components:
+  - type: HumanoidProfile
+    species: Harpy
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Garpy
+    understands:
+    - TauCetiBasic
+    - Garpy
+  - type: HarpySinger
+  - type: Instrument
+    allowPercussion: false
+    program: 52
+  - type: SwappableInstrument
+    instrumentList:
+      "Voice": {52: 0}
+      "Trumpet": {56: 0}
+      "Electric": {27: 0}
+      "Bass": {33: 0}
+      "Rock": {29: 0}
+      "Acoustic": {24: 0}
+      "Flute": {73: 0}
+      "Sax": {66: 0}
+  - type: UserInterface
+    interfaces:
+      enum.InstrumentUiKey.Key:
+        type: InstrumentBoundUserInterface
+      enum.VoiceMaskUIKey.Key:
+        type: VoiceMaskBoundUserInterface
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+  - type: Sprite
+    scale: 0.9, 0.9
+  - type: GenericVisualizer
+    visuals:
+      enum.HarpyVisualLayers.Singing:
+        singingLayer:
+          False: {visible: false}
+          True: {visible: true}
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.32
+        density: 90
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Damageable
+    damageModifierSet: Harpy
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Piercing: 5
+  - type: Speech
+    speechSounds: Alto
+  - type: Vocal
+    sounds:
+      Male: SoundsHarpy
+      Female: SoundsHarpy
+      Unsexed: SoundsHarpy
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 5.0
+  - type: FootPrints
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
+- type: entity
+  parent: MobHarpy
+  id: MobHarpyDummy
+  categories: [ HideSpawnMenu ]
+  name: Urist McHands
+  description: A dummy Harpy meant to be used in character setup.
+  components:
+  - type: HumanoidProfile
+    species: Harpy

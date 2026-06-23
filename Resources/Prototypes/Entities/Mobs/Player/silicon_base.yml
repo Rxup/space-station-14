@@ -1,7 +1,7 @@
 - type: entity
   save: false
   id: PlayerSiliconHumanoidBase
-  parent: [BaseMob, MobDamageable, MobCombat, MobAtmosExposed, MobFlammable]
+  parent: [BaseMob, MobDamageable, MobCombat, MobAtmosExposed, MobFlammable, BaseMobIPCBody]
   abstract: true
   components:
     - type: ContentEye
@@ -64,8 +64,7 @@
           Heat: 3 #per second, scales with temperature & other constants
       atmosTemperatureTransferEfficiency: 0.05
     - type: Deathgasp
-      prototype: SiliconDeathgasp
-      needsCritical: false
+      prototype: DefaultDeathgasp
     - type: MobState
       allowedStates:
         - Alive
@@ -80,15 +79,11 @@
             damage: 500
           behaviors:
             - !type:GibBehavior { }
-    - type: Icon
-      sprite: Mobs/Species/IPC/parts.rsi
-      state: full
     - type: Sprite
       noRot: true
       drawdepth: Mobs
       layers:
         - map: ["enum.HumanoidVisualLayers.Chest"]
-        - map: [ "enum.HumanoidVisualLayers.Groin" ]
         - map: ["enum.HumanoidVisualLayers.Head"]
         - map: ["enum.HumanoidVisualLayers.Snout"]
         - map: ["enum.HumanoidVisualLayers.Eyes"]
@@ -223,21 +218,17 @@
       showExamineInfo: true
     - type: SSDIndicator
     - type: CanEscapeInventory
-    - type: HumanoidAppearance
+    - type: HumanoidProfile
       species: IPC
-    - type: Body
-      prototype: IPC
-      requiredLegs: 2
     - type: Ensnareable
       sprite: Objects/Misc/ensnare.rsi
     - type: Speech
       speechSounds: Pai
     - type: Vocal
-      wilhelm: "/Audio/Voice/IPC/wilhelm.ogg"
       sounds:
-        Male: UnisexIPC
-        Female: UnisexIPC
-        Unsexed: UnisexIPC
+        Male: UnisexSilicon
+        Female: UnisexSilicon
+        Unsexed: UnisexSilicon
     - type: MeleeWeapon
       hidden: true
       soundHit:

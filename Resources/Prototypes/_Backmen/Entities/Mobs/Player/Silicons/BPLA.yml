@@ -71,8 +71,6 @@
     bodyType: KinematicController
   - type: Hands
     showInHands: false
-  - type: Body
-    prototype: Drone
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
     channels:
@@ -104,7 +102,7 @@
   name: Blue Space Drone
   id: DroneBPLA
   description: Разработан в НИИ Космических технологий с использованием Блюспейс технологий.
-  parent: [ PlayerSiliconBase ]
+  parent: [ PlayerSiliconBase, BaseMobDroneBody ]
   components:
   - type: AntagImmune
   - type: NameIdentifier
@@ -113,6 +111,22 @@
   - type: BatteryDrainer
   - type: BSSDrone
     noPowerPopup: ninja-no-power
+  - type: Hands
+    showInHands: false
+    hands:
+      left:
+        location: Left
+      right:
+        location: Right
+      innate-3:
+        location: Middle
+      innate-4:
+        location: Middle
+    sortedHands:
+    - left
+    - right
+    - innate-3
+    - innate-4
   - type: InnateTool
     tools:
       - id: BSSClothingBackpackSatchelDrone

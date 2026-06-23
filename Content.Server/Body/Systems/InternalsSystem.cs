@@ -4,7 +4,7 @@ using Content.Server.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Internals;

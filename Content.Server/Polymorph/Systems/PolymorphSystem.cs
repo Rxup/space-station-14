@@ -2,6 +2,7 @@ using Content.Server.Actions;
 using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
+using Content.Shared.Body;
 using Content.Shared.Buckle;
 using Content.Shared.Coordinates;
 using Content.Shared.Damage.Components;
@@ -34,13 +35,13 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private SharedBuckleSystem _buckle = default!;
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private DamageableSystem _damageable = default!;
-    [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MobThresholdSystem _mobThreshold = default!;
     [Dependency] private ServerInventorySystem _inventory = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private SharedMindSystem _mindSystem = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
 
@@ -116,7 +117,9 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (!_proto.Resolve(args.ProtoId, out var prototype) || args.Handled)
             return;
 
-        args.Handled = PolymorphEntity(ent, prototype.Configuration) != null;
+        PolymorphEntity(ent, prototype.Configuration);
+
+        args.Handled = true;
     }
 
     private void OnRevertPolymorphActionEvent(Entity<PolymorphedEntityComponent> ent,
@@ -260,7 +263,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         if (configuration.TransferHumanoidAppearance)
         {
-            _humanoid.CloneAppearance(uid, child);
+            _visualBody.CopyAppearanceFrom(uid, child);
         }
 
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
@@ -396,17 +399,6 @@ public sealed partial class PolymorphSystem : EntitySystem
         EntityUid? actionId = default!;
         if (!_actions.AddAction(target, ref actionId, RevertPolymorphId, target))
             return;
-
-        // start-backmen: action fix
-        if (_actions.GetAction(actionId) is {} actionComponent)
-        {
-            if (polyProto.Configuration.Cooldown != TimeSpan.Zero)
-            {
-                _actions.SetUseDelay((actionComponent, actionComponent), polyProto.Configuration.Cooldown);
-                _actions.SetCooldown(actionId, polyProto.Configuration.Cooldown);
-            }
-        }
-        // end-backmen: action fix
 
         target.Comp.PolymorphActions.Add(id, actionId.Value);
 

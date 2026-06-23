@@ -6,7 +6,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared.Body.Components
+namespace Content.Shared.Body
 {
     [RegisterComponent, NetworkedComponent, Access(typeof(StomachSystem))]
     public sealed partial class StomachComponent : Component

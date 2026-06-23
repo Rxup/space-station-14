@@ -4,7 +4,7 @@
 
 ## Анатомия
 Normally a body has 10 main parts. Those being:
-Обычно тело имеет 10 основных частей. Среди них:
+Обычно тело имеет 9 основных частей. Среди них:
 
 <Box>
 <GuideEntityEmbed Entity="HeadHuman" Caption="голова"/>
@@ -13,7 +13,6 @@ Normally a body has 10 main parts. Those being:
 <GuideEntityEmbed Entity="RightHandHuman" Caption="правая рука"/>
 <GuideEntityEmbed Entity="RightArmHuman" Caption="левая ладонь"/>
 <GuideEntityEmbed Entity="ChestHuman" Caption="грудь"/>
-<GuideEntityEmbed Entity="GroinHuman" Caption="пах"/>
 <GuideEntityEmbed Entity="LeftArmHuman" Caption="левая рука"/>
 <GuideEntityEmbed Entity="LeftHandHuman" Caption="левая ладонь"/>
 </Box>

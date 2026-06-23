@@ -8,7 +8,7 @@ using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using InternalsComponent = Content.Shared.Body.Components.InternalsComponent;
+using InternalsComponent = Content.Shared.Body.InternalsComponent;
 
 namespace Content.Shared.Atmos.EntitySystems;
 

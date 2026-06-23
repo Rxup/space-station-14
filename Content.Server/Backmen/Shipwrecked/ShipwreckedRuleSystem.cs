@@ -44,7 +44,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Shipwrecked.Components;
-using Content.Shared.Body.Events;
+using Content.Shared.Gibbing;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;

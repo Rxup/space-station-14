@@ -5,8 +5,9 @@ using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -24,12 +25,12 @@ public sealed partial class MobThresholdSystem : EntitySystem
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private AlertsSystem _alerts = default!;
 
-    // backmen edit start
-    [Dependency] private SharedBodySystem _body = default!;
+    // start-backmen: body
+    [Dependency] private BkmBodySharedSystem _body = default!;
 
     [Dependency] private INetManager _net = default!;
     [Dependency] private WoundSystem _wound = default!;
-    // backmen edit end
+    // end-backmen: body
 
     public override void Initialize()
     {
@@ -309,12 +310,12 @@ public sealed partial class MobThresholdSystem : EntitySystem
         if (TryComp<BodyComponent>(target1, out var body) && HasComp<ConsciousnessComponent>(target1))
         {
             var damageDict = new Dictionary<string, FixedPoint2>();
-            foreach (var bodyPart in _body.GetBodyChildren(target1, body))
+            foreach (var woundableId in _body.GetWoundableTargets(target1, body))
             {
-                if (!TryComp<WoundableComponent>(bodyPart.Id, out var woundable))
+                if (!TryComp<WoundableComponent>(woundableId, out var woundable))
                     continue;
 
-                foreach (var woundEnt in _wound.GetWoundableWounds(bodyPart.Id, woundable))
+                foreach (var woundEnt in _wound.GetWoundableWounds(woundableId, woundable))
                 {
                     if (!damageDict.TryAdd(woundEnt.Comp.DamageType, woundEnt.Comp.WoundSeverityPoint))
                     {

@@ -23,7 +23,7 @@ public sealed partial class IgnoreHumanoidWithComponentOverlay : Overlay
     {
         var spriteQuery = _entityManager.GetEntityQuery<SpriteComponent>();
 
-        foreach (var humanoid in _entityManager.EntityQuery<HumanoidAppearanceComponent>(true))
+        foreach (var humanoid in _entityManager.EntityQuery<HumanoidProfileComponent>(true))
         {
             if (_playerManager.LocalPlayer?.ControlledEntity == humanoid.Owner)
                 continue;

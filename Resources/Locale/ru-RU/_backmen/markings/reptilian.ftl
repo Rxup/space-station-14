@@ -58,6 +58,8 @@ marking-TailSnakeDual-snake_dual_secondary = Нижняя часть
 marking-TailSnakeUnder = Ящер, хвост змеи (Подхвостье)
 marking-TailSnakeUnder-snake_under = Верхняя часть
 marking-TailSnakeUnder-snake_under_secondary = Нижняя часть
+marking-TailMaw = Слаймолюд, хвост с пастью
+marking-TailMaw-maw = Основная часть
 # ШИПЫ
 marking-LizardChestSpinesAquaticWithoutTail = Ящер, грудь, шипы на спине (Водный, без хвоста)
 marking-LizardChestSpinesAquaticWithoutTail-spines_aquatic = Шипы

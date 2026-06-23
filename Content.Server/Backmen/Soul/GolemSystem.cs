@@ -128,7 +128,7 @@ public sealed partial class GolemSystem : SharedGolemSystem
         if (_slotsSystem.GetItemOrNull(args.Target.Value, CrystalSlot) != null)
             return;
 
-        if (!(HasComp<HumanoidAppearanceComponent>(args.User) || Prototype(args.User)?.ID == AdminObserver.Id))
+        if (!(HasComp<HumanoidProfileComponent>(args.User) || Prototype(args.User)?.ID == AdminObserver.Id))
             return;
 
         if (!_uiSystem.TryOpenUi(args.Target.Value, GolemUiKey.Key, args.User))

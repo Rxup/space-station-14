@@ -13,7 +13,7 @@
     description: Выживший на замершей планете.
   - type: Loadout
     prototypes: [SurvivalGear]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: true
 
 - type: entity
@@ -31,7 +31,7 @@
     description: Выживший на замершей планете.
   - type: Loadout
     prototypes: [CargoTechGearSurvival]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: true
 
 - type: entity
@@ -49,7 +49,7 @@
     description: Выживший на замершей планете.
   - type: Loadout
     prototypes: [DoctorGearSurvival]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: true
 
 - type: entity
@@ -67,7 +67,7 @@
     description: Выживший на замершей планете.
   - type: Loadout
     prototypes: [SecurityOfficerGearSurvival]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: true
 
 - type: entity
@@ -85,7 +85,7 @@
     description: Выживший на замершей планете.
   - type: Loadout
     prototypes: [CaptainGearSurvival]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: true
 
 - type: entity
@@ -103,7 +103,7 @@
     description: Выживший на замершей планете.
   - type: Loadout
     prototypes: [StationEngineerGearSurvival]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: true
 
 - type: entity
@@ -121,5 +121,5 @@
     description: Выживший на замершей планете.
   - type: Loadout
     prototypes: [ChaplainGearSurvival]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: true

@@ -1,0 +1,7 @@
+- type: species
+  id: IPC
+  name: IPC
+  roundStart: false
+  prototype: MobIPC
+  dollPrototype: AppearanceHuman
+  skinColoration: HumanToned

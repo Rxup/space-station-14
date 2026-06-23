@@ -1,79 +1,84 @@
-﻿using System.Numerics;
-using Content.Server.Body.Systems;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
+using Content.IntegrationTests.Fixtures;
+using Content.Server.Backmen.Body.Systems;
+using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body;
 using Content.Shared.Rotation;
+using Content.Shared.Standing;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 
-namespace Content.IntegrationTests.Tests.Body
+namespace Content.IntegrationTests.Tests.Body;
+
+/// <summary>
+/// Nubody version: removing leg organs clears <see cref="BodyComponent.LegEntities"/> and prevents standing.
+/// </summary>
+[TestFixture]
+[TestOf(typeof(BodyComponent))]
+public sealed class LegTest : GameTest
 {
-    [TestFixture]
-    [TestOf(typeof(BodyPartComponent))]
-    [TestOf(typeof(BodyComponent))]
-    public sealed class LegTest
+    public override PoolSettings PoolSettings => PsDisconnected;
+
+    [Test]
+    public async Task RemoveLegsFallTest()
     {
-        [TestPrototypes]
-        private const string Prototypes = @"
-- type: entity
-  name: HumanBodyAndAppearanceDummy
-  id: HumanBodyAndAppearanceDummy
-  components:
-  - type: Appearance
-  - type: Body
-    prototype: Human
-  - type: StandingState
-";
+        var pair = Pair;
+        var server = pair.Server;
 
-        [Test]
-        public async Task RemoveLegsFallTest()
+        var entityManager = server.ResolveDependency<IEntityManager>();
+        var bodySystem = entityManager.System<BkmBodySystem>();
+        var bodyOrgans = entityManager.System<BodySystem>();
+        var standing = entityManager.System<StandingStateSystem>();
+        var appearanceSystem = entityManager.System<SharedAppearanceSystem>();
+
+        var map = await pair.CreateTestMap();
+
+        EntityUid human = default;
+        AppearanceComponent? appearance = null;
+
+        await server.WaitAssertion(() =>
         {
-            await using var pair = await PoolManager.GetServerClient();
-            var server = pair.Server;
+            human = entityManager.SpawnEntity("MobHuman", map.MapCoords);
+            Assert.That(entityManager.TryGetComponent(human, out BodyComponent? body));
+            Assert.That(body!.Organs, Is.Not.Null);
+            Assert.That(body.LegEntities, Is.Not.Empty);
+            Assert.That(entityManager.TryGetComponent(human, out appearance));
+            Assert.That(
+                appearanceSystem.TryGetData(human, RotationVisuals.RotationState, out RotationState _, appearance),
+                Is.False);
+        });
 
-            EntityUid human = default!;
-            AppearanceComponent appearance = null;
+        await server.WaitRunTicks(5);
 
-            var entityManager = server.ResolveDependency<IEntityManager>();
-            var mapManager = server.ResolveDependency<IMapManager>();
-            var appearanceSystem = entityManager.System<SharedAppearanceSystem>();
-            var xformSystem = entityManager.System<SharedTransformSystem>();
+        await server.WaitAssertion(() =>
+        {
+            var body = entityManager.GetComponent<BodyComponent>(human);
 
-            var map = await pair.CreateTestMap();
-
-            await server.WaitAssertion(() =>
+            foreach (var category in new ProtoId<OrganCategoryPrototype>[] { "LegLeft", "LegRight" })
             {
-                BodyComponent body = null;
+                if (!bodyOrgans.TryGetOrganByCategory((human, body), category, out var leg))
+                    continue;
 
-                human = entityManager.SpawnEntity("HumanBodyAndAppearanceDummy",
-                    new MapCoordinates(Vector2.Zero, map.MapId));
+                Assert.That(bodySystem.RemoveOrgan(leg), Is.True, $"Failed to remove {category}.");
+            }
 
-                Assert.Multiple(() =>
-                {
-                    Assert.That(entityManager.TryGetComponent(human, out body));
-                    Assert.That(entityManager.TryGetComponent(human, out appearance));
-                });
+            Assert.That(body.LegEntities, Is.Empty);
 
-                Assert.That(!appearanceSystem.TryGetData(human, RotationVisuals.RotationState, out RotationState _, appearance));
+            var standAttempt = new StandAttemptEvent();
+            entityManager.EventBus.RaiseLocalEvent(human, standAttempt);
+            Assert.That(standAttempt.Cancelled, Is.True, "Mob without legs should not be able to stand.");
+            Assert.That(standing.IsDown(human), Is.True, "Mob without legs should be knocked down.");
+        });
 
-                var bodySystem = entityManager.System<BodySystem>();
-                var legs = bodySystem.GetBodyChildrenOfType(human, BodyPartType.Leg, body);
+        await server.WaitRunTicks(1);
 
-                foreach (var leg in legs)
-                {
-                    xformSystem.DetachEntity(leg.Id, entityManager.GetComponent<TransformComponent>(leg.Id));
-                }
-            });
-
-            await server.WaitAssertion(() =>
-            {
+        await server.WaitAssertion(() =>
+        {
 #pragma warning disable NUnit2045
-                // Interdependent assertions.
-                Assert.That(appearanceSystem.TryGetData(human, RotationVisuals.RotationState, out RotationState state, appearance));
-                Assert.That(state, Is.EqualTo(RotationState.Horizontal));
+            Assert.That(
+                appearanceSystem.TryGetData(human, RotationVisuals.RotationState, out RotationState state, appearance),
+                Is.True);
+            Assert.That(state, Is.EqualTo(RotationState.Horizontal));
 #pragma warning restore NUnit2045
-            });
-            await pair.CleanReturnAsync();
-        }
+        });
     }
 }

@@ -1,5 +1,5 @@
 - type: entity
-  parent: SimpleSpaceMobBase
+  parent: [ SimpleSpaceMobBase, BaseMobNpcPrimateFill ]
   id: MobIfritFamiliar
   name: Ифрит
   description: Мистический слуга
@@ -70,13 +70,19 @@
       tags:
         - CannotSuicide
         - DoorBumpOpener
-    - type: Body
-      prototype: Primate
     - type: InnateTool
       tools:
         - id: WelderIfrit
         - id: WelderIfrit
     - type: Hands
+      hands:
+        left:
+          location: Left
+        right:
+          location: Right
+      sortedHands:
+      - left
+      - right
     - type: RandomMetadata
       nameSegments: [NamesGolem]
     - type: PotentialPsionic

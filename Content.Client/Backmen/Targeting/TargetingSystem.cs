@@ -31,8 +31,6 @@ public sealed partial class TargetingSystem : SharedTargetingSystem
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.Head)))
         .Bind(ContentKeyFunctions.TargetChest,
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.Chest)))
-        .Bind(ContentKeyFunctions.TargetGroin,
-            InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.Groin)))
         .Bind(ContentKeyFunctions.TargetLeftArm,
             InputCmdHandler.FromDelegate((session) => HandleTargetChange(session, TargetBodyPart.LeftArm)))
         .Bind(ContentKeyFunctions.TargetLeftHand,

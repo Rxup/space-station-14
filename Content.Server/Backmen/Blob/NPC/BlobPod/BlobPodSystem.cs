@@ -64,7 +64,7 @@ public sealed partial class BlobPodSystem : SharedBlobPodSystem
         if(args.Container.ID != "head")
             return;
 
-        if (!HasComp<HumanoidAppearanceComponent>(args.Container.Owner) || !HasComp<ZombieBlobComponent>(args.Container.Owner))
+        if (!HasComp<HumanoidProfileComponent>(args.Container.Owner) || !HasComp<ZombieBlobComponent>(args.Container.Owner))
             return;
 
         RemCompDeferred<ZombieBlobComponent>(args.Container.Owner);
@@ -147,7 +147,7 @@ public sealed partial class BlobPodSystem : SharedBlobPodSystem
     {
         if (!Resolve(uid, ref component))
             return false;
-        if (!HasComp<HumanoidAppearanceComponent>(target))
+        if (!HasComp<HumanoidProfileComponent>(target))
             return false;
         if (_mobs.IsAlive(target))
             return false;

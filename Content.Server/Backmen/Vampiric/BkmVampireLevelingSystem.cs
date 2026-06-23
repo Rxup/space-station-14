@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.Vampiric.Role;
+using Content.Server.Backmen.Vampiric.Role;
 using Content.Server.Body.Components;
 using Content.Server.Mind;
 using Content.Server.Polymorph.Components;
@@ -10,7 +10,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Vampiric;
 using Content.Shared.Backmen.Vampiric.Components;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;

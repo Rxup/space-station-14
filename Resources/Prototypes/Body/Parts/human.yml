@@ -21,23 +21,7 @@
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/parts.rsi
-    state: "chest_m"
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 10
-      - ReagentId: Blood
-        Quantity: 20
-
-- type: entity
-  id: GroinHuman
-  name: "Тазовая область"
-  parent: [BaseGroin, PartHuman]
-  components:
-  - type: Sprite
-    sprite: Mobs/Species/Human/parts.rsi
-    state: "groin_m"
+    state: "torso_m"
   - type: Extractable
     juiceSolution:
       reagents:

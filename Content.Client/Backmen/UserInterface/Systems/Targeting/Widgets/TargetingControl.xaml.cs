@@ -25,7 +25,6 @@ public sealed partial class TargetingControl : UIWidget
             // TODO: ADD EYE AND MOUTH TARGETING
             { TargetBodyPart.Head, HeadButton },
             { TargetBodyPart.Chest, ChestButton },
-            { TargetBodyPart.Groin, GroinButton },
             { TargetBodyPart.LeftArm, LeftArmButton },
             { TargetBodyPart.LeftHand, LeftHandButton },
             { TargetBodyPart.RightArm, RightArmButton },
@@ -40,7 +39,6 @@ public sealed partial class TargetingControl : UIWidget
         {
             { TargetBodyPart.Head, DollHead },
             { TargetBodyPart.Chest, DollTorso },
-            { TargetBodyPart.Groin, DollGroin },
             { TargetBodyPart.LeftArm, DollLeftArm },
             { TargetBodyPart.LeftHand, DollLeftHand },
             { TargetBodyPart.RightArm, DollRightArm },
@@ -73,13 +71,35 @@ public sealed partial class TargetingControl : UIWidget
 
     public void SetTextures(Dictionary<TargetBodyPart, WoundableSeverity> state)
     {
-        foreach (var (bodyPart, integrity) in state)
+        foreach (var part in SharedTargetingSystem.GetValidParts())
         {
-            string enumName = Enum.GetName(typeof(TargetBodyPart), bodyPart) ?? "Unknown";
-            int enumValue = (int) integrity;
-            var texture = new SpriteSpecifier.Rsi(new ResPath($"/Textures/Interface/Targeting/Status/{enumName.ToLowerInvariant()}.rsi"), $"{enumName.ToLowerInvariant()}_{enumValue}");
-            _partStatusControls[bodyPart].Texture = _controller.GetTexture(texture);
+            if (!state.TryGetValue(part, out var integrity))
+                continue;
+
+            SetPartStatusTexture(part, integrity);
         }
+
+        // Groin targeting was merged into chest; keep the groin overlay in sync.
+        if (state.TryGetValue(TargetBodyPart.Chest, out var chestIntegrity))
+            SetPartStatusTexture("groin", chestIntegrity, DollGroin);
+    }
+
+    private void SetPartStatusTexture(TargetBodyPart bodyPart, WoundableSeverity integrity)
+    {
+        if (!_partStatusControls.TryGetValue(bodyPart, out var control))
+            return;
+
+        SetPartStatusTexture(Enum.GetName(typeof(TargetBodyPart), bodyPart) ?? "unknown", integrity, control);
+    }
+
+    private void SetPartStatusTexture(string enumName, WoundableSeverity integrity, TextureRect control)
+    {
+        var enumValue = (int) integrity;
+        var texture = new SpriteSpecifier.Rsi(
+            new ResPath($"/Textures/Interface/Targeting/Status/{enumName.ToLowerInvariant()}.rsi"),
+            $"{enumName.ToLowerInvariant()}_{enumValue}");
+        control.Texture = _controller.GetTexture(texture);
+        control.Visible = true;
     }
 
     protected override void OnThemeUpdated()

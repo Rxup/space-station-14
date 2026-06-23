@@ -83,17 +83,17 @@ public partial class WoundSystem
         var biggestDamage = FixedPoint2.Zero;
 
         woundable = null;
-        foreach (var bodyPart in Body.GetBodyChildren(body))
+        foreach (var woundableId in Body.GetWoundableTargets(body))
         {
-            if (!WoundableQuery.TryComp(bodyPart.Id, out var woundableComp))
+            if (!WoundableQuery.TryComp(woundableId, out var woundableComp))
                 continue;
 
-            var woundableDamage = GetWoundableSeverityPoint(bodyPart.Id, woundableComp, damageGroup, healable);
+            var woundableDamage = GetWoundableSeverityPoint(woundableId, woundableComp, damageGroup, healable);
             if (woundableDamage <= biggestDamage)
                 continue;
 
             biggestDamage = woundableDamage;
-            woundable = (bodyPart.Id, woundableComp);
+            woundable = (woundableId, woundableComp);
         }
 
         return woundable != null;

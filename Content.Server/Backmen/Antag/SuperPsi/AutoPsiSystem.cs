@@ -231,7 +231,7 @@ public sealed partial class AutoPsiSystem : EntitySystem
 
     private void OnSelectAntag(Entity<SuperPsiRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(args.EntityUid, out var humanoidAppearanceComponent))
+        if (!TryComp<HumanoidProfileComponent>(args.EntityUid, out var HumanoidProfileComponent))
             return;
 
         var station = _stationSystem.GetOwningStation(args.EntityUid);
@@ -246,9 +246,9 @@ public sealed partial class AutoPsiSystem : EntitySystem
                 if (_recordsSystem.TryGetRecord<GeneralStationRecord>(recordKey, out var record))
                 {
                     record.Name = Name(args.EntityUid);
-                    record.Age = humanoidAppearanceComponent.Age;
-                    record.Species = humanoidAppearanceComponent.Species;
-                    record.Gender = humanoidAppearanceComponent.Gender;
+                    record.Age = HumanoidProfileComponent.Age;
+                    record.Species = HumanoidProfileComponent.Species;
+                    record.Gender = HumanoidProfileComponent.Gender;
                     if (fingerprintComponent != null)
                     {
                         record.Fingerprint = fingerprintComponent.Fingerprint;
@@ -272,12 +272,12 @@ public sealed partial class AutoPsiSystem : EntitySystem
             var record = new GeneralStationRecord()
             {
                 Name = Name(args.EntityUid),
-                Age = humanoidAppearanceComponent.Age,
+                Age = HumanoidProfileComponent.Age,
                 JobTitle = jobPrototype.LocalizedName,
                 JobIcon = jobPrototype.Icon,
                 JobPrototype = JobPrisoner,
-                Species = humanoidAppearanceComponent.Species,
-                Gender = humanoidAppearanceComponent.Gender,
+                Species = HumanoidProfileComponent.Species,
+                Gender = HumanoidProfileComponent.Gender,
                 DisplayPriority = jobPrototype.RealDisplayWeight,
                 Fingerprint = fingerprintComponent?.Fingerprint,
                 DNA = dnaComponent?.DNA

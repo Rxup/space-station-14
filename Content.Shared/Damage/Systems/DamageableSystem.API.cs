@@ -3,7 +3,7 @@ using System.Net.Sockets;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -478,7 +478,7 @@ public sealed partial class DamageableSystem
         // Синхронизация severity ран с общим уроном (для rejuvenate и т.п.)
         if (TryComp<BodyComponent>(ent, out var body) && TryComp<ConsciousnessComponent>(ent, out _))
         {
-            foreach (var (part, _) in _body.GetBodyChildren(ent.Owner, body))
+            foreach (var part in _body.GetDistributedDamageTargets(ent.Owner, body))
             {
                 if (!TryComp(part, out WoundableComponent? woundable))
                     continue;

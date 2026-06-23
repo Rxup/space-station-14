@@ -72,6 +72,11 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: medical
+  # start-backmen: surgery
+  - type: SurgeryTarget
+    canOperate: true
+    canBeOperatedOn: false
+  # end-backmen: surgery
 
 - type: entity
   id: BorgChassisService

@@ -3,6 +3,7 @@ using System.Text;
 using Content.Client.Materials;
 using Content.Shared._DV.Salvage.Components; // DeltaV
 using Content.Shared._DV.Salvage.Systems; // DeltaV
+using Content.Shared.Backmen.Lathe;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Research.Prototypes;
@@ -25,11 +26,13 @@ public sealed partial class LatheMenu : DefaultWindow
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPlayerManager _player = default!; // DeltaV
     [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private readonly SpriteSystem _spriteSystem;
     private readonly LatheSystem _lathe;
     private readonly MaterialStorageSystem _materialStorage;
     private readonly MiningPointsSystem _miningPoints; // DeltaV
+    private Content.Client.Backmen.Lathe.BkmBiofabricatorSystem? _biofabricator;
 
     public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
     public event Action<string, int>? RecipeQueueAction;
@@ -58,6 +61,7 @@ public sealed partial class LatheMenu : DefaultWindow
         _lathe = _entityManager.System<LatheSystem>();
         _materialStorage = _entityManager.System<MaterialStorageSystem>();
         _miningPoints = _entityManager.System<MiningPointsSystem>(); // DeltaV
+        _biofabricator = _entityManager.System<Content.Client.Backmen.Lathe.BkmBiofabricatorSystem>();
 
         SearchBar.OnTextChanged += _ =>
         {
@@ -140,6 +144,24 @@ public sealed partial class LatheMenu : DefaultWindow
 
         if (_entityManager.TryGetComponent<MiningPointsComponent>(Entity, out var points))
             UpdateMiningPoints(points.Points);
+
+        UpdateFabricatingProgress();
+    }
+
+    private void UpdateFabricatingProgress()
+    {
+        if (_entityManager.TryGetComponent<BkmBiofabricatorComponent>(Entity, out var bkm)
+            && bkm.IsProducing
+            && bkm.ProductionDuration > TimeSpan.Zero
+            && _biofabricator != null)
+        {
+            FabricatingProgressBar.Visible = true;
+            FabricatingProgressBar.Value = _biofabricator.GetProductionProgress(bkm);
+            return;
+        }
+
+        FabricatingProgressBar.Visible = false;
+        FabricatingProgressBar.Value = 0;
     }
 
     /// <summary>
@@ -372,7 +394,10 @@ public sealed partial class LatheMenu : DefaultWindow
     {
         FabricatingContainer.Visible = recipeProto != null;
         if (recipeProto == null)
+        {
+            FabricatingProgressBar.Visible = false;
             return;
+        }
 
         var recipe = _prototypeManager.Index(recipeProto.Value);
 
@@ -380,6 +405,7 @@ public sealed partial class LatheMenu : DefaultWindow
         FabricatingDisplayContainer.AddChild(GetRecipeDisplayControl(recipe));
 
         NameLabel.Text = _lathe.GetRecipeName(recipe);
+        UpdateFabricatingProgress();
     }
 
     public Control GetRecipeDisplayControl(LatheRecipePrototype recipe)

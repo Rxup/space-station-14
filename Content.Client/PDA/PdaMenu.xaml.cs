@@ -15,7 +15,7 @@ namespace Content.Client.PDA
     [GenerateTypedNameReferences]
     public sealed partial class PdaMenu : PdaWindow
     {
-        [Dependency] private readonly IClipboardManager _clipboard = null!;
+        [Dependency] private IClipboardManager _clipboard = null!;
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private IEntitySystemManager _entitySystem = default!;
         private readonly ClientGameTicker _gameTicker;

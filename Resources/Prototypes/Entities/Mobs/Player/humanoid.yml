@@ -9,7 +9,7 @@
   - ArachneClassic
   # end-backmen: species
   components:
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
       randomizeName: false
     - type: GhostTakeoverAvailable
     - type: IdBind
@@ -627,7 +627,7 @@
   id: SyndicateAgent
   parent: BackmenSpecies
   components:
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
       randomizeName: false
     - type: Loadout
       prototypes: [SyndicateOperativeGearExtremelyBasic]
@@ -647,7 +647,7 @@
   id: NukeOp
   parent: BackmenSpecies
   components:
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
       randomizeName: false
     - type: NukeOperative
 

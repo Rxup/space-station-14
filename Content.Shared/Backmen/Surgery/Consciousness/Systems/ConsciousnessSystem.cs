@@ -1,9 +1,10 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -23,7 +24,7 @@ public abstract partial class ConsciousnessSystem : EntitySystem
     [Dependency] protected IRobustRandom Random = default!;
     [Dependency] protected IPrototypeManager Proto = default!;
 
-    [Dependency] protected SharedBodySystem Body = default!;
+    [Dependency] protected BkmBodySharedSystem Body = default!;
 
     [Dependency] protected PainSystem Pain = default!;
     [Dependency] protected WoundSystem Wound = default!;
@@ -153,23 +154,24 @@ public abstract partial class ConsciousnessSystem : EntitySystem
         if (HasComp<ZombieComponent>(target.Owner))
             return;
 
+        var inPainCrit = !PainImmuneQuery.HasComp(target)
+            && TryGetNerveSystem(target, out var nerveSys)
+            && (nerveSys.Value.Comp.Pain >= nerveSys.Value.Comp.SoftPainCap
+                || nerveSys.Value.Comp.ForcePainCrit);
+
         var newMobState = MobState.Alive;
-        if (!PainImmuneQuery.HasComp(target) && TryGetNerveSystem(target, out var nerveSys))
-        {
-            var comp = nerveSys.Value.Comp;
-            if (comp.Pain >= comp.SoftPainCap || comp.ForcePainCrit)
-                newMobState = MobState.SoftCritical;
-        }
+        if (inPainCrit)
+            newMobState = MobState.SoftCritical;
 
         if (!target.Comp1.ForceConscious)
         {
-            if (!target.Comp1.IsConscious)
+            if (target.Comp1.ForceUnconscious)
+                newMobState = MobState.Critical;
+
+            if (!target.Comp1.IsConscious && !inPainCrit)
                 newMobState = MobState.Critical;
 
             if (target.Comp1.PassedOut)
-                newMobState = MobState.Critical;
-
-            if (target.Comp1.ForceUnconscious)
                 newMobState = MobState.Critical;
 
             if (target.Comp1.Consciousness <= 0)

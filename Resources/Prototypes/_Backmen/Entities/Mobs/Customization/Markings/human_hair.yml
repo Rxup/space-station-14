@@ -1,7 +1,6 @@
 - type: marking
   id: HumanHairlongBedheadD
   bodyPart: Hair
-  markingCategory: Hair
   sprites:
     - sprite: Backmen/Mobs/Customization/human_hair.rsi
       state: long_bedhead
@@ -9,7 +8,6 @@
 - type: marking
   id: HumanHairRick
   bodyPart: Hair
-  markingCategory: Hair
   sprites:
     - sprite: Backmen/Mobs/Customization/human_hair.rsi
       state: rick
@@ -17,7 +15,6 @@
 - type: marking
   id: HumanHairMorty
   bodyPart: Hair
-  markingCategory: Hair
   sprites:
     - sprite: Backmen/Mobs/Customization/human_hair.rsi
       state: morty

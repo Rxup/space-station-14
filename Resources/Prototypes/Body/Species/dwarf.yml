@@ -1,0 +1,173 @@
+- type: markingsGroup
+  parent: Human
+  id: Dwarf
+
+- type: entity
+  parent: AppearanceHuman
+  id: AppearanceDwarf
+  name: dwarf appearance
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: InitialBody
+    organs:
+      Torso: OrganDwarfTorso
+      Head: OrganDwarfHead
+      ArmLeft: OrganDwarfArmLeft
+      ArmRight: OrganDwarfArmRight
+      HandRight: OrganDwarfHandRight
+      HandLeft: OrganDwarfHandLeft
+      LegLeft: OrganDwarfLegLeft
+      LegRight: OrganDwarfLegRight
+      FootLeft: OrganDwarfFootLeft
+      FootRight: OrganDwarfFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Lungs: OrganHumanLungs
+      Heart: OrganDwarfHeart
+      Stomach: OrganDwarfStomach
+      Liver: OrganDwarfLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Dwarf
+  - type: ScaleVisuals
+    scale: 1, 0.8
+
+- type: entity
+  parent:
+  - AppearanceDwarf
+  - MobHuman
+  id: MobDwarf
+  name: Urist McHands The Dwarf
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - SolCommon
+    - Dwarven
+    understands:
+    - TauCetiBasic
+    - SolCommon
+    - Dwarven
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        # they r smaller
+        density: 120
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Vocal
+    sounds:
+      Male: UnisexDwarf
+      Female: FemaleDwarf
+      Unsexed: UnisexDwarf
+  - type: ReplacementAccent
+    accent: dwarf
+  - type: Speech
+    speechSounds: Bass
+
+- type: entity
+  parent: OrganHumanExternal
+  id: OrganDwarfExternal
+  abstract: true
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Dwarf
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganDwarfExternal ]
+  id: OrganDwarfTorso
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganDwarfExternal ]
+  id: OrganDwarfHead
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Dwarf
+      layers:
+      - Head
+      - Hair
+      - FacialHair
+      - Snout
+      - SnoutCover
+      - HeadSide
+      - HeadTop
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganDwarfExternal ]
+  id: OrganDwarfArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganDwarfExternal ]
+  id: OrganDwarfArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganDwarfExternal ]
+  id: OrganDwarfHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganDwarfExternal ]
+  id: OrganDwarfHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganDwarfExternal ]
+  id: OrganDwarfLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganDwarfExternal ]
+  id: OrganDwarfLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganDwarfExternal ]
+  id: OrganDwarfFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganDwarfExternal ]
+  id: OrganDwarfFootRight
+
+- type: entity
+  parent: OrganBase
+  id: OrganDwarf
+  abstract: true
+  suffix: Dwarf
+
+- type: entity
+  id: OrganDwarfMetabolizer
+  abstract: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Dwarf ]
+
+- type: entity
+  parent: [ OrganDwarfMetabolizer, OrganHumanStomach ]
+  id: OrganDwarfStomach
+  components:
+  - type: Metabolizer
+    maxReagents: 5
+
+- type: entity
+  parent: [ OrganDwarfMetabolizer, OrganHumanLiver ]
+  id: OrganDwarfLiver
+
+- type: entity
+  parent: [ OrganDwarfMetabolizer, OrganHumanHeart ]
+  id: OrganDwarfHeart

@@ -23,7 +23,7 @@ public sealed partial class ShadowkinDarkSwappedSystem : EntitySystem
         base.Initialize();
 
         _ignoreOverlay = new IgnoreHumanoidWithComponentOverlay();
-        _ignoreOverlay.IgnoredComponents.Add(new HumanoidAppearanceComponent());
+        _ignoreOverlay.IgnoredComponents.Add(new HumanoidProfileComponent());
         _ignoreOverlay.AllowAnywayComponents.Add(new ShadowkinDarkSwappedComponent());
         _etherealOverlay = new EtherealOverlay();
 

@@ -1,4 +1,4 @@
-using Content.Shared.Body.Organ;
+using Content.Shared.Body;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Timing;
 

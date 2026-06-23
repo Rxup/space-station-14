@@ -42,7 +42,7 @@
   - type: DamageContacts
     ignoreWhitelist:
       components:
-      - HumanoidAppearance
+      - HumanoidProfile
       - TimedDespawn
     damage:
       types:
@@ -1273,7 +1273,7 @@
   - type: DamageContacts
     ignoreWhitelist:
       components:
-      - HumanoidAppearance
+      - HumanoidProfile
       tags:
       - Wall
     damage:

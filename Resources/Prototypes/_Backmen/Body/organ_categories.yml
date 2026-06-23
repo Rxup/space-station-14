@@ -1,0 +1,29 @@
+- type: organCategory
+  id: ArachneAbdomen
+
+- type: organCategory
+  id: ArachneFront
+
+- type: organCategory
+  id: SpiderLegLeft1
+
+- type: organCategory
+  id: SpiderLegLeft2
+
+- type: organCategory
+  id: SpiderLegLeft3
+
+- type: organCategory
+  id: SpiderLegLeft4
+
+- type: organCategory
+  id: SpiderLegRight1
+
+- type: organCategory
+  id: SpiderLegRight2
+
+- type: organCategory
+  id: SpiderLegRight3
+
+- type: organCategory
+  id: SpiderLegRight4

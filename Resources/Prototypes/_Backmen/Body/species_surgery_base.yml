@@ -1,0 +1,16 @@
+# Roundstart humanoids that use the Backmen surgery stack.
+# Nubody rule: new mobs must use InitialBody or EntityTableContainerFill — never Body.prototype / BodyPrototype graphs.
+# Consciousness is optional at runtime — mobs without it still work for wounds/targeting.
+- type: entity
+  abstract: true
+  parent: BaseSpeciesMobOrganic
+  id: BaseSpeciesMobSurgery
+  components:
+  - type: Consciousness
+  - type: LayingDown
+  - type: Targeting
+  - type: SurgeryTarget
+  - type: UserInterface
+    interfaces:
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui

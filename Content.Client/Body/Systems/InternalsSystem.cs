@@ -1,5 +1,5 @@
 using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
 
 namespace Content.Client.Body.Systems;

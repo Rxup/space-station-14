@@ -1,6 +1,7 @@
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Stack;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using Content.Shared.Xenoarchaeology.Equipment;
@@ -14,7 +15,7 @@ namespace Content.Server.Xenoarchaeology.Equipment.Systems;
 public sealed partial class ArtifactCrusherSystem : SharedArtifactCrusherSystem
 {
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private BodySystem _body = default!;
+    [Dependency] private BkmBodySystem _body = default!;
     [Dependency] private StackSystem _stack = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 

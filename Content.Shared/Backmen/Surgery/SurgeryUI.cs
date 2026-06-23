@@ -10,9 +10,23 @@ public enum SurgeryUIKey
 }
 
 [Serializable, NetSerializable]
-public sealed class SurgeryBuiState(Dictionary<NetEntity, List<EntProtoId>> choices) : BoundUserInterfaceState
+public sealed class SurgeryMissingPartChoice(
+    NetEntity anchorPart,
+    string label,
+    List<EntProtoId> surgeries)
+{
+    public NetEntity AnchorPart = anchorPart;
+    public string Label = label;
+    public List<EntProtoId> Surgeries = surgeries;
+}
+
+[Serializable, NetSerializable]
+public sealed class SurgeryBuiState(
+    Dictionary<NetEntity, List<EntProtoId>> choices,
+    List<SurgeryMissingPartChoice> missingParts) : BoundUserInterfaceState
 {
     public readonly Dictionary<NetEntity, List<EntProtoId>> Choices = choices;
+    public readonly List<SurgeryMissingPartChoice> MissingParts = missingParts;
 }
 
 [Serializable, NetSerializable]

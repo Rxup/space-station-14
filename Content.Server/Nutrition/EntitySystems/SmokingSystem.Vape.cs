@@ -2,7 +2,7 @@ using Content.Server.DoAfter;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;

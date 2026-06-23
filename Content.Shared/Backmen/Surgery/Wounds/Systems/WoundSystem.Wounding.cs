@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
@@ -6,7 +6,7 @@ using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -134,11 +134,10 @@ public partial class WoundSystem
 
         var (woundable, component) = entity;
 
-        var bodyPart = Comp<BodyPartComponent>(woundable);
-        if (bodyPart.Body.HasValue)
+        if (TryGetWoundableBody(woundable, out var bodyUid))
         {
             var before = new BeforeDamageChangedEvent(args.Damage, args.Origin); // heheheha
-            RaiseLocalEvent(bodyPart.Body.Value, ref before);
+            RaiseLocalEvent(bodyUid, ref before);
 
             if (before.Cancelled)
                 return;
@@ -185,7 +184,7 @@ public partial class WoundSystem
         }
         else
         {
-            if (component.ParentWoundable != null && Comp<BodyPartComponent>(uid).Body != null)
+            if (component.ParentWoundable != null && TryGetWoundableBody(uid, out _))
             {
                 DestroyWoundable(component.ParentWoundable.Value, uid, component);
             }
@@ -594,9 +593,12 @@ public partial class WoundSystem
             var unhandledEv = new HandleUnhandledWoundsEvent(unhandledWounds);
             RaiseLocalEvent(woundable, ref unhandledEv);
 
-            var bodyPart = Comp<BodyPartComponent>(woundable);
-            if (bodyPart.Body.HasValue)
-                RaiseLocalEvent(bodyPart.Body.Value, ref unhandledEv);
+            EntityUid? bodyUid = null;
+            if (TryGetWoundableBody(woundable, out var resolvedBody))
+                bodyUid = resolvedBody;
+
+            if (bodyUid is { } body)
+                RaiseLocalEvent(body, ref unhandledEv);
         }
 
         return actuallyInducedDamage;
@@ -740,16 +742,14 @@ public partial class WoundSystem
             result[part] = WoundableSeverity.Loss;
         }
 
-        foreach (var (id, bodyPart) in Body.GetBodyChildren(body))
+        foreach (var part in SharedTargetingSystem.GetValidParts())
         {
-            var target = Body.GetTargetBodyPart(bodyPart);
-            if (target == null)
+            if (!Targeting.TryGetOrganForTarget(body, part, out var organ)
+                || organ.Comp.Body != body
+                || !WoundableQuery.TryComp(organ, out var woundable))
                 continue;
 
-            if (!WoundableQuery.TryComp(id, out var woundable))
-                continue;
-
-            result[target.Value] = woundable.WoundableSeverity;
+            result[part] = woundable.WoundableSeverity;
         }
 
         return result;
@@ -764,13 +764,12 @@ public partial class WoundSystem
             result[part] = WoundableSeverity.Loss;
         }
 
-        foreach (var (id, bodyPart) in Body.GetBodyChildren(body))
+        foreach (var part in SharedTargetingSystem.GetValidParts())
         {
-            var target = Body.GetTargetBodyPart(bodyPart);
-            if (target == null)
-                continue;
-
-            if (!WoundableQuery.TryComp(id, out var woundable) || !TryComp<NerveComponent>(id, out var nerve))
+            if (!Targeting.TryGetOrganForTarget(body, part, out var organ)
+                || organ.Comp.Body != body
+                || !WoundableQuery.TryComp(organ, out var woundable)
+                || !TryComp<NerveOrganComponent>(organ, out var nerve))
                 continue;
 
             var damageFeeling = woundable.WoundableIntegrity * nerve.PainFeels;
@@ -797,11 +796,14 @@ public partial class WoundSystem
                 break;
             }
 
-            result[target.Value] = nearestSeverity;
+            result[part] = nearestSeverity;
         }
 
         return result;
     }
+
+    private static WoundableSeverity WorseSeverity(WoundableSeverity current, WoundableSeverity incoming) =>
+        (WoundableSeverity) Math.Max((byte) current, (byte) incoming);
 
     /// <summary>
     /// Check if this woundable is root
@@ -821,13 +823,9 @@ public partial class WoundSystem
         if (!Resolve(body, ref comp))
             yield break;
 
-        var rootPart = comp.RootContainer.ContainedEntity;
-        if (!rootPart.HasValue)
-            yield break;
-
-        foreach (var woundable in GetAllWoundableChildren(rootPart.Value))
+        foreach (var woundableUid in Body.GetWoundableTargets(body, comp))
         {
-            foreach (var value in GetWoundableWounds(woundable, woundable))
+            foreach (var value in GetWoundableWounds(woundableUid))
             {
                 yield return value;
             }
@@ -1077,6 +1075,24 @@ public partial class WoundSystem
         return GetWoundableWounds(targetEntity, targetWoundable)
             .Where(wound => wound.Comp.DamageGroup?.ID == damageGroup || damageGroup == null)
             .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundIntegrityDamage);
+    }
+
+    private bool TryGetWoundableBody(EntityUid woundable, out EntityUid bodyUid)
+    {
+        if (TryComp<BodyPartComponent>(woundable, out var bodyPart) && bodyPart.Body is { } partBody)
+        {
+            bodyUid = partBody;
+            return true;
+        }
+
+        if (TryComp<OrganComponent>(woundable, out var organ) && organ.Body is { } organBody)
+        {
+            bodyUid = organBody;
+            return true;
+        }
+
+        bodyUid = default;
+        return false;
     }
 
     #endregion

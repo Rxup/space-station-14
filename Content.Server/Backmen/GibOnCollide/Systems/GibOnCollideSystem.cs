@@ -1,9 +1,10 @@
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Timing;
 using Content.Server.Popups;
 using Robust.Shared.Physics.Events;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -20,7 +21,7 @@ public sealed partial class GibOnCollideSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
-    [Dependency] private BodySystem _body = default!;
+    [Dependency] private BkmBodySystem _body = default!;
     [Dependency] private MobStateSystem _mobStateSystem = default!;
 
     public override void Initialize()

@@ -11,6 +11,7 @@ using Content.Client.Resources;
 using Content.Client.Playtime;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
+using Content.Shared.Backmen.Lobby;
 using Content.Shared.CCVar;
 using Robust.Client;
 using Robust.Client.Console;
@@ -82,6 +83,8 @@ namespace Content.Client.Lobby
             _gameTicker.InfoBlobUpdated += UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
+
+            PopulateChangelog();
         }
 
         protected override void Shutdown()
@@ -265,22 +268,14 @@ namespace Content.Client.Lobby
 
         private void UpdateLobbyBackground()
         {
-            if (_protoMan.TryIndex(_gameTicker.LobbyBackground, out var proto))
+            if (_gameTicker.LobbyBackground != null &&
+                _protoMan.TryIndex(_gameTicker.LobbyBackground, out AnimatedLobbyScreenPrototype? proto))
             {
-                Lobby!.Background.SetRSI(proto.Path); // BACKMEN EDIT
-/*
-                var markup = Loc.GetString("lobby-state-background-text",
-                    ("backgroundTitle", Loc.GetString(proto.Title)),
-                    ("backgroundArtist", Loc.GetString(proto.Artist)));
-
-                Lobby!.LobbyBackground.SetMarkup(markup);
-                */
+                Lobby!.Background.SetRSI(proto.Path);
             }
             else
             {
-                Lobby!.Background.Texture = null;
-
-                //Lobby!.LobbyBackground.SetMarkup(Loc.GetString("lobby-state-background-no-background-text"));
+                Lobby!.Background.RandomizeBackground();
             }
         }
 
@@ -386,6 +381,5 @@ namespace Content.Client.Lobby
             };
         }
         // BACKMEN EDIT END
-        }
     }
-
+}

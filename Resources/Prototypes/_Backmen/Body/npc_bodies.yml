@@ -1,0 +1,893 @@
+# Nubody organ sets and body fills for NPCs / non-roundstart mobs.
+# Rule: do NOT add BodyComponent.prototype or - type: body graphs — use InitialBody or EntityTableContainerFill only.
+
+# --- Simple animal internal fills (EntityTableContainerFill) ---
+
+- type: entity
+  id: BaseMobNpcAnimalFill
+  abstract: true
+  components:
+  - type: Body
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: OrganAnimalLungs
+        - id: OrganAnimalHeart
+        - id: OrganAnimalStomach
+        - id: OrganAnimalLiver
+        - id: OrganAnimalKidneys
+
+- type: entity
+  id: BaseMobNpcCarpFill
+  abstract: true
+  components:
+  - type: Body
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: OrganSpaceAnimalLungs
+        - id: OrganSpaceAnimalHeart
+        - id: OrganAnimalStomach
+        - id: OrganAnimalLiver
+        - id: OrganAnimalKidneys
+
+# --- Space carp external organs (nubody, no VisualOrgan — flat sprite mobs) ---
+
+- type: entity
+  id: OrganCarp
+  abstract: true
+  parent: OrganBase
+  suffix: Carp
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Aliens/Carps/carp_parts.rsi
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryTorso, OrganCarp ]
+  id: OrganCarpTorso
+  name: carp torso
+  components:
+  - type: Organ
+    category: Torso
+  - type: Sprite
+    state: torso
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHead, OrganCarp ]
+  id: OrganCarpHead
+  name: carp head
+  components:
+  - type: Organ
+    category: Head
+  - type: Sprite
+    state: chest
+
+- type: entity
+  id: BaseMobNpcCarpBody
+  abstract: true
+  components:
+  - type: Body
+  - type: InitialBody
+    organs:
+      Torso: OrganCarpTorso
+      Head: OrganCarpHead
+      Lungs: OrganSpaceAnimalLungs
+      Heart: OrganSpaceAnimalHeart
+      Stomach: OrganAnimalStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+
+- type: entity
+  id: BaseMobNpcVampiricAnimalFill
+  abstract: true
+  components:
+  - type: Body
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: OrganAnimalLungs
+        - id: OrganVampiricStomach
+        - id: OrganAnimalLiver
+        - id: OrganAnimalHeart
+        - id: OrganAnimalKidneys
+
+- type: entity
+  id: BaseMobNpcVampiricAnimalLargeFill
+  abstract: true
+  components:
+  - type: Body
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: OrganAnimalLungs
+        - id: OrganVampiricHumanoidStomach
+        - id: OrganAnimalLiver
+        - id: OrganAnimalHeart
+        - id: OrganAnimalKidneys
+
+- type: entity
+  id: BaseMobNpcPrimateFill
+  abstract: true
+  components:
+  - type: Body
+  - type: EntityTableContainerFill
+    containers:
+      body_organs: !type:AllSelector
+        children:
+        - id: OrganAnimalLungs
+        - id: OrganAnimalHeart
+        - id: OrganAnimalStomach
+        - id: OrganAnimalLiver
+        - id: OrganAnimalKidneys
+        - id: OrganHumanBrain
+        - id: OrganHumanEyes
+
+# --- Humanoid NPC external organs (surgery-capable, no VisualOrgan — flat sprite NPCs) ---
+
+- type: entity
+  id: OrganMobNpc
+  abstract: true
+  parent: OrganHuman
+  suffix: NPC
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/parts.rsi
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryTorso, OrganMobNpc ]
+  id: OrganMobNpcTorso
+  name: npc torso
+  components:
+  - type: Organ
+    category: Torso
+  - type: Sprite
+    state: torso_m
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHead, OrganMobNpc ]
+  id: OrganMobNpcHead
+  name: npc head
+  components:
+  - type: Organ
+    category: Head
+  - type: Sprite
+    state: head_m
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryArmLeft, OrganMobNpc ]
+  id: OrganMobNpcArmLeft
+  name: npc left arm
+  components:
+  - type: Organ
+    category: ArmLeft
+  - type: Sprite
+    state: l_arm
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryArmRight, OrganMobNpc ]
+  id: OrganMobNpcArmRight
+  name: npc right arm
+  components:
+  - type: Organ
+    category: ArmRight
+  - type: Sprite
+    state: r_arm
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHandLeft, OrganMobNpc ]
+  id: OrganMobNpcHandLeft
+  name: npc left hand
+  components:
+  - type: Organ
+    category: HandLeft
+  - type: HandOrgan
+    handID: left
+    data:
+      location: Left
+  - type: Sprite
+    state: l_hand
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHandRight, OrganMobNpc ]
+  id: OrganMobNpcHandRight
+  name: npc right hand
+  components:
+  - type: Organ
+    category: HandRight
+  - type: HandOrgan
+    handID: right
+    data:
+      location: Right
+  - type: Sprite
+    state: r_hand
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegLeft, OrganMobNpc ]
+  id: OrganMobNpcLegLeft
+  name: npc left leg
+  components:
+  - type: Organ
+    category: LegLeft
+  - type: Sprite
+    state: l_leg
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegRight, OrganMobNpc ]
+  id: OrganMobNpcLegRight
+  name: npc right leg
+  components:
+  - type: Organ
+    category: LegRight
+  - type: Sprite
+    state: r_leg
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryFootLeft, OrganMobNpc ]
+  id: OrganMobNpcFootLeft
+  name: npc left foot
+  components:
+  - type: Organ
+    category: FootLeft
+  - type: Sprite
+    state: l_foot
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryFootRight, OrganMobNpc ]
+  id: OrganMobNpcFootRight
+  name: npc right foot
+  components:
+  - type: Organ
+    category: FootRight
+  - type: Sprite
+    state: r_foot
+
+# --- Humanoid NPC InitialBody (animal internals + human externals) ---
+
+- type: entity
+  id: BaseMobNpcAnimalHumanBody
+  abstract: true
+  components:
+  - type: Body
+    requiredLegs: 2
+  - type: InitialBody
+    organs:
+      Torso: OrganMobNpcTorso
+      LegLeft: OrganMobNpcLegLeft
+      LegRight: OrganMobNpcLegRight
+      FootLeft: OrganMobNpcFootLeft
+      FootRight: OrganMobNpcFootRight
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganAnimalStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+
+- type: entity
+  id: BaseMobNpcHaisenbergBody
+  abstract: true
+  components:
+  - type: Body
+  - type: InitialBody
+    organs:
+      Torso: OrganMobNpcTorso
+      Head: OrganMobNpcHead
+      ArmLeft: OrganMobNpcArmLeft
+      ArmRight: OrganMobNpcArmRight
+      HandLeft: OrganMobNpcHandLeft
+      HandRight: OrganMobNpcHandRight
+      LegLeft: OrganMobNpcLegLeft
+      LegRight: OrganMobNpcLegRight
+      FootLeft: OrganMobNpcFootLeft
+      FootRight: OrganMobNpcFootRight
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganAnimalStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+
+# --- Golem cult organs (inorganic, no VisualOrgan — flat sprite mobs) ---
+
+- type: entity
+  id: OrganGolemCult
+  abstract: true
+  parent: OrganBase
+  suffix: Golem Cult
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Golem/cult.rsi
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryTorso, OrganGolemCult ]
+  id: OrganGolemCultTorso
+  name: golem torso
+  components:
+  - type: Organ
+    category: Torso
+  - type: Sprite
+    state: cultgolem_chest
+  - type: Woundable
+    damageContainer: Inorganic
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHead, OrganGolemCult ]
+  id: OrganGolemCultHead
+  name: golem head
+  components:
+  - type: Organ
+    category: Head
+  - type: Sprite
+    state: cultgolem_head
+  - type: Woundable
+    damageContainer: Inorganic
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryArmLeft, OrganGolemCult ]
+  id: OrganGolemCultArmLeft
+  name: golem left arm
+  components:
+  - type: Organ
+    category: ArmLeft
+  - type: Sprite
+    state: cultgolem_l_arm
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryArmRight, OrganGolemCult ]
+  id: OrganGolemCultArmRight
+  name: golem right arm
+  components:
+  - type: Organ
+    category: ArmRight
+  - type: Sprite
+    state: cultgolem_r_arm
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHandLeft, OrganGolemCult ]
+  id: OrganGolemCultHandLeft
+  name: golem left hand
+  components:
+  - type: Organ
+    category: HandLeft
+  - type: HandOrgan
+    handID: left
+    data:
+      location: Left
+  - type: Sprite
+    state: cultgolem_l_hand
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHandRight, OrganGolemCult ]
+  id: OrganGolemCultHandRight
+  name: golem right hand
+  components:
+  - type: Organ
+    category: HandRight
+  - type: HandOrgan
+    handID: right
+    data:
+      location: Right
+  - type: Sprite
+    state: cultgolem_r_hand
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegLeft, OrganGolemCult ]
+  id: OrganGolemCultLegLeft
+  name: golem left leg
+  components:
+  - type: Organ
+    category: LegLeft
+  - type: Sprite
+    state: cultgolem_l_leg
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegRight, OrganGolemCult ]
+  id: OrganGolemCultLegRight
+  name: golem right leg
+  components:
+  - type: Organ
+    category: LegRight
+  - type: Sprite
+    state: cultgolem_r_leg
+
+- type: entity
+  id: BaseMobGolemCultBody
+  abstract: true
+  components:
+  - type: Body
+    requiredLegs: 2
+  - type: InitialBody
+    organs:
+      Torso: OrganGolemCultTorso
+      Head: OrganGolemCultHead
+      ArmLeft: OrganGolemCultArmLeft
+      ArmRight: OrganGolemCultArmRight
+      HandLeft: OrganGolemCultHandLeft
+      HandRight: OrganGolemCultHandRight
+      LegLeft: OrganGolemCultLegLeft
+      LegRight: OrganGolemCultLegRight
+
+# --- IPC organs ---
+
+- type: entity
+  id: OrganIPC
+  abstract: true
+  parent: OrganHuman
+  suffix: IPC
+  components:
+  - type: Damageable
+    damageContainer: Silicon
+    damageModifierSet: IPC
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/IPC/parts.rsi
+
+- type: entity
+  parent: [ OrganHumanTorso, OrganIPC ]
+  id: OrganIPCTorso
+  components:
+  - type: Woundable
+    damageContainer: Silicon
+
+- type: entity
+  parent: [ OrganHumanHead, OrganIPC ]
+  id: OrganIPCHead
+
+- type: entity
+  parent: [ OrganHumanArmLeft, OrganIPC ]
+  id: OrganIPCArmLeft
+  components:
+  - type: Sprite
+    state: l_arm
+
+- type: entity
+  parent: [ OrganHumanArmRight, OrganIPC ]
+  id: OrganIPCArmRight
+  components:
+  - type: Sprite
+    state: r_arm
+
+- type: entity
+  parent: [ OrganHumanHandLeft, OrganIPC ]
+  id: OrganIPCHandLeft
+  components:
+  - type: Sprite
+    state: l_hand
+
+- type: entity
+  parent: [ OrganHumanHandRight, OrganIPC ]
+  id: OrganIPCHandRight
+  components:
+  - type: Sprite
+    state: r_hand
+
+- type: entity
+  parent: [ OrganHumanLegLeft, OrganIPC ]
+  id: OrganIPCLegLeft
+  components:
+  - type: Sprite
+    state: l_leg
+
+- type: entity
+  parent: [ OrganHumanLegRight, OrganIPC ]
+  id: OrganIPCLegRight
+  components:
+  - type: Sprite
+    state: r_leg
+
+- type: entity
+  parent: [ OrganHumanFootLeft, OrganIPC ]
+  id: OrganIPCFootLeft
+  components:
+  - type: Sprite
+    state: l_foot
+
+- type: entity
+  parent: [ OrganHumanFootRight, OrganIPC ]
+  id: OrganIPCFootRight
+  components:
+  - type: Sprite
+    state: r_foot
+
+- type: entity
+  parent: [ OrganHumanBrain, OrganIPC ]
+  id: OrganIPCBrain
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/IPC/organs.rsi
+    layers:
+    - state: microcell
+
+- type: entity
+  parent: [ OrganHumanEyes, OrganIPC ]
+  id: OrganIPCEyes
+  components:
+  - type: Sprite
+    sprite: _Shitmed/Mobs/Species/IPC/organs.rsi
+    state: eyes
+
+- type: entity
+  id: BaseMobIPCBody
+  abstract: true
+  components:
+  - type: Body
+    requiredLegs: 2
+  - type: InitialBody
+    organs:
+      Torso: OrganIPCTorso
+      Head: OrganIPCHead
+      ArmLeft: OrganIPCArmLeft
+      ArmRight: OrganIPCArmRight
+      HandLeft: OrganIPCHandLeft
+      HandRight: OrganIPCHandRight
+      LegLeft: OrganIPCLegLeft
+      LegRight: OrganIPCLegRight
+      FootLeft: OrganIPCFootLeft
+      FootRight: OrganIPCFootRight
+      Brain: OrganIPCBrain
+      Eyes: OrganIPCEyes
+
+# --- Drone BPLA organs ---
+
+- type: entity
+  id: OrganDrone
+  abstract: true
+  parent: OrganBase
+  suffix: Drone
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryTorso, OrganDrone ]
+  id: OrganDroneTorso
+  name: drone torso
+  components:
+  - type: Organ
+    category: Torso
+  - type: Sprite
+    sprite: Mobs/Species/Terminator/parts.rsi
+    state: chest_m
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHandLeft, OrganDrone ]
+  id: OrganDroneHandLeft
+  name: drone manipulator
+  components:
+  - type: Organ
+    category: HandLeft
+  - type: HandOrgan
+    handID: left
+    data:
+      location: Left
+  - type: Sprite
+    sprite: Mobs/Silicon/drone.rsi
+    state: l_hand
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHandRight, OrganDrone ]
+  id: OrganDroneHandRight
+  name: drone manipulator
+  components:
+  - type: Organ
+    category: HandRight
+  - type: HandOrgan
+    handID: right
+    data:
+      location: Right
+  - type: Sprite
+    sprite: Mobs/Silicon/drone.rsi
+    state: l_hand
+
+- type: entity
+  id: BaseMobDroneBody
+  abstract: true
+  components:
+  - type: Body
+  - type: InitialBody
+    organs:
+      Torso: OrganDroneTorso
+      HandLeft: OrganDroneHandLeft
+      HandRight: OrganDroneHandRight
+
+# --- Mouse ops external organs (surgery-capable, no VisualOrgan — flat sprite mob) ---
+
+- type: entity
+  id: OrganMouseOps
+  abstract: true
+  parent: OrganMonkey
+  suffix: Mouse Ops
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/monkey.rsi
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryTorso, OrganMouseOps ]
+  id: OrganMouseOpsTorso
+  name: mouse ops torso
+  components:
+  - type: Organ
+    category: Torso
+  - type: Sprite
+    state: torso_m
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryArmLeft, OrganMouseOps ]
+  id: OrganMouseOpsArmLeft
+  name: mouse ops left arm
+  components:
+  - type: Organ
+    category: ArmLeft
+  - type: Sprite
+    state: l_arm
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHandLeft, OrganMouseOps ]
+  id: OrganMouseOpsHandLeft
+  name: mouse ops left hand
+  components:
+  - type: Organ
+    category: HandLeft
+  - type: HandOrgan
+    handID: left
+    data:
+      location: Left
+  - type: Sprite
+    state: l_hand
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegLeft, OrganMouseOps ]
+  id: OrganMouseOpsLegLeft
+  name: mouse ops left leg
+  components:
+  - type: Organ
+    category: LegLeft
+  - type: Sprite
+    state: l_leg
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegRight, OrganMouseOps ]
+  id: OrganMouseOpsLegRight
+  name: mouse ops right leg
+  components:
+  - type: Organ
+    category: LegRight
+  - type: Sprite
+    state: r_leg
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryFootLeft, OrganMouseOps ]
+  id: OrganMouseOpsFootLeft
+  name: mouse ops left foot
+  components:
+  - type: Organ
+    category: FootLeft
+  - type: Sprite
+    state: l_foot
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryFootRight, OrganMouseOps ]
+  id: OrganMouseOpsFootRight
+  name: mouse ops right foot
+  components:
+  - type: Organ
+    category: FootRight
+  - type: Sprite
+    state: r_foot
+
+- type: entity
+  id: BaseMobMouseOpsBody
+  abstract: true
+  components:
+  - type: Body
+    requiredLegs: 2
+  - type: InitialBody
+    organs:
+      Torso: OrganMouseOpsTorso
+      ArmLeft: OrganMouseOpsArmLeft
+      HandLeft: OrganMouseOpsHandLeft
+      LegLeft: OrganMouseOpsLegLeft
+      LegRight: OrganMouseOpsLegRight
+      FootLeft: OrganMouseOpsFootLeft
+      FootRight: OrganMouseOpsFootRight
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganAnimalStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+
+# --- TGMC xeno external organs (surgery-capable, no VisualOrgan — flat sprite mobs) ---
+
+- type: entity
+  id: OrganXenoTGMC
+  abstract: true
+  parent: OrganReptilian
+  suffix: Xeno TGMC
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Reptilian/parts.rsi
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryTorso, OrganXenoTGMC ]
+  id: OrganXenoTGMCTorso
+  name: xeno torso
+  components:
+  - type: Organ
+    category: Torso
+  - type: Sprite
+    state: torso_m
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHead, OrganXenoTGMC ]
+  id: OrganXenoTGMCHead
+  name: xeno head
+  components:
+  - type: Organ
+    category: Head
+  - type: Sprite
+    state: head_m
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryArmLeft, OrganXenoTGMC ]
+  id: OrganXenoTGMCArmLeft
+  name: xeno left arm
+  components:
+  - type: Organ
+    category: ArmLeft
+  - type: Sprite
+    state: l_arm
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryArmRight, OrganXenoTGMC ]
+  id: OrganXenoTGMCArmRight
+  name: xeno right arm
+  components:
+  - type: Organ
+    category: ArmRight
+  - type: Sprite
+    state: r_arm
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHandLeft, OrganXenoTGMC ]
+  id: OrganXenoTGMCHandLeft
+  name: xeno left hand
+  components:
+  - type: Organ
+    category: HandLeft
+  - type: HandOrgan
+    handID: left
+    data:
+      location: Left
+  - type: Sprite
+    state: l_hand
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryHandRight, OrganXenoTGMC ]
+  id: OrganXenoTGMCHandRight
+  name: xeno right hand
+  components:
+  - type: Organ
+    category: HandRight
+  - type: HandOrgan
+    handID: right
+    data:
+      location: Right
+  - type: Sprite
+    state: r_hand
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegLeft, OrganXenoTGMC ]
+  id: OrganXenoTGMCLegLeft
+  name: xeno left leg
+  components:
+  - type: Organ
+    category: LegLeft
+  - type: Sprite
+    state: l_leg
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegRight, OrganXenoTGMC ]
+  id: OrganXenoTGMCLegRight
+  name: xeno right leg
+  components:
+  - type: Organ
+    category: LegRight
+  - type: Sprite
+    state: r_leg
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryFootLeft, OrganXenoTGMC ]
+  id: OrganXenoTGMCFootLeft
+  name: xeno left foot
+  components:
+  - type: Organ
+    category: FootLeft
+  - type: Sprite
+    state: l_foot
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryFootRight, OrganXenoTGMC ]
+  id: OrganXenoTGMCFootRight
+  name: xeno right foot
+  components:
+  - type: Organ
+    category: FootRight
+  - type: Sprite
+    state: r_foot
+
+- type: entity
+  parent: [ OrganBase, OrganReptilianInternal ]
+  id: OrganXenoTGMCEyes
+  name: xeno eyes
+  components:
+  - type: GibbableOrgan
+  - type: Organ
+    category: Eyes
+  - type: Sprite
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
+
+# --- Simplified TGMC xeno (reptilian internals + flat external organs) ---
+
+- type: entity
+  id: BaseMobXenoTGMCBody
+  abstract: true
+  components:
+  - type: Body
+    requiredLegs: 2
+  - type: InitialBody
+    organs:
+      Torso: OrganXenoTGMCTorso
+      Head: OrganXenoTGMCHead
+      ArmLeft: OrganXenoTGMCArmLeft
+      ArmRight: OrganXenoTGMCArmRight
+      HandLeft: OrganXenoTGMCHandLeft
+      HandRight: OrganXenoTGMCHandRight
+      LegLeft: OrganXenoTGMCLegLeft
+      LegRight: OrganXenoTGMCLegRight
+      FootLeft: OrganXenoTGMCFootLeft
+      FootRight: OrganXenoTGMCFootRight
+      Brain: OrganReptilianBrain
+      Eyes: OrganXenoTGMCEyes
+      Lungs: OrganReptilianLungs
+      Heart: OrganReptilianHeart
+      Stomach: OrganReptilianStomach
+      Liver: OrganReptilianLiver
+      Kidneys: OrganReptilianKidneys
+
+# --- Hologram uses human nubody organs ---
+
+- type: entity
+  id: BaseMobHologramBody
+  abstract: true
+  components:
+  - type: Body
+    requiredLegs: 2
+  - type: InitialBody
+    organs:
+      Torso: OrganHumanTorso
+      Head: OrganHumanHead
+      ArmLeft: OrganHumanArmLeft
+      ArmRight: OrganHumanArmRight
+      HandLeft: OrganHumanHandLeft
+      HandRight: OrganHumanHandRight
+      LegLeft: OrganHumanLegLeft
+      LegRight: OrganHumanLegRight
+      FootLeft: OrganHumanFootLeft
+      FootRight: OrganHumanFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Lungs: OrganHumanLungs
+      Heart: OrganHumanHeart
+      Stomach: OrganHumanStomach
+      Liver: OrganHumanLiver
+      Kidneys: OrganHumanKidneys

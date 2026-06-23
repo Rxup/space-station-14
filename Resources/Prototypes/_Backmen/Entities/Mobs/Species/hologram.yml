@@ -13,7 +13,6 @@
       drawdepth: Mobs
       layers:
         - map: [ "enum.HumanoidVisualLayers.Chest" ]
-        - map: [ "enum.HumanoidVisualLayers.Groin" ]
         - map: [ "enum.HumanoidVisualLayers.Head" ]
         - map: [ "enum.HumanoidVisualLayers.Snout" ]
         - map: [ "enum.HumanoidVisualLayers.Eyes" ]
@@ -60,9 +59,7 @@
     - type: Clickable
     - type: Physics
       bodyType: KinematicController
-    - type: Body
-      prototype: Human
-    - type: HumanoidAppearance
+    - type: HumanoidProfile
       species: Human
     - type: Appearance
     - type: RotationVisuals
@@ -92,7 +89,7 @@
 
 - type: entity
   id: MobHologramHuman
-  parent: BaseMobHologram
+  parent: [ BaseMobHologram, BaseMobHologramBody ]
   suffix: Human
   save: false
   components:

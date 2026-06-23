@@ -1,0 +1,89 @@
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryGraftArachneAbdomen
+  name: Graft Spider Abdomen
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepInsertFeature
+    - SurgeryStepSealWounds
+  - type: SurgeryPartCondition
+    part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
+  - type: SurgeryOrganCategoryMissingCondition
+    category: ArachneAbdomen
+    inverse: true
+  - type: SurgeryOrganGraftAttach
+    requiredCategory: ArachneAbdomen
+    prerequisiteCategory: ArachneFront
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryGraftArachneFront
+  name: Graft Spider Cephalothorax
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepInsertFeature
+    - SurgeryStepSealWounds
+  - type: SurgeryPartCondition
+    part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
+  - type: SurgeryOrganCategoryMissingCondition
+    category: ArachneFront
+    inverse: true
+  - type: SurgeryBothHumanLegsMissingCondition
+  - type: SurgeryOrganGraftAttach
+    requiredCategory: ArachneFront
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryGraftSpiderLegLeft
+  name: Graft Left Spider Leg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepInsertFeature
+    - SurgeryStepSealWounds
+  - type: SurgeryPartCondition
+    part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
+  - type: SurgeryOrganCategoryMissingCondition
+    category: ArachneAbdomen
+    inverse: false
+  - type: SurgeryOrganGraftAttach
+    spiderLegSide: Left
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryGraftSpiderLegRight
+  name: Graft Right Spider Leg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepInsertFeature
+    - SurgeryStepSealWounds
+  - type: SurgeryPartCondition
+    part: Chest
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
+  - type: SurgeryOrganCategoryMissingCondition
+    category: ArachneFront
+    inverse: false
+  - type: SurgeryOrganGraftAttach
+    spiderLegSide: Right

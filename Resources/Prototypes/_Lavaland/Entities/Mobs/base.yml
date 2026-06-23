@@ -30,11 +30,9 @@
   parent:
   - MobBaseNpcSalvage
   - StripableInventoryBase
+  - BaseMobNpcAnimalHumanBody
   categories: [ HideSpawnMenu ]
   components:
-  - type: Body
-    prototype: AnimalHuman
-    requiredLegs: 2
   - type: LayingDown
     standingUpTime: 5
   - type: HTN

@@ -3,14 +3,16 @@ using System.Numerics;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Backmen.Surgery; // backmen: surgery
 using Content.Server.Destructible;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NPC.Pathfinding;
 using Content.Shared.Armor;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Camera;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;
@@ -59,7 +61,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private SharedMapSystem _map = default!;
-    [Dependency] private SharedBodySystem _body = default!; // backmen edit
+    [Dependency] private BkmBodySharedSystem _body = default!; // backmen: body
+    [Dependency] private SurgeryCavityExplosionSystem _surgeryCavity = default!; // backmen: surgery
     [Dependency] private FlammableSystem _flammableSystem = default!;
     [Dependency] private DestructibleSystem _destructibleSystem = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;
@@ -186,7 +189,12 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             totalIntensity ??= RadiusToIntensity((float)radius, explosive.IntensitySlope, explosive.MaxIntensity);
         totalIntensity ??= explosive.TotalIntensity;
 
-        QueueExplosion(uid,
+        // start-backmen: surgery
+        var epicenter = uid;
+        if (_surgeryCavity.TryGetSurgeryCavityHost(uid, out var hostBody, out _))
+            epicenter = hostBody;
+
+        QueueExplosion(epicenter,
             explosive.ExplosionType,
             (float)totalIntensity,
             explosive.IntensitySlope,
@@ -195,6 +203,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             explosive.MaxTileBreak,
             explosive.CanCreateVacuum,
             user);
+        // end-backmen: surgery
 
         if (explosive.DeleteAfterExplosion ?? delete)
             QueueDel(uid);

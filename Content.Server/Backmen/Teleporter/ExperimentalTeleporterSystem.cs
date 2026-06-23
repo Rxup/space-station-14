@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server._White.Teleporter;
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Disposal.Unit;
 using Content.Shared.Backmen.Standing;
 using Content.Shared.Charges.Systems;
@@ -23,7 +23,7 @@ namespace Content.Server.Backmen.Teleporter;
 public sealed partial class ExperimentalTeleporterSystem : EntitySystem
 {
     [Dependency] private TransformSystem _transform = default!;
-    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySystem _bodySystem = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private AudioSystem _audio = default!;

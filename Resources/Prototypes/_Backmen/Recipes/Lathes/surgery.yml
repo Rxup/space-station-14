@@ -140,3 +140,31 @@
   completetime: 30
   materials:
     Biomass: 10
+
+- type: latheRecipe
+  id: SynthArachneAbdomen
+  result: BioSynthArachneAbdomen
+  completetime: 45
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: SynthArachneFront
+  result: BioSynthArachneFront
+  completetime: 45
+  materials:
+    Biomass: 20
+
+- type: latheRecipe
+  id: SynthSpiderLegLeft
+  result: BioSynthSpiderLegLeft
+  completetime: 25
+  materials:
+    Biomass: 8
+
+- type: latheRecipe
+  id: SynthSpiderLegRight
+  result: BioSynthSpiderLegRight
+  completetime: 25
+  materials:
+    Biomass: 8

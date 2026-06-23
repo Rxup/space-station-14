@@ -1,3 +1,4 @@
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using System.Linq;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Surgery.Consciousness;
@@ -6,8 +7,9 @@ using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Events;
+using Content.Shared.Gibbing;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
@@ -47,14 +49,14 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
 
-    // backmen edit start
+    // start-backmen: body
     [Dependency] private ConsciousnessSystem _consciousness = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private WoundSystem _wound = default!;
 
     protected EntityQuery<ConsciousnessComponent> ConsciousnessQuery;
     protected EntityQuery<BleedInflicterComponent> BleedsQuery;
-    // backmen edit end
+    // end-backmen: body
 
     public override void Initialize()
     {
@@ -66,7 +68,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         SubscribeLocalEvent<BloodstreamComponent, SolutionRelayEvent<ReactionAttemptEvent>>(OnReactionAttempt);
         SubscribeLocalEvent<BloodstreamComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<BloodstreamComponent, HealthBeingExaminedEvent>(OnHealthBeingExamined);
-        SubscribeLocalEvent<BloodstreamComponent, BeingGibbedEvent>(OnBeingGibbed);
+        SubscribeLocalEvent<BloodstreamComponent, Gibbing.BeingGibbedEvent>(OnBeingGibbed);
         SubscribeLocalEvent<BloodstreamComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
         SubscribeLocalEvent<BloodstreamComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<BloodstreamComponent, MetabolismExclusionEvent>(OnMetabolismExclusion);
@@ -180,7 +182,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
 
         // Calculate total bleeding from all wounds on body parts
         var total = FixedPoint2.Zero;
-        foreach (var (bodyPart, _) in _body.GetBodyChildren(entity.Owner))
+        foreach (var bodyPart in _body.GetDistributedDamageTargets(entity.Owner))
         {
             total = _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart)
                     .Aggregate(total, (current, wound) => current + wound.Comp2.BleedingAmount);
@@ -387,7 +389,7 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         }
     }
 
-    private void OnBeingGibbed(Entity<BloodstreamComponent> ent, ref BeingGibbedEvent args)
+    private void OnBeingGibbed(Entity<BloodstreamComponent> ent, ref Gibbing.BeingGibbedEvent args)
     {
         SpillAllSolutions(ent.AsNullable());
     }

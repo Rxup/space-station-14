@@ -42,7 +42,7 @@
     nameSegments:
     - NameSpetsOperative
     - NameSpets
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: False
   - type: AntagImmune
 

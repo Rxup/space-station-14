@@ -110,6 +110,11 @@
   # Corvax-End
   - type: ExplosionResistance
     damageCoefficient: 0
+  # start-backmen: surgery
+  - type: SurgeryTarget
+    canOperate: true
+    canBeOperatedOn: false
+  # end-backmen: surgery
 
 - type: entity
   abstract: true

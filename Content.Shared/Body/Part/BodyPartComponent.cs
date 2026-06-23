@@ -1,7 +1,8 @@
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Surgery.Wounds;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
@@ -12,7 +13,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Body.Part;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-//[Access(typeof(SharedBodySystem))]
+//[Access(typeof(BkmBodySharedSystem))] // backmen: body
 public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 {
     // Need to set this on container changes as it may be several transform parents up the hierarchy.
@@ -131,7 +132,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 
             foreach (var slotId in Children.Keys)
             {
-                temp.Add((ContainerSlot) containerSystem.GetContainer(Owner, SharedBodySystem.PartSlotContainerIdPrefix+slotId));
+                temp.Add((ContainerSlot) containerSystem.GetContainer(Owner, BkmBodySharedSystem.PartSlotContainerIdPrefix+slotId)); // backmen: body
             }
 
             return temp;
@@ -148,7 +149,7 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 
             foreach (var slotId in Organs.Keys)
             {
-                temp.Add((ContainerSlot) containerSystem.GetContainer(Owner, SharedBodySystem.OrganSlotContainerIdPrefix+slotId));
+                temp.Add((ContainerSlot) containerSystem.GetContainer(Owner, BkmBodySharedSystem.OrganSlotContainerIdPrefix+slotId)); // backmen: body
             }
 
             return temp;

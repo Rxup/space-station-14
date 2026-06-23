@@ -1,4 +1,4 @@
-﻿- type: reagent
+- type: reagent
   parent: Blood
   id: SyntheticBlood
   name: reagent-name-syntheticblood

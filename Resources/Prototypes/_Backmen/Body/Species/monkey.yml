@@ -1,0 +1,214 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Monkey
+  limits:
+    enum.HumanoidVisualLayers.Special:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceMonkey
+  name: monkey appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganMonkeyTorso
+      Head: OrganMonkeyHead
+      ArmLeft: OrganMonkeyArmLeft
+      ArmRight: OrganMonkeyArmRight
+      HandRight: OrganMonkeyHandRight
+      HandLeft: OrganMonkeyHandLeft
+      LegLeft: OrganMonkeyLegLeft
+      LegRight: OrganMonkeyLegRight
+      FootLeft: OrganMonkeyFootLeft
+      FootRight: OrganMonkeyFootRight
+      Brain: OrganAnimalBrain
+      Eyes: OrganMonkeyEyes
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganAnimalStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganAnimalKidneys
+  - type: HumanoidProfile
+    species: Monkey
+  - type: Inventory
+    templateId: monkey
+    speciesId: monkey
+
+- type: entity
+  parent:
+  - AppearanceMonkey
+  - BaseSpeciesMobOrganic
+  id: MobMonkeyPlayer
+  name: monkey
+  description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey.
+  components:
+  - type: HumanoidProfile
+    species: Monkey
+  - type: Speech
+    speechSounds: Monkey
+    speechVerb: Monkey
+  - type: MonkeyAccent
+  - type: Clumsy
+    gunShootFailDamage:
+      types:
+        Blunt: 5
+        Piercing: 4
+        Heat: 3
+    catchingFailDamage:
+      types:
+        Blunt: 1
+    clumsySound:
+      path: /Audio/Animals/monkey_scream.ogg
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 30
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 3
+        Piercing: 3
+  - type: Puller
+    needsHands: false
+  - type: Crawler
+  - type: Damageable
+    damageContainer: Biological
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      60: Critical
+      125: Dead
+
+- type: entity
+  parent: MobMonkeyPlayer
+  id: MobMonkeyDummy
+  categories: [ HideSpawnMenu ]
+  name: monkey
+  description: A dummy monkey meant to be used in character setup.
+  components:
+  - type: HumanoidProfile
+    species: Monkey
+  - type: Icon
+    sprite: Mobs/Animals/monkey.rsi
+    state: full
+
+- type: entity
+  parent: OrganBase
+  id: OrganMonkey
+  abstract: true
+  suffix: monkey
+
+- type: entity
+  id: OrganMonkeyVisual
+  abstract: true
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Animals/monkey.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Monkey
+
+- type: entity
+  parent: [ OrganMonkey, OrganMonkeyVisual ]
+  id: OrganMonkeyExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Mobs/Animals/monkey.rsi
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganMonkeyExternal ]
+  id: OrganMonkeyTorso
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganMonkeyExternal ]
+  id: OrganMonkeyHead
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganMonkeyExternal ]
+  id: OrganMonkeyArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganMonkeyExternal ]
+  id: OrganMonkeyHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganMonkeyExternal ]
+  id: OrganMonkeyLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganMonkeyExternal ]
+  id: OrganMonkeyFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganMonkeyExternal ]
+  id: OrganMonkeyFootRight
+
+- type: entity
+  parent: [ OrganMonkeyVisual, OrganBaseEyes, OrganAnimalEyes ]
+  id: OrganMonkeyEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Animals/monkey.rsi
+      state: eyes

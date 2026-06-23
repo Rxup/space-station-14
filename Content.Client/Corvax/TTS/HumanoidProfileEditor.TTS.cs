@@ -77,4 +77,13 @@ public sealed partial class HumanoidProfileEditor
 
         _entManager.System<TTSSystem>().RequestGlobalTTS(Shared.Backmen.TTS.VoiceRequestType.Preview,Profile.Voice);
     }
+
+    private void SetVoice(string voice)
+    {
+        if (Profile is null)
+            return;
+
+        Profile = Profile.WithVoice(voice);
+        SetDirty();
+    }
 }

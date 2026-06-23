@@ -57,7 +57,7 @@
     - CentralCommand
   - type: Loadout
     prototypes: [OperatorGavna]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: true
   - type: AntagImmune
   - type: Psionic

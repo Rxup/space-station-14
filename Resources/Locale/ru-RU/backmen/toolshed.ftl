@@ -4,6 +4,9 @@ command-description-changesex-setFemale = Сделать женщиной
 command-description-changesex-setUnsexed = Сделать бесполым
 command-description-changetts = Сменить голос
 command-description-makefakefingerprint = Добавить fake отпечатки
+
+command-description-graftarachne = Пришивает полное паучье тело человеку для тестов (ампутация ног, головогрудь, брюшко, восемь лап).
+graftarachne-error-no-body = У сущности нет BodyComponent.
 command-description-stationrecord-adduser = Добавить пользователя в манифест
 command-description-stationrecord-remuser = Удалить пользователя из манифеста
 command-description-changefaction-addFaction = Добавить фракцию

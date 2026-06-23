@@ -3,7 +3,7 @@ using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Body.Part;
-using Content.Shared.Body.Organ;
+using Content.Shared.Body;
 using Content.Shared.Emp;
 
 namespace Content.Server.Backmen.Cybernetics;
