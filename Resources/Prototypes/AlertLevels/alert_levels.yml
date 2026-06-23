@@ -73,11 +73,24 @@
       forceEnableEmergencyLights: true
       shuttleTime: 1200
 
-    epsilon:
-      announcement: alert-level-epsilon-announcement
+    epsilon-foxtrot:
+      announcement: alert-level-epsilon-foxtrot-announcement
       selectable: false
       sound:
         path: /Audio/Backmen/Misc/new-style-alerts/epsilon_code_new_style.ogg
+        params:
+          volume: -2
+      disableSelection: true
+      color: DarkViolet
+      emergencyLightColor: DarkViolet
+      forceEnableEmergencyLights: true
+      shuttleTime: 1200
+      
+    epsilon-tango:
+      announcement: alert-level-epsilon-tango-announcement
+      selectable: false
+      sound:
+        path: /Audio/Misc/epsilon.ogg
         params:
           volume: -2
       disableSelection: true

@@ -13,7 +13,7 @@
 - type: specForceTeam
   id: ERT
   specForceName: spec-forces-system-ert-name
-  shuttlePath: Maps/Backmen/Shuttles/SpecForces/dart.yml
+  shuttlePath: Maps/Backmen/Shuttles/SpecForces/sunbeam.yml
   spawnMarker: MarkerSpecforce
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertcall-title
@@ -23,11 +23,11 @@
     settings: short
   guaranteedSpawn:
     - id: SpawnMobHumanERTLeaderEVAV2_1
-    - id: SpawnMobHumanERTEngineerEVAV2_1
+    - id: SpawnMobHumanERTMedicalEVAV2_1
   specForceSpawn:
     - id: SpawnMobHumanERTSecurityEVAV2_1
-    - id: SpawnMobHumanERTMedicalEVAV2_1
     - id: SpawnMobHumanERTJunitorEVAV2_1
+    - id: SpawnMobHumanERTEngineerEVAV2_1
 
 # BaseRXBZZ
 - type: specForceTeam

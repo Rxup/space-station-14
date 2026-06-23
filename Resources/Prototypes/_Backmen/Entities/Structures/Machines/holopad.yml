@@ -15,6 +15,14 @@
   components:
   - type: Label
     currentLabel: holopad-centomm-base
+    
+- type: entity
+  parent: HolopadLongRange
+  id: HolopadOBRShuttleLongRange
+  suffix: OBR Shuttle
+  components:
+  - type: Label
+    currentLabel: holopad-obr-shuttle
 
 - type: entity
   parent: HolopadUnlimitedRange
