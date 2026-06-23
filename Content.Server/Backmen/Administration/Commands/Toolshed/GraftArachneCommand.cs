@@ -37,6 +37,14 @@ public sealed class GraftArachneCommand : ToolshedCommand
             return null;
         }
 
+        _bodySys ??= GetSys<BkmBodySharedSystem>();
+
+        if (!_bodySys.BodySupportsArachneGraft(input))
+        {
+            ctx.ReportError(new FlatOrgansError());
+            return null;
+        }
+
         GraftArachne(input);
         return input;
     }
@@ -70,7 +78,10 @@ public sealed class GraftArachneCommand : ToolshedCommand
         InsertSpiderLegs(body, SurgeryBodyPartMapping.SpiderLegRightSlots, "BioSynthSpiderLegRight");
 
         if (EntityManager.TryGetComponent(body, out bodyComp))
+        {
             _organRelations.WireGraftRelationships((body, bodyComp));
+            _bodySys.SyncLegEntitiesForBody((body, bodyComp));
+        }
     }
 
     private void TryInsertGraft(
@@ -112,6 +123,16 @@ public record struct NotBodyError : IConError
 {
     public FormattedMessage DescribeInner() =>
         FormattedMessage.FromUnformatted(Loc.GetString("graftarachne-error-no-body"));
+
+    public string? Expression { get; set; }
+    public Vector2i? IssueSpan { get; set; }
+    public StackTrace? Trace { get; set; }
+}
+
+public record struct FlatOrgansError : IConError
+{
+    public FormattedMessage DescribeInner() =>
+        FormattedMessage.FromUnformatted(Loc.GetString("graftarachne-error-flat-organs"));
 
     public string? Expression { get; set; }
     public Vector2i? IssueSpan { get; set; }

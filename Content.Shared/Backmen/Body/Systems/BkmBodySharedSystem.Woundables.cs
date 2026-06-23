@@ -140,6 +140,48 @@ public partial class BkmBodySharedSystem
     }
 
     /// <summary>
+    /// Arachne grafting requires layered <see cref="VisualBodyComponent"/> humanoids,
+    /// not flat-sprite NPC organ sets.
+    /// </summary>
+    public bool BodySupportsArachneGraft(EntityUid bodyId) =>
+        HasComp<VisualBodyComponent>(bodyId);
+
+    /// <summary>
+    /// Finds internal organs of a given type hosted under the external organ selected for surgery.
+    /// </summary>
+    public bool TryGetInternalOrgansForHostPart(
+        EntityUid bodyId,
+        EntityUid hostPart,
+        Type organComponentType,
+        [NotNullWhen(true)] out List<(EntityUid Id, OrganComponent Organ)>? organs)
+    {
+        organs = null;
+
+        if (!TryComp<OrganComponent>(hostPart, out var hostOrgan) || hostOrgan.Category is not { } hostCategory)
+            return false;
+
+        if (!TryGetBodyPartOrgans(bodyId, organComponentType, out var all) || all == null)
+            return false;
+
+        var filtered = new List<(EntityUid Id, OrganComponent Organ)>();
+        foreach (var organ in all)
+        {
+            if (organ.Organ.Category is not { } category
+                || !InternalOrganHostCategory.TryGetValue(category, out var expectedHost)
+                || expectedHost != hostCategory)
+                continue;
+
+            filtered.Add(organ);
+        }
+
+        if (filtered.Count == 0)
+            return false;
+
+        organs = filtered;
+        return true;
+    }
+
+    /// <summary>
     /// Count of inserted human foot organs (<c>FootLeft</c> / <c>FootRight</c>).
     /// </summary>
     public int GetHumanFootCount(EntityUid bodyId, BodyComponent? body = null)

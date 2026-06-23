@@ -218,7 +218,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         foreach (var reg in ent.Comp.Organ.Values)
         {
-            if (_body.TryGetBodyPartOrgans(args.Body, reg.Component.GetType(), out var organs)
+            if (_body.TryGetInternalOrgansForHostPart(args.Body, args.Part, reg.Component.GetType(), out var organs)
                 && organs.Count > 0)
             {
                 if (ent.Comp.Inverse

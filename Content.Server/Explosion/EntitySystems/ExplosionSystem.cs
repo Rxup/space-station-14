@@ -192,7 +192,10 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         // start-backmen: surgery
         var epicenter = uid;
         if (_surgeryCavity.TryGetSurgeryCavityHost(uid, out var hostBody, out _))
+        {
             epicenter = hostBody;
+            _body.GibBody(hostBody, gibOrgans: true, launchGibs: true, splatModifier: 2f);
+        }
 
         QueueExplosion(epicenter,
             explosive.ExplosionType,

@@ -135,9 +135,12 @@ public partial class BkmBodySharedSystem
             && !EntityManager.IsQueuedForDeletion(footOrgan))
         {
             // Surgery limb detachment moves the foot with the leg via DetachableOrganSystem.
+            // Detached limb bundles keep the foot until the leg is reattached (TransferDetachedSubtreeOrgans).
             var detachableSurgery = HasComp<DetachableOrganComponent>(args.Organ) && HasComp<SurgeryTargetComponent>(ent);
+            var detachedLimbBundle = HasComp<BkmDetachedBodyComponent>(ent);
 
             if (!detachableSurgery
+                && !detachedLimbBundle
                 && Net.IsServer
                 && ent.Comp.Organs != null
                 && ent.Comp.Organs.Contains(footOrgan.Owner)
@@ -212,8 +215,13 @@ public partial class BkmBodySharedSystem
 
         if (TryComp<InitialBodyComponent>(ent, out var initialBody))
         {
+            var hasArachneGraft = BodyHasArachneOrgan(ent, ent.Comp);
+
             foreach (var (category, proto) in initialBody.Organs)
             {
+                if (hasArachneGraft && SurgeryBodyPartMapping.IsHumanLegOrFootCategory(category))
+                    continue;
+
                 if (_nubody.TryGetOrganByCategory((ent, ent.Comp), category, out var existing)
                     && !TerminatingOrDeleted(existing))
                     continue;
@@ -260,6 +268,8 @@ public partial class BkmBodySharedSystem
         }
 
         _organRelations.WireRelationships((ent, ent.Comp!));
+        SyncLegEntities((ent, ent.Comp!));
+        UpdateMovementSpeed(ent, ent.Comp!);
     }
 
     private void OnRejuvenate(Entity<BodyComponent> ent, ref RejuvenateEvent args)
@@ -285,6 +295,11 @@ public partial class BkmBodySharedSystem
 
         Dirty(bodyEnt, bodyEnt.Comp);
     }
+
+    /// <summary>
+    /// Rebuilds tracked leg organs after grafting or rejuvenation.
+    /// </summary>
+    public void SyncLegEntitiesForBody(Entity<BodyComponent> bodyEnt) => SyncLegEntities(bodyEnt);
 
     public IEnumerable<(EntityUid Id, OrganComponent Component)> GetBodyOrgans(
         EntityUid? bodyId,
@@ -319,10 +334,44 @@ public partial class BkmBodySharedSystem
         if (!Resolve(bodyId, ref body, logMissing: false))
             return gibs;
 
-        foreach (var partUid in GetWoundableTargets(bodyId, body))
+        var woundables = GetWoundableTargets(bodyId, body).ToList();
+        woundables.Sort((a, b) => GetOrganRelationDepth(b).CompareTo(GetOrganRelationDepth(a)));
+
+        foreach (var partUid in woundables)
         {
+            if (TerminatingOrDeleted(partUid)
+                || !TryComp<OrganComponent>(partUid, out var organ)
+                || organ.Body != bodyId)
+                continue;
+
             if (TryComp(partUid, out GibbableComponent? gibbable))
                 gibSoundOverride ??= gibbable.GibSound;
+
+            if (HasComp<DetachableOrganComponent>(partUid))
+            {
+                _gibbingSystem.TryGibEntityWithRef(
+                    bodyId,
+                    partUid,
+                    GibType.Skip,
+                    contents,
+                    ref gibs,
+                    playAudio: false,
+                    launchGibs: false,
+                    allowedContainers: allowedContainers,
+                    excludedContainers: excludedContainers);
+
+                if (!RemoveOrgan(partUid, organ))
+                    continue;
+
+                if (TryGetDetachedBodyBundle(partUid, out var bundle))
+                {
+                    gibs.Add(bundle);
+                    if (launchGibs)
+                        FlingGib(bundle, splatDirection, splatModifier, splatCone);
+                }
+
+                continue;
+            }
 
             _gibbingSystem.TryGibEntityWithRef(bodyId, partUid, gib, contents, ref gibs, playAudio: false,
                 launchGibs: true, launchDirection: splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
@@ -356,6 +405,41 @@ public partial class BkmBodySharedSystem
         }
         _audioSystem.PlayPredicted(gibSoundOverride, bodyTransform.Coordinates, null);
         return gibs;
+    }
+
+    private int GetOrganRelationDepth(EntityUid organId)
+    {
+        var depth = 0;
+        var current = organId;
+
+        while (TryComp<ChildOrganComponent>(current, out var child) && child.Parent is { } parent)
+        {
+            depth++;
+            current = parent;
+        }
+
+        return depth;
+    }
+
+    private bool TryGetDetachedBodyBundle(EntityUid organId, out EntityUid bundle)
+    {
+        bundle = default;
+
+        if (!Containers.TryGetContainingContainer(organId, out var container)
+            || !HasComp<BkmDetachedBodyComponent>(container.Owner))
+            return false;
+
+        bundle = container.Owner;
+        return true;
+    }
+
+    private void FlingGib(EntityUid target, Vector2? direction, float splatModifier, Angle scatterCone)
+    {
+        SharedTransform.AttachToGridOrMap(target);
+        var scatterAngle = direction?.ToAngle() ?? _random.NextAngle();
+        var scatterVector = _random.NextAngle(scatterAngle - scatterCone / 2, scatterAngle + scatterCone / 2)
+            .ToVec() * (GibletLaunchImpulse * splatModifier + _random.NextFloat(GibletLaunchImpulseVariance));
+        _physics.ApplyLinearImpulse(target, scatterVector);
     }
 
     public virtual HashSet<EntityUid> GibPart(

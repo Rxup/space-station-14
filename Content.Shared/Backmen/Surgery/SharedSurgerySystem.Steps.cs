@@ -895,11 +895,11 @@ public abstract partial class SharedSurgerySystem
             || organComp.Organ is null)
             return;
 
-        var lookup = args.Body;
+        var lookup = args.Part;
 
         foreach (var reg in organComp.Organ.Values)
         {
-            if (!_body.TryGetBodyPartOrgans(lookup, reg.Component.GetType(), out var _))
+            if (!_body.TryGetInternalOrgansForHostPart(args.Body, lookup, reg.Component.GetType(), out var _))
                 args.Cancelled = true;
         }
     }
@@ -911,11 +911,11 @@ public abstract partial class SharedSurgerySystem
             || !removedOrganComp.Reattaching)
             return;
 
-        var lookup = args.Body;
+        var lookup = args.Part;
 
         foreach (var reg in removedOrganComp.Organ.Values)
         {
-            _body.TryGetBodyPartOrgans(lookup, reg.Component.GetType(), out var organs);
+            _body.TryGetInternalOrgansForHostPart(args.Body, lookup, reg.Component.GetType(), out var organs);
             if (organs != null && organs.Count > 0)
             {
                 RemComp<OrganReattachedComponent>(organs[0].Id);
@@ -934,11 +934,11 @@ public abstract partial class SharedSurgerySystem
             || !removedOrganComp.Reattaching)
             return;
 
-        var lookup = args.Body;
+        var lookup = args.Part;
 
         foreach (var reg in removedOrganComp.Organ.Values)
         {
-            _body.TryGetBodyPartOrgans(lookup, reg.Component.GetType(), out var organs);
+            _body.TryGetInternalOrgansForHostPart(args.Body, lookup, reg.Component.GetType(), out var organs);
             if (organs != null
                 && organs.Count > 0
                 && organs.Any(organ => HasComp<OrganReattachedComponent>(organ.Id)))
@@ -952,11 +952,11 @@ public abstract partial class SharedSurgerySystem
             || organComp.Organ == null)
             return;
 
-        var lookup = args.Body;
+        var lookup = args.Part;
 
         foreach (var reg in organComp.Organ.Values)
         {
-            _body.TryGetBodyPartOrgans(lookup, reg.Component.GetType(), out var organs);
+            _body.TryGetInternalOrgansForHostPart(args.Body, lookup, reg.Component.GetType(), out var organs);
             if (organs != null && organs.Count > 0)
             {
                 _body.RemoveOrgan(organs[0].Id, organs[0].Organ);
@@ -971,11 +971,11 @@ public abstract partial class SharedSurgerySystem
             || organComp.Organ == null)
             return;
 
-        var lookup = args.Body;
+        var lookup = args.Part;
 
         foreach (var reg in organComp.Organ.Values)
         {
-            if (_body.TryGetBodyPartOrgans(lookup, reg.Component.GetType(), out var organs)
+            if (_body.TryGetInternalOrgansForHostPart(args.Body, lookup, reg.Component.GetType(), out var organs)
                 && organs != null
                 && organs.Count > 0)
             {

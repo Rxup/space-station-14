@@ -8,6 +8,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Backmen.Body.Systems;
 
@@ -43,6 +44,7 @@ public abstract partial class BkmBodySharedSystem : EntitySystem
     [Dependency] protected StandingStateSystem Standing = default!;
     [Dependency] private BodySystem _nubody = default!;
     [Dependency] protected DamageableSystem Damageable = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 
     public override void Initialize()
     {
