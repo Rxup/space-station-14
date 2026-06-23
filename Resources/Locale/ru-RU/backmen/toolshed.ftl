@@ -7,6 +7,7 @@ command-description-makefakefingerprint = Добавить fake отпечатк
 
 command-description-graftarachne = Пришивает полное паучье тело человеку для тестов (ампутация ног, головогрудь, брюшко, восемь лап).
 graftarachne-error-no-body = У сущности нет BodyComponent.
+graftarachne-error-flat-organs = У сущности плоские органы NPC — арахне-графт недоступен.
 command-description-stationrecord-adduser = Добавить пользователя в манифест
 command-description-stationrecord-remuser = Удалить пользователя из манифеста
 command-description-changefaction-addFaction = Добавить фракцию

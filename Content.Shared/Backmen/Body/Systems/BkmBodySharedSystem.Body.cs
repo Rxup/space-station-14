@@ -135,9 +135,12 @@ public partial class BkmBodySharedSystem
             && !EntityManager.IsQueuedForDeletion(footOrgan))
         {
             // Surgery limb detachment moves the foot with the leg via DetachableOrganSystem.
+            // Detached limb bundles keep the foot until the leg is reattached (TransferDetachedSubtreeOrgans).
             var detachableSurgery = HasComp<DetachableOrganComponent>(args.Organ) && HasComp<SurgeryTargetComponent>(ent);
+            var detachedLimbBundle = HasComp<BkmDetachedBodyComponent>(ent);
 
             if (!detachableSurgery
+                && !detachedLimbBundle
                 && Net.IsServer
                 && ent.Comp.Organs != null
                 && ent.Comp.Organs.Contains(footOrgan.Owner)
@@ -212,8 +215,13 @@ public partial class BkmBodySharedSystem
 
         if (TryComp<InitialBodyComponent>(ent, out var initialBody))
         {
+            var hasArachneGraft = BodyHasArachneOrgan(ent, ent.Comp);
+
             foreach (var (category, proto) in initialBody.Organs)
             {
+                if (hasArachneGraft && SurgeryBodyPartMapping.IsHumanLegOrFootCategory(category))
+                    continue;
+
                 if (_nubody.TryGetOrganByCategory((ent, ent.Comp), category, out var existing)
                     && !TerminatingOrDeleted(existing))
                     continue;
@@ -260,6 +268,8 @@ public partial class BkmBodySharedSystem
         }
 
         _organRelations.WireRelationships((ent, ent.Comp!));
+        SyncLegEntities((ent, ent.Comp!));
+        UpdateMovementSpeed(ent, ent.Comp!);
     }
 
     private void OnRejuvenate(Entity<BodyComponent> ent, ref RejuvenateEvent args)
@@ -285,6 +295,11 @@ public partial class BkmBodySharedSystem
 
         Dirty(bodyEnt, bodyEnt.Comp);
     }
+
+    /// <summary>
+    /// Rebuilds tracked leg organs after grafting or rejuvenation.
+    /// </summary>
+    public void SyncLegEntitiesForBody(Entity<BodyComponent> bodyEnt) => SyncLegEntities(bodyEnt);
 
     public IEnumerable<(EntityUid Id, OrganComponent Component)> GetBodyOrgans(
         EntityUid? bodyId,
