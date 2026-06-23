@@ -62,6 +62,9 @@ public sealed class DetachableOrganSystem : EntitySystem
 
         foreach (var child in _organRelation.AllChildren(ent.Owner))
         {
+            if (!TryComp<OrganComponent>(child.Owner, out var childOrgan) || childOrgan.Body != args.Target)
+                continue;
+
             if (!_container.Insert(child.Owner, container, force: true))
             {
                 Log.Error($"{ToPrettyString(child)} could not be transferred to new body {ToPrettyString(body)}.");
