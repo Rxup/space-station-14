@@ -1,7 +1,7 @@
 - type: entity
   name: Сотрудник СБ
   id: MobSecurityNT
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa НТ СБ
   description: Сотрудник СБ, вооруженный стан-дубинкой для охраны экипажа.
   components:
@@ -46,7 +46,7 @@
 - type: entity
   name: Сотрудник СБ
   id: MobSecurityNTDisabler
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa НТ СБ Disabler
   description: Сотрудник СБ, вооруженный станнером для охраны экипажа.
   components:
@@ -122,7 +122,7 @@
 - type: entity
   name: Сотрудник ССБЦК
   id: MobSecurityNTPistol
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa НТ СБ ЦК Pistol
   description: Сотрудник Специальной Службы Безопасности ЦК, вооруженный пистолетом для Центрального Командования от посторонних.
   components:
@@ -204,7 +204,7 @@
 - type: entity
   name: Сотрудник ДСО
   id: MobERTUnitSecurity
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa НТ ДСО Rifle
   description: Сотрудник Департамента Специальных Операций, вооруженный штурмовой винтовкой, защищает объекты НТ ДСО.
   components:

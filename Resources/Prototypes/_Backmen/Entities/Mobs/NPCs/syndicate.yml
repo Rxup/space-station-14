@@ -100,7 +100,7 @@
     - Syndicate
 
 - type: entity
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   id: MobSimpleSyndicateBlade
   name: syndicate soldier
   suffix: AI, Энергетический меч
@@ -142,7 +142,7 @@
             Heat: 12
 
 - type: entity
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   id: MobSimpleSyndicateKnife
   name: syndicate soldier
   suffix: AI, Ножик
@@ -181,7 +181,7 @@
             Piercing: 5
 
 - type: entity
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   id: MobSimpleSyndicatePistol
   name: syndicate soldier
   suffix: AI, Пистолет
@@ -225,7 +225,7 @@
           volume: -100
 
 - type: entity
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   id: MobSimpleSyndicateShotgun
   name: syndicate soldier
   suffix: AI, Дробовик
@@ -269,7 +269,7 @@
           volume: -100
 
 - type: entity
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   id: MobSimpleSyndicateSMG
   name: syndicate soldier
   suffix: AI, СМГ

@@ -1,21 +1,12 @@
 - type: entity
   name: Базированная База НПЦ
   id: MobBaseNpc
-  parent: [SimpleSpaceMobBase, StripableInventoryBase, BaseMobNpcAnimalHumanBody]
+  parent: [SimpleSpaceMobBase, StripableInventoryBase]
   description: Just a body, be calm.
   components:
   - type: UniversalLanguageSpeaker
   - type: DiseaseCarrier
   - type: CombatMode
-  - type: SurgeryTarget
-  - type: Stripping
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
-      enum.SurgeryUIKey.Key:
-        type: SurgeryBui
   - type: ComplexInteraction
   - type: StatusEffects
     allowed:
@@ -52,17 +43,6 @@
   - type: NpcFactionMember
     factions:
       - SimpleNeutral
-  - type: Inventory
-    templateId: human
-  - type: Hands
-    hands:
-      left:
-        location: Left
-      right:
-        location: Right
-    sortedHands:
-    - left
-    - right
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
@@ -123,6 +103,33 @@
       - FootstepSound
       - CanPilot
   - type: FootPrints
+
+- type: entity
+  name: Базированная База НПЦ (гуманоид)
+  id: MobBaseNpcHumanoid
+  parent: [MobBaseNpc, BaseMobNpcAnimalHumanBody]
+  abstract: true
+  components:
+  - type: SurgeryTarget
+  - type: Stripping
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+  - type: Inventory
+    templateId: human
+  - type: Hands
+    hands:
+      left:
+        location: Left
+      right:
+        location: Right
+    sortedHands:
+    - left
+    - right
 
 - type: entity
   id: MobBaseNpcSalvage

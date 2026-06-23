@@ -1,12 +1,12 @@
 flesh-pudge-throw-worm-name = Vomit Worm
 flesh-pudge-throw-worm-popup = Vomits a worm
-flesh-pudge-throw-worm-eat-face-user = The worm is eating your face!
-flesh-pudge-throw-worm-bite-user = The worm has bitten your hand!
-flesh-pudge-throw-worm-try-unequip = You can't remove the worm from your face.
-flesh-pudge-throw-worm-eat-face-others = The worm is eating { CAPITALIZE($entity) }'s face!
-flesh-pudge-throw-worm-hit-others = The worm has latched onto { CAPITALIZE($entity) }'s face!
-flesh-pudge-throw-worm-hit-mob = You have latched onto { CAPITALIZE($entity) }'s face!
-flesh-pudge-throw-worm-hit-user = The worm has latched onto your face!
+flesh-pudge-throw-worm-eat-face-user = { CAPITALIZE(THE($worm)) } is eating your face!
+flesh-pudge-throw-worm-bite-user = { CAPITALIZE(THE($worm)) } has bitten your hand!
+flesh-pudge-throw-worm-try-unequip = You can't remove { THE($worm) } from your face.
+flesh-pudge-throw-worm-eat-face-others = { CAPITALIZE(THE($worm)) } is eating { CAPITALIZE(THE($entity)) }'s face!
+flesh-pudge-throw-worm-hit-others = { CAPITALIZE(THE($worm)) } has latched onto { CAPITALIZE(THE($entity)) }'s face!
+flesh-pudge-throw-worm-hit-mob = You have latched onto { CAPITALIZE(THE($entity)) }'s face!
+flesh-pudge-throw-worm-hit-user = { CAPITALIZE(THE($worm)) } has latched onto your face!
 flesh-pudge-throw-worm-desc = Vomit a worm from your flesh and hold it in your hand to throw at enemies.
 
 flesh-worm-wearer-examine = [color=red]{ CAPITALIZE(THE($ent)) } is latched onto { SUBJECT($target) } face![/color]
@@ -16,8 +16,8 @@ flesh-worm-remove-start-user = You start pulling the worm off {THE($worm)}.
 flesh-worm-remove-start-wearer = {CAPITALIZE(THE($user))} is trying to pull the worm off your face!
 flesh-worm-remove-self-start = You struggle to tear the worm off your face...
 flesh-worm-remove-self-too-tired = You're too exhausted to tear the worm off your face!
-flesh-worm-head-trauma-user = The worm burrows deeper — your head is badly injured!
-flesh-worm-head-trauma-others = The worm burrows into {CAPITALIZE($entity)}'s head!
+flesh-worm-head-trauma-user = { CAPITALIZE(THE($worm)) } burrows deeper — your head is badly injured!
+flesh-worm-head-trauma-others = { CAPITALIZE(THE($worm)) } burrows into { CAPITALIZE(THE($entity)) }'s head!
 flesh-pudge-transform-user = You transform into { CAPITALIZE($EntityTransform) }.
 flesh-pudge-transform-others = { CAPITALIZE($Entity) } transforms into { CAPITALIZE($EntityTransform) }.
 flesh-pudge-transform-begin-user = You begin to transform.

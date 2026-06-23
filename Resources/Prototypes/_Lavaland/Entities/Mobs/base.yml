@@ -28,13 +28,12 @@
 - type: entity
   id: MobBaseNpcDungeon
   parent:
-  - MobBaseNpcSalvage
+  - MobBaseNpc
   - StripableInventoryBase
-  - BaseMobNpcAnimalHumanBody
   categories: [ HideSpawnMenu ]
   components:
-  - type: LayingDown
-    standingUpTime: 5
+  - type: Physics
+    bodyType: KinematicController
   - type: HTN
     blackboard:
       VisionRadius: !type:Single

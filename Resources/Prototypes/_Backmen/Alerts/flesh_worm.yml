@@ -1,0 +1,19 @@
+- type: alert
+  id: FleshWormSuffocation
+  category: Breathing
+  icons:
+  - sprite: /Textures/Interface/Alerts/breathing.rsi
+    state: not_enough_oxy
+  alertViewEntity: AlertFleshWormSuffocationSpriteView
+  name: alerts-flesh-worm-suffocation-name
+  description: alerts-flesh-worm-suffocation-desc
+  clickEvent: !type:FleshWormSuffocationAlertEvent
+
+- type: entity
+  id: AlertFleshWormSuffocationSpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FleshWormSuffocationAlert
+  - type: Sprite
+    layers:
+    - map: [ "enum.AlertVisualLayers.Base" ]

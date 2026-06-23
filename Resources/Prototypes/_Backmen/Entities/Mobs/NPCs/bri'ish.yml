@@ -1,7 +1,7 @@
 - type: entity
   name: British soldier
   id: MobBritishMelee
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa Melee
   description: Human in uniform of 1-est United Kingdoms colonial army. Em... Yeah...
   components:
@@ -154,7 +154,7 @@
 - type: entity
   name: Spanish soldier
   id: MobSpanishMelee
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa Melee
   description: Human in uniform of Spanish fleet. Em... Yeah...
   components:
@@ -195,7 +195,7 @@
 - type: entity
   name: pirate
   id: MobPirateMelee
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa Melee
   description: They mostly come at night. Mostly.
   components:
@@ -220,7 +220,7 @@
 - type: entity
   name: civilian
   id: MobCivilianOld
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa Civilian Old
   description: Civilian, just exists.
   components:
@@ -265,7 +265,7 @@
 - type: entity
   name: civilian
   id: MobCivilianSuppa
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa Civilian
   description: Civilian, just exists.
   components:
@@ -309,7 +309,7 @@
 - type: entity
   name: maid
   id: MobCivilianMaiden
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa Civilian Maiden
   description: Civilian, just exists.
   components:
@@ -322,7 +322,7 @@
 - type: entity
   name: Lenny
   id: MobCivilianLenny
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa Civilian Lenny
   description: Civilian, just exists.
   components:

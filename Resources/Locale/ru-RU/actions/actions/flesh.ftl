@@ -1,12 +1,12 @@
 flesh-pudge-throw-worm-name = Рвотный червь
 flesh-pudge-throw-worm-popup = Извергает червя
-flesh-pudge-throw-worm-eat-face-user = Червь пожирает твое лицо!
-flesh-pudge-throw-worm-bite-user = Червь укусил тебя за руку!
-flesh-pudge-throw-worm-try-unequip = Вы не можете удалить червя со своего лица.
-flesh-pudge-throw-worm-eat-face-others = Червь ест { CAPITALIZE($entity) } твое лицо!
-flesh-pudge-throw-worm-hit-others = Червь вцепился в { CAPITALIZE($entity) } его лицо!
-flesh-pudge-throw-worm-hit-mob = Вы ухватились за { CAPITALIZE($entity) } его лицо!
-flesh-pudge-throw-worm-hit-user = Червь вцепился тебе в лицо!
+flesh-pudge-throw-worm-eat-face-user = { CAPITALIZE(THE($worm)) } пожирает ваше лицо!
+flesh-pudge-throw-worm-bite-user = { CAPITALIZE(THE($worm)) } укусил вас за руку!
+flesh-pudge-throw-worm-try-unequip = Вы не можете сорвать { THE($worm) } со своего лица.
+flesh-pudge-throw-worm-eat-face-others = { CAPITALIZE(THE($worm)) } пожирает лицо { CAPITALIZE(THE($entity)) }!
+flesh-pudge-throw-worm-hit-others = { CAPITALIZE(THE($worm)) } вцепился в лицо { CAPITALIZE(THE($entity)) }!
+flesh-pudge-throw-worm-hit-mob = Вы ухватились за лицо { CAPITALIZE(THE($entity)) }!
+flesh-pudge-throw-worm-hit-user = { CAPITALIZE(THE($worm)) } вцепился вам в лицо!
 flesh-pudge-throw-worm-desc = Вырвите червя из своей плоти и держите его в руке, чтобы швырнуть во врагов.
 
 flesh-worm-wearer-examine = [color=red]{ CAPITALIZE(THE($ent)) } вцепился в лицо { DAT-GEN($target) }![/color]
@@ -16,8 +16,8 @@ flesh-worm-remove-start-user = Вы начинаете срывать {THE($worm
 flesh-worm-remove-start-wearer = {CAPITALIZE(THE($user))} пытается сорвать с вашего лица червя!
 flesh-worm-remove-self-start = Вы пытаетесь сорвать червя со своего лица...
 flesh-worm-remove-self-too-tired = Вы слишком устали, чтобы сорвать червя со своего лица!
-flesh-worm-head-trauma-user = Червь вгрызается глубже — голова сильно повреждена!
-flesh-worm-head-trauma-others = Червь вгрызается в голову {CAPITALIZE($entity)}!
+flesh-worm-head-trauma-user = { CAPITALIZE(THE($worm)) } вгрызается глубже — голова сильно повреждена!
+flesh-worm-head-trauma-others = { CAPITALIZE(THE($worm)) } вгрызается в голову { CAPITALIZE(THE($entity)) }!
 flesh-pudge-transform-user = Вы превращаетесь в { CAPITALIZE($EntityTransform) }.
 flesh-pudge-transform-others = { CAPITALIZE($Entity) } превращается в { CAPITALIZE($EntityTransform) }.
 flesh-pudge-transform-begin-user = Вы начинаете преображаться.

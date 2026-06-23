@@ -1552,7 +1552,7 @@
 - type: entity
   name: living sword
   id: MobLiveSword
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: Holy
   components:
   - type: Physics
