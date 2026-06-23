@@ -82,7 +82,8 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
 
     private ProtoId<TTSVoicePrototype> ResolveVoice(HumanoidCharacterProfile profile)
     {
-        if (_prototype.TryIndex(profile.Voice, out var voiceProto)
+        if (profile.Voice != default
+            && _prototype.TryIndex(profile.Voice, out var voiceProto)
             && HumanoidCharacterProfile.CanHaveVoice(voiceProto, profile.Sex))
         {
             return profile.Voice;
