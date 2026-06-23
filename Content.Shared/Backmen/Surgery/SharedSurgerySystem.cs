@@ -299,7 +299,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         var isArachne = organ.Category is { } category
             && SurgeryBodyPartMapping.IsArachneGraftCategory(category);
 
-        if (ent.Comp.Inverse ? !isArachne : isArachne)
+        if (ent.Comp.Inverse ? isArachne : !isArachne)
             args.Cancelled = true;
     }
 
