@@ -64,6 +64,49 @@ public static class SurgeryBodyPartMapping
     public static bool IsSpiderLegCategory(ProtoId<OrganCategoryPrototype> category) =>
         SpiderLegLeftSlots.Contains(category) || SpiderLegRightSlots.Contains(category);
 
+    public static readonly ProtoId<OrganCategoryPrototype>[] ArachneGraftInstallOrder =
+    [
+        "ArachneFront",
+        "ArachneAbdomen",
+        .. SpiderLegLeftSlots,
+        .. SpiderLegRightSlots,
+    ];
+
+    public static bool IsArachneGraftCategory(ProtoId<OrganCategoryPrototype> category) =>
+        category == "ArachneFront"
+        || category == "ArachneAbdomen"
+        || IsSpiderLegCategory(category);
+
+    /// <summary>
+    /// Returns the most recently grafted arachne segment still present on the body.
+    /// Removal must proceed in reverse of <see cref="ArachneGraftInstallOrder"/>.
+    /// </summary>
+    public static bool TryGetLastAttachedArachneGraft(
+        EntityUid body,
+        BodySystem organBody,
+        out ProtoId<OrganCategoryPrototype> category)
+    {
+        category = default;
+
+        for (var i = ArachneGraftInstallOrder.Length - 1; i >= 0; i--)
+        {
+            var candidate = ArachneGraftInstallOrder[i];
+            if (!organBody.TryGetOrganByCategory(body, candidate, out _))
+                continue;
+
+            category = candidate;
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool CanDetachArachneGraftCategory(
+        EntityUid body,
+        ProtoId<OrganCategoryPrototype> category,
+        BodySystem organBody) =>
+        TryGetLastAttachedArachneGraft(body, organBody, out var last) && last == category;
+
     /// <summary>
     /// Leg count for bodies with grafted arachne organs (four per side).
     /// </summary>

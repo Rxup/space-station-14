@@ -59,6 +59,7 @@
   suffix: Human, NukeOps
   components:
   - type: NukeOperative
+  - type: PainImmune
   - type: RandomMetadata
     nameSegments:
     - NamesSyndicateNormal
@@ -74,6 +75,7 @@
   id: MobHumanNukeOp
   components:
   - type: NukeOperative
+  - type: PainImmune
   - type: RandomHumanoidProfile
 
 - type: entity
@@ -85,6 +87,7 @@
   - type: RandomHumanoidProfile
     randomizeName: false
   - type: NukeOperative
+  - type: PainImmune
   - type: Loadout
     prototypes: [SyndicateLoneOperativeGearFull]
     roleLoadout: [ RoleSurvivalSyndicate ]

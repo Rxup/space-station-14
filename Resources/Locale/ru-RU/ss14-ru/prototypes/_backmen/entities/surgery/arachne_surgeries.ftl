@@ -6,3 +6,5 @@ ent-SurgeryGraftSpiderLegLeft = Пришить левую паучью ногу
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryGraftSpiderLegRight = Пришить правую паучью ногу
     .desc = { ent-SurgeryBase.desc }
+ent-SurgeryDetachArachneGraft = Отсоединить паучий графт
+    .desc = { ent-SurgeryBase.desc }

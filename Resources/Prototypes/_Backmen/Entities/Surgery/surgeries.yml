@@ -90,6 +90,8 @@
   - type: SurgeryPartCondition
     part: Chest
     inverse: true
+  - type: SurgeryArachneGraftOrgan
+    inverse: true
 
 - type: entity
   parent: SurgeryBase

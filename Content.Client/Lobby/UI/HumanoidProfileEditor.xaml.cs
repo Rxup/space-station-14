@@ -232,12 +232,6 @@ namespace Content.Client.Lobby.UI
 
             #endregion SpawnPriority
 
-            if (configurationManager.GetCVar(CCCVars.TTSEnabled))
-            {
-                TTSContainer.Visible = true;
-                InitializeVoice();
-            }
-
             InitializeBkm();
 
             #region Eyes
@@ -286,6 +280,8 @@ namespace Content.Client.Lobby.UI
 
             RefreshTraits();
 
+            TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab")); // Corvax-TTS-Edit
+
             #region Markings
 
             TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
@@ -296,6 +292,11 @@ namespace Content.Client.Lobby.UI
             #endregion Markings
 
             RefreshFlavorText();
+
+            if (configurationManager.GetCVar(CCCVars.TTSEnabled))
+            {
+                RefreshVoiceTab();
+            }
 
             #region Dummy
 

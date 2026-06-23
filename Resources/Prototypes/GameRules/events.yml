@@ -251,6 +251,7 @@
         sound: /Audio/Misc/ninja_greeting.ogg
       components:
       - type: SpaceNinja
+      - type: PainImmune
       - type: NpcFactionMember
         factions:
         - Syndicate
@@ -585,6 +586,7 @@
       - RoleSurvivalNukie
       components:
       - type: NukeOperative
+      - type: PainImmune
       - type: RandomMetadata
         nameSegments:
         - NamesSyndicatePrefix

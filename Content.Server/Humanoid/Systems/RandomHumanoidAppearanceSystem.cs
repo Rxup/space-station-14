@@ -26,6 +26,14 @@ public sealed partial class RandomHumanoidProfileSystem : EntitySystem
 
         var profile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species);
 
+        // start-backmen: random-hair
+        if (component.RandomizeHair)
+        {
+            profile = profile.WithCharacterAppearance(
+                HumanoidCharacterAppearance.WithRandomHair(profile.Appearance, humanoid.Species, profile.Sex));
+        }
+        // end-backmen: random-hair
+
         _visualBody.ApplyProfileTo(uid, profile);
         _humanoidProfile.ApplyProfileTo(uid, profile);
 

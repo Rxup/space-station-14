@@ -1,6 +1,7 @@
 - type: markingsGroup
   parent: Undergarments
   id: HumanoidFoxes
+  onlyGroupWhitelisted: true
   limits:
     enum.HumanoidVisualLayers.Hair:
       limit: 1
@@ -207,6 +208,15 @@
     sexStateOverrides:
       Male: torso_m
       Female: torso_f
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
 
 - type: entity
   parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganHumanoidFoxExternal ]
@@ -232,34 +242,82 @@
 - type: entity
   parent: [ OrganBaseArmLeft, OrganHumanoidFoxExternal ]
   id: OrganHumanoidFoxArmLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - LArm
 
 - type: entity
   parent: [ OrganBaseArmRight, OrganHumanoidFoxExternal ]
   id: OrganHumanoidFoxArmRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - RArm
 
 - type: entity
   parent: [ OrganBaseHandLeft, OrganHumanoidFoxExternal ]
   id: OrganHumanoidFoxHandLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - LHand
 
 - type: entity
   parent: [ OrganBaseHandRight, OrganHumanoidFoxExternal ]
   id: OrganHumanoidFoxHandRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - RHand
 
 - type: entity
   parent: [ OrganBaseLegLeft, OrganHumanoidFoxExternal ]
   id: OrganHumanoidFoxLegLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - LLeg
 
 - type: entity
   parent: [ OrganBaseLegRight, OrganHumanoidFoxExternal ]
   id: OrganHumanoidFoxLegRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - RLeg
 
 - type: entity
   parent: [ OrganBaseFootLeft, OrganHumanoidFoxExternal ]
   id: OrganHumanoidFoxFootLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - LFoot
 
 - type: entity
   parent: [ OrganBaseFootRight, OrganHumanoidFoxExternal ]
   id: OrganHumanoidFoxFootRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - RFoot
 
 - type: entity
   parent: [ OrganHumanoidFoxVisual, OrganBaseEyes, OrganVulpkaninInternal ]

@@ -23,6 +23,7 @@ public sealed partial class ArachneSpriteLayerSystem : EntitySystem
     private static readonly ProtoId<SpeciesPrototype> ArachneClassicSpecies = "ArachneClassic";
 
     [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private ClientClothingSystem _clothing = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SpriteSystem _sprite = default!;
 
@@ -166,6 +167,7 @@ public sealed partial class ArachneSpriteLayerSystem : EntitySystem
         MoveMappedLayerBefore(ent, HumanoidVisualLayers.RLeg, HumanoidVisualLayers.Chest);
 
         EnsureStencilLayers(ent);
+        SyncClothingStencil(uid, sprite);
 
         if (_sprite.LayerMapTryGet(ent, ClientClothingSystem.Jumpsuit, out var jumpsuit, false)
             && _sprite.LayerMapTryGet(ent, HumanoidVisualLayers.LHand, out var lHand, false)
@@ -195,17 +197,48 @@ public sealed partial class ArachneSpriteLayerSystem : EntitySystem
             State = "l_leg",
         }, insertAt);
 
-        var maskIndex = _sprite.AddLayer(ent, new PrototypeLayerData
+        var stencilState = ComputeStencilState(ent.Owner);
+        if (!ArachneClothingStencilVisuals.TryGetLayerData(stencilState, out var maskData))
         {
-            Shader = "StencilMask",
-            RsiPath = "Backmen/Mobs/Customization/anytaur_masking_helpers.rsi",
-            State = "female_full",
-            Visible = false,
-        }, insertAt + 1);
+            maskData = new PrototypeLayerData
+            {
+                Shader = "StencilMask",
+                RsiPath = ArachneClothingStencilVisuals.MaskSprite,
+                State = "unsexed_full",
+                Visible = false,
+            };
+        }
+
+        var maskIndex = _sprite.AddLayer(ent, maskData, insertAt + 1);
 
         _sprite.LayerMapSet(ent, HumanoidVisualLayers.StencilMask, maskIndex);
-        _sprite.LayerSetVisible(ent, maskIndex, false);
-        EnsureComp<ArachneClothingStencilComponent>(ent);
+        _sprite.LayerSetVisible(ent, maskIndex, maskData.Visible ?? false);
+        EnsureComp<ArachneClothingStencilComponent>(ent.Owner);
+    }
+
+    /// <summary>
+    /// Recomputes the anytaur clothing stencil for the body's sex and refreshes equipped clothing.
+    /// Needed when the stencil is added after map init (e.g. surgical graft).
+    /// </summary>
+    private void SyncClothingStencil(EntityUid uid, SpriteComponent sprite)
+    {
+        if (!HasComp<ArachneClothingStencilComponent>(uid))
+            return;
+
+        RefreshStencilAppearance(uid);
+        SyncClothingStencilMask(uid, sprite);
+
+        if (TryComp(uid, out InventoryComponent? inventory))
+            _clothing.InitClothing(uid, inventory);
+    }
+
+    private void SyncClothingStencilMask(EntityUid uid, SpriteComponent sprite)
+    {
+        var state = _appearance.TryGetData(uid, ArachneVisuals.ClothingStencil, out ArachneClothingStencilState appearanceState)
+            ? appearanceState
+            : ComputeStencilState(uid);
+
+        ApplyStencilMask(uid, sprite, state);
     }
 
     private bool MoveMappedLayerBefore(Entity<SpriteComponent?> ent, Enum layerKey, Enum beforeKey)
@@ -280,8 +313,16 @@ public sealed partial class ArachneSpriteLayerSystem : EntitySystem
         return true;
     }
 
-    private void OnStencilStartup(Entity<ArachneClothingStencilComponent> ent, ref ComponentStartup args) =>
-        RefreshStencilAppearance(ent);
+    private void OnStencilStartup(Entity<ArachneClothingStencilComponent> ent, ref ComponentStartup args)
+    {
+        if (!TryComp(ent, out SpriteComponent? sprite))
+        {
+            RefreshStencilAppearance(ent);
+            return;
+        }
+
+        SyncClothingStencil(ent, sprite);
+    }
 
     private void OnBeforeClothingAppearance(Entity<ArachneClothingStencilComponent> ent, ref BeforeClothingAppearanceRefreshEvent args)
     {

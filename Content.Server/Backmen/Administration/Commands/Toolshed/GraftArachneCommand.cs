@@ -7,6 +7,7 @@ using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
+using Content.Shared.Humanoid;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
@@ -25,6 +26,7 @@ public sealed class GraftArachneCommand : ToolshedCommand
     private BkmBodySharedSystem? _bodySys;
     private BodySystem? _organBody;
     private OrganRelationInitializerSystem? _organRelations;
+    private SharedVisualBodySystem? _visualBody;
 
     [CommandImplementation]
     public EntityUid? GraftArachne(
@@ -81,7 +83,35 @@ public sealed class GraftArachneCommand : ToolshedCommand
         {
             _organRelations.WireGraftRelationships((body, bodyComp));
             _bodySys.SyncLegEntitiesForBody((body, bodyComp));
+            ResyncOrganSexAfterGraft(body);
         }
+    }
+
+    /// <summary>
+    /// Grafting does not change <see cref="HumanoidProfileComponent.Sex"/>, but organ layer states must be refreshed.
+    /// </summary>
+    private void ResyncOrganSexAfterGraft(EntityUid body)
+    {
+        if (!EntityManager.TryGetComponent(body, out HumanoidProfileComponent? humanoid)
+            || !EntityManager.TryGetComponent(body, out VisualBodyComponent? visualBody))
+        {
+            return;
+        }
+
+        _visualBody ??= EntityManager.System<SharedVisualBodySystem>();
+
+        if (!_visualBody.TryGatherMarkingsData((body, visualBody), null, out var profiles, out var markings, out var applied))
+            return;
+
+        profiles.TryGetValue("Torso", out var torsoProfile);
+        profiles.TryGetValue("Head", out var headProfile);
+
+        _visualBody.ApplyProfile(body, new OrganProfileData
+        {
+            Sex = humanoid.Sex,
+            SkinColor = torsoProfile.SkinColor,
+            EyeColor = headProfile.EyeColor,
+        });
     }
 
     private void TryInsertGraft(
