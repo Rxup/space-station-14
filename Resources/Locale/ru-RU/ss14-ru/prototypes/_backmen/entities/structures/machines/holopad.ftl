@@ -16,3 +16,6 @@ ent-HolopadCentCommAdmiral = { ent-HolopadCentCommBase }
 ent-HolopadCentCommEvac = { ent-HolopadCentCommBase }
     .suffix = Centcomm, Evac room
     .desc = { ent-HolopadCentCommBase.desc }
+ent-HolopadOBRShuttleLongRange = { ent-HolopadLongRange }
+    .suffix = ОБР, Шаттл
+    .desc = { ent-HolopadLongRange.desc }
