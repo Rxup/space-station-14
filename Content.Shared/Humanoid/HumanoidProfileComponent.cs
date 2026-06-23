@@ -1,3 +1,4 @@
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Robust.Shared.Enums;
@@ -24,4 +25,7 @@ public sealed partial class HumanoidProfileComponent : Component
 
     [DataField, AutoNetworkedField]
     public ProtoId<SpeciesPrototype> Species = HumanoidCharacterProfile.DefaultSpecies;
+
+    [DataField, AutoNetworkedField]
+    public ProtoId<TTSVoicePrototype> Voice = HumanoidProfileSystem.DefaultVoice;
 }

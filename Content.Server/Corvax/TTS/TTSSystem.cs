@@ -7,6 +7,7 @@ using Content.Shared.Chat;
 using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
+using Content.Shared.Humanoid;
 using Content.Shared.Radio;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Random.Helpers;
@@ -47,10 +48,11 @@ public sealed partial class TTSSystem : EntitySystem
 
     private void OnTtsInitialized(Entity<TTSComponent> ent, ref MapInitEvent args)
     {
-        if (ent.Comp.VoicePrototypeId == null && _prototypeManager.TryGetRandom<TTSVoicePrototype>(_robustRandom, out var newTtsVoice))
-        {
+        if (ent.Comp.VoicePrototypeId != null || HasComp<HumanoidProfileComponent>(ent))
+            return;
+
+        if (_prototypeManager.TryGetRandom<TTSVoicePrototype>(_robustRandom, out var newTtsVoice))
             ent.Comp.VoicePrototypeId = newTtsVoice.ID;
-        }
     }
 
 
