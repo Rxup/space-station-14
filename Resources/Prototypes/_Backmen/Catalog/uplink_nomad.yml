@@ -64,27 +64,27 @@
   categories:
   - UplinkAmmo
 
-- type: listing
-  id: UplinkMagazine9x17
-  name: магазин (9x17 mm)
-  description: Магазин калибра 9x17 для ПП.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun.rsi, state: base }
-  productEntity: MagazinePistolSubMachineGun9x17
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
+#- type: listing
+#  id: UplinkMagazine9x17
+#  name: магазин (9x17 mm)
+#  description: Магазин калибра 9x17 для ПП.
+#  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun.rsi, state: base }
+#  productEntity: MagazinePistolSubMachineGun9x17
+#  cost:
+#    Telecrystal: 1
+#  categories:
+#  - UplinkAmmo
 
-- type: listing
-  id: UplinkMagazinePistol9x17
-  name: пистолетный магазин (9x17 mm)
-  description: Магазин калибра 9x17 для пистолетов.
-  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag.rsi, state: base }
-  productEntity: MagazinePistol9x17
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
+#- type: listing
+#  id: UplinkMagazinePistol9x17
+#  name: пистолетный магазин (9x17 mm)
+#  description: Магазин калибра 9x17 для пистолетов.
+#  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag.rsi, state: base }
+#  productEntity: MagazinePistol9x17
+#  cost:
+#    Telecrystal: 1
+#  categories:
+#  - UplinkAmmo
 
 - type: listing
   id: UplinkMagazinePistol57x28
@@ -596,6 +596,10 @@
   components:
   - type: StorageFill
     contents:
+      - id: MagazinePistol9x17
+        amount: 4
+      - id: MagazinePistolSubMachineGun9x17
+        amount: 4
       - id: MagazinePistolDrumSubMachineGun # For PPSH
         amount: 2
       - id: MagazinePistolTopSubMachineGun # For P90

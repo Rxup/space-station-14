@@ -90,7 +90,7 @@
   - type: SurgeryPartCondition
     part: Chest
     inverse: true
-  - type: SurgeryArachneGraftOrgan
+  - type: SurgeryArachneGraftOrganCondition
     inverse: true
 
 - type: entity
