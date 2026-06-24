@@ -6,6 +6,8 @@
   save: false
   categories: [ HideSpawnMenu ]
   components:
+  - type: Damageable
+    damageContainer: OrganicPart
   - type: BkmDetachedBody
   - type: Body
   - type: VisualBody

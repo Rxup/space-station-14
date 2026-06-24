@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body;
@@ -129,6 +130,15 @@ public partial class TraumaSystem
         }
 
         _audio.PlayPvs(args.Organ.Comp.OrganDestroyedSound, body.Value);
+
+        if (TryComp<BkmDetachedBodyComponent>(body.Value, out var detached)
+            && detached.RootOrgan == args.Organ.Owner)
+        {
+            var gibEv = new GibDetachedBundleRequestEvent();
+            RaiseLocalEvent(body.Value, ref gibEv);
+            return;
+        }
+
         Body.RemoveOrgan(args.Organ, args.Organ.Comp);
 
         if (_net.IsServer)

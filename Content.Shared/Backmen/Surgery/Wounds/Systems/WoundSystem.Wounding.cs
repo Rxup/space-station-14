@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -177,6 +178,15 @@ public partial class WoundSystem
         var (uid, component) = entity;
         if (args.NewSeverity != WoundableSeverity.Loss || TerminatingOrDeleted(uid))
             return;
+
+        if (TryGetWoundableBody(uid, out var bodyUid)
+            && TryComp<BkmDetachedBodyComponent>(bodyUid, out var detached)
+            && detached.RootOrgan == uid)
+        {
+            var gibEv = new GibDetachedBundleRequestEvent();
+            RaiseLocalEvent(bodyUid, ref gibEv);
+            return;
+        }
 
         if (IsWoundableRoot(uid, component))
         {

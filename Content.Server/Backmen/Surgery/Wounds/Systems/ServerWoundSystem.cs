@@ -4,6 +4,7 @@ using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
@@ -520,6 +521,10 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
             if (TryComp<OrganComponent>(woundableEntity, out var organ))
                 Body.RemoveOrgan(woundableEntity, organ);
+
+            if (Containers.TryGetContainingContainer(woundableEntity, out var detachedContainer)
+                && HasComp<BkmDetachedBodyComponent>(detachedContainer.Owner))
+                return;
 
             QueueDel(woundableEntity);
         }

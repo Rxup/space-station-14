@@ -1,27 +1,61 @@
+using Content.Shared.Audio;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
-using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Body.Organ;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Map;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Body.OrganRelations;
 
 public sealed class DetachableOrganSystem : EntitySystem
 {
-    [Dependency] private EntityQuery<DetachableOrganComponent> _detachableOrgan = default!;
-    [Dependency] private INetManager _net = default!;
-    [Dependency] private OrganRelationSystem _organRelation = default!;
-    [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private WoundSystem _wounds = default!;
+    private static readonly ProtoId<SoundCollectionPrototype> SurgeryAmputationSound = new("BkmSurgeryAmputation");
+
+    [Dependency] private readonly EntityQuery<DetachableOrganComponent> _detachableOrgan = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly OrganRelationSystem _organRelation = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly WoundSystem _wounds = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly BkmDetachedBodyScatterSystem _scatter = default!;
+
+    private int _violentDetachDepth;
+
+    public bool IsViolentDetach => _violentDetachDepth > 0;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<DetachableOrganComponent, OrganGotRemovedEvent>(OnDetachableRemoved);
+    }
+
+    /// <summary>
+    /// Marks nested organ removals during gib / violent destroy as wide-scatter detaches.
+    /// </summary>
+    public ViolentDetachScope EnterViolentDetach() => new(this);
+
+    public sealed class ViolentDetachScope : IDisposable
+    {
+        private readonly DetachableOrganSystem _system;
+
+        public ViolentDetachScope(DetachableOrganSystem system)
+        {
+            _system = system;
+            _system._violentDetachDepth++;
+        }
+
+        public void Dispose()
+        {
+            _system._violentDetachDepth--;
+        }
     }
 
     private void OnDetachableRemoved(Entity<DetachableOrganComponent> ent, ref OrganGotRemovedEvent args)
@@ -45,10 +79,21 @@ public sealed class DetachableOrganSystem : EntitySystem
                 return;
         }
 
+        var violent = IsViolentDetach;
+        var context = violent ? BkmDetachContext.Violent : BkmDetachContext.Surgery;
+
         ent.Comp.Detaching = true;
 
         _organRelation.Orphan(ent.Owner);
-        var body = PredictedSpawnNextToOrDrop(ent.Comp.DetachedBody, ent);
+
+        var spawnAt = violent ? args.Target : ent.Owner;
+        var body = PredictedSpawnNextToOrDrop(ent.Comp.DetachedBody, spawnAt);
+
+        if (TryComp(body, out BkmDetachedBodyComponent? detachedBody))
+        {
+            detachedBody.MessyScatter = violent;
+            Dirty(body, detachedBody);
+        }
 
         if (!_container.TryGetContainer(body, BodyComponent.ContainerID, out var container))
         {
@@ -80,6 +125,24 @@ public sealed class DetachableOrganSystem : EntitySystem
 
         ent.Comp.Detaching = false;
 
+        if (violent)
+        {
+            _scatter.ScatterViolentBundle(body, Transform(args.Target).Coordinates);
+        }
+        else
+        {
+            _audio.PlayPvs(new SoundCollectionSpecifier(SurgeryAmputationSound), body);
+        }
+
+        var ev = new BkmDetachedBodyCreatedEvent(body, args.Target, context);
+        RaiseLocalEvent(body, ref ev);
+
         _wounds.RefreshBodyTargetingStatus(args.Target);
     }
 }
+
+/// <summary>
+/// Raised on a detached body bundle after organs are moved into it.
+/// </summary>
+[ByRefEvent]
+public readonly record struct BkmDetachedBodyCreatedEvent(EntityUid Bundle, EntityUid SourceBody, BkmDetachContext Context);

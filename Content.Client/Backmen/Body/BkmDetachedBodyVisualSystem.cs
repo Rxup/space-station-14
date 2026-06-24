@@ -13,9 +13,10 @@ namespace Content.Client.Backmen.Body;
 /// <summary>
 /// Ensures detached limb bundles show organ layers after organs are moved into the runtime shell.
 /// </summary>
-public sealed class BkmDetachedBodyVisualSystem : EntitySystem
+public sealed partial class BkmDetachedBodyVisualSystem : EntitySystem
 {
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly SharedContainerSystem _containers = default!;
 
     public override void Initialize()
     {
@@ -42,10 +43,25 @@ public sealed class BkmDetachedBodyVisualSystem : EntitySystem
 
     private void RefreshVisuals(Entity<BkmDetachedBodyComponent> ent)
     {
-        if (!TryComp(ent, out BodyComponent? body) || body.Organs == null)
+        if (!_containers.TryGetContainer(ent, BodyComponent.ContainerID, out var organContainer))
             return;
 
-        foreach (var organ in body.Organs.ContainedEntities)
+        if (ent.Comp.MessyScatter && TryComp(ent, out SpriteComponent? bodySprite))
+        {
+            var index = 0;
+            foreach (var _ in bodySprite.AllLayers)
+            {
+                _sprite.LayerSetVisible((ent, bodySprite), index, false);
+                index++;
+            }
+
+            if (ent.Comp.RootOrgan is { } root && organContainer.Contains(root))
+                ApplyMessyOrganVisual(ent, root, bodySprite);
+
+            return;
+        }
+
+        foreach (var organ in organContainer.ContainedEntities)
         {
             if (HasComp<VisualOrganComponent>(organ))
             {
@@ -76,6 +92,26 @@ public sealed class BkmDetachedBodyVisualSystem : EntitySystem
 
         var layer = ResolveDetachedOrganLayer(organ);
         if (!_sprite.LayerMapTryGet((body, bodySprite), layer, out var index, true))
+            return;
+
+        _sprite.LayerSetData((body, bodySprite), index, new PrototypeLayerData
+        {
+            RsiPath = organRsi.Path.ToString(),
+            State = _sprite.LayerGetRsiState((organ, organSprite), 0).Name,
+        });
+        _sprite.LayerSetVisible((body, bodySprite), index, true);
+    }
+
+    private void ApplyMessyOrganVisual(EntityUid body, EntityUid organ, SpriteComponent bodySprite)
+    {
+        if (!TryComp(organ, out SpriteComponent? organSprite))
+            return;
+
+        var organRsi = organSprite.LayerGetActualRSI(0) ?? organSprite.BaseRSI;
+        if (organRsi == null)
+            return;
+
+        if (!_sprite.LayerMapTryGet((body, bodySprite), HumanoidVisualLayers.Chest, out var index, true))
             return;
 
         _sprite.LayerSetData((body, bodySprite), index, new PrototypeLayerData
