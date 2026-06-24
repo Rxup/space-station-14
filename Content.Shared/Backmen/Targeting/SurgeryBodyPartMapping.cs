@@ -164,7 +164,7 @@ public static class SurgeryBodyPartMapping
         {
             case "ArachneAbdomen":
             case "ArachneFront":
-                type = BodyPartType.Chest;
+                type = BodyPartType.Groin;
                 symmetry = BodyPartSymmetry.None;
                 return true;
             case "SpiderLegLeft1":
