@@ -470,6 +470,11 @@ public partial class WoundSystem
         return severity * toMultiply;
     }
 
+    /// <summary>
+    /// Upper bound for <see cref="WoundComponent.WoundSeverityPoint"/> on this side.
+    /// </summary>
+    protected virtual FixedPoint2 GetMaxWoundSeverity() => FixedPoint2.New(200);
+
     [PublicAPI]
     public DamageSpecifier GetWoundsChanged(
         EntityUid woundable,
@@ -521,12 +526,18 @@ public partial class WoundSystem
                         continue;
                     }
 
-                    var oldSeverity = continuedWound.Value.Comp.WoundSeverityPoint - severityApplied;
-                    var severityDelta = continuedWound.Value.Comp.WoundSeverityPoint - oldSeverity;
+                    var currentSeverity = continuedWound.Value.Comp.WoundSeverityPoint;
+                    var severityDelta = FixedPoint2.Clamp(
+                        currentSeverity + severityApplied,
+                        FixedPoint2.Zero,
+                        GetMaxWoundSeverity()) - currentSeverity;
 
                     actuallyInducedDamage.DamageDict[damagePiece.Key] = severityDelta;
-                    if (severityApplied > 0)
+                    if (severityDelta > FixedPoint2.Zero)
                         damageIncreased = true;
+
+                    if (severityDelta == FixedPoint2.Zero)
+                        continue;
 
                     changedWounds.Add(continuedWound.Value, severityDelta);
                     totalChange += severityDelta;
@@ -544,12 +555,20 @@ public partial class WoundSystem
                     continue;
                 }
 
-                var severity = ApplySeverityModifiers(woundable, damagePiece.Value, component);
+                var severity = FixedPoint2.Min(
+                    ApplySeverityModifiers(woundable, damagePiece.Value, component),
+                    GetMaxWoundSeverity());
+
+                if (severity <= FixedPoint2.Zero)
+                {
+                    actuallyInducedDamage.DamageDict[damagePiece.Key] = 0;
+                    continue;
+                }
 
                 actuallyInducedDamage.DamageDict[damagePiece.Key] = severity;
                 damageIncreased = true;
 
-                woundsToAdd.Add(damagePiece.Key, damagePiece.Value);
+                woundsToAdd.Add(damagePiece.Key, severity);
                 totalChange += severity;
             }
         }

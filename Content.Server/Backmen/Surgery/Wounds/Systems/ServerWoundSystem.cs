@@ -36,6 +36,8 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
     [Dependency] private IPrototypeManager _prototype = default!;
 
+    protected override FixedPoint2 GetMaxWoundSeverity() => FixedPoint2.New(_maxWoundSeverity);
+
     public override void Initialize()
     {
         base.Initialize();

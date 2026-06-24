@@ -12,7 +12,7 @@
     iconOn:
       sprite: _White/Interface/Actions/headcrab.rsi
       state: jump-on
-    useDelay: 6
+    useDelay: 30
   - type: WorldTargetAction
     event: !type:FleshWormJumpActionEvent
   - type: TargetAction
