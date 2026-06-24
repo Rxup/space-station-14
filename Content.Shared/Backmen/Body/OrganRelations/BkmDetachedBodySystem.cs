@@ -1,8 +1,10 @@
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
@@ -13,10 +15,12 @@ namespace Content.Shared.Backmen.Body.OrganRelations;
 
 public sealed class BkmDetachedBodySystem : EntitySystem
 {
-    [Dependency] private ExamineSystemShared _examine = default!;
-    [Dependency] private MetaDataSystem _metaData = default!;
-    [Dependency] private INetManager _net = default!;
-    [Dependency] private SharedTargetingSystem _targeting = default!;
+    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedTargetingSystem _targeting = default!;
+    [Dependency] private readonly WoundSystem _wounds = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     private static readonly ResPath ScalpelIcon =
         new("/Textures/_Shitmed/Objects/Specific/Medical/Surgery/scalpel.rsi/scalpel.png");
@@ -27,6 +31,37 @@ public sealed class BkmDetachedBodySystem : EntitySystem
 
         SubscribeLocalEvent<BkmDetachedBodyComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<BkmDetachedBodyComponent, GetVerbsEvent<ExamineVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<BkmDetachedBodyComponent, BeforeDamageChangedEvent>(OnBeforeBundleDamage);
+    }
+
+    /// <summary>
+    /// Bundle damage hits contained organs, not the shell's flat <see cref="DamageableComponent"/>.
+    /// </summary>
+    private void OnBeforeBundleDamage(Entity<BkmDetachedBodyComponent> ent, ref BeforeDamageChangedEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        if (!TryComp<BodyComponent>(ent, out var body) || body.Organs == null || body.Organs.Count == 0)
+            return;
+
+        args.Cancelled = true;
+
+        if (!_net.IsServer)
+            return;
+
+        var root = ent.Comp.RootOrgan;
+        if (root is not { } rootOrgan || TerminatingOrDeleted(rootOrgan))
+        {
+            var gibEv = new GibDetachedBundleRequestEvent();
+            RaiseLocalEvent(ent, ref gibEv);
+            return;
+        }
+
+        if (TryComp<WoundableComponent>(rootOrgan, out var woundable))
+            _wounds.GetWoundsChanged(rootOrgan, args.Origin, args.Damage, component: woundable);
+        else
+            _damageable.ChangeDamage(rootOrgan, args.Damage, origin: args.Origin);
     }
 
     /// <summary>

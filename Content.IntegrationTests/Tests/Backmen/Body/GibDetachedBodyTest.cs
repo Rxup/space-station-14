@@ -30,7 +30,7 @@ public sealed class GibDetachedBodyTest : GameTest
             bodySys.GibBody(patient, gibOrgans: true);
         });
 
-        await Server.WaitIdleAsync();
+        await Server.WaitRunTicks(90);
 
         await Server.WaitAssertion(() =>
         {

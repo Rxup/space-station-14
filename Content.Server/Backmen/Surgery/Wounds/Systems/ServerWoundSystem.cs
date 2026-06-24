@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Backmen.Body;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -470,7 +471,10 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
             QueueDel(woundableEntity);
 
-            Body.GibBody(bodyUid); // More blood for the Blood Gods!
+            // start-backmen: surgery-gib-threshold
+            if (EntityManager.System<BkmSurgeryDestructibleSystem>().ShouldFullBodyGib(bodyUid))
+                Body.GibBody(bodyUid); // More blood for the Blood Gods!
+            // end-backmen: surgery-gib-threshold
         }
         else
         {

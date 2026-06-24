@@ -338,7 +338,7 @@ public partial class BkmBodySharedSystem
         woundables.Sort((a, b) => GetOrganRelationDepth(b).CompareTo(GetOrganRelationDepth(a)));
 
         var detachSys = EntityManager.System<DetachableOrganSystem>();
-        using var violentDetach = detachSys.EnterViolentDetach();
+        using var violentDetach = detachSys.EnterViolentDetach(splatDirection, splatModifier);
         var bodyTransform = Transform(bodyId);
 
         foreach (var partUid in woundables)

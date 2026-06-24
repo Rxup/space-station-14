@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Audio;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.Surgery;
@@ -27,6 +28,8 @@ public sealed class DetachableOrganSystem : EntitySystem
     [Dependency] private readonly BkmDetachedBodyScatterSystem _scatter = default!;
 
     private int _violentDetachDepth;
+    private Vector2? _violentSplatDirection;
+    private float _violentSplatModifier = 1f;
 
     public bool IsViolentDetach => _violentDetachDepth > 0;
 
@@ -40,7 +43,16 @@ public sealed class DetachableOrganSystem : EntitySystem
     /// <summary>
     /// Marks nested organ removals during gib / violent destroy as wide-scatter detaches.
     /// </summary>
-    public ViolentDetachScope EnterViolentDetach() => new(this);
+    public ViolentDetachScope EnterViolentDetach(Vector2? splatDirection = null, float splatModifier = 1f)
+    {
+        if (_violentDetachDepth == 0)
+        {
+            _violentSplatDirection = splatDirection;
+            _violentSplatModifier = splatModifier;
+        }
+
+        return new ViolentDetachScope(this);
+    }
 
     public sealed class ViolentDetachScope : IDisposable
     {
@@ -55,6 +67,11 @@ public sealed class DetachableOrganSystem : EntitySystem
         public void Dispose()
         {
             _system._violentDetachDepth--;
+            if (_system._violentDetachDepth == 0)
+            {
+                _system._violentSplatDirection = null;
+                _system._violentSplatModifier = 1f;
+            }
         }
     }
 
@@ -87,7 +104,9 @@ public sealed class DetachableOrganSystem : EntitySystem
         _organRelation.Orphan(ent.Owner);
 
         var spawnAt = violent ? args.Target : ent.Owner;
-        var body = PredictedSpawnNextToOrDrop(ent.Comp.DetachedBody, spawnAt);
+        var body = violent
+            ? Spawn(ent.Comp.DetachedBody, Transform(args.Target).Coordinates)
+            : PredictedSpawnNextToOrDrop(ent.Comp.DetachedBody, spawnAt);
 
         if (TryComp(body, out BkmDetachedBodyComponent? detachedBody))
         {
@@ -127,7 +146,11 @@ public sealed class DetachableOrganSystem : EntitySystem
 
         if (violent)
         {
-            _scatter.ScatterViolentBundle(body, Transform(args.Target).Coordinates);
+            _scatter.ScatterViolentBundle(
+                body,
+                Transform(args.Target).Coordinates,
+                _violentSplatDirection,
+                _violentSplatModifier);
         }
         else
         {

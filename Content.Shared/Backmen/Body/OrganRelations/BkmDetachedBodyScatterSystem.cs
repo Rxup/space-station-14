@@ -17,6 +17,7 @@ public sealed class BkmDetachedBodyScatterSystem : EntitySystem
     public const float ViolentFlingImpulseMultiplier = 2.5f;
     public const float ViolentFlingImpulse = 8f;
     public const float ViolentFlingImpulseVariance = 3f;
+    public static readonly Angle ViolentBurstCone = Angle.FromDegrees(360);
 
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -28,22 +29,34 @@ public sealed class BkmDetachedBodyScatterSystem : EntitySystem
         Vector2? splatDirection = null,
         float splatModifier = 1f)
     {
-        var offset = _random.NextFloat(BkmDetachedBodyScatterSystem.ViolentScatterMin,
-            BkmDetachedBodyScatterSystem.ViolentScatterMax);
-        var world = _transform.ToMapCoordinates(origin).Position + _random.NextAngle().ToVec() * offset;
-        _transform.SetWorldPosition(bundle, world);
+        FlingViolentDetached(bundle, origin, splatDirection, splatModifier);
+    }
 
-        _transform.SetLocalRotation(bundle, _random.NextAngle());
+    /// <summary>
+    /// Launches a detached part from an origin with a physics impulse (no random teleport).
+    /// </summary>
+    public void FlingViolentDetached(
+        EntityUid entity,
+        EntityCoordinates origin,
+        Vector2? splatDirection = null,
+        float splatModifier = 1f,
+        Angle? scatterCone = null)
+    {
+        _transform.SetCoordinates(entity, origin);
+        _transform.AttachToGridOrMap(entity);
+        _transform.SetLocalRotation(entity, _random.NextAngle());
 
-        _transform.AttachToGridOrMap(bundle);
-
-        if (!TryComp(bundle, out PhysicsComponent? physics) || physics.BodyType == BodyType.Static)
+        if (!TryComp(entity, out PhysicsComponent? physics) || physics.BodyType == BodyType.Static)
             return;
 
-        var scatterAngle = splatDirection?.ToAngle() ?? _random.NextAngle();
-        var scatterVector = _random.NextAngle(scatterAngle - Angle.FromDegrees(180), scatterAngle + Angle.FromDegrees(180))
+        var cone = scatterCone ?? ViolentBurstCone;
+        var scatterAngle = splatDirection is { } dir && dir.LengthSquared() > 0.0001f
+            ? dir.ToAngle()
+            : _random.NextAngle();
+        var scatterVector = _random.NextAngle(scatterAngle - cone / 2, scatterAngle + cone / 2)
             .ToVec() * (ViolentFlingImpulse * splatModifier * ViolentFlingImpulseMultiplier
                         + _random.NextFloat(ViolentFlingImpulseVariance));
-        _physics.ApplyLinearImpulse(bundle, scatterVector, body: physics);
+        _physics.ApplyLinearImpulse(entity, scatterVector, body: physics);
+        _physics.WakeBody(entity, body: physics);
     }
 }

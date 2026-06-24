@@ -159,4 +159,52 @@ public sealed class DetachedBodyDamageTest : GameTest
             Assert.That(entMan.GetComponent<BkmDetachedBodyComponent>(bundle.Value).MessyScatter, Is.False);
         });
     }
+
+    [Test]
+    public async Task ShellDamageAfterRootDestroyed_EjectsRemainingOrgans()
+    {
+        var map = await Pair.CreateTestMap();
+        NetEntity netBrain = default;
+        NetEntity netBundle = default;
+
+        await Server.WaitAssertion(() =>
+        {
+            var entMan = Server.EntMan;
+            var bodySys = entMan.System<BkmBodySharedSystem>();
+            var organRelations = entMan.System<OrganRelationInitializerSystem>();
+            var damageableSys = entMan.System<DamageableSystem>();
+
+            var bundle = entMan.SpawnEntity("BackmenDetachedBody", map.MapCoords);
+            var head = entMan.SpawnEntity("OrganHumanHead", MapCoordinates.Nullspace);
+            var brain = entMan.SpawnEntity("OrganHumanBrain", MapCoordinates.Nullspace);
+
+            Assert.That(bodySys.InsertOrganIntoBody(bundle, head), Is.True);
+            Assert.That(bodySys.InsertOrganIntoBody(bundle, brain), Is.True);
+            organRelations.WireRelationships((bundle, entMan.GetComponent<BodyComponent>(bundle)));
+
+            var created = new BkmDetachedBodyCreatedEvent(bundle, bundle, BkmDetachContext.Surgery);
+            entMan.EventBus.RaiseLocalEvent(bundle, ref created);
+
+            entMan.DeleteEntity(head);
+            entMan.GetComponent<BkmDetachedBodyComponent>(bundle).RootOrgan = null;
+
+            var damage = new DamageSpecifier { DamageDict = new Dictionary<string, FixedPoint2> { { "Blunt", 100 } } };
+            damageableSys.TryChangeDamage(bundle, damage, ignoreResistances: true);
+
+            netBrain = entMan.GetNetEntity(brain);
+            netBundle = entMan.GetNetEntity(bundle);
+        });
+
+        await Server.WaitIdleAsync();
+
+        await Server.WaitAssertion(() =>
+        {
+            var entMan = Server.EntMan;
+            var brain = entMan.GetEntity(netBrain);
+
+            Assert.That(entMan.EntityExists(brain), Is.True, "Brain should be ejected after shell damage.");
+            Assert.That(entMan.HasComponent<BkmDetachedBrainProtectionComponent>(brain), Is.True);
+            Assert.That(entMan.EntityExists(entMan.GetEntity(netBundle)), Is.False, "Empty bundle shell should be deleted.");
+        });
+    }
 }
