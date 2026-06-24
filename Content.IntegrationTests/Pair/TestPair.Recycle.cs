@@ -23,13 +23,19 @@ public sealed partial class TestPair
 
     private async Task ResetModifiedPreferences()
     {
-        var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
-        foreach (var user in _modifiedProfiles)
-        {
-            await Server.WaitPost(() => prefMan.SetProfile(user, 0, new HumanoidCharacterProfile()).Wait());
-        }
+        if (_modifiedProfiles.Count == 0)
+            return;
 
+        var users = _modifiedProfiles.Distinct().ToList();
         _modifiedProfiles.Clear();
+
+        var prefMan = Server.ResolveDependency<IServerPreferencesManager>();
+        foreach (var user in users)
+        {
+            // SetProfile updates the in-memory cache synchronously; only the DB write is async.
+            // Don't block the server thread waiting on that write.
+            await Server.WaitPost(() => _ = prefMan.SetProfile(user, 0, new HumanoidCharacterProfile()));
+        }
     }
 
     protected override async Task Recycle(PairSettings next, TextWriter testOut)
