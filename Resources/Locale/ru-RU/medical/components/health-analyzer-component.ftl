@@ -38,6 +38,8 @@ health-analyzer-window-pain-cause-suffocation = Кислородное голо�
 health-analyzer-window-pain-cause-bloodloss = Кровопотеря
 health-analyzer-window-pain-cause-death-threshold = Состояние близкое к смерти
 health-analyzer-window-pain-cause-suicide = Самоповреждение
+# backmen: organ-damage
+health-analyzer-window-pain-cause-organ-damage = Повреждение органов
 
 health-analyzer-window-pain-help-button = Помощь
 

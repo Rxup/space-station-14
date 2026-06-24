@@ -298,7 +298,7 @@ public sealed partial class ServerPainSystem : PainSystem
         if (!_consciousness.TryGetNerveSystem(bodyUid.Value, out var nerveSys))
             return;
 
-        component.RawPain = FixedPoint2.Clamp(component.RawPain + args.Delta * _universalPainMultiplier, 0, _maxPainPerInflicter);
+        component.RawPain = FixedPoint2.Clamp(args.Component.WoundSeverityPoint, 0, _maxPainPerInflicter);
 
         var woundPain = FixedPoint2.Zero;
         var traumaticPain = FixedPoint2.Zero;
