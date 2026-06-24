@@ -173,7 +173,13 @@
   save: false
   components:
   - type: Hunger
+    # start-backmen: hunger
+    starvationDamage:
+      types:
+        Cold: 1
+    # end-backmen: hunger
   - type: Thirst
+  - type: Mood # backmen: mood
   - type: Barotrauma
     damage:
       types:
