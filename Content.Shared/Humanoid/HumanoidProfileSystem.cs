@@ -61,6 +61,7 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
         ent.Comp.Gender = profile.Gender;
         ent.Comp.Age = profile.Age;
         ent.Comp.Species = profile.Species;
+        var oldSex = ent.Comp.Sex;
         ent.Comp.Sex = profile.Sex;
         ent.Comp.Voice = ResolveVoice(profile);
         Dirty(ent);
@@ -71,7 +72,7 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
             Dirty(ent, tts);
         }
 
-        var sexChanged = new SexChangedEvent(ent.Comp.Sex, profile.Sex);
+        var sexChanged = new SexChangedEvent(oldSex, profile.Sex);
         RaiseLocalEvent(ent, ref sexChanged);
 
         if (TryComp<GrammarComponent>(ent, out var grammar))

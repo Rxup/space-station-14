@@ -91,6 +91,7 @@
             min: 1
             max: 1
   - type: Puller
+    needsHands: false
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -130,6 +131,8 @@
     sortedHands:
     - left
     - right
+  - type: Puller
+    needsHands: true
 
 - type: entity
   id: MobBaseNpcSalvage

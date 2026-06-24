@@ -162,6 +162,11 @@ public static class SurgeryBodyPartMapping
 
         switch (category.Id)
         {
+            case "ArachneAbdomen":
+            case "ArachneFront":
+                type = BodyPartType.Chest;
+                symmetry = BodyPartSymmetry.None;
+                return true;
             case "SpiderLegLeft1":
             case "SpiderLegLeft2":
             case "SpiderLegLeft3":

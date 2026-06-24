@@ -262,11 +262,15 @@ namespace Content.Shared.Preferences
 
             var name = GetName(species, gender);
 
-            var voiceId = random.Pick(prototypeManager
+            var voices = prototypeManager
                 .EnumeratePrototypes<TTSVoicePrototype>()
                 .Where(x => x.RoundStart)
-                .Where(o => CanHaveVoice(o, sex)).ToArray()
-            ).ID;
+                .Where(o => CanHaveVoice(o, sex))
+                .ToArray();
+
+            var voiceId = voices.Length > 0
+                ? new ProtoId<TTSVoicePrototype>(random.Pick(voices).ID)
+                : HumanoidProfileSystem.DefaultSexVoice.GetValueOrDefault(sex, HumanoidProfileSystem.DefaultVoice);
 
             return new HumanoidCharacterProfile()
             {

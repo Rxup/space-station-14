@@ -36,6 +36,14 @@ public sealed class TargetBodyPartMappingTest : GameTest
 
                 var legacyGroin = (TargetBodyPart) (1 << 2);
                 Assert.That(TargetBodyPartMapping.Normalize(legacyGroin), Is.EqualTo(TargetBodyPart.Chest));
+
+                Assert.That(SurgeryBodyPartMapping.TryGetBodyPartType("ArachneAbdomen", out var abdomenType, out var abdomenSym), Is.True);
+                Assert.That(abdomenType, Is.EqualTo(BodyPartType.Chest));
+                Assert.That(abdomenSym, Is.EqualTo(BodyPartSymmetry.None));
+
+                Assert.That(SurgeryBodyPartMapping.TryGetBodyPartType("ArachneFront", out var frontType, out var frontSym), Is.True);
+                Assert.That(frontType, Is.EqualTo(BodyPartType.Chest));
+                Assert.That(frontSym, Is.EqualTo(BodyPartSymmetry.None));
             });
         });
 
