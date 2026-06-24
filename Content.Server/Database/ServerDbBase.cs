@@ -201,7 +201,9 @@ namespace Content.Server.Database
             profile.CharacterName = humanoid.Name;
             profile.FlavorText = humanoid.FlavorText;
             profile.Species = humanoid.Species;
-            profile.Voice = humanoid.Voice;
+            profile.Voice = humanoid.Voice == default
+                ? HumanoidProfileSystem.DefaultSexVoice.GetValueOrDefault(humanoid.Sex, HumanoidProfileSystem.DefaultVoice)
+                : humanoid.Voice;
             profile.Age = humanoid.Age;
             profile.Sex = humanoid.Sex.ToString();
             profile.Gender = humanoid.Gender.ToString();

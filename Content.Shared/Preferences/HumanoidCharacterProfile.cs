@@ -91,7 +91,7 @@ namespace Content.Shared.Preferences
         public Gender Gender { get; private set; } = Gender.Male;
 
         [DataField]
-        public ProtoId<TTSVoicePrototype> Voice { get; set; }
+        public ProtoId<TTSVoicePrototype> Voice { get; set; } = HumanoidProfileSystem.DefaultVoice;
 
         /// <summary>
         /// Stores markings, eye colors, etc for the profile.
