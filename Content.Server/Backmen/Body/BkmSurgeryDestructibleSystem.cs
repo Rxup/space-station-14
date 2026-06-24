@@ -75,19 +75,19 @@ public sealed class BkmSurgeryDestructibleSystem : EntitySystem
 
     public FixedPoint2 GetAccumulatedGibDamage(EntityUid body)
     {
-        if (TryComp<BkmSurgeryGibTrackerComponent>(body, out var tracker)
-            && tracker.AccumulatedDamage > FixedPoint2.Zero)
-        {
-            return tracker.AccumulatedDamage;
-        }
+        var woundSeverity = TryComp<BodyComponent>(body, out var bodyComp)
+            ? _wound.GetBodySeverityPoint(body, bodyComp)
+            : FixedPoint2.Zero;
 
-        if (TryComp<DamageableComponent>(body, out var damageable) && damageable.TotalDamage > FixedPoint2.Zero)
-            return damageable.TotalDamage;
+        var accumulated = FixedPoint2.Zero;
 
-        if (TryComp<BodyComponent>(body, out var bodyComp))
-            return _wound.GetBodySeverityPoint(body, bodyComp);
+        if (TryComp<BkmSurgeryGibTrackerComponent>(body, out var tracker))
+            accumulated = tracker.AccumulatedDamage;
 
-        return FixedPoint2.Zero;
+        if (TryComp<DamageableComponent>(body, out var damageable))
+            accumulated = FixedPoint2.Max(accumulated, damageable.TotalDamage);
+
+        return FixedPoint2.Max(accumulated, woundSeverity);
     }
 
     private static void PatchSurgeryGibThresholds(DestructibleComponent comp)

@@ -196,6 +196,7 @@ public sealed class DetachedBodyDamageTest : GameTest
         });
 
         await Server.WaitIdleAsync();
+        await Server.WaitRunTicks(5);
 
         await Server.WaitAssertion(() =>
         {

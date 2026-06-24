@@ -5,6 +5,7 @@ using Content.Server.Backmen.Body.Systems;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Shared.Backmen.Surgery;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible.Thresholds.Triggers;
@@ -55,7 +56,7 @@ public sealed class SurgeryGibThresholdTest : GameTest
 
             for (var i = 0; i < 4; i++)
             {
-                damageable.TryChangeDamage(patient, blunt, origin: null);
+                damageable.ChangeDamage(patient, blunt, targetPart: TargetBodyPart.All);
                 Assert.That(entMan.EntityExists(patient), $"Patient should survive hit {i + 1}");
                 Assert.That(
                     gibSys.ShouldFullBodyGib(patient),
@@ -68,7 +69,7 @@ public sealed class SurgeryGibThresholdTest : GameTest
                 Is.GreaterThanOrEqualTo(FixedPoint2.New(400)));
 
             blunt.DamageDict["Blunt"] = FixedPoint2.New(600);
-            damageable.TryChangeDamage(patient, blunt, origin: null);
+            damageable.ChangeDamage(patient, blunt, targetPart: TargetBodyPart.All);
 
             Assert.That(gibSys.ShouldFullBodyGib(patient), Is.True);
             Assert.That(
