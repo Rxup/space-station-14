@@ -7,6 +7,7 @@ using Content.Server.Database;
 using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Prototypes;
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -105,6 +106,9 @@ namespace Content.Server.Preferences.Managers
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
+            var voice = string.IsNullOrEmpty(profile.Voice)
+                ? HumanoidProfileSystem.DefaultSexVoice[sex]
+                : new ProtoId<TTSVoicePrototype>(profile.Voice);
 
             var markings =
                 new Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>>();
@@ -188,7 +192,7 @@ namespace Content.Server.Preferences.Managers
                 loadouts
             )
             {
-                Voice = profile.Voice,
+                Voice = voice,
             };
         }
 

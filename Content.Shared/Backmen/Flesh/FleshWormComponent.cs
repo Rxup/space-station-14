@@ -75,4 +75,10 @@ public sealed partial class FleshWormComponent : Component
     /// </summary>
     [DataField]
     public float SelfRemoveStaminaCost = 20f;
+
+    /// <summary>
+    /// Status effect applied to victims while this worm covers their face.
+    /// </summary>
+    [DataField]
+    public EntProtoId SuffocationStatus = "StatusEffectFleshWormSuffocation";
 }

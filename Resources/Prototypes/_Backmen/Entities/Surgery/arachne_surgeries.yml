@@ -7,7 +7,12 @@
   - type: Surgery
     requirement: SurgeryOpenIncision
     steps:
+    - SurgeryStepClampBleeders
+    - SurgeryStepSawBones
+    - SurgeryStepPriseOpenBones
+    - SurgeryStepClampInternalBleeders
     - SurgeryStepInsertFeature
+    - SurgeryStepCloseBones
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Chest
@@ -30,7 +35,12 @@
   - type: Surgery
     requirement: SurgeryOpenIncision
     steps:
+    - SurgeryStepClampBleeders
+    - SurgeryStepSawBones
+    - SurgeryStepPriseOpenBones
+    - SurgeryStepClampInternalBleeders
     - SurgeryStepInsertFeature
+    - SurgeryStepCloseBones
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
     part: Chest
@@ -53,6 +63,9 @@
   - type: Surgery
     requirement: SurgeryOpenIncision
     steps:
+    - SurgeryStepRetractSkin
+    - SurgeryStepSawFeature
+    - SurgeryStepClampInternalBleeders
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
@@ -75,6 +88,9 @@
   - type: Surgery
     requirement: SurgeryOpenIncision
     steps:
+    - SurgeryStepRetractSkin
+    - SurgeryStepSawFeature
+    - SurgeryStepClampInternalBleeders
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
@@ -87,3 +103,24 @@
     inverse: false
   - type: SurgeryOrganGraftAttach
     spiderLegSide: Right
+
+- type: entity
+  parent: SurgeryBase
+  id: SurgeryDetachArachneGraft
+  name: Detach Arachne Graft
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    requirement: SurgeryOpenIncision
+    steps:
+    - SurgeryStepSawFeature
+    - SurgeryStepClampInternalBleeders
+    - SurgeryStepRemoveFeature
+    - SurgeryStepSealWounds
+  - type: SurgeryPartCondition
+    part: Chest
+    inverse: true
+  - type: SurgeryTraumaPresentCondition
+    inverted: true
+    trauma: Dismemberment
+  - type: SurgeryOrganGraftDetach

@@ -29,7 +29,10 @@ public sealed class DetachableOrganSystem : EntitySystem
         if (!_net.IsServer)
             return;
 
-        if (TerminatingOrDeleted(ent) || TerminatingOrDeleted(args.Target))
+        if (TerminatingOrDeleted(ent)
+            || TerminatingOrDeleted(args.Target)
+            || EntityManager.IsQueuedForDeletion(ent)
+            || EntityManager.IsQueuedForDeletion(args.Target))
             return;
 
         // Only detach limbs leaving a surgery patient — not when extracting from a limb bundle for reattachment.
@@ -62,7 +65,10 @@ public sealed class DetachableOrganSystem : EntitySystem
 
         foreach (var child in _organRelation.AllChildren(ent.Owner))
         {
-            if (!TryComp<OrganComponent>(child.Owner, out var childOrgan) || childOrgan.Body != args.Target)
+            if (TerminatingOrDeleted(child)
+                || EntityManager.IsQueuedForDeletion(child)
+                || !TryComp<OrganComponent>(child.Owner, out var childOrgan)
+                || childOrgan.Body != args.Target)
                 continue;
 
             if (!_container.Insert(child.Owner, container, force: true))

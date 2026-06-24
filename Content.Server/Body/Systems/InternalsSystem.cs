@@ -8,7 +8,6 @@ using Content.Shared.Body;
 using Content.Shared.Body.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Internals;
-using Content.Shared.Inventory;
 using Content.Shared.Roles;
 
 namespace Content.Server.Body.Systems;

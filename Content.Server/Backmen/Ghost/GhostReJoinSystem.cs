@@ -46,6 +46,7 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private PlayTimeTrackingSystem _playTimeTrackings = default!;
     [Dependency] private SharedVisualBodySystem _appearance = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
     [Dependency] private StationJobsSystem _stationJobs = default!;
     [Dependency] private SharedJobSystem _jobs = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -190,6 +191,7 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
 
         var mob = spawnEv.SpawnResult!.Value;
         _appearance.ApplyProfileTo(mob, character);
+        _humanoidProfile.ApplyProfileTo(mob, character);
         _mind.TransferTo(newMind, mob);
         _stationJobs.TryAssignJob(station, jobPrototype, player.UserId);
 

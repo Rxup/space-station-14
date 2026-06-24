@@ -1,7 +1,7 @@
 - type: entity
   name: начальник депо
   id: MobUEGKosmoportCaptain
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa ОПЗ
   description: Глава местного депо, одет в стандартную командную форму транспортных сил ОПЗ.
   components:
@@ -22,7 +22,7 @@
 - type: entity
   name: сотрудник депо
   id: MobUEGKosmoportService
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa ОПЗ
   description: Сотрудница депо ОПЗ, ведет отчетную деятельность и руководит местными силами охраны.
   components:
@@ -43,7 +43,7 @@
 - type: entity
   name: пилот
   id: MobUEGPilot
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa ОПЗ Пилот
   description: Пилот, управляет почти всеми видами космического транспорта, в данный момент отдыхает, смотря на шлюз.
   components:
@@ -64,7 +64,7 @@
 - type: entity
   name: Полицеский
   id: MobPoliceUEG
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa ОПЗ Полиция
   description: Мужчина, одет в полевую форму полиции, на нашивке виднеется символ МВД и надпись "Транспортная Дивизия МВД".
   components:
@@ -106,7 +106,7 @@
 - type: entity
   name: Полицеский
   id: MobPoliceUEGPistol
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa ОПЗ Полиция Pistol
   description: Мужчина, одет в полевую форму полиции и вооружен табельным g22, на нашивке виднеется символ МВД и надпись "Транспортная Дивизия МВД".
   components:
@@ -157,7 +157,7 @@
 - type: entity
   name: Спецназ
   id: MobPoliceUEGShotgun
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: suppa ОПЗ Полиция Дробовик
   description: Мужчина одетый в полевую форму полиции и в снаряжении спецназа, на нашивке виднеется символ МВД и надпись "Транспортная Дивизия МВД".
   components:

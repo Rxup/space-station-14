@@ -259,7 +259,8 @@ public abstract partial class SharedSurgerySystem
             }
         }
 
-        if (_inventory.TryGetContainerSlotEnumerator(args.Body, out var containerSlotEnumerator, args.TargetSlots))
+        if (args.TargetSlots != SlotFlags.NONE
+            && _inventory.TryGetContainerSlotEnumerator(args.Body, out var containerSlotEnumerator, args.TargetSlots))
         {
             while (containerSlotEnumerator.MoveNext(out var containerSlot))
             {

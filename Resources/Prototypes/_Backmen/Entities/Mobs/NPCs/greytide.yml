@@ -18,6 +18,7 @@
         task: SimpleHumanoidHostileCompound
     - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true
 
 - type: entity
   name: ГрейТайд
@@ -39,6 +40,7 @@
         task: SimpleHumanoidHostileCompound
     - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true
 
 - type: entity
   name: ГрейТайд
@@ -60,6 +62,7 @@
         task: SimpleHumanoidHostileCompound
     - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true
 
 - type: entity
   name: ГрейТайд
@@ -81,6 +84,7 @@
         task: SimpleHumanoidHostileCompound
     - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true
 
 - type: entity
   name: ГрейТайд
@@ -102,6 +106,7 @@
         task: SimpleHumanoidHostileCompound
     - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true
 
 - type: entity
   name: ГрейТайд
@@ -123,3 +128,4 @@
         task: SimpleHumanoidHostileCompound
     - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true

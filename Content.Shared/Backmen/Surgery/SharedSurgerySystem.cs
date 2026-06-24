@@ -87,6 +87,8 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         SubscribeLocalEvent<SurgeryOrganCategoryMissingConditionComponent, SurgeryValidEvent>(OnOrganCategoryMissingConditionValid);
         SubscribeLocalEvent<SurgeryBothHumanLegsMissingConditionComponent, SurgeryValidEvent>(OnBothHumanLegsMissingValid);
         SubscribeLocalEvent<SurgeryOrganGraftAttachComponent, SurgeryValidEvent>(OnGraftAttachValid);
+        SubscribeLocalEvent<SurgeryOrganGraftDetachComponent, SurgeryValidEvent>(OnGraftDetachValid);
+        SubscribeLocalEvent<SurgeryArachneGraftOrganConditionComponent, SurgeryValidEvent>(OnArachneGraftOrganValid);
         SubscribeLocalEvent<SurgeryPartPresentConditionComponent, SurgeryValidEvent>(OnPartPresentConditionValid);
         SubscribeLocalEvent<SurgeryTraumaPresentConditionComponent, SurgeryValidEvent>(OnTraumaPresentConditionValid);
         SubscribeLocalEvent<SurgeryBleedsPresentConditionComponent, SurgeryValidEvent>(OnBleedsPresentConditionValid);
@@ -274,6 +276,30 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         }
 
         if (!IsGraftAttachPending(args.Body, ent.Comp))
+            args.Cancelled = true;
+    }
+
+    private void OnGraftDetachValid(Entity<SurgeryOrganGraftDetachComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (!TryComp<OrganComponent>(args.Part, out var organ)
+            || organ.Body != args.Body
+            || organ.Category is not { } category
+            || !SurgeryBodyPartMapping.IsArachneGraftCategory(category)
+            || !SurgeryBodyPartMapping.CanDetachArachneGraftCategory(args.Body, category, _organBody))
+        {
+            args.Cancelled = true;
+        }
+    }
+
+    private void OnArachneGraftOrganValid(Entity<SurgeryArachneGraftOrganConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (!TryComp<OrganComponent>(args.Part, out var organ) || organ.Body != args.Body)
+            return;
+
+        var isArachne = organ.Category is { } category
+            && SurgeryBodyPartMapping.IsArachneGraftCategory(category);
+
+        if (ent.Comp.Inverse ? isArachne : !isArachne)
             args.Cancelled = true;
     }
 

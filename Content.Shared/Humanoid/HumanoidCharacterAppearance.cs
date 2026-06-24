@@ -111,6 +111,56 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
             sex);
     }
 
+    // start-backmen: random-hair
+    public static HumanoidCharacterAppearance WithRandomHair(
+        HumanoidCharacterAppearance appearance,
+        ProtoId<SpeciesPrototype> species,
+        Sex sex)
+    {
+        var random = IoCManager.Resolve<IRobustRandom>();
+        var markingManager = IoCManager.Resolve<MarkingManager>();
+
+        var markings = new Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>>();
+
+        foreach (var (organ, organMarkings) in appearance.Markings)
+        {
+            markings[organ] = organMarkings.ShallowClone();
+            foreach (var (layer, layerMarkings) in organMarkings)
+                markings[organ][layer] = new List<Marking>(layerMarkings);
+        }
+
+        foreach (var (organ, organData) in markingManager.GetMarkingData(species))
+        {
+            if (!organData.Layers.Contains(HumanoidVisualLayers.Hair))
+                continue;
+
+            var available = markingManager.MarkingsByLayerAndGroupAndSex(
+                HumanoidVisualLayers.Hair,
+                organData.Group,
+                sex);
+
+            if (available.Count == 0)
+                continue;
+
+            var hairProto = random.Pick(available.Values.ToArray());
+            var hairColor = ClampColor(random.Pick(HairStyles.RealisticHairColors));
+            var colors = new List<Color>(hairProto.Sprites.Count);
+            for (var i = 0; i < hairProto.Sprites.Count; i++)
+                colors.Add(hairColor);
+
+            var organMarkings = markings.GetValueOrDefault(organ)?.ShallowClone()
+                ?? new Dictionary<HumanoidVisualLayers, List<Marking>>();
+            organMarkings[HumanoidVisualLayers.Hair] = new List<Marking> { new(hairProto.ID, colors) };
+            markings[organ] = organMarkings;
+        }
+
+        return EnsureValid(
+            new HumanoidCharacterAppearance(appearance.EyeColor, appearance.SkinColor, markings),
+            species,
+            sex);
+    }
+    // end-backmen: random-hair
+
     public static Color ClampColor(Color color)
     {
         return new(color.RByte, color.GByte, color.BByte);
@@ -146,7 +196,8 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
                     continue;
                 }
 
-                var actualMarkings = appearance.Markings.GetValueOrDefault(organ)?.ShallowClone() ?? [];
+                var actualMarkings = appearance.Markings.GetValueOrDefault(organ)?.ShallowClone()
+                    ?? new Dictionary<HumanoidVisualLayers, List<Marking>>();
 
                 markingManager.EnsureValidColors(actualMarkings);
                 markingManager.EnsureValidGroupAndSex(actualMarkings, organData.Value.Group, sex);

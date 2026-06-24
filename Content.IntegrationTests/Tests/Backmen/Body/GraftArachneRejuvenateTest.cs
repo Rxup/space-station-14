@@ -199,7 +199,8 @@ public sealed class GraftArachneRejuvenateTest : GameTest
             var organBody = Server.EntMan.System<BodySystem>();
 
             var human = Server.EntMan.SpawnEntity("MobHuman", map.MapCoords);
-            var npc = Server.EntMan.SpawnEntity("MobBaseNpc", map.MapCoords);
+            // Flat external organs (Torso/Head) but no VisualBodyComponent — unlike layered humanoids.
+            var npc = Server.EntMan.SpawnEntity("MobCarp", map.MapCoords);
 
             Assert.That(bodySys.BodySupportsArachneGraft(human), Is.True);
             Assert.That(bodySys.BodySupportsArachneGraft(npc), Is.False);

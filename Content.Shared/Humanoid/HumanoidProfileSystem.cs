@@ -1,3 +1,4 @@
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
@@ -10,6 +11,15 @@ namespace Content.Shared.Humanoid;
 
 public sealed partial class HumanoidProfileSystem : EntitySystem
 {
+    public static readonly ProtoId<TTSVoicePrototype> DefaultVoice = "Aidar";
+
+    public static readonly Dictionary<Sex, ProtoId<TTSVoicePrototype>> DefaultSexVoice = new()
+    {
+        { Sex.Male, "Aidar" },
+        { Sex.Female, "Kseniya" },
+        { Sex.Unsexed, "Baya" },
+    };
+
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private GrammarSystem _grammar = default!;
 
@@ -51,16 +61,36 @@ public sealed partial class HumanoidProfileSystem : EntitySystem
         ent.Comp.Gender = profile.Gender;
         ent.Comp.Age = profile.Age;
         ent.Comp.Species = profile.Species;
+        var oldSex = ent.Comp.Sex;
         ent.Comp.Sex = profile.Sex;
+        ent.Comp.Voice = ResolveVoice(profile);
         Dirty(ent);
 
-        var sexChanged = new SexChangedEvent(ent.Comp.Sex, profile.Sex);
+        if (TryComp<TTSComponent>(ent, out var tts))
+        {
+            tts.VoicePrototypeId = ent.Comp.Voice;
+            Dirty(ent, tts);
+        }
+
+        var sexChanged = new SexChangedEvent(oldSex, profile.Sex);
         RaiseLocalEvent(ent, ref sexChanged);
 
         if (TryComp<GrammarComponent>(ent, out var grammar))
         {
             _grammar.SetGender((ent, grammar), profile.Gender);
         }
+    }
+
+    private ProtoId<TTSVoicePrototype> ResolveVoice(HumanoidCharacterProfile profile)
+    {
+        if (profile.Voice != default
+            && _prototype.TryIndex(profile.Voice, out var voiceProto)
+            && HumanoidCharacterProfile.CanHaveVoice(voiceProto, profile.Sex))
+        {
+            return profile.Voice;
+        }
+
+        return DefaultSexVoice.GetValueOrDefault(profile.Sex, DefaultVoice);
     }
 
     private void OnExamined(Entity<HumanoidProfileComponent> ent, ref ExaminedEvent args)

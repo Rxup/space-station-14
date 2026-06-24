@@ -1,89 +1,63 @@
-﻿using System.Linq;
-using Content.Client.Corvax.TTS;
-using Content.Client.Lobby;
-using Content.Corvax.Interfaces.Client;
-using Content.Corvax.Interfaces.Shared;
+﻿using Content.Client.Corvax.TTS;
+using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
-using Content.Shared.Preferences;
+using Robust.Client.UserInterface;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Lobby.UI;
 
 public sealed partial class HumanoidProfileEditor
 {
-    private ISharedSponsorsManager? _sponsorsMgr;
+    private TTSTab? _ttsTab;
 
-    private List<TTSVoicePrototype> _voiceList = new();
-
-    private void InitializeVoice()
+    private void RefreshVoiceTab()
     {
-        _voiceList = _prototypeManager
-            .EnumeratePrototypes<TTSVoicePrototype>()
-            .Where(o => o.RoundStart)
-            .OrderBy(o => Loc.GetString(o.Name))
-            .ToList();
+        if (!_cfgManager.GetCVar(CCCVars.TTSEnabled))
+            return;
 
-        VoiceButton.OnItemSelected += args =>
+        _ttsTab = new TTSTab();
+        var children = new List<Control>();
+        foreach (var child in TabContainer.Children)
+            children.Add(child);
+
+        TabContainer.RemoveAllChildren();
+
+        for (var i = 0; i < children.Count; i++)
         {
-            VoiceButton.SelectId(args.Id);
-            SetVoice(_voiceList[args.Id].ID);
+            if (i == 1)
+            {
+                TabContainer.AddChild(_ttsTab);
+            }
+
+            TabContainer.AddChild(children[i]);
+        }
+
+        TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-voice-tab"));
+
+        _ttsTab.OnVoiceSelected += voiceId =>
+        {
+            SetVoice(voiceId);
+            _ttsTab.SetSelectedVoice(voiceId);
         };
 
-        VoicePlayButton.OnPressed += _ => PlayPreviewTTS();
-
-        IoCManager.Instance!.TryResolveType(out _sponsorsMgr);
+        _ttsTab.OnPreviewRequested += voiceId =>
+        {
+            _entManager.System<TTSSystem>().RequestGlobalTTS(Shared.Backmen.TTS.VoiceRequestType.Preview, voiceId);
+        };
     }
 
     private void UpdateTTSVoicesControls()
     {
-        if (Profile is null)
+        if (Profile is null || _ttsTab is null)
             return;
 
-        VoiceButton.Clear();
-
-        var firstVoiceChoiceId = 1;
-        for (var i = 0; i < _voiceList.Count; i++)
-        {
-            var voice = _voiceList[i];
-            if (!HumanoidCharacterProfile.CanHaveVoice(voice, Profile.Sex))
-                continue;
-
-            var name = Loc.GetString(voice.Name);
-            VoiceButton.AddItem(name, i);
-
-            if (firstVoiceChoiceId == 1)
-                firstVoiceChoiceId = i;
-
-            if (_sponsorsMgr is null)
-                continue;
-            if (voice.SponsorOnly && _sponsorsMgr != null &&
-                !_sponsorsMgr.GetClientPrototypes().Contains(voice.ID))
-            {
-                VoiceButton.SetItemDisabled(VoiceButton.GetIdx(i), true);
-            }
-        }
-
-        var voiceChoiceId = _voiceList.FindIndex(x => x.ID == Profile.Voice);
-        if (!VoiceButton.TrySelectId(voiceChoiceId) &&
-            VoiceButton.TrySelectId(firstVoiceChoiceId))
-        {
-            SetVoice(_voiceList[firstVoiceChoiceId].ID);
-        }
+        _ttsTab.UpdateControls(Profile, Profile.Sex);
+        _ttsTab.SetSelectedVoice(Profile.Voice);
     }
 
-    private void PlayPreviewTTS()
+    private void SetVoice(ProtoId<TTSVoicePrototype> newVoice)
     {
-        if (Profile is null)
-            return;
-
-        _entManager.System<TTSSystem>().RequestGlobalTTS(Shared.Backmen.TTS.VoiceRequestType.Preview,Profile.Voice);
-    }
-
-    private void SetVoice(string voice)
-    {
-        if (Profile is null)
-            return;
-
-        Profile = Profile.WithVoice(voice);
-        SetDirty();
+        Profile = Profile?.WithVoice(newVoice);
+        IsDirty = true;
     }
 }

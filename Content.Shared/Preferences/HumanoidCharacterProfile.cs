@@ -91,7 +91,7 @@ namespace Content.Shared.Preferences
         public Gender Gender { get; private set; } = Gender.Male;
 
         [DataField]
-        public string Voice { get; set; } = string.Empty;
+        public ProtoId<TTSVoicePrototype> Voice { get; set; } = HumanoidProfileSystem.DefaultVoice;
 
         /// <summary>
         /// Stores markings, eye colors, etc for the profile.
@@ -262,11 +262,15 @@ namespace Content.Shared.Preferences
 
             var name = GetName(species, gender);
 
-            var voiceId = random.Pick(prototypeManager
+            var voices = prototypeManager
                 .EnumeratePrototypes<TTSVoicePrototype>()
                 .Where(x => x.RoundStart)
-                .Where(o => CanHaveVoice(o, sex)).ToArray()
-            ).ID;
+                .Where(o => CanHaveVoice(o, sex))
+                .ToArray();
+
+            var voiceId = voices.Length > 0
+                ? new ProtoId<TTSVoicePrototype>(random.Pick(voices).ID)
+                : HumanoidProfileSystem.DefaultSexVoice.GetValueOrDefault(sex, HumanoidProfileSystem.DefaultVoice);
 
             return new HumanoidCharacterProfile()
             {
@@ -305,7 +309,7 @@ namespace Content.Shared.Preferences
             return new(this) { Gender = gender };
         }
 
-        public HumanoidCharacterProfile WithVoice(string voice)
+        public HumanoidCharacterProfile WithVoice(ProtoId<TTSVoicePrototype> voice)
         {
             return new(this) { Voice = voice };
         }
@@ -534,12 +538,16 @@ namespace Content.Shared.Preferences
                 _ => Gender.Epicene // Invalid enum values.
             };
 
-            if (!prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voiceProto) || !CanHaveVoice(voiceProto, sex))
+            if (!prototypeManager.TryIndex(Voice, out var voiceProto) || !CanHaveVoice(voiceProto, sex))
             {
-                Voice = prototypeManager
+                var defaultVoice = prototypeManager
                     .EnumeratePrototypes<TTSVoicePrototype>()
-                    .FirstOrDefault(v => CanHaveVoice(v, sex) && v.RoundStart)?.ID
-                    ?? string.Empty;
+                    .FirstOrDefault(v => CanHaveVoice(v, sex) && v.RoundStart);
+
+                if (defaultVoice is { } voice)
+                    Voice = new ProtoId<TTSVoicePrototype>(voice.ID);
+                else
+                    Voice = default;
             }
 
             string name;

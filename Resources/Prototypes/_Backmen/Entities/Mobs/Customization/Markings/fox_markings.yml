@@ -63,6 +63,7 @@
 - type: marking
   id: FoxTailinnerAnimated
   bodyPart: Tail
+  groupWhitelist: [HumanoidFoxes]
   sprites:
     - sprite: Corvax/Mobs/Customization/vulpkanin.rsi
       state: tail_fox_waggin

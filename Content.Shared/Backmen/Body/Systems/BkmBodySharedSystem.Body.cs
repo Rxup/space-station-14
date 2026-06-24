@@ -349,11 +349,12 @@ public partial class BkmBodySharedSystem
 
             if (HasComp<DetachableOrganComponent>(partUid))
             {
+                // Keep nested organs (e.g. brain in head) intact for DetachableOrganSystem to relocate.
                 _gibbingSystem.TryGibEntityWithRef(
                     bodyId,
                     partUid,
                     GibType.Skip,
-                    contents,
+                    GibContentsOption.Skip,
                     ref gibs,
                     playAudio: false,
                     launchGibs: false,

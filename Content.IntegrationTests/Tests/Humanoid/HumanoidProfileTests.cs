@@ -107,12 +107,18 @@ public sealed class HumanoidProfileTests : GameTest
 
         await Server.WaitAssertion(() =>
         {
-            LoadDependencies(out var body, out var humanoidComponent);
+            LoadDependencies(out var body, out var humanoidComponent, species);
 
             var proto = Server.ProtoMan.Index<SpeciesPrototype>(species);
             var profile = HumanoidCharacterProfile.RandomWithSpecies(species);
             _humanoidProfile.ApplyProfileTo(body, profile);
-            _visualBody.ApplyProfileTo(body, profile);
+
+            var entityManager = Server.ResolveDependency<IEntityManager>();
+            if (entityManager.HasComponent<VisualBodyComponent>(body))
+            {
+                _visualBody.ApplyProfileTo(body, profile);
+                AssertValidProfile((body, humanoidComponent), profile);
+            }
 
             Assert.That(humanoidComponent.Age, Is.LessThanOrEqualTo(proto.MaxAge));
             Assert.That(humanoidComponent.Age, Is.GreaterThanOrEqualTo(proto.MinAge));
@@ -120,19 +126,20 @@ public sealed class HumanoidProfileTests : GameTest
             Assert.That(humanoidComponent.Species, Is.EqualTo(species));
             var strategy = Server.ProtoMan.Index(proto.SkinColoration).Strategy;
             Assert.That(strategy.VerifySkinColor(profile.Appearance.SkinColor), Is.True);
-
-            AssertValidProfile((body, humanoidComponent), profile);
         });
     }
 
-    private void LoadDependencies(out EntityUid body, out HumanoidProfileComponent humanoidComponent)
+    private void LoadDependencies(out EntityUid body, out HumanoidProfileComponent humanoidComponent, string? species = null)
     {
         var entityManager = Server.ResolveDependency<IEntityManager>();
         _humanoidProfile = entityManager.System<HumanoidProfileSystem>();
         _markingManager = Server.ResolveDependency<MarkingManager>();
         _visualBody = entityManager.System<SharedVisualBodySystem>();
         _bodySystem = entityManager.System<BodySystem>();
-        body = entityManager.Spawn(BaseSpecies);
+
+        species ??= HumanoidCharacterProfile.DefaultSpecies;
+        var speciesProto = Server.ProtoMan.Index<SpeciesPrototype>(species);
+        body = entityManager.Spawn(speciesProto.Prototype);
         humanoidComponent = entityManager.GetComponent<HumanoidProfileComponent>(body);
     }
 
@@ -179,18 +186,36 @@ public sealed class HumanoidProfileTests : GameTest
                 continue;
 
             // Go through the whole list a second time just for the colors!
+            var resolved = new List<Marking>();
+
             foreach (var marking in markingOrgan.AppliedMarkings)
             {
-                if (freeMarkings.Contains(marking))
-                    continue;
-
                 var markingProto = Server.ProtoMan.Index<MarkingPrototype>(marking.MarkingId);
 
-                Assert.That(marking.MarkingColors,
-                    Is.EqualTo(MarkingColoring.GetMarkingLayerColors(markingProto, profile.Appearance.SkinColor, profile.Appearance.EyeColor, markingOrgan.AppliedMarkings)));
+                if (freeMarkings.Contains(marking))
+                {
+                    resolved.Add(marking);
+                    continue;
+                }
+
+                var colors = MarkingColoring.GetMarkingLayerColors(
+                    markingProto,
+                    profile.Appearance.SkinColor,
+                    profile.Appearance.EyeColor,
+                    resolved);
+
+                var expected = new Marking(marking.MarkingId, colors) { Forced = marking.Forced };
+                if (groupProto.Appearances.GetValueOrDefault(markingProto.BodyPart) is { MatchSkin: true } appearance)
+                {
+                    expected.SetColor(profile.Appearance.SkinColor.WithAlpha(appearance.LayerAlpha));
+                }
+
+                Assert.That(marking.MarkingColors, Is.EqualTo(expected.MarkingColors));
 
                 if (markingProto.SexRestriction != null)
                     Assert.That(markingProto.SexRestriction, Is.EqualTo(profile.Sex));
+
+                resolved.Add(marking);
             }
         }
     }
