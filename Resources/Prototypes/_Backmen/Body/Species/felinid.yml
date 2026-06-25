@@ -1,0 +1,179 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Felinid
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: true
+      default: [ FelinidEarsBasic ]
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ FelinidTailBasic ]
+    enum.HumanoidVisualLayers.Chest:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 2
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceFelinid
+  name: felinid appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganFelinidTorso
+      Head: OrganFelinidHead
+      ArmLeft: OrganFelinidArmLeft
+      ArmRight: OrganFelinidArmRight
+      HandRight: OrganFelinidHandRight
+      HandLeft: OrganFelinidHandLeft
+      LegLeft: OrganFelinidLegLeft
+      LegRight: OrganFelinidLegRight
+      FootLeft: OrganFelinidFootLeft
+      FootRight: OrganFelinidFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Lungs: OrganHumanLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganFelinidStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Felinid
+  - type: Inventory
+    speciesId: felinid
+
+- type: entity
+  parent:
+  - AppearanceFelinid
+  - BaseSpeciesMobSurgery
+  id: MobFelinid
+  name: Urist McFelinid
+  components:
+  - type: HumanoidProfile
+    species: Felinid
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Nekomimetic
+    understands:
+    - TauCetiBasic
+    - Nekomimetic
+  - type: Consciousness
+    capBonus: 20
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Critical
+      200: Dead
+  - type: Sprite
+    scale: 0.8, 0.8
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.28
+        density: 140
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Damageable
+    damageContainer: Biological
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 1
+        Slash: 5
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - OwOnavirus
+  - type: Thieving
+    stealthy: true
+    stripTimeReduction: 1
+  - type: Speech
+    speechSounds: Alto
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Stamina
+    baseCritThreshold: 85
+  - type: PseudoItem
+  - type: Vocal
+    sounds:
+      Male: MaleFelinid
+      Female: FemaleFelinid
+      Unsexed: MaleFelinid
+  - type: Felinid
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1.5
+    damageRecovery:
+      types:
+        Asphyxiation: -1.5
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: FootPrints
+
+- type: entity
+  parent: MobFelinid
+  id: MobFelinidDummy
+  categories: [ HideSpawnMenu ]
+  name: Urist McHands
+  components:
+  - type: HumanoidProfile
+    species: Felinid
+  description: A dummy felinid meant to be used in character setup.

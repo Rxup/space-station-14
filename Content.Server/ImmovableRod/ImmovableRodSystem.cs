@@ -1,8 +1,9 @@
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Destructible;
 using Content.Server.Polymorph.Components;
 using Content.Server.Popups;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Popups;
@@ -20,7 +21,7 @@ public sealed partial class ImmovableRodSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
 
-    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySystem _bodySystem = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

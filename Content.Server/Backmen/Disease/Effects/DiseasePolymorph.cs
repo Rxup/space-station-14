@@ -1,7 +1,10 @@
-﻿using Content.Server.Polymorph.Systems;
+using Content.Server.Polymorph.Systems;
 using Content.Shared.Audio;
 using Content.Shared.Backmen.Disease;
+using Content.Shared.Body;
+using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Markings;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;
@@ -66,10 +69,10 @@ public sealed partial class DiseaseEffectSystem
                 PopupType.Large);
 
         if (polyUid != null && args.DiseaseEffect.PolymorphRandomAppereance &&
-            TryComp<HumanoidAppearanceComponent>(polyUid, out var newHumanoid))
+            TryComp<HumanoidProfileComponent>(polyUid, out var newHumanoid))
         {
             var pref = HumanoidCharacterProfile.RandomWithSpecies(newHumanoid.Species);
-            if (TryComp<HumanoidAppearanceComponent>(ent, out var humanoid))
+            if (TryComp<HumanoidProfileComponent>(ent, out var humanoid))
             {
                 // if (oldSpecies.Sex.Contains(humanoid.Sex))
                 pref = pref.WithSex(humanoid.Sex);
@@ -77,7 +80,7 @@ public sealed partial class DiseaseEffectSystem
                 pref = pref.WithAge(humanoid.Age);
             }
 
-            _appearanceSystem.LoadProfile(polyUid.Value, pref);
+            _visualBody.ApplyProfileTo(polyUid.Value, pref);
         }
 
         if (args.DiseaseEffect.CureAfter)

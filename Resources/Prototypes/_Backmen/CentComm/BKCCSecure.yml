@@ -53,6 +53,6 @@
     - CentralCommand
   - type: Loadout
     prototypes: [CentComPrivateOfficerGear]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: true
   - type: AntagImmune

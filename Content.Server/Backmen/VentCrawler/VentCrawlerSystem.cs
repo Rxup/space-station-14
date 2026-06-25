@@ -31,18 +31,18 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.VentCrawler;
 
-public sealed class VentCrawlerSystem : SharedVentCrawlerSystem
+public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedVisibilitySystem _visibility = default!;
-    [Dependency] private readonly WeldableSystem _weldable = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedVisibilitySystem _visibility = default!;
+    [Dependency] private WeldableSystem _weldable = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private EntityQuery<NodeContainerComponent> _nodeQuery;
     private EntityQuery<TransformComponent> _xformQuery;

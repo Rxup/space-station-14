@@ -1,0 +1,278 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Shadowkin
+  limits:
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: true
+      default: [ EarsShadowkin ]
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ TailShadowkin ]
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceShadowkin
+  name: shadowkin appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganShadowkinTorso
+      Head: OrganShadowkinHead
+      ArmLeft: OrganShadowkinArmLeft
+      ArmRight: OrganShadowkinArmRight
+      HandRight: OrganShadowkinHandRight
+      HandLeft: OrganShadowkinHandLeft
+      LegLeft: OrganShadowkinLegLeft
+      LegRight: OrganShadowkinLegRight
+      FootLeft: OrganShadowkinFootLeft
+      FootRight: OrganShadowkinFootRight
+      Brain: OrganShadowkinBrain
+      Eyes: OrganShadowkinEyes
+      Tongue: OrganShadowkinTongue
+      Appendix: OrganShadowkinAppendix
+      Ears: OrganShadowkinEars
+      Lungs: OrganHumanLungs
+      Heart: OrganShadowkinHeart
+      Stomach: OrganShadowkinStomach
+      Liver: OrganShadowkinLiver
+      Kidneys: OrganShadowkinKidneys
+  - type: HumanoidProfile
+    species: Shadowkin
+  - type: Inventory
+    speciesId: human
+
+- type: entity
+  parent:
+  - AppearanceShadowkin
+  - BaseSpeciesMobSurgery
+  id: MobShadowkin
+  name: Urist McFloof
+  components:
+  - type: HumanoidProfile
+    species: Shadowkin
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: Consciousness
+    capBonus: 20
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Critical
+      200: Dead
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Shadokin
+    understands:
+    - TauCetiBasic
+    - Shadokin
+  - type: ShadowkinAccent
+  - type: Hunger
+  - type: Icon
+    sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
+    state: full
+  - type: Flammable
+    damage:
+      types:
+        Heat: 0.75
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Shadowkin
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 1
+  - type: Bloodstream
+    bloodlossDamage:
+      types:
+        Bloodloss: 1
+    bloodlossHealDamage:
+      types:
+        Bloodloss: -0.25
+  - type: Temperature
+    heatDamageThreshold: 330
+    coldDamageThreshold: 195
+    currentTemperature: 310.15
+    specificHeat: 46
+    coldDamage:
+      types:
+        Cold: 0.05
+    heatDamage:
+      types:
+        Heat: 0.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Sprite
+    scale: 0.85, 0.85
+  - type: Eye
+    zoom: "0.85, 0.85"
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 2
+        Slash: 3
+        Piercing: 1
+  - type: Shadowkin
+  - type: ShadowkinDarkSwapPower
+  - type: ShadowkinRestPower
+  - type: ShadowkinTeleportPower
+  - type: Vocal
+    sounds:
+      Male: MaleSlime
+      Female: FemaleSlime
+      Unsexed: MaleSlime
+  - type: InteractionPopup
+    successChance: 0.75
+    interactFailureString: petting-failure-generic
+    interactSuccessString: petting-success-soft-floofy
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: petting-success-soft-floofy-others
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.7
+    baseSprintSpeed: 4.5
+  - type: PotentialPsionic
+    chance: -200
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2.0
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
+- type: entity
+  parent: MobShadowkin
+  id: MobShadowkinDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy shadowkin meant to be used in character setup.
+  components:
+  - type: HumanoidProfile
+    species: Shadowkin
+
+- type: entity
+  parent: OrganBase
+  id: OrganShadowkinPart
+  abstract: true
+  suffix: shadowkin
+
+- type: entity
+  id: OrganShadowkinVisual
+  abstract: true
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Shadowkin
+
+- type: entity
+  parent: [ OrganShadowkinPart, OrganShadowkinVisual ]
+  id: OrganShadowkinExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Shadowkin/parts.rsi
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganShadowkinExternal ]
+  id: OrganShadowkinTorso
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Shadowkin
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganShadowkinExternal ]
+  id: OrganShadowkinHead
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Shadowkin
+      layers:
+      - Head
+      - HeadTop
+      - HeadSide
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganShadowkinExternal ]
+  id: OrganShadowkinArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganShadowkinExternal ]
+  id: OrganShadowkinArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganShadowkinExternal ]
+  id: OrganShadowkinHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganShadowkinExternal ]
+  id: OrganShadowkinHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganShadowkinExternal ]
+  id: OrganShadowkinLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganShadowkinExternal ]
+  id: OrganShadowkinLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganShadowkinExternal ]
+  id: OrganShadowkinFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganShadowkinExternal ]
+  id: OrganShadowkinFootRight

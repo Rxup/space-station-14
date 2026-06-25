@@ -588,7 +588,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (HasComp<PendingClockInComponent>(entity))
             return false;
 
-        if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(entity))
+        if (!def.AllowNonHumans && !HasComp<HumanoidProfileComponent>(entity))
             return false;
 
         if (def.Whitelist != null)

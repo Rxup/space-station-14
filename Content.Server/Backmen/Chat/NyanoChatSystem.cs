@@ -31,7 +31,7 @@ public sealed partial class NyanoChatSystem : EntitySystem
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private GlimmerSystem _glimmerSystem = default!;
     [Dependency] private ChatSystem _chatSystem = default!;
-    [Dependency] private readonly EntityQuery<StatusEffectComponent> _statusQuery = default;
+    [Dependency] private EntityQuery<StatusEffectComponent> _statusQuery = default;
     [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
     public override void Initialize()

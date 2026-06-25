@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Backmen.Surgery.Trauma.Systems;
 using Content.Server.Backmen.Surgery.Wounds.Systems;
@@ -15,6 +15,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
@@ -31,6 +32,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
@@ -56,12 +58,13 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
     [Dependency] private HandsSystem _hands = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private ServerWoundSystem _wound = default!;
     [Dependency] private ServerTraumaSystem _trauma = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private MaskSystem _mask = default!;
     [Dependency] private ToggleableClothingSystem _toggleableClothing = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
     private static readonly SlotFlags FaceSlots = SlotFlags.HEAD | SlotFlags.MASK;
 
@@ -82,6 +85,19 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         SubscribeLocalEvent<FleshWormComponent, FleshWormRemoveDoAfterEvent>(OnRemoveDoAfter);
     }
 
+    private void RefreshSuffocationStatus(EntityUid wearer, FleshWormComponent comp)
+    {
+        _statusEffects.TrySetStatusEffectDuration(
+            wearer,
+            comp.SuffocationStatus,
+            TimeSpan.FromSeconds(comp.DamageFrequency));
+    }
+
+    private void RemoveSuffocationStatus(EntityUid wearer, FleshWormComponent comp)
+    {
+        _statusEffects.TryRemoveStatusEffect(wearer, comp.SuffocationStatus);
+    }
+
     public bool CanPounce(EntityUid worm, EntityUid target, FleshWormComponent? component = null)
     {
         return CanPounceBasic(worm, target, component) && !IsFaceBlocked(target);
@@ -95,7 +111,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         if (HasComp<FleshCultistComponent>(target))
             return false;
 
-        if (!HasComp<HumanoidAppearanceComponent>(target))
+        if (!HasComp<HumanoidProfileComponent>(target))
             return false;
 
         if (TryComp(target, out MobStateComponent? mobState) && mobState.CurrentState != MobState.Alive)
@@ -197,14 +213,14 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
 
     private void ApplyPounceEffects(EntityUid worm, EntityUid target, FleshWormComponent component)
     {
-        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-hit-user"),
+        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-hit-user", ("worm", worm)),
             target, target, PopupType.LargeCaution);
 
         _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-hit-mob", ("entity", target)),
             worm, worm, PopupType.LargeCaution);
 
         _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-others",
-            ("entity", target)), target, Filter.PvsExcept(worm), true, PopupType.Large);
+            ("worm", worm), ("entity", target)), target, Filter.PvsExcept(worm), true, PopupType.Large);
 
         EnsureComp<PacifiedComponent>(worm);
         _stunSystem.TryUpdateParalyzeDuration(target, TimeSpan.FromSeconds(component.ParalyzeTime));
@@ -215,20 +231,21 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
     {
         _damageableSystem.TryChangeDamage(target, component.Damage, out _, ignoreResistances: true,
             interruptsDoAfters: false, origin: worm, targetPart: TargetBodyPart.Head);
-        TryRollHeadTrauma(target, component);
+        TryRollHeadTrauma(worm, target, component);
     }
 
-    private void TryRollHeadTrauma(EntityUid victim, FleshWormComponent component)
+    private void TryRollHeadTrauma(EntityUid worm, EntityUid victim, FleshWormComponent component)
     {
         if (component.HeadTraumaChance <= 0 || !_random.Prob(component.HeadTraumaChance))
             return;
 
-        var headPart = _body.GetBodyChildrenOfType(victim, BodyPartType.Head).FirstOrDefault();
-        if (headPart == default || !TryComp<WoundableComponent>(headPart.Id, out var headWoundable))
+        EntityUid headTarget;
+        if (!_body.TryGetWoundableTargetByType(victim, BodyPartType.Head, null, out headTarget)
+            || !TryComp<WoundableComponent>(headTarget, out var headWoundable))
             return;
 
         Entity<WoundComponent>? piercingWound = null;
-        foreach (var wound in _wound.GetWoundableWounds(headPart.Id, headWoundable))
+        foreach (var wound in _wound.GetWoundableWounds(headTarget, headWoundable))
         {
             if (DamageSpecifierAliases.IsPiercingDamageType(wound.Comp.DamageType, _prototype))
             {
@@ -238,7 +255,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         }
 
         if (piercingWound == null
-            && !_wound.TryInduceWound(headPart.Id, "Piercing", component.TraumaSeverity, out piercingWound, headWoundable))
+            && !_wound.TryInduceWound(headTarget, "Piercing", component.TraumaSeverity, out piercingWound, headWoundable))
         {
             return;
         }
@@ -250,7 +267,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         var traumaType = _random.Prob(0.5f) ? TraumaType.OrganDamage : TraumaType.BoneDamage;
 
         if (!_trauma.TryApplyTraumas(
-                (headPart.Id, headWoundable),
+                (headTarget, headWoundable),
                 (piercingWound.Value.Owner, inflicterComp),
                 [traumaType],
                 severity))
@@ -258,9 +275,9 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
             return;
         }
 
-        _popup.PopupEntity(Loc.GetString("flesh-worm-head-trauma-user"),
+        _popup.PopupEntity(Loc.GetString("flesh-worm-head-trauma-user", ("worm", worm)),
             victim, victim, PopupType.MediumCaution);
-        _popup.PopupEntity(Loc.GetString("flesh-worm-head-trauma-others", ("entity", victim)),
+        _popup.PopupEntity(Loc.GetString("flesh-worm-head-trauma-others", ("worm", worm), ("entity", victim)),
             victim, Filter.PvsExcept(victim), true, PopupType.MediumCaution);
     }
 
@@ -291,6 +308,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         component.PendingPounceTarget = EntityUid.Invalid;
         RemComp<VentCrawlingComponent>(uid);
         EnsureComp<PacifiedComponent>(uid);
+        RefreshSuffocationStatus(args.Equipee, component);
 
         _npc.SleepNPC(uid);
     }
@@ -340,7 +358,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
             return;
 
         _damageableSystem.TryChangeDamage(args.User, component.Damage, interruptsDoAfters: false);
-        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-bite-user"),
+        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-bite-user", ("worm", uid)),
             args.User, args.User);
     }
 
@@ -351,6 +369,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
 
         component.EquipedOn = EntityUid.Invalid;
         component.PendingPounceTarget = EntityUid.Invalid;
+        RemoveSuffocationStatus(args.Equipee, component);
         RemCompDeferred<PacifiedComponent>(uid);
         var combatMode = EnsureComp<CombatModeComponent>(uid);
         _combat.SetInCombatMode(uid, true, combatMode);
@@ -421,15 +440,17 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
             if (TryComp(targetId, out MobStateComponent? mobState) && mobState.CurrentState != MobState.Alive)
             {
                 _inventory.TryUnequip(targetId, "mask", silent: true, force: true);
+                RemoveSuffocationStatus(targetId, comp);
                 comp.EquipedOn = EntityUid.Invalid;
                 continue;
             }
 
             ApplyHeadDamage(uid, targetId, comp);
-            _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-user"),
+            RefreshSuffocationStatus(targetId, comp);
+            _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-user", ("worm", uid)),
                 targetId, targetId, PopupType.LargeCaution);
             _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-worm-eat-face-others",
-                ("entity", targetId)), targetId, Filter.PvsExcept(targetId), true);
+                ("worm", uid), ("entity", targetId)), targetId, Filter.PvsExcept(targetId), true);
         }
     }
 }

@@ -1,10 +1,10 @@
 namespace Content.Shared.Backmen.Targeting;
 
 /// <summary>
-/// Represents and enum of possible target parts.
+/// Represents and enum of possible target body parts.
 /// </summary>
 /// <remarks>
-/// To get all body parts as an Array, use static
+/// To get all body parts as an array, use static
 /// method in SharedTargetingSystem GetValidParts.
 /// </remarks>
 [Flags]
@@ -12,7 +12,7 @@ public enum TargetBodyPart : ushort
 {
     Head = 1,
     Chest = 1 << 1,
-    Groin = 1 << 2,
+    // 1 << 2 was Groin — removed; nubody uses Torso/Chest only.
     LeftArm = 1 << 3,
     LeftHand = 1 << 4,
     RightArm = 1 << 5,
@@ -35,8 +35,7 @@ public enum TargetBodyPart : ushort
     FullArms = Arms | Hands,
     FullLegs = Feet | Legs,
 
-    BodyMiddle = Chest | Groin | FullArms,
-    FullLegsGroin = FullLegs | Groin,
+    BodyMiddle = Chest | FullArms,
 
-    All = Head | Chest | Groin | LeftArm | LeftHand | RightArm | RightHand | LeftLeg | LeftFoot | RightLeg | RightFoot,
+    All = Head | Chest | LeftArm | LeftHand | RightArm | RightHand | LeftLeg | LeftFoot | RightLeg | RightFoot,
 }

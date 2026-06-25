@@ -6,7 +6,7 @@ using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Atmos;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Medical.Cryogenics;
 using Content.Shared.MedicalScanner;

@@ -19,3 +19,6 @@ loadout-group-belt = Belt
 loadout-group-medical-eyewear = Medical eyewear
 loadout-group-common-backpack = Backpack
 loadout-group-shoes = Shoes
+
+# Errors
+loadout-group-sex-restriction = This item is not available for your current sex.

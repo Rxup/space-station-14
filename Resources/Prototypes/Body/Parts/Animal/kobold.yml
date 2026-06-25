@@ -31,22 +31,6 @@
         Quantity: 20
 
 - type: entity
-  id: GroinKobold
-  name: "Kobold groin"
-  parent: [BaseGroin, PartKobold]
-  components:
-  - type: Sprite
-    sprite: Mobs/Animals/kobold.rsi
-    state: "groin_m"
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 10
-      - ReagentId: Blood
-        Quantity: 20
-
-- type: entity
   id: HeadKobold
   name: "Kobold head"
   parent: [BaseHead, PartKobold]

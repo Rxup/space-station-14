@@ -1,5 +1,5 @@
 - type: entity
-  parent: MobHamster
+  parent: [ MobHamster, BaseMobNpcHaisenbergBody ]
   id: MobHaisenberg
   name: Хайзенберг
   suffix: backmen
@@ -25,5 +25,3 @@
   - type: Inventory
     templateId: InvHaisenberg
   - type: InventorySlots
-  - type: Body
-    prototype: BodyHaisenberg

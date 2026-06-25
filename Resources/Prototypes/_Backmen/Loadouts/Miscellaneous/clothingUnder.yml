@@ -1,7 +1,24 @@
+- type: loadoutEffectGroup
+  id: FemaleUndershirt
+  effects:
+  - !type:BkmSexLoadoutEffect
+    sex:
+    - Female
+
+- type: loadoutEffectGroup
+  id: MaleUndershirt
+  effects:
+  - !type:BkmSexLoadoutEffect
+    sex:
+    - Male
+    - Unsexed
+
 - type: loadoutGroup
   id: Werx
   name: loadout-group-werx
-  minLimit: 0
+  minLimit: 1
+  minLimitSexes:
+  - Female
   maxLimit: 1
   loadouts:
 #футболки/рубашки
@@ -25,81 +42,129 @@
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra_binder
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: FemaleUndershirt
   equipment:
     undershirt: ClothingUnderbra_binder
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra_alt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: FemaleUndershirt
   equipment:
     undershirt: ClothingUnderbra_alt
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: FemaleUndershirt
   equipment:
     undershirt: ClothingUnderbra
 #---------------------------------------
 - type: loadout
   id: ClothingUnderljont
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleUndershirt
   equipment:
     undershirt: ClothingUnderljont
 #---------------------------------------
 - type: loadout
   id: ClothingUnderlover
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleUndershirt
   equipment:
     undershirt: ClothingUnderlover
 #---------------------------------------
 - type: loadout
   id: ClothingUndertank_midriff
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: FemaleUndershirt
   equipment:
     undershirt: ClothingUndertank_midriff
 #---------------------------------------
 - type: loadout
   id: ClothingUndertank_midriff_alt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: FemaleUndershirt
   equipment:
     undershirt: ClothingUndertank_midriff_alt
 #---------------------------------------
 - type: loadout
   id: ClothingUndershirt_nano
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleUndershirt
   equipment:
     undershirt: ClothingUndershirt_nano
 #---------------------------------------
 - type: loadout
   id: ClothingUnderilovent
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleUndershirt
   equipment:
     undershirt: ClothingUnderilovent
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbowlinga
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleUndershirt
   equipment:
     undershirt: ClothingUnderbowlinga
 #---------------------------------------
 - type: loadout
   id: ClothingUnderpolo
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleUndershirt
   equipment:
     undershirt: ClothingUnderpolo
 #---------------------------------------
 - type: loadout
   id: ClothingUndergreenshirtsport
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleUndershirt
   equipment:
     undershirt: ClothingUndergreenshirtsport
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra_binder_strapless
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: FemaleUndershirt
   equipment:
     undershirt: ClothingUnderbra_binder_strapless
 #---------------------------------------
 - type: loadout
   id: ClothingUnderbra_strapless_alt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: FemaleUndershirt
   equipment:
     undershirt: ClothingUnderbra_strapless_alt
 #---------------------------------------
 - type: loadout
   id: ClothingUndershortsleeve
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleUndershirt
   equipment:
     undershirt: ClothingUndershortsleeve
 #---------------------------------------
 - type: loadout
   id: ClothingUndertubetop
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: FemaleUndershirt
   equipment:
     undershirt: ClothingUndertubetop
 
@@ -110,7 +175,7 @@
 - type: loadoutGroup
   id: Niz
   name: loadout-group-niz
-  minLimit: 0
+  minLimit: 1
   maxLimit: 1
   loadouts:
 #муж

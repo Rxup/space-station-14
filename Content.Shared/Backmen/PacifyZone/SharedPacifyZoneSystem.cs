@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.PacifyZone.Components;
+using Content.Shared.Backmen.PacifyZone.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mindshield.Components;
@@ -16,7 +16,7 @@ namespace Content.Shared.Backmen.PacifyZone;
 public sealed partial class SharedPacifyZoneSystem : EntitySystem
 {
     private EntityQuery<MindShieldComponent> _mindShield;
-    private EntityQuery<HumanoidAppearanceComponent> _humanoidAppearance;
+    private EntityQuery<HumanoidProfileComponent> _humanoidAppearance;
     private EntityQuery<PacifyZonePacifestedComponent> _pacifyZonePacifested;
 
     [Dependency] private FixtureSystem _fixtures = default!;
@@ -31,7 +31,7 @@ public sealed partial class SharedPacifyZoneSystem : EntitySystem
         UpdatesAfter.Add(typeof(SharedPhysicsSystem));
 
         _mindShield = GetEntityQuery<MindShieldComponent>();
-        _humanoidAppearance = GetEntityQuery<HumanoidAppearanceComponent>();
+        _humanoidAppearance = GetEntityQuery<HumanoidProfileComponent>();
         _pacifyZonePacifested = GetEntityQuery<PacifyZonePacifestedComponent>();
 
         SubscribeLocalEvent<PacifyZoneComponent, MapInitEvent>(OnStartup);

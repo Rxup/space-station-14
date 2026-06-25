@@ -1,0 +1,251 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Demon
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceDemon
+  name: demon appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganDemonTorso
+      Head: OrganDemonHead
+      ArmLeft: OrganDemonArmLeft
+      ArmRight: OrganDemonArmRight
+      HandRight: OrganDemonHandRight
+      HandLeft: OrganDemonHandLeft
+      LegLeft: OrganDemonLegLeft
+      LegRight: OrganDemonLegRight
+      FootLeft: OrganDemonFootLeft
+      FootRight: OrganDemonFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganDemonStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Demon
+  - type: Inventory
+    speciesId: human
+
+- type: entity
+  parent:
+  - AppearanceDemon
+  - BaseSpeciesMobSurgery
+  id: MobDemon
+  name: Urist McDemon
+  components:
+  - type: HumanoidProfile
+    species: Demon
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: Consciousness
+    capBonus: 20
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      70: Critical
+      200: Dead
+  - type: LanguageKnowledge
+    speaks:
+    - Carshnil
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
+    - Carshnil
+  - type: Icon
+    sprite: _ADT/Mobs/Demon/parts.rsi
+    state: full_m
+  - type: Hunger
+  - type: Thirst
+  - type: Speech
+    speechSounds: Lizard
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: FemaleHuman
+  - type: Damageable
+    damageContainer: RaceDemon
+    damageModifierSet: RaceDemon
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/pierce.ogg
+    angle: 30
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Piercing: 5
+  - type: Temperature
+    heatDamageThreshold: 400
+    coldDamageThreshold: 193
+    currentTemperature: 310.15
+    specificHeat: 46
+    coldDamage:
+      types:
+        Cold: 0.1
+    heatDamage:
+      types:
+        Heat: 0.3
+  - type: Perishable
+  - type: FootPrints
+    leftBarePrint: footprint-left-bare-lizard
+    rightBarePrint: footprint-right-bare-lizard
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
+- type: entity
+  parent: MobDemon
+  id: MobDemonDummy
+  categories: [ HideSpawnMenu ]
+  name: Urist McDemon
+  description: A dummy demon meant to be used in character setup.
+  components:
+  - type: HumanoidProfile
+    species: Demon
+
+- type: entity
+  parent: OrganBase
+  id: OrganDemon
+  abstract: true
+  suffix: demon
+
+- type: entity
+  id: OrganDemonVisual
+  abstract: true
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _ADT/Mobs/Demon/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Demon
+
+- type: entity
+  parent: [ OrganDemon, OrganDemonVisual ]
+  id: OrganDemonExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ADT/Mobs/Demon/parts.rsi
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganDemonExternal ]
+  id: OrganDemonTorso
+  components:
+  - type: Sprite
+    state: torso_m
+  - type: VisualOrgan
+    data:
+      state: torso_m
+    sexStateOverrides:
+      Male: torso_m
+      Female: torso_f
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganDemonExternal ]
+  id: OrganDemonHead
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Demon
+      layers:
+      - Head
+      - Hair
+      - FacialHair
+      - Snout
+      - SnoutCover
+      - HeadSide
+      - HeadTop
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
+    - enum.HumanoidVisualLayers.Tail
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganDemonExternal ]
+  id: OrganDemonArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganDemonExternal ]
+  id: OrganDemonArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganDemonExternal ]
+  id: OrganDemonHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganDemonExternal ]
+  id: OrganDemonHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganDemonExternal ]
+  id: OrganDemonLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganDemonExternal ]
+  id: OrganDemonLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganDemonExternal ]
+  id: OrganDemonFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganDemonExternal ]
+  id: OrganDemonFootRight

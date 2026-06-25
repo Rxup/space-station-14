@@ -13,3 +13,77 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
+
+- type: entity
+  parent: OrganHumanExternal
+  id: OrganFelinidExternal
+  abstract: true
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Felinid
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganFelinidExternal ]
+  id: OrganFelinidTorso
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Felinid
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganFelinidExternal ]
+  id: OrganFelinidHead
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Felinid
+      layers:
+      - Head
+      - Hair
+      - FacialHair
+      - Snout
+      - SnoutCover
+      - HeadSide
+      - HeadTop
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganFelinidExternal ]
+  id: OrganFelinidArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganFelinidExternal ]
+  id: OrganFelinidArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganFelinidExternal ]
+  id: OrganFelinidHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganFelinidExternal ]
+  id: OrganFelinidHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganFelinidExternal ]
+  id: OrganFelinidLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganFelinidExternal ]
+  id: OrganFelinidLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganFelinidExternal ]
+  id: OrganFelinidFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganFelinidExternal ]
+  id: OrganFelinidFootRight

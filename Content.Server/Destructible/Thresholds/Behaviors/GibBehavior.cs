@@ -1,4 +1,4 @@
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Database;
 using JetBrains.Annotations;

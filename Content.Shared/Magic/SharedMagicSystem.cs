@@ -1,6 +1,7 @@
 using System.Numerics;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Coordinates.Helpers;
@@ -53,7 +54,7 @@ public abstract partial class SharedMagicSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private INetManager _net = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!; // backmen: body
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedDoorSystem _door = default!;
     [Dependency] private InventorySystem _inventory = default!;

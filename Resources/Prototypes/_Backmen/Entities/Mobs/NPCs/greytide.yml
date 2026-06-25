@@ -1,6 +1,6 @@
 - type: entity
   name: ГрейТайд
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: AI
   id: MobPMCGreyTide
   components:
@@ -16,12 +16,13 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true
 
 - type: entity
   name: ГрейТайд
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: AISuperZloy
   id: MobPMCGreyTideSuperZloy
   components:
@@ -37,12 +38,13 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true
 
 - type: entity
   name: ГрейТайд
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: AIMosin
   id: MobPMCGreyTideMosin
   components:
@@ -58,12 +60,13 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true
 
 - type: entity
   name: ГрейТайд
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: AIRifle
   id: MobPMCGreyTideRifle
   components:
@@ -79,12 +82,13 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true
 
 - type: entity
   name: ГрейТайд
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: AIShotgun
   id: MobPMCGreyTideShotgun
   components:
@@ -100,12 +104,13 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true
 
 - type: entity
   name: ГрейТайд
-  parent: BaseMobHuman
+  parent: MobHuman
   suffix: AIDeagle
   id: MobPMCGreyTideDeagle
   components:
@@ -121,5 +126,6 @@
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
-    - type: RandomHumanoidAppearance
+    - type: RandomHumanoidProfile
       randomizeName: true
+      randomizeHair: true

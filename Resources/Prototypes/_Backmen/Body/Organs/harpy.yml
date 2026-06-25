@@ -1,16 +1,139 @@
 - type: entity
+  parent: OrganBase
+  id: OrganHarpy
+  abstract: true
+  suffix: harpy
+
+- type: entity
+  id: OrganHarpyVisual
+  abstract: true
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Backmen/Mobs/Species/Harpy/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Harpy
+
+- type: entity
+  parent: [ OrganHarpy, OrganHarpyVisual ]
+  id: OrganHarpyExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/Harpy/parts.rsi
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganHarpyExternal ]
+  id: OrganHarpyTorso
+  name: harpy torso
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Harpy
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganHarpyExternal ]
+  id: OrganHarpyHead
+  name: harpy head
+  components:
+  - type: Sprite
+    state: head_m
+  - type: VisualOrgan
+    data:
+      state: head_m
+    sexStateOverrides:
+      Male: head_m
+      Female: head_f
+  - type: VisualOrganMarkings
+    markingData:
+      group: Harpy
+      layers:
+      - Head
+      - Hair
+      - FacialHair
+      - HeadTop
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganHarpyExternal ]
+  id: OrganHarpyArmLeft
+  name: left harpy arm
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganHarpyExternal ]
+  id: OrganHarpyArmRight
+  name: right harpy arm
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Harpy
+      layers:
+      - RArm
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganHarpyExternal ]
+  id: OrganHarpyHandLeft
+  name: left harpy hand
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganHarpyExternal ]
+  id: OrganHarpyHandRight
+  name: right harpy hand
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganHarpyExternal ]
+  id: OrganHarpyLegLeft
+  name: left harpy leg
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Harpy
+      layers:
+      - LLeg
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganHarpyExternal ]
+  id: OrganHarpyLegRight
+  name: right harpy leg
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Harpy
+      layers:
+      - RLeg
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganHarpyExternal ]
+  id: OrganHarpyFootLeft
+  name: left harpy foot
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganHarpyExternal ]
+  id: OrganHarpyFootRight
+  name: right harpy foot
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: Harpy
+      layers:
+      - RFoot
+
+- type: entity
   id: OrganHarpyLungs
-  parent: BaseHumanOrgan
+  parent: [ OrganBaseLungs, OrganHarpy, OrganHumanInternal, OrganHumanMetabolizer ]
   name: lungs
   description: "An advanced pair of avian lungs. Filters oxygen by way of moving air constantly through air sacs."
   components:
-  - type: Sprite
-    layers:
-      - state: lung-l
-      - state: lung-r
-  - type: Lung
   - type: Organ
-    # backmen edit
     intCap: 21
     integrity: 21
     integrityThresholds:
@@ -18,26 +141,27 @@
       Damaged: 12
       Destroyed: 0
     slotId: lungs
+  - type: Lung
+    solutionName: organ
   - type: Metabolizer
-    updateInterval: 2.0
+    solution: organ
     removeEmpty: true
     solutionOnBody: false
-    solution: "Lung"
-    metabolizerTypes: [ Human ]
+    updateInterval: 2.0
     groups:
     - id: Gas
       rateModifier: 200.0
   - type: SolutionContainerManager
     solutions:
       organ:
+        maxVol: 100
+        canReact: false
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
-      Lung:
-        maxVol: 100.0
-        canReact: false
       food:
         maxVol: 5
+        canReact: true
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5

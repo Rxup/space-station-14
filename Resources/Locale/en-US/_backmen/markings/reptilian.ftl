@@ -78,6 +78,32 @@ marking-TailSnakeUnder = Lizard, snake tail (Under)
 marking-TailSnakeUnder-snake_under = Inner
 marking-TailSnakeUnder-snake_under_secondary = Outer
 
+marking-SnakeLargeTailAnimated = Lizard, large snake tail (animated)
+marking-SnakeLargeTailAnimated-snake_large_wagging = Inner
+marking-SnakeLargeTailAnimated-snake_large_wagging_overlay = Outer
+
+marking-TailSnakeAnimated = Snake tail (animated)
+marking-TailSnakeAnimated-snake_wagging = Main
+
+marking-TailSnakeStripeAnimated = Snake tail, striped (animated)
+marking-TailSnakeStripeAnimated-snake_stripe_wagging = Inner
+marking-TailSnakeStripeAnimated-snake_stripe_secondary_wagging = Outer
+
+marking-TailSnakeStripeAltAnimated = Snake tail, striped alt (animated)
+marking-TailSnakeStripeAltAnimated-snake_stripe_alt_wagging = Inner
+marking-TailSnakeStripeAltAnimated-snake_stripe_alt_secondary_wagging = Outer
+
+marking-TailSnakeDualAnimated = Snake tail, dual (animated)
+marking-TailSnakeDualAnimated-snake_dual_wagging = Inner
+marking-TailSnakeDualAnimated-snake_dual_secondary_wagging = Outer
+
+marking-TailSnakeUnderAnimated = Snake tail, under (animated)
+marking-TailSnakeUnderAnimated-snake_under_wagging = Inner
+marking-TailSnakeUnderAnimated-snake_under_secondary_wagging = Outer
+
+marking-TailMaw = Lizard, maw tail
+marking-TailMaw-maw = Main
+
 # SPIKES
 marking-LizardChestSpinesAquaticWithoutTail = Lizard, chest, spines (Aquatic, without tail)
 marking-LizardChestSpinesAquaticWithoutTail-spines_aquatic = Spikes

@@ -42,7 +42,7 @@
   - type: DamageContacts
     ignoreWhitelist:
       components:
-      - HumanoidAppearance
+      - HumanoidProfile
       - TimedDespawn
     damage:
       types:
@@ -1273,7 +1273,7 @@
   - type: DamageContacts
     ignoreWhitelist:
       components:
-      - HumanoidAppearance
+      - HumanoidProfile
       tags:
       - Wall
     damage:
@@ -1552,7 +1552,7 @@
 - type: entity
   name: living sword
   id: MobLiveSword
-  parent: MobBaseNpc
+  parent: MobBaseNpcHumanoid
   suffix: Holy
   components:
   - type: Physics

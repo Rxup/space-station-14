@@ -23,7 +23,7 @@
     nameSegments:
     - NameSpetsRXBZZ
     - names_last_male
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: false
   - type: TriggerOnMobstateChange
     mobState:

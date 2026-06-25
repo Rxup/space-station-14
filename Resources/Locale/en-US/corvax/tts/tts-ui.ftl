@@ -1,3 +1,16 @@
 ui-options-tts-volume = TTS volume:
 ui-options-tts-headset-volume = Headset TTS volume:
 ui-options-tts-announce-volume = TTS announcement volume:
+credits-window-tts-title = TTS (Text-To-Speech) feature
+humanoid-profile-editor-voice-tab = Voice
+humanoid-profile-editor-voice-placeholder = Search voices...
+humanoid-profile-editor-voice-categories = Categories
+humanoid-profile-editor-voice-all = All
+humanoid-profile-editor-voice-all-tooltip = Show all voices
+humanoid-profile-editor-voice-other = Other
+humanoid-profile-editor-voice-play = ▶
+humanoid-profile-editor-voice-tooltip-play = Preview
+humanoid-profile-editor-voice-tooltip-sponsoronly = Sponsors only
+humanoid-profile-editor-voice-category-tooltip = Show voices from {$category}
+humanoid-profile-editor-voice-match = Found: {$filtered}/{$all}
+tts-rate-limited = You are generating TTS too quickly!

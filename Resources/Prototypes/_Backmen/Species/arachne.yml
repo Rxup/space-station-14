@@ -3,48 +3,11 @@
   name: species-name-ArachneClassic
   roundStart: true
   prototype: MobArachneClassic
-  sprites: MobArachneClassicSprites
-  markingLimits: MobArachneClassicMarkingLimits
-  dollPrototype: MobArachneClassicDummy
+  dollPrototype: AppearanceArachneClassic
   skinColoration: HumanToned
   sexes:
-    - Female
+  - Female
   minAge: 60
   youngAge: 150
   oldAge: 400
   maxAge: 666
-
-- type: markingPoints
-  id: MobArachneClassicMarkingLimits
-  points:
-    Hair:
-      points: 1
-      required: false
-    Tail:
-      points: 1
-      required: false
-    Chest:
-      points: 1
-      required: false
-    Arms:
-      points: 2
-      required: false
-
-
-- type: speciesBaseSprites
-  id: MobArachneClassicSprites
-  sprites:
-    Head: MobHumanHead
-    Hair: MobHumanoidAnyMarking
-    Chest: MobHumanChest
-    Eyes: MobArachneClassicEyes
-    LArm: MobHumanLArm
-    RArm: MobHumanRArm
-    LHand: MobHumanLHand
-    RHand: MobHumanRHand
-
-- type: humanoidBaseSprite
-  id: MobArachneClassicEyes
-  baseSprite:
-    sprite: Backmen/Mobs/Species/ArachneClassic/eyes.rsi
-    state: eyes

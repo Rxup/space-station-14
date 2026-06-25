@@ -1,0 +1,9 @@
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectFleshWormSuffocation
+  name: flesh worm suffocation
+  components:
+  - type: FleshWormSuffocationStatusEffect
+  - type: StatusEffectAlert
+    alert: FleshWormSuffocation
+    showDuration: true

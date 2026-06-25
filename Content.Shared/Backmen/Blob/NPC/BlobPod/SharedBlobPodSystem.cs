@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
@@ -21,7 +21,7 @@ public abstract partial class SharedBlobPodSystem : EntitySystem
     [Dependency] private MobStateSystem _mobs = default!;
 
 
-    private EntityQuery<HumanoidAppearanceComponent> _query;
+    private EntityQuery<HumanoidProfileComponent> _query;
 
     public override void Initialize()
     {
@@ -32,7 +32,7 @@ public abstract partial class SharedBlobPodSystem : EntitySystem
         SubscribeLocalEvent<BlobPodComponent, CanDropTargetEvent>(OnCanDragDropOn);
         SubscribeLocalEvent<BlobPodComponent, DragDropTargetEvent>(OnBlobPodDragDrop);
 
-        _query = GetEntityQuery<HumanoidAppearanceComponent>();
+        _query = GetEntityQuery<HumanoidProfileComponent>();
     }
 
     private void OnBlobPodDragDrop(Entity<BlobPodComponent> ent, ref DragDropTargetEvent args)

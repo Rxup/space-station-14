@@ -1,6 +1,9 @@
 using Content.Server.Backmen.Cocoon;
 using Content.Shared.Backmen.Arachne;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Actions;
+using Content.Shared.Body;
+using Content.Shared.Body.Organ;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Verbs;
@@ -65,6 +68,7 @@ public sealed partial class ArachneSystem : EntitySystem
     [Dependency] private ExamineSystemShared _examine = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
 
     private static readonly Vector2i[] NeighborOffsets =
     [
@@ -88,6 +92,33 @@ public sealed partial class ArachneSystem : EntitySystem
         SubscribeLocalEvent<ArachneComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SpinWebActionEvent>(OnSpinWeb);
         SubscribeLocalEvent<ArachneComponent, ArachneWebDoAfterEvent>(OnWebDoAfter);
+
+        SubscribeLocalEvent<ArachneOrganComponent, OrganGotInsertedEvent>(OnArachneOrganInserted);
+        SubscribeLocalEvent<ArachneOrganComponent, OrganGotRemovedEvent>(OnArachneOrganRemoved);
+    }
+
+    private void OnArachneOrganInserted(Entity<ArachneOrganComponent> ent, ref OrganGotInsertedEvent args)
+    {
+        SyncArachneComponent(args.Target);
+    }
+
+    private void OnArachneOrganRemoved(Entity<ArachneOrganComponent> ent, ref OrganGotRemovedEvent args)
+    {
+        SyncArachneComponent(args.Target);
+    }
+
+    private void SyncArachneComponent(EntityUid body)
+    {
+        if (_body.BodyHasArachneOrgan(body))
+        {
+            EnsureComp<ArachneComponent>(body);
+            EnsureComp<ArachneClothingStencilComponent>(body);
+        }
+        else
+        {
+            RemComp<ArachneClothingStencilComponent>(body);
+            RemComp<ArachneComponent>(body);
+        }
     }
 
     private void OnShutdown(EntityUid uid, ArachneComponent component, ComponentShutdown args)

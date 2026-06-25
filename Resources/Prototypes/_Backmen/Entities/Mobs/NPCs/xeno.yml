@@ -1,6 +1,6 @@
 - type: entity
   id: MobMaidXeno
-  parent: MobXeno
+  parent: [ MobXeno, BaseMobNpcAnimalFill ]
   name: горничная ксеноморфа
   description: Это чертовски мило, пока она сытная.
   components:
@@ -44,8 +44,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenolian
-  - type: Body
-    prototype: Animal
   - type: Actions
   - type: DoAfter
   - type: Polymorphable

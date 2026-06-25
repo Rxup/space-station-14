@@ -1,4 +1,4 @@
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Popups;
 using Content.Shared.Actions;
 using Content.Shared.Damage.Systems;
@@ -31,7 +31,7 @@ namespace Content.Server.Guardian
         [Dependency] private SharedActionsSystem _actionSystem = default!;
         [Dependency] private SharedHandsSystem _handsSystem = default!;
         [Dependency] private SharedAudioSystem _audio = default!;
-        [Dependency] private BodySystem _bodySystem = default!;
+        [Dependency] private BkmBodySystem _bodySystem = default!;
         [Dependency] private SharedContainerSystem _container = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
 

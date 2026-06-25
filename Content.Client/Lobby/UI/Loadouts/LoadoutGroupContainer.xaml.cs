@@ -1,5 +1,3 @@
-using System.Linq;
-using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Clothing;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
@@ -46,11 +44,11 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
         var loadoutSystem = collection.Resolve<IEntityManager>().System<LoadoutSystem>();
         RestrictionsContainer.RemoveAllChildren();
 
-        if (_groupProto.MinLimit > 0)
+        if (_groupProto.GetMinLimit(profile) > 0) // backmen
         {
             RestrictionsContainer.AddChild(new Label()
             {
-                Text = Loc.GetString("loadouts-min-limit", ("count", _groupProto.MinLimit)),
+                Text = Loc.GetString("loadouts-min-limit", ("count", _groupProto.GetMinLimit(profile))), // backmen
                 Margin = new Thickness(5, 0, 5, 5),
             });
         }
@@ -92,17 +90,6 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
                          ? p.ID
                          : p.GroupBy)
         .ToDictionary(g => g.Key, g => g.ToList());
-
-        // Corvax-Loadouts-Start
-        if (collection.TryResolveType<ISharedLoadoutsManager>(out var loadoutsManager) && _groupProto.ID == "Inventory")
-        {
-            groups = loadoutsManager.GetClientLoadoutPrototypes()
-            .GroupBy(p => string.IsNullOrEmpty(p.GroupBy)
-                         ? p.ID
-                         : p.GroupBy)
-            .ToDictionary(g => g.Key, g => g.ToList());
-        }
-        // Corvax-Loadouts-End
 
         foreach (var kvp in groups)
         {

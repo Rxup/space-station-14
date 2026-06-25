@@ -1,0 +1,43 @@
+# Detached limb container used when external organs leave a body (Offbrand-style).
+
+- type: entity
+  id: BackmenDetachedBody
+  parent: BaseSpeciesLayers
+  save: false
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Damageable
+    damageContainer: OrganicPart
+  - type: BkmDetachedBody
+  - type: Body
+  - type: VisualBody
+  - type: ContainerContainer
+  - type: Appearance
+  - type: HideableHumanoidLayers
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+  - type: Item
+    size: Normal
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 50
+        mask:
+        - ItemMask
+        restitution: 0.2
+        friction: 0.4
+  - type: GravityAffected
+  - type: CollisionWake
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/thudswoosh.ogg
+      params:
+        volume: 8

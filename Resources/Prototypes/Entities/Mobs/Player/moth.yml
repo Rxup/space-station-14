@@ -1,8 +1,1 @@
-- type: entity
-  save: false
-  name: Urist McFluff
-  parent: BaseMobMoth
-  id: MobMoth
-  components:
-    - type: PotentialPsionic
-    - type: FootPrints
+# Player overrides merged into Resources/Prototypes/Body/Species/moth.yml (nubody)

@@ -179,11 +179,12 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             // Apply defaults if required
             // Technically it's possible for someone to game themselves into loadouts they shouldn't have
             // If you put invalid ones first but that's your fault for not using sensible defaults
-            if (loadouts.Count < groupProto.MinLimit)
+            var minLimit = groupProto.GetMinLimit(profile); // backmen
+            if (loadouts.Count < minLimit)
             {
                 foreach (var protoId in groupProtoLoadouts) // Corvax-Loadout: Use groupProtoLoadouts instead of groupProto.Loadouts
                 {
-                    if (loadouts.Count >= groupProto.MinLimit)
+                    if (loadouts.Count >= minLimit)
                         break;
 
                     if (!protoManager.TryIndex(protoId, out var loadoutProto))
@@ -250,13 +251,16 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             var loadouts = new List<Loadout>();
             SelectedLoadouts[group] = loadouts;
 
-            if (groupProto.MinLimit > 0 || loadouts.Count < groupProto.DefaultSelected)
+            var minLimit = groupProto.GetMinLimit(profile); // backmen
+            var defaultSelected = groupProto.DefaultSelected;
+
+            if (minLimit > 0 || loadouts.Count < defaultSelected)
             {
                 // Apply any loadouts we can.
                 foreach (var protoId in groupProto.Loadouts)
                 {
                     // Reached the limit, time to stop
-                    if (loadouts.Count >= Math.Max(groupProto.MinLimit, groupProto.DefaultSelected))
+                    if (loadouts.Count >= Math.Max(minLimit, defaultSelected))
                         break;
 
                     if (!protoManager.TryIndex(protoId, out var loadoutProto))

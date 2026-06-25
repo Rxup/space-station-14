@@ -1,14 +1,20 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Backmen.Body;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Body.Organ;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
+using Content.Shared.Body;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -32,6 +38,8 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
     [Dependency] private IPrototypeManager _prototype = default!;
 
+    protected override FixedPoint2 GetMaxWoundSeverity() => FixedPoint2.New(_maxWoundSeverity);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -47,8 +55,8 @@ public sealed partial class ServerWoundSystem : WoundSystem
         base.Update(frameTime);
 
         var timeToHeal = 1 / _medicalHealingTickrate;
-        var query = EntityQueryEnumerator<WoundableComponent, BodyPartComponent, MetaDataComponent>();
-        while (query.MoveNext(out var ent, out var woundable, out var bodyPart, out var metaData))
+        var query = EntityQueryEnumerator<WoundableComponent, MetaDataComponent>();
+        while (query.MoveNext(out var ent, out var woundable, out var metaData))
         {
             if (Paused(ent, metaData))
                 continue;
@@ -56,7 +64,13 @@ public sealed partial class ServerWoundSystem : WoundSystem
             if (woundable.Wounds == null || woundable.Wounds.Count == 0)
                 continue;
 
-            if (bodyPart.Body is not { } body || MobState.IsDead(body))
+            EntityUid? body = null;
+            if (TryComp<OrganComponent>(ent, out var organ))
+                body = organ.Body;
+            else if (TryComp<BodyPartComponent>(ent, out var bodyPart))
+                body = bodyPart.Body;
+
+            if (body is not { } bodyUid || MobState.IsDead(bodyUid))
                 continue;
 
             if (woundable.WoundableSeverity is WoundableSeverity.Critical or WoundableSeverity.Loss)
@@ -426,15 +440,39 @@ public sealed partial class ServerWoundSystem : WoundSystem
         WoundableComponent? parentWoundableComp = null)
     {
         if (!WoundableQuery.Resolve(woundableEntity, ref woundableComp)
-            || !WoundableQuery.Resolve(parentWoundableEntity, ref parentWoundableComp))
+            || !TryResolveDestroyParent(parentWoundableEntity, ref parentWoundableComp, out parentWoundableEntity))
             return;
 
-        var bodyPart = Comp<BodyPartComponent>(woundableEntity);
-        if (!bodyPart.Body.HasValue)
+        if (!Body.TryGetWoundableBodyPartInfo(woundableEntity, out var bodyUid, out var partType, out var symmetry))
         {
+            if (HasComp<BrainComponent>(woundableEntity))
+            {
+                _brainPreserve.TryPreserveBrain(woundableEntity, Transform(woundableEntity).Coordinates);
+                return;
+            }
+
+            if (_burnWoundable.ShouldBurnToAsh(woundableEntity, woundableComp))
+            {
+                SpawnPartBurnEffects(woundableEntity);
+                QueueDel(woundableEntity);
+                return;
+            }
+
             DropWoundableOrgans(woundableEntity, woundableComp);
             QueueDel(woundableEntity);
 
+            return;
+        }
+
+        if (HasComp<BrainComponent>(woundableEntity))
+        {
+            _brainPreserve.TryPreserveBrain(woundableEntity, Transform(woundableEntity).Coordinates);
+            return;
+        }
+
+        if (_burnWoundable.ShouldBurnToAsh(woundableEntity, woundableComp))
+        {
+            BurnWoundableToAsh(parentWoundableEntity, woundableEntity, woundableComp, parentWoundableComp);
             return;
         }
 
@@ -445,41 +483,44 @@ public sealed partial class ServerWoundSystem : WoundSystem
             nameof(WoundableComponent.AllowWounds),
             nameof(WoundableComponent.WoundableSeverity));
 
-        if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
+        if (TryComp<TargetingComponent>(bodyUid, out var targeting))
         {
-            targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
-            DirtyField(bodyPart.Body.Value, targeting, nameof(TargetingComponent.BodyStatus));
-
-            RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+            RefreshBodyTargetingStatus(bodyUid, targeting);
         }
 
-        Audio.PlayPvs(woundableComp.WoundableDestroyedSound, bodyPart.Body.Value);
+        Audio.PlayPvs(woundableComp.WoundableDestroyedSound, bodyUid);
 
         if (IsWoundableRoot(woundableEntity, woundableComp))
         {
             DropWoundableOrgans(woundableEntity, woundableComp);
             DestroyWoundableChildren(woundableEntity, woundableComp);
 
+            if (TryComp<OrganComponent>(woundableEntity, out var rootOrgan))
+                Body.RemoveOrgan(woundableEntity, rootOrgan);
+
             QueueDel(woundableEntity);
 
-            Body.GibBody(bodyPart.Body.Value); // More blood for the Blood Gods!
+            // start-backmen: surgery-gib-threshold
+            if (EntityManager.System<BkmSurgeryDestructibleSystem>().ShouldFullBodyGib(bodyUid))
+                Body.GibBody(bodyUid); // More blood for the Blood Gods!
+            // end-backmen: surgery-gib-threshold
         }
         else
         {
-            if (TryComp<InventoryComponent>(bodyPart.Body, out var inventory) // Prevent error for non-humanoids
-                && Body.GetBodyPartCount(bodyPart.Body.Value, bodyPart.PartType) == 1
-                && Body.TryGetPartSlotContainerName(bodyPart.PartType, out var containerNames))
+            if (TryComp<InventoryComponent>(bodyUid, out var inventory) // Prevent error for non-humanoids
+                && Body.GetBodyPartCount(bodyUid, partType) == 1
+                && Body.TryGetPartSlotContainerName(partType, out var containerNames))
             {
                 foreach (var containerName in containerNames)
                 {
-                    Inventory.DropSlotContents(bodyPart.Body.Value, containerName, inventory);
+                    Inventory.DropSlotContents(bodyUid, containerName, inventory);
                 }
             }
 
-            if (bodyPart.PartType is BodyPartType.Hand or BodyPartType.Arm)
+            if (partType is BodyPartType.Hand or BodyPartType.Arm)
             {
                 // Prevent anomalous behaviour
-                Hands.TryDrop(bodyPart.Body.Value, woundableEntity);
+                Hands.TryDrop(bodyUid, woundableEntity);
             }
 
             DropWoundableOrgans(woundableEntity, woundableComp);
@@ -511,8 +552,35 @@ public sealed partial class ServerWoundSystem : WoundSystem
                 wound.Comp2.ScalingLimit += 4;
             }
 
+            if (TryComp<OrganComponent>(woundableEntity, out var organ))
+                Body.RemoveOrgan(woundableEntity, organ);
+
+            if (Containers.TryGetContainingContainer(woundableEntity, out var detachedContainer)
+                && HasComp<BkmDetachedBodyComponent>(detachedContainer.Owner))
+                return;
+
             QueueDel(woundableEntity);
         }
+    }
+
+    private bool TryResolveDestroyParent(
+        EntityUid parentWoundableEntity,
+        [NotNullWhen(true)] ref WoundableComponent? parentWoundableComp,
+        out EntityUid resolvedParent)
+    {
+        resolvedParent = parentWoundableEntity;
+        parentWoundableComp = null;
+
+        if (WoundableQuery.TryComp(parentWoundableEntity, out parentWoundableComp))
+            return true;
+
+        if (!TryComp<BodyComponent>(parentWoundableEntity, out _)
+            || !Body.TryGetWoundableTargetByType(parentWoundableEntity, BodyPartType.Chest, null, out var chest)
+            || !WoundableQuery.TryComp(chest, out parentWoundableComp))
+            return false;
+
+        resolvedParent = chest;
+        return true;
     }
 
     [PublicAPI]
@@ -526,11 +594,10 @@ public sealed partial class ServerWoundSystem : WoundSystem
             || !WoundableQuery.Resolve(parentWoundableEntity, ref parentWoundableComp))
             return;
 
-        var bodyPart = Comp<BodyPartComponent>(parentWoundableEntity);
-        if (!bodyPart.Body.HasValue)
+        if (!Body.TryGetWoundableBodyPartInfo(parentWoundableEntity, out var bodyUid, out _, out _))
             return;
 
-        Audio.PlayPvs(woundableComp.WoundableDelimbedSound, bodyPart.Body.Value);
+        Audio.PlayPvs(woundableComp.WoundableDelimbedSound, bodyUid);
 
         foreach (var wound in GetWoundableWounds(woundableEntity, woundableComp))
         {
@@ -566,38 +633,35 @@ public sealed partial class ServerWoundSystem : WoundSystem
             || !WoundableQuery.Resolve(parentWoundableEntity, ref parentWoundableComp))
             return;
 
-        var bodyPart = Comp<BodyPartComponent>(parentWoundableEntity);
-        if (!bodyPart.Body.HasValue)
+        if (!Body.TryGetWoundableBodyPartInfo(parentWoundableEntity, out var bodyUid, out var parentPartType, out _))
             return;
 
-        if (!Containers.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container))
+        if (!Body.TryGetWoundableBodyPartInfo(woundableEntity, out _, out var childPartType, out _))
             return;
+
+        var hasContainer = Containers.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container);
 
         woundableComp.WoundableSeverity = WoundableSeverity.Loss;
 
-        if (TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
+        if (TryComp<TargetingComponent>(bodyUid, out var targeting))
         {
-            targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
-            DirtyField(bodyPart.Body.Value, targeting, nameof(TargetingComponent.BodyStatus));
-
-            RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+            RefreshBodyTargetingStatus(bodyUid, targeting);
         }
 
-        var childBodyPart = Comp<BodyPartComponent>(woundableEntity);
-        if (TryComp<InventoryComponent>(bodyPart.Body, out var inventory)
-            && Body.GetBodyPartCount(bodyPart.Body.Value, bodyPart.PartType) == 1
-            && Body.TryGetPartSlotContainerName(childBodyPart.PartType, out var containerNames))
+        if (TryComp<InventoryComponent>(bodyUid, out var inventory)
+            && Body.GetBodyPartCount(bodyUid, parentPartType) == 1
+            && Body.TryGetPartSlotContainerName(childPartType, out var containerNames))
         {
             foreach (var containerName in containerNames)
             {
-                Inventory.DropSlotContents(bodyPart.Body.Value, containerName, inventory);
+                Inventory.DropSlotContents(bodyUid, containerName, inventory);
             }
         }
 
-        if (childBodyPart.PartType is BodyPartType.Hand or BodyPartType.Arm)
+        if (childPartType is BodyPartType.Hand or BodyPartType.Arm)
         {
             // Prevent anomalous behaviour
-            Hands.TryDrop(bodyPart.Body.Value, woundableEntity);
+            Hands.TryDrop(bodyUid, woundableEntity);
         }
 
         // Still does the funny popping, if the children are critted. for the funny :3
@@ -605,12 +669,23 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
         DirtyField(woundableEntity, woundableComp, nameof(WoundableComponent.WoundableSeverity));
 
-        var bodyPartId = container.ID;
+        if (TryComp<OrganComponent>(woundableEntity, out var organ) && organ.Body == bodyUid)
+        {
+            Body.RemoveOrgan(woundableEntity, organ);
+            return;
+        }
+
+        if (!hasContainer
+            || !TryComp<BodyPartComponent>(parentWoundableEntity, out var parentBodyPart)
+            || !TryComp<BodyPartComponent>(woundableEntity, out var childBodyPart))
+            return;
+
+        var bodyPartId = container!.ID;
         Body.DetachPart(
             parentWoundableEntity,
-            SharedBodySystem.GetPartSlotContainerIdFromContainer(bodyPartId),
+            BkmBodySharedSystem.GetPartSlotContainerIdFromContainer(bodyPartId),
             woundableEntity,
-            bodyPart,
+            parentBodyPart,
             childBodyPart);
     }
 
@@ -821,15 +896,17 @@ public sealed partial class ServerWoundSystem : WoundSystem
             out _,
             parentWoundableComp);
 
-        var bodyPart = Comp<BodyPartComponent>(severed);
+        if (!Body.TryGetWoundableBodyPartInfo(severed, out _, out var severedPartType, out var severedSymmetry))
+            return;
+
         foreach (var woundEnt in GetWoundableWounds(parent, parentWoundableComp))
         {
             if (woundEnt.Comp.DamageType != woundComp.DamageType)
                 continue;
 
             var tourniquetable = EnsureComp<TourniquetableComponent>(woundEnt);
-            tourniquetable.SeveredSymmetry = bodyPart.Symmetry;
-            tourniquetable.SeveredPartType = bodyPart.PartType;
+            tourniquetable.SeveredSymmetry = severedSymmetry ?? BodyPartSymmetry.None;
+            tourniquetable.SeveredPartType = severedPartType;
         }
     }
 

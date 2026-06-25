@@ -30,6 +30,7 @@ public abstract partial class SharedFleshWormSystem : EntitySystem
         SubscribeLocalEvent<FleshWormComponent, GetVerbsEvent<EquipmentVerb>>(OnGetRemoveVerb);
         SubscribeLocalEvent<FleshWormComponent, InventoryRelayedEvent<GetVerbsEvent<EquipmentVerb>>>(OnGetRemoveVerbRelayed);
         SubscribeLocalEvent<FleshWormComponent, FleshWormRemoveVerbEvent>(OnRemoveVerb);
+        SubscribeLocalEvent<InventoryComponent, FleshWormSuffocationAlertEvent>(OnSuffocationAlertClick);
 
         SubscribeLocalEvent<InventoryComponent, ExaminedEvent>(OnWearersExamined);
         SubscribeLocalEvent<InventoryComponent, HealthBeingExaminedEvent>(OnWearersHealthExamined);
@@ -80,6 +81,18 @@ public abstract partial class SharedFleshWormSystem : EntitySystem
 
         args.Handled = true;
         StartRemoveDoAfter(args.Performer, ent.Owner, args.Wearer, ent.Comp);
+    }
+
+    private void OnSuffocationAlertClick(Entity<InventoryComponent> ent, ref FleshWormSuffocationAlertEvent args)
+    {
+        if (args.Handled || args.User != ent.Owner)
+            return;
+
+        if (!TryGetFaceWorm(ent, out var worm) || !TryComp<FleshWormComponent>(worm, out var comp))
+            return;
+
+        args.Handled = true;
+        StartRemoveDoAfter(args.User, worm, args.User, comp);
     }
 
     private void AddRemoveVerb(Entity<FleshWormComponent> ent, ref GetVerbsEvent<EquipmentVerb> args)

@@ -144,7 +144,7 @@
                     </TextureButton>
                     <TextureButton
                         Name="ChestButton"
-                        SetSize="33 36"
+                        SetSize="33 54"
                         Margin="0 21 0 0"
                         VerticalAlignment="Top"
                         HorizontalAlignment="Center"
@@ -152,7 +152,7 @@
                         <TextureRect
                             TexturePath="/Textures/Interface/Targeting/Doll/torso.png"
                             Stretch="KeepAspectCentered"
-                            SetSize="27 30"
+                            SetSize="27 48"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"/>
                     </TextureButton>
@@ -160,19 +160,6 @@
                         MinSize="45 42"
                         VerticalAlignment="Bottom"
                         HorizontalAlignment="Center">
-                        <TextureButton
-                            Name="GroinButton"
-                            MinSize="33 18"
-                            VerticalAlignment="Top"
-                            HorizontalAlignment="Center"
-                            StyleClasses="TargetDollButtonGroin">
-                            <TextureRect
-                                TexturePath="/Textures/Interface/Targeting/Doll/groin.png"
-                                Stretch="KeepAspectCentered"
-                                SetSize="27 12"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center"/>
-                        </TextureButton>
                         <PanelContainer
                             MinSize="24 36"
                             VerticalAlignment="Bottom"

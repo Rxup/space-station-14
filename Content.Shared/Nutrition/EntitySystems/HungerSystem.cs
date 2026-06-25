@@ -10,10 +10,18 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+// start-backmen: mood
 using Content.Shared.Backmen.Mood;
+using Content.Shared.Backmen.CCVar;
+// end-backmen: mood
+// start-backmen: hunger
+using Content.Shared.Backmen.Targeting;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
+// end-backmen: hunger
 using Robust.Shared.Network;
 using Robust.Shared.Configuration;
-using Content.Shared.Backmen.CCVar;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -29,6 +37,11 @@ public sealed partial class HungerSystem : EntitySystem
     [Dependency] private SharedJetpackSystem _jetpack = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private IConfigurationManager _config = default!;
+    // start-backmen: hunger
+    [Dependency] private SharedAudioSystem _audio = default!;
+
+    private EntityQuery<ActorComponent> _actorQuery;
+    // end-backmen: hunger
 
     private static readonly ProtoId<SatiationIconPrototype> HungerIconOverfedId = "HungerIconOverfed";
     private static readonly ProtoId<SatiationIconPrototype> HungerIconPeckishId = "HungerIconPeckish";
@@ -37,6 +50,9 @@ public sealed partial class HungerSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
+        // backmen: hunger
+        _actorQuery = GetEntityQuery<ActorComponent>();
 
         SubscribeLocalEvent<HungerComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<HungerComponent, ComponentShutdown>(OnShutdown);
@@ -59,7 +75,8 @@ public sealed partial class HungerSystem : EntitySystem
 
     private void OnRefreshMovespeed(EntityUid uid, HungerComponent component, RefreshMovementSpeedModifiersEvent args)
     {
-        if (_config.GetCVar(CCVars.MoodEnabled)
+        // backmen: hunger
+        if (!_actorQuery.HasComp(uid)
             || component.CurrentThreshold > HungerThreshold.Starving
             || _jetpack.IsUserFlying(uid))
             return;
@@ -149,13 +166,16 @@ public sealed partial class HungerSystem : EntitySystem
 
         if (GetMovementThreshold(component.CurrentThreshold) != GetMovementThreshold(component.LastThreshold))
         {
-            if (!_config.GetCVar(CCVars.MoodEnabled))
-                _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
-            else if (_net.IsServer)
+            // start-backmen: mood
+            if (_net.IsServer && _config.GetCVar(CCVars.MoodEnabled))
             {
-                var ev = new MoodEffectEvent("Hunger" + component.CurrentThreshold); // backmen: mood
+                var ev = new MoodEffectEvent("Hunger" + component.CurrentThreshold);
                 RaiseLocalEvent(uid, ev);
             }
+            // end-backmen: mood
+
+            // backmen: hunger
+            _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
         }
 
         if (component.HungerThresholdAlerts.TryGetValue(component.CurrentThreshold, out var alertId))
@@ -174,6 +194,11 @@ public sealed partial class HungerSystem : EntitySystem
             SetAuthoritativeHungerValue((uid, component), GetHunger(component));
         }
 
+        // start-backmen: hunger
+        if (component.CurrentThreshold <= HungerThreshold.Peckish)
+            ScheduleStomachGrowl(component);
+        // end-backmen: hunger
+
         component.LastThreshold = component.CurrentThreshold;
         DirtyField(uid, component, nameof(HungerComponent.LastThreshold));
     }
@@ -183,13 +208,44 @@ public sealed partial class HungerSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+        // start-backmen: hunger
+        if (!_actorQuery.HasComp(uid))
+            return;
+
         if (component.CurrentThreshold <= HungerThreshold.Starving &&
             component.StarvationDamage is { } damage &&
             !_mobState.IsDead(uid))
         {
-            _damageable.TryChangeDamage(uid, damage, true, false);
+            _damageable.ChangeDamage((uid, null), damage, true, false, targetPart: TargetBodyPart.Chest);
         }
+
+        TryPlayStomachGrowl(uid, component);
     }
+
+    private void ScheduleStomachGrowl(HungerComponent component)
+    {
+        var delay = _random.Next(5, 20);
+        component.NextStomachGrowlTime = _timing.CurTime + TimeSpan.FromSeconds(delay);
+    }
+
+    private void TryPlayStomachGrowl(EntityUid uid, HungerComponent component)
+    {
+        if (!_net.IsServer
+            || component.StomachGrowlSound == null
+            || component.CurrentThreshold > HungerThreshold.Peckish
+            || _timing.CurTime < component.NextStomachGrowlTime)
+            return;
+
+        _audio.PlayPvs(
+            component.StomachGrowlSound,
+            uid,
+            AudioParams.Default.WithVolume(-3f).WithVariation(0.1f));
+
+        var min = (int) component.StomachGrowlMinInterval.TotalSeconds;
+        var max = (int) component.StomachGrowlMaxInterval.TotalSeconds;
+        component.NextStomachGrowlTime = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(min, max + 1));
+    }
+    // end-backmen: hunger
 
     /// <summary>
     /// Gets the hunger threshold for an entity based on the amount of food specified.

@@ -1,10 +1,11 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.FixedPoint;
 using Robust.Client.GameObjects;
 using Robust.Shared.Random;
@@ -14,7 +15,7 @@ namespace Content.Client.Backmen.Surgery.Wounds;
 
 public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsComponent>
 {
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private WoundSystem _wound = default!;
 
     [Dependency] private IRobustRandom _random = default!;
@@ -62,36 +63,22 @@ public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableV
         if (TryComp(uid, out SpriteComponent? partSprite))
             UpdateWoundableVisuals(uid, component, partSprite);
 
-        var bodyPart = Comp<BodyPartComponent>(uid);
-        if (TryComp(bodyPart.Body, out SpriteComponent? bodySprite))
-            UpdateWoundableVisuals(uid, component, bodySprite);
+        if (!TryGetWoundableBody(uid, out var bodyUid))
+            return;
+
+        if (!TryComp(bodyUid, out SpriteComponent? bodySprite))
+            return;
+
+        EnsureDamageLayersOnSprite(component, bodySprite);
+        UpdateWoundableVisuals(uid, component, bodySprite);
     }
 
     private void WoundableConnected(EntityUid uid, WoundableVisualsComponent component, ref BodyPartAddedEvent args)
     {
-        var bodyPart = args.Part.Comp;
-        if (!TryComp(bodyPart.Body, out SpriteComponent? bodySprite))
+        if (!TryComp(args.Part.Comp.Body, out SpriteComponent? bodySprite))
             return;
 
-        foreach (var (group, sprite) in component.DamageOverlayGroups!)
-        {
-            if (!bodySprite.LayerMapTryGet($"{component.OccupiedLayer}{group}", out _))
-            {
-                AddDamageLayerToSprite(bodySprite,
-                    sprite.Sprite,
-                    $"{component.OccupiedLayer}_{group}_100",
-                    $"{component.OccupiedLayer}{group}",
-                    sprite.Color);
-            }
-        }
-
-        if (!bodySprite.LayerMapTryGet($"{component.OccupiedLayer}Bleeding", out _) && component.BleedingOverlay != null)
-        {
-            AddDamageLayerToSprite(bodySprite,
-                component.BleedingOverlay,
-                $"{component.OccupiedLayer}_Minor",
-                $"{component.OccupiedLayer}Bleeding");
-        }
+        EnsureDamageLayersOnSprite(component, bodySprite);
     }
 
     private void WoundableRemoved(EntityUid uid, WoundableVisualsComponent component, ref BodyPartRemovedEvent args)
@@ -127,16 +114,56 @@ public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableV
 
     private void OnWoundableIntegrityChanged(EntityUid uid, WoundableVisualsComponent component, ref WoundableIntegrityChangedEvent args)
     {
-        var bodyPart = Comp<BodyPartComponent>(uid);
-        if (!bodyPart.Body.HasValue)
+        if (!TryGetWoundableBody(uid, out var bodyUid))
         {
             if (TryComp(uid, out SpriteComponent? partSprite))
                 UpdateWoundableVisuals(uid, component, partSprite);
             return;
         }
 
-        if (TryComp(bodyPart.Body, out SpriteComponent? bodySprite))
+        if (TryComp(bodyUid, out SpriteComponent? bodySprite))
             UpdateWoundableVisuals(uid, component, bodySprite);
+    }
+
+    private bool TryGetWoundableBody(EntityUid woundableUid, out EntityUid bodyUid)
+    {
+        if (TryComp<BodyPartComponent>(woundableUid, out var bodyPart) && bodyPart.Body is { } partBody)
+        {
+            bodyUid = partBody;
+            return true;
+        }
+
+        if (TryComp<OrganComponent>(woundableUid, out var organ) && organ.Body is { } organBody)
+        {
+            bodyUid = organBody;
+            return true;
+        }
+
+        bodyUid = default;
+        return false;
+    }
+
+    private void EnsureDamageLayersOnSprite(WoundableVisualsComponent component, SpriteComponent bodySprite)
+    {
+        foreach (var (group, sprite) in component.DamageOverlayGroups!)
+        {
+            if (!bodySprite.LayerMapTryGet($"{component.OccupiedLayer}{group}", out _))
+            {
+                AddDamageLayerToSprite(bodySprite,
+                    sprite.Sprite,
+                    $"{component.OccupiedLayer}_{group}_100",
+                    $"{component.OccupiedLayer}{group}",
+                    sprite.Color);
+            }
+        }
+
+        if (!bodySprite.LayerMapTryGet($"{component.OccupiedLayer}Bleeding", out _) && component.BleedingOverlay != null)
+        {
+            AddDamageLayerToSprite(bodySprite,
+                component.BleedingOverlay,
+                $"{component.OccupiedLayer}_Minor",
+                $"{component.OccupiedLayer}Bleeding");
+        }
     }
 
     private void AddDamageLayerToSprite(SpriteComponent spriteComponent, string sprite, string state, string mapKey, string? color = null)

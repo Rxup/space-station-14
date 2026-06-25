@@ -2,7 +2,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Body.Systems;
 using Content.Shared.EntityEffects.Effects;
 using Content.Server.Spreader;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;

@@ -30,22 +30,10 @@ public sealed partial class TargetingComponent : Component
         {
             TargetBodyPart.Chest, new Dictionary<TargetBodyPart, float>
             {
-                { TargetBodyPart.Chest, 0.34f },
-                { TargetBodyPart.Groin, 0.34f },
+                { TargetBodyPart.Chest, 0.68f },
                 { TargetBodyPart.Head, 0.12f },
                 { TargetBodyPart.RightArm, 0.24f },
                 { TargetBodyPart.LeftArm, 0.24f },
-            }
-        },
-        {
-            TargetBodyPart.Groin, new Dictionary<TargetBodyPart, float>
-            {
-                { TargetBodyPart.Groin, 0.34f },
-                { TargetBodyPart.Chest, 0.34f },
-                { TargetBodyPart.RightLeg, 0.17f },
-                { TargetBodyPart.LeftLeg, 0.17f },
-                { TargetBodyPart.RightArm, 0.11f },
-                { TargetBodyPart.LeftArm, 0.11f },
             }
         },
         {
@@ -83,7 +71,7 @@ public sealed partial class TargetingComponent : Component
             {
                 { TargetBodyPart.RightLeg, 0.67f },
                 { TargetBodyPart.RightFoot, 0.23f },
-                { TargetBodyPart.Groin, 0.1f },
+                { TargetBodyPart.Chest, 0.1f },
             }
         },
         {
@@ -91,7 +79,7 @@ public sealed partial class TargetingComponent : Component
             {
                 { TargetBodyPart.LeftLeg, 0.67f },
                 { TargetBodyPart.LeftFoot, 0.23f },
-                { TargetBodyPart.Groin, 0.1f },
+                { TargetBodyPart.Chest, 0.1f },
             }
         },
         {
@@ -118,7 +106,6 @@ public sealed partial class TargetingComponent : Component
     {
         { TargetBodyPart.Head, WoundableSeverity.Healthy },
         { TargetBodyPart.Chest, WoundableSeverity.Healthy },
-        { TargetBodyPart.Groin, WoundableSeverity.Healthy },
         { TargetBodyPart.LeftArm, WoundableSeverity.Healthy },
         { TargetBodyPart.LeftHand, WoundableSeverity.Healthy },
         { TargetBodyPart.RightArm, WoundableSeverity.Healthy },

@@ -1,5 +1,6 @@
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
@@ -41,7 +42,7 @@ public sealed partial class SharedKitchenSpikeSystem : EntitySystem
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
-    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySharedSystem _bodySystem = default!; // backmen: body
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
@@ -240,7 +241,7 @@ public sealed partial class SharedKitchenSpikeSystem : EntitySystem
                 ent);
 
             // normally medium severity, but for humanoids high severity, so new players get relay'd to admin alerts.
-            var logSeverity = HasComp<HumanoidAppearanceComponent>(args.Target) ? LogImpact.High : LogImpact.Medium;
+            var logSeverity = HasComp<HumanoidProfileComponent>(args.Target) ? LogImpact.High : LogImpact.Medium;
 
             _logger.Add(LogType.Action,
                 logSeverity,
@@ -320,7 +321,7 @@ public sealed partial class SharedKitchenSpikeSystem : EntitySystem
         {
             _bodySystem.GibBody(args.Target.Value, true);
 
-            var logSeverity = HasComp<HumanoidAppearanceComponent>(args.Target) ? LogImpact.Extreme : LogImpact.High;
+            var logSeverity = HasComp<HumanoidProfileComponent>(args.Target) ? LogImpact.Extreme : LogImpact.High;
 
             _logger.Add(LogType.Gib,
                 logSeverity,

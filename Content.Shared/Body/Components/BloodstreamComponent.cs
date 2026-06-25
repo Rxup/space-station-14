@@ -10,7 +10,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared.Body.Components;
+namespace Content.Shared.Body;
 
 /// <summary>
 /// Gives an entity a bloodstream.

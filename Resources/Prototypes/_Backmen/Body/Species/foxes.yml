@@ -1,0 +1,328 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: HumanoidFoxes
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: true
+      default: [ FoxSnout ]
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ FoxTail ]
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceHumanoidFox
+  name: humanoid fox appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganHumanoidFoxTorso
+      Head: OrganHumanoidFoxHead
+      ArmLeft: OrganHumanoidFoxArmLeft
+      ArmRight: OrganHumanoidFoxArmRight
+      HandRight: OrganHumanoidFoxHandRight
+      HandLeft: OrganHumanoidFoxHandLeft
+      LegLeft: OrganHumanoidFoxLegLeft
+      LegRight: OrganHumanoidFoxLegRight
+      FootLeft: OrganHumanoidFoxFootLeft
+      FootRight: OrganHumanoidFoxFootRight
+      Brain: OrganVulpkaninBrain
+      Eyes: OrganHumanoidFoxEyes
+      Tongue: OrganVulpkaninTongue
+      Appendix: OrganVulpkaninAppendix
+      Ears: OrganVulpkaninEars
+      Lungs: OrganVulpkaninLungs
+      Heart: OrganVulpkaninHeart
+      Stomach: OrganVulpkaninStomach
+      Liver: OrganVulpkaninLiver
+      Kidneys: OrganVulpkaninKidneys
+  - type: HumanoidProfile
+    species: HumanoidFoxes
+  - type: Inventory
+    speciesId: digi
+
+- type: entity
+  parent:
+  - AppearanceHumanoidFox
+  - BaseSpeciesMobSurgery
+  id: MobHumanoidFox
+  name: Urist McFox
+  components:
+  - type: HumanoidProfile
+    species: HumanoidFoxes
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Canilunzt
+    understands:
+    - TauCetiBasic
+    - Canilunzt
+    - Dog
+  - type: Icon
+    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+    state: full
+  - type: ContentEye
+    targetZoom: "1.125, 1.125"
+    maxZoom: "1.125, 1.125"
+  - type: GrowlingAccent
+  - type: MeleeWeapon
+    animation: WeaponArcClaw
+    soundHit:
+      collection: AlienClaw
+    damage:
+      types:
+        Slash: 5
+  - type: DiseaseCarrier
+    naturalImmunities:
+    - FurryVirus
+    - FurryVirusPlus
+  - type: Hunger
+    thresholds:
+      Overfed: 250
+      Okay: 200
+      Peckish: 150
+      Starving: 100
+      Dead: 0
+    baseDecayRate: 0.02
+  - type: Thirst
+    thresholds:
+      OverHydrated: 650
+      Okay: 500
+      Thirsty: 350
+      Parched: 200
+      Dead: 0
+    baseDecayRate: 0.15
+  - type: LightweightDrunk
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Vulpkanin
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2.0
+    damageRecovery:
+      types:
+        Asphyxiation: -2.0
+  - type: Wagging
+  - type: Vocal
+    sounds:
+      Male: MaleFoxes
+      Female: FemaleFoxes
+      Unsexed: MaleFoxes
+  - type: PotentialPsionic
+  - type: FootPrints
+    leftBarePrint: footprint-left-bare-lizard
+    rightBarePrint: footprint-right-bare-lizard
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
+- type: entity
+  parent: MobHumanoidFox
+  id: MobHumanoidFoxDummy
+  categories: [ HideSpawnMenu ]
+  name: Urist McHands
+  description: A dummy fox meant to be used in character setup.
+  components:
+  - type: HumanoidProfile
+    species: HumanoidFoxes
+
+- type: entity
+  parent: OrganBase
+  id: OrganHumanoidFox
+  abstract: true
+  suffix: humanoid fox
+
+- type: entity
+  id: OrganHumanoidFoxVisual
+  abstract: true
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+
+- type: entity
+  parent: [ OrganHumanoidFox, OrganHumanoidFoxVisual ]
+  id: OrganHumanoidFoxExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/HumanoidFox/parts.rsi
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganHumanoidFoxExternal ]
+  id: OrganHumanoidFoxTorso
+  components:
+  - type: Sprite
+    state: torso_m
+  - type: VisualOrgan
+    data:
+      state: torso_m
+    sexStateOverrides:
+      Male: torso_m
+      Female: torso_f
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganHumanoidFoxExternal ]
+  id: OrganHumanoidFoxHead
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - Head
+      - Hair
+      - FacialHair
+      - Snout
+      - SnoutCover
+      - HeadSide
+      - HeadTop
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganHumanoidFoxExternal ]
+  id: OrganHumanoidFoxArmLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - LArm
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganHumanoidFoxExternal ]
+  id: OrganHumanoidFoxArmRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - RArm
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganHumanoidFoxExternal ]
+  id: OrganHumanoidFoxHandLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - LHand
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganHumanoidFoxExternal ]
+  id: OrganHumanoidFoxHandRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - RHand
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganHumanoidFoxExternal ]
+  id: OrganHumanoidFoxLegLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - LLeg
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganHumanoidFoxExternal ]
+  id: OrganHumanoidFoxLegRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - RLeg
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganHumanoidFoxExternal ]
+  id: OrganHumanoidFoxFootLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - LFoot
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganHumanoidFoxExternal ]
+  id: OrganHumanoidFoxFootRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: HumanoidFoxes
+      layers:
+      - RFoot
+
+- type: entity
+  parent: [ OrganHumanoidFoxVisual, OrganBaseEyes, OrganVulpkaninInternal ]
+  id: OrganHumanoidFoxEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Customization/eyes.rsi

@@ -4,7 +4,6 @@
   name: "skeleton body part"
   abstract: true
   components:
-  #start-backmen edit
   - type: WoundableVisuals
     damageOverlayGroups:
       Brute:
@@ -13,7 +12,6 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
     bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
-  #end-backmen edit
   - type: Damageable
     damageContainer: Biological
   - type: BodyPart
@@ -32,24 +30,12 @@
   name: "skeleton chest"
   parent: [BaseChest, PartSkeleton]
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "chest_m"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "chest_m"
-
-- type: entity
-  id: GroinSkeleton
-  name: "skeleton groin"
-  parent: [BaseGroin, PartSkeleton]
-  components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "groin_m"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "groin_m"
+  - type: Sprite
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: torso_m
+  - type: Icon
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: torso_m
 
 - type: entity
   id: HeadSkeleton
@@ -57,159 +43,135 @@
   description: Alas poor Yorick...
   parent: [ PartSkeleton, BaseMob ]
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "skull_icon"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "skull_icon"
-    - type: BodyPart
-      partType: Head
-    - type: BlockMovement
-    - type: Input
-      context: "human"
-    - type: Speech
-      speechVerb: Skeleton
-      speechSounds: Alto
-    - type: SkeletonAccent
-    - type: Actions
-    - type: Vocal
-      sounds:
-        Male: Skeleton
-        Female: Skeleton
-        Unsexed: Skeleton
-    - type: Emoting
-    - type: Grammar
-      attributes:
-        proper: true
-    - type: Examiner
-    - type: DoAfter
-    - type: MobState
-      allowedStates:
-        - Alive
-    - type: Tag
-      tags:
-        - MindTransferTarget
-        - Head
+  - type: Sprite
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: skull_icon
+  - type: Icon
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: skull_icon
+  - type: BodyPart
+    partType: Head
+  - type: BlockMovement
+  - type: Input
+    context: "human"
+  - type: Speech
+    speechVerb: Skeleton
+    speechSounds: Alto
+  - type: SkeletonAccent
+  - type: Actions
+  - type: Vocal
+    sounds:
+      Male: Skeleton
+      Female: Skeleton
+      Unsexed: Skeleton
+  - type: Emoting
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: Examiner
+  - type: DoAfter
+  - type: MobState
+    allowedStates:
+      - Alive
+  - type: Tag
+    tags:
+      - MindTransferTarget
+      - Head
 
 - type: entity
   id: LeftArmSkeleton
   name: "left skeleton arm"
-  parent: [BaseHead, PartSkeleton]
+  parent: [BaseLeftArm, PartSkeleton]
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "l_arm"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "l_arm"
-    - type: BodyPart
-      partType: Arm
-      symmetry: Left
+  - type: Sprite
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: l_arm
+  - type: Icon
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: l_arm
 
 - type: entity
   id: RightArmSkeleton
   name: "right skeleton arm"
   parent: [BaseRightArm, PartSkeleton]
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "r_arm"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "r_arm"
-    - type: BodyPart
-      partType: Arm
-      symmetry: Right
+  - type: Sprite
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: r_arm
+  - type: Icon
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: r_arm
 
 - type: entity
   id: LeftHandSkeleton
   name: "left skeleton hand"
   parent: [BaseLeftHand, PartSkeleton]
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "l_hand"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "l_hand"
-    - type: BodyPart
-      partType: Hand
-      symmetry: Left
+  - type: Sprite
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: l_hand
+  - type: Icon
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: l_hand
 
 - type: entity
   id: RightHandSkeleton
   name: "right skeleton hand"
   parent: [BaseRightHand, PartSkeleton]
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "r_hand"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "r_hand"
-    - type: BodyPart
-      partType: Hand
-      symmetry: Right
+  - type: Sprite
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: r_hand
+  - type: Icon
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: r_hand
 
 - type: entity
   id: LeftLegSkeleton
   name: "left skeleton leg"
   parent: [BaseLeftLeg, PartSkeleton]
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "l_leg"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "l_leg"
-    - type: BodyPart
-      partType: Leg
-      symmetry: Left
-    - type: MovementBodyPart
+  - type: Sprite
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: l_leg
+  - type: Icon
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: l_leg
+  - type: MovementBodyPart
 
 - type: entity
   id: RightLegSkeleton
   name: "right skeleton leg"
   parent: [BaseRightLeg, PartSkeleton]
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "r_leg"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "r_leg"
-    - type: BodyPart
-      partType: Leg
-      symmetry: Right
-    - type: MovementBodyPart
+  - type: Sprite
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: r_leg
+  - type: Icon
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: r_leg
+  - type: MovementBodyPart
 
 - type: entity
   id: LeftFootSkeleton
   name: "left skeleton foot"
   parent: [BaseLeftFoot, PartSkeleton]
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "l_foot"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "l_foot"
-    - type: BodyPart
-      partType: Foot
-      symmetry: Left
+  - type: Sprite
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: l_foot
+  - type: Icon
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: l_foot
 
 - type: entity
   id: RightFootSkeleton
   name: "right skeleton foot"
   parent: [BaseRightFoot, PartSkeleton]
   components:
-    - type: Sprite
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "r_foot"
-    - type: Icon
-      sprite: Mobs/Species/Skeleton/parts.rsi
-      state: "r_foot"
-    - type: BodyPart
-      partType: Foot
-      symmetry: Right
+  - type: Sprite
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: r_foot
+  - type: Icon
+    sprite: Mobs/Species/Skeleton/parts.rsi
+    state: r_foot

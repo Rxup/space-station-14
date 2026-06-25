@@ -1,0 +1,271 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Shark
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 0
+      required: false
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.HeadSide:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Head:
+      limit: 3
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ SharkTailDefault ]
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceShark
+  name: shark appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganSharkTorso
+      Head: OrganSharkHead
+      ArmLeft: OrganSharkArmLeft
+      ArmRight: OrganSharkArmRight
+      HandRight: OrganSharkHandRight
+      HandLeft: OrganSharkHandLeft
+      LegLeft: OrganSharkLegLeft
+      LegRight: OrganSharkLegRight
+      FootLeft: OrganSharkFootLeft
+      FootRight: OrganSharkFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganSharkEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Lungs: OrganAnimalLungs
+      Heart: OrganAnimalHeart
+      Stomach: OrganSharkStomach
+      Liver: OrganAnimalLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: Shark
+  - type: Inventory
+    speciesId: human
+
+- type: entity
+  parent:
+  - AppearanceShark
+  - BaseSpeciesMobSurgery
+  id: MobPlaf
+  name: Urist McShark
+  components:
+  - type: HumanoidProfile
+    species: Shark
+  - type: Consciousness
+    capBonus: -20
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      130: Critical
+      200: Dead
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - EvePishtu
+    - TauCetiBasic
+    understands:
+    - EvePishtu
+    - TauCetiBasic
+  - type: Icon
+    sprite: _ADT/Mobs/Shark/parts.rsi
+    state: shark_m
+  - type: RoarAccent
+  - type: Hunger
+  - type: Thirst
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Scale
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Weapons/pierce.ogg
+    angle: 30
+    animation: WeaponArcPunch
+    damage:
+      types:
+        Piercing: 5
+  - type: Temperature
+    heatDamageThreshold: 400
+    coldDamageThreshold: 200
+    currentTemperature: 310.15
+    specificHeat: 46
+    coldDamage:
+      types:
+        Cold: 0.2
+    heatDamage:
+      types:
+        Heat: 0.1
+  - type: Perishable
+  - type: FootPrints
+    leftBarePrint: footprint-left-bare-lizard
+    rightBarePrint: footprint-right-bare-lizard
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
+- type: entity
+  parent: MobPlaf
+  id: MobPlafDummy
+  categories: [ HideSpawnMenu ]
+  name: Urist McShark
+  description: A dummy shark meant to be used in character setup.
+  components:
+  - type: HumanoidProfile
+    species: Shark
+
+- type: entity
+  parent: OrganBase
+  id: OrganShark
+  abstract: true
+  suffix: shark
+
+- type: entity
+  id: OrganSharkVisual
+  abstract: true
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _ADT/Mobs/Shark/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Shark
+
+- type: entity
+  parent: [ OrganShark, OrganSharkVisual ]
+  id: OrganSharkExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _ADT/Mobs/Shark/parts.rsi
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganSharkExternal ]
+  id: OrganSharkTorso
+  components:
+  - type: Sprite
+    state: torso_m
+  - type: VisualOrgan
+    data:
+      state: torso_m
+    sexStateOverrides:
+      Male: torso_m
+      Female: torso_f
+  - type: VisualOrganMarkings
+    markingData:
+      group: Shark
+      layers:
+      - Chest
+      - Tail
+      - Overlay
+      - TailOverlay
+      - Special
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganSharkExternal ]
+  id: OrganSharkHead
+  components:
+  - type: Sprite
+    state: head_m
+  - type: VisualOrgan
+    data:
+      state: head_m
+    sexStateOverrides:
+      Male: head_m
+      Female: head_f
+  - type: VisualOrganMarkings
+    markingData:
+      group: Shark
+      layers:
+      - Head
+      - Hair
+      - FacialHair
+      - Snout
+      - SnoutCover
+      - HeadSide
+      - HeadTop
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Hair
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganSharkExternal ]
+  id: OrganSharkArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganSharkExternal ]
+  id: OrganSharkArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganSharkExternal ]
+  id: OrganSharkHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganSharkExternal ]
+  id: OrganSharkHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganSharkExternal ]
+  id: OrganSharkLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganSharkExternal ]
+  id: OrganSharkLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganSharkExternal ]
+  id: OrganSharkFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganSharkExternal ]
+  id: OrganSharkFootRight
+
+- type: entity
+  parent: [ OrganSharkVisual, OrganBaseEyes, OrganHumanInternal ]
+  id: OrganSharkEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Customization/eyes.rsi
+      state: eyes

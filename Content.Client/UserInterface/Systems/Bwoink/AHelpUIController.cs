@@ -44,7 +44,7 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
 
     private BwoinkSystem? _bwoinkSystem;
     private MenuButton? GameAHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.AHelpButton;
-    private WhiteLobbyTextButton? LobbyAHelpButton => (UIManager.ActiveScreen as LobbyGui)?.AHelpButton; // WD EDIT
+    private BaseButton? LobbyAHelpButton => (UIManager.ActiveScreen as LobbyGui)?.AHelpButton;
     public IAHelpUIHandler? UIHelper;
     private bool _discordRelayActive;
     private bool _hasUnreadAHelp;

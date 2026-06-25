@@ -5,6 +5,10 @@ command-description-changesex-setUnsexed = Make unsexed
 command-description-changetts = Change voice
 command-description-makefakefingerprint = Add fake fingerprints
 
+command-description-graftarachne = Grafts a full arachne body onto a humanoid for testing (removes human legs, adds cephalothorax, abdomen, and spider legs).
+graftarachne-error-no-body = Entity has no BodyComponent.
+graftarachne-error-flat-organs = Entity uses flat NPC organs and cannot receive an arachne graft.
+
 
 command-description-stationrecord-adduser = Add user to manifest
 command-description-stationrecord-remuser = Remove user from manifest

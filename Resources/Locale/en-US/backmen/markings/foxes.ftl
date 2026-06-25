@@ -18,3 +18,11 @@ marking-FoxBelly = Fox belly
 marking-FoxSnout-vulp_face = Fox snout
 marking-FoxSnout = Fox snout
 
+marking-FoxTailinner = Fox tail (layered)
+marking-FoxTailinner-vulp_tail = Fox tail (base)
+marking-FoxTailinner-vulp_tail_inner = Fox tail (inner)
+
+marking-FoxTailinnerAnimated = Fox tail (animated)
+marking-FoxTailinnerAnimated-tail_fox_waggin = Fox tail (animated)
+marking-FoxTailinnerAnimated-tail_fox_inner_waggin = Fox tail tip (animated)
+

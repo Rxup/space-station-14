@@ -4,8 +4,7 @@
 - type: marking
   id: HarpyWingDefault
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Harpy]
+  groupWhitelist: [Harpy]
   coloring:
     default:
       type:
@@ -20,9 +19,8 @@
 
 - type: marking
   id: HarpyEarsDefault
-  bodyPart: Head
-  markingCategory: HeadTop
-  speciesRestriction: [Harpy]
+  bodyPart: HeadTop
+  groupWhitelist: [Harpy]
   coloring:
     default:
       type:
@@ -38,8 +36,7 @@
 - type: marking
   id: HarpyTailPhoenix
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Harpy]
+  groupWhitelist: [Harpy]
   coloring:
     default:
       type:
@@ -55,8 +52,7 @@
 - type: marking
   id: HarpyTailRooster
   bodyPart: Tail
-  markingCategory: Tail
-  speciesRestriction: [Harpy]
+  groupWhitelist: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_tails.rsi
       state: rooster_tail
@@ -64,8 +60,7 @@
 - type: marking
   id: HarpyWing2Tone
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Harpy]
+  groupWhitelist: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpy2tone1
@@ -75,8 +70,7 @@
 - type: marking
   id: HarpyWing3Tone
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Harpy]
+  groupWhitelist: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpy3tone1
@@ -88,8 +82,7 @@
 - type: marking
   id: HarpyWingSpeckled
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Harpy]
+  groupWhitelist: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpyspeckled1
@@ -99,8 +92,7 @@
 - type: marking
   id: HarpyWingUndertone
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Harpy]
+  groupWhitelist: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpyundertone1
@@ -110,10 +102,61 @@
 - type: marking
   id: HarpyWingTips
   bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Harpy]
+  groupWhitelist: [Harpy]
   sprites:
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpywingtip1
     - sprite: Backmen/Mobs/Customization/Harpy/harpy_wings.rsi
       state: harpywingtip2
+
+- type: marking
+  id: HarpyChestDefault
+  bodyPart: Chest
+  groupWhitelist: [Harpy]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SimpleColoring
+          color: "#964b00"
+  sprites:
+    - sprite: Backmen/Mobs/Customization/Harpy/harpy_chest.rsi
+      state: upper
+    - sprite: Backmen/Mobs/Customization/Harpy/harpy_chest.rsi
+      state: lower
+
+- type: marking
+  id: HarpyLegsDefault
+  bodyPart: LLeg
+  groupWhitelist: [Harpy]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SimpleColoring
+          color: "#964b00"
+  sprites:
+    - sprite: Backmen/Mobs/Customization/Harpy/harpy_legs.rsi
+      state: thighs
+
+- type: marking
+  id: HarpyFeetDefault
+  bodyPart: RFoot
+  groupWhitelist: [Harpy]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SimpleColoring
+          color: "#964b00"
+  sprites:
+    - sprite: Backmen/Mobs/Customization/Harpy/harpy_legs.rsi
+      state: feet
+    - sprite: Backmen/Mobs/Customization/Harpy/harpy_legs.rsi
+      state: talons

@@ -137,7 +137,7 @@
       understands:
       - TauCetiBasic
       - OldFastCodes
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: false
   - type: RandomMetadata
     nameFormat: name-format-standard

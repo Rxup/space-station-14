@@ -16,7 +16,7 @@ public abstract partial class PainSystem : EntitySystem
     [Dependency] protected SharedAudioSystem IHaveNoMouthAndIMustScream = default!;
 
     protected EntityQuery<NerveSystemComponent> NerveSystemQuery;
-    protected EntityQuery<NerveComponent> NerveQuery;
+    protected EntityQuery<NerveOrganComponent> NerveQuery;
 
     public override void Initialize()
     {
@@ -24,11 +24,11 @@ public abstract partial class PainSystem : EntitySystem
 
         SubscribeLocalEvent<NerveSystemComponent, AfterAutoHandleStateEvent>(OnNerveSystemAfterAutoHandleState);
         SubscribeLocalEvent<NerveSystemComponent, EntityTerminatingEvent>(OnNerveSystemTerminating);
-        SubscribeLocalEvent<NerveComponent, AfterAutoHandleStateEvent>(OnNerveAfterAutoHandleState);
+        SubscribeLocalEvent<NerveOrganComponent, AfterAutoHandleStateEvent>(OnNerveAfterAutoHandleState);
         SubscribeLocalEvent<PainImmuneComponent, HealthBeingExaminedEvent>(OnPainImmuneHealthExamined);
 
         NerveSystemQuery = GetEntityQuery<NerveSystemComponent>();
-        NerveQuery = GetEntityQuery<NerveComponent>();
+        NerveQuery = GetEntityQuery<NerveOrganComponent>();
     }
 
     private void OnPainImmuneHealthExamined(Entity<PainImmuneComponent> ent, ref HealthBeingExaminedEvent args)
@@ -55,7 +55,7 @@ public abstract partial class PainSystem : EntitySystem
         SanitizeNerveSystemDictionaries(ent.Comp);
     }
 
-    private void OnNerveAfterAutoHandleState(Entity<NerveComponent> ent, ref AfterAutoHandleStateEvent args)
+    private void OnNerveAfterAutoHandleState(Entity<NerveOrganComponent> ent, ref AfterAutoHandleStateEvent args)
     {
         SanitizeNerveDictionaries(ent.Comp);
     }
@@ -69,7 +69,7 @@ public abstract partial class PainSystem : EntitySystem
         }
     }
 
-    private void SanitizeNerveDictionaries(NerveComponent component)
+    private void SanitizeNerveDictionaries(NerveOrganComponent component)
     {
         if (component.ParentedNerveSystem != EntityUid.Invalid && TerminatingOrDeleted(component.ParentedNerveSystem))
             component.ParentedNerveSystem = EntityUid.Invalid;
@@ -79,5 +79,12 @@ public abstract partial class PainSystem : EntitySystem
             if (TerminatingOrDeleted(key.Item1))
                 component.PainFeelingModifiers.Remove(key);
         }
+    }
+
+    /// <summary>
+    /// Rebuilds nerve links for a nerve system after organs are inserted or removed.
+    /// </summary>
+    public virtual void RefreshNerveSystem(EntityUid nerveSystemUid, EntityUid body)
+    {
     }
 }

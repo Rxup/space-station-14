@@ -270,6 +270,36 @@
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel
 
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepCloseIncision
+  name: Close incision
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Cautery
+    remove:
+    - type: SkinRetracted
+    - type: BleedersClamped
+    - type: IncisionOpen
+    - type: BodyPartReattached
+    - type: OrganReattached
+    - type: InternalBleedersClamped
+    duration: 2
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/cautery.rsi
+    state: cautery
+  - type: SurgeryDamageChangeEffect
+    damage:
+      types:
+        Heat: -5
+    sleepModifier: 2
+  - type: SurgeryStepPainInflicter
+    amount: 9
+    painDuration: 30
+    sleepModifier: 0.34
+
 # Feature Insertion
 
 - type: entity
@@ -279,8 +309,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: SurgeryStep
-    tool:
-    - type: BodyPart
     duration: 6
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/manipulation.rsi

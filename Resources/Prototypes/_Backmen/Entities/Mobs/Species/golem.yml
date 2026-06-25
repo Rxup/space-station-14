@@ -1,6 +1,7 @@
 - type: entity
   name: Urist McGolem
   id: MobGolemBase
+  parent: BaseMobGolemCultBody
   save: false
   abstract: true
   description: Искусственная конструкция, имитирующая жизнь. У этого еще не установлен кристалл души.
@@ -18,7 +19,7 @@
       color: "#e8b59b"
       sprite: Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_chest
-    - map: [ "enum.HumanoidVisualLayers.Groin" ]
+    - map: [ "cultgolem_torso_lower" ]
       color: "#e8b59b"
       sprite: Backmen/Mobs/Species/Golem/cult.rsi
       state: cultgolem_groin
@@ -155,8 +156,6 @@
           - MobMask
         layer:
           - MobLayer
-  - type: Body
-    prototype: Golem
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -317,11 +316,7 @@
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
       color: "#e8b59b"
       sprite: Mobs/Species/Diona/parts.rsi
-      state: chest_m
-    - map: [ "enum.HumanoidVisualLayers.Groin" ]
-      color: "#e8b59b"
-      sprite: Mobs/Species/Diona/parts.rsi
-      state: groin_m
+      state: torso
     - map: [ "enum.HumanoidVisualLayers.Head" ]
       color: "#e8b59b"
       sprite: Backmen/Mobs/Species/Golem/wood.rsi

@@ -1,4 +1,4 @@
-﻿using Content.Server.Antag;
+using Content.Server.Antag;
 using Content.Server.Backmen.Vampiric.Objective;
 using Content.Server.Backmen.Vampiric.Role;
 using Content.Server.Body.Components;
@@ -36,7 +36,7 @@ public sealed partial class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRu
 
     private void OnSelectEntity(Entity<BloodsuckerRuleComponent> ent, ref AntagSelectCheckEvent args)
     {
-        if (args.Session?.AttachedEntity is not {} plr || !TryComp<HumanoidAppearanceComponent>(plr, out var humComp))
+        if (args.Session?.AttachedEntity is not {} plr || !TryComp<HumanoidProfileComponent>(plr, out var humComp))
         {
             args.Canceled = true;
             return;

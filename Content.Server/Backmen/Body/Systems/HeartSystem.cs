@@ -1,7 +1,8 @@
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body.Events;
-using Content.Shared.Body.Organ;
+using Content.Shared.Body;
 using Content.Server.Backmen.DelayedDeath;
 using Content.Server.Body.Components;
 using Content.Shared.Backmen.Surgery.Body.Organs;
@@ -10,7 +11,7 @@ namespace Content.Server.Backmen.Body.Systems;
 
 public sealed partial class HeartSystem : EntitySystem
 {
-    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySharedSystem _bodySystem = default!;
     public override void Initialize()
     {
         base.Initialize();

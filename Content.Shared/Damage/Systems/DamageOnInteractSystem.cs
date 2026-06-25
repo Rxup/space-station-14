@@ -2,6 +2,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Damage.Components;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
@@ -32,7 +33,7 @@ public sealed partial class DamageOnInteractSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private SharedStunSystem _stun = default!;
-    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySharedSystem _bodySystem = default!; // backmen: body
     [Dependency] private SharedHandsSystem _handsSystem = default!;
 
     public override void Initialize()

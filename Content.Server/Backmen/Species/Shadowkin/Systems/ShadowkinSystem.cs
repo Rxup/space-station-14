@@ -11,7 +11,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Events;
-using Content.Shared.Humanoid;
+using Content.Shared.Body;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Robust.Server.Player;
@@ -30,6 +30,7 @@ public sealed partial class ShadowkinSystem : EntitySystem
     [Dependency] private MindSystem _mindSystem = default!;
     [Dependency] private ShadowkinBlackeyeSystem _shadowkinBlackeyeSystem = default!;
     [Dependency] private ShadowkinTeleportSystem _teleport = default!;
+    [Dependency] private BodySystem _body = default!;
 
 
     private EntityQuery<HandcuffComponent> _activeHandcuff;
@@ -44,7 +45,7 @@ public sealed partial class ShadowkinSystem : EntitySystem
         SubscribeLocalEvent<ShadowkinComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<ShadowkinComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<ShadowkinComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<ShadowkinComponent, PlayerAttachedEvent>(OnMapInit, after: new[]{ typeof(SharedHumanoidAppearanceSystem) });
+        SubscribeLocalEvent<ShadowkinComponent, PlayerAttachedEvent>(OnMapInit, after: [typeof(SharedVisualBodySystem)]);
 
         _activeHandcuff = GetEntityQuery<HandcuffComponent>();
         _activeSleeping = GetEntityQuery<SleepingComponent>();
@@ -52,13 +53,20 @@ public sealed partial class ShadowkinSystem : EntitySystem
 
     private void OnMapInit(Entity<ShadowkinComponent> ent, ref PlayerAttachedEvent args)
     {
-        if (!TryComp<HumanoidAppearanceComponent>(ent, out var sprite))
+        if (!TryComp<BodyComponent>(ent, out var bodyComp))
             return;
 
-        // Blackeye if none of the RGB values are greater than 75
-        if (sprite.EyeColor.R * 255 < 75 && sprite.EyeColor.G * 255 < 75 && sprite.EyeColor.B * 255 < 75)
+        if (!_body.TryGetOrgansWithComponent<VisualOrganComponent>((ent, bodyComp), out var eyes))
+            return;
+
+        foreach (var (_, organ) in eyes)
         {
-            _shadowkinBlackeyeSystem.SetBlackEye(ent);
+            var eyeColor = organ.Profile.EyeColor;
+            if (eyeColor.R * 255 < 75 && eyeColor.G * 255 < 75 && eyeColor.B * 255 < 75)
+            {
+                _shadowkinBlackeyeSystem.SetBlackEye(ent);
+                return;
+            }
         }
     }
 

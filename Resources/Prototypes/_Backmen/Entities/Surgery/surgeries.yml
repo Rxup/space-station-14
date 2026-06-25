@@ -16,6 +16,21 @@
 
 - type: entity
   parent: SurgeryBase
+  id: SurgeryCloseIncision
+  name: Close Incision
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    priority: 1
+    steps:
+    - SurgeryStepCloseBones
+    - SurgeryStepMendRibcage
+    - SurgeryStepCloseIncision
+  - type: SurgeryPartPresentCondition
+  - type: SurgeryCloseIncisionCondition
+
+- type: entity
+  parent: SurgeryBase
   id: SurgeryStopBloodOutput
   name: Stop Constant Blood Output
   categories: [ HideSpawnMenu ]
@@ -74,6 +89,8 @@
     - SurgeryStepRemoveFeature
   - type: SurgeryPartCondition
     part: Chest
+    inverse: true
+  - type: SurgeryArachneGraftOrganCondition
     inverse: true
 
 - type: entity
@@ -136,26 +153,6 @@
 
 - type: entity
   parent: SurgeryBase
-  id: SurgeryAttachGroin
-  name: Attach Groin
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Surgery
-    requirement: SurgeryOpenIncision
-    steps:
-    - SurgeryStepInsertFeature
-    - SurgeryStepSealWounds
-  - type: SurgeryPartCondition
-    part: Chest
-  - type: SurgeryTraumaPresentCondition
-    inverted: true
-    trauma: Dismemberment
-  - type: SurgeryPartRemovedCondition
-    connection: groin
-    part: Groin
-
-- type: entity
-  parent: SurgeryBase
   id: SurgeryAttachLeftArm
   name: Attach Left Arm
   categories: [ HideSpawnMenu ]
@@ -208,7 +205,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Groin
+    part: Chest
   - type: SurgeryTraumaPresentCondition
     inverted: true
     trauma: Dismemberment
@@ -229,7 +226,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Groin
+    part: Chest
   - type: SurgeryTraumaPresentCondition
     inverted: true
     trauma: Dismemberment
@@ -340,7 +337,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Groin
+    part: Chest
   - type: SurgeryPartRemovedCondition
     connection: legs
     part: Leg
@@ -376,7 +373,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Groin
+    part: Chest
   - type: SurgeryPartRemovedCondition
     connection: feet
     part: Foot
@@ -393,7 +390,7 @@
     - SurgeryStepInsertFeature
     - SurgeryStepSealWounds
   - type: SurgeryPartCondition
-    part: Groin
+    part: Chest
   - type: SurgeryPartRemovedCondition
     connection: tail
     part: Tail
@@ -551,7 +548,7 @@
     - SurgeryStepClampInternalBleeders
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
-    part: Groin
+    part: Chest
   - type: SurgeryOrganCondition
     organ:
     - type: Liver
@@ -568,7 +565,7 @@
     - SurgeryStepInsertLiver
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Groin
+    part: Chest
   - type: SurgeryOrganCondition
     organ:
     - type: Liver
@@ -626,7 +623,7 @@
     - SurgeryStepClampInternalBleeders
     - SurgeryStepRemoveOrgan
   - type: SurgeryPartCondition
-    part: Groin
+    part: Chest
   - type: SurgeryOrganCondition
     organ:
     - type: Stomach
@@ -643,7 +640,7 @@
     - SurgeryStepInsertStomach
     - SurgeryStepSealOrganWound
   - type: SurgeryPartCondition
-    part: Groin
+    part: Chest
   - type: SurgeryOrganCondition
     organ:
     - type: Stomach
@@ -769,7 +766,7 @@
 #    steps:
 #    - SurgeryStepAddFelinidTail
 #  - type: SurgeryPartCondition
-#    part: Groin
+#    part: Chest
 #  - type: SurgeryMarkingCondition
 #    markingCategory: Tail
 #    matchString: FelinidTail
@@ -786,7 +783,7 @@
 #    steps:
 #    - SurgeryStepRemoveFelinidTail
 #  - type: SurgeryPartCondition
-#    part: Groin
+#    part: Chest
 #  - type: SurgeryMarkingCondition
 #    markingCategory: Tail
 #    matchString: FelinidTail

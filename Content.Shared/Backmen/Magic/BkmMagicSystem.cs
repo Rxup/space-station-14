@@ -1,6 +1,6 @@
-﻿using Content.Shared.Backmen.Magic.Events;
+using Content.Shared.Backmen.Magic.Events;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 

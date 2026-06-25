@@ -1,16 +1,11 @@
-﻿using Content.Shared.Body.Components;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Body.Part
+namespace Content.Shared.Body.Part;
+
+[Serializable, NetSerializable]
+public enum BodyPartSymmetry
 {
-    /// <summary>
-    ///     Defines the symmetry of a <see cref="BodyComponent"/>.
-    /// </summary>
-    [Serializable, NetSerializable]
-    public enum BodyPartSymmetry
-    {
-        None = 0,
-        Left,
-        Right
-    }
+    None = 0,
+    Left,
+    Right
 }

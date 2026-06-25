@@ -55,7 +55,7 @@
     - id: AntiPsychicKnife # backmen edit
     - id: ClothingHeadCage # backmen edit
     - id: ClothingEyesGlassesCommand
-    - id: HeadSkeleton # A skull to accompany your skeleton crew
+    - id: OrganSkeletonPersonHead # A skull to accompany your skeleton crew
       conditions:
       - !type:PlayerCountCondition
         max: 15

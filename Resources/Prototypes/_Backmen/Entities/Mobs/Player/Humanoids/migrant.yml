@@ -12,4 +12,4 @@
     description: Ты убегаешь, беги!
   - type: Loadout
     prototypes: [Bejenec]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
