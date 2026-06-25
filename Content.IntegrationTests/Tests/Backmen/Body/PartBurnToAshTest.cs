@@ -164,7 +164,8 @@ public sealed class PartBurnToAshTest : GameTest
     public async Task DetachedHeadBluntLoss_GibsWithoutAsh()
     {
         var map = await Pair.CreateTestMap();
-        NetEntity netHead = default;
+        NetEntity netBrain = default;
+        NetEntity netBundle = default;
         var ashBefore = 0;
 
         await Server.WaitAssertion(() =>
@@ -174,7 +175,7 @@ public sealed class PartBurnToAshTest : GameTest
             var organRelations = entMan.System<OrganRelationInitializerSystem>();
             var damageableSys = entMan.System<DamageableSystem>();
 
-            ashBefore = CountAshNear(entMan, map.MapCoords);
+            ashBefore = CountAshOnMap(entMan);
 
             var bundle = entMan.SpawnEntity("BackmenDetachedBody", map.MapCoords);
             var head = entMan.SpawnEntity("OrganHumanHead", MapCoordinates.Nullspace);
@@ -187,21 +188,25 @@ public sealed class PartBurnToAshTest : GameTest
             var created = new BkmDetachedBodyCreatedEvent(bundle, bundle, BkmDetachContext.Surgery);
             entMan.EventBus.RaiseLocalEvent(bundle, ref created);
 
-            netHead = entMan.GetNetEntity(head);
+            netBrain = entMan.GetNetEntity(brain);
+            netBundle = entMan.GetNetEntity(bundle);
 
             var blunt = new DamageSpecifier { DamageDict = new Dictionary<string, FixedPoint2> { { "Blunt", 9999 } } };
             damageableSys.TryChangeDamage(bundle, blunt, ignoreResistances: true);
         });
 
         await Server.WaitIdleAsync();
+        await Server.WaitRunTicks(10);
 
         await Server.WaitAssertion(() =>
         {
             var entMan = Server.EntMan;
-            var head = entMan.GetEntity(netHead);
+            var brain = entMan.GetEntity(netBrain);
 
-            Assert.That(entMan.EntityExists(head), Is.False, "Head should be gibbed.");
-            Assert.That(CountAshNear(entMan, map.MapCoords), Is.EqualTo(ashBefore),
+            Assert.That(entMan.EntityExists(brain), Is.True, "Brain should be ejected on blunt gib.");
+            Assert.That(entMan.HasComponent<BkmDetachedBrainProtectionComponent>(brain), Is.True);
+            Assert.That(entMan.EntityExists(entMan.GetEntity(netBundle)), Is.False, "Bundle should be consumed.");
+            Assert.That(CountAshOnMap(entMan), Is.EqualTo(ashBefore),
                 "Blunt detached bundle loss should not spawn burn ash.");
         });
     }

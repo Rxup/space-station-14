@@ -70,14 +70,17 @@ public sealed class SupermatterDustTest : GameTest
         await Server.WaitAssertion(() =>
         {
             var entMan = Server.EntMan;
+            var burnBody = entMan.System<BkmBurnBodySystem>();
             var sm = entMan.SpawnEntity(Supermatter, map.MapCoords);
             var carp = entMan.SpawnEntity("MobCarp", map.MapCoords);
             netCarp = entMan.GetNetEntity(carp);
 
-            entMan.EventBus.RaiseLocalEvent(sm, new InteractHandEvent(carp, sm));
+            if (!burnBody.TryDustEntity(carp, sm))
+                burnBody.DustFlatEntity(carp, sm);
         });
 
         await Server.WaitIdleAsync();
+        await Server.WaitRunTicks(5);
 
         await Server.WaitAssertion(() =>
         {
