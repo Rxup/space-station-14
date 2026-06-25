@@ -2,7 +2,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Forensics;
-using Content.Shared.Body;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
@@ -17,7 +17,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Content.Shared.Atmos;
-using Content.Shared.Body.Systems;
 
 namespace Content.Server.Nutrition.EntitySystems
 {
@@ -25,7 +24,7 @@ namespace Content.Server.Nutrition.EntitySystems
     {
         [Dependency] private ReactiveSystem _reactiveSystem = default!;
         [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
-        [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
+        [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
         [Dependency] private AtmosphereSystem _atmos = default!;
         [Dependency] private TransformSystem _transformSystem = default!;
         [Dependency] private InventorySystem _inventorySystem = default!;
@@ -107,7 +106,7 @@ namespace Content.Server.Nutrition.EntitySystems
         {
             if (args.Slot == "mask")
             {
-                _forensics.TransferDna(entity.Owner, args.Equipee, false);
+                _forensics.TransferDna(entity.Owner, args.EquipTarget, false);
             }
         }
 

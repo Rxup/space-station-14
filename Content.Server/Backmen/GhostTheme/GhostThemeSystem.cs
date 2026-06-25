@@ -1,4 +1,4 @@
-﻿using Content.Corvax.Interfaces.Shared;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Backmen.GhostTheme;
 using Content.Shared.Ghost;
 using Robust.Server.Configuration;

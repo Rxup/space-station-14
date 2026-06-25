@@ -119,6 +119,7 @@
     needsHands: false
   - type: Crawler
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: MobThresholds
     thresholds:

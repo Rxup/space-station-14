@@ -45,8 +45,8 @@ public sealed partial class GibOnCollideSystem : EntitySystem
                 || !_mobStateSystem.IsAlive(otherUid, mobState))
                 return;
 
-            if (!TryComp<DamageableComponent>(otherUid, out var damageable)
-                || damageable.DamageContainerID?.Id != BiologicalDamageContainerPrototype.Id)
+            if (!TryComp<InjurableComponent>(otherUid, out var injurable)
+                || injurable.DamageContainer?.Id != BiologicalDamageContainerPrototype.Id)
                 return;
         }
 

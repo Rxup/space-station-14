@@ -3,3 +3,5 @@ ent-ClothingShoesBootsMagArmy = армейские магнитные сапог
 ent-ClothingShoesBootsMagSpecialForce = магнитные сапоги спецназа
     .desc = Магнитные сапоги спец войск НаноТрейзен, дорогой и более продвинутый вариант продвинутых магниток, имеет встроенный джетпак.
     .desc = Магнитные сапоги, являющиеся штатным снаряжением службы безопасности для работы в условиях отсутствия гравитации и открытого космоса.
+ent-ClothingShoesBootsMagSecurity = security magboots
+    .desc = Magnetic boots are standard equipment for security services for work in zero gravity and outer space.

@@ -1,6 +1,12 @@
+ent-ClothingOrderBackpack = Backpack of the Red Order.
+    .desc = A backpack of the death squad, taken as a trophy and remade to fit their needs by the order!
+ent-ClothingNinjaSatchel = Ninja satchel
+    .desc = Space ninja backpack
 ent-ClothingBackpackMVD = сумка
     .desc = { ent-ClothingBackpackSatchel.desc }
 ent-ClothingCentcomBackpack = рюкзак Центком
     .desc = РЮКЗАК ЗЕЛЁНЫХ ЧЕЛОВЕЧКОВ!!!
+ent-ClothingBackpackInteQ = combat backpack
+    .desc = Comfortable and stylish backpack.
 ent-ClothingBackpackBlueshield = рюкзак офицера "Синий Щит"
     .desc = Это очень робастный синий рюкзак.

@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.Cocoon;
+using Content.Server.Backmen.Cocoon;
 using Content.Server.Backmen.Psionics.NPC.GlimmerWisp;
 using Content.Server.NPC;
 using Content.Server.NPC.Components;

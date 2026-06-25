@@ -304,11 +304,11 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         if (args.Slot != "mask")
             return;
 
-        component.EquipedOn = args.Equipee;
+        component.EquipedOn = args.EquipTarget;
         component.PendingPounceTarget = EntityUid.Invalid;
         RemComp<VentCrawlingComponent>(uid);
         EnsureComp<PacifiedComponent>(uid);
-        RefreshSuffocationStatus(args.Equipee, component);
+        RefreshSuffocationStatus(args.EquipTarget, component);
 
         _npc.SleepNPC(uid);
     }
@@ -318,7 +318,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         if (args.Slot != "mask" || ent.Comp.EquipedOn != args.UnEquipTarget)
             return;
 
-        if (args.Unequipee != args.UnEquipTarget)
+        if (args.UnEquipTarget != args.UnEquipTarget)
             return;
 
         args.Cancel();
@@ -369,7 +369,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
 
         component.EquipedOn = EntityUid.Invalid;
         component.PendingPounceTarget = EntityUid.Invalid;
-        RemoveSuffocationStatus(args.Equipee, component);
+        RemoveSuffocationStatus(args.EquipTarget, component);
         RemCompDeferred<PacifiedComponent>(uid);
         var combatMode = EnsureComp<CombatModeComponent>(uid);
         _combat.SetInCombatMode(uid, true, combatMode);

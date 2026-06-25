@@ -4,6 +4,7 @@
   abstract: true
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Silicon
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLArm
@@ -20,6 +21,7 @@
   abstract: true
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Silicon
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRArm
@@ -36,6 +38,7 @@
   abstract: true
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Silicon
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLLeg
@@ -52,6 +55,7 @@
   abstract: true
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Silicon
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRLeg
@@ -68,6 +72,7 @@
   name: cybernetic left hand
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Silicon
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLHand
@@ -82,6 +87,7 @@
   name: cybernetic right hand
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Silicon
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRHand
@@ -96,6 +102,7 @@
   name: cybernetic left foot
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Silicon
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLFoot
@@ -110,6 +117,7 @@
   name: cybernetic right foot
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Silicon
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRFoot

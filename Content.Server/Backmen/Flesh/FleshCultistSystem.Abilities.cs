@@ -1,6 +1,6 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
-using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Construction.Components;
 using Content.Server.Cuffs;
 using Content.Server.Salvage.Expeditions;

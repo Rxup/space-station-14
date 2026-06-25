@@ -1,5 +1,5 @@
 using Content.Server.Chat.Systems;
-
+using Robust.Shared.Timing;
 using Content.Shared.Chat;
 using Content.Shared.Dataset;
 using Content.Shared.Random.Helpers;
@@ -12,6 +12,8 @@ namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators;
 
 public sealed partial class SpeakOperator : HTNOperator
 {
+    [Dependency] private IEntityManager _entMan = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
     private ChatSystem _chat = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -25,6 +27,18 @@ public sealed partial class SpeakOperator : HTNOperator
     [DataField]
     public bool Hidden;
 
+    /// <summary>
+    /// Skip speaking for `cooldown` seconds, intended to stop spam
+    /// </summary>
+    [DataField]
+    public TimeSpan Cooldown = TimeSpan.Zero;
+
+    /// <summary>
+    /// Define what key is used for storing the cooldown
+    /// </summary>
+    [DataField]
+    public string CooldownID = string.Empty;
+
     public override void Initialize(IEntitySystemManager sysManager)
     {
         base.Initialize(sysManager);
@@ -33,6 +47,14 @@ public sealed partial class SpeakOperator : HTNOperator
 
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
+        if (Cooldown != TimeSpan.Zero && CooldownID != string.Empty)
+        {
+            if (blackboard.TryGetValue<TimeSpan>(CooldownID, out var nextSpeechTime, _entMan) && _gameTiming.CurTime < nextSpeechTime)
+                return base.Update(blackboard, frameTime);
+
+            blackboard.SetValue(CooldownID, _gameTiming.CurTime + Cooldown);
+        }
+
         LocId speechLocId;
         switch (Speech)
         {

@@ -1,0 +1,15 @@
+ent-AnomalyTrapToxic = { ent-BaseAnomalyInjector }
+    .suffix = Toxic
+    .desc = { ent-BaseAnomalyInjector.desc }
+ent-AnomalyTrapHealing = { ent-BaseAnomalyInjector }
+    .suffix = Healing
+    .desc = { ent-BaseAnomalyInjector.desc }
+ent-AnomalyTrapStasis = { ent-BaseAnomalyInjector }
+    .suffix = Stasis
+    .desc = { ent-BaseAnomalyInjector.desc }
+ent-AnomalyTrapPoison = { ent-BaseAnomalyInjector }
+    .suffix = Poison
+    .desc = { ent-BaseAnomalyInjector.desc }
+ent-AnomalyTrapVoid = { ent-BaseAnomalyInjector }
+    .suffix = Void
+    .desc = { ent-BaseAnomalyInjector.desc }

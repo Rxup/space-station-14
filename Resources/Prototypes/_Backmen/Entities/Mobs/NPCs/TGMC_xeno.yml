@@ -2,10 +2,10 @@
 
 - type: entity
   abstract: true
-  name: ксено
+  name: ╨║╤Б╨╡╨╜╨╛
   id: KsenosXenoBase
   parent: [ MobXeno, BaseMobXenoTGMCBody ]
-  description: Угроза любой органической форме жизни
+  description: ╨г╨│╤А╨╛╨╖╨░ ╨╗╤О╨▒╨╛╨╣ ╨╛╤А╨│╨░╨╜╨╕╤З╨╡╤Б╨║╨╛╨╣ ╤Д╨╛╤А╨╝╨╡ ╨╢╨╕╨╖╨╜╨╕
   suffix: KsenosXeno
   components:
   - type: LagCompensation
@@ -163,9 +163,9 @@
 # WORM #
 
 - type: entity
-  name: Грудолом
+  name: ╨У╤А╤Г╨┤╨╛╨╗╨╛╨╝
   id: KsenosXenoLarva
-  description: Молодой ксеноморф.
+  description: ╨Ь╨╛╨╗╨╛╨┤╨╛╨╣ ╨║╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д.
   parent: KsenosXenoBase
   components:
   - type: ActionGrant
@@ -183,9 +183,9 @@
       10: Dead
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: Грудолом
-    description: Молодой ксеноморф
-    rules: "Эволюционируй в полноценного ксеноморфа."
+    name: ╨У╤А╤Г╨┤╨╛╨╗╨╛╨╝
+    description: ╨Ь╨╛╨╗╨╛╨┤╨╛╨╣ ╨║╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д
+    rules: "╨н╨▓╨╛╨╗╤О╤Ж╨╕╨╛╨╜╨╕╤А╤Г╨╣ ╨▓ ╨┐╨╛╨╗╨╜╨╛╤Ж╨╡╨╜╨╜╨╛╨│╨╛ ╨║╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д╨░."
     raffle:
       settings: default
   - type: SlowOnDamage
@@ -219,16 +219,16 @@
 # QUEEN #
 
 - type: entity
-  name: Королева
+  name: ╨Ъ╨╛╤А╨╛╨╗╨╡╨▓╨░
   parent: KsenosXenoBase
   id: KsenosXenoQueen
-  description: Королева улья.
+  description: ╨Ъ╨╛╤А╨╛╨╗╨╡╨▓╨░ ╤Г╨╗╤М╤П.
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: Королева улья
-    description: Командуй ульем ксеноморфов.
-    rules: "Командуй ульем, защищай свою кладку яиц. Способности: Размах хвостом (стан на лкм или вокруг на пкм) Липкие корни, Строительство стен ксено (на G), Лечебные феромоны, Широкий удар (ПКМ)"
+    name: ╨Ъ╨╛╤А╨╛╨╗╨╡╨▓╨░ ╤Г╨╗╤М╤П
+    description: ╨Ъ╨╛╨╝╨░╨╜╨┤╤Г╨╣ ╤Г╨╗╤М╨╡╨╝ ╨║╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д╨╛╨▓.
+    rules: "╨Ъ╨╛╨╝╨░╨╜╨┤╤Г╨╣ ╤Г╨╗╤М╨╡╨╝, ╨╖╨░╤Й╨╕╤Й╨░╨╣ ╤Б╨▓╨╛╤О ╨║╨╗╨░╨┤╨║╤Г ╤П╨╕╤Ж. ╨б╨┐╨╛╤Б╨╛╨▒╨╜╨╛╤Б╤В╨╕: ╨а╨░╨╖╨╝╨░╤Е ╤Е╨▓╨╛╤Б╤В╨╛╨╝ (╤Б╤В╨░╨╜ ╨╜╨░ ╨╗╨║╨╝ ╨╕╨╗╨╕ ╨▓╨╛╨║╤А╤Г╨│ ╨╜╨░ ╨┐╨║╨╝) ╨Ы╨╕╨┐╨║╨╕╨╡ ╨║╨╛╤А╨╜╨╕, ╨б╤В╤А╨╛╨╕╤В╨╡╨╗╤М╤Б╤В╨▓╨╛ ╤Б╤В╨╡╨╜ ╨║╤Б╨╡╨╜╨╛ (╨╜╨░ G), ╨Ы╨╡╤З╨╡╨▒╨╜╤Л╨╡ ╤Д╨╡╤А╨╛╨╝╨╛╨╜╤Л, ╨и╨╕╤А╨╛╨║╨╕╨╣ ╤Г╨┤╨░╤А (╨Я╨Ъ╨Ь)"
     raffle:
       settings: default
   - type: Body
@@ -313,8 +313,8 @@
 
 - type: entity
   id: XenoLayEgg
-  name: Отложить яйцо ксеноморфа
-  description: Пригодится в любом гнезде.
+  name: ╨Ю╤В╨╗╨╛╨╢╨╕╤В╤М ╤П╨╣╤Ж╨╛ ╨║╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д╨░
+  description: ╨Я╤А╨╕╨│╨╛╨┤╨╕╤В╤Б╤П ╨▓ ╨╗╤О╨▒╨╛╨╝ ╨│╨╜╨╡╨╖╨┤╨╡.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -326,16 +326,16 @@
 # PRAETORIAN #
 
 - type: entity
-  name: Преторианец
+  name: ╨Я╤А╨╡╤В╨╛╤А╨╕╨░╨╜╨╡╤Ж
   parent: KsenosXenoBase
   id: KsenosXenoPraetorian
-  description: Защитник королевы.
+  description: ╨Ч╨░╤Й╨╕╤В╨╜╨╕╨║ ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Л.
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: Преторианец
-    description: Защищай королеву и улей с помощью своих способностей.
-    rules: "Координируй улей. Защищай и лечи королеву. Способности: Липкие корни, Лечебные феромоны, Кислотный плевок, Широкий удар (ПКМ)"
+    name: ╨Я╤А╨╡╤В╨╛╤А╨╕╨░╨╜╨╡╤Ж
+    description: ╨Ч╨░╤Й╨╕╤Й╨░╨╣ ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Г ╨╕ ╤Г╨╗╨╡╨╣ ╤Б ╨┐╨╛╨╝╨╛╤Й╤М╤О ╤Б╨▓╨╛╨╕╤Е ╤Б╨┐╨╛╤Б╨╛╨▒╨╜╨╛╤Б╤В╨╡╨╣.
+    rules: "╨Ъ╨╛╨╛╤А╨┤╨╕╨╜╨╕╤А╤Г╨╣ ╤Г╨╗╨╡╨╣. ╨Ч╨░╤Й╨╕╤Й╨░╨╣ ╨╕ ╨╗╨╡╤З╨╕ ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Г. ╨б╨┐╨╛╤Б╨╛╨▒╨╜╨╛╤Б╤В╨╕: ╨Ы╨╕╨┐╨║╨╕╨╡ ╨║╨╛╤А╨╜╨╕, ╨Ы╨╡╤З╨╡╨▒╨╜╤Л╨╡ ╤Д╨╡╤А╨╛╨╝╨╛╨╜╤Л, ╨Ъ╨╕╤Б╨╗╨╛╤В╨╜╤Л╨╣ ╨┐╨╗╨╡╨▓╨╛╨║, ╨и╨╕╤А╨╛╨║╨╕╨╣ ╤Г╨┤╨░╤А (╨Я╨Ъ╨Ь)"
     raffle:
       settings: default
   - type: InnateTool
@@ -397,9 +397,9 @@
 # WARRIOR #
 
 - type: entity
-  name: Воин
+  name: ╨Т╨╛╨╕╨╜
   id: KsenosXeno
-  description: Боец улья.
+  description: ╨С╨╛╨╡╤Ж ╤Г╨╗╤М╤П.
   parent: KsenosXenoBase
   components:
   - type: Sprite
@@ -421,9 +421,9 @@
       150: 0.8
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: Воин
-    description: Защитник улья
-    rules: "Защищай королеву и гнездо. Способность: Широкий удар (ПКМ), Сбивающий удар."
+    name: ╨Т╨╛╨╕╨╜
+    description: ╨Ч╨░╤Й╨╕╤В╨╜╨╕╨║ ╤Г╨╗╤М╤П
+    rules: "╨Ч╨░╤Й╨╕╤Й╨░╨╣ ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Г ╨╕ ╨│╨╜╨╡╨╖╨┤╨╛. ╨б╨┐╨╛╤Б╨╛╨▒╨╜╨╛╤Б╤В╤М: ╨и╨╕╤А╨╛╨║╨╕╨╣ ╤Г╨┤╨░╤А (╨Я╨Ъ╨Ь), ╨б╨▒╨╕╨▓╨░╤О╤Й╨╕╨╣ ╤Г╨┤╨░╤А."
     raffle:
       settings: default
   - type: NameIdentifier
@@ -450,16 +450,16 @@
 # DRONE #
 
 - type: entity
-  name: Трутень
+  name: ╨в╤А╤Г╤В╨╡╨╜╤М
   id: KsenosXenoDrone
-  description: Строитель улья и лекарь.
+  description: ╨б╤В╤А╨╛╨╕╤В╨╡╨╗╤М ╤Г╨╗╤М╤П ╨╕ ╨╗╨╡╨║╨░╤А╤М.
   parent: KsenosXenoBase
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: Трутень
-    description: Сделай из улья крепость. Лечи.
-    rules: "Укрепляй улей для защиты королевы, Лечи ксеноморфов. Способности: Липкие корни, Строительство стен ксено (на G), Лечение, Широкий удар (ПКМ)"
+    name: ╨в╤А╤Г╤В╨╡╨╜╤М
+    description: ╨б╨┤╨╡╨╗╨░╨╣ ╨╕╨╖ ╤Г╨╗╤М╤П ╨║╤А╨╡╨┐╨╛╤Б╤В╤М. ╨Ы╨╡╤З╨╕.
+    rules: "╨г╨║╤А╨╡╨┐╨╗╤П╨╣ ╤Г╨╗╨╡╨╣ ╨┤╨╗╤П ╨╖╨░╤Й╨╕╤В╤Л ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Л, ╨Ы╨╡╤З╨╕ ╨║╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д╨╛╨▓. ╨б╨┐╨╛╤Б╨╛╨▒╨╜╨╛╤Б╤В╨╕: ╨Ы╨╕╨┐╨║╨╕╨╡ ╨║╨╛╤А╨╜╨╕, ╨б╤В╤А╨╛╨╕╤В╨╡╨╗╤М╤Б╤В╨▓╨╛ ╤Б╤В╨╡╨╜ ╨║╤Б╨╡╨╜╨╛ (╨╜╨░ G), ╨Ы╨╡╤З╨╡╨╜╨╕╨╡, ╨и╨╕╤А╨╛╨║╨╕╨╣ ╤Г╨┤╨░╤А (╨Я╨Ъ╨Ь)"
     raffle:
       settings: default
   - type: InnateTool
@@ -509,16 +509,16 @@
 # SPITTER #
 
 - type: entity
-  name: Часовой
-  description: Ксеноморф плюющийся кислотой.
+  name: ╨з╨░╤Б╨╛╨▓╨╛╨╣
+  description: ╨Ъ╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д ╨┐╨╗╤О╤О╤Й╨╕╨╣╤Б╤П ╨║╨╕╤Б╨╗╨╛╤В╨╛╨╣.
   parent: KsenosXenoBase
   id: KsenosXenoSpitter
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: Часовой
-    description: Жги десантников кислотой.
-    rules: "Защищай королеву и жги космодесантников с расстояния. Способности: Кислотный плевок, Широкий удар (ПКМ)"
+    name: ╨з╨░╤Б╨╛╨▓╨╛╨╣
+    description: ╨Ц╨│╨╕ ╨┤╨╡╤Б╨░╨╜╤В╨╜╨╕╨║╨╛╨▓ ╨║╨╕╤Б╨╗╨╛╤В╨╛╨╣.
+    rules: "╨Ч╨░╤Й╨╕╤Й╨░╨╣ ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Г ╨╕ ╨╢╨│╨╕ ╨║╨╛╤Б╨╝╨╛╨┤╨╡╤Б╨░╨╜╤В╨╜╨╕╨║╨╛╨▓ ╤Б ╤А╨░╤Б╤Б╤В╨╛╤П╨╜╨╕╤П. ╨б╨┐╨╛╤Б╨╛╨▒╨╜╨╛╤Б╤В╨╕: ╨Ъ╨╕╤Б╨╗╨╛╤В╨╜╤Л╨╣ ╨┐╨╗╨╡╨▓╨╛╨║, ╨и╨╕╤А╨╛╨║╨╕╨╣ ╤Г╨┤╨░╤А (╨Я╨Ъ╨Ь)"
     raffle:
       settings: default
   - type: HTN
@@ -567,16 +567,16 @@
 # Real SPITTER #
 
 - type: entity
-  name: Плевальщик
-  description: Ксеноморф плюющийся кислотой.
+  name: ╨Я╨╗╨╡╨▓╨░╨╗╤М╤Й╨╕╨║
+  description: ╨Ъ╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д ╨┐╨╗╤О╤О╤Й╨╕╨╣╤Б╤П ╨║╨╕╤Б╨╗╨╛╤В╨╛╨╣.
   parent: KsenosXenoBase
   id: KsenosXenoRealSpitter
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: Плевальщик
-    description: Жги десантников кислотой.
-    rules: "Защищай королеву и жги космодесантников с расстояния. Способности: Кислотный плевок, Широкий удар (ПКМ)"
+    name: ╨Я╨╗╨╡╨▓╨░╨╗╤М╤Й╨╕╨║
+    description: ╨Ц╨│╨╕ ╨┤╨╡╤Б╨░╨╜╤В╨╜╨╕╨║╨╛╨▓ ╨║╨╕╤Б╨╗╨╛╤В╨╛╨╣.
+    rules: "╨Ч╨░╤Й╨╕╤Й╨░╨╣ ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Г ╨╕ ╨╢╨│╨╕ ╨║╨╛╤Б╨╝╨╛╨┤╨╡╤Б╨░╨╜╤В╨╜╨╕╨║╨╛╨▓ ╤Б ╤А╨░╤Б╤Б╤В╨╛╤П╨╜╨╕╤П. ╨б╨┐╨╛╤Б╨╛╨▒╨╜╨╛╤Б╤В╨╕: ╨Ъ╨╕╤Б╨╗╨╛╤В╨╜╤Л╨╣ ╨┐╨╗╨╡╨▓╨╛╨║, ╨и╨╕╤А╨╛╨║╨╕╨╣ ╤Г╨┤╨░╤А (╨Я╨Ъ╨Ь)"
     raffle:
       settings: default
   - type: Body
@@ -624,19 +624,19 @@
   - type: NameIdentifier
     group: Xeno
 
-# SCOUT # - Баганая хуета
+# SCOUT # - ╨С╨░╨│╨░╨╜╨░╤П ╤Е╤Г╨╡╤В╨░
 
 - type: entity
-  name: Бегун
+  name: ╨С╨╡╨│╤Г╨╜
   parent: KsenosXenoBase
   id: KsenosXenoRunner
-  description: Быстрый ксеноморф.
+  description: ╨С╤Л╤Б╤В╤А╤Л╨╣ ╨║╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д.
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: Разведчик
-    description: Делайте любимую тактику всех любителей dark souls, тыкнули и убежали.
-    rules: "Слушай королеву, проводи разведку и устраивай засады. Способности: Быстрый как понос"
+    name: ╨а╨░╨╖╨▓╨╡╨┤╤З╨╕╨║
+    description: ╨Ф╨╡╨╗╨░╨╣╤В╨╡ ╨╗╤О╨▒╨╕╨╝╤Г╤О ╤В╨░╨║╤В╨╕╨║╤Г ╨▓╤Б╨╡╤Е ╨╗╤О╨▒╨╕╤В╨╡╨╗╨╡╨╣ dark souls, ╤В╤Л╨║╨╜╤Г╨╗╨╕ ╨╕ ╤Г╨▒╨╡╨╢╨░╨╗╨╕.
+    rules: "╨б╨╗╤Г╤И╨░╨╣ ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Г, ╨┐╤А╨╛╨▓╨╛╨┤╨╕ ╤А╨░╨╖╨▓╨╡╨┤╨║╤Г ╨╕ ╤Г╤Б╤В╤А╨░╨╕╨▓╨░╨╣ ╨╖╨░╤Б╨░╨┤╤Л. ╨б╨┐╨╛╤Б╨╛╨▒╨╜╨╛╤Б╤В╨╕: ╨С╤Л╤Б╤В╤А╤Л╨╣ ╨║╨░╨║ ╨┐╨╛╨╜╨╛╤Б"
     raffle:
       settings: default
   - type: Sprite
@@ -685,16 +685,16 @@
 # Hunter #
 
 - type: entity
-  name: Охотник
+  name: ╨Ю╤Е╨╛╤В╨╜╨╕╨║
   parent: KsenosXenoBase
   id: KsenosXenoHunter
-  description: Ксеноморф - невидимка.
+  description: ╨Ъ╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д - ╨╜╨╡╨▓╨╕╨┤╨╕╨╝╨║╨░.
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: Охотник
-    description: Устраивай засады на космодесант.
-    rules: "Слушай королеву, проводи разведку и устраивай засады. Способности: Невидимость"
+    name: ╨Ю╤Е╨╛╤В╨╜╨╕╨║
+    description: ╨г╤Б╤В╤А╨░╨╕╨▓╨░╨╣ ╨╖╨░╤Б╨░╨┤╤Л ╨╜╨░ ╨║╨╛╤Б╨╝╨╛╨┤╨╡╤Б╨░╨╜╤В.
+    rules: "╨б╨╗╤Г╤И╨░╨╣ ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Г, ╨┐╤А╨╛╨▓╨╛╨┤╨╕ ╤А╨░╨╖╨▓╨╡╨┤╨║╤Г ╨╕ ╤Г╤Б╤В╤А╨░╨╕╨▓╨░╨╣ ╨╖╨░╤Б╨░╨┤╤Л. ╨б╨┐╨╛╤Б╨╛╨▒╨╜╨╛╤Б╤В╨╕: ╨Э╨╡╨▓╨╕╨┤╨╕╨╝╨╛╤Б╤В╤М"
     raffle:
       settings: default
   - type: Sprite
@@ -737,8 +737,8 @@
 - type: entity
   id: ActionHunterInvisibility
   parent: BaseAction
-  name: Псионическая невидимость
-  description: Сделайте себя невидимым для любой сущности, которая потенциально может быть псиоником. Борги, животные и так далее не затрагиваются.
+  name: ╨Я╤Б╨╕╨╛╨╜╨╕╤З╨╡╤Б╨║╨░╤П ╨╜╨╡╨▓╨╕╨┤╨╕╨╝╨╛╤Б╤В╤М
+  description: ╨б╨┤╨╡╨╗╨░╨╣╤В╨╡ ╤Б╨╡╨▒╤П ╨╜╨╡╨▓╨╕╨┤╨╕╨╝╤Л╨╝ ╨┤╨╗╤П ╨╗╤О╨▒╨╛╨╣ ╤Б╤Г╤Й╨╜╨╛╤Б╤В╨╕, ╨║╨╛╤В╨╛╤А╨░╤П ╨┐╨╛╤В╨╡╨╜╤Ж╨╕╨░╨╗╤М╨╜╨╛ ╨╝╨╛╨╢╨╡╤В ╨▒╤Л╤В╤М ╨┐╤Б╨╕╨╛╨╜╨╕╨║╨╛╨╝. ╨С╨╛╤А╨│╨╕, ╨╢╨╕╨▓╨╛╤В╨╜╤Л╨╡ ╨╕ ╤В╨░╨║ ╨┤╨░╨╗╨╡╨╡ ╨╜╨╡ ╨╖╨░╤В╤А╨░╨│╨╕╨▓╨░╤О╤В╤Б╤П.
   categories: [ HideSpawnMenu ]
   components:
     - type: Action
@@ -750,16 +750,16 @@
 # RAVAGER #
 
 - type: entity
-  name: Крушитель
+  name: ╨Ъ╤А╤Г╤И╨╕╤В╨╡╨╗╤М
   parent: KsenosXenoBase
   id: KsenosXenoRavager
-  description: Почти неостановимая сила, сноящая всё на своём пути.
+  description: ╨Я╨╛╤З╤В╨╕ ╨╜╨╡╨╛╤Б╤В╨░╨╜╨╛╨▓╨╕╨╝╨░╤П ╤Б╨╕╨╗╨░, ╤Б╨╜╨╛╤П╤Й╨░╤П ╨▓╤Б╤С ╨╜╨░ ╤Б╨▓╨╛╤С╨╝ ╨┐╤Г╤В╨╕.
   components:
   - type: GhostTakeoverAvailable
   - type: GhostRole
-    name: Крушитель
-    description: Круши всё на своём пути.
-    rules: "Используй свою прочность и разрушительную силу, слушай приказы королевы. Способности: Широкий удар (ПКМ), защитный гребень."
+    name: ╨Ъ╤А╤Г╤И╨╕╤В╨╡╨╗╤М
+    description: ╨Ъ╤А╤Г╤И╨╕ ╨▓╤Б╤С ╨╜╨░ ╤Б╨▓╨╛╤С╨╝ ╨┐╤Г╤В╨╕.
+    rules: "╨Ш╤Б╨┐╨╛╨╗╤М╨╖╤Г╨╣ ╤Б╨▓╨╛╤О ╨┐╤А╨╛╤З╨╜╨╛╤Б╤В╤М ╨╕ ╤А╨░╨╖╤А╤Г╤И╨╕╤В╨╡╨╗╤М╨╜╤Г╤О ╤Б╨╕╨╗╤Г, ╤Б╨╗╤Г╤И╨░╨╣ ╨┐╤А╨╕╨║╨░╨╖╤Л ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Л. ╨б╨┐╨╛╤Б╨╛╨▒╨╜╨╛╤Б╤В╨╕: ╨и╨╕╤А╨╛╨║╨╕╨╣ ╤Г╨┤╨░╤А (╨Я╨Ъ╨Ь), ╨╖╨░╤Й╨╕╤В╨╜╤Л╨╣ ╨│╤А╨╡╨▒╨╡╨╜╤М."
     raffle:
       settings: default
   - type: Damageable
@@ -823,10 +823,10 @@
     innatePolymorphs: []
 
 - type: entity
-  name: Король Улья
+  name: ╨Ъ╨╛╤А╨╛╨╗╤М ╨г╨╗╤М╤П
   parent: KsenosXenoRavager
   id: KsenosXenoKing
-  description: Неостановимая сила, сноящая всё на своём пути.
+  description: ╨Э╨╡╨╛╤Б╤В╨░╨╜╨╛╨▓╨╕╨╝╨░╤П ╤Б╨╕╨╗╨░, ╤Б╨╜╨╛╤П╤Й╨░╤П ╨▓╤Б╤С ╨╜╨░ ╤Б╨▓╨╛╤С╨╝ ╨┐╤Г╤В╨╕.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -883,9 +883,9 @@
 # WEAPONS #
 
 - type: entity
-  name: когти ксено
+  name: ╨║╨╛╨│╤В╨╕ ╨║╤Б╨╡╨╜╨╛
   parent: BaseItem
-  description: Острые.
+  description: ╨Ю╤Б╤В╤А╤Л╨╡.
   id: WeaponXenoClaw
   components:
   - type: Sprite
@@ -907,10 +907,10 @@
     damage: 5
 
 - type: entity
-  name: королевские когти
+  name: ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Б╨║╨╕╨╡ ╨║╨╛╨│╤В╨╕
   parent: WeaponXenoClaw
   id: WeaponXenoQueenClaw
-  description: Королевски острые.
+  description: ╨Ъ╨╛╤А╨╛╨╗╨╡╨▓╤Б╨║╨╕ ╨╛╤Б╤В╤А╤Л╨╡.
   components:
   - type: Sprite
     scale: 1.5, 1.5
@@ -925,10 +925,10 @@
     damage: 25
 
 - type: entity
-  name: огромные когти
+  name: ╨╛╨│╤А╨╛╨╝╨╜╤Л╨╡ ╨║╨╛╨│╤В╨╕
   parent: WeaponXenoClaw
   id: WeaponXenoRavagerClaw
-  description: Гигантски острые.
+  description: ╨У╨╕╨│╨░╨╜╤В╤Б╨║╨╕ ╨╛╤Б╤В╤А╤Л╨╡.
   components:
   - type: Sprite
     scale: 1.8, 1.8
@@ -945,9 +945,9 @@
     damage: 13
 
 - type: entity
-  name: сбивающий удар
+  name: ╤Б╨▒╨╕╨▓╨░╤О╤Й╨╕╨╣ ╤Г╨┤╨░╤А
   parent: BaseItem
-  description: Сильный удар, способный сбить с ног любого морпеха.
+  description: ╨б╨╕╨╗╤М╨╜╤Л╨╣ ╤Г╨┤╨░╤А, ╤Б╨┐╨╛╤Б╨╛╨▒╨╜╤Л╨╣ ╤Б╨▒╨╕╤В╤М ╤Б ╨╜╨╛╨│ ╨╗╤О╨▒╨╛╨│╨╛ ╨╝╨╛╤А╨┐╨╡╤Е╨░.
   id: WeaponXenoStun
   components:
   - type: Sprite
@@ -970,9 +970,9 @@
     damage: 200
 
 - type: entity
-  name: размах хвостом
+  name: ╤А╨░╨╖╨╝╨░╤Е ╤Е╨▓╨╛╤Б╤В╨╛╨╝
   parent: BaseItem
-  description: Размах с огромной дальностью и радиусом, способный сбить с ног любого морпеха.
+  description: ╨а╨░╨╖╨╝╨░╤Е ╤Б ╨╛╨│╤А╨╛╨╝╨╜╨╛╨╣ ╨┤╨░╨╗╤М╨╜╨╛╤Б╤В╤М╤О ╨╕ ╤А╨░╨┤╨╕╤Г╤Б╨╛╨╝, ╤Б╨┐╨╛╤Б╨╛╨▒╨╜╤Л╨╣ ╤Б╨▒╨╕╤В╤М ╤Б ╨╜╨╛╨│ ╨╗╤О╨▒╨╛╨│╨╛ ╨╝╨╛╤А╨┐╨╡╤Е╨░.
   id: WeaponXenoQueenStun
   components:
   - type: Sprite
@@ -1001,7 +1001,7 @@
 - type: entity
   parent: WeaponXenoSpit
   id: WeaponXenoSpit4
-  name: супер плевок ксено
+  name: ╤Б╤Г╨┐╨╡╤А ╨┐╨╗╨╡╨▓╨╛╨║ ╨║╤Б╨╡╨╜╨╛
   components:
   - type: BasicEntityAmmoProvider
     proto: XenoSpitBullet4
@@ -1009,10 +1009,10 @@
     count: 1
 
 - type: entity
-  name: плевок ксено
+  name: ╨┐╨╗╨╡╨▓╨╛╨║ ╨║╤Б╨╡╨╜╨╛
   parent: BaseItem
   id: WeaponXenoSpit
-  description: Концентрированная токсичность
+  description: ╨Ъ╨╛╨╜╤Ж╨╡╨╜╤В╤А╨╕╤А╨╛╨▓╨░╨╜╨╜╨░╤П ╤В╨╛╨║╤Б╨╕╤З╨╜╨╛╤Б╤В╤М
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -1051,7 +1051,7 @@
 
 - type: entity
   id: XenoSpitBullet
-  name: плевок ксено
+  name: ╨┐╨╗╨╡╨▓╨╛╨║ ╨║╤Б╨╡╨╜╨╛
   parent: BulletDisablerPractice
   categories: [ HideSpawnMenu ]
   components:
@@ -1081,7 +1081,7 @@
 - type: entity
   parent: WeaponXenoSpitUltra
   id: WeaponXenoSpitUltraSuper
-  name: супер разъедающий плевок ксено
+  name: ╤Б╤Г╨┐╨╡╤А ╤А╨░╨╖╤К╨╡╨┤╨░╤О╤Й╨╕╨╣ ╨┐╨╗╨╡╨▓╨╛╨║ ╨║╤Б╨╡╨╜╨╛
   components:
   - type: Gun
     fireRate: 4
@@ -1099,10 +1099,10 @@
     count: 5
 
 - type: entity
-  name: разъедающий плевок ксено
+  name: ╤А╨░╨╖╤К╨╡╨┤╨░╤О╤Й╨╕╨╣ ╨┐╨╗╨╡╨▓╨╛╨║ ╨║╤Б╨╡╨╜╨╛
   parent: BaseItem
   id: WeaponXenoSpitUltra
-  description: Концентрированная токсичность
+  description: ╨Ъ╨╛╨╜╤Ж╨╡╨╜╤В╤А╨╕╤А╨╛╨▓╨░╨╜╨╜╨░╤П ╤В╨╛╨║╤Б╨╕╤З╨╜╨╛╤Б╤В╤М
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -1131,14 +1131,14 @@
 - type: entity
   parent: WeaponXenoSpitUltra
   id: WeaponXenoSpitGas
-  name: газовый плевок ксено
+  name: ╨│╨░╨╖╨╛╨▓╤Л╨╣ ╨┐╨╗╨╡╨▓╨╛╨║ ╨║╤Б╨╡╨╜╨╛
   components:
   - type: BasicEntityAmmoProvider
     proto: GasXenoSpitBullet
 
 - type: entity
   id: GasXenoSpitBullet
-  name: газовый плевок ксено
+  name: ╨│╨░╨╖╨╛╨▓╤Л╨╣ ╨┐╨╗╨╡╨▓╨╛╨║ ╨║╤Б╨╡╨╜╨╛
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
@@ -1182,7 +1182,7 @@
 
 - type: entity
   id: FireXenoSpitBullet
-  name: плевок ксено
+  name: ╨┐╨╗╨╡╨▓╨╛╨║ ╨║╤Б╨╡╨╜╨╛
   parent: FoodInjectableBase
   categories: [ HideSpawnMenu ]
   components:
@@ -1248,8 +1248,8 @@
         Poison: 5
 
 - type: entity
-  name: кислотная лужеца
-  description: Очень горько!
+  name: ╨║╨╕╤Б╨╗╨╛╤В╨╜╨░╤П ╨╗╤Г╨╢╨╡╤Ж╨░
+  description: ╨Ю╤З╨╡╨╜╤М ╨│╨╛╤А╤М╨║╨╛!
   id: XenoPoisonPull
   components:
   - type: Physics
@@ -1292,10 +1292,10 @@
 # HEALING SPIT #
 
 - type: entity
-  name: лечащие феромоны
+  name: ╨╗╨╡╤З╨░╤Й╨╕╨╡ ╤Д╨╡╤А╨╛╨╝╨╛╨╜╤Л
   parent: BaseItem
   id: WeaponXenoHealingSpit
-  description: Феромоны с целебным эффектом.
+  description: ╨д╨╡╤А╨╛╨╝╨╛╨╜╤Л ╤Б ╤Ж╨╡╨╗╨╡╨▒╨╜╤Л╨╝ ╤Н╤Д╤Д╨╡╨║╤В╨╛╨╝.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
@@ -1324,7 +1324,7 @@
 
 - type: entity
   id: XenoSpitHealingBullet
-  name: феромоны ксено
+  name: ╤Д╨╡╤А╨╛╨╝╨╛╨╜╤Л ╨║╤Б╨╡╨╜╨╛
   parent: BulletDisablerPractice
   categories: [ HideSpawnMenu ]
   components:
@@ -1354,8 +1354,8 @@
 
 
 - type: entity
-  name: восстановление
-  description: Лечение ксеноморфов.
+  name: ╨▓╨╛╤Б╤Б╤В╨░╨╜╨╛╨▓╨╗╨╡╨╜╨╕╨╡
+  description: ╨Ы╨╡╤З╨╡╨╜╨╕╨╡ ╨║╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д╨╛╨▓.
   parent: BaseHealingItem
   id: XenoHealing
   components:
@@ -1393,8 +1393,8 @@
 
 - type: entity
   id: XenoWeedsAction
-  name: Корни
-  description: Взращивает липкие корни
+  name: ╨Ъ╨╛╤А╨╜╨╕
+  description: ╨Т╨╖╤А╨░╤Й╨╕╨▓╨░╨╡╤В ╨╗╨╕╨┐╨║╨╕╨╡ ╨║╨╛╤А╨╜╨╕
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -1407,8 +1407,8 @@
 
 - type: entity
   id: XenoWeed
-  name: липкая трава
-  description: Мерзость. Лучше срубить.
+  name: ╨╗╨╕╨┐╨║╨░╤П ╤В╤А╨░╨▓╨░
+  description: ╨Ь╨╡╤А╨╖╨╛╤Б╤В╤М. ╨Ы╤Г╤З╤И╨╡ ╤Б╤А╤Г╨▒╨╕╤В╤М.
   placement:
     mode: SnapgridCenter
     snap:
@@ -1457,6 +1457,7 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - type: Temperature
+    - type: TemperatureDamage
       heatDamage:
         types:
           Heat: 5
@@ -1479,10 +1480,10 @@
             - IgnoreSpiderWeb
 
 - type: entity
-  name: защитный гребень
+  name: ╨╖╨░╤Й╨╕╤В╨╜╤Л╨╣ ╨│╤А╨╡╨▒╨╡╨╜╤М
   parent: BaseItem
   id: XenoShield
-  description: Можно поднять для большего эффекта.
+  description: ╨Ь╨╛╨╢╨╜╨╛ ╨┐╨╛╨┤╨╜╤П╤В╤М ╨┤╨╗╤П ╨▒╨╛╨╗╤М╤И╨╡╨│╨╛ ╤Н╤Д╤Д╨╡╨║╤В╨░.
   suffix: KsenosXeno
   components:
     - type: Sprite
@@ -1517,9 +1518,9 @@
 - type: entity
   id: XenoWall
   parent: BaseWall
-  name: "стена ксено"
+  name: "╤Б╤В╨╡╨╜╨░ ╨║╤Б╨╡╨╜╨╛"
   suffix: KsenosXeno
-  description: На вид мерзкое и непрочное.
+  description: ╨Э╨░ ╨▓╨╕╨┤ ╨╝╨╡╤А╨╖╨║╨╛╨╡ ╨╕ ╨╜╨╡╨┐╤А╨╛╤З╨╜╨╛╨╡.
   components:
   - type: IconSmooth
     key: xenowalls
@@ -1553,6 +1554,7 @@
         layer:
         - WallLayer
   - type: Temperature
+  - type: TemperatureDamage
     heatDamage:
       types:
         Heat: 5
@@ -1612,6 +1614,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Temperature
+  - type: TemperatureDamage
     heatDamage:
       types:
         Heat: 5
@@ -1634,8 +1637,8 @@
 - type: entity
   id: XenoRCD
   parent: RCD
-  name: ксено слизь
-  description: С помощью своих выделений производит монструозные пещеры для защиты своего улья. Да, все именно так как вы поняли.
+  name: ╨║╤Б╨╡╨╜╨╛ ╤Б╨╗╨╕╨╖╤М
+  description: ╨б ╨┐╨╛╨╝╨╛╤Й╤М╤О ╤Б╨▓╨╛╨╕╤Е ╨▓╤Л╨┤╨╡╨╗╨╡╨╜╨╕╨╣ ╨┐╤А╨╛╨╕╨╖╨▓╨╛╨┤╨╕╤В ╨╝╨╛╨╜╤Б╤В╤А╤Г╨╛╨╖╨╜╤Л╨╡ ╨┐╨╡╤Й╨╡╤А╤Л ╨┤╨╗╤П ╨╖╨░╤Й╨╕╤В╤Л ╤Б╨▓╨╛╨╡╨│╨╛ ╤Г╨╗╤М╤П. ╨Ф╨░, ╨▓╤Б╨╡ ╨╕╨╝╨╡╨╜╨╜╨╛ ╤В╨░╨║ ╨║╨░╨║ ╨▓╤Л ╨┐╨╛╨╜╤П╨╗╨╕.
   suffix: AutoRecharge
   components:
   - type: Sprite
@@ -1679,9 +1682,9 @@
 - type: entity
   id: XenoEgg
   parent: BaseStructure
-  name: яйцо ксеноморфа
+  name: ╤П╨╣╤Ж╨╛ ╨║╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д╨░
   suffix: KsenosXeno
-  description: На вид мерзкое.
+  description: ╨Э╨░ ╨▓╨╕╨┤ ╨╝╨╡╤А╨╖╨║╨╛╨╡.
   save: false
   components:
   - type: LanguageSpeaker
@@ -1734,9 +1737,9 @@
     allowMovement: false
     allowSpeech: false
     makeSentient: true
-    name: Яйцо ксеноморфа
-    description: Готово вылупиться
-    rules: "Вырасти в полноценного защитника улья."
+    name: ╨п╨╣╤Ж╨╛ ╨║╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д╨░
+    description: ╨У╨╛╤В╨╛╨▓╨╛ ╨▓╤Л╨╗╤Г╨┐╨╕╤В╤М╤Б╤П
+    rules: "╨Т╤Л╤А╨░╤Б╤В╨╕ ╨▓ ╨┐╨╛╨╗╨╜╨╛╤Ж╨╡╨╜╨╜╨╛╨│╨╛ ╨╖╨░╤Й╨╕╤В╨╜╨╕╨║╨░ ╤Г╨╗╤М╤П."
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
@@ -1747,8 +1750,8 @@
 
 - type: entity
   id: PinpointerXeno
-  name: чутьё королевы
-  description: "Ксеноморфы всегда знают как найти королеву."
+  name: ╤З╤Г╤В╤М╤С ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Л
+  description: "╨Ъ╤Б╨╡╨╜╨╛╨╝╨╛╤А╤Д╤Л ╨▓╤Б╨╡╨│╨┤╨░ ╨╖╨╜╨░╤О╤В ╨║╨░╨║ ╨╜╨░╨╣╤В╨╕ ╨║╨╛╤А╨╛╨╗╨╡╨▓╤Г."
   parent: PinpointerBase
   components:
   - type: Pinpointer

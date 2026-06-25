@@ -49,6 +49,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Temperature
+  - type: TemperatureDamage
     heatDamage:
       types:
         Heat: 5
@@ -96,8 +97,8 @@
 
 - type: entity
   id: CocoonedHumanoid
-  name: кокон гуманоида
-  description: Невезучий.
+  name: ╨║╨╛╨║╨╛╨╜ ╨│╤Г╨╝╨░╨╜╨╛╨╕╨┤╨░
+  description: ╨Э╨╡╨▓╨╡╨╖╤Г╤З╨╕╨╣.
   placement:
     mode: SnapgridCenter
     snap:
@@ -167,7 +168,7 @@
 - type: entity
   id: CocoonSmall
   parent: CocoonedHumanoid
-  name: кокон
+  name: ╨║╨╛╨║╨╛╨╜
   description: What could be inside...?
   placement:
     mode: SnapgridCenter

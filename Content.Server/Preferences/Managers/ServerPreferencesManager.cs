@@ -106,9 +106,6 @@ namespace Content.Server.Preferences.Managers
             if (Enum.TryParse<Gender>(profile.Gender, true, out var genderVal))
                 gender = genderVal;
 
-            var voice = string.IsNullOrEmpty(profile.Voice)
-                ? HumanoidProfileSystem.DefaultSexVoice[sex]
-                : new ProtoId<TTSVoicePrototype>(profile.Voice);
 
             var markings =
                 new Dictionary<ProtoId<OrganCategoryPrototype>, Dictionary<HumanoidVisualLayers, List<Marking>>>();
@@ -135,7 +132,7 @@ namespace Content.Server.Preferences.Managers
 
                     if (parsed is null) continue;
 
-                    markingsList.Add(parsed);
+                    markingsList.Add(parsed.Value);
                 }
 
                 if (Marking.ParseFromDbString($"{profile.HairName}@{profile.HairColor}") is { } facialMarking)
@@ -192,7 +189,9 @@ namespace Content.Server.Preferences.Managers
                 loadouts
             )
             {
-                Voice = voice,
+                Voice = string.IsNullOrEmpty(profile.Voice)
+                    ? HumanoidProfileSystem.DefaultVoice
+                    : new ProtoId<TTSVoicePrototype>(profile.Voice)
             };
         }
 

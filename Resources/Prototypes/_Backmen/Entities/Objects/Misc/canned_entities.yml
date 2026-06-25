@@ -62,6 +62,7 @@
       types:
         Blunt: 7
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: PhysicalComposition
     materialComposition:

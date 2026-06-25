@@ -1,7 +1,8 @@
-﻿using Content.Server.Atmos.Components;
+using Content.Server.Atmos.Components;
 using Content.Server.Backmen.Blob.Components;
-using Content.Server.Backmen.Body.Components;
 using Content.Server.Body.Components;
+using Content.Server.Backmen.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Explosion.EntitySystems;
@@ -72,9 +73,6 @@ public sealed partial class ZombieBlobSystem : SharedZombieBlobSystem
         SubscribeLocalEvent<ZombieBlobComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ZombieBlobComponent, InhaleLocationEvent>(OnInhale);
         SubscribeLocalEvent<ZombieBlobComponent, ExhaleLocationEvent>(OnExhale);
-
-        SubscribeLocalEvent<RespiratorImmunityComponent, ComponentInit>(OnPressureImmuneInit);
-        SubscribeLocalEvent<RespiratorImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
     }
 
     private void OnInhale(Entity<ZombieBlobComponent> ent, ref InhaleLocationEvent args)
@@ -84,22 +82,6 @@ public sealed partial class ZombieBlobSystem : SharedZombieBlobSystem
     private void OnExhale(Entity<ZombieBlobComponent> ent, ref ExhaleLocationEvent args)
     {
         args.Gas = GasMixture.SpaceGas;
-    }
-
-    private void OnPressureImmuneInit(EntityUid uid, RespiratorImmunityComponent pressureImmunity, ComponentInit args)
-    {
-        if (TryComp<RespiratorComponent>(uid, out var respirator))
-        {
-            respirator.HasImmunity = true;
-        }
-    }
-
-    private void OnPressureImmuneRemove(EntityUid uid, RespiratorImmunityComponent pressureImmunity, ComponentRemove args)
-    {
-        if (TryComp<RespiratorComponent>(uid, out var respirator))
-        {
-            respirator.HasImmunity = false;
-        }
     }
 
     /// <summary>
@@ -150,10 +132,10 @@ public sealed partial class ZombieBlobSystem : SharedZombieBlobSystem
         EnsureComp<PressureImmunityComponent>(uid);
         EnsureComp<RespiratorImmunityComponent>(uid);
 
-        if (TryComp<TemperatureComponent>(uid, out var temperatureComponent))
+        if (TryComp<TemperatureDamageComponent>(uid, out var temperatureDamage))
         {
-            component.OldColdDamageThreshold = temperatureComponent.ColdDamageThreshold;
-            temperatureComponent.ColdDamageThreshold = 0;
+            component.OldColdDamageThreshold = temperatureDamage.ColdDamageThreshold;
+            temperatureDamage.ColdDamageThreshold = 0;
         }
 
         if (TryComp<FixturesComponent>(uid, out var fixturesComp))
@@ -209,9 +191,9 @@ public sealed partial class ZombieBlobSystem : SharedZombieBlobSystem
         RemComp<PressureImmunityComponent>(uid);
         RemComp<RespiratorImmunityComponent>(uid);
 
-        if (TryComp<TemperatureComponent>(uid, out var temperatureComponent) && component.OldColdDamageThreshold != null)
+        if (TryComp<TemperatureDamageComponent>(uid, out var temperatureDamage) && component.OldColdDamageThreshold != null)
         {
-            temperatureComponent.ColdDamageThreshold = component.OldColdDamageThreshold.Value;
+            temperatureDamage.ColdDamageThreshold = component.OldColdDamageThreshold.Value;
         }
 
         _tagSystem.RemoveTag(uid, "BlobMob");

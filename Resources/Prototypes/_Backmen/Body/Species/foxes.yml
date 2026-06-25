@@ -138,8 +138,9 @@
     baseDecayRate: 0.15
   - type: LightweightDrunk
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Vulpkanin
+  - type: Injurable
+    damageContainer: Biological
   - type: Respirator
     damage:
       types:

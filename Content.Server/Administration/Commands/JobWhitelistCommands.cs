@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Administration.Commands;
 
-[AdminCommand(AdminFlags.WhiteList)]
+[AdminCommand(AdminFlags.Ban)]
 public sealed partial class JobWhitelistAddCommand : LocalizedCommands
 {
     [Dependency] private IServerDbManager _db = default!;
@@ -85,7 +85,7 @@ public sealed partial class JobWhitelistAddCommand : LocalizedCommands
     }
 }
 
-[AdminCommand(AdminFlags.WhiteList)]
+[AdminCommand(AdminFlags.Ban)]
 public sealed partial class GetJobWhitelistCommand : LocalizedCommands
 {
     [Dependency] private IServerDbManager _db = default!;
@@ -137,7 +137,7 @@ public sealed partial class GetJobWhitelistCommand : LocalizedCommands
     }
 }
 
-[AdminCommand(AdminFlags.WhiteList)]
+[AdminCommand(AdminFlags.Ban)]
 public sealed partial class RemoveJobWhitelistCommand : LocalizedCommands
 {
     [Dependency] private IServerDbManager _db = default!;

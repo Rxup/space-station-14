@@ -36,6 +36,7 @@ highlights-janitor = Портье, "Порт"
 highlights-lawyer = Адвокат, Адвоката
 highlights-librarian = Библиотекарь, Библиотека
 highlights-mime = Мим
+highlights-musician = Musician, "Music", Theatre, Theater, Service, "Serv"
 highlights-passenger = Пассажир, Грейтайдер, "Тайдер"
 highlights-service-worker = Работник сервиса
 # Специфичные для станции

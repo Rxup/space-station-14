@@ -12,6 +12,7 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
   - type: Damageable
+  - type: Injurable
     damageContainer: OrganicPart # Shitmed
   - type: BodyPart
   - type: ContainerContainer
@@ -87,6 +88,7 @@
   - type: BodyPart
     partType: Chest
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Extractable
     juiceSolution:

@@ -1,5 +1,7 @@
 ent-ClothingBeltUtility = пояс для инструментов
     .desc = Может хранить различные предметы.
+ent-ClothingBeltQuiver = quiver
+    .desc = Can hold up to 15 arrows, and fits snug around your waist.
 ent-ClothingBeltChiefEngineer = пояс старшего инженера
     .desc = Держит инструменты, выглядит стильно.
 ent-ClothingBeltAssault = штурмовой пояс

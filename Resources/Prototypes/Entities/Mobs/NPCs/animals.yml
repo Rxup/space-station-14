@@ -422,8 +422,9 @@
     spawned:
     - id: FoodMeatSlime
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Cockroach
+  - type: Injurable
+    damageContainer: Biological
   - type: Tag
     tags:
     - Trash
@@ -561,8 +562,9 @@
     weightlessFriction: 1
     baseWeightlessModifier: 1
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Moth
+  - type: Injurable
+    damageContainer: Biological
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -1603,6 +1605,7 @@
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
     heatDamageThreshold: 360
     coldDamageThreshold: 285
   - type: Sprite
@@ -2039,9 +2042,10 @@
     - id: SheetUranium1
       amount: 1
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Zombie
 
+  - type: Injurable
+    damageContainer: Biological
 - type: entity
   name: lizard #Weh
   parent: SimpleMobBase
@@ -2094,8 +2098,9 @@
       - ReagentId: Blood
         Quantity: 150
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Scale
+  - type: Injurable
+    damageContainer: Biological
   - type: Tag
     tags:
     - VimPilot
@@ -2362,11 +2367,12 @@
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage
     heatDamageThreshold: 335
     coldDamageThreshold: 230
     coldDamage:
       types:
-        Cold : 0.05 #per second, scales with temperature & other constants
+        Cold : 0.1 #per second, scales with temperature & other constants
     heatDamage:
       types:
         Heat : 0.2 #per second, scales with temperature & other constants
@@ -2495,11 +2501,12 @@
       - ReagentId: Blood
         Quantity: 50
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Scale
 
 # Code unique spider prototypes or combine them all into one spider and get a
 # random sprite state when you spawn it.
+  - type: Injurable
+    damageContainer: Biological
 - type: entity
   parent: [ SimpleMobBase, BaseMobHemocyanin, MobCombat ]
   id: MobSpiderBase
@@ -3042,11 +3049,13 @@
       - ReagentId: DemonsBlood
         Quantity: 150
   - type: Damageable
-    damageContainer: BiologicalMetaphysical
     damageModifierSet: Infernal
+  - type: Injurable
+    damageContainer: BiologicalMetaphysical
   - type: Temperature
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
     heatDamageThreshold: 4000 #They come from hell, so..
     coldDamageThreshold: 260
     coldDamage:
@@ -3246,6 +3255,7 @@
       Dead:
         Base: spacecat_dead
   - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 423
     coldDamageThreshold: 0
   - type: Tag

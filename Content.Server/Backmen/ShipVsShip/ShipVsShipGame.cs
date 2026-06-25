@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Backmen.Arrivals;
 using Content.Server.Backmen.RoleWhitelist;
 using Content.Server.Backmen.ShipVsShip.Components;

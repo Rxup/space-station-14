@@ -529,7 +529,7 @@ public partial class BkmBodySharedSystem
                 if (_timing.IsFirstTimePredicted)
                 {
                     _popup.PopupEntity(Loc.GetString("equip-part-missing-error",
-                        ("target", args.EquipTarget), ("part", bodyPart.ToString())), args.Equipee, args.Equipee);
+                        ("target", args.EquipTarget), ("part", bodyPart.ToString())), args.EquipTarget, args.EquipTarget);
                 }
 
                 args.Cancel();
@@ -542,7 +542,7 @@ public partial class BkmBodySharedSystem
         {
             if (_timing.IsFirstTimePredicted)
                 _popup.PopupEntity(Loc.GetString("equip-part-missing-error",
-                    ("target", args.EquipTarget), ("part", bodyPart.ToString())), args.Equipee, args.Equipee);
+                    ("target", args.EquipTarget), ("part", bodyPart.ToString())), args.EquipTarget, args.EquipTarget);
             args.Cancel();
         }
     }

@@ -1,4 +1,4 @@
-﻿using Content.Server.NPC;
+using Content.Server.NPC;
 using Content.Server.NPC.HTN.Preconditions;
 using Content.Shared.Standing;
 

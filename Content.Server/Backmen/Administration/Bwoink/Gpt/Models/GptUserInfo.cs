@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Threading;
 using Content.Server.Administration.Managers;
 using Content.Shared.CCVar;

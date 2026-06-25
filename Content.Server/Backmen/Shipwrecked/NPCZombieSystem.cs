@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.Language;
+using Content.Server.Backmen.Language;
 using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Ghost.Roles.Components;

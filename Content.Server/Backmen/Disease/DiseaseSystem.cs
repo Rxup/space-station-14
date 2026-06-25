@@ -1,13 +1,14 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Backmen.Disease.Components;
 using Content.Server.Backmen.Disease.Cures;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Backmen.Disease.Events;
 using Content.Shared.Body.Events;
+using Content.Shared.Metabolism;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -361,7 +362,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
         // Give the user the component's disease resist
-        if (TryComp<DiseaseCarrierComponent>(args.Equipee, out var carrier))
+        if (TryComp<DiseaseCarrierComponent>(args.EquipTarget, out var carrier))
             carrier.DiseaseResist += component.Protection;
         // Set the component to active to the unequip check isn't CBT
         component.IsActive = true;
@@ -377,7 +378,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         // Only undo the resistance if it was affecting the user
         if (!component.IsActive)
             return;
-        if (TryComp<DiseaseCarrierComponent>(args.Equipee, out var carrier))
+        if (TryComp<DiseaseCarrierComponent>(args.EquipTarget, out var carrier))
             carrier.DiseaseResist -= component.Protection;
         component.IsActive = false;
     }

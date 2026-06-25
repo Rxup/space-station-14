@@ -1,0 +1,15 @@
+ent-CaseInteQInfiltrator = { ent-CaseInteQ }
+    .suffix = InteQ Infiltrator, Filled
+    .desc = { ent-CaseInteQ.desc }
+ent-CaseInteQIronTombstone = { ent-CaseInteQ }
+    .suffix = InteQ Iron Tombstone, Filled
+    .desc = { ent-CaseInteQ.desc }
+ent-CaseInteQAKM = { ent-CaseInteQ }
+    .suffix = InteQ AKM, Filled
+    .desc = { ent-CaseInteQ.desc }
+ent-CaseInteQBulldog = { ent-CaseInteQ }
+    .suffix = InteQ Bulldog, Filled
+    .desc = { ent-CaseInteQ.desc }
+ent-CaseInteQSMG = { ent-CaseInteQ }
+    .suffix = InteQ SMG, Filled
+    .desc = { ent-CaseInteQ.desc }

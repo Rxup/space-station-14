@@ -67,6 +67,8 @@ construction-graph-tag-apron = апрон
 construction-graph-tag-utility-belt = полезный пояс
 soil-construction-graph-any-mushroom = любая шляпка
 construction-graph-tag-mop-basic = протига
+construction-graph-tag-paper = office paper
+construction-graph-tag-core-pinpointer-piece = piece of core pinpointer
 construction-graph-tag-corgi-hide = шкура корги
 # toys
 construction-graph-tag-rubber-ducky = резиновая уточка
@@ -134,5 +136,7 @@ construction-graph-tag-fire-extinguisher = огнетушитель
 construction-graph-tag-fire-helmet = пожарный шлем
 # clothing
 construction-graph-tag-backpack = рюкзак
+# chemistry
+construction-graph-tag-centrifuge-compatible = centrifugable container
 # salvage
 construction-graph-tag-spationaut-hardsuit = скафандр утилизатора

@@ -2,7 +2,7 @@ using Content.Server.Administration;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Worldgen.Components;
-using Content.Server.Worldgen.Prototypes;
+using Content.Shared.Worldgen.Prototypes;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;

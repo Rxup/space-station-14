@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Disease.Cures;

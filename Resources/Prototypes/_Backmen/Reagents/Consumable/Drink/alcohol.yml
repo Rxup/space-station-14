@@ -10,7 +10,7 @@
     sprite: Backmen/Objects/Consumable/Drinks/RedOrdenDrink.rsi
     state: icon
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 3
@@ -19,7 +19,7 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -42,11 +42,11 @@
     - !type:PlantAdjustWater
       amount: 0.9
   metabolisms:
-    Drink:
+    Digestion:
       effects:
         - !type:SatiateThirst
           factor: 4
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
@@ -65,7 +65,7 @@
     sprite: Backmen/Objects/Consumable/Drinks/sojuglass.rsi
     state: icon
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2

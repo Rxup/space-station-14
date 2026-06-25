@@ -1,8 +1,14 @@
+ent-ClothingEyesGlassesMonocle = Монокль аристократа.
+    .desc = Монокль является признаком высокого происхождения и интелекта.
+ent-ClothingEyesGlassesWelding = Welding glasses
+    .desc = That's a welding goggles. It is a small item. Protects the eyes from welders.
 ent-ClothingEyesGlassesBlueShield = очки офицера "Синий Щит"
     .desc = Улучшенные очки охраны СБ, в синей расцветке и с встроенным сканером здоровья.
 ent-ClothingEyeslensesBlueShield = линзы Синего Щита
     .desc = Новейшие линзы с исскуственным интелектом, способным вычеслять яркость окружения и затемнять линзы, так же с внедремной системой HUD охраны.
 ent-ClothingEyesBlueshieldVisor = визор офицера "Синий Щит"
     .desc = Улучшенный технический визор СБ, синяя расцветка и встроенный сканер здоровья в комплекте.
+ent-ClothingEyesGogglessInteQ = yellow goggles
+    .desc = Used to help provide rudimentary eye cover. Enhanced shielding blocks many flashes.
 ent-ClothingEyesSecEngineerVisors = технический визор СБ
     .desc = Представляет из себя совокупность нескольких типов сканеров с поляризацией. Показывает состояние различных боргов и мехов, статусы ID карт и обеспечивает защиту глаз от сварки. Не имеет защиты от вспышек.

@@ -7,11 +7,13 @@ using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Temperature.Components;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Body;
 
@@ -41,7 +43,7 @@ public sealed partial class BkmDetachedBodySystem : EntitySystem
         var flammable = EnsureComp<FlammableComponent>(ent);
         flammable.Damage = new DamageSpecifier
         {
-            DamageDict = new Dictionary<string, FixedPoint2> { { "Heat", 3 } }
+            DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> { { "Heat", 3 } }
         };
 
         EnsureComp<TemperatureComponent>(ent);

@@ -1,6 +1,12 @@
+ent-ClothingHeadHatCargoPostalsoft = postal cap
+    .desc = It's a baseball hat painted in postal of Cargo colours.
+ent-ClothingHeadHatCargoPostalsoftFlipped = postal cap flipped
+    .desc = It's a baseball hat painted in postal of Cargo colours. Flipped.
 ent-ClothingHeadHatPilotkaSec = пилотка СБ
     .desc = Пилотка сотрудников СБ НТ, в основном используется силами космической обороны. Имеет двойную окантовку и кокарду НТ.
 ent-ClothingHeadHatEgovCap = marine navy cap
     .desc = Cap made of thick camouflage fabric.
 ent-ClothingHeadHatMVDCap = кепка полиции ОПЗ
     .desc = Кепка полиции ОПЗ, имеет какарду министерства внутренних дел ОПЗ.
+ent-ClothingHeadHatInteQSoft = InteQ cap
+    .desc = A truly.. badass accessory.

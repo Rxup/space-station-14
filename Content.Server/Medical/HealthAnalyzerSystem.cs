@@ -3,6 +3,7 @@ using Content.Server.Temperature.Components;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
@@ -243,60 +244,67 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 // End-backmen: surgery
 
     /// <summary>
-    /// Send an update for the target to the healthAnalyzer
+    /// Creates a HealthAnalyzerState based on the current state of an entity.
     /// </summary>
-    /// <param name="healthAnalyzer">The health analyzer</param>
-    /// <param name="target">The entity being scanned</param>
-    /// <param name="scanMode">True makes the UI show ACTIVE, False makes the UI show INACTIVE</param>
-    public void UpdateScannedUser(EntityUid healthAnalyzer, EntityUid target, bool scanMode, EntityUid? part = null)
+    public HealthAnalyzerUiState GetHealthAnalyzerUiState(EntityUid? target, EntityUid? part = null)
     {
-        if (!_uiSystem.HasUi(healthAnalyzer, HealthAnalyzerUiKey.Key))
-            return;
+        if (!target.HasValue || !HasComp<DamageableComponent>(target))
+            return new HealthAnalyzerUiState();
 
+        var entity = target.Value;
         var bodyTemperature = float.NaN;
 
-        if (TryComp<TemperatureComponent>(target, out var temp))
+        if (TryComp<TemperatureComponent>(entity, out var temp))
             bodyTemperature = temp.CurrentTemperature;
 
         var bloodAmount = float.NaN;
         var bleeding = false;
         var unrevivable = false;
 
-        if (TryComp<BloodstreamComponent>(target, out var bloodstream) &&
-            _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
-                ref bloodstream.BloodSolution, out var bloodSolution))
+        if (TryComp<BloodstreamComponent>(entity, out var bloodstream) &&
+            _solutionContainerSystem.ResolveSolution(entity, bloodstream.BloodSolutionName,
+                ref bloodstream.BloodSolution, out _))
         {
-            bloodAmount = _bloodstreamSystem.GetBloodLevel(target);
+            bloodAmount = _bloodstreamSystem.GetBloodLevel(entity);
             bleeding = bloodstream.BleedAmount > 0;
         }
 
-        if (HasComp<UnrevivableComponent>(target))
+        if (TryComp<UnrevivableComponent>(entity, out var unrevivableComp) && unrevivableComp.Analyzable)
             unrevivable = true;
 
-        // Start-backmen: surgery
         Dictionary<TargetBodyPart, WoundableSeverity>? body = null;
-        if (HasComp<BodyComponent>(target))
-            body = _woundSystem.GetWoundableStatesOnBody(target);
-        // End-backmen: surgery
+        if (HasComp<BodyComponent>(entity))
+            body = _woundSystem.GetWoundableStatesOnBody(entity);
 
-        // Start-backmen: pain
-        var painCauses = _consciousnessSystem.GetPainCauses(target);
-        var totalPain = _consciousnessSystem.GetTotalPain(target);
-        var painImmune = _painImmuneQuery.HasComp(target);
-        // End-backmen: pain
+        var painCauses = _consciousnessSystem.GetPainCauses(entity);
+        var totalPain = _consciousnessSystem.GetTotalPain(entity);
+        var painImmune = _painImmuneQuery.HasComp(entity);
 
-        _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
-            GetNetEntity(target),
+        return new HealthAnalyzerUiState(
+            GetNetEntity(entity),
             bodyTemperature,
             bloodAmount,
-            scanMode,
+            null,
             bleeding,
             unrevivable,
-            body, // backmen: surgery
-            part != null ? GetNetEntity(part) : null, // backmen: surgery
-            painCauses, // backmen: pain
-            totalPain, // backmen: pain
-            painImmune // backmen: pain
-        ));
+            body,
+            part != null ? GetNetEntity(part) : null,
+            painCauses,
+            totalPain,
+            painImmune);
+    }
+
+    /// <summary>
+    /// Send an update for the target to the healthAnalyzer
+    /// </summary>
+    public void UpdateScannedUser(EntityUid healthAnalyzer, EntityUid target, bool scanMode, EntityUid? part = null)
+    {
+        if (!_uiSystem.HasUi(healthAnalyzer, HealthAnalyzerUiKey.Key))
+            return;
+
+        var uiState = GetHealthAnalyzerUiState(target, part);
+        uiState.ScanMode = scanMode;
+
+        _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(uiState));
     }
 }

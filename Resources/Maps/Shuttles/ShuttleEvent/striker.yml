@@ -4,7 +4,7 @@ meta:
   engineVersion: 270.1.0
   forkId: ""
   forkVersion: ""
-  time: 01/05/2026 13:55:23
+  time: 01/12/2026 10:23:32
   entityCount: 295
 maps: []
 grids:
@@ -1109,6 +1109,13 @@ entities:
       parent: 58
     - type: Physics
       canCollide: False
+- proto: HandheldStationMapNukeops
+  entities:
+  - uid: 168
+    components:
+    - type: Transform
+      pos: 1.493886,-2.2168128
+      parent: 325
 - proto: MedkitCombatFilled
   entities:
   - uid: 19
@@ -2353,13 +2360,6 @@ entities:
     components:
     - type: Transform
       pos: -2.5,2.5
-      parent: 325
-- proto: WeaponTurretSyndicate
-  entities:
-  - uid: 168
-    components:
-    - type: Transform
-      pos: -1.5,-0.5
       parent: 325
 - proto: WindoorSecure
   entities:

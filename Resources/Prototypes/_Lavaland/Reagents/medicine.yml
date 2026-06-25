@@ -8,7 +8,7 @@
   color: "#f2c777"
   recognizable: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:ModifyBloodLevel
         amount: 1.5

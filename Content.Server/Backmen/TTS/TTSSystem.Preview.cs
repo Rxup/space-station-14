@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.TTS;
+using Content.Shared.Backmen.TTS;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Players.RateLimiting;
 using Robust.Shared.Player;

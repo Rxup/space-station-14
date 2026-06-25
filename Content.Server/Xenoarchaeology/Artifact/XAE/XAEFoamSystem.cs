@@ -17,7 +17,7 @@ public sealed partial class XAEFoamSystem : BaseXAESystem<XAEFoamComponent>
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SmokeSystem _smoke = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager= default!;
     [Dependency] private MetaDataSystem _metaData = default!;
 
     /// <inheritdoc />

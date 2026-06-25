@@ -111,6 +111,7 @@
   - type: Icon
     sprite: Structures/Walls/cult.rsi
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:
@@ -794,6 +795,7 @@
       shader: unshaded
       color: "#00eaff"
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:
@@ -1205,6 +1207,7 @@
       - HolyLightRandomSpawnerArea
     intervalSeconds: 1
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Fixtures
     fixtures:
@@ -1819,6 +1822,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   #- type: Fixtures
   #  fixtures:

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,6 +24,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
 using Robust.Shared.Player;
 using Content.Shared.Radiation.Components;
+using Content.Shared.Radiation.Systems;
 using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
@@ -41,6 +42,8 @@ namespace Content.Server.Backmen.Supermatter;
 
 public sealed partial class SupermatterSystem : SharedSupermatterSystem
 {
+    [Dependency] private SharedRadiationSystem _radiation = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -273,10 +276,10 @@ public sealed partial class SupermatterSystem : SharedSupermatterSystem
                 0);
 
         //Rad Pulse Calculation
-        radcomponent.Intensity = sMcomponent.Power *
+        _radiation.SetIntensity((uid, radcomponent), sMcomponent.Power *
                                  Math.Max(0, 1f + powerTransmissionBonus / 10f)
                                  * 0.003f
-                                 * _config.GetCVar(CCVars.SupermatterRadsModifier);
+                                 * _config.GetCVar(CCVars.SupermatterRadsModifier));
 
         //Power * 0.55 * a value between 1 and 0.8
         var energy = sMcomponent.Power * sMcomponent.ReactionPowerModifier;

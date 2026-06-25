@@ -30,7 +30,7 @@ namespace Content.Server.Destructible
     [UsedImplicitly]
     public sealed partial class DestructibleSystem : SharedDestructibleSystem
     {
-        [Dependency] public readonly IRobustRandom Random = default!;
+        [Dependency] public IRobustRandom Random = default!;
         public new IEntityManager EntityManager => base.EntityManager;
 
         [Dependency] public readonly AtmosphereSystem AtmosphereSystem = default!;

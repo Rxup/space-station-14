@@ -8,7 +8,34 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 1h
-  discordRequired: true # backmen: antag
+
+- type: antagSpecifier
+  abstract: true
+  parent: RestrictedAntag
+  id: BaseRev
+  name: revolutionary
+  prefRoles:
+  - GenericTeamAntagonist # For antag ban purposes
+  components:
+  - type: Revolutionary
+
+- type: antagSpecifier
+  parent: BaseRev
+  id: HeadRev
+  prefRoles:
+  - HeadRev
+  briefing:
+    text: head-rev-role-greeting
+    color: CornflowerBlue
+    sound: "/Audio/Ambience/Antag/headrev_start.ogg"
+  startingGear: HeadRevGear
+  components:
+  - type: Revolutionary
+  - type: HeadRevolutionary
+  mindRoles:
+  - MindRoleHeadRevolutionary
+
+# TODO: Make it so creating new revolutionaries uses antag prototypes! This saves a *lot* of boilerplate for conversion antags.
 
 - type: antag
   id: Rev
@@ -17,7 +44,6 @@
   setPreference: false
   objective: roles-antag-rev-objective
   guides: [ Revolutionaries ]
-  discordRequired: true # backmen: antag
 
 - type: startingGear
   id: HeadRevGear

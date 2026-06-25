@@ -8,6 +8,7 @@ job-name-borg = киборг
 job-name-scientist = учёный
 job-name-research-assistant = научный ассистент
 job-name-rd = научный руководитель
+job-name-centcommoff = CentComm Official
 job-name-psychologist = психолог
 job-name-intern = интерн
 job-name-doctor = врач
@@ -58,7 +59,14 @@ job-name-no-id = нет ID
 job-name-prisoner = заключённый
 job-name-roboticist = робототехник
 job-name-syndicate = синдикат
+# antagonist jobs
+job-name-ninja = Ninja
 job-name-unknown = неизвестно
+job-name-syndicate-commander = Syndicate Commander
+job-name-syndicate-corpsman = Syndicate Corpsman
+job-name-syndicate-operative = Syndicate Operative
+job-name-pirate = Pirate
+job-name-wizard = Wizard
 job-name-virologist = вирусолог
 job-name-zombie = зомби
 # Job titles

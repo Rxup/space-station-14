@@ -83,7 +83,7 @@ public sealed partial class ShadowkinBlackeyeSystem : EntitySystem
             !_mobThreshold.TryGetThresholdForState(ent, MobState.Critical, out var key))
             return;
 
-        var minus = damageable.TotalDamage;
+        var minus = _damageable.GetTotalDamage((ent, damageable));
 
         _damageable.ChangeDamage(
             ent,

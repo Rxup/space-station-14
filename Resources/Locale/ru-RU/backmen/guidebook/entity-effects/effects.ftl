@@ -11,31 +11,25 @@ entity-effect-guidebook-adjust-traumas =
                *[-1] удаляет
             }
     } { NATURALFIXED($amount, 2) } травмы типа { $traumaType }
-
 entity-effect-guidebook-adjust-traumas-target-body-parts = частей тела
 entity-effect-guidebook-adjust-traumas-target-organs = органов
-
 entity-effect-guidebook-adjust-traumas-targets = на цели: { $targets }
-
 entity-effect-guidebook-adjust-traumas-target-components =
     с компонентами { $components } { $mustHaveAll ->
         [true] (все должны быть)
        *[false] (любой из них)
     }
-
 entity-effect-guidebook-suppress-pain =
     { $chance ->
         [1] Подавляет
        *[other] подавляет
     } боль на { NATURALFIXED($amount, 2) } на { NATURALFIXED($time, 3) } { MANY("секунду", $time) } (максимум до { NATURALFIXED($maximumSuppression, 2) } подавления)
-
 trauma-type-bone-damage = повреждение костей
 trauma-type-organ-damage = повреждение органов
 trauma-type-veins-damage = повреждение вен
 trauma-type-nerve-damage = повреждение нервов
 trauma-type-dismemberment = ампутация
 trauma-type-unknown = неизвестная травма
-
 target-body-part-head = голова
 target-body-part-chest = грудь
 target-body-part-groin = пах
@@ -59,4 +53,3 @@ target-body-part-full-arms = полные руки
 target-body-part-full-legs = полные ноги
 target-body-part-body-middle = середина тела (грудь, пах, руки)
 target-body-part-full-legs-groin = ноги и пах
-

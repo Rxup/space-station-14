@@ -1,4 +1,4 @@
-﻿using Content.Server.Magic;
+using Content.Server.Magic;
 using Content.Shared.Backmen.Magic;
 using Content.Shared.Backmen.Magic.Events;
 using Content.Shared.Damage;

@@ -35,12 +35,12 @@ public sealed partial class ClothingGrantingSystem : EntitySystem
         {
             var newComp = (Component) _componentFactory.GetComponent(name);
 
-            if (HasComp(args.Equipee, newComp.GetType()))
+            if (HasComp(args.EquipTarget, newComp.GetType()))
                 continue;
 
             var temp = (object) newComp;
             _serializationManager.CopyTo(data.Component, ref temp);
-            EntityManager.AddComponent(args.Equipee, (Component)temp!);
+            EntityManager.AddComponent(args.EquipTarget, (Component)temp!);
 
             component.IsActive = true;
         }
@@ -54,7 +54,7 @@ public sealed partial class ClothingGrantingSystem : EntitySystem
         {
             var newComp = (Component) _componentFactory.GetComponent(name);
 
-            RemComp(args.Equipee, newComp.GetType());
+            RemComp(args.EquipTarget, newComp.GetType());
         }
 
         component.IsActive = false;

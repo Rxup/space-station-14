@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration;
+using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Forensics;
 using Content.Shared.Administration;

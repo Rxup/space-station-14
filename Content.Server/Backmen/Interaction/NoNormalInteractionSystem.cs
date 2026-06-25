@@ -1,4 +1,4 @@
-﻿using Content.Shared.Interaction.Events;
+using Content.Shared.Interaction.Events;
 
 namespace Content.Server.Backmen.Interaction;
 

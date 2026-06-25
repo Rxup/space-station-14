@@ -1,3 +1,4 @@
+using Content.Shared.Body;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 
@@ -18,11 +19,9 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField(required: true)]
     public bool RoundStart { get; private set; } = false;
 
-    // Corvax-Sponsors-Start
-    [DataField]
-    public bool SponsorOnly { get; private set; } = false;
-    // Corvax-Sponsors-End
-
+    /// <summary>
+    ///     Default skin tone for this species. This applies for non-human skin tones.
+    /// </summary>
     [DataField]
     public Color DefaultSkinTone { get; private set; } = Color.White;
 
@@ -32,6 +31,9 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField]
     public int DefaultHumanSkinTone { get; private set; } = 20;
 
+    /// <summary>
+    ///     Humanoid species variant used by this entity.
+    /// </summary>
     [DataField(required: true)]
     public EntProtoId Prototype { get; private set; } = default!;
 

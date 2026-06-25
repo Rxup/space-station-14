@@ -10,6 +10,24 @@
     time: 54000 # 15h # Corvax-RoleTime
   discordRequired: true # backmen: antag
 
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Blob
+  prefRoles:
+  - Blob
+  allowNonHumans: true
+  blacklist:
+    components:
+    - AntagImmune
+  components:
+  - type: BlobCarrier
+  briefing:
+    text: blob-carrier-role-greeting
+    color: Plum
+    sound: /Audio/Backmen/Ambience/Antag/blob_start.ogg
+  mindRoles:
+  - MindRoleBlob
+
 - type: antag
   id: XenoAgent
   name: roles-antag-XenoAgent-name
@@ -21,3 +39,22 @@
   - !type:OverallPlaytimeRequirement
     time: 540000 # 150h
   discordRequired: true # backmen: antag
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: XenoAgent
+  prefRoles:
+  - XenoAgent
+  allowNonHumans: true
+  blacklist:
+    components:
+    - AntagImmune
+  components:
+  - type: XenoAgent
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+    - NanoTrasen
+  - type: XenoAcidSpiller
+  mindRoles:
+  - MindRoleXenoAgent

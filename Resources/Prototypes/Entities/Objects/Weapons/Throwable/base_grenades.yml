@@ -18,6 +18,7 @@
   - type: TimerTrigger
     delay: 3
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: Destructible
     thresholds:

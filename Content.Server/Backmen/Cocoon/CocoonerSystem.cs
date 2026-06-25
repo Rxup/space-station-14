@@ -1,5 +1,5 @@
 using Content.Server.Backmen.Vampiric;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Destructible;
 using Content.Server.DoAfter;
 using Content.Server.Players;

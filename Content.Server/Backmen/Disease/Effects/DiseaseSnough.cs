@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 using Content.Shared.Chat.Prototypes;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;

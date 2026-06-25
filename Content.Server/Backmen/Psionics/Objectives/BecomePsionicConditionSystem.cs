@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.Psionics.Objectives.Components;
+using Content.Server.Backmen.Psionics.Objectives.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;

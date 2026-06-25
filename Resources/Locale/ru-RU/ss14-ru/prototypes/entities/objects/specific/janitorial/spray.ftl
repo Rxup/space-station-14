@@ -1,3 +1,5 @@
+ent-SprayBottleBase = { ent-DrinkBaseMaterialPlastic }
+    .desc = { ent-DrinkBaseMaterialPlastic.desc }
 ent-SprayBottle = распылитель
     .desc = Распылитель с отвинчивающимся верхом.
     .suffix = Пустой

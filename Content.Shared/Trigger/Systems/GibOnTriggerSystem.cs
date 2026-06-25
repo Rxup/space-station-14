@@ -32,7 +32,6 @@ public sealed partial class GibOnTriggerSystem : XOnTriggerSystem<GibOnTriggerCo
             else
                 _gibbing.Gib(target, user: args.User);
         }
-
         args.Handled = true;
     }
 }

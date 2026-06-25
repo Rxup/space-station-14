@@ -1,4 +1,4 @@
-﻿using Content.Server.Station.Systems;
+using Content.Server.Station.Systems;
 using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Arrivals;

@@ -20,8 +20,9 @@
     - state: active
   - type: Hands
   - type: Damageable
-    damageContainer: ManifestedSpirit
     damageModifierSet: ManifestedSpirit
+  - type: Injurable
+    damageContainer: ManifestedSpirit
   - type: TTS # Corvax-TTS
     voice: rihter
   - type: NoSlip

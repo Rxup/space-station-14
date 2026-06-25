@@ -1,16 +1,16 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using Content.Server._Lavaland.Procedural;
 using Content.Server.Access.Systems;
-using Content.Server.Atmos.Components;
+using Content.Shared.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Backmen.NPC.Prototypes;
 using Content.Server.Backmen.NPC.Systems;
 using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Backmen.Shipwrecked.Prototypes;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Buckle.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
@@ -239,8 +239,8 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
                 {
                     if (!TryComp<PinpointerComponent>(ent, out var pinpointerComponent))
                         return;
-                    _pinpointerSystem.SetTarget(ent,uid,pinpointerComponent);
-                    _pinpointerSystem.SetActive(ent,true,pinpointerComponent);
+                    _pinpointerSystem.SetTarget((ent.Owner, pinpointerComponent), uid);
+                    _pinpointerSystem.SetActive((ent.Owner, pinpointerComponent), true);
                 },
                 Message = md.EntityDescription,
             };

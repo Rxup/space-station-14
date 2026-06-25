@@ -10,6 +10,7 @@ using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
@@ -50,7 +51,6 @@ public sealed partial class BloodstreamSystem : SharedBloodstreamSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BloodstreamComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<BloodstreamComponent, GenerateDnaEvent>(OnDnaGenerated);
 
         // backmen edit start
@@ -65,30 +65,6 @@ public sealed partial class BloodstreamSystem : SharedBloodstreamSystem
         _woundableQuery = GetEntityQuery<WoundableComponent>();
         ConsciousnessQuery = GetEntityQuery<ConsciousnessComponent>();
         // backmen edit end
-    }
-
-    // not sure if we can move this to shared or not
-    // it would certainly help if SolutionContainer was documented
-    // but since we usually don't add the component dynamically to entities we can keep this unpredicted for now
-    private void OnComponentInit(Entity<BloodstreamComponent> entity, ref ComponentInit args)
-    {
-        if (!SolutionContainer.EnsureSolution(entity.Owner,
-                entity.Comp.BloodSolutionName,
-                out var bloodSolution) ||
-            !SolutionContainer.EnsureSolution(entity.Owner,
-                entity.Comp.BloodTemporarySolutionName,
-                out var tempSolution))
-            return;
-
-        bloodSolution.MaxVolume = entity.Comp.BloodReferenceSolution.Volume * entity.Comp.MaxVolumeModifier;
-        tempSolution.MaxVolume = entity.Comp.BleedPuddleThreshold * 4; // give some leeway, for chemstream as well
-        entity.Comp.BloodReferenceSolution.SetReagentData(GetEntityBloodData((entity, entity.Comp)));
-
-        // Fill blood solution with BLOOD
-        // The DNA string might not be initialized yet, but the reagent data gets updated in the GenerateDnaEvent subscription
-        var solution = entity.Comp.BloodReferenceSolution.Clone();
-        solution.ScaleTo(entity.Comp.BloodReferenceSolution.Volume - bloodSolution.Volume);
-        bloodSolution.AddSolution(solution, PrototypeManager);
     }
 
     // forensics is not predicted yet

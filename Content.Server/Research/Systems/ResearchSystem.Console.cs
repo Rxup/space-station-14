@@ -1,9 +1,7 @@
-using Content.Server.Chat.Systems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Components;
 using Content.Shared.UserInterface;
 using Content.Shared.Access.Components;
-using Content.Shared.Chat;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
@@ -15,7 +13,7 @@ namespace Content.Server.Research.Systems;
 public sealed partial class ResearchSystem
 {
     [Dependency] private EmagSystem _emag = default!;
-    [Dependency] private ChatSystem _chat = default!; // Backmen
+    [Dependency] private IdentitySystem _identity = default!;
 
     private void InitializeConsole()
     {
@@ -49,25 +47,16 @@ public sealed partial class ResearchSystem
 
         if (!_emag.CheckFlag(uid, EmagType.Interaction))
         {
-            var getIdentityEvent = new TryGetIdentityShortInfoEvent(uid, act);
-            RaiseLocalEvent(getIdentityEvent);
-            // Backmen-EDIT-Start
+
             var message = Loc.GetString(
                 "research-console-unlock-technology-radio-broadcast",
                 ("technology", Loc.GetString(technologyPrototype.Name)),
-                ("amount", technologyPrototype.Cost.ToString()),
-                ("approver", getIdentityEvent.Title ?? string.Empty));
-
-            var messageIC = Loc.GetString(
-                "research-console-unlock-technology-ic",
-                ("technology", Loc.GetString(technologyPrototype.Name)),
-                ("amount", technologyPrototype.Cost.ToString()),
-                ("approver", getIdentityEvent.Title ?? string.Empty));
-
+                ("amount", technologyPrototype.Cost),
+                ("approver", _identity.GetIdentityShortInfo(act, uid) ?? string.Empty)
+            );
             _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
-            _chat.TrySendInGameICMessage(uid, messageIC, InGameICChatType.Speak, false);
         }
-        // Backmen-EDIT-End
+
         SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);
     }
@@ -79,24 +68,7 @@ public sealed partial class ResearchSystem
 
     private void UpdateConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? clientComponent = null)
     {
-        // Goobstation R&D Console Rework commented and replaced with other func
         UpdateFancyConsoleInterface(uid, component, clientComponent);
-
-        /*
-        if (!Resolve(uid, ref component, ref clientComponent, false))
-            return;
-        ResearchConsoleBoundInterfaceState state;
-        if (TryGetClientServer(uid, out _, out var serverComponent, clientComponent))
-        {
-            var points = clientComponent.ConnectedToServer ? serverComponent.Points : 0;
-            state = new ResearchConsoleBoundInterfaceState(points);
-        }
-        else
-        {
-            state = new ResearchConsoleBoundInterfaceState(default);
-        }
-        _uiSystem.SetUiState(uid, ResearchConsoleUiKey.Key, state);
-        */
     }
 
     private void OnPointsChanged(EntityUid uid, ResearchConsoleComponent component, ref ResearchServerPointsChangedEvent args)

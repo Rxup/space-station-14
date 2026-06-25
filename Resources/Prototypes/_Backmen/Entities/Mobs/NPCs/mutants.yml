@@ -73,7 +73,7 @@
 #  - type: NoSlip
 
 - type: entity
-  name: Чёрная вдова
+  name: ╨з╤С╤А╨╜╨░╤П ╨▓╨┤╨╛╨▓╨░
   parent: [ SimpleMobBase, BaseMobNpcVampiricAnimalLargeFill ]
   id: MobGiantSpiderVampire
   description: The 'dream-eater' spider, rumored to be one of the potential genetic sources for arachne.
@@ -217,7 +217,7 @@
   - type: NoSlip
 
 - type: entity
-  name: Чёрная вдова
+  name: ╨з╤С╤А╨╜╨░╤П ╨▓╨┤╨╛╨▓╨░
   parent: MobGiantSpiderVampire
   id: MobGiantSpiderVampireAngry
   suffix: Angry
@@ -255,7 +255,7 @@
     - type: GhostTakeoverAvailable
 
 - type: entity
-  name: Чёрная вдова
+  name: ╨з╤С╤А╨╜╨░╤П ╨▓╨┤╨╛╨▓╨░
   parent: MobGiantSpiderVampire
   id: MobGiantSpiderVampireBoss
   suffix: Big Fat Boss
@@ -295,7 +295,7 @@
           Piercing: 14
     - type: GhostRole
       makeSentient: true
-      name: Босс павуков
+      name: ╨С╨╛╤Б╤Б ╨┐╨░╨▓╤Г╨║╨╛╨▓
       description: ghost-role-information-giant-spider-vampire-description
       rules: No antagonist restrictions. Just don't talk in emote; you have telepathic chat.
       raffle:

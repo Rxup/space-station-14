@@ -1,4 +1,4 @@
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Body;
 using Content.Shared.Chemistry.EntitySystems;

@@ -1,9 +1,9 @@
-using Content.Server.Backmen.Body.Systems;
 using Content.Server.Popups;
 using Content.Shared.Actions;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
+using Content.Shared.Gibbing;
 using Content.Shared.Guardian;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -31,7 +31,7 @@ namespace Content.Server.Guardian
         [Dependency] private SharedActionsSystem _actionSystem = default!;
         [Dependency] private SharedHandsSystem _handsSystem = default!;
         [Dependency] private SharedAudioSystem _audio = default!;
-        [Dependency] private BkmBodySystem _bodySystem = default!;
+        [Dependency] private GibbingSystem _gibbing = default!;
         [Dependency] private SharedContainerSystem _container = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
 
@@ -130,7 +130,7 @@ namespace Content.Server.Guardian
 
             // Ensure held items are dropped before deleting guardian.
             if (HasComp<HandsComponent>(guardian))
-                _bodySystem.GibBody(component.HostedGuardian.Value);
+                _gibbing.Gib(component.HostedGuardian.Value);
 
             QueueDel(guardian);
             QueueDel(component.ActionEntity);
@@ -263,7 +263,7 @@ namespace Content.Server.Guardian
 
             TryComp<GuardianComponent>(component.HostedGuardian, out var guardianComp);
 
-            if (args.NewMobState is MobState.Critical or MobState.SoftCritical) // backmen edit: Soft crit
+            if (args.NewMobState == MobState.Critical)
             {
                 _popupSystem.PopupEntity(Loc.GetString("guardian-host-critical-warn"), component.HostedGuardian.Value, component.HostedGuardian.Value);
                 if (guardianComp != null)

@@ -1,7 +1,7 @@
 using Content.Server.Antag;
 using Content.Server.Backmen.Vampiric.Objective;
 using Content.Server.Backmen.Vampiric.Role;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;

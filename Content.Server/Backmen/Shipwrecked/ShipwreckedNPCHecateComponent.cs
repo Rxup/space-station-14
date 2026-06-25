@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.NPC.Events;
+using Content.Server.Backmen.NPC.Events;
 using Content.Server.Backmen.NPC.Prototypes;
 
 namespace Content.Server.Backmen.Shipwrecked;

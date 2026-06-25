@@ -1,4 +1,4 @@
-﻿using Content.Shared.Mind;
+using Content.Shared.Mind;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;

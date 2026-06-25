@@ -9,6 +9,7 @@
   - type: BodyPart
     partType: Chest
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Tag
     tags:

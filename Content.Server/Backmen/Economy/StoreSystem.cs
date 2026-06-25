@@ -2,6 +2,7 @@
 
 using Content.Server.Access.Systems;
 using Content.Server.Backmen.Economy;
+using Content.Server.Popups;
 using Content.Server.Store.Components;
 using Content.Server.VendingMachines;
 using Content.Shared.Backmen.Store;
@@ -15,6 +16,7 @@ public sealed partial class StoreSystem
 {
     [Dependency] private BankManagerSystem _bankManagerSystem = default!;
     [Dependency] private IdCardSystem _idCardSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
     [Dependency] private VendingMachineSystem _vendingMachineSystem = default!;
 
     private void _PlayDeny(EntityUid uid)

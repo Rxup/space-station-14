@@ -15,7 +15,7 @@ namespace Content.Client.Stylesheets
         [Dependency] private IReflectionManager _reflection = default!;
 
         [Dependency]
-        private readonly IResourceCache
+        private IResourceCache
             _resCache = default!; // TODO: REMOVE (obsolete; used to construct StyleNano/StyleSpace)
 
         public Stylesheet SheetNanotrasen { get; private set; } = default!;

@@ -73,7 +73,7 @@ public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
         if(args.Handled)
             return;
 
-        if (!(TryComp<DamageableComponent>(args.Target, out var damageable) && damageable.DamageContainerID == "Biological"))
+        if (!(TryComp<InjurableComponent>(args.Target, out var injurable) && injurable.DamageContainer == "Biological"))
             return;
 
         _psionics.LogPowerUsed(args.Performer, "mind swap");
@@ -154,9 +154,6 @@ public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
             return;
 
         if (!HasComp<MindSwappedComponent>(args.Mind.CurrentEntity))
-            return;
-
-        if (!args.ViaCommand)
             return;
 
         args.Result = false;

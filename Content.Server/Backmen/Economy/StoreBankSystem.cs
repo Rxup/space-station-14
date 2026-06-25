@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Store.Components;
 using Content.Server.Store.Conditions;
 using Content.Server.VendingMachines;

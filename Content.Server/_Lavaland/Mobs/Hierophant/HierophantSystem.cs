@@ -140,7 +140,7 @@ public sealed partial class HierophantSystem : EntitySystem
                 comp.AttackTimer = Math.Max(comp.AttackCooldown / comp.CurrentAnger, comp.MinAttackCooldown);
             });
 
-            var newMinAnger = Math.Max((float) (damage.TotalDamage / (_baseHierophantHp * healthMultiplier)) * 2, 0f) + 1f;
+            var newMinAnger = Math.Max((float) (_damage.GetTotalDamage((uid, damage)) / (_baseHierophantHp * healthMultiplier)) * 2, 0f) + 1f;
             ent.Comp.MinAnger = newMinAnger * angerMultiplier;
             AdjustAnger(ent, 0); // Update anger
         }

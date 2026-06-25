@@ -18,6 +18,7 @@
   - type: Icon
     sprite: Objects/Specific/Robotics/cyborg_parts.rsi
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: ContainerContainer
     containers:

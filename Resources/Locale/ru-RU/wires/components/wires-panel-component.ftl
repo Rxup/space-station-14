@@ -1,5 +1,6 @@
 wires-panel-component-on-examine-open = [color=lightgray]Техническая панель[/color] [color=red]открыта[/color].
 wires-panel-component-on-examine-closed = [color=lightgray]Техническая панель[/color] [color=darkgreen]закрыта[/color].
+wires-panel-verb-view-panel = View maintenance panel
 wire-name-color-red = Red
 wire-name-color-blue = Blue
 wire-name-color-green = Green

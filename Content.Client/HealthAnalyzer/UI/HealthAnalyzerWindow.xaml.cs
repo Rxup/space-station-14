@@ -15,6 +15,7 @@ using Content.Shared.Body;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
@@ -44,6 +45,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
         private readonly WoundSystem _wound; // backmen edit
         private readonly TraumaSystem _trauma;
+        private readonly DamageableSystem _damageable;
 
         // Start-backmen: surgery
         public event Action<TargetBodyPart?, EntityUid>? OnBodyPartSelected;
@@ -67,6 +69,7 @@ namespace Content.Client.HealthAnalyzer.UI
             _cache = dependencies.Resolve<IResourceCache>();
             _wound = _entityManager.System<WoundSystem>(); // backmen: wounding
             _trauma = _entityManager.System<TraumaSystem>(); // backmen: traumas
+            _damageable = _entityManager.System<DamageableSystem>();
             // Start-backmen: surgery
             _bodyPartControls = new Dictionary<TargetBodyPart, TextureButton>
             {
@@ -193,13 +196,15 @@ namespace Content.Client.HealthAnalyzer.UI
             if (!usesWoundDamage
                 && _entityManager.TryGetComponent<DamageableComponent>(_target.Value, out var damageable))
             {
-                DamageLabel.Text = damageable.TotalDamage.ToString();
+                var damageEnt = (_target.Value, damageable);
+                DamageLabel.Text = _damageable.GetTotalDamage(damageEnt).ToString();
 
                 var damageSortedGroups =
-                    damageable.DamagePerGroup.OrderByDescending(damage => damage.Value)
-                        .ToDictionary(x => x.Key, x => x.Value);
+                    _damageable.GetDamagePerGroup(damageEnt).OrderByDescending(damage => damage.Value)
+                        .ToDictionary(x => x.Key.Id, x => x.Value);
 
-                IReadOnlyDictionary<string, FixedPoint2> damagePerType = damageable.Damage.DamageDict;
+                var damagePerType = _damageable.GetAllDamage(damageEnt).DamageDict
+                    .ToDictionary(x => x.Key.Id, x => x.Value);
 
                 DrawDiagnosticGroups(damageSortedGroups, damagePerType);
             }

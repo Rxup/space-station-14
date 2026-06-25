@@ -13,6 +13,7 @@ using Content.Server.Temperature.Components;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Body;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
@@ -250,7 +251,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     private void OnColdTempImmunityMutation(EntityUid uid, FleshCultistComponent component,
         FleshCultistColdTempImmunityMutationEvent args)
     {
-        if (TryComp<TemperatureComponent>(uid, out var tempComponent))
+        if (TryComp<TemperatureDamageComponent>(uid, out var tempComponent))
         {
             tempComponent.ColdDamageThreshold = 0;
         }

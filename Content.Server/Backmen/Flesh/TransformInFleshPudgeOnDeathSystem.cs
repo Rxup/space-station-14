@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Popups;

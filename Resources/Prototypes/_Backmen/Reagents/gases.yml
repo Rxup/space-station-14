@@ -6,7 +6,7 @@
   flavor: bitter
   color: "#e69edd"
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:GenericStatusEffect
         key: SeeingRainbows
@@ -64,7 +64,7 @@
   boilingPoint: -183.0
   meltingPoint: -218.4
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:Oxygenate
         factor: 8
@@ -96,16 +96,6 @@
           Pluoxium: -1.0
 
 - type: reagent
-  id: Hydrogen
-  name: reagent-name-hydrogen
-  desc: reagent-desc-hydrogen
-  physicalDesc: reagent-physical-desc-gaseous
-  flavor: bitter
-  color: "#808080"
-  boilingPoint: -253.0
-  meltingPoint: -259.2
-
-- type: reagent
   id: Nitrium
   name: reagent-name-nitrium
   desc: reagent-desc-nitrium
@@ -115,7 +105,7 @@
   boilingPoint: -253.0
   meltingPoint: -259.2
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:MovementSpeedModifier
         conditions:
@@ -170,7 +160,7 @@
   boilingPoint: -253.0
   meltingPoint: -259.2
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:GenericStatusEffect
         conditions:
@@ -223,7 +213,7 @@
   boilingPoint: -253.0
   meltingPoint: -259.2
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         conditions:

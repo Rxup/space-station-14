@@ -73,8 +73,8 @@ public partial class WoundSystem
 
         woundable.RootWoundable = uid;
 
-        if (woundable.DamageContainerID == null && TryComp(uid, out DamageableComponent? damageable))
-            woundable.DamageContainerID = damageable.DamageContainerID; // Insane!!!!!!!!
+        if (woundable.DamageContainerID == null && TryComp<InjurableComponent>(uid, out var injurable))
+            woundable.DamageContainerID = injurable.DamageContainer;
 
         woundable.Wounds = Containers.EnsureContainer<Container>(uid, WoundContainerId);
         woundable.Bone = Containers.EnsureContainer<Container>(uid, BoneContainerId);
@@ -625,7 +625,7 @@ public partial class WoundSystem
 
         var unhandledWounds = damage.DamageDict
                 .Where(damagePiece => actuallyInducedDamage.DamageDict[damagePiece.Key] == 0)
-                .ToDictionary(damagePiece => damagePiece.Key, damagePiece => damagePiece.Value);
+                .ToDictionary(damagePiece => damagePiece.Key.Id, damagePiece => damagePiece.Value);
 
         if (unhandledWounds.Count != 0)
         {

@@ -1,0 +1,11 @@
+ent-OrganBloodsucker = { "" }
+    .suffix = bloodsucker
+    .desc = { "" }
+ent-OrganBloodsuckerStomach = { ent-OrganBloodsucker }
+    .desc = { ent-OrganBloodsucker.desc }
+ent-OrganBloodsuckerLiver = { ent-OrganBloodsucker }
+    .desc = { ent-OrganBloodsucker.desc }
+ent-OrganBloodsuckerHeart = { ent-OrganBloodsucker }
+    .desc = { ent-OrganBloodsucker.desc }
+ent-BaseMobBloodsucker = { "" }
+    .desc = { "" }

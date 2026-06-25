@@ -1,7 +1,5 @@
-using Content.Server.Backmen.Body.Systems;
 using Content.Server.Stack;
-using Content.Shared.Body;
-using Content.Server.Backmen.Body.Systems;
+using Content.Shared.Gibbing;
 using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using Content.Shared.Xenoarchaeology.Equipment;
@@ -15,7 +13,7 @@ namespace Content.Server.Xenoarchaeology.Equipment.Systems;
 public sealed partial class ArtifactCrusherSystem : SharedArtifactCrusherSystem
 {
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private BkmBodySystem _body = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private StackSystem _stack = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
@@ -42,10 +40,7 @@ public sealed partial class ArtifactCrusherSystem : SharedArtifactCrusherSystem
                 }
             }
 
-            if (!TryComp<BodyComponent>(contained, out var body))
-                Del(contained);
-
-            var gibs = _body.GibBody(contained, body: body, gibOrgans: true);
+            var gibs = _gibbing.Gib(contained);
             foreach (var gib in gibs)
             {
                 ContainerSystem.Insert((gib, null, null, null), crusher.OutputContainer);

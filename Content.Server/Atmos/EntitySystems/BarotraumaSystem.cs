@@ -3,38 +3,27 @@ using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Components;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
-using Content.Shared.Backmen.CCVar;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Backmen.Mood;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
-using Content.Shared.Backmen.Targeting;
-using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Atmos.EntitySystems
 {
     public sealed partial class BarotraumaSystem : EntitySystem
     {
-        [Dependency] private IConfigurationManager _cfg = default!;
         [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private DamageableSystem _damageableSystem = default!;
         [Dependency] private AlertsSystem _alertsSystem = default!;
-        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private IAdminLogManager _adminLogger= default!;
         [Dependency] private InventorySystem _inventorySystem = default!;
-        [Dependency] private WoundSystem _wounds = default!; // backmen edit: wounding
 
         private const float UpdateTimer = 1f;
         private float _timer;
 
-        private bool _barotraumaEnabled = true; // Backmen edit
-        private EntityQuery<ConsciousnessComponent>  _consciousnessQuery; // Backmen edit
         public override void Initialize()
         {
             SubscribeLocalEvent<PressureProtectionComponent, GotEquippedEvent>(OnPressureProtectionEquipped);
@@ -44,9 +33,6 @@ namespace Content.Server.Atmos.EntitySystems
 
             SubscribeLocalEvent<PressureImmunityComponent, ComponentInit>(OnPressureImmuneInit);
             SubscribeLocalEvent<PressureImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
-
-            Subs.CVar(_cfg, CCVars.GameBarotraumaEnabled, value => _barotraumaEnabled = value, true); // Backmen edit
-            _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>(); // Backmen edit
         }
 
         private void OnPressureImmuneInit(EntityUid uid, PressureImmunityComponent pressureImmunity, ComponentInit args)
@@ -78,17 +64,17 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void OnPressureProtectionEquipped(EntityUid uid, PressureProtectionComponent pressureProtection, GotEquippedEvent args)
         {
-            if (TryComp<BarotraumaComponent>(args.Equipee, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
+            if (TryComp<BarotraumaComponent>(args.EquipTarget, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
             {
-                UpdateCachedResistances(args.Equipee, barotrauma);
+                UpdateCachedResistances(args.EquipTarget, barotrauma);
             }
         }
 
         private void OnPressureProtectionUnequipped(EntityUid uid, PressureProtectionComponent pressureProtection, GotUnequippedEvent args)
         {
-            if (TryComp<BarotraumaComponent>(args.Equipee, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
+            if (TryComp<BarotraumaComponent>(args.EquipTarget, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
             {
-                UpdateCachedResistances(args.Equipee, barotrauma);
+                UpdateCachedResistances(args.EquipTarget, barotrauma);
             }
         }
 
@@ -214,9 +200,6 @@ namespace Content.Server.Atmos.EntitySystems
 
         public override void Update(float frameTime)
         {
-            if (!_barotraumaEnabled) // backmen edit
-                return;
-
             _timer += frameTime;
 
             if (_timer < UpdateTimer)
@@ -224,29 +207,17 @@ namespace Content.Server.Atmos.EntitySystems
 
             _timer -= UpdateTimer;
 
-            var enumerator = EntityQueryEnumerator<BarotraumaComponent, DamageableComponent, MetaDataComponent>();
-            while (enumerator.MoveNext(out var uid, out var barotrauma, out var damageable, out var meta))
+            var enumerator = EntityQueryEnumerator<BarotraumaComponent, DamageableComponent>();
+            while (enumerator.MoveNext(out var uid, out var barotrauma, out var damageable))
             {
-                // backmen edit: meta check
-                if (Paused(uid, meta))
-                    continue;
-
                 var totalDamage = FixedPoint2.Zero;
-                foreach (var (damageType, _) in barotrauma.Damage.DamageDict)
+                var damageSpecifier = _damageableSystem.GetAllDamage((uid, damageable));
+                foreach (var (barotraumaDamageType, _) in barotrauma.Damage.DamageDict)
                 {
-                    if (!damageable.Damage.DamageDict.TryGetValue(damageType, out var damage))
+                    if (!damageSpecifier.DamageDict.TryGetValue(barotraumaDamageType, out var damage))
                         continue;
-
                     totalDamage += damage;
                 }
-
-                //start-backmen edit: Consciousness woundable damage check
-                if (_consciousnessQuery.HasComp(uid))
-                {
-                    totalDamage = _wounds.GetBodySeverityPoint(uid);
-                }
-                //end-backmen edit: Consciousness woundable damage check
-
                 if (totalDamage >= barotrauma.MaxDamage)
                     continue;
 
@@ -268,19 +239,14 @@ namespace Content.Server.Atmos.EntitySystems
                 if (pressure <= Atmospherics.HazardLowPressure)
                 {
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
-                    _damageableSystem.ChangeDamage(
-                        uid,
-                        barotrauma.Damage * Atmospherics.LowPressureDamage,
-                        true,
-                        false,
-                        partMultiplier: 0.5f,
-                        targetPart: TargetBodyPart.All); // backmen
+                    _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * Atmospherics.LowPressureDamage, true, false);
+
                     if (!barotrauma.TakingDamage)
                     {
                         barotrauma.TakingDamage = true;
                         _adminLogger.Add(LogType.Barotrauma, $"{ToPrettyString(uid):entity} started taking low pressure damage");
                     }
-                    RaiseLocalEvent(uid, new MoodEffectEvent("MobLowPressure")); // backmen: mood
+
                     _alertsSystem.ShowAlert(uid, barotrauma.LowPressureAlert, 2);
                 }
                 else if (pressure >= Atmospherics.HazardHighPressure)
@@ -288,14 +254,7 @@ namespace Content.Server.Atmos.EntitySystems
                     var damageScale = MathF.Min(((pressure / Atmospherics.HazardHighPressure) - 1) * Atmospherics.PressureDamageCoefficient, Atmospherics.MaxHighPressureDamage);
 
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
-                    _damageableSystem.ChangeDamage(
-                        uid,
-                        barotrauma.Damage * damageScale,
-                        true,
-                        false,
-                        partMultiplier: 0.5f,
-                        targetPart: TargetBodyPart.All); // backmen
-                    RaiseLocalEvent(uid, new MoodEffectEvent("MobHighPressure")); // backmen: mood
+                    _damageableSystem.TryChangeDamage(uid, barotrauma.Damage * damageScale, true, false);
 
                     if (!barotrauma.TakingDamage)
                     {

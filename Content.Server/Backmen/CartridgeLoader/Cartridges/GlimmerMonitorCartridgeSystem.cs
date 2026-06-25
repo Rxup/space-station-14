@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.Psionics.Glimmer;
+using Content.Server.Backmen.Psionics.Glimmer;
 using Content.Server.CartridgeLoader;
 using Content.Shared.Backmen.CartridgeLoader.Cartridges;
 using Content.Shared.CartridgeLoader;

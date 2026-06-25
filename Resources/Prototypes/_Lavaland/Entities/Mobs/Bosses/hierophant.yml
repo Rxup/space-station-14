@@ -39,8 +39,9 @@
   - type: MobState
   # Actual boss from here
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Hierophant
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Sprite
     noRot: true
     drawdepth: Mobs

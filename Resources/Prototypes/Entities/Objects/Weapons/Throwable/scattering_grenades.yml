@@ -9,6 +9,7 @@
     containers:
       cluster-payload: !type:Container
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: ScatteringGrenade
   - type: TriggerOnUse

@@ -86,5 +86,7 @@ alerts-rooted-name = Закреплён
 alerts-rooted-desc = Вы прикреплены к земле. Невозможно скользить, но вы поглощаете жидкости под собой.
 alerts-stealthy-name = Кража из карманов
 alerts-stealthy-desc = Вы в процессе кражи из карманов. Щёлкните, чтобы переключить.
+alerts-prying-name = Prying
+alerts-prying-desc = You can innately pry doors open using alternative interaction.
 alerts-changeling-biomass-name = Биомасса
 alerts-changeling-biomass-desc = Это ваше здоровье. Если оно достигнет 0 - это [color=red]конец игры[/color]. Поглощайте гуманоидов, чтобы восстановить часть биомассы.

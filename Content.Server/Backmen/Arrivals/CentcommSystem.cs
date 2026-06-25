@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Server.Backmen.Arrivals.CentComm;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;

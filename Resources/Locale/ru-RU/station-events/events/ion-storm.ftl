@@ -57,6 +57,7 @@ ion-storm-law-drink = { $who } ДОЛЖНЫ ПИТЬ { $adjective } { $drink } �
 ion-storm-law-change-job = { $who } ТЕПЕРЬ { $adjective } { $change }
 ion-storm-law-highest-rank = { $who } ТЕПЕРЬ САМЫЕ СТАРШИЕ ЧЛЕНЫ ЭКИПАЖА
 ion-storm-law-lowest-rank = { $who } ТЕПЕРЬ НИЗШИЕ ЧЛЕНЫ ЭКИПАЖА
+ion-storm-law-who-dagd = { ION-WHO-RANDOM($ion) } MUST DIE A GLORIOUS DEATH!
 ion-storm-law-crew-must = { $who } ДОЛЖНЫ { $must }
 ion-storm-law-crew-must-go = { $who } ДОЛЖНЫ ОТПРАВИТЬСЯ В { $area }
 ion-storm-part =
@@ -78,6 +79,15 @@ ion-storm-law-protect = ВЫ НЕ ДОЛЖНЫ ПРИЧИНЯТЬ ВРЕД { $wh
 # implementing other variants is annoying so just have this one
 # COMMUNISM IS KILLING CLOWNS
 ion-storm-law-concept-verb = { $concept } { $verb } { $subjects }
+# errors, in case something fails, so it doesn't break in-game flow, but still gives unique identifiers to find which part broke, the result string is mostly fluff
+ion-law-error-no-protos = ERROR 404
+ion-law-error-was-null = 500 INTERNAL SERVER ERROR
+ion-law-error-no-selectors = ERROR: RESOURCE COULD NOT BE LOCATED
+ion-law-error-no-available-selectors = SYSTEM TRIED TO CALL A RESOURCE THAT DOES NOT EXIST
+ion-law-error-dataset-empty-or-not-found = THE FILE YOU ARE LOOKING FOR COULD NOT BE FOUND
+ion-law-error-fallback-dataset-empty-or-not-found = SYSTEM RESTORE POINT FAILED
+ion-law-error-no-selector-selected = THE SELECTED RESOURCE WAS MOVED OR DELETED
+ion-law-error-no-bool-value = THIS SENTENCE IS FALSE
 
 # leaving out renaming since its annoying for players to keep track of
 

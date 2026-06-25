@@ -60,8 +60,9 @@
     - type: Familiar
     - type: Dispellable
     - type: Damageable
-      damageContainer: CorporealSpirit
       damageModifierSet: CorporealSpirit
+    - type: Injurable
+      damageContainer: CorporealSpirit
     - type: Speech
       speechSounds: Bass
     - type: Puller

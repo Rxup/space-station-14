@@ -60,7 +60,7 @@ public sealed partial class MassSleepPowerSystem : StatusEffectGrantedPowerSyste
                 _effectsSystem.HasEffectComp<PsionicInsulationComponent>(entity))
                 continue;
 
-            if (!TryComp<DamageableComponent>(entity, out var damageable) || damageable.DamageContainerID != Biological)
+            if (!TryComp<InjurableComponent>(entity, out var injurable) || injurable.DamageContainer != Biological)
                 continue;
 
             var result = _effectsSystem.TryUpdateStatusEffectDuration(entity, StatusEffectForcedSleeping, TimeSpan.FromSeconds(10));

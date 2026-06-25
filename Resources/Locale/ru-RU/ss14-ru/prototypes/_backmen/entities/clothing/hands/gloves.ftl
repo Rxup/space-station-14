@@ -1,3 +1,5 @@
+ent-ClothingHandsGlovesOrdenHands = Gloves of the Elite Squad of the Red Order.
+    .desc = Gloves given to important members of the Red Order. they are inlaid with gold.
 ent-ClothingHandsGlovesmantis = клинки богомола
     .desc = Боевой кибернетический имплант. Клинки исходят из предплечья, что позволяет использовать их как оружие ближнего боя.
 ent-ClothingHandsGlovesSpetsnazcombat = боевые перчатки спецназа
@@ -10,3 +12,7 @@ ent-ActionPhaseDash = фазовый рывок
     .desc = Teleport to anywhere you can see.
 ent-ClothingHandsGlovesTGMCwhite = белые боевые перчатки
     .desc = Эти тактические белые перчатки огнеупорны и ударопрочны.
+ent-ClothingHandsInteQTacticalMaidGloves = tactical maid gloves
+    .desc = Tactical maid gloves, every self-respecting maid should be able to discreetly eliminate her goals.
+ent-ClothingHandsGlovesInteQInfiltrator = infiltrator gloves
+    .desc = Specialized combat gloves for carrying people around. Transfers tactical kidnapping and tackling knowledge to the user via the use of nanochips.

@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.GameTicking.Rules.Components;
+using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.Objectives;
 using Content.Server.Chat.Managers;
 using Content.Server.Mind;

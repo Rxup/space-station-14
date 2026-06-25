@@ -1,4 +1,4 @@
-﻿using Content.Server.Temperature.Components;
+using Content.Server.Temperature.Components;
 using Content.Shared.Backmen.Disease;
 using Robust.Shared.Prototypes;
 

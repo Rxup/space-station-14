@@ -201,15 +201,16 @@ public sealed partial class FootPrintsSystem : EntitySystem
             : comp.PrintsColor.WithAlpha(newAlpha);
         comp.StepPos = transform.LocalPosition;
 
-        if (!TryComp<SolutionContainerManagerComponent>(entity, out var solutionContainer)
-            || !_solutionSystem.ResolveSolution((entity, solutionContainer),
+        if (!TryComp<SolutionManagerComponent>(entity, out _)
+            || !_solutionSystem.ResolveSolution(entity,
                 footPrintComponent.SolutionName,
                 ref footPrintComponent.Solution,
                 out var solution)
-            || string.IsNullOrWhiteSpace(comp.ReagentToTransfer) || solution.Volume >= 1)
+            || string.IsNullOrWhiteSpace(comp.ReagentToTransfer) || solution.Volume >= 1
+            || footPrintComponent.Solution is not { } solutionUid)
             return;
 
-        _solutionSystem.TryAddReagent(footPrintComponent.Solution.Value, comp.ReagentToTransfer, 1, out _);
+        _solutionSystem.TryAddReagent(solutionUid, comp.ReagentToTransfer, 1, out _);
     }
 
     private EntityCoordinates CalcCoords(EntityUid uid,

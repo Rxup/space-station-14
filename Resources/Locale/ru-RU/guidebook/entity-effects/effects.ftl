@@ -87,10 +87,9 @@ entity-effect-guidebook-health-change =
                *[both] изменяет здоровье на
             }
     } { $changes } { $targetPart ->
-       [All]{""}
-       *[other]  на {$targetPart}
+        [All] { "" }
+       *[other] на { $targetPart }
     }
-
 entity-effect-guidebook-even-health-change =
     { $chance ->
         [1]
@@ -106,10 +105,9 @@ entity-effect-guidebook-even-health-change =
                *[both] равномерно изменяет здоровье на
             }
     } { $changes } { $targetPart ->
-       [All]{""}
-       *[other]  на {$targetPart}
+        [All] { "" }
+       *[other] на { $targetPart }
     }
-
 entity-effect-guidebook-status-effect-old =
     { $type ->
         [update]
@@ -468,6 +466,11 @@ entity-effect-guidebook-plant-phalanximine =
         [1] Восстанавливает
        *[other] восстанавливает
     } жизнеспособность растению, ставшему нежизнеспособным из-за мутации
+entity-effect-guidebook-plant-remove-kudzu =
+    { $chance ->
+        [1] Removes
+       *[other] remove
+    } kudzu weed growth from a plant
 entity-effect-guidebook-plant-diethylamine =
     { $chance ->
         [1] Увеличивает

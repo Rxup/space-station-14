@@ -1,5 +1,5 @@
 using System.Linq;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Shared.Backmen.CCVar;
@@ -538,7 +538,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
     /// <returns>Damage applied in the same convention as <see cref="DamageSpecifier"/> (negative = heal).</returns>
     private FixedPoint2 TryApplyAsphyxiationChange(
         Entity<ConsciousnessComponent> consciousness,
-        KeyValuePair<string, FixedPoint2> damagePair)
+        KeyValuePair<ProtoId<DamageTypePrototype>, FixedPoint2> damagePair)
     {
         if (damagePair.Key != AsphyxiationDamageType)
             return FixedPoint2.Zero;
@@ -684,17 +684,17 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
     /// </remarks>
     private void ApplyInitialPrototypeDamage(EntityUid uid)
     {
-        if (!TryComp<DamageableComponent>(uid, out var damageable) || damageable.TotalDamage <= 0)
+        if (!TryComp<DamageableComponent>(uid, out var damageable) || _damageable.GetTotalDamage((uid, damageable)) <= 0)
             return;
 
         if (ConsciousnessQuery.TryComp(uid, out var consciousness))
         {
-            foreach (var (type, amount) in damageable.Damage.DamageDict)
+            foreach (var (type, amount) in _damageable.GetAllDamage((uid, damageable)).DamageDict)
             {
                 if (amount <= 0)
                     continue;
 
-                TryApplyAsphyxiationChange((uid, consciousness), new KeyValuePair<string, FixedPoint2>(type, amount));
+                TryApplyAsphyxiationChange((uid, consciousness), new KeyValuePair<ProtoId<DamageTypePrototype>, FixedPoint2>(type, amount));
             }
         }
 

@@ -298,8 +298,9 @@
   suffix: Golem Cult
   components:
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Sprite
     sprite: Backmen/Mobs/Species/Golem/cult.rsi
 
@@ -421,8 +422,9 @@
   suffix: IPC
   components:
   - type: Damageable
-    damageContainer: Silicon
     damageModifierSet: IPC
+  - type: Injurable
+    damageContainer: Silicon
   - type: Sprite
     sprite: _Shitmed/Mobs/Species/IPC/parts.rsi
 
@@ -540,9 +542,10 @@
   suffix: Drone
   components:
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
 
+  - type: Injurable
+    damageContainer: Inorganic
 - type: entity
   parent: [ OrganBase, OrganSurgeryTorso, OrganDrone ]
   id: OrganDroneTorso

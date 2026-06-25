@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.Movement.Systems;
 using Content.Shared.Item.Optic;

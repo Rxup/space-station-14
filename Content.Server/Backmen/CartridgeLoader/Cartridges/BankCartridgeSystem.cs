@@ -1,4 +1,4 @@
-﻿using Content.Server.CartridgeLoader;
+using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Managers;
 using Content.Server.PDA.Ringer;
 using Content.Server.Popups;

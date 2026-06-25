@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Backmen.Arrivals.CentComm;
+namespace Content.Server.Backmen.Arrivals.CentComm;
 
 public sealed class CentCommEvent(EntityUid station,CentComEventId eventId) : HandledEntityEventArgs
 {

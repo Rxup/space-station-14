@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Laundry;
+using Content.Shared.Backmen.Laundry;
 using Content.Shared.Destructible;
 using Content.Shared.Storage;
 using Robust.Shared.Containers;

@@ -1,0 +1,10 @@
+ent-AnomalyInjectionToxic = { ent-AnomalyInjectionBase }
+    .desc = { ent-AnomalyInjectionBase.desc }
+ent-AnomalyInjectionHealing = { ent-AnomalyInjectionBase }
+    .desc = { ent-AnomalyInjectionBase.desc }
+ent-AnomalyInjectionStasis = { ent-AnomalyInjectionBase }
+    .desc = { ent-AnomalyInjectionBase.desc }
+ent-AnomalyInjectionPoison = { ent-AnomalyInjectionBase }
+    .desc = { ent-AnomalyInjectionBase.desc }
+ent-AnomalyInjectionVoid = { ent-AnomalyInjectionBase }
+    .desc = { ent-AnomalyInjectionBase.desc }

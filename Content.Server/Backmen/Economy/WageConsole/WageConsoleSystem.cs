@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Backmen.Economy.Wage;
 using Content.Server.Backmen.RoleWhitelist;

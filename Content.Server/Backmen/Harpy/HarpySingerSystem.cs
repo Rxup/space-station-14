@@ -60,7 +60,7 @@ namespace Content.Server.Backmen.Harpy
                 accent.ReplacementPrototype == "mumble" &&
                 args.Slot == "mask")
             {
-                CloseMidiUi(args.Equipee);
+                CloseMidiUi(args.EquipTarget);
             }
         }
 

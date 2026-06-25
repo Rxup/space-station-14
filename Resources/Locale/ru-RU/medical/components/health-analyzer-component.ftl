@@ -22,7 +22,6 @@ health-analyzer-window-scan-mode-text = Режим сканирования:
 health-analyzer-window-scan-mode-active = АКТИВЕН
 health-analyzer-window-scan-mode-inactive = НЕАКТИВЕН
 health-analyzer-window-malnutrition = Тяжёлое недоедание
-
 health-analyzer-window-pain-causes-text = Причины боли:
 health-analyzer-window-tab-nerve-system-pain = Нервная система
 health-analyzer-window-tab-body-pain-causes = Причины боли тела
@@ -40,7 +39,5 @@ health-analyzer-window-pain-cause-death-threshold = Состояние близ�
 health-analyzer-window-pain-cause-suicide = Самоповреждение
 # backmen: organ-damage
 health-analyzer-window-pain-cause-organ-damage = Повреждение органов
-
 health-analyzer-window-pain-help-button = Помощь
-
 health-analyzer-popup-scan-target = { CAPITALIZE($user) } пытается просканировать вас!

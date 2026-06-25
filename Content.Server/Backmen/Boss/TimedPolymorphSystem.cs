@@ -1,4 +1,4 @@
-﻿using Content.Server.NPC.HTN;
+using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks.Operators;
 using Content.Server.Polymorph.Systems;
 using Content.Shared.CombatMode;

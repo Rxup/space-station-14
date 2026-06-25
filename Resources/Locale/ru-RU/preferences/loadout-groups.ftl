@@ -166,6 +166,8 @@ loadout-group-paramedic-head = Головной убор
 loadout-group-paramedic-jumpsuit = Униформа
 loadout-group-paramedic-outerclothing = Верхняя одежда
 loadout-group-paramedic-shoes = Ботинки
+loadout-group-reporter-head = Reporter hat
+loadout-group-reporter-outerclothing = Reporter vest
 loadout-group-medical-glasses = Очки
 # Wildcards
 loadout-group-reporter-jumpsuit = Униформа

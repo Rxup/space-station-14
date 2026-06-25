@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Backmen.Blob.Components;

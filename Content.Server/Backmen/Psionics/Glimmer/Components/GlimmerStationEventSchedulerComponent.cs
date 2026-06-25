@@ -1,4 +1,4 @@
-﻿using Content.Server.StationEvents;
+using Content.Server.StationEvents;
 using Content.Server.StationEvents.Components;
 using Content.Shared.EntityTable.EntitySelectors;
 

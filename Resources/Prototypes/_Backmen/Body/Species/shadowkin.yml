@@ -105,8 +105,9 @@
       types:
         Heat: 0.75
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Shadowkin
+  - type: Injurable
+    damageContainer: Biological
   - type: Barotrauma
     damage:
       types:
@@ -119,10 +120,11 @@
       types:
         Bloodloss: -0.25
   - type: Temperature
-    heatDamageThreshold: 330
-    coldDamageThreshold: 195
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage
+    heatDamageThreshold: 330
+    coldDamageThreshold: 195
     coldDamage:
       types:
         Cold: 0.05

@@ -1,5 +1,7 @@
 lobby-state-background-warden-title = Надзиратель
 lobby-state-background-warden-artist = Solbusaur
+lobby-state-background-invisiblewall-title = Invisible Wall
+lobby-state-background-invisiblewall-artist = Vandersloot
 lobby-state-background-pharmacy-title = Аптека
 lobby-state-background-pharmacy-artist = Solbusaur
 lobby-state-background-SSXIV-title = SSXIV

@@ -13,7 +13,6 @@ namespace Content.IntegrationTests.Tests.Body;
 public sealed class HandOrganTest : GameTest
 {
     public override PoolSettings PoolSettings => PsDisconnected;
-
     [TestPrototypes]
     private const string Prototypes = @"
 - type: entity

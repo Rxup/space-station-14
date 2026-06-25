@@ -71,8 +71,9 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Damageable
-    damageContainer: Spirit
     damageModifierSet: Spirit
+  - type: Injurable
+    damageContainer: Spirit
   - type: Actions
   - type: Alerts
   - type: CombatMode

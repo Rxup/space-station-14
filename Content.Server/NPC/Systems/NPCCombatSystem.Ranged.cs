@@ -4,7 +4,6 @@ using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Wieldable.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 
@@ -15,11 +14,11 @@ public sealed partial class NPCCombatSystem
     [Dependency] private SharedCombatModeSystem _combat = default!;
     [Dependency] private RotateToFaceSystem _rotate = default!;
 
-    private EntityQuery<CombatModeComponent> _combatQuery;
-    private EntityQuery<NPCSteeringComponent> _steeringQuery;
-    private EntityQuery<RechargeBasicEntityAmmoComponent> _rechargeQuery;
-    private EntityQuery<PhysicsComponent> _physicsQuery;
-    private EntityQuery<TransformComponent> _xformQuery;
+    [Dependency] private EntityQuery<CombatModeComponent> _combatQuery = default!;
+    [Dependency] private EntityQuery<NPCSteeringComponent> _steeringQuery = default!;
+    [Dependency] private EntityQuery<RechargeBasicEntityAmmoComponent> _rechargeQuery = default!;
+    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
 
     // TODO: Don't predict for hitscan
     private const float ShootSpeed = 20f;
@@ -31,12 +30,6 @@ public sealed partial class NPCCombatSystem
 
     private void InitializeRanged()
     {
-        _combatQuery = GetEntityQuery<CombatModeComponent>();
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        _rechargeQuery = GetEntityQuery<RechargeBasicEntityAmmoComponent>();
-        _steeringQuery = GetEntityQuery<NPCSteeringComponent>();
-        _xformQuery = GetEntityQuery<TransformComponent>();
-
         SubscribeLocalEvent<NPCRangedCombatComponent, ComponentStartup>(OnRangedStartup);
         SubscribeLocalEvent<NPCRangedCombatComponent, ComponentShutdown>(OnRangedShutdown);
     }
@@ -97,7 +90,7 @@ public sealed partial class NPCCombatSystem
                 _combat.SetInCombatMode(uid, true, combatMode);
             }
 
-            if (!_gun.TryGetGun(uid, out var gunUid, out var gun))
+            if (!_gun.TryGetGun(uid, out var gun))
             {
                 comp.Status = CombatStatus.NoWeapon;
                 comp.ShootAccumulator = 0f;
@@ -105,12 +98,12 @@ public sealed partial class NPCCombatSystem
             }
 
             var ammoEv = new GetAmmoCountEvent();
-            RaiseLocalEvent(gunUid, ref ammoEv);
+            RaiseLocalEvent(gun, ref ammoEv);
 
             if (ammoEv.Count == 0)
             {
                 // Recharging then?
-                if (_rechargeQuery.HasComponent(gunUid))
+                if (_rechargeQuery.HasComponent(gun))
                 {
                     continue;
                 }
@@ -180,30 +173,10 @@ public sealed partial class NPCCombatSystem
             // TODO: LOS
             // TODO: Ammo checks
             // TODO: Burst fire
+            // TODO: Cycling
             // Max rotation speed
 
             // TODO: Check if we can face
-
-            // Chambered guns spawn with an open bolt; close it before shooting.
-            if (TryComp<ChamberMagazineAmmoProviderComponent>(gunUid, out var chamber)
-                && chamber.BoltClosed == false)
-            {
-                _gun.SetBoltClosed(gunUid, chamber, true, uid);
-            }
-
-            // Two-handed weapons must be wielded before shooting.
-            if (TryComp<WieldableComponent>(gunUid, out var wieldable) && !wieldable.Wielded)
-            {
-                if (HasComp<GunRequiresWieldComponent>(gunUid)
-                    && !_wield.CanWield(gunUid, wieldable, uid, quiet: true))
-                {
-                    comp.Status = CombatStatus.Unspecified;
-                    comp.ShootAccumulator = 0f;
-                    continue;
-                }
-
-                _wield.TryWield(gunUid, wieldable, uid);
-            }
 
             if (!Enabled || !_gun.CanShoot(gun))
                 continue;
@@ -221,13 +194,12 @@ public sealed partial class NPCCombatSystem
 
             comp.Status = CombatStatus.Normal;
 
-            if (gun.NextFire > _timing.CurTime)
+            if (gun.Comp.NextFire > _timing.CurTime)
             {
                 return;
             }
 
-            //_gun.SetTarget(gun, comp.Target); // backmen: Laying System
-            _gun.AttemptShoot(uid, gunUid, gun, targetCordinates, comp.Target);
+            _gun.AttemptShoot(uid, gun, targetCordinates, comp.Target);
         }
     }
 }

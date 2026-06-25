@@ -13,7 +13,7 @@ using Robust.Shared.Random; // backmen: whitelist
 
 namespace Content.Server.Whitelist;
 
-[AdminCommand(AdminFlags.WhiteList)]
+[AdminCommand(AdminFlags.Ban)]
 public sealed partial class AddWhitelistCommand : LocalizedCommands
 {
     [Dependency] private IPlayerLocator _locator = default!;
@@ -64,7 +64,7 @@ public sealed partial class AddWhitelistCommand : LocalizedCommands
     }
 }
 
-[AdminCommand(AdminFlags.WhiteList)]
+[AdminCommand(AdminFlags.Ban)]
 public sealed partial class RemoveWhitelistCommand : LocalizedCommands
 {
     [Dependency] private IPlayerLocator _locator = default!;
@@ -116,7 +116,7 @@ public sealed partial class RemoveWhitelistCommand : LocalizedCommands
     }
 }
 
-[AdminCommand(AdminFlags.Host)]
+[AdminCommand(AdminFlags.Ban)]
 public sealed partial class KickNonWhitelistedCommand : LocalizedCommands
 {
     [Dependency] private IConfigurationManager _configManager = default!;

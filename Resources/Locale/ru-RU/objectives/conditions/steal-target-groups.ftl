@@ -24,6 +24,7 @@ steal-target-groups-mail = почта
 steal-target-groups-id-cards = ID-карты
 steal-target-groups-officer-handguns = пистолет офицера охраны
 steal-target-groups-lamps = лампы
+steal-target-groups-huds = HUD
 # Thief single item
 steal-target-groups-forensic-scanner = криминалистический сканер
 steal-target-groups-flippo-engraved-lighter = гравированная зажигалка флиппо детектива

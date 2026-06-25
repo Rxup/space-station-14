@@ -21,6 +21,7 @@ public sealed class BkmSurgeryDestructibleSystem : EntitySystem
     public static readonly FixedPoint2 SurgeryGibTotalDamage = 1000;
 
     [Dependency] private readonly DestructibleSystem _destructible = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly WoundSystem _wound = default!;
 
     public override void Initialize()
@@ -85,7 +86,7 @@ public sealed class BkmSurgeryDestructibleSystem : EntitySystem
             accumulated = tracker.AccumulatedDamage;
 
         if (TryComp<DamageableComponent>(body, out var damageable))
-            accumulated = FixedPoint2.Max(accumulated, damageable.TotalDamage);
+            accumulated = FixedPoint2.Max(accumulated, _damageable.GetTotalDamage((body, damageable)));
 
         return FixedPoint2.Max(accumulated, woundSeverity);
     }

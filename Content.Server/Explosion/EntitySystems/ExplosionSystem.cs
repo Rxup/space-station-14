@@ -122,7 +122,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         _bodyQuery = GetEntityQuery<BodyComponent>(); // backmen edit
         _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>(); // backmen edit
         _tileHistoryQuery = GetEntityQuery<TileHistoryComponent>();
-
         _prototypeManager.PrototypesReloaded += ReloadExplosionPrototypes;
     }
 

@@ -26,7 +26,7 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Server.Buckle.Systems;
 using Content.Server.Popups;
 using Content.Server.DoAfter;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Backmen.Vampiric;
 using Content.Server.Speech.Components;
 using Content.Shared.Backmen.Abilities;

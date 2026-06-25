@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Backmen.Abilities.Felinid;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.Ghost.Roles.Events;

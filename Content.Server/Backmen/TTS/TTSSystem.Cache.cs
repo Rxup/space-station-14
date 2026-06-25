@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Content.Shared.Corvax.TTS;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Utility;

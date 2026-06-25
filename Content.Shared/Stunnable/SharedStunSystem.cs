@@ -37,7 +37,6 @@ public abstract partial class SharedStunSystem : EntitySystem
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private StandingStateSystem _standingState = default!;
     [Dependency] private SharedLayingDownSystem _layingDown = default!; // Backmen edit
 
     /// <summary>
@@ -404,14 +403,14 @@ public abstract partial class SharedStunSystem : EntitySystem
     private void OnEquipAttempt(EntityUid uid, StunnedComponent stunned, IsEquippingAttemptEvent args)
     {
         // is this a self-equip, or are they being stripped?
-        if (args.Equipee == uid)
+        if (args.User == uid)
             args.Cancel();
     }
 
     private void OnUnequipAttempt(EntityUid uid, StunnedComponent stunned, IsUnequippingAttemptEvent args)
     {
         // is this a self-equip, or are they being stripped?
-        if (args.Unequipee == uid)
+        if (args.User == uid)
             args.Cancel();
     }
 

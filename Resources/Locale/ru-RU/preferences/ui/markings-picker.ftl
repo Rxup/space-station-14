@@ -1,6 +1,14 @@
 markings-used = Используемые черты
+-markings-selection =
+    { $selectable ->
+        [0] You have no markings remaining.
+        [one] You can select one more marking.
+       *[other] You can select { $selectable } more markings.
+    }
 markings-unused = Неиспользуемые черты
 markings-add = Добавить черту
+humanoid-marking-modifier-respect-limits = Respect limits
+humanoid-marking-modifier-respect-group-sex = Respect group & sex restrictions
 markings-remove = Убрать черту
 markings-rank-up = Вверх
 markings-rank-down = Вниз
@@ -34,7 +42,6 @@ markings-category-Arms = Руки
 markings-category-Legs = Ноги
 markings-category-Tail = Хвост
 markings-category-Overlay = Наложение
-
 markings-organ-Torso = Туловище
 markings-organ-Head = Голова
 markings-organ-ArmLeft = Левая рука
@@ -46,7 +53,6 @@ markings-organ-LegRight = Правая нога
 markings-organ-FootLeft = Левая стопа
 markings-organ-FootRight = Правая стопа
 markings-organ-Eyes = Глаза
-
 markings-layer-Special = Особое
 markings-layer-Tail = Хвост
 markings-layer-Tail-Moth = Крылья

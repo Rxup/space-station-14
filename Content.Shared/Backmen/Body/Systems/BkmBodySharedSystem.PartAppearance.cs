@@ -52,6 +52,6 @@ public partial class BkmBodySharedSystem
             return false;
 
         return visualMarkings.Markings.TryGetValue(category, out var layerMarkings)
-            && layerMarkings.Any(m => m.MarkingId.Contains(matchString));
+            && layerMarkings.Any(m => m.MarkingId.Id.Contains(matchString));
     }
 }

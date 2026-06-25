@@ -47,7 +47,7 @@ public sealed class DetachedBodyDamageTest : GameTest
             var created = new BkmDetachedBodyCreatedEvent(bundle, bundle, BkmDetachContext.Surgery);
             entMan.EventBus.RaiseLocalEvent(bundle, ref created);
 
-            var damage = new DamageSpecifier { DamageDict = new Dictionary<string, FixedPoint2> { { "Blunt", 9999 } } };
+            var damage = new DamageSpecifier { DamageDict = { ["Blunt"] = FixedPoint2.New(9999) } };
             damageableSys.TryChangeDamage(bundle, damage, ignoreResistances: true);
 
             netFoot = entMan.GetNetEntity(foot);
@@ -102,7 +102,7 @@ public sealed class DetachedBodyDamageTest : GameTest
             var created = new BkmDetachedBodyCreatedEvent(bundle, bundle, BkmDetachContext.Surgery);
             entMan.EventBus.RaiseLocalEvent(bundle, ref created);
 
-            var damage = new DamageSpecifier { DamageDict = new Dictionary<string, FixedPoint2> { { "Blunt", 9999 } } };
+            var damage = new DamageSpecifier { DamageDict = { ["Blunt"] = FixedPoint2.New(9999) } };
             damageableSys.TryChangeDamage(bundle, damage, ignoreResistances: true);
 
             netBrain = entMan.GetNetEntity(brain);
@@ -120,7 +120,7 @@ public sealed class DetachedBodyDamageTest : GameTest
             Assert.That(entMan.HasComponent<BkmDetachedBrainProtectionComponent>(brain), Is.True);
             Assert.That(entMan.HasComponent<RottingComponent>(brain), Is.False);
 
-            var heat = new DamageSpecifier { DamageDict = new Dictionary<string, FixedPoint2> { { "Heat", 500 } } };
+            var heat = new DamageSpecifier { DamageDict = { ["Heat"] = FixedPoint2.New(500) } };
             damageableSys.TryChangeDamage(brain, heat, ignoreResistances: true);
 
             Assert.That(entMan.EntityExists(brain), Is.True, "Ejected brain should be immune to damage.");
@@ -188,7 +188,7 @@ public sealed class DetachedBodyDamageTest : GameTest
             entMan.DeleteEntity(head);
             entMan.GetComponent<BkmDetachedBodyComponent>(bundle).RootOrgan = null;
 
-            var damage = new DamageSpecifier { DamageDict = new Dictionary<string, FixedPoint2> { { "Blunt", 100 } } };
+            var damage = new DamageSpecifier { DamageDict = { ["Blunt"] = FixedPoint2.New(100) } };
             damageableSys.TryChangeDamage(bundle, damage, ignoreResistances: true);
 
             netBrain = entMan.GetNetEntity(brain);

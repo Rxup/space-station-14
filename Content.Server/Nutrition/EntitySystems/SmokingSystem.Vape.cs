@@ -2,7 +2,7 @@ using Content.Server.DoAfter;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Nutrition.Components;
 using Content.Server.Popups;
-using Content.Shared.Body;
+using Content.Shared.Body.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
@@ -10,7 +10,6 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Nutrition;
-using Content.Shared.Atmos;
 using Content.Shared.Nutrition.EntitySystems;
 
 /// <summary>
@@ -43,7 +42,7 @@ namespace Content.Server.Nutrition.EntitySystems
             if (!args.CanReach
                 || !_solutionContainerSystem.TryGetRefillableSolution(entity.Owner, out _, out var solution)
                 || !HasComp<BloodstreamComponent>(args.Target)
-                || !_ingestion.HasMouthAvailable(args.Target.Value, args.User)
+                || !_ingestion.HasMouthAvailable(args.User, args.Target.Value)
                 )
             {
                 return;

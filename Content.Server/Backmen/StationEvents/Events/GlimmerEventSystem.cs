@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.StationEvents.Components;
+using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.GameTicking.Components;

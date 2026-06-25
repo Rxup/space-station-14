@@ -104,6 +104,8 @@ ui-options-vp-low-res = Изображение низкого разрешени
 ui-options-parallax-low-quality = Низкокачественный параллакс (фон)
 ui-options-fps-counter = Показать счётчик FPS
 ui-options-vp-width = Ширина окна игры:
+ui-options-hold-to-attack-melee = Hold to attack (melee)
+ui-options-hold-to-attack-ranged = Hold to attack (ranged)
 ui-options-hud-layout = Тип HUD:
 
 ## Controls menu
@@ -345,6 +347,7 @@ ui-options-net-pvs-entry-tooltip =
     Ограничение частоты отправки новых видимых сущностей сервером на клиент.
     Снижение этого параметра может помочь уменьшить "захлёбывания",
     вызываемые спавном сущностей, но может привести к их резкому появлению.
+ui-options-disable-ai-static = Disable the static effect on the AI camera overlay
 ui-options-net-pvs-leave = Частота удаления PVS
 ui-options-net-pvs-leave-tooltip =
     Ограничение частоты, с которой клиент будет удалять
@@ -385,6 +388,8 @@ ui-options-admin-player-tab-color-setting-roletype = Окрашивать рол
 ui-options-admin-player-tab-color-setting-both = Окрашивать оба
 ui-options-admin-overlay-title = Админ оверлей
 ui-options-admin-overlay-antag-format = Стиль иконки антагониста
+ui-options-admin-strip-overlay-title = Strip Overlay
+ui-options-admin-strip-overlay-setting = Show strip overlay by default
 ui-options-admin-overlay-antag-format-binary = Показывать статус антагониста
 ui-options-admin-overlay-antag-format-roletype = Показать тип роли
 ui-options-admin-overlay-antag-format-subtype = Показать субтип роли

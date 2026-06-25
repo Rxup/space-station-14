@@ -39,6 +39,7 @@ public sealed partial class MoodSystem : EntitySystem
     [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private SharedJetpackSystem _jetpack = default!;
     [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private IChatManager _chat = default!;
@@ -574,7 +575,7 @@ public sealed partial class MoodSystem : EntitySystem
         if(!_enabled)
             return;
 
-        if (!_mobThreshold.TryGetPercentageForState(uid, MobState.Critical, args.Damageable.TotalDamage, out var damage))
+        if (!_mobThreshold.TryGetPercentageForState(uid, MobState.Critical, _damageable.GetTotalDamage((uid, args.Damageable)), out var damage))
             return;
 
         var protoId = "HealthNoDamage";

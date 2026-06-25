@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Backmen.Abilities.Psionics;
 using Content.Server.Backmen.Psionics;
 using Content.Server.Backmen.StationEvents.Components;

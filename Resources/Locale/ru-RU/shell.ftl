@@ -12,6 +12,7 @@ shell-cannot-run-command-from-server = Вы не можете выполнить
 shell-only-players-can-run-this-command = Только игроки могут выполнять эту команду.
 shell-must-be-attached-to-entity = Для выполнения этой команды вы должны быть прикреплены к сущности.
 shell-must-have-body = У вас должен быть корпус, чтобы выполнить эту команду.
+shell-unknown-error = An unknown error has occured.
 
 ## Arguments
 

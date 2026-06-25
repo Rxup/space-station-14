@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Backmen.Item.Optic;
+namespace Content.Server.Backmen.Item.Optic;
 
 [RegisterComponent]
 public sealed partial class OpticZoomEffectComponent : Component

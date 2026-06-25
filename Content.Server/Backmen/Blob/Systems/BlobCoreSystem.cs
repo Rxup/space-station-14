@@ -195,7 +195,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
         if (!TryComp<DamageableComponent>(core.Owner, out var damageComp))
             return;
 
-        var currentHealth = component.CoreBlobTotalHealth - damageComp.TotalDamage;
+        var currentHealth = component.CoreBlobTotalHealth - _damageable.GetTotalDamage((core.Owner, damageComp));
         var healthSeverity = (short) Math.Clamp(Math.Round(currentHealth.Float() / 20f), 0, 20);
 
         _alerts.ShowAlert(component.Observer.Value, BlobHealth, healthSeverity);
@@ -524,7 +524,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
                 if(stationUid != null)
                     _alertLevelSystem.SetLevel(stationUid.Value, "green", true, true, true);
 
-                _roundEndSystem.CancelRoundEndCountdown(null, false);
+                _roundEndSystem.CancelRoundEndCountdown(forceRecall: false);
                 blobRuleComp.Stage = BlobStage.Default;
             }
         }

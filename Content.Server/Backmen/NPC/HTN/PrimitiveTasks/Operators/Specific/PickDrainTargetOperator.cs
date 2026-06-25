@@ -1,4 +1,4 @@
-﻿using System.Threading;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Backmen.Psionics.NPC.GlimmerWisp;
 using Content.Server.NPC;

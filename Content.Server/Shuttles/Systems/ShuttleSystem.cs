@@ -9,6 +9,7 @@ using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Gibbing;
 using Content.Shared.Light.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Salvage;
@@ -45,6 +46,7 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private BkmBodySystem _bobby = default!;
     [Dependency] private BuckleSystem _buckle = default!;
     [Dependency] private DamageableSystem _damageSys = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private DockingSystem _dockSystem = default!;
     [Dependency] private DungeonSystem _dungeon = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
@@ -64,19 +66,13 @@ public sealed partial class ShuttleSystem : SharedShuttleSystem
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
     [Dependency] private TurfSystem _turf = default!;
 
-    private EntityQuery<BuckleComponent> _buckleQuery;
-    private EntityQuery<MapGridComponent> _gridQuery;
-    private EntityQuery<PhysicsComponent> _physicsQuery;
-    private EntityQuery<TransformComponent> _xformQuery;
+    [Dependency] private EntityQuery<BuckleComponent> _buckleQuery = default!;
+    [Dependency] private EntityQuery<MapGridComponent> _gridQuery = default!;
+    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _buckleQuery = GetEntityQuery<BuckleComponent>();
-        _gridQuery = GetEntityQuery<MapGridComponent>();
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        _xformQuery = GetEntityQuery<TransformComponent>();
 
         InitializeFTL();
         InitializeGridFills();

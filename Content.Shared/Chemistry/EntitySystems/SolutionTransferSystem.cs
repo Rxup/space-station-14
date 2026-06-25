@@ -23,13 +23,14 @@ public sealed partial class SolutionTransferSystem : EntitySystem
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
 
-    private EntityQuery<RefillableSolutionComponent> _refillableQuery;
-    private EntityQuery<DrainableSolutionComponent> _drainableQuery;
+    [Dependency] private EntityQuery<RefillableSolutionComponent> _refillableQuery = default!;
+    [Dependency] private EntityQuery<DrainableSolutionComponent> _drainableQuery = default!;
 
     /// <summary>
     ///     Default transfer amounts for the set-transfer verb.
     /// </summary>
-    public static readonly FixedPoint2[] DefaultTransferAmounts = new FixedPoint2[] { 1, 5, 10, 25, 50, 100, 250, 500, 1000 };
+    /// TODO: Turn this into a prototype just like with injectors.
+    public static readonly FixedPoint2[] DefaultTransferAmounts = new FixedPoint2[] { 1, 5, 10, 15, 30, 60, 120, 240, 480, 960 };
 
     public override void Initialize()
     {
@@ -40,9 +41,6 @@ public sealed partial class SolutionTransferSystem : EntitySystem
         SubscribeLocalEvent<SolutionTransferComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<SolutionTransferComponent, SolutionDrainTransferDoAfterEvent>(OnSolutionDrainTransferDoAfter);
         SubscribeLocalEvent<SolutionTransferComponent, SolutionRefillTransferDoAfterEvent>(OnSolutionFillTransferDoAfter);
-
-        _refillableQuery = GetEntityQuery<RefillableSolutionComponent>();
-        _drainableQuery = GetEntityQuery<DrainableSolutionComponent>();
     }
 
     private void AddSetTransferVerbs(Entity<SolutionTransferComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
@@ -99,7 +97,7 @@ public sealed partial class SolutionTransferSystem : EntitySystem
         ent.Comp.TransferAmount = newTransferAmount;
 
         if (message.Actor is { Valid: true } user)
-            _popup.PopupEntity(Loc.GetString("comp-solution-transfer-set-amount", ("amount", newTransferAmount)), ent.Owner, user);
+            _popup.PopupClient(Loc.GetString("comp-solution-transfer-set-amount", ("amount", newTransferAmount)), ent.Owner, user);
 
         Dirty(ent.Owner, ent.Comp);
     }

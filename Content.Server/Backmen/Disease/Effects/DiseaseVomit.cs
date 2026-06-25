@@ -1,4 +1,4 @@
-﻿using Content.Server.Medical;
+using Content.Server.Medical;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Medical;
 using JetBrains.Annotations;

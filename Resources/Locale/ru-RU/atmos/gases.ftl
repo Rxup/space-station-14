@@ -1,11 +1,20 @@
+gas-oxygen = Oxygen
 gas-ammonia-abbreviation = NH₃
+gas-nitrogen = Nitrogen
 gas-carbon-dioxide-abbreviation = CO₂
+gas-carbon-dioxide = Carbon Dioxide
 gas-frezon-abbreviation = Fr # backmen change
+gas-plasma = Plasma
 gas-nitrogen-abbreviation = N₂
+gas-tritium = Tritium
 gas-nitrous-oxide-abbreviation = N₂O
+gas-water-vapor = Water Vapor
 gas-oxygen-abbreviation = O₂
+gas-ammonia = Ammonia
 gas-plasma-abbreviation = Pl # backmen change
+gas-nitrous-oxide = Nitrous Oxide
 gas-tritium-abbreviation = T
+gas-frezon = Frezon
 gas-water-vapor-abbreviation = H₂O
 gas-unknown-abbreviation = X
 # backmen gases

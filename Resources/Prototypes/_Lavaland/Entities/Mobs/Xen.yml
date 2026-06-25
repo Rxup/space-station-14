@@ -222,6 +222,7 @@
     proto: RandomHeadcrabSpawner
   - type: TemperatureProtection
   - type: Temperature
+  - type: TemperatureDamage
     damageCap: 0
   - type: ReplacementAccent
     accent: zombie
@@ -473,6 +474,7 @@
         volume: 3
   - type: TemperatureProtection
   - type: Temperature
+  - type: TemperatureDamage
     damageCap: 0
   - type: NoSlip
   - type: Damageable
@@ -568,6 +570,7 @@
       sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
   - type: TemperatureProtection
   - type: Temperature
+  - type: TemperatureDamage
     damageCap: 0
   - type: NoSlip
   - type: Loadout
@@ -610,6 +613,7 @@
       30: 0.6
   - type: TemperatureProtection
   - type: Temperature
+  - type: TemperatureDamage
     damageCap: 0
   - type: NoSlip
   - type: Loadout
@@ -671,6 +675,7 @@
     soundGunshot: /Audio/Backmen/test/base/ogg/blackmesa/bullsquid/goo_attack3.ogg
   - type: TemperatureProtection
   - type: Temperature
+  - type: TemperatureDamage
     damageCap: 0
   - type: Damageable
     damageModifierSet: CombineArmor
@@ -763,6 +768,7 @@
             max: 1
   - type: TemperatureProtection
   - type: Temperature
+  - type: TemperatureDamage
     damageCap: 0
   - type: Damageable
     damageModifierSet: CombineArmor

@@ -1,0 +1,12 @@
+ent-StatusEffectSpeechMonkey = monkey accent
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectSpeechXeno = xeno accent
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectSpeechOhio = ohio accent
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectLangRatvarian = ratvarian language
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectLangFleshAccent = lang flesh accent
+    .desc = { ent-MobStatusEffectBase.desc }
+ent-StatusEffectLangOldFastCodesAccent = lang OldFastCodes accent
+    .desc = { ent-MobStatusEffectBase.desc }

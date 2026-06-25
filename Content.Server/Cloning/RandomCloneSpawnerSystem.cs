@@ -1,6 +1,7 @@
 using Content.Server.Cloning.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Objectives.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -15,7 +16,7 @@ public sealed partial class RandomCloneSpawnerSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
-    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private TargetSystem _target = default!;
 
     public override void Initialize()
     {
@@ -34,7 +35,7 @@ public sealed partial class RandomCloneSpawnerSystem : EntitySystem
             return;
         }
 
-        var allHumans = _mind.GetAliveHumans();
+        var allHumans = _target.GetAliveHumans();
 
         if (allHumans.Count == 0)
             return;
@@ -42,6 +43,6 @@ public sealed partial class RandomCloneSpawnerSystem : EntitySystem
         var bodyToClone = _random.Pick(allHumans).Comp.OwnedEntity;
 
         if (bodyToClone != null)
-            _cloning.TryCloning(bodyToClone.Value, _transformSystem.GetMapCoordinates(ent.Owner), ent.Comp.Settings, out _);
+            _cloning.TryCloning(bodyToClone.Value, _transformSystem.GetMapCoordinates(ent.Owner), settings, out _);
     }
 }

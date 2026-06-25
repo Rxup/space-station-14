@@ -20,17 +20,15 @@ public sealed partial class PipeRestrictOverlapSystem : EntitySystem
     [Dependency] private MapSystem _map = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private TransformSystem _xform = default!;
+    [Dependency] private EntityQuery<NodeContainerComponent> _nodeContainerQuery = default!;
 
     private readonly List<EntityUid> _anchoredEntities = new();
-    private EntityQuery<NodeContainerComponent> _nodeContainerQuery;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<PipeRestrictOverlapComponent, AnchorStateChangedEvent>(OnAnchorStateChanged);
         SubscribeLocalEvent<PipeRestrictOverlapComponent, AnchorAttemptEvent>(OnAnchorAttempt);
-
-        _nodeContainerQuery = GetEntityQuery<NodeContainerComponent>();
     }
 
     private void OnAnchorStateChanged(Entity<PipeRestrictOverlapComponent> ent, ref AnchorStateChangedEvent args)
