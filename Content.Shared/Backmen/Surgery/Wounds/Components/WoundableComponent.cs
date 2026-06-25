@@ -107,6 +107,12 @@ public sealed partial class WoundableComponent : Component
     /// </summary>
     public Dictionary<EntityUid, WoundableHealingMultiplier> HealingMultipliers = new();
 
+    /// <summary>
+    /// Fraction of lost integrity that must come from burn wounds to vaporize into ash.
+    /// </summary>
+    [DataField]
+    public float? BurnDominanceRatio;
+
     [DataField]
     public SoundSpecifier WoundableDestroyedSound = new SoundCollectionSpecifier("WoundableDestroyed");
 

@@ -183,17 +183,17 @@ public sealed partial class DamageableSystem
         }
 
         // backmen edit start
-        var specialHandlerEvent = new HandleCustomDamage(
+        var woundApplyEvent = new DamageableWoundApplyEvent(
             damage,
             targetPart,
             origin);
-        RaiseLocalEvent(ent, ref specialHandlerEvent);
+        RaiseLocalEvent(ent, ref woundApplyEvent);
 
-        if (specialHandlerEvent.Handled)
+        if (woundApplyEvent.Handled)
         {
-            if(!specialHandlerEvent.Damage.Empty)
-                OnEntityDamageChanged((ent, ent.Comp), specialHandlerEvent.Damage, interruptsDoAfters, origin);
-            return specialHandlerEvent.Damage;
+            if(!woundApplyEvent.Damage.Empty)
+                OnEntityDamageChanged((ent, ent.Comp), woundApplyEvent.Damage, interruptsDoAfters, origin);
+            return woundApplyEvent.Damage;
         }
 
         // start-backmen: damage type aliases

@@ -1,5 +1,5 @@
 using Content.Server.Backmen.Destructible.Thresholds.Behaviors;
-using Content.Shared.Backmen.Surgery;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
@@ -17,8 +17,9 @@ public sealed partial class BurnBodyBehavior : IThresholdBehavior
     public void Execute(EntityUid bodyId, DestructibleSystem system, EntityUid? cause = null)
     {
         // start-backmen: detached-body-burn
-        if (system.EntityManager.HasComponent<SurgeryTargetComponent>(bodyId)
-            && system.EntityManager.HasComponent<BodyComponent>(bodyId))
+        var bodySys = system.EntityManager.System<BkmBodySharedSystem>();
+        if (system.EntityManager.HasComponent<BodyComponent>(bodyId)
+            && !bodySys.UsesFlatOrgans(bodyId))
         {
             new BkmBurnBodyBehavior().Execute(bodyId, system, cause);
             return;

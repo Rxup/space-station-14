@@ -217,11 +217,11 @@ public record struct BeforeDamageChangedEvent(
 
 // backmen edit start
 /// <summary>
-///     Raised before damage is done and registered, so the system can check if you want to handle it manually.
-///     Currently used for wounds.
+///     Raised before damage is written to <see cref="DamageableComponent.Damage"/>,
+///     allowing wound-based bodies to apply damage through the wound system instead.
 /// </summary>
 [ByRefEvent]
-public record struct HandleCustomDamage(
+public record struct DamageableWoundApplyEvent(
     DamageSpecifier Damage,
     TargetBodyPart? TargetPart,
     EntityUid? Origin = null,

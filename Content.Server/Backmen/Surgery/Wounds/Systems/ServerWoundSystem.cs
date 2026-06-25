@@ -1,7 +1,9 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Backmen.Body;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Body.Organ;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
@@ -443,9 +445,34 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
         if (!Body.TryGetWoundableBodyPartInfo(woundableEntity, out var bodyUid, out var partType, out var symmetry))
         {
+            if (HasComp<BrainComponent>(woundableEntity))
+            {
+                _brainPreserve.TryPreserveBrain(woundableEntity, Transform(woundableEntity).Coordinates);
+                return;
+            }
+
+            if (_burnWoundable.ShouldBurnToAsh(woundableEntity, woundableComp))
+            {
+                SpawnPartBurnEffects(woundableEntity);
+                QueueDel(woundableEntity);
+                return;
+            }
+
             DropWoundableOrgans(woundableEntity, woundableComp);
             QueueDel(woundableEntity);
 
+            return;
+        }
+
+        if (HasComp<BrainComponent>(woundableEntity))
+        {
+            _brainPreserve.TryPreserveBrain(woundableEntity, Transform(woundableEntity).Coordinates);
+            return;
+        }
+
+        if (_burnWoundable.ShouldBurnToAsh(woundableEntity, woundableComp))
+        {
+            BurnWoundableToAsh(parentWoundableEntity, woundableEntity, woundableComp, parentWoundableComp);
             return;
         }
 

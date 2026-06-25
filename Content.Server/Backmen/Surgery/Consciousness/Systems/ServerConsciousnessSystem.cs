@@ -66,7 +66,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
         SubscribeLocalEvent<ConsciousnessComponent, ComponentInit>(OnConsciousnessInit);
         SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit);
-        SubscribeLocalEvent<ConsciousnessComponent, HandleCustomDamage>(OnConsciousnessDamaged);
+        SubscribeLocalEvent<ConsciousnessComponent, DamageableWoundApplyEvent>(OnConsciousnessDamaged);
 
         SubscribeLocalEvent<ConsciousnessComponent, InteractHandEvent>(OnConsciousnessInteract);
         SubscribeLocalEvent<ConsciousnessComponent, CprDoAfterEvent>(OnCprDoAfter);
@@ -101,7 +101,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
     private void OnConsciousnessDamaged(
         EntityUid uid,
         ConsciousnessComponent component,
-        ref HandleCustomDamage args)
+        ref DamageableWoundApplyEvent args)
     {
         if (args.Handled)
             return;
