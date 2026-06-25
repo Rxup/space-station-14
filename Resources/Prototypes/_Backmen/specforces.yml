@@ -29,6 +29,26 @@
     - id: SpawnMobHumanOBREngineerSunbeam # Инженер
     - id: SpawnMobHumanOBRJanitorSunbeam # Уборщик
 
+# OBR Sunbeam
+- type: specForceTeam
+  id: ERT
+  specForceName: spec-forces-system-ert-name
+  shuttlePath: Maps/Backmen/Shuttles/SpecForces/sunbeam.yml
+  spawnMarker: MarkerSpecforce
+  announcementText: spec-forces-system-ertcall-annonce
+  announcementTitle: spec-forces-system-ertcall-title
+  announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
+  maxRolesAmount: 10
+  raffleConfig:
+    settings: short
+  guaranteedSpawn:
+    - id: SpawnMobHumanOBRLeaderSunbeam # Лидер
+    - id: SpawnMobHumanOBRMedicSunbeam # Медик
+  specForceSpawn:
+    - id: SpawnMobHumanOBRSecuritySunbeam # Офицер
+    - id: SpawnMobHumanOBREngineerSunbeam # Инженер
+    - id: SpawnMobHumanOBRJanitorSunbeam # Уборщик
+
 # BaseRXBZZ
 - type: specForceTeam
   id: BaseRXBZZ

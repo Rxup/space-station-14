@@ -1,6 +1,6 @@
 # ОБР Лидер
 - type: startingGear
-  id: OBRLeaderSunbeam
+  id: OBRLeaderSunbeamItems
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
@@ -19,7 +19,7 @@
 
 # ОБР Медик
 - type: startingGear
-  id: OBRMedicSunbeam
+  id: OBRMedicSunbeamItems
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
@@ -38,7 +38,7 @@
 
 # ОБР Офицер
 - type: startingGear
-  id: OBRSecuritySunbeam
+  id: OBRSecuritySunbeamItems
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
@@ -57,7 +57,7 @@
 
 # ОБР Инженер
 - type: startingGear
-  id: OBREngineerSunbeam 
+  id: OBREngineerSunbeamItems
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
@@ -76,7 +76,7 @@
 
 # ОБР Уборщик
 - type: startingGear
-  id: OBRJanitorSunbeam
+  id: OBRJanitorSunbeamItems
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
@@ -95,7 +95,7 @@
 
 # ERT Священник
 - type: startingGear
-  id: OBRPriestSunbeam
+  id: OBRPriestSunbeamItems
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
@@ -429,7 +429,7 @@
     allowMovement: true
     allowSpeech: true
     makeSentient: true
-    name: ОБР уборщик
+    name: ОБР Священник
     description: Священник отделения Sunbeam, поповедуйте слово божнье и подчинение NanoTrasen конечно же!
     raffle:
       settings: default
@@ -439,12 +439,9 @@
         time: 18000
       - !type:OverallPlaytimeRequirement
         time: 36000
-      - !type:RoleTimeRequirement
-        role: JobJanitor
-        time: 3000
-    job: ERTJanitor
+    job: ERTPriest
     mindRoles:
-    - MindRoleERTJanitor
+    - MindRoleERTPriest
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember

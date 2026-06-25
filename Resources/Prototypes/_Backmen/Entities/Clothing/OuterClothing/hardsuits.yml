@@ -220,7 +220,7 @@
 
 - type: entity
   parent: ClothingOuterHardsuitERTEngineer
-  id: ClothingOuterHardsuitERTEngineer
+  id: ClothingOuterHardsuitERTEngineerReal
   suffix: Нормальная
   components:
   - type: PressureProtection

@@ -15,7 +15,7 @@
       - CentralCommand
   - type: AntagImmune
   - type: Loadout
-    prototypes: [OBRLeaderSunbeam]
+    prototypes: [OBRLeaderSunbeamItems]
 
 # ОБР Медик
 - type: entity
@@ -31,7 +31,7 @@
     factions:
       - CentralCommand
   - type: Loadout
-    prototypes: [OBRMedicSunbeam]
+    prototypes: [OBRMedicSunbeamItems]
   - type: AntagImmune
 
 # ОБР Офицер
@@ -48,7 +48,7 @@
     factions:
       - CentralCommand
   - type: Loadout
-    prototypes: [OBRSecuritySunbeam]
+    prototypes: [OBRSecuritySunbeamItems]
   - type: AntagImmune
 
 # ОБР Инженер
@@ -65,7 +65,7 @@
     factions:
       - CentralCommand
   - type: Loadout
-    prototypes: [OBREngineerSunbeam]
+    prototypes: [OBREngineerSunbeamItems]
   - type: AntagImmune
 
 # ОБР Уборщик
@@ -82,7 +82,7 @@
     factions:
       - CentralCommand
   - type: Loadout
-    prototypes: [OBRJanitorSunbeam]
+    prototypes: [OBRJanitorSunbeamItems]
   - type: AntagImmune
 
 # ОБР Священник
@@ -99,5 +99,5 @@
     factions:
       - CentralCommand
   - type: Loadout
-    prototypes: [OBRPriestSunbeam]
+    prototypes: [OBRPriestSunbeamItems]
   - type: AntagImmune

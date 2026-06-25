@@ -46,6 +46,6 @@ ent-SpawnMobHumanOBREngineerSunbeam  = ОБР Инженер Солнечный 
 ent-SpawnMobHumanOBRJanitorSunbeam = ОБР Уборщик Солнечный луч
     .suffix = спавнер ОБР
     .desc = { ent-SpawnSpecforce.desc }
-ent-SpawnMobHumanOBRPriestSunbeam = ОБР Священние Солнечный луч
+ent-SpawnMobHumanOBRPriestSunbeam = ОБР Священник Солнечный луч
     .suffix = спавнер ОБР
     .desc = { ent-SpawnSpecforce.desc }

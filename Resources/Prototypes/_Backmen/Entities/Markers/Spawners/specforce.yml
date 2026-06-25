@@ -296,7 +296,7 @@
   id: SpawnMobHumanOBRSecuritySunbeam
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
-  name: ОБР Лидер
+  name: ОБР Офицер
   suffix: Роль ОБР, Солнечный луч
   components:
     - type: GhostRoleMobSpawner
@@ -307,7 +307,7 @@
   id: SpawnMobHumanOBREngineerSunbeam 
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
-  name: ОБР Лидер
+  name: ОБР Инженер
   suffix: Роль ОБР, Солнечный луч
   components:
     - type: GhostRoleMobSpawner
@@ -318,7 +318,7 @@
   id: SpawnMobHumanOBRJanitorSunbeam 
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
-  name: ОБР Лидер
+  name: ОБР Уборщик
   suffix: Роль ОБР, Солнечный луч
   components:
     - type: GhostRoleMobSpawner
@@ -329,7 +329,7 @@
   id: SpawnMobHumanOBRPriestSunbeam
   parent: SpawnSpecforce
   categories: [ HideSpawnMenu ]
-  name: ОБР Лидер
+  name: ОБР Священник
   suffix: Роль ОБР, Солнечный луч
   components:
     - type: GhostRoleMobSpawner
