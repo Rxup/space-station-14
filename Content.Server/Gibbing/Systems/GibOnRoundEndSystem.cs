@@ -1,13 +1,13 @@
-﻿using Content.Shared.GameTicking;
+using Content.Shared.GameTicking;
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Systems;
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 
 namespace Content.Server.Gibbing.Systems;
 public sealed partial class GibOnRoundEndSystem : EntitySystem
 {
-    [Dependency] private BodySystem _body = default!;
+    [Dependency] private BkmBodySystem _body = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private SharedObjectivesSystem _objectives = default!;
 

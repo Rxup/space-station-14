@@ -1,11 +1,13 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -36,7 +38,8 @@ public abstract partial class WoundSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IComponentFactory _factory = default!;
 
-    [Dependency] protected SharedBodySystem Body = default!;
+    [Dependency] protected BkmBodySharedSystem Body = default!;
+    [Dependency] protected SharedTargetingSystem Targeting = default!;
     [Dependency] protected SharedHandsSystem Hands = default!;
 
     [Dependency] protected SharedContainerSystem Containers = default!;
@@ -172,34 +175,22 @@ public abstract partial class WoundSystem : EntitySystem
 
         if (ent.Comp.WoundableIntegrity != old.Integrity)
         {
-            var bodyPart = Comp<BodyPartComponent>(ent);
-
             var ev = new WoundableIntegrityChangedEvent(old.Integrity, ent.Comp.WoundableIntegrity);
             RaiseLocalEvent(ent, ref ev);
 
             var bodySeverity = FixedPoint2.Zero;
-            if (bodyPart.Body.HasValue)
+            if (TryGetWoundableBody(ent, out var bodyUid) && TryComp<BodyComponent>(bodyUid, out var bodyComp))
             {
-                var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
-                if (rootPart.HasValue)
+                foreach (var woundable in Body.GetWoundableTargets(bodyUid, bodyComp))
                 {
-                    foreach (var woundable in GetAllWoundableChildren(rootPart.Value))
-                    {
-                        if (!MetaData(woundable).Initialized)
-                            continue;
-
-                        if (woundable.Comp.RootWoundable == woundable.Owner && woundable.Owner != rootPart)
-                            continue;
-
-                        bodySeverity += GetWoundableIntegrityDamage(woundable, woundable);
-                    }
+                    bodySeverity += GetWoundableIntegrityDamage(woundable);
                 }
 
                 var ev1 = new WoundableIntegrityChangedOnBodyEvent(
                     ent,
                     bodySeverity - (old.Integrity - ent.Comp.WoundableIntegrity),
                     bodySeverity);
-                RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+                RaiseLocalEvent(bodyUid, ref ev1);
             }
         }
 
@@ -322,24 +313,17 @@ public abstract partial class WoundSystem : EntitySystem
         RaiseLocalEvent(uid, ref ev);
 
         var bodySeverity = FixedPoint2.Zero;
-        var bodyPart = Comp<BodyPartComponent>(uid);
-
-        if (bodyPart.Body.HasValue)
+        if (TryGetWoundableBody(uid, out var bodyUid) && TryComp<BodyComponent>(bodyUid, out var bodyComp))
         {
-            var rootPart = Comp<BodyComponent>(bodyPart.Body.Value).RootContainer.ContainedEntity;
-            if (rootPart.HasValue)
-            {
-                bodySeverity =
-                    GetAllWoundableChildren(rootPart.Value)
-                        .Aggregate(bodySeverity,
-                            (current, woundable) => current + GetWoundableIntegrityDamage(woundable, woundable));
-            }
+            bodySeverity = Body.GetWoundableTargets(bodyUid, bodyComp)
+                .Aggregate(bodySeverity,
+                    (current, woundable) => current + GetWoundableIntegrityDamage(woundable));
 
             var ev1 = new WoundableIntegrityChangedOnBodyEvent(
                 (uid, component),
                 bodySeverity - (component.WoundableIntegrity - newIntegrity),
                 bodySeverity);
-            RaiseLocalEvent(bodyPart.Body.Value, ref ev1);
+            RaiseLocalEvent(bodyUid, ref ev1);
         }
 
         component.WoundableIntegrity = newIntegrity;
@@ -377,19 +361,53 @@ public abstract partial class WoundSystem : EntitySystem
 
         DirtyField(woundable, component, nameof(WoundableComponent.WoundableSeverity));
 
-        var bodyPart = Comp<BodyPartComponent>(woundable);
-        if (bodyPart.Body == null)
+        if (!TryGetWoundableBody(woundable, out var bodyUid))
             return;
 
         if (!_net.IsServer)
             return;
 
-        if (!TryComp<TargetingComponent>(bodyPart.Body.Value, out var targeting))
+        if (!TryComp<TargetingComponent>(bodyUid, out var targeting))
             return;
 
-        targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyPart.Body.Value);
-        DirtyField(bodyPart.Body.Value, targeting, nameof(TargetingComponent.BodyStatus));
-        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyPart.Body.Value)), bodyPart.Body.Value);
+        RefreshBodyTargetingStatus(bodyUid, targeting);
+    }
+
+    /// <summary>
+    /// Recomputes and syncs woundable status overlays on the targeting doll and health analyzer.
+    /// </summary>
+    public void RefreshBodyTargetingStatus(EntityUid bodyUid, TargetingComponent? targeting = null)
+    {
+        if (!_net.IsServer)
+            return;
+
+        if (!Resolve(bodyUid, ref targeting, false))
+            return;
+
+        targeting.BodyStatus = GetWoundableStatesOnBodyPainFeels(bodyUid);
+        DirtyField(bodyUid, targeting, nameof(TargetingComponent.BodyStatus));
+        RaiseNetworkEvent(new TargetIntegrityChangeEvent(GetNetEntity(bodyUid)), bodyUid);
+    }
+
+    /// <summary>
+    /// Clears amputation loss state from a reinserted external organ.
+    /// </summary>
+    public void RestoreWoundableAfterReattachment(EntityUid woundable, WoundableComponent? woundableComp = null)
+    {
+        if (!WoundableQuery.Resolve(woundable, ref woundableComp))
+            return;
+
+        if (woundableComp.WoundableSeverity != WoundableSeverity.Loss)
+            return;
+
+        woundableComp.AllowWounds = true;
+        woundableComp.WoundableIntegrity = woundableComp.IntegrityCap;
+        woundableComp.WoundableSeverity = WoundableSeverity.Healthy;
+
+        DirtyFields(woundable, woundableComp, null,
+            nameof(WoundableComponent.AllowWounds),
+            nameof(WoundableComponent.WoundableIntegrity),
+            nameof(WoundableComponent.WoundableSeverity));
     }
 
     protected void FixWoundableRoots(EntityUid targetEntity, WoundableComponent targetWoundable)
@@ -486,20 +504,17 @@ public abstract partial class WoundSystem : EntitySystem
         if (!WoundableQuery.Resolve(woundable, ref woundableComp, false))
             return;
 
-        foreach (var organ in Body.GetPartOrgans(woundable))
+        // Detachable externals relocate internals into their bundle via GibDetachedBundle / RemoveOrgan.
+        if (HasComp<DetachableOrganComponent>(woundable))
+            return;
+
+        foreach (var organ in Body.GetOrgansForWoundable(woundable).ToList())
         {
             if (TerminatingOrDeleted(organ.Id))
                 continue;
 
-            if (organ.Component.OrganSeverity == OrganSeverity.Normal)
+            if (organ.Component.OrganSeverity != OrganSeverity.Normal)
             {
-                // TODO: SFX for organs getting not destroyed, but thrown out
-                Body.RemoveOrgan(organ.Id, organ.Component);
-                Throwing.TryThrow(organ.Id, Random.NextAngle().ToWorldVec() * 7f, Random.Next(8, 24));
-            }
-            else
-            {
-                // Destroy it
                 Trauma.TrySetOrganDamageModifier(
                     organ.Id,
                     organ.Component.OrganIntegrity * 100,
@@ -507,6 +522,15 @@ public abstract partial class WoundSystem : EntitySystem
                     WoundableDestroyalIdentifier,
                     organ.Component);
             }
+
+            if (TerminatingOrDeleted(organ.Id))
+                continue;
+
+            // TODO: SFX for organs getting not destroyed, but thrown out
+            Body.RemoveOrgan(organ.Id, organ.Component);
+
+            if (!TerminatingOrDeleted(organ.Id))
+                Throwing.TryThrow(organ.Id, Random.NextAngle().ToWorldVec() * 7f, Random.Next(8, 24));
         }
     }
 
@@ -517,16 +541,18 @@ public abstract partial class WoundSystem : EntitySystem
 
         foreach (var (child, childWoundable) in GetAllWoundableChildren(woundableEntity, woundableComp))
         {
-            if (TerminatingOrDeleted(child))
+            if (child == woundableEntity || TerminatingOrDeleted(child))
                 continue;
+
+            var parent = childWoundable.ParentWoundable ?? woundableEntity;
 
             if (childWoundable.WoundableSeverity is WoundableSeverity.Critical)
             {
-                DestroyWoundable(woundableEntity, child, childWoundable);
+                DestroyWoundable(parent, child, childWoundable);
                 continue;
             }
 
-            AmputateWoundable(woundableEntity, child, childWoundable);
+            AmputateWoundable(parent, child, childWoundable);
         }
     }
 }

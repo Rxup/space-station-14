@@ -42,7 +42,7 @@ public sealed partial class VoiceMaskComponent : Component
     // Corvax-TTS-Start
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public string VoiceId = SharedHumanoidAppearanceSystem.DefaultVoice;
+    public string VoiceId = "human";
     // Corvax-TTS-End
 
     /// <summary>

@@ -9,7 +9,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Cocoon;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Backmen.Vampiric.Components;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -305,7 +305,7 @@ public sealed partial class CocoonerSystem : EntitySystem
         if (args.Handled || args.Cancelled || args.Args.Target == null)
             return;
 
-        var spawnProto = HasComp<HumanoidAppearanceComponent>(args.Args.Target) ? "CocoonedHumanoid" : "CocoonSmall";
+        var spawnProto = HasComp<HumanoidProfileComponent>(args.Args.Target) ? "CocoonedHumanoid" : "CocoonSmall";
         Transform(args.Args.Target.Value).AttachToGridOrMap();
         var cocoon = Spawn(spawnProto, Transform(args.Args.Target.Value).Coordinates);
 

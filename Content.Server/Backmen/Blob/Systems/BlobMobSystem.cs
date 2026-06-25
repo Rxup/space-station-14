@@ -9,6 +9,7 @@ using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -28,7 +29,7 @@ public sealed partial class BlobMobSystem : SharedBlobMobSystem
     [Dependency] private INetManager _netMan = default!;
     [Dependency] private RadioSystem _radioSystem = default!;
     [Dependency] private SharedEntityEffectsSystem _effectsSystem = default!;
-    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySharedSystem _bodySystem = default!;
 
     public override void Initialize()
     {

@@ -152,6 +152,7 @@
       - RoleSurvivalNukie
       components:
       - type: NukeOperative
+      - type: PainImmune
       - type: RandomMetadata
         nameSegments:
         - NamesSyndicateElite
@@ -169,6 +170,7 @@
       - RoleSurvivalNukie
       components:
       - type: NukeOperative
+      - type: PainImmune
       - type: RandomMetadata
         nameSegments:
         - NamesSyndicateNormal
@@ -188,6 +190,7 @@
       - RoleSurvivalNukie
       components:
       - type: NukeOperative
+      - type: PainImmune
       - type: RandomMetadata
         nameSegments:
         - NamesSyndicateNormal

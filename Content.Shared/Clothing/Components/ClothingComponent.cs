@@ -108,6 +108,17 @@ public sealed partial class ClothingComponent : Component
     /// </summary>
     [DataField]
     public Vector2 Scale = Vector2.One;
+
+    // start-backmen: anytaur clothing stencil masks
+    [DataField]
+    public ClothingMask MaleMask = ClothingMask.UniformFull;
+
+    [DataField]
+    public ClothingMask FemaleMask = ClothingMask.UniformFull;
+
+    [DataField]
+    public ClothingMask UnisexMask = ClothingMask.UniformFull;
+    // end-backmen
 }
 
 public enum ClothingMask : byte

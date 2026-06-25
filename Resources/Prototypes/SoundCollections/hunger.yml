@@ -1,0 +1,6 @@
+# backmen: hunger
+- type: soundCollection
+  id: StomachGrowl
+  files:
+  - /Audio/Effects/Hunger/stomach_growl1.ogg
+  - /Audio/Effects/Hunger/stomach_growl2.ogg

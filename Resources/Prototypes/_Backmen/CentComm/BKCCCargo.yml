@@ -59,6 +59,6 @@
     - CentralCommand
   - type: Loadout
     prototypes: [CCCargoFull]
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: true
   - type: AntagImmune

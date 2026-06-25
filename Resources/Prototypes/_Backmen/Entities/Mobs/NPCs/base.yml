@@ -7,15 +7,6 @@
   - type: UniversalLanguageSpeaker
   - type: DiseaseCarrier
   - type: CombatMode
-  - type: SurgeryTarget
-  - type: Stripping
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
-      enum.SurgeryUIKey.Key:
-        type: SurgeryBui
   - type: ComplexInteraction
   - type: StatusEffects
     allowed:
@@ -52,9 +43,6 @@
   - type: NpcFactionMember
     factions:
       - SimpleNeutral
-  - type: Inventory
-    templateId: human
-  - type: Hands
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
@@ -103,8 +91,7 @@
             min: 1
             max: 1
   - type: Puller
-  - type: Body
-    prototype: AnimalHuman
+    needsHands: false
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -119,39 +106,37 @@
   - type: FootPrints
 
 - type: entity
+  name: Базированная База НПЦ (гуманоид)
+  id: MobBaseNpcHumanoid
+  parent: [MobBaseNpc, BaseMobNpcAnimalHumanBody]
+  abstract: true
+  components:
+  - type: SurgeryTarget
+  - type: Stripping
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+  - type: Inventory
+    templateId: human
+  - type: Hands
+    hands:
+      left:
+        location: Left
+      right:
+        location: Right
+    sortedHands:
+    - left
+    - right
+  - type: Puller
+    needsHands: true
+
+- type: entity
   id: MobBaseNpcSalvage
   parent: MobBaseNpc
   components:
   - type: Physics
     bodyType: KinematicController
-
-- type: body
-  id: AnimalHuman
-  name: "animal"
-  root: torso
-  slots:
-    torso:
-      part: ChestHuman
-      connections:
-      - right leg
-      - left leg
-      organs:
-        lungs: OrganAnimalLungs
-        stomach: OrganAnimalStomach
-        liver: OrganAnimalLiver
-        heart: OrganAnimalHeart
-        kidneys: OrganAnimalKidneys
-    right leg:
-      part: RightLegHuman
-      connections:
-      - right foot
-    left leg:
-      part: LeftLegHuman
-      connections:
-      - left foot
-    right foot:
-      part: RightFootHuman
-    left foot:
-      part: LeftFootHuman
-    feet:
-      part: RightFootHuman

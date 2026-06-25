@@ -1,20 +1,6 @@
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Backmen.Cloning;
-using Content.Server.Chat.Systems;
-using Content.Server.Cloning.Components;
-using Content.Server.DeviceLinking.Systems;
-using Content.Server.EUI;
-using Content.Server.Fluids.EntitySystems;
 using Content.Server.Humanoid;
-using Content.Server.Jobs;
-using Content.Server.Materials;
-using Content.Server.Popups;
-using Content.Server.Power.EntitySystems;
-using Content.Shared.Atmos;
-
-using Content.Shared.CCVar;
-using Content.Shared.Chemistry.Components;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Body;
 using Content.Shared.Cloning;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Database;
@@ -42,7 +28,6 @@ namespace Content.Server.Cloning;
 /// </summary>
 public sealed partial class CloningSystem : SharedCloningSystem
 {
-    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
@@ -51,19 +36,20 @@ public sealed partial class CloningSystem : SharedCloningSystem
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedStorageSystem _storage = default!;
     [Dependency] private SharedSubdermalImplantSystem _subdermalImplant = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private NameModifierSystem _nameMod = default!;
     [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!; //TODO: This system has to support both the old and new status effect systems, until the old is able to be fully removed.
 
     /// <summary>
     ///     Spawns a clone of the given humanoid mob at the specified location or in nullspace.
     /// </summary>
-    public bool TryCloning(EntityUid original, MapCoordinates? coords, ProtoId<CloningSettingsPrototype> settingsId, Entity<CloningPodComponent>? clonePod, [NotNullWhen(true)] out EntityUid? clone)
+    public bool TryCloning(EntityUid original, MapCoordinates? coords, ProtoId<CloningSettingsPrototype> settingsId, [NotNullWhen(true)] out EntityUid? clone)
     {
         clone = null;
         if (!_prototype.Resolve(settingsId, out var settings))
             return false; // invalid settings
 
-        if (!TryComp<HumanoidAppearanceComponent>(original, out var humanoid))
+        if (!TryComp<HumanoidProfileComponent>(original, out var humanoid))
             return false; // whatever body was to be cloned, was not a humanoid
 
         if (!_prototype.Resolve(humanoid.Species, out var speciesPrototype))
@@ -74,18 +60,8 @@ public sealed partial class CloningSystem : SharedCloningSystem
         if (attemptEv.Cancelled && !settings.ForceCloning)
             return false; // cannot clone, for example due to the unrevivable trait
 
-        // start-backmen: cloning
-        var genetics = new CloningSpawnEvent(clonePod,original)
-        {
-            Proto = speciesPrototype.Prototype
-        };
-        RaiseLocalEvent(ref genetics);
-        clone = coords == null ? Spawn(genetics.Proto ?? speciesPrototype.Prototype) : Spawn(genetics.Proto ?? speciesPrototype.Prototype, coords.Value);
-        if (!genetics.IsHandleAppearance)
-        {
-            _humanoidSystem.CloneAppearance(original, clone.Value);
-        }
-        // end-backmen: cloning
+        clone = coords == null ? Spawn(speciesPrototype.Prototype) : Spawn(speciesPrototype.Prototype, coords.Value);
+        _visualBody.CopyAppearanceFrom(original, clone.Value);
 
         CloneComponents(original, clone.Value, settings);
 

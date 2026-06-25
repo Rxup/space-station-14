@@ -4,7 +4,7 @@
   abstract: true
   name: ксено
   id: KsenosXenoBase
-  parent: MobXeno
+  parent: [ MobXeno, BaseMobXenoTGMCBody ]
   description: Угроза любой органической форме жизни
   suffix: KsenosXeno
   components:
@@ -39,8 +39,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Xenolian
-  - type: Body
-    prototype: Animal
   - type: Actions
   - type: DoAfter
   - type: Polymorphable
@@ -48,6 +46,23 @@
   - type: Insulated
   - type: Hands
     showInHands: true
+    hands:
+      left:
+        location: Left
+      right:
+        location: Right
+      innate-3:
+        location: Middle
+      innate-4:
+        location: Right
+      innate-5:
+        location: Left
+    sortedHands:
+    - left
+    - right
+    - innate-3
+    - innate-4
+    - innate-5
   - type: MobState
     allowedStates:
       - Alive
@@ -323,8 +338,6 @@
     rules: "Координируй улей. Защищай и лечи королеву. Способности: Липкие корни, Лечебные феромоны, Кислотный плевок, Широкий удар (ПКМ)"
     raffle:
       settings: default
-  - type: Body
-    prototype: XenoBody
   - type: InnateTool
     tools:
       - id: WeaponXenoQueenClaw
@@ -415,8 +428,6 @@
       settings: default
   - type: NameIdentifier
     group: Xeno
-  - type: Body
-    prototype: XenoBody
   - type: Fixtures
     fixtures:
       fix1:
@@ -451,8 +462,6 @@
     rules: "Укрепляй улей для защиты королевы, Лечи ксеноморфов. Способности: Липкие корни, Строительство стен ксено (на G), Лечение, Широкий удар (ПКМ)"
     raffle:
       settings: default
-  - type: Body
-    prototype: XenoBody
   - type: InnateTool
     tools:
       - id: WeaponXenoClaw
@@ -512,8 +521,6 @@
     rules: "Защищай королеву и жги космодесантников с расстояния. Способности: Кислотный плевок, Широкий удар (ПКМ)"
     raffle:
       settings: default
-  - type: Body
-    prototype: XenoBody
   - type: HTN
     rootTask:
       task: SimpleHumanoidHostileCompound
@@ -656,8 +663,6 @@
       80: 0.8
   - type: NameIdentifier
     group: Xeno
-  - type: Body
-    prototype: XenoBody
   - type: InnateTool
     tools:
       - id: WeaponXenoClaw
@@ -720,8 +725,6 @@
       100: 0.8
   - type: NameIdentifier
     group: Xeno
-  - type: Body
-    prototype: XenoBody
   - type: StealthOnMove
     passiveVisibilityRate: -2
     movementVisibilityRate: 0.1
@@ -759,8 +762,6 @@
     rules: "Используй свою прочность и разрушительную силу, слушай приказы королевы. Способности: Широкий удар (ПКМ), защитный гребень."
     raffle:
       settings: default
-  - type: Body
-    prototype: XenoBody
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: XenolianStrong
@@ -835,8 +836,6 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: running
-  - type: Body
-    prototype: XenoBody
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: XenolianStrong
@@ -880,31 +879,6 @@
     color: "#ff3333"
   - type: Polymorphable
     innatePolymorphs: []
-
-# BODY PRESETS #
-
-- type: body
-  id: XenoBody
-  name: "xeno"
-  root: torso
-  slots:
-    torso:
-      part: ChestReptilian
-
-- type: entity
-  id: XenoArm
-  name: "кость ксено"
-  parent: [BaseLeftHand, PartSilicon]
-  components:
-  - type: BodyPart
-    partType: Hand
-    symmetry: None
-  - type: Sprite
-    sprite: Mobs/Silicon/drone.rsi
-    state: "l_hand"
-  - type: Icon
-    sprite: Mobs/Silicon/drone.rsi
-    state: "l_hand"
 
 # WEAPONS #
 

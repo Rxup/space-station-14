@@ -20,7 +20,7 @@ public sealed partial class TargetingSystem : SharedTargetingSystem
         if (!TryComp<TargetingComponent>(GetEntity(message.Uid), out var target))
             return;
 
-        target.Target = message.BodyPart;
+        target.Target = SharedTargetingSystem.NormalizeTarget(message.BodyPart);
         DirtyField(GetEntity(message.Uid), target, nameof(TargetingComponent.Target));
     }
 

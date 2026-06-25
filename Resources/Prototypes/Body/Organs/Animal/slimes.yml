@@ -48,8 +48,8 @@
     - type: Sprite
       sprite: Mobs/Species/Slime/organs.rsi
       layers:
-        - state: lung-l-slime
-        - state: lung-r-slime
+        - state: lung-l
+        - state: lung-r
     - type: Lung
       alert: LowNitrogen
     - type: Organ

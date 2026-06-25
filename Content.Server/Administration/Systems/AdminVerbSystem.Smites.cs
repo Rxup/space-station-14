@@ -1,7 +1,8 @@
+using System.Linq;
 using System.Numerics;
 using System.Threading;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
@@ -20,7 +21,8 @@ using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Clothing.Components;
@@ -70,7 +72,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySystem _bodySystem = default!;
     [Dependency] private CreamPieSystem _creamPieSystem = default!;
     [Dependency] private ElectrocutionSystem _electrocutionSystem = default!;
     [Dependency] private EntityStorageSystem _entityStorageSystem = default!;
@@ -347,10 +349,7 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand))
-                    {
-                        _transformSystem.AttachToGridOrMap(part.Id);
-                    }
+                    RemoveHandsSmite(args.Target, body, single: false);
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-remove-hands-self"), args.Target,
                         args.Target, PopupType.LargeCaution);
                     _popupSystem.PopupCoordinates(Loc.GetString("admin-smite-remove-hands-other", ("name", args.Target)), baseXform.Coordinates,
@@ -370,11 +369,7 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand, body))
-                    {
-                        _transformSystem.AttachToGridOrMap(part.Id);
-                        break;
-                    }
+                    RemoveHandsSmite(args.Target, body, single: true);
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-remove-hands-self"), args.Target,
                         args.Target, PopupType.LargeCaution);
                     _popupSystem.PopupCoordinates(Loc.GetString("admin-smite-remove-hands-other", ("name", args.Target)), baseXform.Coordinates,
@@ -1104,6 +1099,22 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", homingRodSlowName, Loc.GetString("admin-smite-homing-rod-slow-description"))
         };
         args.Verbs.Add(homingRodSlow);
+    }
+
+    private void RemoveHandsSmite(EntityUid target, BodyComponent body, bool single)
+    {
+        foreach (var symmetry in new[] { BodyPartSymmetry.Left, BodyPartSymmetry.Right })
+        {
+            if (!_bodySystem.TryGetWoundableTargetByType(target, BodyPartType.Hand, symmetry, out var hand)
+                || !TryComp<OrganComponent>(hand, out var organ))
+                continue;
+
+            _bodySystem.RemoveOrgan(hand, organ);
+            _transformSystem.AttachToGridOrMap(hand);
+
+            if (single)
+                break;
+        }
     }
 
     public void HomingLaunchSequence(EntityUid target, EntProtoId proto, float distance, float speed)

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using System.Numerics;
 using Content.Server.AlertLevel;
 using Content.Server.Body.Systems;
@@ -8,12 +8,13 @@ using Content.Server.Humanoid;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Climbing.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
@@ -54,9 +55,9 @@ public sealed partial class FleshHeartSystem : EntitySystem
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
-    [Dependency] private BodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private HumanoidAppearanceSystem _sharedHuApp = default!;
+    [Dependency] private HumanoidProfileSystem _sharedHuApp = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private StationSystem _stationSystem = default!;
     [Dependency] private AlertLevelSystem _alertLevel = default!;
@@ -263,41 +264,15 @@ public sealed partial class FleshHeartSystem : EntitySystem
         }
 
         if (
-            TryComp<HumanoidAppearanceComponent>(args.Climber, out var huAppComponent) &&
+            TryComp<HumanoidProfileComponent>(args.Climber, out var huAppComponent) &&
             TryComp<BodyComponent>(args.Climber, out var bodyComponent))
         {
-            var parts = _body.GetBodyChildren(args.Climber, bodyComponent).ToArray();
-
-            foreach (var part in parts)
-            {
-                if (part.Component.PartType == BodyPartType.Head)
-                    continue;
-
-                if (part.Component.PartType == BodyPartType.Chest)
-                {
-                    foreach (var organ in _body.GetPartOrgans(part.Id, part.Component))
-                    {
-                        _body.RemoveOrgan(organ.Id, organ.Component);
-                    }
-                }
-                else
-                {
-                    QueueDel(part.Id);
-                }
-            }
+            _body.StripBodyForSkeleton(args.Climber, bodyComponent);
 
 
             _bloodstreamSystem.TryModifyBloodLevel(args.Climber, -300);
 
-            var skeletonSprites = _proto.Index<HumanoidSpeciesBaseSpritesPrototype>("MobSkeletonSprites");
-            foreach (var (key, id) in skeletonSprites.Sprites)
-            {
-                if (key != HumanoidVisualLayers.Head)
-                {
-                    _sharedHuApp.SetBaseLayerId(args.Climber, key, id, humanoid: huAppComponent);
-                }
-            }
-
+            // nubody: skeleton visual overlay deferred
             _physics.SetDensity(args.Climber, "fix1", fixturesComponent.Fixtures["fix1"], 50);
 
             if (TryComp<AppearanceComponent>(args.Climber, out var appComponent))
@@ -323,7 +298,7 @@ public sealed partial class FleshHeartSystem : EntitySystem
         if (!Transform(uid).Anchored)
             return false;
 
-        if (!TryComp<HumanoidAppearanceComponent>(dragged, out var humanoidAppearance))
+        if (!TryComp<HumanoidProfileComponent>(dragged, out var humanoidAppearance))
             return false;
 
         if (!(component.SpeciesWhitelist.Contains(humanoidAppearance.Species)))

@@ -5,7 +5,7 @@ using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
-using Content.Shared.Body.Organ;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using JetBrains.Annotations;
@@ -143,8 +143,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
 
     private void ApplyTraumas(Entity<WoundableComponent> target, Entity<TraumaInflicterComponent> inflicter, List<TraumaType> traumas, FixedPoint2 severity)
     {
-        var bodyPart = Comp<BodyPartComponent>(target);
-        if (!bodyPart.Body.HasValue)
+        if (!Body.TryGetWoundableBodyPartInfo(target, out var bodyUid, out _, out _))
             return;
 
         foreach (var trauma in traumas)
@@ -157,7 +156,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
                     break;
 
                 case TraumaType.OrganDamage:
-                    var organs = Body.GetPartOrgans(target).ToList();
+                    var organs = Body.GetOrgansForWoundable(target).ToList();
                     Random.Shuffle(organs);
 
                     var chosenOrgan = organs.FirstOrNull();
@@ -188,7 +187,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
             switch (trauma)
             {
                 case TraumaType.BoneDamage:
-                    if (!Consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSysB))
+                    if (!Consciousness.TryGetNerveSystem(bodyUid, out var nerveSysB))
                         break;
 
                     if (ApplyBoneTrauma(targetChosen.Value, target, inflicter, severity))
@@ -214,7 +213,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
                     break;
 
                 case TraumaType.NerveDamage:
-                    if (!Consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var nerveSysN))
+                    if (!Consciousness.TryGetNerveSystem(bodyUid, out var nerveSysN))
                         break;
 
                     var time = TimeSpan.FromSeconds((float) severity * 2.4);

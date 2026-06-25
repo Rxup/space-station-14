@@ -10,9 +10,10 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Backmen.Mood;
-using Robust.Shared.Configuration;
-using Content.Shared.Backmen.CCVar;
 using System.Diagnostics.CodeAnalysis;
+// start-backmen: thirst
+using Robust.Shared.Player;
+// end-backmen: thirst
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -25,7 +26,10 @@ public sealed partial class ThirstSystem : EntitySystem
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private MovementSpeedModifierSystem _movement = default!;
     [Dependency] private SharedJetpackSystem _jetpack = default!;
-    [Dependency] private IConfigurationManager _config = default!;
+
+    // start-backmen: thirst
+    private EntityQuery<ActorComponent> _actorQuery;
+    // end-backmen: thirst
 
     private static readonly ProtoId<SatiationIconPrototype> ThirstIconOverhydratedId = "ThirstIconOverhydrated";
     private static readonly ProtoId<SatiationIconPrototype> ThirstIconThirstyId = "ThirstIconThirsty";
@@ -34,6 +38,9 @@ public sealed partial class ThirstSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
+        // backmen: thirst
+        _actorQuery = GetEntityQuery<ActorComponent>();
 
         SubscribeLocalEvent<ThirstComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
         SubscribeLocalEvent<ThirstComponent, MapInitEvent>(OnMapInit);
@@ -66,7 +73,8 @@ public sealed partial class ThirstSystem : EntitySystem
     private void OnRefreshMovespeed(EntityUid uid, ThirstComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         // TODO: This should really be taken care of somewhere else
-        if (_config.GetCVar(CCVars.MoodEnabled)
+        // backmen: thirst
+        if (!_actorQuery.HasComp(uid)
             || _jetpack.IsUserFlying(uid))
             return;
 
@@ -152,12 +160,13 @@ public sealed partial class ThirstSystem : EntitySystem
 
     private void UpdateEffects(EntityUid uid, ThirstComponent component)
     {
-        if (!_config.GetCVar(CCVars.MoodEnabled)
-            && IsMovementThreshold(component.LastThirstThreshold) != IsMovementThreshold(component.CurrentThirstThreshold)
+        // start-backmen: thirst
+        if (IsMovementThreshold(component.LastThirstThreshold) != IsMovementThreshold(component.CurrentThirstThreshold)
             && TryComp(uid, out MovementSpeedModifierComponent? movementSlowdownComponent))
         {
             _movement.RefreshMovementSpeedModifiers(uid, movementSlowdownComponent);
         }
+        // end-backmen: thirst
 
         // Update UI
         if (ThirstComponent.ThirstThresholdAlertTypes.TryGetValue(component.CurrentThirstThreshold, out var alertId))

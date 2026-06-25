@@ -28,7 +28,9 @@ public sealed class PrototypeSaveTest
     {
         // The only prototypes that should get ignored are those that REQUIRE setup to get a sprite. At that point it is
         // the responsibility of the spawner to ensure that a valid sprite is set.
-        "VirtualItem"
+        "VirtualItem",
+        // Detached limb bundle: empty BaseSpeciesLayers shell; VisualOrgan on inserted organs fills layers at runtime.
+        "BackmenDetachedBody",
     };
 
     [Test]

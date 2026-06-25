@@ -522,28 +522,29 @@
 
 # Ammo
 
-#- type: listing
-#  id: UplinkPistol9mmMagazine
-#  name: uplink-pistol-magazine-name
-#  description: uplink-pistol-magazine-desc
-#  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-#  productEntity: MagazinePistol9x17 #backmen-ammonation
-#  cost:
-#    Telecrystal: 1
-#  categories:
-#  - UplinkAmmo
+# For 9x17 mm pistols (Mk58, etc.)
+- type: listing
+  id: UplinkPistol9mmMagazine
+  name: uplink-pistol-magazine-name
+  description: uplink-pistol-magazine-desc
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/pistol_mag.rsi, state: base }
+  productEntity: MagazinePistol9x17
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkAmmo
 
 # For the C20R
-#- type: listing
-#  id: UplinkMagazinePistolSubMachineGun
-#  name: uplink-pistol-magazine-c20r-name
-#  description: uplink-pistol-magazine-c20r-desc
-#  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red-icon }
-#  productEntity: MagazinePistolSubMachineGun9x17 #backmen-ammonation
-#  cost:
-#    Telecrystal: 2
-#  categories:
-#  - UplinkAmmo
+- type: listing
+  id: UplinkMagazinePistolSubMachineGun
+  name: uplink-pistol-magazine-c20r-name
+  description: uplink-pistol-magazine-c20r-desc
+  icon: { sprite: Backmen/Objects/Weapons/Gunsx64/Magazines/Pistol/submachinegun.rsi, state: base }
+  productEntity: MagazinePistolSubMachineGun9x17
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
 
 # For the Bulldog
 - type: listing

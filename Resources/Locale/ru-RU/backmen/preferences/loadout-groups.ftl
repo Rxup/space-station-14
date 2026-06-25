@@ -28,3 +28,6 @@ loadout-group-virologist-backpack = Рюкзак
 loadout-group-surgeon-head = Головной убор
 loadout-group-surgeon-jumpsuit = Униформа
 loadout-group-surgeon-outerclothing = Верхняя одежда
+
+# Errors
+loadout-group-sex-restriction = Этот предмет недоступен для вашего текущего пола.

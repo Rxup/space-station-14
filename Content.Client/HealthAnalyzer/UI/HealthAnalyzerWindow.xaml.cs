@@ -11,7 +11,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Disease; // backmen
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -71,8 +71,7 @@ namespace Content.Client.HealthAnalyzer.UI
             _bodyPartControls = new Dictionary<TargetBodyPart, TextureButton>
             {
                 { TargetBodyPart.Head, HeadButton },
-                { TargetBodyPart.Chest, ChestButton }, // backmen: cheat, groin separation
-                { TargetBodyPart.Groin, GroinButton },
+                { TargetBodyPart.Chest, ChestButton },
                 { TargetBodyPart.LeftArm, LeftArmButton },
                 { TargetBodyPart.LeftHand, LeftHandButton },
                 { TargetBodyPart.RightArm, RightArmButton },
@@ -97,7 +96,7 @@ namespace Content.Client.HealthAnalyzer.UI
             if (_target == null)
                 return;
 
-            OnBodyPartSelected?.Invoke(part, _target.Value);
+            OnBodyPartSelected?.Invoke(SharedTargetingSystem.NormalizeTarget(part), _target.Value);
         }
 
         public void ResetBodyPart()
@@ -164,9 +163,9 @@ namespace Content.Client.HealthAnalyzer.UI
             NameLabel.SetMessage(name);
 
             SpeciesLabel.Text =
-                _entityManager.TryGetComponent<HumanoidAppearanceComponent>(_target.Value,
-                    out var humanoidAppearanceComponent)
-                    ? Loc.GetString(_prototypes.Index<SpeciesPrototype>(humanoidAppearanceComponent.Species).Name)
+                _entityManager.TryGetComponent<HumanoidProfileComponent>(_target.Value,
+                    out var HumanoidProfileComponent)
+                    ? Loc.GetString(_prototypes.Index<SpeciesPrototype>(HumanoidProfileComponent.Species).Name)
                     : Loc.GetString("health-analyzer-window-entity-unknown-species-text");
 
             // Basic Diagnostic
@@ -184,9 +183,15 @@ namespace Content.Client.HealthAnalyzer.UI
                     ? GetStatus(mobStateComponent.CurrentState)
                     : Loc.GetString("health-analyzer-window-entity-unknown-text");
 
-            // Damage stuff
+            // start-backmen: nubody wound severity
+            // Damage stuff — conscious humanoids use wound severity, not DamageableComponent.TotalDamage
+            BodyComponent? body = null;
+            var usesWoundDamage = !isPart
+                && _entityManager.TryGetComponent(_target.Value, out body)
+                && _entityManager.HasComponent<ConsciousnessComponent>(_target.Value);
 
-            if (_entityManager.TryGetComponent<DamageableComponent>(_target.Value, out var damageable))
+            if (!usesWoundDamage
+                && _entityManager.TryGetComponent<DamageableComponent>(_target.Value, out var damageable))
             {
                 DamageLabel.Text = damageable.TotalDamage.ToString();
 
@@ -199,9 +204,7 @@ namespace Content.Client.HealthAnalyzer.UI
                 DrawDiagnosticGroups(damageSortedGroups, damagePerType);
             }
 
-            if (!isPart
-                && _entityManager.TryGetComponent<BodyComponent>(_target.Value, out var body)
-                && _entityManager.HasComponent<ConsciousnessComponent>(_target.Value))
+            if (usesWoundDamage && body != null)
             {
                 var damageGroups = new Dictionary<string, FixedPoint2>();
                 var damageTypes = new Dictionary<string, FixedPoint2>();
@@ -236,6 +239,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
                 DamageLabel.Text = damageGroups.Values.Sum().ToString();
             }
+            // end-backmen: nubody wound severity
 
             if (_entityManager.TryGetComponent<WoundableComponent>(part, out var woundable))
             {
@@ -492,22 +496,42 @@ namespace Content.Client.HealthAnalyzer.UI
             if (!_entityManager.TryGetComponent<SpriteComponent>(_spriteViewEntity, out var sprite))
                 return null;
 
-            int layer = 0;
-            foreach (var (bodyPart, integrity) in body)
+            var layer = 0;
+            foreach (var part in SharedTargetingSystem.GetValidParts())
             {
-                // TODO: Fix this way PartStatusUIController and make it use layers instead of TextureRects
-                string enumName = Enum.GetName(typeof(TargetBodyPart), bodyPart) ?? "Unknown";
-                int enumValue = (int) integrity;
-                var rsi = new SpriteSpecifier.Rsi(new ResPath($"/Textures/Interface/Targeting/Status/{enumName.ToLowerInvariant()}.rsi"), $"{enumName.ToLowerInvariant()}_{enumValue}");
-                // It's probably shitcode but im lazy to get into sprite stuff - It is shitcode :)
-                if (!sprite.TryGetLayer(layer, out _))
-                    sprite.AddLayer(_spriteSystem.Frame0(rsi));
-                else
-                    sprite.LayerSetTexture(layer, _spriteSystem.Frame0(rsi));
-                sprite.LayerSetScale(layer, new Vector2(3f, 3f));
-                layer++;
+                if (!body.TryGetValue(part, out var integrity))
+                    continue;
+
+                layer = AddStatusLayer(sprite, layer, part, integrity);
+
+                // Groin targeting was merged into chest; still render the groin overlay sprite.
+                if (part == TargetBodyPart.Chest)
+                    layer = AddStatusLayer(sprite, layer, "groin", integrity);
             }
+
             return _spriteViewEntity;
+        }
+
+        private int AddStatusLayer(SpriteComponent sprite, int layer, TargetBodyPart part, WoundableSeverity integrity)
+        {
+            var enumName = Enum.GetName(typeof(TargetBodyPart), part) ?? "unknown";
+            return AddStatusLayer(sprite, layer, enumName, integrity);
+        }
+
+        private int AddStatusLayer(SpriteComponent sprite, int layer, string enumName, WoundableSeverity integrity)
+        {
+            var enumValue = (int) integrity;
+            var rsi = new SpriteSpecifier.Rsi(
+                new ResPath($"/Textures/Interface/Targeting/Status/{enumName.ToLowerInvariant()}.rsi"),
+                $"{enumName.ToLowerInvariant()}_{enumValue}");
+
+            if (!sprite.TryGetLayer(layer, out _))
+                sprite.AddLayer(_spriteSystem.Frame0(rsi));
+            else
+                sprite.LayerSetTexture(layer, _spriteSystem.Frame0(rsi));
+
+            sprite.LayerSetScale(layer, new Vector2(3f, 3f));
+            return layer + 1;
         }
         // End-backmen: surgery
     }

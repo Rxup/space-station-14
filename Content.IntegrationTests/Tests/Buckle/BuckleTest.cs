@@ -1,10 +1,6 @@
 using System.Numerics;
-using Content.Server.Body.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Backmen.Standing;
-using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -37,7 +33,6 @@ namespace Content.IntegrationTests.Tests.Buckle
   - type: Body
     prototype: Human
   - type: StandingState
-  - type: LayingDown # backmen
 
 - type: entity
   name: {StrapDummyId}
@@ -249,7 +244,6 @@ namespace Content.IntegrationTests.Tests.Buckle
             EntityUid human = default;
             BuckleComponent buckle = null;
             HandsComponent hands = null;
-            BodyComponent body = null;
 
             await server.WaitIdleAsync();
 
@@ -269,7 +263,6 @@ namespace Content.IntegrationTests.Tests.Buckle
                     Assert.That(entityManager.TryGetComponent(human, out buckle));
                     Assert.That(entityManager.HasComponent<StrapComponent>(chair));
                     Assert.That(entityManager.TryGetComponent(human, out hands));
-                    Assert.That(entityManager.TryGetComponent(human, out body));
                 });
 
                 // Buckle
@@ -296,46 +289,15 @@ namespace Content.IntegrationTests.Tests.Buckle
                 // Still buckled
                 Assert.That(buckle.Buckled);
 
-                // With items in all hands
-                foreach (var hand in hands.Hands.Keys)
-                {
-                    Assert.That(handsSys.GetHeldItem((human, hands), hand), Is.Not.Null);
-                }
-                var bodySystem = entityManager.System<BodySystem>();
-                var legs = bodySystem.GetBodyChildrenOfType(human, BodyPartType.Leg, body);
-
-                // Break our guy's kneecaps
-                foreach (var leg in legs)
-                {
-                    entityManager.DeleteEntity(leg.Id);
-                }
-            });
-
-            await server.WaitRunTicks(10);
-
-            // start-backmen: Laying System
-            await server.WaitAssertion(() =>
-            {
-                // Unbuckled and laydown
-                Assert.That(buckle.Buckled, Is.True);
-
                 // Still with items in hand
                 foreach (var hand in hands.Hands.Keys)
                 {
                     Assert.That(handsSys.GetHeldItem((human, hands), hand), Is.Not.Null);
                 }
 
-                var comp = entityManager.GetComponentOrNull<StandingStateComponent>(human);
-                Assert.That(comp, Is.Not.Null);
-                Assert.That(comp.CurrentState, Is.EqualTo(StandingState.Standing));
                 buckleSystem.Unbuckle(human, human);
                 Assert.That(buckle.Buckled, Is.False);
-                Assert.That(comp.CurrentState, Is.EqualTo(StandingState.Lying));
-                Assert.That(comp.Standing, Is.False);
-                entityManager.System<StandingStateSystem>().Stand(human);
-                Assert.That(comp.CurrentState, Is.EqualTo(StandingState.Lying));
             });
-            // end-backmen: Laying System
 
             await pair.CleanReturnAsync();
         }

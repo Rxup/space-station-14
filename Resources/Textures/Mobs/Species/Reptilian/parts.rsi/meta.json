@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "https://github.com/tgstation/tgstation/blob/08898964e67a0d517ca4e47eec7039394b694ac2/icons/mob/species/lizard/bodyparts.dmi | Edited by PuroSlavKing (Github)",
+    "copyright": "https://github.com/tgstation/tgstation/blob/08898964e67a0d517ca4e47eec7039394b694ac2/icons/mob/species/lizard/bodyparts.dmi",
     "size": {
         "x": 32,
         "y": 32
@@ -51,19 +51,11 @@
             "directions": 4
         },
         {
-            "name": "chest_f",
+            "name": "torso_f",
             "directions": 4
         },
         {
-            "name": "chest_m",
-            "directions": 4
-        },
-        {
-            "name": "groin_f",
-            "directions": 4
-        },
-        {
-            "name": "groin_m",
+            "name": "torso_m",
             "directions": 4
         }
     ]

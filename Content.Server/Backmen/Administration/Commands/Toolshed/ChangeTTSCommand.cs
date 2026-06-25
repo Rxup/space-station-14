@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Backmen.Disease;
 using Content.Server.Corvax.TTS;
@@ -16,24 +16,23 @@ namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
 public sealed class ChangeTTSCommand : ToolshedCommand
 {
-    private HumanoidAppearanceSystem? _appearanceSystem;
-
     [CommandImplementation]
     public EntityUid? ChangeTTS(
         [PipedArgument] EntityUid input,
         [CommandArgument] ProtoId<TTSVoicePrototype> prototype
     )
     {
-        if (EntityManager.TryGetComponent<HumanoidAppearanceComponent>(input, out var humanoidAppearanceComponent))
+        if (EntityManager.TryGetComponent<HumanoidProfileComponent>(input, out _))
         {
-            _appearanceSystem ??= GetSys<HumanoidAppearanceSystem>();
-
-            _appearanceSystem.SetTTSVoice(input, prototype.Id, humanoid: humanoidAppearanceComponent);
+            var ttsComp = EnsureComp<TTSComponent>(input);
+            ttsComp.VoicePrototypeId = prototype.Id;
+            EntityManager.Dirty(input, ttsComp);
             return input;
         }
 
-        var tts = EnsureComp<TTSComponent>(input);
-        tts.VoicePrototypeId = prototype.Id;
+        var fallbackTts = EnsureComp<TTSComponent>(input);
+        fallbackTts.VoicePrototypeId = prototype.Id;
+        EntityManager.Dirty(input, fallbackTts);
 
         return input;
     }

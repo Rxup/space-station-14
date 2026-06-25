@@ -31,22 +31,6 @@
         Quantity: 20
 
 - type: entity
-  id: GroinMonkey
-  name: "monkey groin"
-  parent: [BaseGroin, PartMonkey]
-  components:
-  - type: Sprite
-    sprite: Mobs/Animals/monkey.rsi
-    state: "groin_m"
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Fat
-        Quantity: 10
-      - ReagentId: Blood
-        Quantity: 20
-
-- type: entity
   id: HeadMonkey
   name: "monkey head"
   parent: [BaseHead, PartMonkey]

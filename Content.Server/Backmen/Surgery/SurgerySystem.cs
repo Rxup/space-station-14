@@ -1,6 +1,7 @@
 using Content.Server.Atmos.Rotting;
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Chat.Systems;
+using Content.Shared.Body;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Server.Popups;
@@ -16,7 +17,11 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Conditions;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Surgery;
+using Content.Shared.Medical.Surgery.Steps;
+using Content.Shared.Body.Part;
 using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
@@ -31,7 +36,14 @@ namespace Content.Server.Backmen.Surgery;
 
 public sealed partial class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] private BodySystem _body = default!;
+    [Dependency] private BkmBodySystem _body = default!;
+    [Dependency] private BodySystem _organBody = default!;
+    [Dependency] private SharedTargetingSystem _targeting = default!;
+
+    private static readonly EntProtoId SurgeryGraftArachneAbdomen = "SurgeryGraftArachneAbdomen";
+    private static readonly EntProtoId SurgeryGraftArachneFront = "SurgeryGraftArachneFront";
+    private static readonly EntProtoId SurgeryGraftSpiderLegLeft = "SurgeryGraftSpiderLegLeft";
+    private static readonly EntProtoId SurgeryGraftSpiderLegRight = "SurgeryGraftSpiderLegRight";
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private DamageableSystem _damageable = default!;
@@ -60,25 +72,67 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     protected override void RefreshUI(EntityUid body)
     {
         var surgeries = new Dictionary<NetEntity, List<EntProtoId>>();
+        var missingParts = new Dictionary<string, SurgeryMissingPartChoice>();
+        var bothHumanLegsMissing = IsBothHumanLegsMissing(body);
+        var hasArachneOrgan = _body.BodyHasArachneOrgan(body);
+
         foreach (var surgery in _surgeries)
         {
             if (GetSingleton(surgery) is not { } surgeryEnt)
                 continue;
 
-            foreach (var part in _body.GetBodyChildren(body))
+            var arachneGraft = HasComp<SurgeryOrganGraftAttachComponent>(surgeryEnt);
+
+            foreach (var part in _targeting.GetSurgeryTargets(body))
             {
-                var ev = new SurgeryValidEvent(body, part.Id);
+                if (arachneGraft)
+                    continue;
+
+                var ev = new SurgeryValidEvent(body, part);
                 RaiseLocalEvent(surgeryEnt, ref ev);
 
                 if (ev.Cancelled)
                     continue;
 
-                surgeries.GetOrNew(GetNetEntity(part.Id)).Add(surgery);
+                surgeries.GetOrNew(GetNetEntity(part)).Add(surgery);
             }
 
+            if (!TryComp<SurgeryPartRemovedConditionComponent>(surgeryEnt, out var removedComp)
+                || !_body.BodyExpectsReattachPart(body, removedComp.Part, removedComp.Symmetry)
+                || _body.TryGetWoundableTargetByType(body, removedComp.Part, removedComp.Symmetry, out _))
+                continue;
+
+            if (hasArachneOrgan
+                && SurgeryBodyPartMapping.TryGetCategory(removedComp.Part, removedComp.Symmetry, out var removedCategory)
+                && SurgeryBodyPartMapping.IsHumanLegOrFootCategory(removedCategory))
+                continue;
+
+            if (!TryComp<SurgeryPartConditionComponent>(surgeryEnt, out var partCond)
+                || !_body.TryGetWoundableTargetByType(body, partCond.Part, partCond.Symmetry, out var anchor))
+                continue;
+
+            var evMissing = new SurgeryValidEvent(body, anchor);
+            RaiseLocalEvent(surgeryEnt, ref evMissing);
+
+            if (evMissing.Cancelled)
+                continue;
+
+            var key = $"human:{removedComp.Part}:{removedComp.Symmetry}";
+            if (!missingParts.TryGetValue(key, out var choice))
+            {
+                var partName = SharedTargetingSystem.FormatBodyPartType(removedComp.Part, removedComp.Symmetry);
+                var label = Loc.GetString("surgery-ui-part-missing", ("part", partName));
+                choice = new SurgeryMissingPartChoice(GetNetEntity(anchor), label, []);
+                missingParts[key] = choice;
+            }
+
+            choice.Surgeries.Add(surgery);
         }
+
+        AddArachneMissingPartRows(body, missingParts);
+
         Log.Debug($"Setting UI state with {surgeries}, {body} and {SurgeryUIKey.Key}");
-        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries));
+        _ui.SetUiState(body, SurgeryUIKey.Key, new SurgeryBuiState(surgeries, missingParts.Values.ToList()));
         /*
             Reason we do this is because when applying a BUI State, it rolls back the state on the entity temporarily,
             which just so happens to occur right as we're checking for step completion, so we end up with the UI
@@ -93,27 +147,51 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         EntityUid user,
         EntityUid part)
     {
-        if (!TryComp<BodyPartComponent>(part, out var partComp))
+        if (!TryComp<BodyPartComponent>(part, out var partComp)
+            && !TryComp<OrganComponent>(part, out _))
             return;
 
-        // kinda funky but still works
+        if (TryComp<BodyPartComponent>(part, out partComp))
+        {
+            // kinda funky but still works
+            if (damage.GetTotal() < 0)
+            {
+                foreach (var (type, amount) in damage.DamageDict.ToList())
+                {
+                    _wounds.TryHaltAllBleeding(part, force: true);
+                    _wounds.TryHealWoundsOnWoundable(part, -amount, type, out _, ignoreMultipliers: true);
+                }
+            }
+            else
+            {
+                _damageable.ChangeDamage(body,
+                    damage,
+                    true,
+                    origin: user,
+                    partMultiplier: partMultiplier,
+                    targetPart: _body.GetTargetBodyPart(partComp));
+            }
+
+            return;
+        }
+
         if (damage.GetTotal() < 0)
         {
             foreach (var (type, amount) in damage.DamageDict.ToList())
             {
-                // TODO: the scar treating surgery. I hate this system and by every second I have to spend working with THIS I want to kill myself more and more
                 _wounds.TryHaltAllBleeding(part, force: true);
                 _wounds.TryHealWoundsOnWoundable(part, -amount, type, out _, ignoreMultipliers: true);
             }
         }
         else
         {
+            var targetPart = _targeting.GetTargetBodyPart(part) ?? TargetBodyPart.Chest;
             _damageable.ChangeDamage(body,
                 damage,
                 true,
                 origin: user,
                 partMultiplier: partMultiplier,
-                targetPart: _body.GetTargetBodyPart(partComp));
+                targetPart: targetPart);
         }
     }
 
@@ -121,6 +199,18 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     {
         if (!IsLyingDown(target, user))
             return;
+
+        if (TryComp<SurgeryTargetComponent>(user, out var userSurgery) && !userSurgery.CanOperate)
+        {
+            _popup.PopupEntity(Loc.GetString("surgery-error-cannot-operate"), user, user);
+            return;
+        }
+
+        if (TryComp<SurgeryTargetComponent>(target, out var targetSurgery) && !targetSurgery.CanBeOperatedOn)
+        {
+            _popup.PopupEntity(Loc.GetString("surgery-error-cannot-be-operated-on"), user, user);
+            return;
+        }
 
         if (user == target && !_config.GetCVar(Shared.Backmen.CCVar.CCVars.CanOperateOnSelf))
         {
@@ -136,7 +226,9 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     {
         if (!args.CanInteract
             || !args.CanAccess
-            || !HasComp<SurgeryTargetComponent>(args.Target))
+            || !HasComp<SurgeryTargetComponent>(args.Target)
+            || TryComp<SurgeryTargetComponent>(args.User, out var userSurgery) && !userSurgery.CanOperate
+            || TryComp<SurgeryTargetComponent>(args.Target, out var targetSurgery) && !targetSurgery.CanBeOperatedOn)
             return;
 
         var user = args.User;
@@ -189,5 +281,91 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         foreach (var entity in _prototypes.EnumeratePrototypes<EntityPrototype>())
             if (entity.HasComponent<SurgeryComponent>())
                 _surgeries.Add(new EntProtoId(entity.ID));
+    }
+
+    private static bool IsBothHumanLegsMissing(EntityUid body, BodySystem organBody)
+    {
+        return !organBody.TryGetOrganByCategory(body, "LegLeft", out _)
+               && !organBody.TryGetOrganByCategory(body, "LegRight", out _);
+    }
+
+    private bool IsBothHumanLegsMissing(EntityUid body) => IsBothHumanLegsMissing(body, _organBody);
+
+    private bool TryGetTorsoAnchor(EntityUid body, out EntityUid anchor) =>
+        _body.TryGetWoundableTargetByType(body, BodyPartType.Chest, null, out anchor);
+
+    private bool IsSurgeryValidOnAnchor(EntityUid body, EntityUid surgeryEnt, EntityUid anchor)
+    {
+        var ev = new SurgeryValidEvent(body, anchor);
+        RaiseLocalEvent(surgeryEnt, ref ev);
+        return !ev.Cancelled;
+    }
+
+    private void TryAddMissingPartSurgery(
+        EntityUid body,
+        Dictionary<string, SurgeryMissingPartChoice> missingParts,
+        string key,
+        string label,
+        EntProtoId surgeryId)
+    {
+        if (!TryGetTorsoAnchor(body, out var anchor)
+            || GetSingleton(surgeryId) is not { } surgeryEnt
+            || !IsSurgeryValidOnAnchor(body, surgeryEnt, anchor))
+            return;
+
+        if (!missingParts.TryGetValue(key, out var choice))
+        {
+            choice = new SurgeryMissingPartChoice(GetNetEntity(anchor), label, []);
+            missingParts[key] = choice;
+        }
+
+        if (!choice.Surgeries.Contains(surgeryId))
+            choice.Surgeries.Add(surgeryId);
+    }
+
+    private static bool HasMissingSpiderLegSlot(EntityUid body, BodyPartSymmetry side, BodySystem organBody)
+    {
+        var slots = side == BodyPartSymmetry.Left
+            ? SurgeryBodyPartMapping.SpiderLegLeftSlots
+            : SurgeryBodyPartMapping.SpiderLegRightSlots;
+
+        foreach (var slot in slots)
+        {
+            if (!organBody.TryGetOrganByCategory(body, slot, out _))
+                return true;
+        }
+
+        return false;
+    }
+
+    private void AddArachneMissingPartRows(EntityUid body, Dictionary<string, SurgeryMissingPartChoice> missingParts)
+    {
+        var bothHumanLegsMissing = IsBothHumanLegsMissing(body);
+        var hasAbdomen = _organBody.TryGetOrganByCategory(body, "ArachneAbdomen", out _);
+        var hasFront = _organBody.TryGetOrganByCategory(body, "ArachneFront", out _);
+
+        if (bothHumanLegsMissing && !hasFront)
+        {
+            TryAddMissingPartSurgery(body, missingParts, "arachne:front",
+                Loc.GetString("surgery-ui-part-missing-arachne-front"), SurgeryGraftArachneFront);
+        }
+
+        if (hasFront && !hasAbdomen)
+        {
+            TryAddMissingPartSurgery(body, missingParts, "arachne:abdomen",
+                Loc.GetString("surgery-ui-part-missing-arachne-abdomen"), SurgeryGraftArachneAbdomen);
+        }
+
+        if (hasAbdomen && HasMissingSpiderLegSlot(body, BodyPartSymmetry.Left, _organBody))
+        {
+            TryAddMissingPartSurgery(body, missingParts, "arachne:spider-leg-left",
+                Loc.GetString("surgery-ui-part-missing-spider-leg-left"), SurgeryGraftSpiderLegLeft);
+        }
+
+        if (hasFront && HasMissingSpiderLegSlot(body, BodyPartSymmetry.Right, _organBody))
+        {
+            TryAddMissingPartSurgery(body, missingParts, "arachne:spider-leg-right",
+                Loc.GetString("surgery-ui-part-missing-spider-leg-right"), SurgeryGraftSpiderLegRight);
+        }
     }
 }

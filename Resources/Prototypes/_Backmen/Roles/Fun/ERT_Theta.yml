@@ -139,7 +139,7 @@
     nameSegments:
     - NamesSGTs
     - names_last_male
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: false
   - type: AntagImmune
 
@@ -198,7 +198,7 @@
     nameSegments:
     - NamesCPLs
     - names_last_male
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: false
   - type: AntagImmune
 
@@ -253,7 +253,7 @@
     nameSegments:
     - NamesPVTs
     - names_last_male
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: false
   - type: AntagImmune
 
@@ -311,7 +311,7 @@
     nameSegments:
     - NamesCPLs
     - names_last_male
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: false
   - type: AntagImmune
 
@@ -369,6 +369,6 @@
     nameSegments:
     - NamesPVTs
     - names_last_male
-  - type: RandomHumanoidAppearance
+  - type: RandomHumanoidProfile
     randomizeName: false
   - type: AntagImmune

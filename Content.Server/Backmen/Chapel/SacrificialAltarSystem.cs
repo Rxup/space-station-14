@@ -1,7 +1,8 @@
 using Content.Server.Backmen.Cloning;
 using Content.Shared.Verbs;
 using Content.Shared.DoAfter;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Buckle.Components;
@@ -14,7 +15,7 @@ using Content.Server.DoAfter;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Backmen.Soul;
-using Content.Server.Body.Systems;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Chapel;
 using Content.Shared.Backmen.Chapel.Components;
@@ -43,7 +44,7 @@ public sealed partial class SacrificialAltarSystem : SharedSacrificialAltarSyste
     [Dependency] private PopupSystem _popups = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySystem _bodySystem = default!;
     [Dependency] private MindSystem _mindSystem = default!;
     [Dependency] private MetaDataSystem _metaDataSystem = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
@@ -127,7 +128,7 @@ public sealed partial class SacrificialAltarSystem : SharedSacrificialAltarSyste
         }
 
         // and no golems or familiars or whatever should be sacrificing
-        if (!(HasComp<HumanoidAppearanceComponent>(agent) || HasComp<GhostComponent>(agent)))
+        if (!(HasComp<HumanoidProfileComponent>(agent) || HasComp<GhostComponent>(agent)))
         {
             _popups.PopupEntity(Loc.GetString("altar-failure-reason-user-humanoid"), altar, agent, Shared.Popups.PopupType.MediumCaution);
             return;
@@ -139,7 +140,7 @@ public sealed partial class SacrificialAltarSystem : SharedSacrificialAltarSyste
             return;
         }
 
-        if (!HasComp<HumanoidAppearanceComponent>(patient) && !HasComp<MetempsychosisKarmaComponent>(patient))
+        if (!HasComp<HumanoidProfileComponent>(patient) && !HasComp<MetempsychosisKarmaComponent>(patient))
         {
             _popups.PopupEntity(Loc.GetString("altar-failure-reason-target-humanoid", ("target", patient)), altar, agent, Shared.Popups.PopupType.MediumCaution);
             return;

@@ -1,0 +1,469 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: ArachneClassic
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.Chest:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceArachneClassic
+  name: arachne appearance
+  components:
+  - type: Sprite
+    layers:
+    # Spider segments behind torso.
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutOverlay" ] # Backmen
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - shader: StencilClear
+      sprite: Mobs/Species/Human/parts.rsi
+      state: l_leg
+    - shader: StencilMask
+      map: [ "enum.HumanoidVisualLayers.StencilMask" ]
+      sprite: Backmen/Mobs/Customization/anytaur_masking_helpers.rsi
+      state: female_full
+      visible: false
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: [ "socks" ]
+    - map: [ "underpants" ]
+    - map: [ "undershirt" ]
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.LHand" ]
+    - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    - map: [ "enum.HumanoidVisualLayers.Overlay" ]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "outerClothing" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "suitstorage" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "enum.HumanoidVisualLayers.TailOverlay" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+    - map: [ "singingLayer" ]
+      sprite: Backmen/Effects/harpysinger.rsi
+      state: singing_music_notes
+      visible: false
+  - type: InitialBody
+    organs:
+      Torso: OrganHumanTorso
+      Head: OrganHumanHead
+      ArmLeft: OrganArachneClassicArmLeft
+      ArmRight: OrganArachneClassicArmRight
+      HandRight: OrganHumanHandRight
+      HandLeft: OrganHumanHandLeft
+      ArachneAbdomen: OrganArachneClassicAbdomen
+      ArachneFront: OrganArachneClassicFront
+      SpiderLegLeft1: OrganArachneClassicSpiderLegLeft1
+      SpiderLegLeft2: OrganArachneClassicSpiderLegLeft2
+      SpiderLegLeft3: OrganArachneClassicSpiderLegLeft3
+      SpiderLegLeft4: OrganArachneClassicSpiderLegLeft4
+      SpiderLegRight1: OrganArachneClassicSpiderLegRight1
+      SpiderLegRight2: OrganArachneClassicSpiderLegRight2
+      SpiderLegRight3: OrganArachneClassicSpiderLegRight3
+      SpiderLegRight4: OrganArachneClassicSpiderLegRight4
+      Brain: OrganHumanBrain
+      Eyes: OrganArachneClassicEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Lungs: OrganSpaceAnimalLungs
+      Heart: OrganSpaceAnimalHeart
+      Stomach: OrganVampiricHumanoidStomach
+      Liver: OrganHumanLiver
+      Kidneys: OrganHumanKidneys
+    relationships:
+      Torso:
+      - Head
+      - ArmLeft
+      - ArmRight
+      - ArachneAbdomen
+      - ArachneFront
+      - Appendix
+      - Lungs
+      - Heart
+      - Stomach
+      - Liver
+      - Kidneys
+      Head:
+      - Brain
+      - Eyes
+      - Tongue
+      - Ears
+      ArmLeft:
+      - HandLeft
+      ArmRight:
+      - HandRight
+      ArachneAbdomen:
+      - SpiderLegLeft1
+      - SpiderLegLeft2
+      - SpiderLegLeft3
+      - SpiderLegLeft4
+      ArachneFront:
+      - SpiderLegRight1
+      - SpiderLegRight2
+      - SpiderLegRight3
+      - SpiderLegRight4
+  - type: Body
+    requiredLegs: 8
+  - type: HumanoidProfile
+    species: ArachneClassic
+  - type: Inventory
+    templateId: anytaur
+  - type: Arachne
+  - type: ArachneClothingStencil
+
+- type: entity
+  parent:
+  - AppearanceArachneClassic
+  - BaseSpeciesMobSurgery
+  id: MobArachneClassic
+  name: Player ArachneClassic
+  components:
+  - type: HumanoidProfile
+    species: ArachneClassic
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - Spider
+    understands:
+    - TauCetiBasic
+    - Spider
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 140
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Damageable
+    damageContainer: HalfSpirit
+    damageModifierSet: HalfSpirit
+  - type: Speech
+    speechSounds: Alto
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Tag
+    tags:
+    - CanPilot
+    - DoorBumpOpener
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: DemonsBlood
+        Quantity: 300
+  - type: BloodSucker
+    webRequired: true
+  - type: Arachne
+  - type: Cocooner
+  - type: MovedByPressure
+    pressureResistance: 4
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.07
+  - type: MovementAlwaysTouching
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 5.0
+  - type: Perishable
+  - type: FireVisuals
+    sprite: Mobs/Effects/onfire.rsi
+    normalState: Generic_mob_burning
+    alternateState: arachne_standing
+    fireStackAlternateState: 3
+  - type: Dna
+    dna: ABRAXAS
+  - type: Spider
+    webPrototype: SpiderWebArache
+    webAction: SpiderWebArachneClassicAction
+  - type: IgnoreSpiderWebArachneClassic
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1.0
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+
+- type: entity
+  parent: MobArachneClassic
+  id: MobArachneClassicDummy
+  categories: [ HideSpawnMenu ]
+  name: ArachneClassic Dummy
+  description: A dummy ArachneClassic meant to be used in character setup.
+  components:
+  - type: HumanoidProfile
+    species: ArachneClassic
+
+- type: entity
+  parent: OrganBase
+  id: OrganArachneClassic
+  abstract: true
+  suffix: arachne
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganHumanExternal ]
+  id: OrganArachneClassicArmLeft
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ArachneClassic
+      layers:
+      - LArm
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganHumanExternal ]
+  id: OrganArachneClassicArmRight
+  components:
+  - type: VisualOrganMarkings
+    markingData:
+      group: ArachneClassic
+      layers:
+      - RArm
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegLeft, OrganArachneClassic ]
+  id: OrganArachneClassicAbdomen
+  name: spider abdomen
+  components:
+  - type: Organ
+    category: ArachneAbdomen
+  - type: ArachneOrgan
+  - type: ArachneGraftVisual
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+    state: spider_body
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.LLeg
+    data:
+      sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+      state: spider_body
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegRight, OrganArachneClassic ]
+  id: OrganArachneClassicFront
+  name: spider cephalothorax
+  components:
+  - type: Organ
+    category: ArachneFront
+  - type: ArachneGraftVisual
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+    state: spider_body_front
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.RLeg
+    data:
+      sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+      state: spider_body_front
+
+- type: entity
+  parent: [ OrganBase, OrganSurgerySpiderLeg, OrganArachneClassic ]
+  id: OrganArachneClassicSpiderLegLeft1
+  name: left spider leg
+  components:
+  - type: Organ
+    category: SpiderLegLeft1
+  - type: Sprite
+    sprite: Objects/Consumable/Food/meat.rsi
+    state: spiderleg
+
+- type: entity
+  parent: OrganArachneClassicSpiderLegLeft1
+  id: OrganArachneClassicSpiderLegLeft2
+  name: left spider leg
+  components:
+  - type: Organ
+    category: SpiderLegLeft2
+
+- type: entity
+  parent: OrganArachneClassicSpiderLegLeft1
+  id: OrganArachneClassicSpiderLegLeft3
+  name: left spider leg
+  components:
+  - type: Organ
+    category: SpiderLegLeft3
+
+- type: entity
+  parent: OrganArachneClassicSpiderLegLeft1
+  id: OrganArachneClassicSpiderLegLeft4
+  name: left spider leg
+  components:
+  - type: Organ
+    category: SpiderLegLeft4
+
+- type: entity
+  parent: [ OrganBase, OrganSurgerySpiderLeg, OrganArachneClassic ]
+  id: OrganArachneClassicSpiderLegRight1
+  name: right spider leg
+  components:
+  - type: Organ
+    category: SpiderLegRight1
+  - type: Sprite
+    sprite: Objects/Consumable/Food/meat.rsi
+    state: spiderleg
+
+- type: entity
+  parent: OrganArachneClassicSpiderLegRight1
+  id: OrganArachneClassicSpiderLegRight2
+  name: right spider leg
+  components:
+  - type: Organ
+    category: SpiderLegRight2
+
+- type: entity
+  parent: OrganArachneClassicSpiderLegRight1
+  id: OrganArachneClassicSpiderLegRight3
+  name: right spider leg
+  components:
+  - type: Organ
+    category: SpiderLegRight3
+
+- type: entity
+  parent: OrganArachneClassicSpiderLegRight1
+  id: OrganArachneClassicSpiderLegRight4
+  name: right spider leg
+  components:
+  - type: Organ
+    category: SpiderLegRight4
+
+- type: entity
+  parent: [ OrganHumanoidFoxVisual, OrganBaseEyes, OrganHumanInternal ]
+  id: OrganArachneClassicEyes
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: Backmen/Mobs/Species/ArachneClassic/eyes.rsi
+      state: eyes
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegLeft, OrganRelationParent ]
+  id: BioSynthArachneAbdomen
+  name: bio-synthetic spider abdomen
+  description: A graftable spider abdomen segment. Attach to a torso after the cephalothorax, then add left spider legs.
+  components:
+  - type: Organ
+    category: ArachneAbdomen
+  - type: ArachneOrgan
+  - type: ArachneGraftVisual
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+    state: spider_body
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.LLeg
+    data:
+      sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+      state: spider_body
+
+- type: entity
+  parent: [ OrganBase, OrganSurgeryLegRight, OrganRelationParent ]
+  id: BioSynthArachneFront
+  name: bio-synthetic spider cephalothorax
+  description: A graftable spider cephalothorax segment. Attach to a torso first, then add right spider legs.
+  components:
+  - type: Organ
+    category: ArachneFront
+  - type: ArachneGraftVisual
+  - type: Sprite
+    sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+    state: spider_body_front
+  - type: VisualOrgan
+    layer: enum.HumanoidVisualLayers.RLeg
+    data:
+      sprite: Backmen/Mobs/Species/ArachneClassic/arachneClassic.rsi
+      state: spider_body_front
+
+- type: entity
+  parent: [ OrganBase, OrganSurgerySpiderLeg, OrganRelationChild ]
+  id: BioSynthSpiderLegLeft
+  name: bio-synthetic left spider leg
+  description: A graftable left spider leg. Requires a spider abdomen on the patient.
+  components:
+  - type: Organ
+    category: SpiderLegLeft1
+  - type: Sprite
+    sprite: Objects/Consumable/Food/meat.rsi
+    state: spiderleg
+
+- type: entity
+  parent: [ OrganBase, OrganSurgerySpiderLeg, OrganRelationChild ]
+  id: BioSynthSpiderLegRight
+  name: bio-synthetic right spider leg
+  description: A graftable right spider leg. Requires a spider cephalothorax on the patient.
+  components:
+  - type: Organ
+    category: SpiderLegRight1
+  - type: Sprite
+    sprite: Objects/Consumable/Food/meat.rsi
+    state: spiderleg
+  - type: WoundableVisuals
+    occupiedLayer: enum.HumanoidVisualLayers.RLeg

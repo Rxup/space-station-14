@@ -26,6 +26,7 @@ namespace Content.Shared.Mobs.Components
             {
                 MobState.Alive,
                 MobState.Critical,
+                MobState.SoftCritical, // Backmen: pain soft crit
                 MobState.Dead
             };
     }

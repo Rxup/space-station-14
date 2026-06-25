@@ -5,7 +5,7 @@ using Content.Shared.Chemistry.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Body.Components;
+namespace Content.Shared.Body;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(LungSystem))]
 public sealed partial class LungComponent : Component

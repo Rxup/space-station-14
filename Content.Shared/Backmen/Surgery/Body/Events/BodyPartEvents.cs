@@ -1,4 +1,4 @@
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 
 namespace Content.Shared.Backmen.Surgery.Body.Events;

@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using Content.Server.Backmen.Antag.SuperPsi;
@@ -411,7 +411,7 @@ public sealed partial class FugitiveSystem : EntitySystem
         report.PushNewline();
 
 
-        if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoidComponent) ||
+        if (!TryComp<HumanoidProfileComponent>(uid, out var humanoidComponent) ||
             !_prototypeManager.TryIndex<SpeciesPrototype>(humanoidComponent.Species, out var species))
         {
             report.AddMarkup(Loc.GetString("fugitive-report-inhuman", ("name", uid)));

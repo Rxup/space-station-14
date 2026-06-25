@@ -28,9 +28,10 @@ using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Vampiric.Components;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
@@ -65,7 +66,7 @@ namespace Content.Server.Backmen.Vampiric;
 public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
 {
     [Dependency] private AntagSelectionSystem _antag = default!;
-    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private BkmBodySharedSystem _bodySystem = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private PopupSystem _popups = default!;
     [Dependency] private DoAfterSystem _doAfter = default!;
@@ -148,17 +149,17 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
 
         EnsureComp<BloodSuckerComponent>(uid);
 
-        foreach (var bodyPart in _bodySystem.GetBodyChildren(uid))
+        if (!TryComp<BodyComponent>(uid, out var bodyComp))
+            return;
+
+        foreach (var organ in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((uid, bodyComp)))
         {
-            foreach (var organ in _bodySystem.GetBodyPartOrganComponents<StomachComponent>(bodyPart.Id, bodyPart.Component))
-            {
-                _bodySystem.RemoveOrgan(organ.Owner, organ.Organ);
+            _bodySystem.RemoveOrgan(organ.Owner, organ.Comp2);
 
-                var stomach = Spawn(OrganVampiricHumanoidStomach);
-                _bodySystem.InsertOrgan(bodyPart.Id, stomach, "stomach", bodyPart.Component);
+            var stomach = Spawn(OrganVampiricHumanoidStomach);
+            _bodySystem.InsertOrganIntoBody(uid, stomach);
 
-                QueueDel(organ.Owner);
-            }
+            QueueDel(organ.Owner);
         }
 
         EnsureComp<BkmVampireComponent>(uid);

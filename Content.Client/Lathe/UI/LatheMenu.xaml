@@ -102,6 +102,14 @@
                             Margin="5 0 0 0"
                             Text="{Loc 'lathe-menu-fabricating-message'}">
                         </Label>
+                        <ProgressBar
+                            Name="FabricatingProgressBar"
+                            HorizontalExpand="True"
+                            VerticalAlignment="Bottom"
+                            Margin="5 2 45 2"
+                            MinValue="0"
+                            MaxValue="1"
+                            Visible="False" />
                         <BoxContainer Name="FabricatingDisplayContainer"
                                       HorizontalAlignment="Left"
                                       Margin="100 0 0 0"/>

@@ -3,12 +3,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.VentCrawler;
 
-public abstract class SharedVentCrawlerSystem : EntitySystem
+public abstract partial class SharedVentCrawlerSystem : EntitySystem
 {
     public static readonly EntProtoId GasPipeBrokenPrototype = "GasPipeBroken";
     public static readonly ProtoId<TagPrototype> GasVentTag = "GasVent";
 
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     public bool IsGasVent(EntityUid uid)
     {

@@ -700,9 +700,7 @@ public sealed partial class SupermatterSystem : SharedSupermatterSystem
         args.Handled = true;
 
         supermatter.MatterPower += 200;
-        Spawn(Ash, Transform(target).Coordinates);
-        _audio.PlayPvs(supermatter.DustSound, uid);
-        QueueDel(target);
+        DustEntity(uid, supermatter, target);
     }
 
     private void OnMapInit(Entity<BkmSupermatterComponent> ent, ref MapInitEvent args)

@@ -1,11 +1,11 @@
-﻿using Content.Shared.Gibbing.Systems;
+using Content.Shared.Gibbing.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Gibbing.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(GibbingSystem))]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(LegacyGibbingSystem))]
 public sealed partial class GibbableComponent : Component
 {
     /// <summary>

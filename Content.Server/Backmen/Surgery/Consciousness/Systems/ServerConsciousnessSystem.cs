@@ -15,9 +15,11 @@ using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body.Components;
+using Content.Shared.Body.Part;
+using Content.Shared.Body;
 using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -64,13 +66,13 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
         SubscribeLocalEvent<ConsciousnessComponent, ComponentInit>(OnConsciousnessInit);
         SubscribeLocalEvent<ConsciousnessComponent, MapInitEvent>(OnConsciousnessMapInit);
-        SubscribeLocalEvent<ConsciousnessComponent, HandleCustomDamage>(OnConsciousnessDamaged);
+        SubscribeLocalEvent<ConsciousnessComponent, DamageableWoundApplyEvent>(OnConsciousnessDamaged);
 
         SubscribeLocalEvent<ConsciousnessComponent, InteractHandEvent>(OnConsciousnessInteract);
         SubscribeLocalEvent<ConsciousnessComponent, CprDoAfterEvent>(OnCprDoAfter);
 
         // To prevent people immediately falling down as rejuvenated
-        SubscribeLocalEvent<ConsciousnessComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(SharedBodySystem)]);
+        SubscribeLocalEvent<ConsciousnessComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(BkmBodySharedSystem)]);
         SubscribeLocalEvent<ConsciousnessComponent, HandleUnhandledWoundsEvent>(OnHandleUnhandledDamage);
         SubscribeLocalEvent<ConsciousnessComponent, DamageableGetHealableDamageEvent>(OnGetHealableDamage);
 
@@ -99,7 +101,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
     private void OnConsciousnessDamaged(
         EntityUid uid,
         ConsciousnessComponent component,
-        ref HandleCustomDamage args)
+        ref DamageableWoundApplyEvent args)
     {
         if (args.Handled)
             return;
@@ -149,7 +151,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
                     }
                     else
                     {
-                        var bodyParts = Body.GetBodyChildren(uid).ToList();
+                        var bodyParts = Body.GetWoundableTargets(uid).ToList();
 
                         actuallyInducedDamage.DamageDict[damagePair.Key] = 0;
                         if (bodyParts.Count == 0)
@@ -158,16 +160,16 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
                         var damagePerPart = new DamageSpecifier();
                         damagePerPart.DamageDict.Add(damagePair.Key, damagePair.Value / bodyParts.Count);
 
-                        foreach (var bodyPart in bodyParts)
+                        foreach (var bodyPartId in bodyParts)
                         {
                             var beforePart = new BeforeDamageChangedEvent(damagePerPart, args.Origin);
-                            RaiseLocalEvent(bodyPart.Id, ref beforePart);
+                            RaiseLocalEvent(bodyPartId, ref beforePart);
 
                             if (beforePart.Cancelled)
                                 continue;
 
                             actuallyInducedDamage.DamageDict[damagePair.Key] +=
-                                Wound.GetWoundsChanged(bodyPart.Id, args.Origin, damagePerPart).DamageDict[damagePair.Key];
+                                Wound.GetWoundsChanged(bodyPartId, args.Origin, damagePerPart).DamageDict[damagePair.Key];
                         }
                     }
                 }
@@ -181,15 +183,14 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
                     target = Body.GetRandomBodyPart(uid, args.Origin.Value, attackerComp: targeting);
 
                 var (partType, symmetry) = Body.ConvertTargetBodyPart(target);
-                var possibleTargets = Body.GetBodyChildrenOfType(uid, partType, symmetry: symmetry).ToList();
+                var possibleTargets = new List<EntityUid>();
+                if (Body.TryGetWoundableTargetByType(uid, partType, symmetry, out var typedTarget))
+                    possibleTargets.Add(typedTarget);
+                else
+                    possibleTargets.AddRange(Body.GetWoundableTargets(uid));
 
-                if (possibleTargets.Count == 0)
-                    possibleTargets = Body.GetBodyChildren(uid).ToList();
-
-                // No body parts at all?
                 if (possibleTargets.Count == 0)
                 {
-                    // empty
                     actuallyInducedDamage = new DamageSpecifier();
                     break;
                 }
@@ -197,10 +198,10 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
                 var chosenTarget = Random.PickAndTake(possibleTargets);
 
                 var beforePart = new BeforeDamageChangedEvent(args.Damage, args.Origin);
-                RaiseLocalEvent(chosenTarget.Id, ref beforePart);
+                RaiseLocalEvent(chosenTarget, ref beforePart);
 
                 if (!beforePart.Cancelled)
-                    actuallyInducedDamage = Wound.GetWoundsChanged(chosenTarget.Id, args.Origin, args.Damage);
+                    actuallyInducedDamage = Wound.GetWoundsChanged(chosenTarget, args.Origin, args.Damage);
                 break;
             }
         }
@@ -296,7 +297,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         var modifier = consciousness.Comp.Modifiers[(nerveSys.Value.Owner, ConsciousnessModifierIds.Asphyxiation)];
 
         var sex = Sex.Unsexed;
-        if (TryComp<HumanoidAppearanceComponent>(consciousness, out var humanoid))
+        if (TryComp<HumanoidProfileComponent>(consciousness, out var humanoid))
             sex = humanoid.Sex;
 
         var lungs = Body.GetBodyOrganEntityComps<LungComponent>(consciousness.Owner);
@@ -624,8 +625,18 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         if (component.Identifier == NerveSystemIdentifier)
         {
             var nerveSys = EnsureComp<NerveSystemComponent>(uid);
-            nerveSys.RootNerve = args.Part;
+            EntityUid rootNerve;
+            if (HasComp<BodyPartComponent>(args.Part))
+                rootNerve = args.Part;
+            else if (Body.TryGetWoundableTargetByType(args.Body, BodyPartType.Head, null, out var head))
+                rootNerve = head;
+            else
+                rootNerve = args.Part;
+
+            nerveSys.RootNerve = rootNerve;
             consciousness.NerveSystem = (uid, nerveSys);
+            Dirty(uid, nerveSys);
+            Pain.RefreshNerveSystem(uid, args.Body);
         }
 
         CheckRequiredParts((args.Body, consciousness));

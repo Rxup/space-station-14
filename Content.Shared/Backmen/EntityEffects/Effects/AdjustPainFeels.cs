@@ -1,6 +1,7 @@
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Body.Systems;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
@@ -15,7 +16,7 @@ namespace Content.Shared.Backmen.EntityEffects.Effects;
 public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSystem<MobStateComponent, AdjustPainFeels>
 {
     [Dependency] private ConsciousnessSystem _consciousness = default!;
-    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private PainSystem _pain = default!;
     [Dependency] private IRobustRandom _random = default!;
 
@@ -26,9 +27,9 @@ public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSyst
         if (!_consciousness.TryGetNerveSystem(entity.Owner, out var nerveSys))
             return;
 
-        foreach (var bodyPart in _body.GetBodyChildren(entity))
+        foreach (var bodyPartId in _body.GetWoundableTargets(entity))
         {
-            if (!_pain.TryGetPainFeelsModifier(bodyPart.Id, nerveSys.Value, args.Effect.ModifierIdentifier, out var modifier))
+            if (!_pain.TryGetPainFeelsModifier(bodyPartId, nerveSys.Value, args.Effect.ModifierIdentifier, out var modifier))
             {
                 var add = args.Effect.Amount;
                 if (args.Effect.RandomiseAmount && _random.Prob(0.3f))
@@ -37,7 +38,7 @@ public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSyst
                 _pain.TryAddPainFeelsModifier(
                         nerveSys.Value,
                         args.Effect.ModifierIdentifier,
-                        bodyPart.Id,
+                        bodyPartId,
                         add);
             }
             else
@@ -49,7 +50,7 @@ public sealed partial class AdjustPainFeelsEntityEffectSystem : EntityEffectSyst
                 _pain.TryChangePainFeelsModifier(
                         nerveSys.Value,
                         args.Effect.ModifierIdentifier,
-                        bodyPart.Id,
+                        bodyPartId,
                         add * scale);
             }
         }

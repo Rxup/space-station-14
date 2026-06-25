@@ -9,11 +9,10 @@
       thresholds:
         0: Alive
         1000: Dead
-    - type: HumanoidAppearance
+    - type: HumanoidProfile
       species: Human
       sex: Female
       gender: Female
-      initial: Hecate
     - type: Grammar
       attributes:
         proper: true
@@ -51,8 +50,6 @@
     sex: Female
     gender: Female
     appearance:
-      hair: HumanHairLong3
-      hairColor: "#111120"
       eyeColor: "#208090"
 
 - type: startingGear

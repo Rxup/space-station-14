@@ -4,7 +4,7 @@
   id: MobBaseAngelicHuman
   parent:
   #- DeathByDome
-  - MobBaseNpc
+  - MobBaseNpcHumanoid
   categories: [ HideSpawnMenu ]
   components:
   - type: NpcFactionMember

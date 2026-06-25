@@ -1,6 +1,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Client.Alerts;
 using Content.Client.Clothing;
+using Content.Shared.Alert;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
@@ -9,17 +11,22 @@ using Content.Shared.Inventory;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Backmen.Flesh;
 
 /// <summary>
-/// Fallback mask visuals for face-attached flesh worms and headcrabs when clothing RSI lacks equipped states.
+/// Client visuals for face-attached flesh worms and headcrabs.
 /// </summary>
-public sealed class FleshWormVisualSystem : EntitySystem
+public sealed partial class FleshWormVisualSystem : EntitySystem
 {
-    [Dependency] private readonly IResourceCache _cache = default!;
+    private static readonly ProtoId<AlertPrototype> SuffocationAlert = "FleshWormSuffocation";
+
+    [Dependency] private IResourceCache _cache = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -27,6 +34,35 @@ public sealed class FleshWormVisualSystem : EntitySystem
 
         SubscribeLocalEvent<FleshWormComponent, GetEquipmentVisualsEvent>(OnGetEquipmentVisuals,
             after: [typeof(ClientClothingSystem)]);
+        SubscribeLocalEvent<FleshWormSuffocationAlertComponent, UpdateAlertSpriteEvent>(OnUpdateSuffocationAlertSprite);
+    }
+
+    private void OnUpdateSuffocationAlertSprite(
+        Entity<FleshWormSuffocationAlertComponent> ent,
+        ref UpdateAlertSpriteEvent args)
+    {
+        if (args.Alert.ID != SuffocationAlert)
+            return;
+
+        if (!TryGetFaceAttacher(args.ViewerEnt, out var attacher)
+            || !TryComp<SpriteComponent>(attacher, out var attackerSprite))
+            return;
+
+        _sprite.CopySprite((attacher, attackerSprite), args.SpriteViewEnt.AsNullable());
+    }
+
+    private bool TryGetFaceAttacher(EntityUid viewer, [NotNullWhen(true)] out EntityUid attacher)
+    {
+        attacher = EntityUid.Invalid;
+
+        if (!_inventory.TryGetSlotEntity(viewer, "mask", out var mask) || mask is not { } maskEnt)
+            return false;
+
+        if (!HasComp<FleshWormComponent>(maskEnt))
+            return false;
+
+        attacher = maskEnt;
+        return true;
     }
 
     private void OnGetEquipmentVisuals(Entity<FleshWormComponent> ent, ref GetEquipmentVisualsEvent args)
