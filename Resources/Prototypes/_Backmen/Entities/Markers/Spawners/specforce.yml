@@ -266,3 +266,71 @@
   components:
     - type: GhostRoleMobSpawner
       prototype: MobHumanERTSecurityTay39
+
+# ОБР Солнечный луч by drenk28
+
+# ОБР Лидер
+- type: entity
+  id: SpawnMobHumanOBRLeaderSunbeam
+  parent: SpawnSpecforce
+  categories: [ HideSpawnMenu ]
+  name: ОБР Лидер
+  suffix: Роль ОБР, Солнечный луч
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanOBRLeaderSunbeam
+
+# ОБР Медик
+- type: entity
+  id: SpawnMobHumanOBRMedicSunbeam
+  parent: SpawnSpecforce
+  categories: [ HideSpawnMenu ]
+  name: ОБР Медик
+  suffix: Роль ОБР, Солнечный луч
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanOBRMedicSunbeam
+      
+# ОБР Офицер
+- type: entity
+  id: SpawnMobHumanOBRSecuritySunbeam
+  parent: SpawnSpecforce
+  categories: [ HideSpawnMenu ]
+  name: ОБР Лидер
+  suffix: Роль ОБР, Солнечный луч
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanOBRSecuritySunbeam
+    
+# ОБР Инженер
+- type: entity
+  id: SpawnMobHumanOBREngineerSunbeam 
+  parent: SpawnSpecforce
+  categories: [ HideSpawnMenu ]
+  name: ОБР Лидер
+  suffix: Роль ОБР, Солнечный луч
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanOBREngineerSunbeam
+
+# ОБР Уборщик
+- type: entity
+  id: SpawnMobHumanOBRJanitorSunbeam 
+  parent: SpawnSpecforce
+  categories: [ HideSpawnMenu ]
+  name: ОБР Лидер
+  suffix: Роль ОБР, Солнечный луч
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanOBRJanitorSunbeam
+      
+# ОБР Священник
+- type: entity
+  id: SpawnMobHumanOBRPriestSunbeam
+  parent: SpawnSpecforce
+  categories: [ HideSpawnMenu ]
+  name: ОБР Лидер
+  suffix: Роль ОБР, Солнечный луч
+  components:
+    - type: GhostRoleMobSpawner
+      prototype: MobHumanOBRPriestSunbeam

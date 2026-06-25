@@ -1,0 +1,461 @@
+# ОБР Лидер
+- type: startingGear
+  id: OBRLeaderSunbeam
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTLeader
+    shoes: ClothingShoesBootsMagERT
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTLeader
+    head: ClothingHeadHatERTLeaderBeret
+    neck: ClothingNeckMantleERTLeader
+    id: ERTLeaderPDA
+    ears: ClothingHeadsetCentComAltOBR
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolN1984
+    pocket2: FlashlightSeclite
+
+# ОБР Медик
+- type: startingGear
+  id: OBRMedicSunbeam
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTLeader
+    shoes: ClothingShoesBootsMagERT
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTLeader
+    head: ClothingHeadHatERTLeaderBeret
+    neck: ClothingNeckMantleERTLeader
+    id: ERTLeaderPDA
+    ears: ClothingHeadsetCentComAltOBR
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolN1984
+    pocket2: FlashlightSeclite
+
+# ОБР Офицер
+- type: startingGear
+  id: OBRSecuritySunbeam
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTLeader
+    shoes: ClothingShoesBootsMagERT
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTLeader
+    head: ClothingHeadHatERTLeaderBeret
+    neck: ClothingNeckMantleERTLeader
+    id: ERTLeaderPDA
+    ears: ClothingHeadsetCentComAltOBR
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolN1984
+    pocket2: FlashlightSeclite
+
+# ОБР Инженер
+- type: startingGear
+  id: OBREngineerSunbeam 
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTLeader
+    shoes: ClothingShoesBootsMagERT
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTLeader
+    head: ClothingHeadHatERTLeaderBeret
+    neck: ClothingNeckMantleERTLeader
+    id: ERTLeaderPDA
+    ears: ClothingHeadsetCentComAltOBR
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolN1984
+    pocket2: FlashlightSeclite
+
+# ОБР Уборщик
+- type: startingGear
+  id: OBRJanitorSunbeam
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTLeader
+    shoes: ClothingShoesBootsMagERT
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTLeader
+    head: ClothingHeadHatERTLeaderBeret
+    neck: ClothingNeckMantleERTLeader
+    id: ERTLeaderPDA
+    ears: ClothingHeadsetCentComAltOBR
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolN1984
+    pocket2: FlashlightSeclite
+
+# ERT Священник
+- type: startingGear
+  id: OBRPriestSunbeam
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitERTLeader
+    back: ClothingBackpackERTLeader
+    shoes: ClothingShoesBootsMagERT
+    mask: ClothingMaskGasERTV2_1
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesSpetsnazcombat
+    outerClothing: ClothingOuterHardsuitERTLeader
+    head: ClothingHeadHatERTLeaderBeret
+    neck: ClothingNeckMantleERTLeader
+    id: ERTLeaderPDA
+    ears: ClothingHeadsetCentComAltOBR
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolN1984
+    pocket2: FlashlightSeclite
+
+#------------------------------------
+
+# ОБР Лидер
+- type: entity
+  name:  Sunbeam лидер
+  parent: MobHuman
+  suffix: ОБР
+  id: MobHumanOBRLeaderSunbeam
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertleadereva
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР лидер
+    description: Командир отряда Sunbeam, великий воин, герой НТ, знаменитый полководец, мог бы им быть если бы не пошел в Солнечный луч.
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Command
+        time: 18000
+    job: ERTLeader
+    mindRoles:
+      - MindRoleERTLeader
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBRLeaderSunbeam]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesSGTs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune
+
+
+# ОБР Инженер
+- type: entity
+  name: Sunbeam Инженер
+  suffix: ОБР
+  parent: MobHuman
+  id: MobHumanOBREngineerSunbeam
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertengineereva
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР инженер
+    description: Инженер отряда Sunbeam, может и не очень хороший инженер, но дело свое знает, наверное.
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Engineering
+        time: 18000
+    job: ERTEngineer
+    mindRoles:
+    - MindRoleERTEngineer
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBREngineerSunbeam]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCPLs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune
+
+# ОБР Офицер
+- type: entity
+  name: Sunbeam Офицер
+  suffix: ОБР
+  parent: MobHuman
+  id: MobHumanOBRSecuritySunbeam
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertsecurityeva
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР офицер безопасности
+    description: Солдат или же охранник Sunbeam, прошедший небольшую подготовку и готовый стрелять во все что движеться, я бы не доверил ему даже водяной пистолетик.
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 36000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+    job: ERTSecurity
+    mindRoles:
+    - MindRoleERTSecurity
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBRSecuritySunbeam]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesPVTs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune
+
+# ОБР Медик
+- type: entity
+  name: Sunbeam Медик
+  parent: MobHuman
+  suffix: ОБР
+  id: MobHumanOBRMedicSunbeam
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertmedicaleva
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР медик
+    description: Медик отделения Theta - 9, был в медицинском институте, поэтому и взяли в качестве медика, но никого не волнует что он там был всего неделю.
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:DepartmentTimeRequirement
+        department: Medical
+        time: 18000
+    job: ERTMedical
+    mindRoles:
+    - MindRoleERTMedical
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBRMedicSunbeam]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCPLs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune
+
+# ОБР Уборщик
+- type: entity
+  name: Sunbeam Уборщик
+  parent: MobHuman
+  suffix: МТФ
+  id: MobHumanOBREngineerSunbeam
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertjanitoreva
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР уборщик
+    description: Уборщик отделения Sunbeam, эй! кто дал ему пистолет?!
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 3000
+    job: ERTJanitor
+    mindRoles:
+    - MindRoleERTJanitor
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBREngineerSunbeam]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesPVTs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune
+
+# ОБР Священник
+- type: entity
+  name: Sunbeam Священник
+  parent: MobHuman
+  suffix: ОБР
+  id: MobHumanOBRPriestSunbeam
+  components:
+  - type: Icon
+    sprite: Markers/jobs.rsi
+    state: ertjanitoreva
+  - type: GhostTakeoverAvailable
+  - type: AutoImplant
+    implants:
+    - MindShieldImplant
+  - type: Speech
+    speechSounds: Metrocop
+    soundCooldownTime: 0.1
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Critical
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: SoldierDeath
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ОБР уборщик
+    description: Священник отделения Sunbeam, поповедуйте слово божнье и подчинение NanoTrasen конечно же!
+    raffle:
+      settings: default
+    requirements:
+      - !type:DepartmentTimeRequirement
+        department: Security
+        time: 18000
+      - !type:OverallPlaytimeRequirement
+        time: 36000
+      - !type:RoleTimeRequirement
+        role: JobJanitor
+        time: 3000
+    job: ERTJanitor
+    mindRoles:
+    - MindRoleERTJanitor
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBRPriestSunbeam]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesPVTs
+    - names_last_male
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: AntagImmune

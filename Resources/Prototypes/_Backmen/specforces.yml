@@ -18,16 +18,16 @@
   announcementText: spec-forces-system-ertcall-annonce
   announcementTitle: spec-forces-system-ertcall-title
   announcementSoundPath: /Audio/Corvax/Adminbuse/Yesert.ogg
-  maxRolesAmount: 8
+  maxRolesAmount: 10
   raffleConfig:
     settings: short
   guaranteedSpawn:
-    - id: SpawnMobHumanERTLeaderEVAV2_1
-    - id: SpawnMobHumanERTMedicalEVAV2_1
+    - id: SpawnMobHumanOBRLeaderSunbeam # Лидер
+    - id: SpawnMobHumanOBRMedicSunbeam # Медик
   specForceSpawn:
-    - id: SpawnMobHumanERTSecurityEVAV2_1
-    - id: SpawnMobHumanERTJunitorEVAV2_1
-    - id: SpawnMobHumanERTEngineerEVAV2_1
+    - id: SpawnMobHumanOBRSecuritySunbeam # Офицер
+    - id: SpawnMobHumanOBREngineerSunbeam # Инженер
+    - id: SpawnMobHumanOBRJanitorSunbeam # Уборщик
 
 # BaseRXBZZ
 - type: specForceTeam
