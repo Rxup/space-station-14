@@ -336,11 +336,6 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/meat.rsi
     state: spiderleg
-  - type: VisualOrgan
-    layer: enum.HumanoidVisualLayers.LLeg
-    data:
-      sprite: Objects/Consumable/Food/meat.rsi
-      state: spiderleg
 
 - type: entity
   parent: OrganArachneClassicSpiderLegLeft1
@@ -376,11 +371,6 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/meat.rsi
     state: spiderleg
-  - type: VisualOrgan
-    layer: enum.HumanoidVisualLayers.RLeg
-    data:
-      sprite: Objects/Consumable/Food/meat.rsi
-      state: spiderleg
 
 - type: entity
   parent: OrganArachneClassicSpiderLegRight1
@@ -463,11 +453,6 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/meat.rsi
     state: spiderleg
-  - type: VisualOrgan
-    layer: enum.HumanoidVisualLayers.LLeg
-    data:
-      sprite: Objects/Consumable/Food/meat.rsi
-      state: spiderleg
 
 - type: entity
   parent: [ OrganBase, OrganSurgerySpiderLeg, OrganRelationChild ]
@@ -480,10 +465,5 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/meat.rsi
     state: spiderleg
-  - type: VisualOrgan
-    layer: enum.HumanoidVisualLayers.RLeg
-    data:
-      sprite: Objects/Consumable/Food/meat.rsi
-      state: spiderleg
   - type: WoundableVisuals
     occupiedLayer: enum.HumanoidVisualLayers.RLeg

@@ -183,9 +183,15 @@ namespace Content.Client.HealthAnalyzer.UI
                     ? GetStatus(mobStateComponent.CurrentState)
                     : Loc.GetString("health-analyzer-window-entity-unknown-text");
 
-            // Damage stuff
+            // start-backmen: nubody wound severity
+            // Damage stuff — conscious humanoids use wound severity, not DamageableComponent.TotalDamage
+            BodyComponent? body = null;
+            var usesWoundDamage = !isPart
+                && _entityManager.TryGetComponent(_target.Value, out body)
+                && _entityManager.HasComponent<ConsciousnessComponent>(_target.Value);
 
-            if (_entityManager.TryGetComponent<DamageableComponent>(_target.Value, out var damageable))
+            if (!usesWoundDamage
+                && _entityManager.TryGetComponent<DamageableComponent>(_target.Value, out var damageable))
             {
                 DamageLabel.Text = damageable.TotalDamage.ToString();
 
@@ -198,9 +204,7 @@ namespace Content.Client.HealthAnalyzer.UI
                 DrawDiagnosticGroups(damageSortedGroups, damagePerType);
             }
 
-            if (!isPart
-                && _entityManager.TryGetComponent<BodyComponent>(_target.Value, out var body)
-                && _entityManager.HasComponent<ConsciousnessComponent>(_target.Value))
+            if (usesWoundDamage && body != null)
             {
                 var damageGroups = new Dictionary<string, FixedPoint2>();
                 var damageTypes = new Dictionary<string, FixedPoint2>();
@@ -235,6 +239,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
                 DamageLabel.Text = damageGroups.Values.Sum().ToString();
             }
+            // end-backmen: nubody wound severity
 
             if (_entityManager.TryGetComponent<WoundableComponent>(part, out var woundable))
             {

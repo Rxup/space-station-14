@@ -1,9 +1,13 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Backmen.Body;
+using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Body.Organ;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
@@ -33,6 +37,8 @@ public sealed partial class ServerWoundSystem : WoundSystem
     private readonly EntProtoId BluntWoundId = "Blunt";
 
     [Dependency] private IPrototypeManager _prototype = default!;
+
+    protected override FixedPoint2 GetMaxWoundSeverity() => FixedPoint2.New(_maxWoundSeverity);
 
     public override void Initialize()
     {
@@ -439,9 +445,34 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
         if (!Body.TryGetWoundableBodyPartInfo(woundableEntity, out var bodyUid, out var partType, out var symmetry))
         {
+            if (HasComp<BrainComponent>(woundableEntity))
+            {
+                _brainPreserve.TryPreserveBrain(woundableEntity, Transform(woundableEntity).Coordinates);
+                return;
+            }
+
+            if (_burnWoundable.ShouldBurnToAsh(woundableEntity, woundableComp))
+            {
+                SpawnPartBurnEffects(woundableEntity);
+                QueueDel(woundableEntity);
+                return;
+            }
+
             DropWoundableOrgans(woundableEntity, woundableComp);
             QueueDel(woundableEntity);
 
+            return;
+        }
+
+        if (HasComp<BrainComponent>(woundableEntity))
+        {
+            _brainPreserve.TryPreserveBrain(woundableEntity, Transform(woundableEntity).Coordinates);
+            return;
+        }
+
+        if (_burnWoundable.ShouldBurnToAsh(woundableEntity, woundableComp))
+        {
+            BurnWoundableToAsh(parentWoundableEntity, woundableEntity, woundableComp, parentWoundableComp);
             return;
         }
 
@@ -469,7 +500,10 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
             QueueDel(woundableEntity);
 
-            Body.GibBody(bodyUid); // More blood for the Blood Gods!
+            // start-backmen: surgery-gib-threshold
+            if (EntityManager.System<BkmSurgeryDestructibleSystem>().ShouldFullBodyGib(bodyUid))
+                Body.GibBody(bodyUid); // More blood for the Blood Gods!
+            // end-backmen: surgery-gib-threshold
         }
         else
         {
@@ -520,6 +554,10 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
             if (TryComp<OrganComponent>(woundableEntity, out var organ))
                 Body.RemoveOrgan(woundableEntity, organ);
+
+            if (Containers.TryGetContainingContainer(woundableEntity, out var detachedContainer)
+                && HasComp<BkmDetachedBodyComponent>(detachedContainer.Owner))
+                return;
 
             QueueDel(woundableEntity);
         }

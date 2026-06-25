@@ -140,6 +140,13 @@ public partial class BkmBodySharedSystem
     }
 
     /// <summary>
+    /// Flat-sprite NPCs keep external organs in <see cref="BodyComponent.Organs"/> without
+    /// layered <see cref="VisualBodyComponent"/> anatomy.
+    /// </summary>
+    public bool UsesFlatOrgans(EntityUid bodyId) =>
+        HasComp<BodyComponent>(bodyId) && !HasComp<VisualBodyComponent>(bodyId);
+
+    /// <summary>
     /// Arachne grafting requires layered <see cref="VisualBodyComponent"/> humanoids,
     /// not flat-sprite NPC organ sets.
     /// </summary>

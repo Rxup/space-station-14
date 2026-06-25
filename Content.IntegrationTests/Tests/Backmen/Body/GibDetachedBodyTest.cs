@@ -4,6 +4,9 @@ using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Maths;
+using System.Collections.Generic;
+using System.Numerics;
 
 namespace Content.IntegrationTests.Tests.Backmen.Body;
 
@@ -27,22 +30,44 @@ public sealed class GibDetachedBodyTest : GameTest
             bodySys.GibBody(patient, gibOrgans: true);
         });
 
-        await Server.WaitIdleAsync();
+        await Server.WaitRunTicks(90);
 
         await Server.WaitAssertion(() =>
         {
             var bundleCount = 0;
+            var positions = new List<Vector2>();
             var enumerator = Server.EntMan.EntityQueryEnumerator<BkmDetachedBodyComponent>();
-            while (enumerator.MoveNext(out var bundle))
+            while (enumerator.MoveNext(out var bundle, out var detached))
             {
                 bundleCount++;
-                Assert.That(Server.EntMan.TryGetComponent(bundle.Owner, out BodyComponent? body) && body!.Organs?.Count > 0,
+                Assert.That(detached.MessyScatter, Is.True, "Gib bundles should use violent scatter.");
+                Assert.That(Server.EntMan.TryGetComponent(bundle, out BodyComponent? body) && body!.Organs?.Count > 0,
                     Is.True,
                     "Each detached bundle should still contain at least one organ.");
+                positions.Add(Server.EntMan.GetComponent<TransformComponent>(bundle).WorldPosition);
             }
 
             Assert.That(bundleCount, Is.GreaterThan(3),
                 "Human gib should produce a detached bundle per external part, not a single pile.");
+
+            Assert.That(MedianPairwiseDistance(positions), Is.GreaterThanOrEqualTo(1f),
+                "Gib should scatter bundles at least one tile apart on median.");
         });
+    }
+
+    private static float MedianPairwiseDistance(List<Vector2> positions)
+    {
+        var distances = new List<float>();
+        for (var i = 0; i < positions.Count; i++)
+        {
+            for (var j = i + 1; j < positions.Count; j++)
+                distances.Add((positions[i] - positions[j]).Length());
+        }
+
+        if (distances.Count == 0)
+            return 0f;
+
+        distances.Sort();
+        return distances[distances.Count / 2];
     }
 }

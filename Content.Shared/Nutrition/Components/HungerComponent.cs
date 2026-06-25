@@ -1,6 +1,9 @@
 using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Nutrition.EntitySystems;
+// start-backmen: hunger
+using Robust.Shared.Audio;
+// end-backmen: hunger
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -131,6 +134,23 @@ public sealed partial class HungerComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public TimeSpan ThresholdUpdateRate = TimeSpan.FromSeconds(1);
+
+    // start-backmen: hunger
+    /// <summary>
+    /// Sound played periodically while peckish or starving.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier? StomachGrowlSound = new SoundCollectionSpecifier("StomachGrowl");
+
+    [DataField]
+    public TimeSpan StomachGrowlMinInterval = TimeSpan.FromSeconds(30);
+
+    [DataField]
+    public TimeSpan StomachGrowlMaxInterval = TimeSpan.FromSeconds(90);
+
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    public TimeSpan NextStomachGrowlTime;
+    // end-backmen: hunger
 }
 
 [Serializable, NetSerializable]

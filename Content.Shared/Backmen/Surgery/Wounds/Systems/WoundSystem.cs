@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
@@ -501,6 +502,10 @@ public abstract partial class WoundSystem : EntitySystem
     protected void DropWoundableOrgans(EntityUid woundable, WoundableComponent? woundableComp)
     {
         if (!WoundableQuery.Resolve(woundable, ref woundableComp, false))
+            return;
+
+        // Detachable externals relocate internals into their bundle via GibDetachedBundle / RemoveOrgan.
+        if (HasComp<DetachableOrganComponent>(woundable))
             return;
 
         foreach (var organ in Body.GetOrgansForWoundable(woundable).ToList())

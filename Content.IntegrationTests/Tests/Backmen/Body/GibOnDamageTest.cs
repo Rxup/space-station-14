@@ -4,6 +4,7 @@ using Content.IntegrationTests.Fixtures;
 using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Backmen.Body.Systems;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -360,6 +361,23 @@ public sealed class GibOnDamageTest : GameTest
         DestroyWoundableIfPresent(entMan, bodySystem, woundSystem, mob, BodyPartType.Arm, BodyPartSymmetry.Right);
         DestroyWoundableIfPresent(entMan, bodySystem, woundSystem, mob, BodyPartType.Leg, BodyPartSymmetry.Left);
         DestroyWoundableIfPresent(entMan, bodySystem, woundSystem, mob, BodyPartType.Leg, BodyPartSymmetry.Right);
+
+        if (!bodySystem.BodyHasArachneOrgan(mob))
+            return;
+
+        foreach (var woundable in bodySystem.GetWoundableTargets(mob).ToList())
+        {
+            if (!entMan.TryGetComponent(woundable, out OrganComponent? organ) || organ.Category is not { } category)
+                continue;
+
+            if (!SurgeryBodyPartMapping.IsSpiderLegCategory(category))
+                continue;
+
+            if (!entMan.TryGetComponent(woundable, out WoundableComponent? woundableComp))
+                continue;
+
+            woundSystem.DestroyWoundable(mob, woundable, woundableComp);
+        }
     }
 
     private static void SelectiveGibExceptTorsoAndHead(

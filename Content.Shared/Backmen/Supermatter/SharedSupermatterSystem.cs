@@ -95,11 +95,20 @@ public abstract partial class SharedSupermatterSystem : EntitySystem
             supermatter.Power++;
 
         supermatter.MatterPower += _mobState.HasComp(target) ? 200 : 0;
+        DustEntity(uid, supermatter, target);
+    }
+
+    /// <summary>
+    /// Server overrides this to route layered bodies through burn/gib logic.
+    /// </summary>
+    protected virtual void DustEntity(EntityUid uid, BkmSupermatterComponent supermatter, EntityUid target)
+    {
         if (!_projectileQuery.HasComp(target))
         {
             Spawn(Ash, Transform(target).Coordinates);
             _audio.PlayPvs(supermatter.DustSound, uid);
         }
+
         PredictedQueueDel(target);
     }
 

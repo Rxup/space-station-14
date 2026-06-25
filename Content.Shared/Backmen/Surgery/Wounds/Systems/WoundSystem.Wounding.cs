@@ -1,12 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
+using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -40,7 +42,7 @@ public partial class WoundSystem
         SubscribeLocalEvent<WoundableComponent, ComponentInit>(OnWoundableInit);
         SubscribeLocalEvent<WoundableComponent, MapInitEvent>(OnWoundableMapInit);
 
-        SubscribeLocalEvent<WoundableComponent, HandleCustomDamage>(OnWoundableDamaged, after: [typeof(ConsciousnessSystem)]);
+        SubscribeLocalEvent<WoundableComponent, DamageableWoundApplyEvent>(OnWoundableDamaged, after: [typeof(ConsciousnessSystem)]);
 
         SubscribeLocalEvent<WoundableComponent, EntInsertedIntoContainerMessage>(OnWoundableInserted);
         SubscribeLocalEvent<WoundableComponent, EntRemovedFromContainerMessage>(OnWoundableRemoved);
@@ -127,7 +129,7 @@ public partial class WoundSystem
             QueueDel(entity);
     }
 
-    private void OnWoundableDamaged(Entity<WoundableComponent> entity, ref HandleCustomDamage args)
+    private void OnWoundableDamaged(Entity<WoundableComponent> entity, ref DamageableWoundApplyEvent args)
     {
         if (args.Handled)
             return;
@@ -177,6 +179,24 @@ public partial class WoundSystem
         var (uid, component) = entity;
         if (args.NewSeverity != WoundableSeverity.Loss || TerminatingOrDeleted(uid))
             return;
+
+        if (TryGetWoundableBody(uid, out var bodyUid)
+            && TryComp<BkmDetachedBodyComponent>(bodyUid, out var detached)
+            && detached.RootOrgan == uid)
+        {
+            if (_net.IsServer && ShouldBurnToAsh(uid, component))
+            {
+                var burnEv = new BurnDetachedBundleRootRequestEvent();
+                RaiseLocalEvent(bodyUid, ref burnEv);
+            }
+            else
+            {
+                var gibEv = new GibDetachedBundleRequestEvent();
+                RaiseLocalEvent(bodyUid, ref gibEv);
+            }
+
+            return;
+        }
 
         if (IsWoundableRoot(uid, component))
         {
@@ -460,6 +480,11 @@ public partial class WoundSystem
         return severity * toMultiply;
     }
 
+    /// <summary>
+    /// Upper bound for <see cref="WoundComponent.WoundSeverityPoint"/> on this side.
+    /// </summary>
+    protected virtual FixedPoint2 GetMaxWoundSeverity() => FixedPoint2.New(200);
+
     [PublicAPI]
     public DamageSpecifier GetWoundsChanged(
         EntityUid woundable,
@@ -511,12 +536,18 @@ public partial class WoundSystem
                         continue;
                     }
 
-                    var oldSeverity = continuedWound.Value.Comp.WoundSeverityPoint - severityApplied;
-                    var severityDelta = continuedWound.Value.Comp.WoundSeverityPoint - oldSeverity;
+                    var currentSeverity = continuedWound.Value.Comp.WoundSeverityPoint;
+                    var severityDelta = FixedPoint2.Clamp(
+                        currentSeverity + severityApplied,
+                        FixedPoint2.Zero,
+                        GetMaxWoundSeverity()) - currentSeverity;
 
                     actuallyInducedDamage.DamageDict[damagePiece.Key] = severityDelta;
-                    if (severityApplied > 0)
+                    if (severityDelta > FixedPoint2.Zero)
                         damageIncreased = true;
+
+                    if (severityDelta == FixedPoint2.Zero)
+                        continue;
 
                     changedWounds.Add(continuedWound.Value, severityDelta);
                     totalChange += severityDelta;
@@ -534,12 +565,20 @@ public partial class WoundSystem
                     continue;
                 }
 
-                var severity = ApplySeverityModifiers(woundable, damagePiece.Value, component);
+                var severity = FixedPoint2.Min(
+                    ApplySeverityModifiers(woundable, damagePiece.Value, component),
+                    GetMaxWoundSeverity());
+
+                if (severity <= FixedPoint2.Zero)
+                {
+                    actuallyInducedDamage.DamageDict[damagePiece.Key] = 0;
+                    continue;
+                }
 
                 actuallyInducedDamage.DamageDict[damagePiece.Key] = severity;
                 damageIncreased = true;
 
-                woundsToAdd.Add(damagePiece.Key, damagePiece.Value);
+                woundsToAdd.Add(damagePiece.Key, severity);
                 totalChange += severity;
             }
         }
@@ -1054,6 +1093,52 @@ public partial class WoundSystem
     /// <param name="damageGroup">The damage group of wounds that induced the damage</param>
     /// <param name="healable">Is the integrity damage healable</param>
     /// <returns>The integrity damage</returns>
+    public const float DefaultBurnDominanceRatio = 0.75f;
+
+    private const string BurnDamageGroup = "Burn";
+
+    /// <summary>
+    /// Whether heat wounds dominated the integrity loss enough to burn this woundable to ash.
+    /// </summary>
+    public bool ShouldBurnToAsh(EntityUid woundable, WoundableComponent? component = null)
+    {
+        if (HasComp<BrainComponent>(woundable))
+            return false;
+
+        if (!WoundableQuery.Resolve(woundable, ref component, false))
+            return false;
+
+        var activeWounds = GetWoundableWounds(woundable, component)
+            .Where(wound => !wound.Comp.IsScar)
+            .ToList();
+
+        if (activeWounds.Count > 0 && activeWounds.All(wound => wound.Comp.DamageType == "Heat"))
+            return true;
+
+        var lostIntegrity = component.IntegrityCap - component.WoundableIntegrity;
+        if (lostIntegrity <= FixedPoint2.Zero)
+            return false;
+
+        var heatIntegrity = GetBurnDominantIntegrityDamage(woundable, component);
+        var ratio = component.BurnDominanceRatio ?? DefaultBurnDominanceRatio;
+
+        return heatIntegrity >= lostIntegrity * ratio;
+    }
+
+    private FixedPoint2 GetBurnDominantIntegrityDamage(EntityUid woundable, WoundableComponent? component = null)
+    {
+        var fromGroup = GetWoundableIntegrityDamage(woundable, component, BurnDamageGroup);
+        if (fromGroup > FixedPoint2.Zero)
+            return fromGroup;
+
+        if (!WoundableQuery.Resolve(woundable, ref component, false) || component.Wounds == null)
+            return FixedPoint2.Zero;
+
+        return GetWoundableWounds(woundable, component)
+            .Where(wound => wound.Comp.DamageType is "Heat" or "Cold" or "Shock" or "Caustic")
+            .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp.WoundIntegrityDamage);
+    }
+
     public FixedPoint2 GetWoundableIntegrityDamage(
         EntityUid targetEntity,
         WoundableComponent? targetWoundable = null,

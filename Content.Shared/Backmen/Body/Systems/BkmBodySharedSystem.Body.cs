@@ -337,6 +337,10 @@ public partial class BkmBodySharedSystem
         var woundables = GetWoundableTargets(bodyId, body).ToList();
         woundables.Sort((a, b) => GetOrganRelationDepth(b).CompareTo(GetOrganRelationDepth(a)));
 
+        var detachSys = EntityManager.System<DetachableOrganSystem>();
+        using var violentDetach = detachSys.EnterViolentDetach(splatDirection, splatModifier);
+        var bodyTransform = Transform(bodyId);
+
         foreach (var partUid in woundables)
         {
             if (TerminatingOrDeleted(partUid)
@@ -367,8 +371,6 @@ public partial class BkmBodySharedSystem
                 if (TryGetDetachedBodyBundle(partUid, out var bundle))
                 {
                     gibs.Add(bundle);
-                    if (launchGibs)
-                        FlingGib(bundle, splatDirection, splatModifier, splatCone);
                 }
 
                 continue;
@@ -395,7 +397,6 @@ public partial class BkmBodySharedSystem
             }
         }
 
-        var bodyTransform = Transform(bodyId);
         if (TryComp<InventoryComponent>(bodyId, out var inventory))
         {
             foreach (var item in _inventorySystem.GetHandOrInventoryEntities(bodyId))

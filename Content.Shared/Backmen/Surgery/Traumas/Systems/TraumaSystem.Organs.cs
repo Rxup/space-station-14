@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body;
@@ -47,23 +48,26 @@ public partial class TraumaSystem
         if (!Consciousness.TryGetNerveSystem(args.Organ.Comp.Body.Value, out var nerveSys))
             return;
 
-        var organs = Body.GetPartOrgans(args.Organ.Comp.Body.Value).ToList();
+        var organs = Body.GetBodyOrgans(args.Organ.Comp.Body.Value).ToList();
 
         var totalIntegrity = organs.Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.OrganIntegrity);
         var totalIntegrityCap = organs.Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.IntegrityCap);
 
         // Getting your organ turned into a blood mush inside you applies a LOT of internal pain, that can get you dead.
         var organPainDamage = totalIntegrityCap - totalIntegrity;
+
+        // Single modifier on the nerve system — not per woundable. After nubody, every external organ
+        // woundable could raise this event and stack the same body-wide value N times.
         if (!Pain.TryChangePainModifier(
                 nerveSys.Value,
-                bodyPart.Owner,
+                nerveSys.Value,
                 OrganDamagePainIdentifier,
                 organPainDamage,
                 nerveSys.Value.Comp))
         {
             Pain.TryAddPainModifier(
                 nerveSys.Value,
-                bodyPart.Owner,
+                nerveSys.Value,
                 OrganDamagePainIdentifier,
                 organPainDamage,
                 PainType.TraumaticPain,
@@ -94,16 +98,16 @@ public partial class TraumaSystem
 
             if (!Pain.TryChangePainModifier(
                     nerveSys.Value,
-                    bodyPart.Owner,
-                    OrganDestroyedPainIdentifier,
+                    nerveSys.Value,
+                    $"{OrganDestroyedPainIdentifier}-{args.Organ.Owner}",
                     args.Organ.Comp.IntegrityCap * 1.6f,
                     nerveSys.Value.Comp,
                     TimeSpan.FromMinutes(4f)))
             {
                 Pain.TryAddPainModifier(
                     nerveSys.Value,
-                    bodyPart.Owner,
-                    OrganDestroyedPainIdentifier,
+                    nerveSys.Value,
+                    $"{OrganDestroyedPainIdentifier}-{args.Organ.Owner}",
                     args.Organ.Comp.IntegrityCap * 1.6f,
                     PainType.TraumaticPain,
                     nerveSys.Value.Comp,
@@ -126,6 +130,15 @@ public partial class TraumaSystem
         }
 
         _audio.PlayPvs(args.Organ.Comp.OrganDestroyedSound, body.Value);
+
+        if (TryComp<BkmDetachedBodyComponent>(body.Value, out var detached)
+            && detached.RootOrgan == args.Organ.Owner)
+        {
+            var gibEv = new GibDetachedBundleRequestEvent();
+            RaiseLocalEvent(body.Value, ref gibEv);
+            return;
+        }
+
         Body.RemoveOrgan(args.Organ, args.Organ.Comp);
 
         if (_net.IsServer)
