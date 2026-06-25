@@ -21,6 +21,7 @@
     - type: GhostTakeoverAvailable
     - type: Input
       context: "human"
+    - type: DoAfter
     - type: MobMover
     - type: InputMover
     - type: MovementSpeedModifier

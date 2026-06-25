@@ -25,7 +25,7 @@ public sealed class SpeciesBUiTest : GameTest
 - type: entity
   name: BaseMobSpeciesTest
   id: BaseMobSpeciesTest
-  parent: BaseSpeciesMob
+  parent: BaseSpeciesMobSurgery
 ";
 
     private Dictionary<Enum, InterfaceData> GetInterfaces(UserInterfaceComponent comp) =>
@@ -55,7 +55,7 @@ public sealed class SpeciesBUiTest : GameTest
                 var ent = proto.Index(specie.Prototype);
                 Assert.That(ent.TryGetComponent<UserInterfaceComponent>(out var bUi, factoryComp), Is.True);
                 Assert.That(bUi, Is.Not.Null);
-                var states = GetInterfaces(bUiBase);
+                var states = GetInterfaces(bUi);
                 foreach (var key in baseKeys)
                 {
                     Assert.That(states.ContainsKey(key), Is.True, $"Species {specie.ID} has not UserInterface of type enum.{key.GetType().Name}");

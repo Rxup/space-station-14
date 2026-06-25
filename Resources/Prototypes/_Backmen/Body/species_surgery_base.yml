@@ -12,5 +12,7 @@
   - type: SurgeryTarget
   - type: UserInterface
     interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
