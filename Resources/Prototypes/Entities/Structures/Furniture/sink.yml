@@ -27,7 +27,6 @@
       tank:
         maxVol: 500
   - type: SolutionRegeneration
-    solution: tank
     generated:
       reagents:
       - ReagentId: Water

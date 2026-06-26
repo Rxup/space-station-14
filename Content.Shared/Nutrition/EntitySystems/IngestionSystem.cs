@@ -4,7 +4,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Chemistry;
-using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
@@ -24,7 +24,6 @@ using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Nutrition.EntitySystems;
@@ -141,7 +140,9 @@ public sealed partial class IngestionSystem : EntitySystem
 
     private void OnEdibleInit(Entity<EdibleComponent> entity, ref MapInitEvent args)
     {
-        _solutionContainer.EnsureSolution(entity.Owner, entity.Comp.Solution, out _);
+        // SolutionContainerManagerComponent is ported on MapInit; creating the solution here first spams warnings.
+        if (!HasComp<SolutionContainerManagerComponent>(entity))
+            _solutionContainer.EnsureSolution(entity.Owner, entity.Comp.Solution, out _);
         UpdateAppearance(entity);
     }
 

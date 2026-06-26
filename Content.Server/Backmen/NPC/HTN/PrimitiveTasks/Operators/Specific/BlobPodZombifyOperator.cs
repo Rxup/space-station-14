@@ -3,7 +3,6 @@ using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Shared.Backmen.Blob.Components;
-using Content.Shared.Backmen.Blob.NPC.BlobPod;
 
 namespace Content.Server.Backmen.NPC.HTN.PrimitiveTasks.Operators.Specific;
 

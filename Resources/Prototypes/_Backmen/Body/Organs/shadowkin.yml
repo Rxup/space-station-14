@@ -53,10 +53,16 @@
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [Shadowkin]
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
+
+- type: entity
+  parent: SolutionStomach
+  id: SolutionStomachShadowkin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 40
 
 - type: entity
   id: OrganShadowkinStomach
@@ -66,10 +72,11 @@
   - type: Sprite
     sprite: Backmen/Mobs/Species/Shadowkin/organs.rsi
     state: stomach
+  - type: SolutionManager
+    solutions:
+    - SolutionStomachShadowkin
   - type: SolutionContainerManager
     solutions:
-      stomach:
-        maxVol: 40
       food:
         maxVol: 5
         reagents:
@@ -78,9 +85,7 @@
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [Shadowkin]
-    groups:
-    - id: Food
-    - id: Drink
+    stages: [ Digestion ]
 
 - type: entity
   id: OrganShadowkinLiver
@@ -93,9 +98,7 @@
   - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [Shadowkin]
-    groups:
-    - id: Alcohol
-      rateModifier: 0.1
+    stages: [ Metabolites ]
 
 - type: entity
   id: OrganShadowkinKidneys
@@ -109,4 +112,3 @@
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [Shadowkin]
-    removeEmpty: true

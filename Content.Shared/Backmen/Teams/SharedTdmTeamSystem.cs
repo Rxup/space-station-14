@@ -5,7 +5,6 @@ using Content.Shared.Database;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
-using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;

@@ -1,6 +1,4 @@
-using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
-using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Shipyard;

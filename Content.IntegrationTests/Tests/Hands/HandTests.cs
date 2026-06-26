@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Storage.EntitySystems;
-using Content.Shared.Backmen.CCVar;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Server.GameObjects;
@@ -82,14 +81,8 @@ public sealed class HandTests : GameTest
     [Test]
     public async Task TestPickUpThenDropInContainer()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Connected = true,
-            DummyTicker = false,
-            Fresh = true, // backmen edit
-        });
+        var pair = Pair;
         var server = pair.Server;
-
         var map = await pair.CreateTestMap();
         await pair.RunTicksSync(5);
 

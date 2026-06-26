@@ -9,7 +9,6 @@ using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body;
 
 namespace Content.Shared.Chat;
 

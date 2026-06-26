@@ -1,7 +1,6 @@
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Serialization.Manager;
-using Content.Shared.Tag;
 
 namespace Content.Shared.Backmen.Clothing;
 
@@ -40,7 +39,7 @@ public sealed partial class ClothingGrantingSystem : EntitySystem
 
             var temp = (object) newComp;
             _serializationManager.CopyTo(data.Component, ref temp);
-            EntityManager.AddComponent(args.EquipTarget, (Component)temp!);
+            AddComp(args.EquipTarget, (Component)temp!);
 
             component.IsActive = true;
         }

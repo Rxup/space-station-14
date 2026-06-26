@@ -1,5 +1,4 @@
 using Content.Shared.Backmen.Surgery.Traumas;
-using Content.Shared.Body.Part;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Backmen.Surgery.Conditions;

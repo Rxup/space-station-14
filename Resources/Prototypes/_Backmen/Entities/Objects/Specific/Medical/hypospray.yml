@@ -4,13 +4,12 @@
   id: StimpackMiniSuper
   description: "Новейшая разработка Donk. Co. Это сверхмощный коктейль самых сильных веществ галактики, который лечит основные типы урона и значительно повышает скорость. Отличный вариант чтобы быстро вернуться в бой."
   components:
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 15
-        reagents:
-        - ReagentId: StimulantsSuper
-          Quantity: 15
+  - type: Solution
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: StimulantsSuper
+        Quantity: 15
 
 - type: entity
   name: боевой стимулятор

@@ -1,5 +1,4 @@
 using Content.Shared.Backmen.Disease;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Prototypes;
 

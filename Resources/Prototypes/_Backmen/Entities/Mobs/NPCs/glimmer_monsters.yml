@@ -154,6 +154,39 @@
     sound:
       path: /Audio/Nyanotrasen/Mobs/GlimmerWisp/wisp_ambience.ogg
 
+- type: entity
+  parent: MobGlimmerWisp
+  id: MobGlimmerWispFamiliar
+  name: glimmer wisp familiar
+  description: A bound shard of noospheric light that imprints on its summoner and fights by their side.
+  suffix: Traitor Familiar
+  components:
+  - type: NPCImprintingOnSpawnBehaviour
+    whitelist:
+      components:
+      - HumanoidProfile
+  - type: HTN
+    rootTask:
+      task: TraitorWispCompound
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+
+- type: htnCompound
+  id: TraitorWispCompound
+  branches:
+  - preconditions:
+    - !type:SpiderHasActiveHostilesPrecondition
+    tasks:
+    - !type:HTNCompoundTask
+      task: WispRangedCombatCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: FollowCompound
+  - tasks:
+    - !type:HTNCompoundTask
+      task: IdleCompound
+
 - type: htnCompound
   id: WispCombatCompound
   branches:

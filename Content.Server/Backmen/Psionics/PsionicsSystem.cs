@@ -1,7 +1,5 @@
-using Content.Shared.StatusEffect;
 using Content.Shared.Backmen.CCVar;
 using Content.Server.Backmen.Abilities.Psionics;
-using Content.Server.Electrocution;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Components;

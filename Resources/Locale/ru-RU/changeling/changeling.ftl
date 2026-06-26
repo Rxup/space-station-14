@@ -1,13 +1,13 @@
 roles-antag-changeling-name = Чендлинг
 roles-antag-changeling-objective = Разумный хищник, принимающий личности своих жертв.
 # devour
-changeling-devour-attempt-failed-cannot-devour = We cannot devour this!
-changeling-devour-attempt-failed-already-devoured = We already consumed this body!
-changeling-devour-attempt-failed-devoured-recently = This body is too mangled to devour!
-changeling-devour-attempt-failed-not-dead = This body yet lives! We cannot consume it alive!
+changeling-devour-attempt-failed-cannot-devour = Мы не можем поглотить это!
+changeling-devour-attempt-failed-already-devoured = Мы уже поглотили это тело!
+changeling-devour-attempt-failed-devoured-recently = Это тело слишком изуродовано, его нельзя поглотить!
+changeling-devour-attempt-failed-not-dead = Это тело ещё живо! Мы не можем его поглотить!
 changeling-devour-attempt-failed-rotting = У этого трупа только гнилая биомасса.
 changeling-devour-attempt-failed-protected = Биомасса этой жертвы защищена броней!
-changeling-devour-attempt-failed-no-space = We have exceeded the maximum number of disguises!
+changeling-devour-attempt-failed-no-space = Мы превысили максимально допустимое количество личностей!
 changeling-devour-begin-windup-self = Наш жуткий рот открывается с потусторонним голодом.
 changeling-devour-begin-windup-others = { CAPITALIZE(POSS-ADJ($user)) } жуткий рот открывается с потусторонним голодом.
 changeling-devour-begin-consume-self = Жуткий рот глубоко вгрызается в свою жертву.
@@ -18,21 +18,20 @@ changeling-devour-consume-complete-others = { CAPITALIZE(POSS-ADJ($user)) } жу
 changeling-transform-attempt-self = Наши кости ломаются, мышцы рвутся, одна плоть становится другой.
 # transformation BUI
 changeling-transform-bui-select-entity = { $entity }
-changeling-transform-bui-drop-identity-menu = Drop a devoured identity from your memory.
-changeling-transform-bui-drop-identity-entity = Drop { $entity }
-changeling-transform-bui-drop-identity-entity-popup = We dropped { $entity } from our memory.
-changeling-transform-bui-drop-identity-cannot-drop = We cannot drop our current identity.
+changeling-transform-bui-drop-identity-menu = Избавиться от поглощённой личности.
+changeling-transform-bui-drop-identity-entity = Избавиться от {$entity}
+changeling-transform-bui-drop-identity-entity-popup = Мы избавились от личности {$entity}.
+changeling-transform-bui-drop-identity-cannot-drop = Мы не можем избавиться от текущей личности.
 # voice mimicry
-changeling-voice-mimic-window-title = Voice Mimicry
+changeling-voice-mimic-window-title = Подражание голоса
 # flesh clothing
 changeling-flesh-clothing-removed-popop = { CAPITALIZE(THE($item)) } falls apart into fleshy remains!
-changeling-flesh-clothing-examine-wearer = [color=crimson]This item is a camouflaged part of your body. It will disappear if you unequip it![/color]
-changeling-flesh-clothing-alert-name = Flesh Clothing Ability
-changeling-flesh-clothing-alert-desc = Whether clothing transformation is enabled. Click to toggle.
+changeling-flesh-clothing-examine-wearer = [color=crimson]Этот предмет замаскированная часть вашего тела. Он исчезнет, если вы его снимете![/color]
+changeling-flesh-clothing-alert-name = Одежда из плоти
+changeling-flesh-clothing-alert-desc = Нажмите, чтобы переключить имитацию одежды.
 # biodegrade
 changeling-biodegrade-used-popup = { CAPITALIZE(THE($user)) } vomits acid over { POSS-ADJ($user) } { $restraint }!
-changeling-biodegrade-used-popup-self = We vomit acid over our { $restraint }!
+changeling-biodegrade-used-popup-self = Мы извергаем кислоту на {$restraint}!
+
 # stings
-changeling-sting-success = We silently sting { THE($target) }!
-changeling-transform-attempt-others = { CAPITALIZE(POSS-ADJ($user)) } кости ломаются, мышцы рвутся, тело превращается в другое.
-changeling-paused-map-name = Карта хранения личностей чендлинга
+

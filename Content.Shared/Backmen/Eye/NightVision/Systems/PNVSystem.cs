@@ -1,10 +1,8 @@
 using Content.Shared.Backmen.Eye.NightVision.Components;
-using Content.Shared.Inventory;
 using Content.Shared.Actions;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.StatusEffectNew;
-using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 

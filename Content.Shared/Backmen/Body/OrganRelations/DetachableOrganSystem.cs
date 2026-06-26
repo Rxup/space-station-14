@@ -1,31 +1,26 @@
 using System.Numerics;
-using Content.Shared.Audio;
-using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body;
-using Content.Shared.Body.Organ;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Body.OrganRelations;
 
-public sealed class DetachableOrganSystem : EntitySystem
+public sealed partial class DetachableOrganSystem : EntitySystem
 {
     private static readonly ProtoId<SoundCollectionPrototype> SurgeryAmputationSound = new("BkmSurgeryAmputation");
 
-    [Dependency] private readonly EntityQuery<DetachableOrganComponent> _detachableOrgan = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly OrganRelationSystem _organRelation = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly WoundSystem _wounds = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly BkmDetachedBodyScatterSystem _scatter = default!;
+    [Dependency] private EntityQuery<DetachableOrganComponent> _detachableOrgan = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private OrganRelationSystem _organRelation = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private WoundSystem _wounds = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private BkmDetachedBodyScatterSystem _scatter = default!;
 
     private int _violentDetachDepth;
     private Vector2? _violentSplatDirection;

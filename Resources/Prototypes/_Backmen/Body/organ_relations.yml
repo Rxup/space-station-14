@@ -7,8 +7,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Damageable
-  - type: Injurable
-    damageContainer: OrganicPart
   - type: BkmDetachedBody
   - type: Body
   - type: VisualBody

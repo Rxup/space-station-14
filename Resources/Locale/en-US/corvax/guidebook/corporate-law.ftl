@@ -1,0 +1,17 @@
+corvax-law-header = Corporate Law
+corvax-law-oprs = RSR
+corvax-law-punishments = Punishments
+corvax-law-modificators = Modifiers
+corvax-law-misc = Miscellaneous
+corvax-law-crimes = Articles
+corvax-law-chapter-11 = Section 1, Chapter 1
+corvax-law-chapter-12 = Section 1, Chapter 2
+corvax-law-chapter-13 = Section 1, Chapter 3
+corvax-law-chapter-14 = Section 1, Chapter 4
+corvax-law-chapter-21 = Section 2, Chapter 1
+corvax-law-chapter-22 = Section 2, Chapter 2
+corvax-law-chapter-31 = Section 3, Chapter 1
+corvax-law-chapter-32 = Section 3, Chapter 2
+corvax-law-chapter-41 = Section 4, Chapter 1
+corvax-law-chapter-42 = Section 4, Chapter 2
+corvax-law-chapter-43 = Section 4, Chapter 3

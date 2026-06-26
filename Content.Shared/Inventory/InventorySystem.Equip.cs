@@ -8,6 +8,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
@@ -589,8 +590,10 @@ public abstract partial class InventorySystem
         {
             // Give me liberty, give me death
             // TODO: Give me an API that can tell the difference between a virtual item and an electropak being removed.
-            if (!HasComp<AttachedClothingComponent>(item))
-                args.Giblets.Add(item);
+            if (HasComp<VirtualItemComponent>(item) || HasComp<AttachedClothingComponent>(item))
+                continue;
+
+            args.Giblets.Add(item);
         }
     }
 }

@@ -29,8 +29,6 @@ public sealed partial class SwapTeleporterSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
-    private EntityQuery<TransformComponent> _xformQuery;
-
     /// <inheritdoc/>
     public override void Initialize()
     {

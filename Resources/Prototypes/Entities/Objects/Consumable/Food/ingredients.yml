@@ -12,9 +12,9 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/ingredients.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50
   - type: SolutionTransfer
     # This is potentially badly-handled due to 'drink opening',
@@ -87,9 +87,9 @@
   components:
   - type: Sprite
     state: flour-big
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50
         reagents:
         - ReagentId: Flour
@@ -103,9 +103,9 @@
   components:
   - type: Sprite
     state: flour-small
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Flour
@@ -119,9 +119,9 @@
   components:
   - type: Sprite
     state: cornmeal-big
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Cornmeal
           Quantity: 50
@@ -134,9 +134,9 @@
   components:
   - type: Sprite
     state: cornmeal
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Cornmeal
@@ -150,9 +150,9 @@
   components:
   - type: Sprite
     state: rice-big
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Rice
           Quantity: 50
@@ -165,9 +165,9 @@
   components:
   - type: Sprite
     state: rice-small
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Rice
@@ -181,9 +181,9 @@
   components:
   - type: Sprite
     state: sugar-big
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Sugar
           Quantity: 50
@@ -196,9 +196,9 @@
   components:
   - type: Sprite
     state: sugar-small
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Sugar
@@ -214,9 +214,9 @@
   components:
   - type: Sprite
     state: oliveoil
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: OilOlive
@@ -232,9 +232,9 @@
   components:
   - type: Sprite
     state: mayo
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50 # you always need more mayo
         reagents:
         - ReagentId: Mayo
@@ -268,9 +268,9 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/ingredients.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 18
         reagents:
         - ReagentId: Nutriment
@@ -315,9 +315,9 @@
   - type: Construction
     graph: DoughRope
     node: start
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
@@ -339,9 +339,9 @@
   - type: Construction
     graph: DoughRope
     node: rolled
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
@@ -463,9 +463,9 @@
   - type: Tag
     tags:
     - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 18
         reagents:
         - ReagentId: Nutriment
@@ -494,9 +494,9 @@
   - type: Construction
     graph: DoughRopeCotton
     node: start
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
@@ -521,9 +521,9 @@
   - type: Construction
     graph: DoughRopeCotton
     node: rolled
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
@@ -662,9 +662,9 @@
         density: 10
         mask:
         - ItemMask
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 18
         reagents:
         - ReagentId: Butter
@@ -683,9 +683,9 @@
     size: Tiny
   - type: Sprite
     state: butter-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Butter
@@ -703,9 +703,9 @@
   - type: Sprite
     state: butter
     color: "#82C36E"
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 100
         reagents:
         - ReagentId: Butter
@@ -743,9 +743,9 @@
       - cheesy
   - type: Sprite
     state: cheesewedge
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
@@ -785,9 +785,9 @@
   - type: SliceableFood
     count: 3
     slice: FoodChevreSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
@@ -809,9 +809,9 @@
       - creamy
   - type: Sprite
     state: chevredisk
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 2
         reagents:
         - ReagentId: Nutriment
@@ -835,9 +835,9 @@
       - tofu
   - type: Sprite
     state: tofu
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 18
         reagents:
         - ReagentId: Protein
@@ -861,9 +861,9 @@
       - tofu
   - type: Sprite
     state: tofu-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Protein
@@ -885,9 +885,9 @@
       - terrible
   - type: Sprite
     state: badrecipe
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 8
         reagents:
         - ReagentId: Nutriment
@@ -910,17 +910,17 @@
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/cocoa.rsi
     state: produce-beans
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 14
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 2
-        - ReagentId: Vitamin
-          Quantity: 1
-        - ReagentId: CocoaPowder
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 14
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2
+      - ReagentId: Vitamin
+        Quantity: 1
+      - ReagentId: CocoaPowder
+        Quantity: 2
   - type: Extractable
     juiceSolution:
       reagents:
@@ -943,9 +943,9 @@
       - dough
   - type: Sprite
     state: croissant-raw
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 4
         reagents:
         - ReagentId: Nutriment

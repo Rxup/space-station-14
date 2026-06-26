@@ -23,13 +23,6 @@
         enum.ToggleableVisuals.Layer:
           True: {state: icon_on}
           False: {state: icon_off}
-  - type: ToggleableLightVisuals
-    spriteLayer: blade
-    inhandVisuals:
-      left:
-        - state: on-inhand-left
-      right:
-        - state: on-inhand-right
   - type: ItemToggleActiveSound
     activeSound:
       collection: BossFightMusic

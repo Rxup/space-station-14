@@ -351,8 +351,9 @@
     transformTo: Reflective
     locale: blob-verb-upgrade-to-reflective
   - type: Damageable
-    damageContainer: Blob
     damageModifierSet: BlobStrong
+  - type: Injurable
+    damageContainer: Blob
   - type: Destructible
     thresholds:
       - trigger:
@@ -385,8 +386,9 @@
     transformTo: Strong
     locale: blob-verb-upgrade-to-strong
   - type: Damageable
-    damageContainer: Blob
     damageModifierSet: BlobReflective
+  - type: Injurable
+    damageContainer: Blob
   - type: Destructible
     thresholds:
       - trigger:

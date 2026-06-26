@@ -32,17 +32,20 @@ public sealed partial class ColorTintOverlay : Overlay
     /// </summary>
     public Component? Comp = null;
 
+    private static readonly ProtoId<ShaderPrototype> ColorTint = "ColorTint";
+
+
     public ColorTintOverlay()
     {
         IoCManager.InjectDependencies(this);
 
-        _shader = _prototype.Index<ShaderPrototype>("ColorTint").InstanceUnique();
+        _shader = _prototype.Index<ShaderPrototype>(ColorTint).InstanceUnique();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
     {
         if (ScreenTexture == null ||
-            _player.LocalSession?.AttachedEntity is not { Valid: true } player ||
+            _player.LocalEntity is not { Valid: true } player ||
             Comp != null && !_entity.HasComponent(player, Comp.GetType()))
             return;
 

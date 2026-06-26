@@ -1,7 +1,74 @@
 - type: entity
   save: false
+  id: MobDamageableSilicon
+  abstract: true
+  components:
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 400
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+  - type: RadiationReceiver
+  - type: Stamina
+  - type: StunVisuals
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritFakeDeath
+      - ActionCritLastWords
+  - type: Deathgasp
+  - type: HealthExaminable
+    examinableTypes:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    - Shock
+    - Cold
+    - Caustic
+    - Asphyxiation
+    - Radiation
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Pullable
+  - type: LightningTarget
+    priority: 2
+    lightningExplode: false
+
+- type: entity
+  save: false
   id: PlayerSiliconHumanoidBase
-  parent: [BaseMob, MobDamageable, MobCombat, MobAtmosExposed, MobFlammable, BaseMobIPCBody]
+  parent: [BaseMob, MobDamageableSilicon, MobCombat, MobAtmosExposed, MobFlammable, BaseMobIPCBody]
   abstract: true
   components:
     - type: ContentEye
@@ -24,8 +91,10 @@
         path: /Audio/Effects/hit_kick.ogg
     - type: Damageable
       damageModifierSet: IPC
-    - type: Injurable
+    # start-backmen: damage-model
+    - type: Consciousness
       damageContainer: Silicon
+    # end-backmen: damage-model
     - type: InteractionOutline
     - type: MovementSpeedModifier
       baseWalkSpeed: 4
@@ -217,7 +286,6 @@
     - type: Climbing
     - type: StandingState
     - type: MindContainer
-      showExamineInfo: true
     - type: SSDIndicator
     - type: CanEscapeInventory
     - type: HumanoidProfile

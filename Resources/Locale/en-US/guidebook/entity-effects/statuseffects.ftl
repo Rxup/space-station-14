@@ -5,6 +5,7 @@ entity-effect-status-effect-SeeingRainbows = hallucinations
 entity-effect-status-effect-Muted = inability to speak
 entity-effect-status-effect-Stutter = stuttering
 entity-effect-status-effect-ForcedSleep = unconsciousness
+entity-effect-status-effect-ForcedSleeping = forced sleep
 entity-effect-status-effect-Drunk = drunkenness
 entity-effect-status-effect-PressureImmunity = pressure immunity
 entity-effect-status-effect-Pacified = combat pacification

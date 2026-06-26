@@ -6,7 +6,6 @@ using Content.Server.AlertLevel;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Audio;
 using Content.Server.Chat.Systems;
-using Content.Server.Explosion.Components;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
 using Content.Server.Station.Systems;
@@ -20,22 +19,15 @@ using Content.Shared.Backmen.Supermatter.Events;
 using Content.Shared.Chat;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Interaction;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
 using Robust.Shared.Player;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Radiation.Systems;
-using Content.Shared.Tag;
-using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.Containers;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Supermatter;
@@ -98,7 +90,6 @@ public sealed partial class SupermatterSystem : SharedSupermatterSystem
     }
 
     public sealed class HandleLightingJob(
-        float frameTime,
         SupermatterSystem self,
         Entity<BkmSupermatterComponent> ent,
         double maxTime,
@@ -161,7 +152,7 @@ public sealed partial class SupermatterSystem : SharedSupermatterSystem
                 if (now >= supermatter.ZapAccumulator)
                 {
                     supermatter.ZapAccumulator = now + supermatter.ZapTimer;
-                    _pwrJobQueue.EnqueueJob(new HandleLightingJob(frameTime, this, (owner, supermatter), PwrJobTime));
+                    _pwrJobQueue.EnqueueJob(new HandleLightingJob(this, (owner, supermatter), PwrJobTime));
                 }
             }
             {

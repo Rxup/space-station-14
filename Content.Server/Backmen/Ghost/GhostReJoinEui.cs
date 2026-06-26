@@ -2,7 +2,6 @@ using Content.Server.EUI;
 using Content.Shared.Backmen.Ghost;
 using Content.Shared.Eui;
 using Content.Shared.Ghost;
-using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Ghost;
 

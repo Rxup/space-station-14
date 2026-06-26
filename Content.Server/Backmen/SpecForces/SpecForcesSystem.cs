@@ -2,7 +2,6 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Server.Spawners.Components;
@@ -22,9 +21,7 @@ using Content.Server.RandomMetadata;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Ghost.Roles.Components;
 using Robust.Shared.Configuration;
-using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server.Backmen.SpecForces;
@@ -126,7 +123,7 @@ public sealed partial class SpecForcesSystem : EntitySystem
         foreach (var entry in component.Components.Values)
         {
             var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
-            EntityManager.AddComponent(uid, comp);
+            AddComp(uid, comp, true);
         }
     }
 
@@ -208,7 +205,7 @@ public sealed partial class SpecForcesSystem : EntitySystem
         if (protoName == null)
             return EntityUid.Invalid;
 
-        var uid = EntityManager.SpawnEntity(protoName, coordinates);
+        var uid = Spawn(protoName, coordinates);
 
         EnsureComp<SpecForceComponent>(uid);
 
@@ -222,7 +219,7 @@ public sealed partial class SpecForcesSystem : EntitySystem
         {
             var comp = _serialization.CreateCopy(tplGhostRoleComponent, notNullableOverride: true);
             comp.RaffleConfig = specforce.RaffleConfig;
-            EntityManager.AddComponent(uid, comp);
+            AddComp(uid, comp, true);
         }
 
         if (TryComp<GhostRoleComponent>(uid, out var ghostRole) && ghostRole.RaffleConfig == null)

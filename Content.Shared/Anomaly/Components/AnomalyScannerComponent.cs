@@ -1,5 +1,4 @@
-﻿using Content.Shared.Anomaly;
-using Robust.Shared.Audio;
+﻿using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Anomaly.Components;

@@ -1,5 +1,4 @@
 using Content.Server.Medical.Components;
-using Content.Server.Temperature.Components;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
@@ -8,9 +7,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems; // backmen: body
-using Content.Shared.Damage;
-using Content.Shared.Body;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
@@ -28,12 +24,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
-using System.Linq;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
-using Content.Shared.Body;
-using Content.Shared.Traits.Assorted;
-using Content.Server.Body.Systems;
 using Content.Server.Backmen.Surgery.Consciousness.Systems;
 
 namespace Content.Server.Medical;

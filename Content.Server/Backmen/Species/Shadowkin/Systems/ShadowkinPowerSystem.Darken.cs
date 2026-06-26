@@ -1,5 +1,3 @@
-using System.Linq;
-using Content.Server.Light.Components;
 using Content.Server.Backmen.Species.Shadowkin.Components;
 using Content.Server.Backmen.Species.Shadowkin.Jobs;
 using Content.Shared.Backmen.Species.Shadowkin.Components;

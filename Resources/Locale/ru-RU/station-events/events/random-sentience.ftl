@@ -20,17 +20,9 @@ random-sentience-event-strength-8 = ИИ
 
 ## Announcement text
 
-station-event-random-sentience-announcement =
-    Опираясь на { $data }, стало известно что некоторые { $amount ->
-        [1] { $kind1 }
-        [2] { $kind1 } и { $kind2 }
-        [3] { $kind1 }, { $kind2 }, и { $kind3 }
-       *[other] { $kind1 }, { $kind2 }, { $kind3 }, и т.д.
-    } обрели интеллект уровня { $strength }, а также способность к общению.
-
+station-event-random-sentience-announcement = Опираясь на {$data}, стало известно что некоторые { $data } обрели интеллект уровня {$strength}, а также способность к общению.
 ## Ghost role description
-
-station-event-random-sentience-role-description = Вы разумный { $name }, оживший благодаря космической магии.
+station-event-random-sentience-role-description = Вы разумный {$name}, оживший благодаря космической магии.
 # Flavors
 station-event-random-sentience-flavor-mechanical = механизмы
 station-event-random-sentience-flavor-organic = органики

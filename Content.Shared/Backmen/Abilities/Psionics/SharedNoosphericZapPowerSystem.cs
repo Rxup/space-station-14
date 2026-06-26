@@ -1,5 +1,4 @@
-﻿using Content.Shared.Actions.Events;
-using Content.Shared.Backmen.Psionics.Events;
+﻿using Content.Shared.Backmen.Psionics.Events;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 

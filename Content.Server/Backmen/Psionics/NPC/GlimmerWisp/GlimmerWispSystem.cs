@@ -1,5 +1,4 @@
 using Content.Server.DoAfter;
-using Content.Server.NPC.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Damage;
@@ -7,7 +6,6 @@ using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Verbs;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Rejuvenate;
-using Content.Shared.ActionBlocker;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;

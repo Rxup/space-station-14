@@ -6,10 +6,14 @@ using Content.Server.Antag;
 using Content.Server.Antag.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
+using Content.Server.Maps;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Antag;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Maps;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 
@@ -44,14 +48,30 @@ public sealed class AllGamePresetsStartTest : AntagTest
 
         var preset = SProtoMan.Index<GamePresetPrototype>(presetId);
 
-        // Spawn the minimum number of players.
+        string? savedMap = null;
         var players = new List<ICommonSession>();
         players.Add(Client.Session);
         var min = 0;
         await Server.WaitPost(() =>
         {
             min = STicker.GetMinimumPlayerCount(preset);
+
+            if (preset.MapPool == null
+                || !SProtoMan.TryIndex(preset.MapPool, out GameMapPoolPrototype pool)
+                || pool.Maps.Count == 0)
+            {
+                return;
+            }
+
+            savedMap = Pair.Server.CfgMan.GetCVar(CCVars.GameMap);
+            var mapId = pool.Maps.First();
+            Pair.Server.CfgMan.SetCVar(CCVars.GameMap, mapId);
+
+            if (SProtoMan.TryIndex<GameMapPrototype>(mapId, out var map))
+                min = Math.Max(min, (int) map.MinPlayers);
         });
+
+        // Spawn the minimum number of players.
 
         // We should already have one client connected, and we need to check the min
 
@@ -90,9 +110,10 @@ public sealed class AllGamePresetsStartTest : AntagTest
 
         // No preset should ever try to spawn more antags roundstart than it can spawn players.
         Assert.That(antags <= min, Is.True);
-        if (min > 1)
+        var playersNeeded = Math.Max(min, antags);
+        if (playersNeeded > 1)
         {
-            var dummies = await Server.AddDummySessions(min - 1);
+            var dummies = await Server.AddDummySessions(playersNeeded - 1);
             // Put our client at the front of the list.
             players = players.Union(dummies).ToList();
         }
@@ -110,8 +131,8 @@ public sealed class AllGamePresetsStartTest : AntagTest
         {
             for (var count = 0; count < amount; count++)
             {
+                Assert.That(i < players.Count, $"Tried to assign more antags than there were players");
                 await Pair.SetAntagPreference(antag.PrefRoles.FirstOrDefault(), true, players[i++].UserId);
-                Assert.That(i < min, $"Tried to assign more antags than there were players");
             }
         }
 
@@ -136,6 +157,7 @@ public sealed class AllGamePresetsStartTest : AntagTest
         await Server.WaitPost(() =>
         {
             STicker.StartGamePresetRules();
+            ForceStartDelayedGameRules();
         });
         await Pair.RunUntilSynced();
 
@@ -154,11 +176,42 @@ public sealed class AllGamePresetsStartTest : AntagTest
         // Maps now exist
         Assert.That(SEntMan.Count<MapComponent>(), Is.GreaterThan(0));
         Assert.That(SEntMan.Count<MapGridComponent>(), Is.GreaterThan(0));
-        Assert.That(SEntMan.Count<StationCentcommComponent>(), Is.EqualTo(1));
+        if (!preset.IsMiniGame)
+        {
+            Assert.That(SEntMan.Count<StationCentcommComponent>(), Is.EqualTo(1));
+        }
 
         // Clear game preset and return to lobby
         await Pair.WaitCommand("golobby");
         STicker.SetGamePreset((GamePresetPrototype) null);
+        if (savedMap != null)
+        {
+            await Server.WaitPost(() =>
+            {
+                Pair.Server.CfgMan.SetCVar(CCVars.GameMap, savedMap);
+            });
+        }
         await Pair.RunUntilSynced();
+    }
+
+    /// <summary>
+    /// Immediately starts any preset game rules that were queued with a start delay.
+    /// Delayed rules otherwise would not assign antagonists before the test asserts on them.
+    /// </summary>
+    private void ForceStartDelayedGameRules()
+    {
+        var delayed = new List<EntityUid>();
+        var query = SEntMan.EntityQueryEnumerator<DelayedStartRuleComponent, GameRuleComponent>();
+        while (query.MoveNext(out var uid, out _, out _))
+        {
+            delayed.Add(uid);
+        }
+
+        foreach (var uid in delayed)
+        {
+            SEntMan.RemoveComponent<DelayedStartRuleComponent>(uid);
+            if (!SEntMan.HasComponent<ActiveGameRuleComponent>(uid))
+                STicker.StartGameRule(uid);
+        }
     }
 }

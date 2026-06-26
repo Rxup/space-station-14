@@ -1,15 +1,9 @@
-using Content.Server.Backmen.Psionics;
 using Content.Shared.Actions;
-using Content.Shared.StatusEffect;
 using Content.Server.Stunnable;
 using Content.Server.Beam;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Abilities.Psionics;
-using Content.Shared.Backmen.Psionics;
-using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Events;
-using Content.Shared.StatusEffectNew;
-using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 

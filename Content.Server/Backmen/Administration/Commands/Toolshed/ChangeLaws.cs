@@ -6,7 +6,6 @@ using Content.Shared.Silicons.Laws;
 using Content.Shared.Silicons.Laws.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
-using Robust.Shared.Toolshed.TypeParsers;
 
 namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 

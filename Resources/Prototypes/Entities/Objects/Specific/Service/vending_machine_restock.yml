@@ -366,22 +366,6 @@
 
 - type: entity
   parent: BaseVendingMachineRestock
-  id: VendingMachineRestockSalvageEquipment
-  name: Salvage Vendor restock box
-  description: Strike the earth ere the space carp nip your behind! Slam into a salvage vendor to begin.
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - SalvageEquipmentInventory
-  - type: Sprite
-    layers:
-    - state: base
-    - state: green_bit
-      shader: unshaded
-    - state: refill_salvage
-
-- type: entity
-  parent: BaseVendingMachineRestock
   id: VendingMachineRestockSeeds
   name: MegaSeed restock box
   description: A label says they're heirloom seeds, passed down from our ancestors. Pack it into the MegaSeed Servitor!

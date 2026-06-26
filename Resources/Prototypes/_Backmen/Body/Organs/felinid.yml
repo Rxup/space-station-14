@@ -1,13 +1,23 @@
 - type: entity
+  parent: SolutionStomach
+  id: SolutionStomachFelinid
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 20
+
+- type: entity
   id: OrganFelinidStomach
   parent: OrganReptilianStomach
   categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
+  - type: SolutionManager
+    solutions:
+    - SolutionStomachFelinid
   - type: SolutionContainerManager
     solutions:
-      stomach:
-        maxVol: 20
       food:
         maxVol: 10
         reagents:

@@ -451,8 +451,11 @@
     state: hemostat
   - type: SurgeryTendWoundsEffect
     damage:
-      groups:
-        Brute: -12
+      types:
+        Blunt: -3
+        Slash: -3
+        Piercing: -3
+        ArmorPiercing: -3
   - type: SurgeryRepeatableStep
 
 - type: entity
@@ -471,8 +474,11 @@
   - type: SurgeryTendWoundsEffect
     mainGroup: Burn
     damage:
-      groups:
-        Burn: -12
+      types:
+        Heat: -3
+        Shock: -3
+        Cold: -3
+        Caustic: -3
   - type: SurgeryRepeatableStep
 
 - type: entity
@@ -614,7 +620,7 @@
   - type: SurgeryDamageChangeEffect
     damage:
       types:
-        Asphyxiation: -2147483648 # Literally the max 32 bit value, if your patient has gone higher than this, maybe it's time to restart the round.
+        Asphyxiation: -2147483648
     sleepModifier: 1
     isConsumable: true
 
@@ -627,7 +633,7 @@
   - type: SurgeryDamageChangeEffect
     damage:
       types:
-        Poison: -2147483648 # Literally the max 32 bit value, if your patient has gone higher than this, maybe it's time to restart the round.
+        Poison: -2147483648
     sleepModifier: 1
     isConsumable: true
 
@@ -703,7 +709,6 @@
     damage:
       types:
         Piercing: 10
-
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepMendBrainTissue

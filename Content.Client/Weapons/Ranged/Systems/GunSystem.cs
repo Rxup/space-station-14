@@ -3,6 +3,7 @@ using Content.Client.Animations;
 using Content.Client.Gameplay;
 using Content.Client.Items;
 using Content.Client.Weapons.Ranged.Components;
+using Content.Shared.Backmen.Camera.Components;
 using Content.Shared.Camera;
 using Content.Shared.CCVar;
 using Content.Shared.CombatMode;
@@ -90,6 +91,8 @@ public sealed partial class GunSystem : SharedGunSystem
 
         InitializeMagazineVisuals();
         InitializeSpentAmmo();
+
+        _bkmCameraRecoilQuery = GetEntityQuery<Shared.Backmen.Camera.Components.BkmGunWieldBonusComponent>(); // backmen: KickMagnitudeMax
     }
 
 
@@ -231,7 +234,7 @@ public sealed partial class GunSystem : SharedGunSystem
         {
             if (throwItems)
             {
-                Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                Recoil(user, direction, gun.Comp.CameraRecoilScalarModified, gun); // backmen: KickMagnitudeMax
                 if (IsClientSide(ent!.Value))
                     Del(ent.Value);
                 else
@@ -248,7 +251,7 @@ public sealed partial class GunSystem : SharedGunSystem
                         SetCartridgeSpent(ent!.Value, cartridge, true);
                         MuzzleFlash(gun, cartridge, worldAngle, user);
                         Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                        Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                        Recoil(user, direction, gun.Comp.CameraRecoilScalarModified, gun); // backmen: KickMagnitudeMax
                         // TODO: Can't predict entity deletions.
                         //if (cartridge.DeleteOnSpawn)
                         //    Del(cartridge.Owner);
@@ -266,7 +269,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 case AmmoComponent newAmmo:
                     MuzzleFlash(gun, newAmmo, worldAngle, user);
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                    Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                    Recoil(user, direction, gun.Comp.CameraRecoilScalarModified, gun); // backmen: KickMagnitudeMax
                     if (IsClientSide(ent!.Value))
                         Del(ent.Value);
                     else
@@ -274,18 +277,22 @@ public sealed partial class GunSystem : SharedGunSystem
                     break;
                 case HitscanAmmoComponent:
                     Audio.PlayPredicted(gun.Comp.SoundGunshotModified, gun, user);
-                    Recoil(user, direction, gun.Comp.CameraRecoilScalarModified);
+                    Recoil(user, direction, gun.Comp.CameraRecoilScalarModified, gun); // backmen: KickMagnitudeMax
                     break;
             }
         }
     }
 
-    private void Recoil(EntityUid? user, Vector2 recoil, float recoilScalar)
+    private EntityQuery<BkmGunWieldBonusComponent> _bkmCameraRecoilQuery; // backmen: KickMagnitudeMax
+    private void Recoil(EntityUid? user, Vector2 recoil, float recoilScalar, EntityUid? gunUid = null) // backmen: KickMagnitudeMax
     {
         if (!Timing.IsFirstTimePredicted || user == null || recoil == Vector2.Zero || recoilScalar == 0)
             return;
 
-        _recoil.KickCamera(user.Value, recoil.Normalized() * 0.5f * recoilScalar);
+        _recoil.KickCamera(
+            user.Value,
+            recoil.Normalized() * 0.5f * recoilScalar,
+            kickMagnitudeMax: _bkmCameraRecoilQuery.TryComp(gunUid, out var bkmCameraRecoilComponent) ? bkmCameraRecoilComponent.KickMagnitudeMax : null); // backmen: KickMagnitudeMax
     }
 
     protected override void Popup(string message, EntityUid? uid, EntityUid? user)

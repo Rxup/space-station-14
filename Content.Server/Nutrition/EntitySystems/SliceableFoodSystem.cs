@@ -4,6 +4,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
@@ -163,7 +164,8 @@ public sealed partial class SliceableFoodSystem : EntitySystem
         // Your food has the edible component
         // The solution listed in the edible component exists
         var foodComp = EnsureComp<EdibleComponent>(entity);
-        _solutionContainer.EnsureSolution(entity.Owner, foodComp.Solution, out _);
+        if (!HasComp<SolutionContainerManagerComponent>(entity))
+            _solutionContainer.EnsureSolution(entity.Owner, foodComp.Solution, out _);
     }
 }
 

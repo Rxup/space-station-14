@@ -6,7 +6,7 @@ using Content.Shared.StatusEffectNew.Components;
 
 namespace Content.Server.Backmen.Flesh;
 
-public sealed class FleshWormSuffocationStatusEffectSystem : EntitySystem
+public sealed partial class FleshWormSuffocationStatusEffectSystem : EntitySystem
 {
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
 

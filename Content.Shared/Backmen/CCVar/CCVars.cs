@@ -113,4 +113,7 @@ public sealed partial class CCVars
 
     public static readonly CVarDef<bool> EnableFootPrints =
         CVarDef.Create("footprint.enabled", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> RMCActiveInputMoverEnabled =
+        CVarDef.Create("rmc.active_input_mover_enabled", false, CVar.REPLICATED | CVar.SERVER);
 }

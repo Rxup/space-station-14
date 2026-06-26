@@ -26,7 +26,7 @@
       enum.SharedGasTankUiKey.Key:
         type: GasTankBoundUserInterface
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       # If gas tank volume is changed, adjust MinimumTritiumOxyburnEnergy in Atmospherics.cs by the same proportions
       volume: 5
@@ -231,7 +231,7 @@
   description: Mixed anyone? It can hold 5 L of gas.
   components:
   - type: GasTank
-    outputPressure: 101.3
+    releasePressure: 101.3
 
 - type: entity
   parent: GasTankRoundBase
@@ -244,7 +244,7 @@
   - type: Item
     sprite: Objects/Tanks/anesthetic.rsi
   - type: GasTank
-    outputPressure: 30.4
+    releasePressure: 30.4
   - type: Clothing
     sprite: Objects/Tanks/anesthetic.rsi
 
@@ -260,7 +260,7 @@
   - type: Item
     sprite: Objects/Tanks/plasma.rsi
   - type: GasTank
-    outputPressure: 101.3
+    releasePressure: 101.3
   - type: Clothing
     sprite: Objects/Tanks/plasma.rsi
     slots: [ BELT, SUITSTORAGE ]

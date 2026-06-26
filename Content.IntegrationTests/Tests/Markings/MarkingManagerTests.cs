@@ -98,7 +98,6 @@ public sealed class MarkingManagerTests : GameTest
             Assert.That(hairMarkings[0].MarkingColors[0], Is.EqualTo(Color.Red));
         });
 
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -120,7 +119,6 @@ public sealed class MarkingManagerTests : GameTest
             Assert.That(dict[HumanoidVisualLayers.Eyes][0].MarkingId, Is.EqualTo("EyesMarking"));
         });
 
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -148,7 +146,6 @@ public sealed class MarkingManagerTests : GameTest
             Assert.That(dict[HumanoidVisualLayers.Eyes][0].MarkingId, Is.EqualTo("MenOnlyMarking"));
         });
 
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -193,7 +190,6 @@ public sealed class MarkingManagerTests : GameTest
             Assert.That(testingMenMarkings[HumanoidVisualLayers.Eyes][2].MarkingId, Is.EqualTo("TestingMenOnlyMarking"));
         });
 
-        await pair.CleanReturnAsync();
     }
 
     [Test]
@@ -234,6 +230,5 @@ public sealed class MarkingManagerTests : GameTest
             Assert.That(eyeMarkings[3].MarkingColors[0], Is.EqualTo(Color.Green));
         });
 
-        await pair.CleanReturnAsync();
     }
 }

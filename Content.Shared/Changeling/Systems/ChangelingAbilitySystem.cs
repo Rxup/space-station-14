@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Content.Shared.Actions;
-using Content.Shared.Atmos.Rotting;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Cuffs;
 using Content.Shared.Ensnaring;

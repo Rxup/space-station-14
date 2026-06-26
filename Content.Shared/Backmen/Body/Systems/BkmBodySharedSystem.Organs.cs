@@ -2,9 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Body;
 using Content.Shared.Body.Events;
-using Content.Shared.Body;
 using Content.Shared.Body.Part;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Robust.Shared.Containers;
 

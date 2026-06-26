@@ -5,6 +5,7 @@ using Content.Client.Inventory;
 using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
+using Content.Shared.Clothing.Events; // backmen: arachne
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -44,6 +45,9 @@ public sealed partial class ClientClothingSystem : ClothingSystem
         {"pocket1", "POCKET1"},
         {"pocket2", "POCKET2"},
         {"suitstorage", "SUITSTORAGE"},
+        {"underpants", "UNDERPANTS"}, //backmen:underclothing
+        {"undershirt", "UNDERSHIRT"}, //backmen:underclothing
+        {"socks", "SOCKS"}, //backmen:underclothing
     };
 
     [Dependency] private IResourceCache _cache = default!;
@@ -71,12 +75,22 @@ public sealed partial class ClientClothingSystem : ClothingSystem
 
         UpdateAllSlots(uid, component);
 
+        // start-backmen: arachne
+        var before = new BeforeClothingAppearanceRefreshEvent();
+        RaiseLocalEvent(uid, ref before);
+        // end-backmen: arachne
+
         // No clothing equipped -> make sure the layer is hidden, though this should already be handled by on-unequip.
         if (_sprite.LayerMapTryGet((uid, args.Sprite), HumanoidVisualLayers.StencilMask, out var layer, false))
         {
             DebugTools.Assert(!args.Sprite[layer].Visible);
             _sprite.LayerSetVisible((uid, args.Sprite), layer, false);
         }
+
+        // start-backmen: arachne
+        var after = new AfterClothingAppearanceRefreshEvent();
+        RaiseLocalEvent(uid, ref after);
+        // end-backmen: arachne
     }
 
     private void OnInventoryTemplateUpdated(Entity<InventoryComponent> ent, ref InventoryTemplateUpdated args)

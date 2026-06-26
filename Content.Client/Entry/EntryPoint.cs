@@ -20,6 +20,7 @@ using Content.Client.Radiation.Overlays;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Singularity;
+using Content.Client.Backmen.Explosion; // Ataraxia
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface;
 using Content.Client.Viewport;
@@ -80,6 +81,13 @@ namespace Content.Client.Entry
         [Dependency] private ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
         [Dependency] private ClientFeedbackManager _feedbackManager = null!;
 
+        // start-backmen: ioc
+        [Dependency] private Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sponsorsManager = default!; // Corvax-Sponsors
+        [Dependency] private Content.Corvax.Interfaces.Client.IClientJoinQueueManager _queueManager = default!; // Corvax-Queue
+        [Dependency] private Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordAuthManager = default!; // Corvax-DiscordAuth
+        [Dependency] private Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager _sharedLoadoutsManager = default!;
+        // end-backmen: ioc
+
         public override void PreInit()
         {
             ClientContentIoC.Register(Dependencies);
@@ -128,10 +136,14 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("alertLevels");
             _prototypeManager.RegisterIgnore("nukeopsRole");
             _prototypeManager.RegisterIgnore("stationGoal"); // Corvax-StationGoal
+
+            // Begin Backmen: our ignored prototypes.
             _prototypeManager.RegisterIgnore("npcConversationTree");
             _prototypeManager.RegisterIgnore("shipwreckDestination");
             _prototypeManager.RegisterIgnore("shipwreckFaction");
+            _prototypeManager.RegisterIgnore("bkmloadout");
             _prototypeManager.RegisterIgnore("specForceTeam");
+            // End Backmen.
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
@@ -168,6 +180,7 @@ namespace Content.Client.Entry
             _parallaxManager.LoadDefaultParallax();
 
             _overlayManager.AddOverlay(new SingularityOverlay());
+            _overlayManager.AddOverlay(new RMCExplosionShockWaveOverlay()); // Ataraxia
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
             _chatManager.Initialize();
             _clientPreferencesManager.Initialize();
@@ -177,6 +190,14 @@ namespace Content.Client.Entry
             _userInterfaceManager.SetActiveTheme(_configManager.GetCVar(CVars.InterfaceTheme));
             _documentParsingManager.Initialize();
             _titleWindowManager.Initialize();
+
+            // start-backmen: ioc
+            _sponsorsManager.Initialize();
+            _queueManager.Initialize();
+            _discordAuthManager.Initialize();
+            _sharedLoadoutsManager.Initialize();
+            // end-backmen: ioc
+
             _feedbackManager.Initialize();
 
             _baseClient.RunLevelChanged += (_, args) =>

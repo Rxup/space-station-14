@@ -13,9 +13,7 @@ using Content.Shared.Backmen.Abilities.Psionics;
 
 using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
-using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.EntityTable;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Materials;
@@ -192,7 +190,7 @@ public sealed partial class OracleSystem : EntitySystem
 
         while (i != 0)
         {
-            EntityManager.SpawnEntity(CrystalNormality, spawnPos);
+            Spawn(CrystalNormality, spawnPos);
             i--;
         }
 

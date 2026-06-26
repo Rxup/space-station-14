@@ -1,18 +1,3 @@
-using System.Linq;
-using Content.Shared.Chat;
-using Content.Shared.Database;
-using Content.Shared.Psionics.Glimmer;
-using Content.Server.Administration.Managers;
-using Content.Server.Administration.Logs;
-using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
-using Robust.Shared.Network;
-using Robust.Shared.Player;
-using Robust.Shared.Random;
-using Content.Shared.Backmen.Species.Shadowkin.Components;
-using Robust.Shared.Utility;
-using Content.Server.Backmen.Speech.EntitySystems;
-
 namespace Content.Server.Backmen.Chat;
 
 /// <summary>

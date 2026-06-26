@@ -1,5 +1,3 @@
-using System.Globalization;
-using Content.Server.Atmos.Components;
 using Content.Server.Decals;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -88,7 +86,10 @@ public sealed partial class AtmosphereSystem
         if (tile.Hotspot.Temperature < Atmospherics.FireMinimumTemperatureToExist ||
             tile.Hotspot.Volume <= 1f ||
             tile.Air == null ||
-            !IsMixtureIgnitable(tile.Air))
+            !IsMixtureIgnitable(tile.Air) ||
+            // start-backmen: gases
+            tile.Air.GetMoles(Gas.HyperNoblium) > 5f)
+            // end-backmen: gases
         {
             tile.Hotspot = new Hotspot();
             InvalidateVisuals(ent, tile);
@@ -205,12 +206,17 @@ public sealed partial class AtmosphereSystem
             return;
 
         var isFlammable = IsMixtureFuel(tile.Air);
+        // start-backmen: gases
+        var hypernoblium = tile.Air.GetMoles(Gas.HyperNoblium);
+        // end-backmen: gases
 
         if (tile.Hotspot.Valid)
         {
             if (soh)
             {
-                if (isFlammable)
+                // start-backmen: gases
+                if (isFlammable && hypernoblium < 5f)
+                // end-backmen: gases
                 {
                     tile.Hotspot.Temperature = MathF.Max(tile.Hotspot.Temperature, exposedTemperature);
                     tile.Hotspot.Volume = MathF.Max(tile.Hotspot.Volume, exposedVolume);
@@ -220,7 +226,9 @@ public sealed partial class AtmosphereSystem
             return;
         }
 
-        if (exposedTemperature > Atmospherics.PlasmaMinimumBurnTemperature && isFlammable)
+        // start-backmen: gases
+        if (exposedTemperature > Atmospherics.PlasmaMinimumBurnTemperature && isFlammable && hypernoblium < 5f)
+        // end-backmen: gases
         {
             if (sparkSourceUid.HasValue)
             {

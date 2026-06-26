@@ -119,7 +119,7 @@
     probability: 0.025
     damage:
       types:
-        Genetic: 0.1
+        Cellular: 0.1
     stages:
     - 2
   # possible xeno polymorph
@@ -194,7 +194,7 @@
     probability: 0.025
     damage:
       types:
-        Genetic: 0.1
+        Cellular: 0.1
     stages:
     - 2
   - !type:DiseasePolymorph

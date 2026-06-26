@@ -1,35 +1,20 @@
-using System.Linq;
 using Content.Server.Backmen.Disease.Components;
 using Content.Server.Backmen.Disease.Server;
 using Content.Server.DoAfter;
-using Content.Server.Nutrition.Components;
-using Content.Server.Paper;
 using Content.Server.Popups;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Systems;
-using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Backmen.Disease.Events;
-using Content.Shared.Backmen.Disease.Swab;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
-using Content.Shared.Hands.Components;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
-using Content.Shared.Inventory;
 using Content.Shared.Materials;
 using Content.Shared.Research.Components;
-using Content.Shared.Tag;
-using Content.Shared.Tools.Components;
 using Content.Shared.UserInterface;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Disease;
 

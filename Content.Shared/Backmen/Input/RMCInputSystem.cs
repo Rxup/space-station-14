@@ -1,4 +1,4 @@
-﻿using Content.Shared.Movement.Components;
+﻿using Content.Shared.Backmen.CCVar;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -20,6 +20,8 @@ public sealed partial class RMCInputSystem : EntitySystem
         SubscribeLocalEvent<ActiveInputMoverComponent, MapInitEvent>(OnActiveMapInit);
         SubscribeLocalEvent<ActiveInputMoverComponent, PlayerAttachedEvent>(OnActiveAttached);
         SubscribeLocalEvent<ActiveInputMoverComponent, PlayerDetachedEvent>(OnActiveDetached);
+
+        Subs.CVar(_config, CCVars.RMCActiveInputMoverEnabled, v => _activeInputMoverEnabled = v, true);
     }
 
     private void OnActiveMapInit(Entity<ActiveInputMoverComponent> ent, ref MapInitEvent args)

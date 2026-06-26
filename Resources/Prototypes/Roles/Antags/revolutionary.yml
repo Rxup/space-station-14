@@ -8,6 +8,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 1h
+  discordRequired: true # backmen: antag
 
 - type: antagSpecifier
   abstract: true
@@ -44,6 +45,7 @@
   setPreference: false
   objective: roles-antag-rev-objective
   guides: [ Revolutionaries ]
+  discordRequired: true # backmen: antag
 
 - type: startingGear
   id: HeadRevGear

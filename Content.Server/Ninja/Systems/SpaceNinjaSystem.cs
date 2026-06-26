@@ -4,8 +4,6 @@ using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Research.Systems;
 using Content.Shared.Alert;
-using Content.Shared.Doors.Components;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Ninja.Components;
 using Content.Shared.Ninja.Systems;

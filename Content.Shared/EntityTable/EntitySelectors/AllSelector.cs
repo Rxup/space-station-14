@@ -1,4 +1,3 @@
-using System.Linq;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.EntityTable.EntitySelectors;

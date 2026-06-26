@@ -1,8 +1,8 @@
 using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.Antag;
+using Content.Server.Antag.Components;
 using Content.Server.Backmen.Fugitive;
-using Content.Server.Forensics;
 using Content.Server.Mind;
 using Content.Server.RandomMetadata;
 using Content.Server.Salvage.Expeditions;
@@ -11,20 +11,15 @@ using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
-using Content.Server.Storage.Components;
-using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Antag;
 using Content.Shared.Cargo.Components;
-using Content.Shared.CriminalRecords;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Inventory;
 using Content.Shared.Mind.Components;
-using Content.Shared.PDA;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Content.Shared.Roles.Jobs;
 using Content.Shared.Security.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.Storage.Components;
@@ -291,6 +286,7 @@ public sealed partial class AutoPsiSystem : EntitySystem
 
 
     private readonly EntProtoId DefaultSuperPsiRule = "SuperPsiRule";
+    private static readonly ProtoId<AntagSpecifierPrototype> SuperPsiAntag = "SuperPsi";
 
     private void OnMindAdded(Entity<AutoPsiComponent> ent, ref MindAddedMessage args)
     {
@@ -299,6 +295,15 @@ public sealed partial class AutoPsiSystem : EntitySystem
             return;
         }
         RemCompDeferred<AutoPsiComponent>(ent);
+
+        // Ghost role antag selection pre-selects the player before assigning the mind.
+        var query = EntityQueryEnumerator<SuperPsiRuleComponent, AntagSelectionComponent>();
+        while (query.MoveNext(out var uid, out _, out var selection))
+        {
+            if (_antag.IsAssignedAntag((uid, selection), SuperPsiAntag, session))
+                return;
+        }
+
         _antag.ForceMakeAntag<SuperPsiRuleComponent>(session, DefaultSuperPsiRule);
     }
 }

@@ -8,9 +8,9 @@
   - type: Edible
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/donkpocket.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -52,9 +52,9 @@
       - bread
       - meaty
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -72,9 +72,9 @@
     flavors:
       - leafy
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -91,9 +91,9 @@
     flavors:
       - leafy
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -125,9 +125,9 @@
       - spicy
       - meaty
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -161,9 +161,9 @@
       - meaty
       - sweet
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -182,9 +182,9 @@
       - cheesy
       - tomato
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -203,9 +203,9 @@
       - cheesy
       - tomato
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 15
@@ -222,9 +222,9 @@
     flavors:
       - funny
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -243,9 +243,9 @@
     flavors:
       - funny
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -264,9 +264,9 @@
     flavors:
       - sweet
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -283,9 +283,9 @@
     flavors:
       - sweet
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -304,9 +304,9 @@
     flavors:
       - profits
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -322,9 +322,9 @@
     flavors:
       - profits
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -341,9 +341,9 @@
     flavors:
     - cheap
     - fishops
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -359,9 +359,9 @@
     flavors:
     - cheap
     - fishops
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -378,9 +378,9 @@
     flavors:
       - cold
       - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -399,9 +399,9 @@
     flavors:
     - cotton
     - cheap
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -421,9 +421,9 @@
   parent: FoodDonkpocketMoth
   id: FoodDonkpocketMothWarm
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10

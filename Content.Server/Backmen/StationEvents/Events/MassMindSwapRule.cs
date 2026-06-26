@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server.Backmen.Abilities.Psionics;
-using Content.Server.Backmen.Psionics;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Events;

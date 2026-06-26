@@ -1,8 +1,6 @@
 using Content.Server.Objectives.Components;
 using Content.Shared.Cargo.Components;
-using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
-using NetCord;
 
 namespace Content.Server.Objectives.Systems;
 

@@ -108,7 +108,7 @@ public partial class AtmosphereSystem
     /// may be contained in, ex. if the entity is currently in a locker/crate with its own
     /// <see cref="GasMixture"/>.</remarks>
     [PublicAPI]
-    public GasMixture? GetTileMixture(Entity<TransformComponent?> entity, bool excite = false)
+    public override GasMixture? GetTileMixture(Entity<TransformComponent?> entity, bool excite = false)
     {
         if (!Resolve(entity.Owner, ref entity.Comp))
             return null;

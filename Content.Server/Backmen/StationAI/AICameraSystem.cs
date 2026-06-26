@@ -5,17 +5,14 @@ using Content.Server.SurveillanceCamera;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.SurveillanceCamera.Components;
-using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationAI;

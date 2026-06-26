@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Backmen.Surgery.Trauma.Systems;
 using Content.Server.Backmen.Surgery.Wounds.Systems;
@@ -14,14 +13,12 @@ using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Hands;
 using Content.Shared.Humanoid;
@@ -318,7 +315,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         if (args.Slot != "mask" || ent.Comp.EquipedOn != args.UnEquipTarget)
             return;
 
-        if (args.UnEquipTarget != args.UnEquipTarget)
+        if (args.UnEquipTarget != args.User)
             return;
 
         args.Cancel();

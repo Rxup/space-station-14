@@ -131,8 +131,11 @@
     damageContainers:
       - Biological
     damage:
-      groups:
-        Brute: -15 # 5 for each type in the group
+      types:
+        Blunt: -3.75
+        Slash: -3.75
+        Piercing: -3.75
+        ArmorPiercing: -3.75
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:
@@ -177,8 +180,11 @@
     damageContainers:
       - Biological
     damage:
-      groups:
-        Brute: -10 # 3.3~ for each type in the group
+      types:
+        Blunt: -2.5
+        Slash: -2.5
+        Piercing: -2.5
+        ArmorPiercing: -2.5
     bloodlossModifier: -10 # a suture should stop ongoing bleeding
     healBleedsThreshold: 12
     healingBeginSound:
@@ -225,7 +231,7 @@
       - Biological
     damage:
       types:
-        Bloodloss: -0.5 #lowers bloodloss damage
+        Bloodloss: -0.5
     modifyBloodLevel: 15 #restores about 5% blood per use on standard humanoids.
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
@@ -355,10 +361,17 @@
     damageContainers:
     - Biological
     damage:
-      groups: # these are all split across multiple types
-        Brute: -150
-        Burn: -150
-        Toxin: -150
+      types:
+        Blunt: -37.5
+        Slash: -37.5
+        Piercing: -37.5
+        ArmorPiercing: -37.5
+        Heat: -37.5
+        Shock: -37.5
+        Cold: -37.5
+        Caustic: -37.5
+        Poison: -75
+        Radiation: -75
     bloodlossModifier: -20
     healBleedsThreshold: 777
     delay: 1
@@ -858,9 +871,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-ephedrine
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Ephedrine
@@ -873,9 +886,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-inaprovaline
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Inaprovaline
@@ -888,9 +901,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-tranexamic-acid
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: TranexamicAcid
@@ -903,9 +916,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-bicaridine
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Bicaridine
@@ -918,9 +931,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-dermaline
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Dermaline
@@ -933,9 +946,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-hyronalin
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Hyronalin
@@ -948,9 +961,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-ipecac
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Ipecac
@@ -963,9 +976,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-ambuzol
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
           - ReagentId: Ambuzol
@@ -978,9 +991,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-sigynate
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
           - ReagentId: Sigynate
@@ -993,9 +1006,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-ethylredoxrazine
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
           - ReagentId: Ethylredoxrazine
@@ -1008,9 +1021,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-phalanximine
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
           - ReagentId: Phalanximine
@@ -1023,9 +1036,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-saline
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
           - ReagentId: Saline
@@ -1039,9 +1052,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-romerol
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Romerol
@@ -1054,9 +1067,9 @@
   components:
   - type: Label
     currentLabel: reagent-name-stimulants
-  - type: SolutionContainerManager
-    solutions:
-      injector:
+  - type: Solution
+    id: injector
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Stimulants

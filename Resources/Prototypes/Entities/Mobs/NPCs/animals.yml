@@ -454,7 +454,6 @@
     damage:
       types:
         Piercing: 0
-
 - type: entity
   name: glockroach
   parent: MobCockroach
@@ -1925,7 +1924,6 @@
         Asphyxiation: 4
         Slash: 7
         Blunt: 3
-
 - type: entity
   parent: MobMouse
   id: MobMouseAdmeme
@@ -2424,8 +2422,11 @@
     angle: 0
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 5
+      types:
+        Blunt: 1.25
+        Slash: 1.25
+        Piercing: 1.25
+        ArmorPiercing: 1.25
   - type: Item
     size: Normal
     sprite: Mobs/Animals/grenadepenguin.rsi
@@ -2538,7 +2539,6 @@
       melee:
         maxVol: 30
   - type: SolutionRegeneration
-    solution: melee
     generated:
       reagents:
       - ReagentId: Mechanotoxin
@@ -2593,10 +2593,14 @@
     damage:
       types:
         Poison: -0.07
-      groups:
-        Brute: -0.07
-        Burn: -0.07
-
+        Blunt: -0.0175
+        Slash: -0.0175
+        Piercing: -0.0175
+        ArmorPiercing: -0.0175
+        Heat: -0.0175
+        Shock: -0.0175
+        Cold: -0.0175
+        Caustic: -0.0175
 - type: entity
   parent: MobSpiderBase
   id: MobSpiderAngryBase
@@ -2657,7 +2661,6 @@
     damage:
       types:
         Piercing: 6
-
 - type: entity
   parent:
   - MobSpiderAngryBase
@@ -3235,7 +3238,6 @@
         Slash: 6
         Piercing: 6
         Structural: 15
-
 - type: entity
   name: space cat
   id: MobCatSpace

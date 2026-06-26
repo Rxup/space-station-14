@@ -4,7 +4,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared.Backmen.Soul;
 
 [RegisterComponent, NetworkedComponent]
-public partial class GolemComponent : Component
+public sealed partial class GolemComponent : Component
 {
     // we use these to config stuff via UI before installation
     [ViewVariables(VVAccess.ReadWrite)]

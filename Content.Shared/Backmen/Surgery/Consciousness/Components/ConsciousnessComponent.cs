@@ -1,6 +1,10 @@
 ﻿using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
+using Content.Shared.Mobs;
+using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Surgery.Consciousness.Components;
 
@@ -122,4 +126,21 @@ public sealed partial class ConsciousnessComponent : Component
     [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public bool IsConscious = true;
     // Forceful control attributes, it's recommended not to use them directly.
+
+    /// <summary>
+    /// Damage container for <see cref="DamageableSystem.CanBeDamagedBy"/> and damage writes on the body.
+    /// </summary>
+    [DataField]
+    public ProtoId<DamageContainerPrototype>? DamageContainer = "Biological";
+
+    [DataField]
+    public Dictionary<MobState, ProtoId<HealthIconPrototype>> HealthIcons = new()
+    {
+        { MobState.Alive, "HealthIconFine" },
+        { MobState.Critical, "HealthIconCritical" },
+        { MobState.Dead, "HealthIconDead" },
+    };
+
+    [DataField]
+    public ProtoId<HealthIconPrototype> RottingIcon = "HealthIconRotting";
 }

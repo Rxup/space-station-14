@@ -1,13 +1,8 @@
 using Content.Shared.Actions;
-using Content.Shared.Bed.Sleep;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs.Components;
-using Content.Shared.StatusEffectNew;
-using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Abilities.Psionics;
 

@@ -46,9 +46,9 @@
   # Note NOT refillable.
   # It be a shame if it turned out ALL drinks were ALWAYS refillable.... ffs.
   # Well its fixed now, but I want to share my pain.
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
   - type: SolutionTransfer
     maxTransferAmount: 10
@@ -91,9 +91,9 @@
   name: Astrotame
   description: The sweetness of a thousand sugars but none of the calories.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Astrotame
@@ -119,9 +119,9 @@
   name: BBQ sauce
   description: Hand wipes not included.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: BbqSauce
@@ -139,9 +139,9 @@
   name: corn oil
   description: Corn oil. A delicious oil used in cooking. Made from corn.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Cornoil
@@ -159,9 +159,9 @@
   name: coldsauce
   description: Coldsauce. Leaves the tongue numb in its passage.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Coldsauce
@@ -179,9 +179,9 @@
   name: horseradish sauce
   description: A packet of smelly horseradish sauce.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: HorseradishSauce
@@ -199,9 +199,9 @@
   name: hotsauce
   description: You can almost TASTE the stomach ulcers now!
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Hotsauce
@@ -219,9 +219,9 @@
   name: ketchup
   description: You feel more American already.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Ketchup
           Quantity: 10
@@ -239,9 +239,9 @@
   name: mustard
   description: A condiment made from the ground-up seeds of the Mustard plant.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Mustard
           Quantity: 10
@@ -258,9 +258,9 @@
   name: black pepper
   description: Often used to flavor food or make people sneeze.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Blackpepper
           Quantity: 10
@@ -277,9 +277,9 @@
   name: salt
   description: Salt. From space oceans, presumably.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: TableSalt
           Quantity: 10
@@ -305,9 +305,9 @@
   name: soy sauce
   description: A salty soy-based flavoring.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Soysauce
           Quantity: 10
@@ -324,9 +324,9 @@
   name: sugar
   description: Tasty spacey sugar!
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Sugar
           Quantity: 10
@@ -355,9 +355,9 @@
     sound:
       collection: pop
     closeable: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
   - type: RefillableSolution
     solution: food
@@ -389,9 +389,9 @@
   name: coldsauce bottle
   description: Leaves the tongue numb in its passage.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Coldsauce
           Quantity: 30
@@ -415,9 +415,9 @@
   name: universal enzyme
   description: Used in cooking various dishes.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Enzyme
           Quantity: 30
@@ -441,9 +441,9 @@
   name: vinegar bottle
   description: Used in cooking to enhance flavor.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Vinegar
           Quantity: 30
@@ -464,9 +464,9 @@
   name: hotsauce bottle
   description: You can almost TASTE the stomach ulcers now!
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Hotsauce
           Quantity: 30
@@ -490,9 +490,9 @@
   name: ketchup bottle
   description: You feel more American already.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Ketchup
           Quantity: 30
@@ -516,9 +516,9 @@
   name: BBQ sauce bottle
   description: Hand wipes not included.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: BbqSauce
           Quantity: 30
@@ -553,9 +553,9 @@
     solution: food
     destroyOnEmpty: false
     utensil: None # don't conflict with stirring
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
   - type: SolutionTransfer
     canChangeTransferAmount: true
@@ -590,9 +590,9 @@
   name: salt shaker
   description: Salt. From space oceans, presumably.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: TableSalt
           Quantity: 20
@@ -610,9 +610,9 @@
   name: pepper shaker
   description: Often used to flavor food or make people sneeze.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Blackpepper
           Quantity: 20

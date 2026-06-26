@@ -12,9 +12,9 @@
   - type: Item
     sprite: Backmen/Objects/Misc/eggspider.rsi
     size: Tiny
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Egg

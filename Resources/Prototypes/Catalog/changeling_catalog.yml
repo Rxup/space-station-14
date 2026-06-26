@@ -9,7 +9,7 @@
   cost:
     ChangelingDNA: 25
   categories:
-  - ChangelingAbilities
+  - ChangelingStoreCombat
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1

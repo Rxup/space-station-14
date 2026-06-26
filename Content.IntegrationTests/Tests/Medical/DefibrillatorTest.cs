@@ -1,5 +1,9 @@
 #nullable enable
 using Content.IntegrationTests.Tests.Interaction;
+using Content.Server.Backmen.Surgery.Consciousness.Systems;
+using Content.Server.Medical;
+using Content.Shared.Backmen.Surgery.Consciousness;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
@@ -9,6 +13,7 @@ using Content.Shared.Medical;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Medical;
@@ -34,6 +39,7 @@ public sealed class DefibrillatorTest : InteractionTest
     {
         var damageableSystem = SEntMan.System<DamageableSystem>();
         var mobThresholdsSystem = SEntMan.System<MobThresholdSystem>();
+        var consciousnessSystem = SEntMan.System<ServerConsciousnessSystem>();
 
         // Don't let the player and target suffocate.
         await AddAtmosphere();
@@ -55,38 +61,44 @@ public sealed class DefibrillatorTest : InteractionTest
         var deathThreshold = mobThresholdsSystem.GetThresholdForState(STarget.Value, MobState.Dead);
         var critDamage = new DamageSpecifier(ProtoMan.Index(BluntDamageTypeId), (critThreshold + deathThreshold) / 2);
         var deathDamage = new DamageSpecifier(ProtoMan.Index(BluntDamageTypeId), deathThreshold);
+        var usesConsciousness = SEntMan.HasComponent<ConsciousnessComponent>(STarget.Value);
 
         // Kill the target by applying blunt damage.
-        await Server.WaitPost(() => damageableSystem.SetDamage((STarget.Value, targetDamageable), deathDamage));
+        await Server.WaitPost(() => KillTarget(STarget.Value, targetDamageable, damageableSystem, consciousnessSystem, deathDamage));
         await RunTicks(3);
 
         // Check that the target is dead.
         Assert.Multiple(() =>
         {
             Assert.That(targetMobState.CurrentState, Is.EqualTo(MobState.Dead), "Target mob did not die from deadly damage amount.");
-            Assert.That(damageableSystem.GetTotalDamage(STarget!.Value), Is.EqualTo(deathThreshold), "Target mob had the wrong total damage amount after being killed.");
+            if (!usesConsciousness)
+                Assert.That(damageableSystem.GetTotalDamage(STarget!.Value), Is.EqualTo(deathThreshold), "Target mob had the wrong total damage amount after being killed.");
         });
 
         // Spawn a defib and activate it.
         var defib = await PlaceInHands(DefibrillatorProtoId, enableToggleable: true);
         var cooldown = Comp<DefibrillatorComponent>(defib).ZapDelay;
 
-        // Wait for the cooldown.
-        await RunSeconds((float)cooldown.TotalSeconds);
-
-        // ZAP!
-        await Interact();
-
-        // Check that the target is still dead since it is over the crit threshold.
-        // And it should have taken some extra damage.
-        Assert.Multiple(() =>
+        if (!usesConsciousness)
         {
-            Assert.That(targetMobState.CurrentState, Is.EqualTo(MobState.Dead), "Target mob was revived despite being over the death damage threshold.");
-            Assert.That(damageableSystem.GetTotalDamage(STarget!.Value), Is.GreaterThan(deathThreshold), "Target mob did not take damage from being defibrillated.");
-        });
+            // Wait for the cooldown.
+            await RunSeconds((float)cooldown.TotalSeconds);
+
+            // ZAP!
+            await ZapTarget(defib);
+
+            // Check that the target is still dead since it is over the crit threshold.
+            // And it should have taken some extra damage.
+            Assert.Multiple(() =>
+            {
+                Assert.That(targetMobState.CurrentState, Is.EqualTo(MobState.Dead),
+                    "Target mob was revived despite being over the death damage threshold.");
+                Assert.That(damageableSystem.GetTotalDamage(STarget!.Value), Is.GreaterThan(deathThreshold), "Target mob did not take damage from being defibrillated.");
+            });
+        }
 
         // Set the damage halfway between the crit and death thresholds so that the target can be revived.
-        await Server.WaitPost(() => damageableSystem.SetDamage((STarget.Value, targetDamageable), critDamage));
+        await Server.WaitPost(() => KillTarget(STarget.Value, targetDamageable, damageableSystem, consciousnessSystem, critDamage));
         await RunTicks(3);
 
         // Check that the target is still dead.
@@ -94,9 +106,40 @@ public sealed class DefibrillatorTest : InteractionTest
 
         // ZAP!
         await RunSeconds((float)cooldown.TotalSeconds);
-        await Interact();
+        await ZapTarget(defib);
 
         // The target should be revived, but in crit.
         Assert.That(targetMobState.CurrentState, Is.EqualTo(MobState.Critical), "Target mob was not revived from being defibrillated.");
+    }
+
+    private void KillTarget(
+        EntityUid target,
+        DamageableComponent damageable,
+        DamageableSystem damageableSystem,
+        ServerConsciousnessSystem consciousnessSystem,
+        DamageSpecifier? damage = null)
+    {
+        if (damage != null)
+            damageableSystem.SetDamage((target, damageable), damage);
+
+        if (!SEntMan.TryGetComponent(target, out ConsciousnessComponent? consciousness))
+            return;
+
+        consciousnessSystem.AddConsciousnessModifier(
+            (target, consciousness),
+            target,
+            -consciousness.Cap,
+            "DeathThreshold",
+            ConsciousnessModType.Pain);
+    }
+
+    private async Task ZapTarget(NetEntity defib)
+    {
+        await Server.WaitPost(() =>
+        {
+            var defibUid = SEntMan.GetEntity(defib);
+            SEntMan.System<DefibrillatorSystem>().Zap((defibUid, SEntMan.GetComponent<DefibrillatorComponent>(defibUid)), STarget!.Value, SPlayer);
+        });
+        await RunTicks(5);
     }
 }

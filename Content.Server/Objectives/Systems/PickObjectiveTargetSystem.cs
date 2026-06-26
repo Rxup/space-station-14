@@ -1,10 +1,7 @@
+using Content.Server.Backmen.Objectives;
 using Content.Server.Objectives.Components;
-using Content.Shared.Mind;
+using Content.Shared.Mind.Filters;
 using Content.Shared.Objectives.Components;
-using Content.Server.GameTicking.Rules;
-using Content.Server.Revolutionary.Components;
-using Robust.Shared.Random;
-using System.Linq;
 using Content.Shared.Objectives.Systems;
 
 namespace Content.Server.Objectives.Systems;
@@ -69,7 +66,8 @@ public sealed partial class PickObjectiveTargetSystem : EntitySystem
             return;
 
         // couldn't find a target :(
-        if (_target.PickFromPool(ent.Comp.Pool, ent.Comp.Filters, args.MindId) is not {} picked)
+        var filters = new List<MindFilter>(ent.Comp.Filters) { new CentComExcludeMindFilter() }; // backmen: centcom
+        if (_target.PickFromPool(ent.Comp.Pool, filters, args.MindId) is not {} picked)
         {
             args.Cancelled = true;
             return;

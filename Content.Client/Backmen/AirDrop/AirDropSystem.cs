@@ -241,7 +241,7 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
                 continue;
 
             if (EntityManager.TryGetComponent(renderedItem, comp.Component.GetType(), out var sourceComp))
-                EntityManager.CopyComponent(renderedItem, ent, sourceComp);
+                CopyComp(renderedItem, ent, sourceComp);
         }
 
         _spriteSystem.CopySprite((renderedItem, renderedSprite), (ent.Owner, sprite));

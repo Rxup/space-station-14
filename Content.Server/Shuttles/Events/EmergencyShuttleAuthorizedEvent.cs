@@ -1,4 +1,3 @@
-using Content.Server.Shuttles.Components;
 using Content.Shared.Shuttles.Components;
 
 namespace Content.Server.Shuttles.Events;

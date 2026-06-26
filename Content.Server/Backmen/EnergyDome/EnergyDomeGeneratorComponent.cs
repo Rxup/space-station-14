@@ -1,4 +1,3 @@
-using Content.Shared.Backmen.EnergyDome;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;

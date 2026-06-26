@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Administration.Logs;
@@ -6,7 +5,6 @@ using Content.Shared.Database;
 using Content.Shared.Emoting;
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
-using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
 using Content.Shared.Mind.Components;
@@ -15,7 +13,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Players;
-using Content.Shared.Silicons.StationAi;
 using Content.Shared.Speech;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
@@ -26,7 +23,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Mind;

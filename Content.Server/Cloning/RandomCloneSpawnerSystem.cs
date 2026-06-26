@@ -1,6 +1,4 @@
 using Content.Server.Cloning.Components;
-using Content.Shared.Mind;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;

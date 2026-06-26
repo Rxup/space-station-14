@@ -1,7 +1,5 @@
 using System.Text.Json;
 using Content.Shared.Damage;
-using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 
 namespace Content.Server.Administration.Logs.Converters;
 

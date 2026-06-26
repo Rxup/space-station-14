@@ -31,7 +31,7 @@
 
 - type: entity
   abstract: true
-  parent: FoodBase
+  parent: [SolutionFood, SolutionTiny, FoodBase]
   id: FoodInjectableBase
   components:
   - type: InjectableSolution

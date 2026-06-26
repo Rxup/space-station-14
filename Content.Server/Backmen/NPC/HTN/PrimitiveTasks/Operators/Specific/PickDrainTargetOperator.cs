@@ -4,7 +4,6 @@ using Content.Server.Backmen.Psionics.NPC.GlimmerWisp;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.Pathfinding;
-using Content.Server.NPC.Systems;
 using Robust.Shared.Map;
 
 namespace Content.Server.Backmen.NPC.HTN.PrimitiveTasks.Operators.Specific;

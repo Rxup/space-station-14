@@ -1,4 +1,3 @@
-using Content.Server.Backmen.Psionics;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Body;
 using Content.Server.Speech.Components;

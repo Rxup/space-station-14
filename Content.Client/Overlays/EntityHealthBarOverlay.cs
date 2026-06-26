@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Client.StatusIcon;
 using Content.Client.UserInterface.Systems;
+using Content.Shared.Backmen.Damage;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -34,6 +35,7 @@ public sealed class EntityHealthBarOverlay : Overlay
     private readonly SpriteSystem _spriteSystem;
     private readonly ProgressColorSystem _progressColor;
     private readonly DamageableSystem _damageable;
+    private readonly BackmenDamageModelSystem _backmenDamageModel;
 
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
@@ -51,6 +53,7 @@ public sealed class EntityHealthBarOverlay : Overlay
         _spriteSystem = _entManager.System<SpriteSystem>();
         _progressColor = _entManager.System<ProgressColorSystem>();
         _damageable = _entManager.System<DamageableSystem>();
+        _backmenDamageModel = _entManager.System<BackmenDamageModelSystem>();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -65,12 +68,12 @@ public sealed class EntityHealthBarOverlay : Overlay
         var rotationMatrix = Matrix3Helpers.CreateRotation(-rotation);
         _prototype.Resolve(StatusIcon, out var statusIcon);
 
-        var query = _entManager.AllEntityQueryEnumerator<MobThresholdsComponent, MobStateComponent, DamageableComponent, InjurableComponent>();
+        // start-backmen: health-ui
+        var query = _entManager.AllEntityQueryEnumerator<MobThresholdsComponent, MobStateComponent, DamageableComponent>();
         while (query.MoveNext(out var uid,
             out var mobThresholdsComponent,
             out var mobStateComponent,
-            out var damageableComponent,
-            out var injurableComponent))
+            out var damageableComponent))
         {
             if (statusIcon != null && !_statusIconSystem.IsVisible((uid, _entManager.GetComponent<MetaDataComponent>(uid)), statusIcon))
                 continue;
@@ -80,8 +83,9 @@ public sealed class EntityHealthBarOverlay : Overlay
                 xform.MapID != args.MapId)
                 continue;
 
-            if (injurableComponent.DamageContainer == null || !DamageContainers.Contains(injurableComponent.DamageContainer))
+            if (!_backmenDamageModel.MatchesDamageContainerFilter(uid, DamageContainers))
                 continue;
+        // end-backmen: health-ui
 
             if (!spriteQuery.TryGetComponent(uid, out var sprite))
                 continue;

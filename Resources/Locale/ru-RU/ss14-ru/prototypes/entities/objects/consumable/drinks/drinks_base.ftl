@@ -1,5 +1,3 @@
-ent-DrinkBase = { ent-BaseItem }
-    .desc = { ent-BaseItem.desc }
 ent-DrinkBaseEmptyTrash = { "" }
     .suffix = Empty
     .desc = { "" }
@@ -19,5 +17,3 @@ ent-DrinkVisualsAll = { ent-DrinkVisualsOpenable }
     .desc = { ent-DrinkVisualsOpenable.desc }
 ent-DrinkVisualsAllFilled = { ent-DrinkVisualsAll }
     .desc = { ent-DrinkVisualsAll.desc }
-ent-DrinkGlassBase = { ent-DrinkBase }
-    .desc = { ent-DrinkBase.desc }

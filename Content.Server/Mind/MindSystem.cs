@@ -367,7 +367,7 @@ public sealed partial class MindSystem : SharedMindSystem
         {
             session = _players.GetSessionById(mind.UserId.Value);
         }
-        catch (KeyNotFoundException ex)
+        catch (KeyNotFoundException)
         {
             session = null;
             return false;

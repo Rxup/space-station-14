@@ -1,6 +1,4 @@
 ﻿using Content.Shared.Backmen.Vampiric;
-using Content.Shared.Backmen.Vampiric.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.EntityEffects;
 using Content.Shared.Mobs.Components;
@@ -24,5 +22,5 @@ public sealed partial class ChemBloodSucker : EntityEffectBase<ChemBloodSucker>
     public override LogImpact? Impact => LogImpact.Medium;
 
     public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("reagent-effect-guidebook-missing", ("chance", Probability));
+        => Loc.GetString("reagent-effect-guidebook-chem-blood-sucker", ("chance", Probability));
 }

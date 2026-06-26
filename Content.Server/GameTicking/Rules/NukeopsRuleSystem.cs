@@ -13,6 +13,8 @@ using Content.Server.Station.Components;
 using Content.Server.StationRecords.Systems;
 using Content.Server.Store.Systems;
 using Content.Shared.Access.Systems;
+using Content.Shared.Backmen.Mood;
+using Content.Shared.CombatMode.Pacification;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -39,7 +41,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using System.Data;
 using System.Linq;
 using System.Text;
 
@@ -63,6 +64,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
     [Dependency] private StationRecordsSystem _records = default!;
     [Dependency] private StoreSystem _store = default!;
     [Dependency] private TagSystem _tag = default!;
+    [Dependency] private Backmen.Arrivals.CentcommSystem _centcommSystem = default!; // backmen: centcom
 
     private static readonly ProtoId<CurrencyPrototype> TelecrystalCurrencyPrototype = "Telecrystal";
     private static readonly ProtoId<TagPrototype> NukeOpsUplinkTagPrototype = "NukeOpsUplink";
@@ -221,8 +223,19 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
                 if (TryComp(nukeops.TargetStation, out StationDataComponent? data))
                 {
                     var correctStation = false;
+                    var centcomStation = false; // backmen: centcom
                     foreach (var grid in data.Grids)
                     {
+                        // start-backmen: centcom
+                        if (_centcommSystem.CentComGrid == grid)
+                        {
+                            nukeops.WinConditions.Add(WinCondition.NukeExplodedOnCentComLocation);
+                            SetWinType((uid, nukeops), WinType.OpsMajor, GameTicker.IsGameRuleActive(NukeopsGameRule));
+                            centcomStation = true;
+                            break;
+                        }
+                        // end-backmen: centcom
+
                         if (grid != ev.OwningStation)
                         {
                             continue;
@@ -233,7 +246,7 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
                         correctStation = true;
                     }
 
-                    if (correctStation)
+                    if (correctStation || centcomStation) // backmen: centcom
                         continue;
                 }
 
@@ -591,6 +604,9 @@ public sealed partial class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleCompon
     private void OnAfterAntagEntSelected(Entity<NukeopsRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
         var target = (ent.Comp.TargetStation is not null) ? Name(ent.Comp.TargetStation.Value) : "the target";
+
+        RemComp<PacifiedComponent>(args.EntityUid); // Corvax-DionaPacifist: Allow dionas nukes to harm
+        RaiseLocalEvent(args.EntityUid, new MoodEffectEvent("NukeopsFocused")); // backmen: mood
 
         _antag.SendBriefing(args.Session,
             Loc.GetString("nukeops-welcome",

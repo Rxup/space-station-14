@@ -392,11 +392,15 @@
 
 - type: entity
   name: syringe
-  parent: [SolutionInjector, SolutionToolTiny, BaseItem]
+  parent: BaseItem
   description: Used to draw blood samples from mobs, or to inject them with reagents.
   id: BaseSyringe
   abstract: true
   components:
+  - type: Solution
+    id: injector
+    solution:
+      maxVol: 15
   - type: Sprite
     sprite: Objects/Specific/Chemistry/syringe.rsi
     layers:
@@ -444,10 +448,14 @@
 
 - type: entity
   name: mini syringe
-  parent: [SolutionToolVeryTiny, Syringe]
+  parent: Syringe
   description: A regular syringe, reshaped to fit inside of a gun.
   id: MiniSyringe
   components:
+  - type: Solution
+    id: injector
+    solution:
+      maxVol: 7.5
   - type: Sprite
     sprite: Objects/Specific/Chemistry/syringe.rsi
     layers:
@@ -512,10 +520,14 @@
 
 - type: entity
   id: SyringeBluespace
-  parent: [SolutionToolLarge, BaseSyringe]
+  parent: BaseSyringe
   name: bluespace syringe
   description: Injecting with advanced bluespace technology.
   components:
+  - type: Solution
+    id: injector
+    solution:
+      maxVol: 120
   - type: Sprite
     layers:
     - state: syringe1
@@ -541,10 +553,14 @@
 
 - type: entity
   id: SyringeCryostasis
-  parent: [SolutionCryo, BaseSyringe]
+  parent: BaseSyringe
   name: cryostasis syringe
   description: A syringe used to contain chemicals or solutions without reactions.
   components:
+  - type: Solution
+    id: injector
+    solution:
+      canReact: false
   - type: Sprite
     layers:
     - state: syringe1
@@ -562,10 +578,15 @@
 
 - type: entity
   name: pill
-  parent: [SolutionPill, BaseItem]
+  parent: BaseItem
   id: Pill
   description: It's not a suppository.
   components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        canReact: false
   - type: Sprite
     sprite: Objects/Specific/Chemistry/pills.rsi
     state: pill
@@ -605,16 +626,6 @@
   - type: Tag
     tags:
     - Pill
-
-- type: entity
-  abstract: true
-  parent: [SolutionFood, SolutionTiny]
-  id: SolutionPill
-  components:
-  - type: Solution
-    solution:
-      canReact: false
-      maxVol: 20
 
 - type: entity
   name: pill canister

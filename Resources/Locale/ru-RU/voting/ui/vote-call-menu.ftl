@@ -12,22 +12,20 @@ ui-vote-create-title = Голосование
 ui-vote-create-button = Запустить
 # Follow button in the vote create menu
 ui-vote-follow-button = Следовать за пользователем
-ui-vote-type-timeout = Это голосование было недавно запущено ({ $remaining })
+ui-vote-type-timeout = Это голосование было недавно запущено ({$remaining})
 # Unavailable text if a vote type has been disabled manually.
 ui-vote-type-not-available = Этот тип голосования был отключён
 # Vote option only available for specific users.
-ui-vote-trusted-users-notice =
-    Этот вариант голосования доступен только для игроков, внесённых в вайтлист или имеющим достаточно игрового времени.
-    Кроме этого, вы должны были быть призраком в течение { $timeReq } секунд.
+ui-vote-trusted-users-notice = Этот вариант голосования доступен только для игроков, внесённых в вайтлист или имеющим достаточно игрового времени.
+    Кроме этого, вы должны были быть призраком в течение {$timeReq} секунд.
 # Warning to not abuse a specific vote option.
-ui-vote-abuse-warning =
-    Внимание!
+ui-vote-abuse-warning = Внимание!
     Злоупотребление голосованием за кик может привести к бессрочному бану!
 ui-vote-fluff = На основе Robust™ СЗИ-НСД
 
 ## Vote menu command
 
-cmd-votemenu-desc = Opens the voting menu.
-cmd-votemenu-help = Usage: votemenu
+cmd-votemenu-desc = Открывает меню голосования.
+cmd-votemenu-help = Использование: votemenu
 ui-vote-menu-command-description = Открывает меню голосования
 ui-vote-menu-command-help-text = Использование: votemenu

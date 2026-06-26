@@ -2,7 +2,6 @@ using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Armor;
 using Content.Shared.Atmos.Rotting;
-using Content.Shared.Body;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Store;
 using Content.Shared.Damage.Systems;

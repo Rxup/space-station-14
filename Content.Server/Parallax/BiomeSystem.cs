@@ -1,8 +1,6 @@
 using System.Numerics;
 using System.Threading.Tasks;
 using Content.Server._Lavaland.Procedural;
-using Content.Server.Atmos;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Decals;
 using Content.Server.Ghost.Roles.Components;

@@ -1,2 +1,2 @@
-ent-RubberPig = toy pig
-    .desc = Squeeze Me, Babe
+ent-RubberPig = резиновая свинья
+    .desc = Дементий, гони свиней!

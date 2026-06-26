@@ -2,8 +2,6 @@ using Content.Shared.Body;
 using System.Linq;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
-using Content.Shared.Humanoid.Prototypes;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Body.Systems;
 

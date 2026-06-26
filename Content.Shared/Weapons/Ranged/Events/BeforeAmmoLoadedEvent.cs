@@ -1,6 +1,4 @@
-﻿using Content.Shared.Weapons.Ranged.Components;
-
-namespace Content.Shared.Weapons.Ranged.Events;
+﻿namespace Content.Shared.Weapons.Ranged.Events;
 
 /// <summary>
 /// Raised on the ammo before it is loaded into a gun (or a magazine)

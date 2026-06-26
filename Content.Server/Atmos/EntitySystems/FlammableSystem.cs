@@ -22,6 +22,8 @@ using Content.Shared.Timing;
 using Content.Shared.Toggleable;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.FixedPoint;
+using Content.Shared.Backmen.Mood;
+using Content.Shared.Standing;
 using Content.Shared.Temperature.Components;
 using Robust.Server.Audio;
 using Robust.Shared.Physics.Components;
@@ -50,6 +52,7 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private AudioSystem _audio = default!;
         [Dependency] private IRobustRandom _random = default!;
         [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private StandingStateSystem _standing = default!; // backmen
 
         [Dependency] private EntityQuery<InventoryComponent> _inventoryQuery = default!;
         [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
@@ -257,6 +260,15 @@ namespace Content.Server.Atmos.EntitySystems
             if (args.Handled)
                 return;
 
+            // start-backmen
+            if (TryComp<StandingStateComponent>(ent, out var standing) &&
+                !_standing.Down(ent, standingState: standing))
+            {
+                _popup.PopupClient("Вы не можете лечь!", ent, PopupType.LargeCaution);
+                return;
+            }
+            // end-backmen
+
             Resist(ent, ent);
             args.Handled = true;
         }
@@ -429,10 +441,12 @@ namespace Content.Server.Atmos.EntitySystems
                 if (!flammable.OnFire)
                 {
                     _alertsSystem.ClearAlert(uid, flammable.FireAlert);
+                    RaiseLocalEvent(uid, new MoodRemoveEffectEvent("OnFire")); // backmen: mood
                     continue;
                 }
 
                 _alertsSystem.ShowAlert(uid, flammable.FireAlert);
+                RaiseLocalEvent(uid, new MoodEffectEvent("OnFire")); // backmen: mood
 
                 if (flammable.FireStacks > 0)
                 {

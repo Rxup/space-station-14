@@ -89,7 +89,6 @@
   - type: Eye
     drawFov: false
   - type: SolutionRegeneration
-    solution: spray
     generated:
       reagents:
       - ReagentId: Water

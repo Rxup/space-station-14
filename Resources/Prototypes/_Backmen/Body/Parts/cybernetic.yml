@@ -4,8 +4,16 @@
   abstract: true
   components:
   - type: Damageable
-  - type: Injurable
+  - type: Woundable
     damageContainer: Silicon
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLArm
   - type: GenerateChildPart
@@ -21,8 +29,16 @@
   abstract: true
   components:
   - type: Damageable
-  - type: Injurable
+  - type: Woundable
     damageContainer: Silicon
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRArm
   - type: GenerateChildPart
@@ -38,8 +54,16 @@
   abstract: true
   components:
   - type: Damageable
-  - type: Injurable
+  - type: Woundable
     damageContainer: Silicon
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLLeg
   - type: GenerateChildPart
@@ -55,8 +79,16 @@
   abstract: true
   components:
   - type: Damageable
-  - type: Injurable
+  - type: Woundable
     damageContainer: Silicon
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRLeg
   - type: GenerateChildPart
@@ -72,8 +104,16 @@
   name: cybernetic left hand
   components:
   - type: Damageable
-  - type: Injurable
+  - type: Woundable
     damageContainer: Silicon
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLHand
   - type: Cybernetics
@@ -87,8 +127,16 @@
   name: cybernetic right hand
   components:
   - type: Damageable
-  - type: Injurable
+  - type: Woundable
     damageContainer: Silicon
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRHand
   - type: Cybernetics
@@ -102,8 +150,16 @@
   name: cybernetic left foot
   components:
   - type: Damageable
-  - type: Injurable
+  - type: Woundable
     damageContainer: Silicon
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLFoot
   - type: Cybernetics
@@ -117,8 +173,16 @@
   name: cybernetic right foot
   components:
   - type: Damageable
-  - type: Injurable
+  - type: Woundable
     damageContainer: Silicon
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRFoot
   - type: Cybernetics

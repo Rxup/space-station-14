@@ -10,7 +10,6 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Stack;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Destructible;
@@ -33,19 +32,19 @@ namespace Content.Server.Destructible
         [Dependency] public IRobustRandom Random = default!;
         public new IEntityManager EntityManager => base.EntityManager;
 
-        [Dependency] public readonly AtmosphereSystem AtmosphereSystem = default!;
-        [Dependency] public readonly AudioSystem AudioSystem = default!;
-        [Dependency] public readonly BkmBodySystem BodySystem = default!;
-        [Dependency] public readonly GibbingSystem Gibbing = default!;
-        [Dependency] public readonly ConstructionSystem ConstructionSystem = default!;
-        [Dependency] public readonly ExplosionSystem ExplosionSystem = default!;
-        [Dependency] public readonly StackSystem StackSystem = default!;
-        [Dependency] public readonly TriggerSystem TriggerSystem = default!;
-        [Dependency] public readonly SharedSolutionContainerSystem SolutionContainerSystem = default!;
-        [Dependency] public readonly PuddleSystem PuddleSystem = default!;
-        [Dependency] public readonly SharedContainerSystem ContainerSystem = default!;
-        [Dependency] public readonly IPrototypeManager PrototypeManager = default!;
-        [Dependency] public readonly IAdminLogManager AdminLogger = default!;
+        [Dependency] public AtmosphereSystem AtmosphereSystem = default!;
+        [Dependency] public AudioSystem AudioSystem = default!;
+        [Dependency] public BkmBodySystem BodySystem = default!;
+        [Dependency] public GibbingSystem Gibbing = default!;
+        [Dependency] public ConstructionSystem ConstructionSystem = default!;
+        [Dependency] public ExplosionSystem ExplosionSystem = default!;
+        [Dependency] public StackSystem StackSystem = default!;
+        [Dependency] public TriggerSystem TriggerSystem = default!;
+        [Dependency] public SharedSolutionContainerSystem SolutionContainerSystem = default!;
+        [Dependency] public PuddleSystem PuddleSystem = default!;
+        [Dependency] public SharedContainerSystem ContainerSystem = default!;
+        [Dependency] public IPrototypeManager PrototypeManager = default!;
+        [Dependency] public IAdminLogManager AdminLogger = default!;
 
         public override void Initialize()
         {

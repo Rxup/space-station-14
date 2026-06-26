@@ -312,7 +312,7 @@
 
 - type: reaction
   id: MindbreakerToxin
-  minTemp: 340
+  minTemp: 370
   reactants:
     Silicon:
       amount: 1
@@ -320,10 +320,8 @@
       amount: 1
     Dylovene:
       amount: 1
-    Ectoplasm: # backmen
-      amount: 1
   products:
-    MindbreakerToxin: 4
+    MindbreakerToxin: 3
 
 - type: reaction
   id: SpaceDrugs
@@ -586,20 +584,6 @@
     Arcryox: 3
 
 - type: reaction
-  id: Necrosol
-  impact: Medium
-  minTemp: 370
-  reactants:
-    Blood:
-      amount: 3
-    Omnizine:
-      amount: 1
-    Cryoxadone:
-      amount: 2
-  products:
-    Necrosol: 2
-
-- type: reaction
   id: Aloxadone
   impact: Medium
   reactants:
@@ -679,7 +663,7 @@
     Haloperidol: 5
 
 - type: reaction
-  id: Warfarin
+  id: Heparin
   reactants:
     SulfuricAcid:
       amount: 1
@@ -688,12 +672,12 @@
     Sodium:
       amount: 1
   products:
-    Warfarin: 2
+    Heparin: 2
 
 - type: reaction
   id: Hemorrhinol
   reactants:
-    Warfarin:
+    Heparin:
       amount: 2
     Razorium:
       amount: 2
@@ -701,20 +685,3 @@
       amount: 1
   products:
     Hemorrhinol: 2
-
-- type: reaction
-  id: DryHands
-  impact: Medium
-  minTemp: 350
-  reactants:
-    TableSalt:
-      amount: 2
-    Silicon:
-      amount: 1
-    Hemorrhinol:
-      amount: 1
-    Plasma:
-      amount: 1
-      catalyst: true
-  products:
-    DryHands: 4

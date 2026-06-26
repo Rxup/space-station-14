@@ -1,6 +1,5 @@
 using Content.Shared.Body;
 using Content.Shared.Body.Events;
-using Content.Shared.Body.Organ;
 using Robust.Shared.Prototypes;
 using System.Linq;
 
@@ -9,7 +8,7 @@ namespace Content.Shared.Backmen.Body.OrganRelations;
 /// <summary>
 /// Wires nubody organ parent/child relations after initial body spawn.
 /// </summary>
-public sealed class OrganRelationInitializerSystem : EntitySystem
+public sealed partial class OrganRelationInitializerSystem : EntitySystem
 {
     [Dependency] private BodySystem _body = default!;
     [Dependency] private OrganRelationSystem _organRelation = default!;

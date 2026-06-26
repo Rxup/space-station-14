@@ -1,10 +1,8 @@
-using System.Linq;
 using Content.Server.Chat.Managers;
 using Content.Server.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Alert.Click;
 using Content.Shared.Chat;
-using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -28,7 +26,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
-using Robust.Shared.Maths;
 
 namespace Content.Server.Backmen.Mood;
 

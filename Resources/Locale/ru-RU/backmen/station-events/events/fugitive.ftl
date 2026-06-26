@@ -12,8 +12,7 @@ fugitive-report-sex-n = Пол: б/у
 fugitive-report-weight = Вес: { $weight } кг
 fugitive-report-age = Возраст: { $age }
 fugitive-report-last-line = Вышеуказанный человек разыскивается во всем секторе; желательно живой.
-fugitive-round-end-result =
-    { $fugitiveCount ->
+fugitive-round-end-result = { $fugitiveCount ->
         [one] Был один беглец.
        *[other] Было { $fugitiveCount } беглецов.
     }

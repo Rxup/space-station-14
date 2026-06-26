@@ -7,7 +7,6 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Shared.Prototypes;
 namespace Content.Client.Materials.UI;
 
 /// <summary>
@@ -18,6 +17,7 @@ public sealed partial class MaterialStorageControl : ScrollContainer
 {
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!; // Goobstation
+    [Dependency] private IComponentFactory _factory = default!; // Goobstation
     private readonly TagSystem _tagSystem; // Goobstation
     private readonly MaterialStorageSystem _materialStorage;
 
@@ -106,14 +106,16 @@ public sealed partial class MaterialStorageControl : ScrollContainer
         SiloLinkedLabel.Visible = _entityManager.TryGetComponent<OreSiloClientComponent>(_owner.Value, out var client) && client.Silo != null;
     }
 
+    private static readonly ProtoId<TagPrototype> Ore = "Ore";
+
     private Dictionary<ProtoId<MaterialPrototype>, int> FilterOutOres(Dictionary<ProtoId<MaterialPrototype>, int> materials)
     {
         return materials.Where(pair =>
             !(_prototypeManager.TryIndex<MaterialPrototype>(pair.Key, out var proto) &&
             proto.StackEntity != null &&
             _prototypeManager.TryIndex<EntityPrototype>(proto.StackEntity, out var entityProto) &&
-            entityProto.TryGetComponent<TagComponent>(out var tag) &&
-            _tagSystem.HasTag(tag, "Ore")))
+            entityProto.TryGetComponent<TagComponent>(out var tag, _factory) &&
+            _tagSystem.HasTag(tag, Ore)))
             .ToDictionary(pair => pair.Key, pair => pair.Value);
     }
 }

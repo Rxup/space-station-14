@@ -13,8 +13,6 @@ public sealed partial class ProximityDetectionSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ItemToggleSystem _toggle = default!;
 
-    private EntityQuery<TransformComponent> _xformQuery;
-
     public override void Initialize()
     {
         base.Initialize();

@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Mind.Components;

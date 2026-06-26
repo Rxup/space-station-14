@@ -124,6 +124,9 @@
     factions:
     - NanoTrasen
   - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_human
   - type: ParcelWrapOverride
     parcelPrototype: WrappedParcelHumanoid
     wrapDelay: 5
@@ -188,12 +191,14 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 20
     damage:
       types:
         Heat: -0.07
-      groups:
-        Brute: -0.07
+        Blunt: -0.0175
+        Slash: -0.0175
+        Piercing: -0.0175
+        ArmorPiercing: -0.0175
+    damageCap: 20
   - type: Fingerprint
   - type: Blindable
   - type: Temperature

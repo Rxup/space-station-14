@@ -1,7 +1,4 @@
 using System.Linq;
-using System.Net.Sockets;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Damage.Components;
@@ -98,7 +95,7 @@ public sealed partial class DamageableSystem
     {
         //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
         // If you deal 0.0 of some damage type, Empty will be false!
-        newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers);
+        newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, partMultiplier, targetPart);
         return !newDamage.Empty;
     }
 
@@ -164,26 +161,29 @@ public sealed partial class DamageableSystem
             damage = ApplyUniversalAllModifiers(damage);
         }
 
-        // backmen edit start
-        var woundApplyEvent = new DamageableWoundApplyEvent(
-            damage,
-            targetPart,
-            origin);
-        RaiseLocalEvent(ent, ref woundApplyEvent);
+        if (_backmenDamageModel.TryDispatchModelDamage((ent, ent.Comp), damage, origin, interruptsDoAfters, targetPart, out var dispatched)) // backmen: damage-model
+            return dispatched;
 
-        if (woundApplyEvent.Handled)
+        damageDone.DamageDict.EnsureCapacity(damage.DamageDict.Count);
+
+        var dict = ent.Comp.Damage.DamageDict;
+        foreach (var (type, value) in damage.DamageDict)
         {
-            if(!woundApplyEvent.Damage.Empty)
-                OnEntityDamageChanged((ent, ent.Comp), woundApplyEvent.Damage, interruptsDoAfters, origin);
-            return woundApplyEvent.Damage;
+            if (!dict.TryGetValue(type, out var oldValue))
+                continue;
+
+            var newValue = FixedPoint2.Max(FixedPoint2.Zero, oldValue + value);
+            if (newValue == oldValue)
+                continue;
+
+            dict[type] = newValue;
+            damageDone.DamageDict[type] = newValue - oldValue;
         }
 
-        // start-backmen: damage type aliases
-        damage = Backmen.Damage.DamageSpecifierAliases.ApplyDamageTypeAliases(damage, _prototypeManager);
-        // end-backmen
-        // backmen edit end
+        if (!damageDone.Empty)
+            OnEntityDamageChanged((ent, ent.Comp), damageDone, interruptsDoAfters, origin);
 
-        return damage;
+        return damageDone;
     }
 
     /// <summary>
@@ -436,22 +436,7 @@ public sealed partial class DamageableSystem
         // empty damage delta.
         OnEntityDamageChanged((ent, ent.Comp), new DamageSpecifier());
 
-        // backmen edit start
-        // Синхронизация severity ран с общим уроном (для rejuvenate и т.п.)
-        if (TryComp<BodyComponent>(ent, out var body) && TryComp<ConsciousnessComponent>(ent, out _))
-        {
-            foreach (var part in _body.GetDistributedDamageTargets(ent.Owner, body))
-            {
-                if (!TryComp(part, out WoundableComponent? woundable))
-                    continue;
-
-                foreach (var wound in _wounds.GetWoundableWounds(part, woundable))
-                {
-                    _wounds.SetWoundSeverity(wound, newValue, wound);
-                }
-            }
-        }
-        // backmen edit end
+        SyncBackmenWoundSeverityFromSetAllDamage(ent, newValue); // backmen: damage-model
     }
 
     /// <summary>
@@ -506,14 +491,8 @@ public sealed partial class DamageableSystem
     }
 
     /// <summary>
-    /// Returns whether the entity can be damaged by the given type of damage
+    /// Returns whether the entity can be damaged by the given type of damage.
     /// </summary>
-    [Obsolete("Do not rely on the ability to determine if an entity will be able to be damaged by something")]
-    public bool CanBeDamagedBy(Entity<InjurableComponent?> ent, ProtoId<DamageTypePrototype> type)
-    {
-        if (!_injurableQuery.Resolve(ent, ref ent.Comp, false))
-            return false;
-
-        return SupportsType(ent.Comp.DamageContainer, type);
-    }
+    public bool CanBeDamagedBy(Entity<DamageableComponent?> ent, ProtoId<DamageTypePrototype> type) =>
+        _backmenDamageModel.CanBeDamagedBy(ent, type); // backmen: damage-container
 }

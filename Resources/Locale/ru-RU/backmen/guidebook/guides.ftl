@@ -13,3 +13,5 @@ guide-entry-backmen-species = Другие расы
 guide-entry-supermatter = Суперматерия
 guide-entry-special-actions = Особые действия
 guide-entry-mood = Настроение
+guide-entry-shadowkin-lore = Лор Shadowkin
+guide-entry-superpsi = Супер-пси

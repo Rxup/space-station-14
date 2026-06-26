@@ -149,7 +149,6 @@
         damage:
           types:
             Poison: 0.05
-
 - type: reagent
   id: Healium
   name: reagent-name-healium
@@ -178,11 +177,17 @@
           min: 2
         ignoreResistances: true
         damage:
-          groups:
-            Brute: -0.5
-            Burn: -0.5
-            Toxin: -1.25
-
+          types:
+            Blunt: -0.125
+            Slash: -0.125
+            Piercing: -0.125
+            ArmorPiercing: -0.125
+            Heat: -0.125
+            Shock: -0.125
+            Cold: -0.125
+            Caustic: -0.125
+            Poison: -0.625
+            Radiation: -0.625
 - type: reagent
   id: Hyper-Noblium
   name: reagent-name-hyper-nob
@@ -240,7 +245,6 @@
             Heat: 0.005
             Poison: 0.005
             Bloodloss: 0.005
-
 - type: reagent
   id: Halon
   name: reagent-name-halon

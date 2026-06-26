@@ -11,9 +11,15 @@
   - type: Projectile
     ignoreResistances: true
     damage:
-      groups:
-        Brute: 20
-        Burn: 20
+      types:
+        Blunt: 5
+        Slash: 5
+        Piercing: 5
+        ArmorPiercing: 5
+        Heat: 5
+        Shock: 5
+        Cold: 5
+        Caustic: 5
   - type: PointLight
     enabled: true
     color: "#0000FF"

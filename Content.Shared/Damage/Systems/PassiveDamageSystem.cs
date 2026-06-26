@@ -35,6 +35,9 @@ public sealed partial class PassiveDamageSystem : EntitySystem
             if (comp.NextDamage > curTime)
                 continue;
 
+            if (comp.DamageCap != 0 && _damageable.GetTotalDamage((uid, damage)) >= comp.DamageCap)
+                continue;
+
             // Set the next time they can take damage
             comp.NextDamage = curTime + TimeSpan.FromSeconds(1f);
 

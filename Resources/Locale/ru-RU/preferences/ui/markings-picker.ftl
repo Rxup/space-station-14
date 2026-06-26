@@ -7,8 +7,8 @@ markings-used = Используемые черты
     }
 markings-unused = Неиспользуемые черты
 markings-add = Добавить черту
-humanoid-marking-modifier-respect-limits = Respect limits
-humanoid-marking-modifier-respect-group-sex = Respect group & sex restrictions
+humanoid-marking-modifier-respect-limits = Учитывать ограничения
+humanoid-marking-modifier-respect-group-sex = Учитывать ограничение расы и пола
 markings-remove = Убрать черту
 markings-rank-up = Вверх
 markings-rank-down = Вниз

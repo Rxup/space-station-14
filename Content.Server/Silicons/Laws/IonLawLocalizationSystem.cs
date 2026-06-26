@@ -1,5 +1,7 @@
 ﻿namespace Content.Server.Silicons.Laws;
 
+using System.Globalization;
+
 public sealed partial class IonLawLocalizationSystem : EntitySystem
 {
     [Dependency] private ILocalizationManager _loc = default!;
@@ -14,14 +16,26 @@ public sealed partial class IonLawLocalizationSystem : EntitySystem
 
         _sawmill = _logManager.GetSawmill("ion-law");
 
-        var culture = _loc.DefaultCulture;
+        var cultures = new HashSet<CultureInfo>();
+        if (_loc.DefaultCulture != null)
+            cultures.Add(_loc.DefaultCulture);
 
-        if (culture == null)
+        var enUs = new CultureInfo("en-US");
+        if (_loc.DefaultCulture != enUs)
+            cultures.Add(enUs);
+
+        if (cultures.Count == 0)
         {
             _sawmill.Error("Culture was null when trying to generate Ion Law");
             return;
         }
 
+        foreach (var culture in cultures)
+            AddIonLawFunctions(culture);
+    }
+
+    private void AddIonLawFunctions(CultureInfo culture)
+    {
         _loc.AddFunction(culture, "ION-NUMBER-BASE", _ => GetIonLawValue("ION-NUMBER-BASE"));
         _loc.AddFunction(culture, "ION-NUMBER-MOD", _ => GetIonLawValue("ION-NUMBER-MOD"));
         _loc.AddFunction(culture, "ION-ADJECTIVE", _ => GetIonLawValue("ION-ADJECTIVE"));

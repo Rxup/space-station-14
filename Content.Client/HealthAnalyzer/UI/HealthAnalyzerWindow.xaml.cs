@@ -186,14 +186,8 @@ namespace Content.Client.HealthAnalyzer.UI
                     ? GetStatus(mobStateComponent.CurrentState)
                     : Loc.GetString("health-analyzer-window-entity-unknown-text");
 
-            // start-backmen: nubody wound severity
-            // Damage stuff — conscious humanoids use wound severity, not DamageableComponent.TotalDamage
-            BodyComponent? body = null;
-            var usesWoundDamage = !isPart
-                && _entityManager.TryGetComponent(_target.Value, out body)
-                && _entityManager.HasComponent<ConsciousnessComponent>(_target.Value);
-
-            if (!usesWoundDamage
+            // start-backmen: health-ui
+            if (!isPart
                 && _entityManager.TryGetComponent<DamageableComponent>(_target.Value, out var damageable))
             {
                 var damageEnt = (_target.Value, damageable);
@@ -208,43 +202,7 @@ namespace Content.Client.HealthAnalyzer.UI
 
                 DrawDiagnosticGroups(damageSortedGroups, damagePerType);
             }
-
-            if (usesWoundDamage && body != null)
-            {
-                var damageGroups = new Dictionary<string, FixedPoint2>();
-                var damageTypes = new Dictionary<string, FixedPoint2>();
-                foreach (var wound in _wound.GetBodyWounds(_target.Value, body))
-                {
-                    if (wound.Comp.IsScar)
-                        continue;
-
-                    if (wound.Comp.DamageGroup == null)
-                        continue;
-
-                    if (!damageGroups.TryAdd(wound.Comp.DamageGroup.ID, wound.Comp.WoundSeverityPoint))
-                    {
-                        damageGroups[wound.Comp.DamageGroup.ID] += wound.Comp.WoundSeverityPoint;
-                    }
-
-                    if (!damageTypes.TryAdd(wound.Comp.DamageType, wound.Comp.WoundSeverityPoint))
-                    {
-                        damageTypes[wound.Comp.DamageType] += wound.Comp.WoundSeverityPoint;
-                    }
-                }
-
-                var damageSortedGroups =
-                    damageGroups.OrderByDescending(damage => damage.Value)
-                        .ToDictionary(x => x.Key, x => x.Value);
-
-                var damageSortedTypes =
-                    damageTypes.OrderByDescending(damage => damage.Value)
-                        .ToDictionary(x => x.Key, x => x.Value);
-
-                DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
-
-                DamageLabel.Text = damageGroups.Values.Sum().ToString();
-            }
-            // end-backmen: nubody wound severity
+            // end-backmen: health-ui
 
             if (_entityManager.TryGetComponent<WoundableComponent>(part, out var woundable))
             {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Content.IntegrationTests.Fixtures;
+using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
@@ -10,6 +11,7 @@ using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
+using BackmenCCVars = Content.Shared.Backmen.CCVar.CCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -31,6 +33,7 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests.GameRules;
 
 [TestFixture]
+[EnsureCVar(Side.Server, typeof(BackmenCCVars), nameof(BackmenCCVars.GameDiseaseEnabled), false)]
 public sealed class NukeOpsTest : GameTest
 {
     private static readonly ProtoId<NpcFactionPrototype> SyndicateFaction = "Syndicate";
@@ -237,7 +240,6 @@ public sealed class NukeOpsTest : GameTest
             var totalSeconds = 30;
             var totalTicks = (int)Math.Ceiling(totalSeconds / server.Timing.TickPeriod.TotalSeconds);
             var increment = 5;
-            var damage = entMan.GetComponent<DamageableComponent>(player);
             for (var tick = 0; tick < totalTicks; tick += increment)
             {
                 await pair.RunTicksSync(increment);

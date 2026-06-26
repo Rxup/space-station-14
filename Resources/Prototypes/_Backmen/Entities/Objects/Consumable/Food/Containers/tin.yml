@@ -39,9 +39,9 @@
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Food/Tins/c-soupcan.rsi
     state: icon-open
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50
         reagents:
         - ReagentId: Nutriment

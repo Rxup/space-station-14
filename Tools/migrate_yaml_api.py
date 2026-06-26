@@ -22,6 +22,8 @@ METABOLISM_CATEGORIES = {
     "Narcotic": "Narcotic",
 }
 
+BACKMEN_DAMAGE_MODELS = frozenset({"Woundable", "Consciousness", "BkmDetachedBody"})
+
 
 def split_component_block(lines: list[str], start: int) -> tuple[int, list[str]]:
     """Return (end_index_exclusive, block_lines) for component at start."""
@@ -64,12 +66,39 @@ def rebuild_block(header: str, fields: dict[str, list[str]]) -> list[str]:
     return out
 
 
-def migrate_damageable(block: list[str]) -> list[str]:
+def entity_component_types(lines: list[str], index: int) -> set[str]:
+    """Component type names on the entity prototype containing lines[index]."""
+    entity_start = index
+    while entity_start >= 0:
+        if re.match(r"^- type: entity\s*$", lines[entity_start]):
+            break
+        entity_start -= 1
+    if entity_start < 0:
+        return set()
+
+    entity_end = entity_start + 1
+    while entity_end < len(lines):
+        if entity_end > entity_start and re.match(r"^- type: entity\s*$", lines[entity_end]):
+            break
+        entity_end += 1
+
+    types: set[str] = set()
+    for line in lines[entity_start:entity_end]:
+        m = re.match(r"^\s*- type:\s*(\S+)", line)
+        if m:
+            types.add(m.group(1))
+    return types
+
+
+def migrate_damageable(block: list[str], *, add_injurable: bool) -> list[str]:
     comp_type, fields = parse_fields(block)
     if comp_type != "Damageable" or "damageContainer" not in fields:
         return block
 
     container_lines = fields.pop("damageContainer")
+    if not add_injurable:
+        return rebuild_block(block[0], fields)
+
     indent = re.match(r"^(\s*)", block[0]).group(1)
     injurable_header = f"{indent}- type: Injurable"
     injurable_fields = {"damageContainer": [f"{indent}    damageContainer: {container_lines[0].split(':',1)[1].strip()}\n"]}
@@ -119,7 +148,9 @@ def migrate_file(path: Path) -> bool:
             r"^\s*- type: Damageable\n", lines[i]
         ):
             end, block = split_component_block(lines, i)
-            new_block = migrate_damageable(block)
+            entity_types = entity_component_types(lines, i)
+            add_injurable = not (entity_types & BACKMEN_DAMAGE_MODELS)
+            new_block = migrate_damageable(block, add_injurable=add_injurable)
             if new_block != block:
                 changed = True
             out.extend(new_block)

@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Content.Shared.Localizations;
+﻿using Content.Shared.Localizations;
 using Content.Shared.Metabolism;
 using Robust.Shared.Prototypes;
 

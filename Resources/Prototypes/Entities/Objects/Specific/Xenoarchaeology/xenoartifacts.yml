@@ -27,6 +27,8 @@
     effectsTable: !type:NestedSelector
       tableId: XenoArtifactEffectsDefaultTable
   - type: Damageable
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Actions
   - type: Physics
     bodyType: KinematicController

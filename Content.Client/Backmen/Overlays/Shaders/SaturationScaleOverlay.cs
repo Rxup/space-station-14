@@ -18,12 +18,14 @@ public sealed partial class SaturationScaleOverlay : Overlay
     private readonly ShaderInstance _shader;
     private const float Saturation = 0.5f;
 
+    private static readonly ProtoId<ShaderPrototype> SaturationScale = "SaturationScale";
+
 
     public SaturationScaleOverlay()
     {
         IoCManager.InjectDependencies(this);
 
-        _shader = _prototypeManager.Index<ShaderPrototype>("SaturationScale").Instance().Duplicate();
+        _shader = _prototypeManager.Index<ShaderPrototype>(SaturationScale).InstanceUnique();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)

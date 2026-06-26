@@ -1,7 +1,4 @@
-using Content.Server.Backmen.Body.Systems;
-using Content.Shared.Body.Organ;
 using Content.Shared.Body;
-using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Eye.Blinding.Components;

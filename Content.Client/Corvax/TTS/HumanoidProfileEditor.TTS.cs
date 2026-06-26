@@ -10,8 +10,27 @@ public sealed partial class HumanoidProfileEditor
 {
     private TTSTab? _ttsTab;
 
-    private void RefreshVoiceTab()
+    private void InitializeTts()
     {
+        _cfgManager.OnValueChanged(CCCVars.TTSEnabled, OnTtsEnabledChanged);
+        TryRefreshVoiceTab();
+    }
+
+    private void ShutdownTts()
+    {
+        _cfgManager.UnsubValueChanged(CCCVars.TTSEnabled, OnTtsEnabledChanged);
+    }
+
+    private void OnTtsEnabledChanged(bool _)
+    {
+        TryRefreshVoiceTab();
+        UpdateTTSVoicesControls();
+    }
+
+    private void TryRefreshVoiceTab()
+    {
+        RemoveVoiceTab();
+
         if (!_cfgManager.GetCVar(CCCVars.TTSEnabled))
             return;
 
@@ -25,14 +44,16 @@ public sealed partial class HumanoidProfileEditor
         for (var i = 0; i < children.Count; i++)
         {
             if (i == 1)
-            {
                 TabContainer.AddChild(_ttsTab);
-            }
 
             TabContainer.AddChild(children[i]);
         }
 
         TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-voice-tab"));
+        TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-jobs-tab"));
+        TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-antags-tab"));
+        TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-traits-tab"));
+        TabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-markings-tab"));
 
         _ttsTab.OnVoiceSelected += voiceId =>
         {
@@ -44,6 +65,21 @@ public sealed partial class HumanoidProfileEditor
         {
             _entManager.System<TTSSystem>().RequestGlobalTTS(Shared.Backmen.TTS.VoiceRequestType.Preview, voiceId);
         };
+    }
+
+    private void RemoveVoiceTab()
+    {
+        if (_ttsTab == null)
+            return;
+
+        TabContainer.RemoveChild(_ttsTab);
+        _ttsTab.Dispose();
+        _ttsTab = null;
+
+        TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-jobs-tab"));
+        TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-antags-tab"));
+        TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab"));
+        TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
     }
 
     private void UpdateTTSVoicesControls()

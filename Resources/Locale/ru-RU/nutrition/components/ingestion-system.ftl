@@ -6,14 +6,14 @@
 
 ## When trying to ingest without the required utensil... but you gotta hold it
 
-ingestion-you-need-to-hold-utensil = Вам нужно держать { INDEFINITE($utensil) } { $utensil }, чтобы съесть это!
+ingestion-you-need-to-hold-utensil = Вам нужна {$utensil}, чтобы есть это!
 ingestion-try-use-is-empty = { CAPITALIZE(THE($entity)) } пуст!
 ingestion-try-use-wrong-utensil = Вы не можете { $verb } { THE($food) } с помощью { INDEFINITE($utensil) } { $utensil }.
-ingestion-remove-mask = Сначала нужно снять { $entity }.
+ingestion-remove-mask = Сперва снимите {$entity}.
 
 ## Failed Ingestion
 
-ingestion-you-cannot-ingest-any-more = Вы больше не можете { $verb }!
+ingestion-you-cannot-ingest-any-more = Вы не можете больше {$verb}!
 ingestion-other-cannot-ingest-any-more = { CAPITALIZE(SUBJECT($target)) } больше не может { $verb }!
 ingestion-cant-digest = Вы не можете переварить { THE($entity) }!
 ingestion-cant-digest-other = { CAPITALIZE(SUBJECT($target)) } не может переварить { THE($entity) }!
@@ -35,7 +35,7 @@ edible-nom-other = Ням.
 edible-slurp = Хлюп. { $flavors }
 edible-slurp-other = Хлюп.
 edible-swallow = Вы проглатываете { THE($food) }
-edible-gulp = Глоток. { $flavors }
+edible-gulp = Глоть. {$flavors}
 edible-gulp-other = Глоток.
 edible-has-used-storage = Вы не можете { $verb } { THE($food) } с предметом внутри.
 

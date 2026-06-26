@@ -10,7 +10,6 @@ using Content.Server.Backmen.NPC.Prototypes;
 using Content.Server.Backmen.NPC.Systems;
 using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Backmen.Shipwrecked.Prototypes;
-using Content.Shared.Body.Components;
 using Content.Server.Buckle.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
@@ -38,11 +37,8 @@ using Content.Server.Spawners.Components;
 using Content.Server.SS220.Chat.Systems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Server.Storage.Components;
-using Content.Server.Zombies;
 using Content.Shared.Access.Components;
 using Content.Shared.Atmos;
-using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Shipwrecked.Components;
 using Content.Shared.Gibbing;
 using Content.Shared.Buckle.Components;
@@ -61,7 +57,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Gravity;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
@@ -82,7 +77,6 @@ using Content.Shared.Procedural;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles.Components;
-using Content.Shared.Roles.Jobs;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Station.Components;
@@ -103,7 +97,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Enumerators;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -421,7 +414,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OrePlasma");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreUranium");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreArtifactFragment");
-        _biomeSystem.AddTemplate(planetMapUid, biome, "Loot", _prototypeManager.Index<BiomeTemplatePrototype>("Caves"), 1);
+        _biomeSystem.AddTemplate(planetMapUid, biome, "Loot", _prototypeManager.Index(CavesBiomeTemplate), 1);
         Dirty(planetMapUid, biome);
 
         EnsureComp<RoofComponent>(planetMapUid);
@@ -805,15 +798,16 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
         var mindId = _mindSystem.CreateMind(player.UserId, profile.Name);
 
-        _roleSystem.MindAddJobRole(mindId, jobPrototype:jobProtoId);
-        _roleSystem.MindHasRole<JobRoleComponent>(mindId!, out var job);
-
-        var mob = _stationSpawningSystem.SpawnPlayerMob(spawnPoint, job!.Value.Comp1.JobPrototype, profile, station: null);
+        var mob = _stationSpawningSystem.SpawnPlayerMob(spawnPoint, jobProtoId, profile, station: null);
         var mobName = MetaData(mob).EntityName;
+
+        _mindSystem.TransferTo(mindId, mob);
+
+        _roleSystem.MindAddJobRole(mindId, jobPrototype: jobProtoId);
 
         manifest.AppendLine(Loc.GetString("passenger-manifest-passenger-line",
                 ("name", mobName),
-                ("details", job.Value.Comp1.JobPrototype!.Value.Id)));
+                ("details", jobProtoId.Id)));
 
         // SpawnPlayerMob requires a PDA to setup the ID details,
         // and PDAs are a bit too posh for our rugged travellers.
@@ -821,7 +815,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
             TryComp<IdCardComponent>(idUid, out var idCardComponent))
         {
             _cardSystem.TryChangeFullName(idUid.Value, mobName, idCardComponent);
-            _cardSystem.TryChangeJobTitle(idUid.Value, job.Value.Comp1.JobPrototype, idCardComponent);
+            _cardSystem.TryChangeJobTitle(idUid.Value, jobProtoId, idCardComponent);
         }
 
         var hunger = EnsureComp<HungerComponent>(mob);
@@ -849,8 +843,6 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
                 }
             }
         }
-
-        _mindSystem.TransferTo(mindId, mob);
 
         EnsureComp<ShipwreckSurvivorComponent>(mob);
         component.Survivors.Add((mob, player));
@@ -1342,9 +1334,8 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
             false,
             true,
             Color.SeaGreen);
-
-        var announcementSound = new SoundPathSpecifier(ChatSystem.DefaultAnnouncementSound);
-        var announcementEv = new AnnouncementSpokeEvent(filter, _audioSystem.GetSound(announcementSound), AudioParams.Default.WithVolume(-2f), message);
+        
+        var announcementEv = new AnnouncementSpokeEvent(filter, _audioSystem.GetSound(ChatSystem.DefaultAnnouncementSound), AudioParams.Default.WithVolume(-2f), message);
         RaiseLocalEvent(announcementEv);
         //var audioPath = _audioSystem.GetSound(audio);
         //_audioSystem.PlayGlobal(audioPath, filter, true, AudioParams.Default.WithVolume(1f));
@@ -1886,6 +1877,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
 # region Hecate Dynamic Responses
 
+    private static readonly ProtoId<BiomeTemplatePrototype> CavesBiomeTemplate = "Caves";
     private static readonly ProtoId<TagPrototype> TagEngineeringAirlock = "EngineeringAirlock";
     private static readonly ProtoId<TagPrototype> TagSecureSafe = "SecureSafe";
 

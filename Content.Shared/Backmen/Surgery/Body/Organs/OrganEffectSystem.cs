@@ -9,7 +9,7 @@ using Robust.Shared.Network;
 
 
 namespace Content.Shared.Backmen.Surgery.Body.Organs;
-public partial class OrganEffectSystem : EntitySystem
+public sealed partial class OrganEffectSystem : EntitySystem
 {
     [Dependency] private IComponentFactory _compFactory = default!;
     [Dependency] private ISerializationManager _serManager = default!;
@@ -82,7 +82,7 @@ public partial class OrganEffectSystem : EntitySystem
 
             var newComp = (Component) _serManager.CreateCopy(comp.Component, notNullableOverride: true);
             newComp.Owner = body;
-            EntityManager.AddComponent(body, newComp, true);
+            AddComp(body, newComp, true);
             effectComp.Active[key] = comp;
             if (newComp.NetSyncEnabled)
             {

@@ -6,9 +6,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
-using Content.Shared.Item;
 using Content.Shared.Timing;
-using Robust.Shared.GameObjects;
 
 namespace Content.Server._Impstation.Revenant.HTN;
 

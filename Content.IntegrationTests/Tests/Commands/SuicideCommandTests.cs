@@ -281,7 +281,10 @@ public sealed class SuicideCommandTests : GameTest
                 Assert.That(mobStateSystem.IsDead(player, mobStateComp));
                 Assert.That(entManager.TryGetComponent<GhostComponent>(mindComponent.CurrentEntity, out var ghostComp) &&
                             !ghostComp.CanReturnToBody);
-                Assert.That(damageableSystem.GetAllDamage((player, damageableComp)).DamageDict["Slash"], Is.EqualTo(lethalDamageThreshold));
+
+                // backmen edit; Consciousness entities do not use damage types on DamageableComponent
+                if (!entManager.HasComponent<ConsciousnessComponent>(player))
+                    Assert.That(damageableSystem.GetAllDamage((player, damageableComp)).DamageDict["Slash"], Is.EqualTo(lethalDamageThreshold));
             });
         });
     }

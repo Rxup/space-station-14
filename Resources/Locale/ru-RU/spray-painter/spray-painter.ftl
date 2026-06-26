@@ -1,17 +1,17 @@
 # Components
-spray-painter-ammo-on-examine = Зарядов: { $charges }
+spray-painter-ammo-on-examine = Содержит {$charges} {$charges}.
 spray-painter-ammo-after-interact-full = Краскопульт уже полон!
 spray-painter-ammo-after-interact-refilled = Вы заправили краскопульт.
 spray-painter-interact-no-charges = Недостаточно краски.
 spray-painter-interact-nothing-to-remove = Нечего удалять!
-spray-painter-interact-no-color-pick = Can't find a color to pick!
-spray-painter-interact-color-picked = Picked color from '{ $id }'.
+spray-painter-interact-no-color-pick = Нет цвета для взятия!
+spray-painter-interact-color-picked = Взят цвет из '{$id}'.
 spray-painter-on-examined-painted-message = Кажется, его недавно покрасили.
 spray-painter-style-not-available = Невозможно применить выбранный стиль к этому объекту.
 spray-painter-verb-toggle-decals = Переключить рисование декалей
-spray-painter-item-status-label = Декали: { $mode }
-spray-painter-item-status-add = [color=green]Добавить[/color]
-spray-painter-item-status-remove = [color=red]Удалить[/color]
+spray-painter-item-status-label = Декали: {$mode}
+spray-painter-item-status-add = [color=green]Добавление[/color]
+spray-painter-item-status-remove = [color=red]Удаление[/color]
 spray-painter-item-status-off = [color=gray]Выкл[/color]
 # UI
 spray-painter-window-title = Краскопульт

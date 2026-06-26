@@ -2,14 +2,11 @@ using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Atmos.Components;
 using Content.Server.Backmen.Language;
-using Content.Server.Body.Systems;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
-using Content.Server.Humanoid;
 using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Store.Systems;
-using Content.Server.Temperature.Components;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Body;
@@ -25,16 +22,13 @@ using Content.Shared.Backmen.Flesh;
 using Content.Shared.Backmen.Language;
 using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Flash.Components;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Forensics.Components;
-using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mind.Components;
@@ -58,6 +52,7 @@ namespace Content.Server.Backmen.Flesh;
 
 public sealed partial class FleshCultistSystem : EntitySystem
 {
+    private static readonly ProtoId<TagPrototype> FullBodyOuterTag = "FullBodyOuter";
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private ActionsSystem _action = default!;
     [Dependency] private AlertsSystem _alerts = default!;
@@ -156,7 +151,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                         {
                             if (metaData.EntityPrototype.ID == component.SpiderLegsSpawnId)
                             {
-                                EntityManager.DeleteEntity(shoes.Value);
+                                Del(shoes.Value);
                                 _movement.RefreshMovementSpeedModifiers(uid);
                                 _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                             }
@@ -173,7 +168,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                         {
                             if (metaData.EntityPrototype.ID == component.ArmorSpawnId)
                             {
-                                EntityManager.DeleteEntity(outerClothing.Value);
+                                Del(outerClothing.Value);
                                 _movement.RefreshMovementSpeedModifiers(uid);
                                 _audio.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
                             }
@@ -200,7 +195,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
             return;
         if (metaData.EntityPrototype.ID != component.SpiderLegsSpawnId)
             return;
-        if (!_tagSystem.HasTag(args.Equipment, "FullBodyOuter"))
+        if (!_tagSystem.HasTag(args.Equipment, FullBodyOuterTag))
             return;
         _popup.PopupEntity(Loc.GetString("flesh-cultist-equiped-outer-clothing-blocked",
             ("Entity", uid)), uid, PopupType.LargeCaution);
@@ -296,7 +291,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
             switch (targetState.CurrentState)
             {
                 case MobState.Dead:
-                    if (EntityManager.TryGetComponent(target, out HumanoidProfileComponent? humanoidAppearance))
+                    if (TryComp(target, out HumanoidProfileComponent? humanoidAppearance))
                     {
                         if (!component.SpeciesWhitelist.Contains(humanoidAppearance.Species))
                         {

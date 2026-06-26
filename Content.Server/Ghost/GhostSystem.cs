@@ -200,7 +200,7 @@ namespace Content.Server.Ghost
             var time = _gameTiming.RealTime;
             component.TimeOfDeath = time;
 
-            Dirty(uid, component);
+            Dirty(uid, component); // backmen
         }
 
         private void OnGhostShutdown(EntityUid uid, GhostComponent component, ComponentShutdown args)
@@ -515,6 +515,7 @@ namespace Content.Server.Ghost
             }
 
             var handleEv = new GhostAttemptHandleEvent(mind, canReturnGlobal);
+            handleEv.ViaCommand = viaCommand; // backmen
             RaiseLocalEvent(handleEv);
 
             // Something else has handled the ghost attempt for us! We return its result.
@@ -592,6 +593,11 @@ namespace Content.Server.Ghost
             if (ghost == null)
                 return false;
 
+            if (_minds.TryGetSession(mind, out var mindSession))
+            {
+                EntityManager.SystemOrNull<Backmen.Ghost.GhostReJoinSystem>()?.AttachGhost(ghost.Value, mindSession); // backmen: ReturnToRound
+            }
+
             return true;
         }
     }
@@ -601,5 +607,6 @@ namespace Content.Server.Ghost
         public MindComponent Mind { get; } = mind;
         public bool CanReturnGlobal { get; } = canReturnGlobal;
         public bool Result { get; set; }
+        public bool ViaCommand { get; set; } // backmen
     }
 }

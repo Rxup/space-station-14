@@ -293,10 +293,7 @@ namespace Content.Client.Lobby.UI
 
             RefreshFlavorText();
 
-            if (configurationManager.GetCVar(CCCVars.TTSEnabled))
-            {
-                RefreshVoiceTab();
-            }
+            InitializeTts();
 
             #region Dummy
 
@@ -422,6 +419,7 @@ namespace Content.Client.Lobby.UI
             if (!disposing)
                 return;
 
+            ShutdownTts();
             _loadoutWindow?.Dispose();
             _loadoutWindow = null;
         }

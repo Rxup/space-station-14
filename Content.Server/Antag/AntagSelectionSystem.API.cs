@@ -649,7 +649,7 @@ public sealed partial class AntagSelectionSystem
     public bool IsAssignedExclusiveAntag(ICommonSession player, params HashSet<EntityUid> ignored)
     {
         // First check our mindroles.
-        if (_role.MindIsExclusiveAntagonist(player.AttachedEntity))
+        if (_role.PlayerIsExclusiveAntagonist(player))
             return true;
 
         var query = QueryAllRules();

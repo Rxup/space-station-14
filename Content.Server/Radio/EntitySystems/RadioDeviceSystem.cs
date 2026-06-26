@@ -3,9 +3,6 @@ using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
-using Content.Server.Speech;
-using Content.Server.Speech.Components;
-
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;

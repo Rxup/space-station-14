@@ -642,8 +642,11 @@
      path: /Audio/Backmen/test/base/ogg/blackmesa/bullsquid/attack1.ogg
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 12
+      types:
+        Blunt: 12
+        Slash: 12
+        Piercing: 12
+        ArmorPiercing: 12
   - type: DamageStateVisuals
     states:
       Alive:

@@ -19,10 +19,10 @@
           amount: 4
 
 - type: entity
-  name: ╨Ю╨│╨╜╨╡╨╝╨╡╤В ╨Ь6
+  name: Огнемёт М6
   parent: BaseItem
   id: WeaponflamethrowerSG
-  suffix: ╨Ю╨│╨╜╨╡╨╝╤С╤В
+  suffix: Огнемёт
   description: The M-60 is a large man portable machine, allowing for sustained, accurate suppressive firepower at the cost of mobility and handling. Commonly seen where their preferred tactics of fast, mobile aggression is ill suited.
   components:
   - type: Sprite
@@ -67,7 +67,6 @@
         - ReagentId: Water
           Quantity: 100
   - type: SolutionRegeneration
-    solution: spray
     generated:
       reagents:
       - ReagentId: Water
@@ -125,10 +124,10 @@
   - type: Appearance
 
 - type: entity
-  name: ╤А╤Г╤З╨╜╨╛╨╣ ╨╛╨│╨╜╨╡╨╝╨╡╤В ╨Ь6
+  name: ручной огнемёт М6
   parent: BaseWeaponRifle
   id: FirethrowerGun
-  suffix: ╨Ю╨│╨╜╨╡╨╝╤С╤В
+  suffix: Огнемёт
   description: Nomadov's jet flamethrower, an amazing thing, on the weapon there is an inscription "Death to the enemies of mankind!"
   components:
   - type: Sprite
@@ -188,7 +187,6 @@
         - ReagentId: Water
           Quantity: 100
   - type: SolutionRegeneration
-    solution: spray
     generated:
       reagents:
       - ReagentId: Water
@@ -211,8 +209,8 @@
 
 - type: entity
   id: FuelTankFirethrower
-  name: ╤В╨╛╨┐╨╗╨╕╨▓╨╜╤Л╨╣ ╨▒╨░╨║ ╨┤╨╗╤П ╨╛╨│╨╜╨╡╨╝╤С╤В╨░
-  description: ╨г╨┤╨╕╨▓╨╕╤В╨╡╨╗╤М╨╜╨░╤П ╨│╨╛╤А╤О╤З╨░╤П ╤А╨╡╨░╨║╤В╨╕╨▓╨╜╨░╤П ╤Б╨╝╨╡╤Б╤М, ╨║╨╛╤В╨╛╤А╨░╤П ╨▓╤Б╨┐╤Л╤Е╨╕╨▓╨░╨╡╤В ╤П╤А╨║╨╛ ╨│╨╛╨╗╤Г╨▒╤Л╨╝ ╨┐╨╗╨░╨╝╨╡╨╜╨╡╨╝.
+  name: топливный бак для огнемёта
+  description: Удивительная горючая смесь, вспыхивающая ярким голубым пламенем.
   parent: BaseItem
   components:
   - type: Tag
@@ -239,13 +237,13 @@
 
 - type: entity
   id: FireThrowerBall
-  name: ╤А╨╡╨░╨║╤В╨╕╨▓╨╜╨░╤П ╤Б╨╝╨╡╤Б╤М
+  name: реактивная смесь
   parent: FoodInjectableBase
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 0
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 0
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
     netsync: false
@@ -256,6 +254,7 @@
       types:
         Blunt: 1
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:
@@ -312,8 +311,8 @@
     ignited: true
 
 - type: entity
-  name: ╤Б╤В╤А╤Г╤П ╤А╨╡╨░╨║╤В╨╕╨▓╨╜╨╛╨│╨╛ ╨┐╨╗╨░╨╝╨╡╨╜╨╕
-  description: ╨Ю╤З╨╡╨╜╤М ╨│╨╛╤А╤П╤З╨╛!
+  name: струя реактивного пламени
+  description: Очень горячо!
   id: ParticlesFireNRF
   components:
   - type: Physics
@@ -373,6 +372,8 @@
     ignited: true
   - type: Damageable
     damageModifierSet: Wood
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -402,11 +403,11 @@
       - NoSpinOnThrow
 
 - type: entity
-  name: ╤Б╤В╤А╤Г╤П ╤А╨╡╨░╨║╤В╨╕╨▓╨╜╨╛╨│╨╛ ╨┐╨╗╨░╨╝╨╡╨╜╨╕
-  description: ╨Ю╤З╨╡╨╜╤М ╨│╨╛╤А╤П╤З╨╛!
+  name: струя реактивного пламени
+  description: Очень горячо!
   id: ParticlesFireNRFHELL
   parent: ParticlesFireNRF
-  suffix: ╨Р╨Ф╤Б╨║╨╛╨╡ ╨┐╨╗╨░╨╝╨╡
+  suffix: Адское Пламя
   components:
   - type: EdgeSpreader
     id: Kudzu

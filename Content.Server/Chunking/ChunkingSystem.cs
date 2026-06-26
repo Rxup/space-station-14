@@ -20,8 +20,6 @@ public sealed partial class ChunkingSystem : EntitySystem
     [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
-    private EntityQuery<TransformComponent> _xformQuery;
-
     private Box2 _baseViewBounds;
 
     public override void Initialize()

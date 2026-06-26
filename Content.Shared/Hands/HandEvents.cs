@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using JetBrains.Annotations;

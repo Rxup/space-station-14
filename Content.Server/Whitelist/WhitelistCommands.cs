@@ -8,8 +8,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
 
-using Content.Server.Players;
-using Robust.Shared.Random; // backmen: whitelist
+// backmen: whitelist
 
 namespace Content.Server.Whitelist;
 

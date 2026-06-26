@@ -12,9 +12,9 @@
       - bread
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/pizza.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -44,9 +44,9 @@
       - bread
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/pizza.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         # Note: Keep FoodPizzaMoldySlice & FoodPizzaSliceBase roughly in sync
         maxVol: 6
         reagents:
@@ -198,9 +198,9 @@
     - state: vegetable
   - type: SliceableFood
     slice: FoodPizzaVegetableSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -230,9 +230,9 @@
     - state: vegetable-slice
   - type: Item
     heldPrefix: vegetable-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -258,9 +258,9 @@
     - state: donkpocket
   - type: SliceableFood
     slice: FoodPizzaDonkpocketSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50
         reagents:
         - ReagentId: Nutriment
@@ -289,9 +289,9 @@
     - state: donkpocket-slice
   - type: Item
     heldPrefix: donkpocket-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -324,9 +324,9 @@
     - state: dank
   - type: SliceableFood
     slice: FoodPizzaDankSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50
         reagents:
         - ReagentId: Nutriment
@@ -351,9 +351,9 @@
     - state: dank-slice
   - type: Item
     heldPrefix: dank-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -475,9 +475,9 @@
     - state: arnold
   - type: SliceableFood
     slice: FoodPizzaArnoldSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 85
         reagents:
         - ReagentId: Nutriment
@@ -511,9 +511,9 @@
     - state: arnold-slice
   - type: Item
     heldPrefix: arnold-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -551,9 +551,9 @@
   - type: Tag
     tags:
     - Trash
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         # Note: Keep FoodPizzaMoldySlice & FoodPizzaSliceBase roughly in sync
         maxVol: 5
         reagents:
@@ -589,9 +589,9 @@
   - type: PointLight
     enabled: true
     radius: 2
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -626,9 +626,9 @@
   - type: PointLight
     enabled: true
     radius: 2
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -661,9 +661,9 @@
     tags:
     - ClothMade
     - Pizza
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -693,9 +693,9 @@
     - ClothMade
     - Pizza
     - Slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
@@ -720,9 +720,9 @@
     - state: worldpeas
   - type: SliceableFood
     slice: FoodPizzaWorldpeasSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 45
         reagents:
         - ReagentId: Nutriment
@@ -747,9 +747,9 @@
     - state: worldpeas-slice
   - type: Item
     heldPrefix: worldpeas-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment

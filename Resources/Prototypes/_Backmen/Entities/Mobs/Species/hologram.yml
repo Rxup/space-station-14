@@ -64,7 +64,6 @@
     - type: Appearance
     - type: RotationVisuals
     - type: Hologram
-    - type: HologramVisuals
     - type: PointLight
       color: "#2088cc"
       radius: 2

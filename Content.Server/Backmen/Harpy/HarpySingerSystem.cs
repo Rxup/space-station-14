@@ -2,7 +2,6 @@ using Content.Server.Instruments;
 using Content.Server.Speech.Components;
 using Content.Shared.Instruments;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Damage;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Backmen.Harpy;
 using Content.Shared.FixedPoint;
@@ -17,7 +16,6 @@ using Content.Shared.Zombies;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Backmen.Harpy.Components;
-using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage.Systems;
 

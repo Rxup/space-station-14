@@ -1,8 +1,6 @@
 ﻿using System.Linq;
-using Content.Shared.Backmen.Disease;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
 
 namespace Content.Shared.Backmen.Disease;
 

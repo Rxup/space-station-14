@@ -1,14 +1,14 @@
 # General
-ai-wire-snipped = Был перерезан провод, координаты { $coords }.
+ai-wire-snipped = Один из ваших системных проводов был перерезан в {$source}.
 wire-name-ai-vision-light = ИИВ
 wire-name-ai-act-light = ИИС
 station-ai-takeover = ИИ захват
-station-ai-eye-name = Глаз ИИ – { $name }
-station-ai-has-no-power-for-upload = Upload failed - the AI core is unpowered.
-station-ai-is-too-damaged-for-upload = Upload failed - the AI core must be repaired.
-station-ai-core-losing-power = Your AI core is now running on reserve battery power.
-station-ai-core-critical-power = Your AI core is critically low on power. External power must be re-established or severe data corruption may occur!
-station-ai-core-taking-damage = Your AI core is sustaining physical damage.
+station-ai-eye-name = око ИИ — {$name}
+station-ai-has-no-power-for-upload = Загрузка не удалась — ядро ИИ обесточено.
+station-ai-is-too-damaged-for-upload = Загрузка не удалась — ядро ИИ нужно отремонтировать.
+station-ai-core-losing-power = Ваше ядро ИИ питается от резервной батареи.
+station-ai-core-critical-power = Ваше ядро ИИ имеет критически низкий уровень энергии. Возобновите внешнее питание, иначе может произойти серьёзное повреждение данных!
+station-ai-core-taking-damage = Ваше ядро ИИ получает физические повреждения.
 # Ghost role
 station-ai-ghost-role-name = Station AI
 station-ai-ghost-role-description = Serve the station crew as its ever watchful AI.
@@ -23,7 +23,7 @@ electrify-door-on = Включить перегрузку
 electrify-door-off = Отключить перегрузку
 toggle-light = Переключить свет
 ai-device-not-responding = Устройство не отвечает
-ai-device-no-access = You have no access to this device
+ai-device-no-access = У вас нет доступа к этому устройству
 ai-consciousness-download-warning = Ваше сознание начали загружать.
 # UI
 station-ai-customization-menu = Настройка ИИ

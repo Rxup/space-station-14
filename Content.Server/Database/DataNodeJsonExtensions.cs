@@ -5,7 +5,6 @@ using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Sequence;
 using Robust.Shared.Serialization.Markdown.Value;
-using YamlDotNet.RepresentationModel;
 
 namespace Content.Server.Database;
 

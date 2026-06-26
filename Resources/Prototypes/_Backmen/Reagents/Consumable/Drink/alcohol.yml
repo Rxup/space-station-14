@@ -23,10 +23,13 @@
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -0.4
-            Airloss: -0.6
-
+          types:
+            Blunt: -0.1
+            Slash: -0.1
+            Piercing: -0.1
+            ArmorPiercing: -0.1
+            Asphyxiation: -0.3
+            Bloodloss: -0.3
 - type: reagent
   id: CondensedMilk
   name: reagent-name-milk-condensed
@@ -50,9 +53,11 @@
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -0.2
-
+          types:
+            Blunt: -0.05
+            Slash: -0.05
+            Piercing: -0.05
+            ArmorPiercing: -0.05
 - type: reagent
   id: Soju
   name: reagent-name-soju

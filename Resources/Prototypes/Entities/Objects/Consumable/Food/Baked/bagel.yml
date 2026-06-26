@@ -15,9 +15,9 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/bagel.rsi
     state: bagel
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 7
         reagents:
         - ReagentId: Nutriment
@@ -40,9 +40,9 @@
       - medicine
   - type: Sprite
     state: bagel-poppy
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 12
         reagents:
         - ReagentId: Bicaridine
@@ -67,9 +67,9 @@
   - type: Tag
     tags:
     - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 12
         reagents:
         - ReagentId: Nutriment

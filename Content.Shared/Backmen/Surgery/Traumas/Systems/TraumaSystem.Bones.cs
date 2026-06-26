@@ -5,7 +5,6 @@ using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.FixedPoint;
 using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;

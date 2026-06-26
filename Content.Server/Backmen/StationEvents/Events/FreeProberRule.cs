@@ -1,7 +1,4 @@
-using System.Linq;
-using Robust.Shared.Map;
 using Robust.Shared.Random;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Backmen.Psionics.Glimmer;
@@ -14,7 +11,6 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Physics;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics.Dynamics;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 

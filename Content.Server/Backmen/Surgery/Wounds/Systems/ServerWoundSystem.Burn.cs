@@ -8,7 +8,6 @@ using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
-using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Inventory;
 
@@ -16,9 +15,9 @@ namespace Content.Server.Backmen.Surgery.Wounds.Systems;
 
 public sealed partial class ServerWoundSystem
 {
-    [Dependency] private readonly BkmBurnWoundableSystem _burnWoundable = default!;
-    [Dependency] private readonly BkmBurnEffectsSystem _burnEffects = default!;
-    [Dependency] private readonly BkmBrainPreservationSystem _brainPreserve = default!;
+    [Dependency] private BkmBurnWoundableSystem _burnWoundable = default!;
+    [Dependency] private BkmBurnEffectsSystem _burnEffects = default!;
+    [Dependency] private BkmBrainPreservationSystem _brainPreserve = default!;
 
     private void BurnWoundableToAsh(
         EntityUid parentWoundableEntity,

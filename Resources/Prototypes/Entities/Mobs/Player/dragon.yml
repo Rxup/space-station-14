@@ -104,9 +104,7 @@
   - type: StatusEffects # Overwriting basesimplemob to remove flash, getting flashed as dragon just feelsbad
     allowed:
     - Electrocution
-    - TemporaryBlindness
     - Pacified
-    - RadiationProtection
     - Adrenaline
   - type: Temperature
   - type: TemperatureDamage
@@ -115,9 +113,7 @@
     solutionOnBody: false
     updateInterval: 0.25
     metabolizerTypes: [ Dragon ]
-    groups:
-    - id: Medicine
-    - id: Poison
+    stages: [ Digestion, Bloodstream ]
   - type: Butcherable
     spawned:
     - id: FoodMeatDragon
@@ -135,8 +131,10 @@
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
-        Piercing: 15
-        Slash: 15
+        Blunt: 3
+        Slash: 3
+        Piercing: 3
+        ArmorPiercing: 3
   - type: Devourer
     foodPreferenceWhitelist:
       components:
@@ -157,22 +155,6 @@
     - CannotSuicide
     - DoorBumpOpener
     - StunImmune
-  - type: NightVision #backmen: night vision
-    isToggle: true
-    color: "#808080"
-    playSoundOn: false
-  - type: LanguageSpeaker #backmen: languages
-    currentLanguage: Carp
-  - type: LanguageKnowledge #backmen: languages
-    speaks:
-    - Carp
-    - Dragon
-    understands:
-    - Carp
-    - Dragon
-    - TauCetiBasic
-
-
   - type: Puller
     needsHands: false
   - type: RandomMetadata
@@ -202,7 +184,6 @@
   - type: GuideHelp
     guides:
     - MinorAntagonists
-  - type: Fauna # Lavaland Change
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -248,8 +229,8 @@
       amount: 1
   - type: MeleeWeapon
     damage:
-      groups:
-        Brute: 12
+      types:
+        Piercing: 12
 
 - type: entity
   parent: BaseAction
@@ -304,3 +285,16 @@
     range: 0
   - type: WorldTargetAction
     event: !type:ActionGunShootEvent
+
+- type: entity
+  parent: Smoke
+  id: BloodSmoke
+  name: smoke
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Smoke
+    spreadAmount: 3
+    duration: 2
+  - type: Sprite
+    sprite: Effects/chemsmoke.rsi
+    state: chemsmoke_white

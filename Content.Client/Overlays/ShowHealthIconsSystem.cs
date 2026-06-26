@@ -1,5 +1,8 @@
 using Content.Shared.Atmos.Rotting;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Overlays;
 using Content.Shared.StatusIcon;
@@ -24,6 +27,9 @@ public sealed partial class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealt
         base.Initialize();
 
         SubscribeLocalEvent<InjurableComponent, GetStatusIconsEvent>(OnGetStatusIconsEvent);
+        // start-backmen: health-ui
+        SubscribeLocalEvent<ConsciousnessComponent, GetStatusIconsEvent>(OnConsciousnessGetStatusIconsEvent);
+        // end-backmen: health-ui
         SubscribeLocalEvent<ShowHealthIconsComponent, AfterAutoHandleStateEvent>(OnHandleState);
     }
 
@@ -58,35 +64,58 @@ public sealed partial class ShowHealthIconsSystem : EquipmentHudSystem<ShowHealt
         if (!IsActive)
             return;
 
-        var healthIcons = DecideHealthIcons(entity);
-
-        args.StatusIcons.AddRange(healthIcons);
+        args.StatusIcons.AddRange(DecideHealthIcons(entity.Comp.DamageContainer, entity));
     }
 
-    private IReadOnlyList<HealthIconPrototype> DecideHealthIcons(Entity<InjurableComponent> entity)
+    // start-backmen: health-ui
+    private void OnConsciousnessGetStatusIconsEvent(Entity<ConsciousnessComponent> entity, ref GetStatusIconsEvent args)
     {
-        var injurableComp = entity.Comp;
+        if (!IsActive)
+            return;
 
-        if (injurableComp.DamageContainer == null ||
-            !DamageContainers.Contains(injurableComp.DamageContainer))
+        args.StatusIcons.AddRange(DecideHealthIcons(entity.Comp.DamageContainer, entity));
+    }
+    // end-backmen: health-ui
+
+    private IReadOnlyList<HealthIconPrototype> DecideHealthIcons(
+        ProtoId<DamageContainerPrototype>? damageContainer,
+        EntityUid entity)
+    {
+        if (damageContainer == null ||
+            !DamageContainers.Contains(damageContainer))
         {
             return Array.Empty<HealthIconPrototype>();
         }
 
         var result = new List<HealthIconPrototype>();
 
-        // Here you could check health status, diseases, mind status, etc. and pick a good icon, or multiple depending on whatever.
-        if (injurableComp?.DamageContainer == "Biological")
+        if (damageContainer != "Biological")
+            return result;
+
+        if (!TryComp<MobStateComponent>(entity, out var state))
+            return result;
+
+        ProtoId<HealthIconPrototype>? rottingIcon = null;
+        Dictionary<MobState, ProtoId<HealthIconPrototype>>? healthIcons = null;
+
+        if (TryComp<InjurableComponent>(entity, out var injurable))
         {
-            if (TryComp<MobStateComponent>(entity, out var state))
-            {
-                // Since there is no MobState for a rotting mob, we have to deal with this case first.
-                if (HasComp<RottingComponent>(entity) && _prototypeMan.Resolve(injurableComp.RottingIcon, out var rottingIcon))
-                    result.Add(rottingIcon);
-                else if (injurableComp.HealthIcons.TryGetValue(state.CurrentState, out var value) && _prototypeMan.Resolve(value, out var icon))
-                    result.Add(icon);
-            }
+            rottingIcon = injurable.RottingIcon;
+            healthIcons = injurable.HealthIcons;
         }
+        else if (TryComp<ConsciousnessComponent>(entity, out var consciousness))
+        {
+            rottingIcon = consciousness.RottingIcon;
+            healthIcons = consciousness.HealthIcons;
+        }
+
+        if (healthIcons == null)
+            return result;
+
+        if (HasComp<RottingComponent>(entity) && rottingIcon is { } rotting && _prototypeMan.Resolve(rotting, out var rottingProto))
+            result.Add(rottingProto);
+        else if (healthIcons.TryGetValue(state.CurrentState, out var value) && _prototypeMan.Resolve(value, out var icon))
+            result.Add(icon);
 
         return result;
     }

@@ -7,7 +7,6 @@ using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Storage;
-using Content.Shared.Weapons.Ranged.Systems;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 

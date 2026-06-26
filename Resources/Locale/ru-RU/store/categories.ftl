@@ -12,7 +12,7 @@ store-category-wearables = Экипировка
 store-category-implants = Импланты
 store-category-job = Работа
 store-category-pointless = Безделушки
-store-category-objective = Objective
+store-category-objective = Цель
 store-discounted-items = Скидки
 # Revenant
 store-category-abilities = Способности
@@ -23,11 +23,11 @@ store-caregory-spellbook-utility = Вспомогательные заклина
 store-caregory-spellbook-equipment = Волшебное снаряжение
 store-caregory-spellbook-events = Заклинания событий
 # Nukie Delivery
-store-category-nukie-delivery = Offers
+store-category-nukie-delivery = Предложения
 # Changeling
-store-category-combat = Combat
-store-category-utility = Utility
-store-category-stealth = Stealth
+store-category-combat = Боевые
+store-category-utility = Вспомогательные
+store-category-stealth = Скрытные
 # Changeling
 store-ling-category-combat = Бой
 store-ling-category-sting = Жала

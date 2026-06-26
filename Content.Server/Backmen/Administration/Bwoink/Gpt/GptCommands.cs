@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -12,14 +11,12 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Guidebook;
 using Content.Server.Preferences.Managers;
-using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Administration.Bwoink.Gpt;

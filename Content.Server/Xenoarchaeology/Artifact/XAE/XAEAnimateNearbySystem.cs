@@ -1,7 +1,6 @@
 using Content.Server._Impstation.Revenant.EntitySystems;
 using Content.Server.Xenoarchaeology.Artifact.XAE.Components;
 using Content.Shared.Item;
-using Content.Shared.Physics;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.XAE;
 

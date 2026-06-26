@@ -19,6 +19,7 @@ using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using System.Linq;
+using Content.Shared.Backmen.Damage;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
@@ -26,7 +27,6 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Robust.Shared.Audio;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Medical.Healing;
 
@@ -47,6 +47,7 @@ public sealed partial class HealingSystem : EntitySystem
     // backmen edit start
     [Dependency] private WoundSystem _wounds = default!;
     [Dependency] private TraumaSystem _trauma = default!;
+    [Dependency] private BackmenDamageModelSystem _backmenDamageModel = default!;
     // backmen edit end
 
     public override void Initialize()
@@ -64,21 +65,24 @@ public sealed partial class HealingSystem : EntitySystem
         var dontRepeat = false;
 
         // Consciousness check because some body entities don't have Consciousness; Backmen
-        if (!TryComp(args.Used, out HealingComponent? healing) || HasComp<BodyComponent>(target) && HasComp<ConsciousnessComponent>(target))
+        if (!TryComp(args.Used, out HealingComponent? healing)
+            || HasComp<BodyComponent>(target) && HasComp<ConsciousnessComponent>(target))
             return;
 
         if (args.Handled || args.Cancelled)
             return;
 
-        if (!TryComp<InjurableComponent>(target, out var injurable))
+        // start-backmen: damage-container
+        if (!_backmenDamageModel.TryGetDamageContainer(target, out var damageContainer))
             return;
 
         if (healing.DamageContainers is not null &&
-            injurable.DamageContainer is not null &&
-            !healing.DamageContainers.Contains(injurable.DamageContainer.Value))
+            damageContainer is not null &&
+            !healing.DamageContainers.Contains(damageContainer.Value))
         {
             return;
         }
+        // end-backmen: damage-container
 
         TryComp<BloodstreamComponent>(target, out var bloodstream);
 
@@ -183,7 +187,7 @@ public sealed partial class HealingSystem : EntitySystem
             totalBleeds += wound.Comp2.BleedingAmountRaw;
         }
 
-        var woundableDamageContainer = woundableComp.DamageContainerID;
+        var woundableDamageContainer = woundableComp.DamageContainer;
         if (healing.DamageContainers != null && woundableDamageContainer.HasValue &&
             !healing.DamageContainers.Contains(woundableDamageContainer.Value))
         {
@@ -445,15 +449,17 @@ public sealed partial class HealingSystem : EntitySystem
         if (!Resolve(target, ref target.Comp, false))
             return false;
 
-        if (!TryComp<InjurableComponent>(target, out var injurable))
+        // start-backmen: damage-container
+        if (!_backmenDamageModel.TryGetDamageContainer(target, out var damageContainer))
             return false;
 
         if (healing.Comp.DamageContainers is not null &&
-            injurable.DamageContainer is not null &&
-            !healing.Comp.DamageContainers.Contains(injurable.DamageContainer.Value))
+            damageContainer is not null &&
+            !healing.Comp.DamageContainers.Contains(damageContainer.Value))
         {
             return false;
         }
+        // end-backmen: damage-container
 
         if (user != target.Owner && !_interactionSystem.InRangeUnobstructed(user, target.Owner, popup: true))
             return false;

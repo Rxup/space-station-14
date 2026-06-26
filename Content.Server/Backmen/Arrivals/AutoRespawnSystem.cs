@@ -1,7 +1,6 @@
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
-using Robust.Shared.Console;
 
 namespace Content.Server.Backmen.Arrivals;
 

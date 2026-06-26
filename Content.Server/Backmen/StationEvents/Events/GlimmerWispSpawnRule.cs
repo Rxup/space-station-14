@@ -1,7 +1,5 @@
 using System.Linq;
 using Robust.Shared.Random;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Server.NPC.Components;
 using Content.Server.Backmen.Psionics.Glimmer;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.Station.Systems;
@@ -60,7 +58,7 @@ internal sealed partial class GlimmerWispRule : StationEventSystem<GlimmerWispRu
             }
         }
 
-        var baseCount = Math.Max(1, EntityManager.EntityQuery<PsionicComponent, NpcFactionMemberComponent>().Count() / 10);
+        var baseCount = Math.Max(1, EntityQuery<PsionicComponent, NpcFactionMemberComponent>().Count() / 10);
         var multiplier = Math.Max(1, (int) _glimmerSystem.GetGlimmerTier() - 2);
 
         var total = baseCount * multiplier;

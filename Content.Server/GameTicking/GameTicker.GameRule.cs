@@ -151,6 +151,10 @@ public sealed partial class GameTicker
     public bool StartGameRule([ForbidLiteral] string ruleId, out EntityUid ruleEntity)
     {
         ruleEntity = AddGameRule(ruleId);
+
+        if (!Exists(ruleEntity))
+            return false;
+
         return StartGameRule(ruleEntity);
     }
 
@@ -160,8 +164,11 @@ public sealed partial class GameTicker
     /// </summary>
     public bool StartGameRule(EntityUid ruleEntity, GameRuleComponent? ruleData = null)
     {
+        if (!Exists(ruleEntity))
+            return false;
+
         if (!Resolve(ruleEntity, ref ruleData))
-            ruleData ??= EnsureComp<GameRuleComponent>(ruleEntity);
+            ruleData = EnsureComp<GameRuleComponent>(ruleEntity);
 
         // can't start an already active rule
         if (HasComp<ActiveGameRuleComponent>(ruleEntity) || HasComp<EndedGameRuleComponent>(ruleEntity))

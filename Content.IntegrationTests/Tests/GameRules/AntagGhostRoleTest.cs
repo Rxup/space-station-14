@@ -8,6 +8,7 @@ using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Antag;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Players;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -17,6 +18,7 @@ using Robust.Shared.Random;
 
 namespace Content.IntegrationTests.Tests.GameRules;
 
+[EnsureCVar(Side.Server, typeof(CCVars), nameof(CCVars.WhitelistRolesEnabled), false)]
 public sealed partial class AntagGhostRoleTest : AntagTest
 {
     public override PoolSettings PoolSettings => new()

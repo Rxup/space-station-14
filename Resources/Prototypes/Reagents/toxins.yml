@@ -19,7 +19,6 @@
         damage:
           types:
             Poison: 4
-
 - type: reagent
   id: CarpoToxin
   name: reagent-name-carpotoxin
@@ -80,7 +79,6 @@
         damage:
           types:
             Poison: 1.5
-
 - type: reagent
   id: GastroToxin
   name: reagent-name-gastrotoxin
@@ -119,7 +117,6 @@
         damage:
           types:
             Poison: 1
-
 - type: reagent
   id: PolytrinicAcid
   name: reagent-name-polytrinic-acid
@@ -186,7 +183,6 @@
           types:
             Heat: 2.5
             Caustic: 1
-
 - type: reagent
   id: FluorosulfuricAcid
   name: reagent-name-fluorosulfuric-acid
@@ -299,7 +295,6 @@
         damage:
           types:
             Radiation: 3
-
 - type: reagent
   id: HeartbreakerToxin
   name: reagent-name-heartbreaker-toxin
@@ -335,7 +330,6 @@
           types:
             Asphyxiation: 5
             Bloodloss: 5
-
 - type: reagent
   id: MindbreakerToxin
   name: reagent-name-mindbreaker-toxin
@@ -370,7 +364,10 @@
         probability: 0.1
         damage:
           types:
-            Blunt: 2
+            Blunt: 0.5
+            Slash: 0.5
+            Piercing: 0.5
+            ArmorPiercing: 0.5
       # todo: cough, sneeze
       - !type:HealthChange
         conditions:
@@ -379,9 +376,13 @@
           min: 45
         damage:
           types:
-            Blunt: 2
-            Asphyxiation: 2
             Poison: 2
+            Blunt: 0.5
+            Slash: 0.5
+            Piercing: 0.5
+            ArmorPiercing: 0.5
+            Asphyxiation: 1
+            Bloodloss: 1
       - !type:PopupMessage
         type: Local
         messages: [ "histamine-effect-light-itchiness" ]
@@ -438,7 +439,6 @@
         damage:
           types:
             Poison: 3
-
 - type: reagent
   id: VentCrud
   name: reagent-name-vent-crud
@@ -454,7 +454,6 @@
           damage:
             types:
               Poison: 2
-
 - type: reagent
   id: Romerol
   name: reagent-name-romerol
@@ -550,7 +549,6 @@
         damage:
           types:
             Poison: 0.06
-
 - type: reagent
   id: Pax
   name: reagent-name-pax
@@ -596,9 +594,7 @@
           type: [ Animal ]
         damage:
           types:
-            Poison: 0.06
-
-
+            Poison: 3
 - type: reagent
   id: Lead
   name: reagent-name-lead
@@ -614,8 +610,7 @@
       - !type:HealthChange
         damage:
           types:
-            Poison: 0.6 # Makes it 20 damage per unit.
-
+            Poison: 0.06
 - type: reagent
   id: Bungotoxin
   name: reagent-name-bungotoxin
@@ -631,8 +626,7 @@
       - !type:HealthChange
         damage:
           types:
-            Poison: 1.8
-
+            Poison: 0.6
 - type: reagent
   id: Vestine
   name: reagent-name-vestine
@@ -661,9 +655,7 @@
       - !type:HealthChange
         damage:
           types:
-            Asphyxiation: 1
-            Bloodloss: 1
-
+            Poison: 1.8
 - type: reagent
   id: Tazinide
   name: reagent-name-tazinide
@@ -700,7 +692,8 @@
           max: 50
         damage:
           types:
-            Poison: 2
+            Asphyxiation: 1
+            Bloodloss: 1
       - !type:SatiateHunger
         factor: -6
 
@@ -725,7 +718,7 @@
           inverted: true
         damage:
           types:
-            Poison: 1.6
+            Poison: 2
       - !type:MovementSpeedModifier
         conditions:
         - !type:ReagentCondition
@@ -781,3 +774,40 @@
         type: Update
       - !type:ModifyBleed
         amount: 0.5
+
+# backmen start
+- type: reagent
+  id: FleshAcid
+  name: reagent-name-flesh-acid
+  group: Toxins
+  desc: reagent-desc-flesh-acid
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: acidic
+  color: "#c9000e"
+  boilingPoint: 78.2
+  meltingPoint: -19.4
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 3
+      - !type:Emote
+        emote: Scream
+        probability: 1
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 5
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+# backmen end

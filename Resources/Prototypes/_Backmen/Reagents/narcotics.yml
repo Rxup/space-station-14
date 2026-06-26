@@ -64,11 +64,17 @@
         amount: -1
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -6
-            Brute: -6
-            Airloss: -4
-
+          types:
+            Heat: -1.5
+            Shock: -1.5
+            Cold: -1.5
+            Caustic: -1.5
+            Blunt: -1.5
+            Slash: -1.5
+            Piercing: -1.5
+            ArmorPiercing: -1.5
+            Asphyxiation: -2
+            Bloodloss: -2
 - type: reagent
   id: Morphine
   name: reagent-name-morphine

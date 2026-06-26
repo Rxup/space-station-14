@@ -8,12 +8,8 @@
   rules:
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
-#    - SpaceTrafficControlEventScheduler
-#    - SpaceTrafficControlFriendlyEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: KesslerSyndrome
@@ -25,14 +21,10 @@
   showInVote: false # secret
   description: kessler-syndrome-description
   rules:
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
     - KesslerSyndromeScheduler
-    - CalmStationEventScheduler # backmen change: Meteors are already enough to destroy the station.
     - RampingStationEventScheduler
-#    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: AllAtOnce
@@ -42,14 +34,6 @@
   description: all-at-once-description
   showInVote: false
   rules:
-    # start-backmen
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
-    - VampiresGameRule # backmen: vampire
-    - FleshCult # backmen: flesh cult
-    - ExtendedThief # backmen: extended-thief
-    #- Changeling # backmen: changeling
-    # end-backmen
     - Nukeops
     - Traitor
     - Revolutionary
@@ -58,11 +42,8 @@
     - Xenoborgs
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
-    - StandardStationEventScheduler # backmen: game rules rework
-#    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-    - MeteorSwarmScheduler
-    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: AllerAtOnce
@@ -75,15 +56,6 @@
   description: aller-at-once-description
   showInVote: false #Please god dont do this
   rules:
-    # start-backmen
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
-    - BlobGameMode
-    - VampiresGameRule
-    - FleshCult
-    - ExtendedThief
-    - Changeling
-    # end-backmen
     - Nukeops
     - Traitor
     - Revolutionary
@@ -95,11 +67,8 @@
     - MeteorSwarmMildScheduler
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
-    - StandardStationEventScheduler # backmen: game rules rework
-#    - SpaceTrafficControlEventScheduler
-#    - SpaceTrafficControlFriendlyEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-    - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Extended
@@ -111,12 +80,9 @@
   description: extended-description
   rules:
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
   - MeteorSwarmScheduler
-#  - SpaceTrafficControlEventScheduler
+  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Greenshift
@@ -127,11 +93,7 @@
   showInVote: false #4boring4vote
   description: greenshift-description
   rules:
-  - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
-  - WageScheduler #backmen: currency
-  - LavalandStormScheduler # Lavaland Change
-  - PsiScheduler #backmen: psi
 
 - type: gamePreset
   id: Dynamic
@@ -185,12 +147,9 @@
   - Traitor
   - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Deathmatch
@@ -200,6 +159,7 @@
   name: death-match-title
   description: death-match-description
   maxPlayers: 15
+  isMiniGame: true
   showInVote: true
   supportedMaps: DeathMatchMapPool
   rules:
@@ -211,20 +171,15 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  showInVote: true #backmen terror
-  minPlayers: 30 #backmen terror
+  showInVote: false
   rules:
   - Nukeops
   - DummyNonAntagChance
   - SubGamemodesRuleNoWizard
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
-  - CalmMeteorSwarmScheduler #backmen: calm-scheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Revolutionary
@@ -243,9 +198,6 @@
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  - WageScheduler #backmen: currency
-  - LavalandStormScheduler # Lavaland Change
-  - PsiScheduler #backmen: psi
 
 - type: gamePreset
   id: Wizard
@@ -292,13 +244,10 @@
   showInVote: false
   rules:
   - Zombie
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
   id: Zombieteors
@@ -310,12 +259,8 @@
   description: zombieteors-description
   showInVote: false
   rules:
-  - WageScheduler #backmen: currency
-  - PsiScheduler #backmen: psi
   - Zombie
-  - CalmStationEventScheduler # backmen: gamerules rework
   - BasicStationEventScheduler
   - KesslerSyndromeScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  - LavalandStormScheduler # Lavaland Change

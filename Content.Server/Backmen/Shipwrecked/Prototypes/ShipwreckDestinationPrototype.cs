@@ -1,4 +1,3 @@
-using Content.Server.Atmos;
 using Content.Shared.Atmos;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Procedural;

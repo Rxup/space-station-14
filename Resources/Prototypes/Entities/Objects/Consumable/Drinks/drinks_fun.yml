@@ -65,15 +65,14 @@
   suffix: DEBUG
   description: This anomalous beaker infinitely produces space lube and as such is to be closely guarded such that it doesn't fall in the wrong hands.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      beaker:
-        maxVol: 1000
-        reagents:
-        - ReagentId: SpaceLube
-          Quantity: 1000
+  - type: Solution
+    id: beaker
+    solution:
+      maxVol: 1000
+      reagents:
+      - ReagentId: SpaceLube
+        Quantity: 1000
   - type: SolutionRegeneration
-    solution: beaker
     generated:
       reagents:
       - ReagentId: SpaceLube

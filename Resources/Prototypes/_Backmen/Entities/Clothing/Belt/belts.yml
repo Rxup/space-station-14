@@ -165,7 +165,7 @@
         - Radio
         - DiscreteHealthAnalyzer
       components:
-        - Hypospray
+        - Injector
         - Injector
         - Pill
 
@@ -281,7 +281,7 @@
         - Radio
         - DiscreteHealthAnalyzer
       components:
-        - Hypospray
+        - Injector
         - Injector
         - Pill
 

@@ -180,7 +180,7 @@
       enum.SharedGasTankUiKey.Key:
         type: GasTankBoundUserInterface
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       volume: 5
       moles:
@@ -199,7 +199,7 @@
       enum.SharedGasTankUiKey.Key:
         type: GasTankBoundUserInterface
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       volume: 5
       moles:
@@ -220,7 +220,7 @@
       enum.SharedGasTankUiKey.Key:
         type: GasTankBoundUserInterface
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       volume: 5
       moles:

@@ -169,6 +169,8 @@
   - type: InteractionOutline
   - type: Physics
   - type: Damageable
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: DamageRandomPopup
     popups:
       - darts-popup-bullseye

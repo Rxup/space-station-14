@@ -1,9 +1,3 @@
-ent-ActionBPLAMEDActionBrutepack = Пакет от ушибов
-    .desc = Создаёт полный стак пакетов от ушибов
-ent-ActionBPLAMEDActionOintment = Мазь от ожогов
-    .desc = Создаёт полный стак мази от ожогов
-ent-ActionBPLAMEDActionBloodpack = Пакет крови
-    .desc = Создаёт полный стак пакетов крови
 ent-ActionBPLAActionCableApcStack = НВ провода
     .desc = Создаёт полный стак НВ проводов
 ent-ActionBPLAActionCableMVStack = СВ провода

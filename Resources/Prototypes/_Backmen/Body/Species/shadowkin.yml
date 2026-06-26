@@ -106,8 +106,6 @@
         Heat: 0.75
   - type: Damageable
     damageModifierSet: Shadowkin
-  - type: Injurable
-    damageContainer: Biological
   - type: Barotrauma
     damage:
       types:

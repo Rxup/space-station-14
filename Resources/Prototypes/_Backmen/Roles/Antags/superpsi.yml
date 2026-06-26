@@ -9,8 +9,12 @@
 - type: entity
   parent: BaseGameRule
   id: SuperPsiRule
+  categories: [ HideSpawnMenu ]
   components:
   - type: SuperPsiRule
+  - type: AntagRandomSpawn
+  - type: AntagSpawner
+    prototype: UristMcNars
   - type: AntagObjectives
     objectives:
     - EscapeSuperPsiShuttleObjective

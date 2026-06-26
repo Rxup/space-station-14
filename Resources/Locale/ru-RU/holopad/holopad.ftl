@@ -13,14 +13,14 @@ holopad-window-call-rejected = Не удалось установить соед
 holopad-window-ai-request = Ваше присутствие запрашивает:
 holopad-window-emergency-broadcast-in-progress = [color=#cf2f2f][bold]Ведётся экстренная трансляция[/bold][/color]
 holopad-window-controls-locked-out = Управление этим устройством заблокировано:
-holopad-window-controls-unlock-countdown = Оно автоматически разблокируется через: { $countdown }
+holopad-window-controls-unlock-countdown = Оно автоматически разблокируется через: {$countdown}
 # Buttons
 holopad-window-answer-call = Ответить на звонок
 holopad-window-end-call = Завершить звонок
 holopad-window-request-station-ai = Запросить станционный ИИ
 holopad-window-activate-projector = Активировать проектор
 holopad-window-emergency-broadcast = Экстренная трансляция
-holopad-window-emergency-broadcast-with-countdown = Экстренная трансляция ({ $countdown })
+holopad-window-emergency-broadcast-with-countdown = Экстренная трансляция ({$countdown})
 holopad-window-access-denied = В доступе отказано
 # Contact list
 holopad-window-select-contact-from-list = Выберите контакт для начала голо-звонка

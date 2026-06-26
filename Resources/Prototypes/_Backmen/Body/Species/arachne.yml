@@ -193,7 +193,7 @@
         - MobLayer
   - type: Damageable
     damageModifierSet: HalfSpirit
-  - type: Injurable
+  - type: Consciousness
     damageContainer: HalfSpirit
   - type: Speech
     speechSounds: Alto

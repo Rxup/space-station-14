@@ -12,8 +12,6 @@ public sealed partial class PinpointerSystem : SharedPinpointerSystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
 
-    private EntityQuery<TransformComponent> _xformQuery;
-
     public override void Initialize()
     {
         base.Initialize();

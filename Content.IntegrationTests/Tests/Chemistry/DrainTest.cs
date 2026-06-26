@@ -4,7 +4,9 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Nutrition.Components;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using System.Numerics;
 
 namespace Content.IntegrationTests.Tests.Chemistry;
 
@@ -13,27 +15,10 @@ public sealed class DrainTest : InteractionTest
     private static readonly EntProtoId PizzaPrototype = "FoodPizzaMargherita";
     private static readonly EntProtoId DrainPrototype = "FloorDrain";
     private static readonly EntProtoId BucketPrototype = "Bucket";
-    private static readonly ProtoId<ReagentPrototype> BloodReagent = "Blood";
     private static readonly ProtoId<ReagentPrototype> WaterReagent = "Water";
     private static readonly FixedPoint2 WaterVolume = 50; // 50u
     private static readonly FixedPoint2 PuddleVolume = 30; // 30u
-
-    [TestPrototypes]
-    private static readonly string Prototypes = @$"
-- type: entity
-  parent: Puddle
-  id: PuddleBloodTest
-  suffix: Blood
-  components:
-  - type: Solution
-    id: puddle
-    solution:
-      maxVol: 1000
-      reagents:
-      - ReagentId: {BloodReagent}
-        Quantity: {PuddleVolume}
-";
-
+    private static readonly ProtoId<ReagentPrototype> PuddleReagent = "Blood";
 
     /// <summary>
     /// Tests that drag drop interactions with drains are working as intended.
@@ -96,11 +81,21 @@ public sealed class DrainTest : InteractionTest
     {
         var solutionContainerSys = SEntMan.System<SharedSolutionContainerSystem>();
 
-        // Spawn a puddle at the player coordinates;
-        var puddle = await Spawn("PuddleBloodTest", PlayerCoords);
+        // Spawn a puddle on the target tile (player occupies PlayerCoords).
+        NetEntity puddle = default;
+        await Server.WaitPost(() =>
+        {
+            var coords = Transform.WithEntityId(MapData.GridCoords.Offset(new Vector2(1.5f, 0.5f)), MapData.MapUid);
+            var uid = SEntMan.SpawnAtPosition("Puddle", coords);
+            Assert.That(solutionContainerSys.TryGetSolution(uid, "puddle", out var solEnt, out var sol), Is.True);
+            sol.AddReagent(PuddleReagent, PuddleVolume);
+            solutionContainerSys.UpdateChemicals(solEnt!.Value);
+            puddle = SEntMan.GetNetEntity(uid);
+        });
+        await RunTicks(5);
+        Assert.That(puddle, Is.Not.EqualTo(NetEntity.Invalid));
 
-        // Make sure the reagent chosen for this test does not evaporate on its own.
-        // If you are a fork that made more reagents evaporate, just change BloodReagent ProtoId above to something else.
+        // If you are a fork that made more reagents evaporate, change PuddleReagent above.
         Assert.That(HasComp<EvaporationComponent>(puddle), Is.False, "The chosen reagent is evaporating on its own and we cannot use it for the drain test.");
 
         var puddleSolutionId = Comp<PuddleComponent>(puddle).SolutionName;
@@ -112,8 +107,12 @@ public sealed class DrainTest : InteractionTest
         Assert.That(solutionContainerSys.TryGetSolution(ToServer(puddle), puddleSolutionId, out _, out solution), "Puddle had no solution.");
         Assert.That(solution.Volume, Is.EqualTo(PuddleVolume), "Puddle had the wrong amount of reagents after spawning.");
 
-        // Spawn a drain one tile away.
-        await Spawn(DrainPrototype);
+        // Move the player off the drain tile before spawning it.
+        await Server.WaitPost(() => Transform.SetCoordinates(SPlayer, SEntMan.GetCoordinates(TargetCoords)));
+        await RunTicks(5);
+
+        // Spawn a drain one tile away from the puddle.
+        await Spawn(DrainPrototype, PlayerCoords);
 
         // Wait a few seconds.
         await RunSeconds(10);

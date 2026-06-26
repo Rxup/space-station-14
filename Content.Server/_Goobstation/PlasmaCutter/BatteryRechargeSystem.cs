@@ -2,8 +2,6 @@ using Content.Shared.Materials;
 using Content.Shared.Interaction.Events;
 using Content.Server.Hands.Systems;
 using Content.Server.Materials;
-using Content.Server.Power.EntitySystems;
-using Content.Server.Power.Components;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;

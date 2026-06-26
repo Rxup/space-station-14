@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Destructible;
 using Content.Server.NPC.Systems;
+using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Arachne;
 using Content.Shared.Access.Components;
+using Content.Shared.Spider;
 using Content.Shared.Administration;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Doors.Components;
@@ -59,6 +62,9 @@ namespace Content.Server.NPC.Pathfinding
         [Dependency] private EntityQuery<ClimbableComponent> _climbableQuery = default!;
         [Dependency] private EntityQuery<FixturesComponent> _fixturesQuery = default!;
         [Dependency] private EntityQuery<MapGridComponent> _mapGridQuery = default!;
+        private EntityQuery<BlobTileComponent> _tilesQuery; // backmen: blob
+        private EntityQuery<WebComponent> _webQuery; // backmen: web
+        private EntityQuery<SpiderWebObjectComponent> _spiderWebQuery; // backmen: web
 
         private readonly Dictionary<ICommonSession, PathfindingDebugMode> _subscribedSessions = new();
 
@@ -78,6 +84,9 @@ namespace Content.Server.NPC.Pathfinding
         public override void Initialize()
         {
             base.Initialize();
+            _tilesQuery = GetEntityQuery<BlobTileComponent>(); // backmen: blob
+            _webQuery = GetEntityQuery<WebComponent>(); // backmen: web
+            _spiderWebQuery = GetEntityQuery<SpiderWebObjectComponent>(); // backmen: web
             _playerManager.PlayerStatusChanged += OnPlayerChange;
             InitializeGrid();
             SubscribeNetworkEvent<RequestPathfindingDebugMessage>(OnBreadcrumbs);
@@ -461,6 +470,20 @@ namespace Content.Server.NPC.Pathfinding
             {
                 flags |= PathFlags.Interact;
             }
+
+            // start-backmen: blob
+            if (blackboard.TryGetValue<bool>(NPCBlackboard.NavBlob, out var blob, EntityManager) && blob)
+            {
+                flags |= PathFlags.Blob;
+            }
+            // end-backmen: blob
+
+            // start-backmen: web
+            if (blackboard.TryGetValue<bool>(NPCBlackboard.NavWeb, out var web, EntityManager) && web)
+            {
+                flags |= PathFlags.Web;
+            }
+            // end-backmen: web
 
             return flags;
         }

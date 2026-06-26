@@ -1,6 +1,5 @@
 using Content.Shared.Popups;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Interaction;
 
 namespace Content.Shared.Chemistry.EntitySystems;

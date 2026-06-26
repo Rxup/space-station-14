@@ -4,7 +4,6 @@ using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Standing;
-using Robust.Shared.Log;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Mobs.Systems;

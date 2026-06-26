@@ -1,15 +1,10 @@
 using Content.Shared.Actions;
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
-using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
-using Content.Shared.Interaction;
-using Content.Shared.Physics;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 

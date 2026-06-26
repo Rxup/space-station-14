@@ -19,4 +19,4 @@ particle-accelerator-control-menu-flavor-left = Пожалуйста держи�
 particle-accelerator-control-menu-flavor-right = v 1.6
 particle-accelerator-radio-message-on = Питание УЧ было включено.
 particle-accelerator-radio-message-off = Питание УЧ было выключено.
-particle-accelerator-radio-message-num = Мощность УЧ установлена на уровень { $level }.
+particle-accelerator-radio-message-num = Мощность УЧ установлена на уровень {$level}.

@@ -5,7 +5,6 @@ using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Server.Wires;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.Destructible;

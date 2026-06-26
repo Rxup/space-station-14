@@ -150,7 +150,11 @@ namespace Content.IntegrationTests.Tests
             "Snowball",
         };
 
-        private static readonly ResPath[] AllMapFiles = GameDataScrounger.FilesInDirectoryInVfs("/Maps", "*.yml");
+        private static readonly ResPath[] AllMapFiles = GameDataScrounger.FilesInDirectoryInVfs("/Maps", "*.yml")
+                .Where(x=>!x.CanonPath.StartsWith("/Maps/Corvax")) // backmen: skip all corvax
+                .Where(x=>!x.CanonPath.StartsWith("/Maps/Backmen/Adminbuse")) // backmen: skip adminbuse
+                .Where(x=>!x.CanonPath.StartsWith("/Maps/Backmen/ForSale/shipvsship")) // backmen: skip svs
+                .ToArray();
         private static readonly ResPath[] ShuttleMapFiles = GameDataScrounger.FilesInDirectoryInVfs("/Maps/Shuttles", "*.yml");
 
         private static readonly ProtoId<EntityCategoryPrototype> DoNotMapCategory = "DoNotMap";

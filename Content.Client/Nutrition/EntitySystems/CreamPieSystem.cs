@@ -26,6 +26,10 @@ public sealed partial class CreamPieSystem : SharedCreamPieSystem
 
     private void OnComponentShutdown(Entity<CreamPiedComponent> ent, ref ComponentShutdown args)
     {
+        // Only entities with a CreamPied sprite use the dynamically reserved layer.
+        if (ent.Comp.Sprite == null)
+            return;
+
         _sprite.RemoveLayer(ent.Owner, CreamPiedVisualLayer.Key);
     }
 
@@ -49,15 +53,11 @@ public sealed partial class CreamPieSystem : SharedCreamPieSystem
         var sprite = ent.Comp2;
         var appearance = ent.Comp3;
 
-        // If there is no sprite to use, remove the layer. Otherwise ensure that it exists and set the visuals accordingly.
-        int index;
+        // Entities without a CreamPied sprite use GenericVisualizer (e.g. the clownedon layer).
         if (creamPied.Sprite == null)
-        {
-            _sprite.RemoveLayer((ent.Owner, sprite), CreamPiedVisualLayer.Key);
             return;
-        }
 
-        index = _sprite.LayerMapReserve((ent.Owner, sprite), CreamPiedVisualLayer.Key);
+        var index = _sprite.LayerMapReserve((ent.Owner, sprite), CreamPiedVisualLayer.Key);
 
         _appearance.TryGetData<bool>(ent.Owner, CreamPiedVisuals.Creamed, out var isCreamPied, appearance);
         _sprite.LayerSetSprite((ent.Owner, sprite), index, creamPied.Sprite);

@@ -1,6 +1,4 @@
 using System.Linq;
-using System.Net;
-using System.Net.Sockets;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Discord.WebhookMessages;

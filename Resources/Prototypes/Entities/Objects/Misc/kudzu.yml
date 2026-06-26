@@ -67,7 +67,7 @@
     fireSpread: true #If you walk into incredibly dense, flaming vines, you can expect to burn.
     damage:
       types:
-        Heat: 3
+        Heat: 1.5
   - type: Reactive
     groups:
       Flammable: [Touch]
@@ -245,7 +245,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.10 #per second, scales with pressure and other constants.
+        Blunt: 0.10
   - type: Flammable
     fireSpread: true
     damage:

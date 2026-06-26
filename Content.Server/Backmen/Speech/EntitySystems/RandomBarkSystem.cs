@@ -1,11 +1,9 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Chat.Managers;
-using Content.Server.Backmen.Speech.RandomBark;
 using Content.Shared.Chat;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Server.GameObjects;
 
 namespace Content.Server.Backmen.Speech.RandomBark
 {

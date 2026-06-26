@@ -1,5 +1,5 @@
 cmd-setooc-desc = Позволяет включить или отключить OOC.
-cmd-setooc-help = Использование: setooc ИЛИ setooc [значение]
+cmd-setooc-help = Использование: setooc ИЛИ setooc [value]
 cmd-setooc-ooc-enabled = OOC чат был включён.
 cmd-setooc-ooc-disabled = OOC чат был выключен.
 set-ooc-command-description = Позволяет включить или выключить OOC.

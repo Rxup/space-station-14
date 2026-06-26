@@ -9,13 +9,13 @@ using Content.Server.NPC.Systems;
 using Content.Shared.Zombies;
 using Content.Shared.CombatMode;
 using Content.Shared.Ghost;
-using Content.Shared.Damage;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Server.Backmen.VentCrawler;
 using Content.Shared._White.Headcrab;
 using Content.Shared.Backmen.VentCrawler;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -31,6 +31,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._White.Headcrab;
@@ -92,8 +93,8 @@ public sealed partial class HeadcrabSystem : EntitySystem
             return;
 
         EnsureComp<AutoEmoteComponent>(args.EquipTarget);
-        _autoEmote.AddEmote(args.EquipTarget, "ZombieGroan");
-        _tagSystem.AddTag(args.EquipTarget, "CannotSuicide");
+        _autoEmote.AddEmote(args.EquipTarget, ZombieGroan);
+        _tagSystem.AddTag(args.EquipTarget, CannotSuicide);
 
         component.EquippedOn = args.EquipTarget;
         RemComp<CombatModeComponent>(uid);
@@ -176,6 +177,9 @@ public sealed partial class HeadcrabSystem : EntitySystem
             args.User, args.User);
     }
 
+    private static readonly ProtoId<TagPrototype> CannotSuicide = "CannotSuicide";
+    private static readonly ProtoId<AutoEmotePrototype> ZombieGroan = "ZombieGroan";
+
     private void OnGotUnequipped(EntityUid uid, HeadcrabComponent component, GotUnequippedEvent args)
     {
         if (args.Slot != "mask")
@@ -187,8 +191,8 @@ public sealed partial class HeadcrabSystem : EntitySystem
         if (Terminating(uid))
             return;
 
-        _autoEmote.RemoveEmote(args.EquipTarget, "ZombieGroan");
-        _tagSystem.RemoveTag(args.EquipTarget, "CannotSuicide");
+        _autoEmote.RemoveEmote(args.EquipTarget, ZombieGroan);
+        _tagSystem.RemoveTag(args.EquipTarget, CannotSuicide);
 
         component.EquippedOn = EntityUid.Invalid;
         var combatMode = EnsureComp<CombatModeComponent>(uid);

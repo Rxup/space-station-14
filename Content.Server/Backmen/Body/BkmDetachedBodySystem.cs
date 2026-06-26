@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.Rotting;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Rotting;
+using Content.Shared.Backmen.Damage;
 using Content.Shared.Backmen.Body.OrganRelations;
-using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -19,14 +18,16 @@ namespace Content.Server.Backmen.Body;
 
 public sealed partial class BkmDetachedBodySystem : EntitySystem
 {
-    [Dependency] private readonly Shared.Backmen.Body.OrganRelations.BkmDetachedBodySystem _detached = default!;
-    [Dependency] private readonly OrganRelationInitializerSystem _organRelations = default!;
-    [Dependency] private readonly RottingSystem _rotting = default!;
+    [Dependency] private Shared.Backmen.Body.OrganRelations.BkmDetachedBodySystem _detached = default!;
+    [Dependency] private OrganRelationInitializerSystem _organRelations = default!;
+    [Dependency] private RottingSystem _rotting = default!;
+    [Dependency] private BackmenDamageModelExclusivitySystem _backmenDamageExclusivity = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<BkmDetachedBodyComponent, MapInitEvent>(OnDetachedBodyMapInit);
         SubscribeLocalEvent<BkmDetachedBodyComponent, EntInsertedIntoContainerMessage>(_detached.OnOrganInserted);
         SubscribeLocalEvent<BkmDetachedBodyComponent, EntRemovedFromContainerMessage>(_detached.OnOrganRemoved);
 
@@ -35,6 +36,9 @@ public sealed partial class BkmDetachedBodySystem : EntitySystem
         SubscribeLocalEvent<BkmDetachedBrainProtectionComponent, DamageModifyEvent>(OnBrainDamageModify);
         SubscribeLocalEvent<BkmDetachedBrainProtectionComponent, IsRottingEvent>(OnBrainIsRotting);
     }
+
+    private void OnDetachedBodyMapInit(Entity<BkmDetachedBodyComponent> ent, ref MapInitEvent args) =>
+        _backmenDamageExclusivity.RemoveInjurableIfPresent(ent);
 
     private void OnDetachedBodyCreated(Entity<BkmDetachedBodyComponent> ent, ref BkmDetachedBodyCreatedEvent args)
     {

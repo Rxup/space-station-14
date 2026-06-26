@@ -36,8 +36,11 @@
           Quantity: 300
     - type: MeleeWeapon
       damage:
-        groups:
-          Burn: 10
+        types:
+          Heat: 2.5
+          Shock: 2.5
+          Cold: 2.5
+          Caustic: 2.5
     - type: MobState
     - type: MobThresholds
       thresholds:
@@ -56,7 +59,6 @@
         - Chapel
         - Research
     - type: MindContainer
-      showExamineInfo: true
     - type: Familiar
     - type: Dispellable
     - type: Damageable
@@ -110,13 +112,13 @@
       sprite: Backmen/Objects/Tools/ifrit_hand.rsi
     - type: Item
       sprite: Backmen/Objects/Tools/ifrit_hand.rsi
-    - type: SolutionContainerManager
-      solutions:
-        Welder:
-          reagents:
-            - ReagentId: Phlogiston
-              Quantity: 1000
-          maxVol: 1000
+    - type: Solution
+      id: welder
+      solution:
+        maxVol: 1000
+        reagents:
+          - ReagentId: Phlogiston
+            Quantity: 1000
     - type: MeleeWeapon
       wideAnimationRotation: -120
       soundHit:
@@ -136,7 +138,6 @@
     # for now, just make it sound like it's on fire no matter what because it
     # sounds cooler than the default fizzling noise.
     - type: SolutionRegeneration
-      solution: Welder
       generated:
         reagents:
           - ReagentId: Phlogiston

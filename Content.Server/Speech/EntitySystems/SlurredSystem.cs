@@ -1,5 +1,4 @@
 using System.Text;
-using Content.Shared.Drunk;
 using Content.Shared.Speech.Components;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffectNew;

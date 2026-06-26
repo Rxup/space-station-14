@@ -12,13 +12,19 @@ namespace Content.IntegrationTests.Tests.Backmen;
 [TestOf(typeof(RandomMetadataSystem))]
 public sealed partial class LocaleRu : GameTest
 {
-    [GeneratedRegex(@"^[IА-Яа-яЁёЙй\s0-9\-\'""\.\,!\ ]+$", RegexOptions.Compiled)]
+    [GeneratedRegex(@"^[IVXLCDMА-Яа-яЁёЙй\s0-9\-\'""\.\,!\ ]+$", RegexOptions.Compiled)]
     private static partial Regex GeneratedRegex();
 
     private static readonly string[] IgnoreList =
     [
         "NamesBorg"
     ];
+
+    public override PoolSettings PoolSettings => new()
+    {
+        Dirty = true,
+        Connected = false
+    };
 
     [Test]
     public async Task RandomNameMustBeRuTest()

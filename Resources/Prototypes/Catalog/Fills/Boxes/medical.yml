@@ -126,7 +126,7 @@
   - type: EntityTableContainerFill
     containers:
       storagebase:
-        id: BaseChemistryEmptyVial
+        id: ChemistryEmptyVial
         amount: 6
   - type: Sprite
     layers:

@@ -1,16 +1,16 @@
 using System.Linq;
 using Content.Server.Backmen.Disease.Components;
 using Content.Server.Backmen.Disease.Cures;
-using Content.Shared.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Backmen.Disease.Events;
 using Content.Shared.Body.Events;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Metabolism;
 using Content.Shared.Chat;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Clothing.Components;
 using Content.Shared.DoAfter;
@@ -23,8 +23,6 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Paper;
-using Content.Shared.UserInterface;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Configuration;
@@ -32,7 +30,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Threading;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Disease;
 
@@ -68,8 +65,67 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         SubscribeLocalEvent<DiseaseCarrierComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
         SubscribeLocalEvent<DiseaseCarrierComponent, ReagentMetabolised>(OnReagentMetabolised);
         SubscribeLocalEvent<DiseaseCarrierComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DamageDealtEvent>(OnColdDamageDealt);
+        SubscribeLocalEvent<DiseaseCarrierComponent, DamageChangedEvent>(OnColdDamageChanged);
 
         _cfg.OnValueChanged(CCVars.GameDiseaseEnabled, v => _enabled = v, true);
+    }
+
+    private static readonly ProtoId<DamageTypePrototype> ColdDamageType = "Cold";
+
+    /// <summary>
+    /// Cold-like diseases that can be contracted from cold damage (freezing, cryo weapons, etc.).
+    /// </summary>
+    private static readonly ProtoId<DiseasePrototype>[] ColdExposureDiseases =
+    [
+        "SpaceCold",
+        "SpaceFlu",
+        "VentCough",
+        "BirdFlew",
+    ];
+
+    private void OnColdDamageDealt(Entity<DiseaseCarrierComponent> entity, ref DamageDealtEvent args)
+    {
+        if (!args.Damage.DamageDict.TryGetValue(ColdDamageType, out var cold) || cold <= 0)
+            return;
+
+        TryColdExposureInfection(entity);
+    }
+
+    private void OnColdDamageChanged(Entity<DiseaseCarrierComponent> entity, ref DamageChangedEvent args)
+    {
+        if (!args.DamageIncreased || args.DamageDelta == null)
+            return;
+
+        if (!args.DamageDelta.DamageDict.TryGetValue(ColdDamageType, out var cold) || cold <= 0)
+            return;
+
+        TryColdExposureInfection(entity);
+    }
+
+    private void TryColdExposureInfection(Entity<DiseaseCarrierComponent> carrier)
+    {
+        if (!_enabled)
+            return;
+
+        if (TryComp<MobStateComponent>(carrier, out var mobState) && _mobStateSystem.IsDead(carrier, mobState))
+            return;
+
+        // Low chance per cold damage tick; prolonged exposure adds up.
+        if (!_random.Prob(0.005f))
+            return;
+
+        var available = new List<ProtoId<DiseasePrototype>>();
+        foreach (var disease in ColdExposureDiseases)
+        {
+            if (!carrier.Comp.AllDiseases.Contains(disease))
+                available.Add(disease);
+        }
+
+        if (available.Count == 0)
+            return;
+
+        TryInfect(carrier, _random.Pick(available), 0.7f);
     }
 
     private static readonly ProtoId<DiseasePrototype> WetHands = "WetHands";
@@ -408,6 +464,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         {
             CureDisease((uid, carrier), disease);
         }
+        carrier.PastDiseases.Clear();
     }
 
     /// <summary>

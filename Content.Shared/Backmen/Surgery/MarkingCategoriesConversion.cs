@@ -1,5 +1,4 @@
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 
 namespace Content.Shared.Backmen.Surgery;
 

@@ -86,7 +86,16 @@ def main(paths: list[Path]) -> int:
 
 
 if __name__ == "__main__":
-    targets = [Path(p) for p in sys.argv[1:]] if len(sys.argv) > 1 else list(
-        (Path(__file__).resolve().parent.parent / "Resources/Prototypes/_Backmen/Body").rglob("*.yml")
-    )
+    if len(sys.argv) > 1:
+        targets: list[Path] = []
+        for arg in sys.argv[1:]:
+            p = Path(arg)
+            if p.is_dir():
+                targets.extend(p.rglob("*.yml"))
+            else:
+                targets.append(p)
+    else:
+        targets = list(
+            (Path(__file__).resolve().parent.parent / "Resources/Prototypes").rglob("*.yml")
+        )
     raise SystemExit(main(targets))

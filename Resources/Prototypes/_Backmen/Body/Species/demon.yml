@@ -93,6 +93,7 @@
     currentLanguage: TauCetiBasic
   - type: Consciousness
     capBonus: 20
+    damageContainer: RaceDemon
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -119,8 +120,6 @@
       Unsexed: FemaleHuman
   - type: Damageable
     damageModifierSet: RaceDemon
-  - type: Injurable
-    damageContainer: RaceDemon
   - type: MeleeWeapon
     hidden: true
     soundHit:

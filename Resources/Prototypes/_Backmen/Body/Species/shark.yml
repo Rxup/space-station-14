@@ -114,8 +114,6 @@
   - type: Thirst
   - type: Damageable
     damageModifierSet: Scale
-  - type: Injurable
-    damageContainer: Biological
   - type: MeleeWeapon
     hidden: true
     soundHit:

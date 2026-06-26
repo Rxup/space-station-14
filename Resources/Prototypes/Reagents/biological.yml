@@ -37,7 +37,7 @@
       - !type:HealthChange
         damage:
           types:
-            Poison: 0.2
+            Poison: 4
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
@@ -167,7 +167,7 @@
       - !type:HealthChange
         damage:
           types:
-            Poison: 4
+            Bloodloss: -3
       - !type:Vomit
         probability: 0.25
 
@@ -193,6 +193,10 @@
           Burn: -3
           Brute: -3
           Toxin: -2
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 2
       - !type:HealthChange
         damage:
           types:

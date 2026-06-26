@@ -11,12 +11,12 @@
   - type: Produce
     seedId: cannabis
   - type: Edible # Precursor to the one true edible
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: THC
-          Quantity: 15
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: THC
+        Quantity: 15
 
 
 - type: entity
@@ -85,22 +85,22 @@
   #  energy: 2
   #- type: RgbLightController
   #  cycleRate: 0.6
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: SpaceDrugs
-          Quantity: 3
-        - ReagentId: Lipolicide
-          Quantity: 3
-        - ReagentId: MindbreakerToxin
-          Quantity: 2
-        - ReagentId: Happiness
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: SpaceDrugs
+        Quantity: 3
+      - ReagentId: Lipolicide
+        Quantity: 3
+      - ReagentId: MindbreakerToxin
+        Quantity: 2
+      - ReagentId: Happiness
+        Quantity: 2
 #       - ReagentId: ColorfulReagent
 #         Quantity: 1
-        - ReagentId: Psicodine
-          Quantity: 0.6
+      - ReagentId: Psicodine
+        Quantity: 0.6
 
 - type: entity
   name: dried rainbow cannabis leaves
@@ -175,12 +175,12 @@
     sprite: Objects/Specific/Hydroponics/tea_plant.rsi
   - type: Produce
     seedId: teaPlant
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Vitamin
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Vitamin
+        Quantity: 2
 
 - type: entity
   name: dried tea leaves
@@ -188,12 +188,12 @@
   id: LeavesTeaDried
   description: "Dried tea leaves, ready to be ground."
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: TeaPowder
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: TeaPowder
+        Quantity: 5
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/tea_plant.rsi
     state: dried
@@ -208,12 +208,12 @@
     sprite: Objects/Specific/Hydroponics/tobacco.rsi
   - type: Produce
     seedId: tobacco
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nicotine
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nicotine
+        Quantity: 2
 
 - type: entity
   name: dried tobacco leaves

@@ -58,15 +58,15 @@
       reagents:
       - ReagentId: SpaceDrugs
         Quantity: 10
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 3
-        - ReagentId: Vitamin
-          Quantity: 2
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 3
+      - ReagentId: Vitamin
+        Quantity: 2
   - type: RandomFillSolution
     solution: food
     weightedRandomId: RandomFillSpaceshroom
@@ -132,15 +132,15 @@
   - type: FlavorProfile
     flavors:
       - spaceshroomcooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Vitamin
-          Quantity: 5
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: Vitamin
+        Quantity: 5
   - type: Sprite
     sprite: Objects/Misc/spaceshroom.rsi
     state: spaceshroom_cooked

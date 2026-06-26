@@ -113,15 +113,37 @@ public sealed partial class StoreSystem
         if (!IsOnStartingMap(uid, component))
             DisableRefund(uid, component);
 
-        //subtract the cash
-        foreach (var (currency, amount) in cost)
+        if (!HandleBankTransaction(uid, component, msg, listing)) // backmen: currency
         {
-            component.Balance[currency] -= amount;
+            //check that we have enough money
+            foreach (var (currency, amount) in cost)
+            {
+                if (!component.Balance.TryGetValue(currency, out var balance) || balance < amount)
+                {
+                    return;
+                }
+            }
 
-            component.BalanceSpent.TryAdd(currency, FixedPoint2.Zero);
+            //subtract the cash
+            foreach (var (currency, amount) in cost)
+            {
+                component.Balance[currency] -= amount;
 
-            component.BalanceSpent[currency] += amount;
+                component.BalanceSpent.TryAdd(currency, FixedPoint2.Zero);
+
+                component.BalanceSpent[currency] += amount;
+            }
         }
+        // start-backmen: currency
+        else
+        {
+            foreach (var (currency, value) in listing.Cost)
+            {
+                component.BalanceSpent.TryAdd(currency, FixedPoint2.Zero);
+                component.BalanceSpent[currency] += value;
+            }
+        }
+        // end-backmen: currency
 
         //apply components
         if (listing.ProductComponents != null)
@@ -237,6 +259,10 @@ public sealed partial class StoreSystem
         listing.PurchaseAmount++; //track how many times something has been purchased
         if (msg.SoundSource != null && GetEntity(msg.SoundSource) != null)
             _audio.PlayEntity(component.BuySuccessSound, msg.Actor, GetEntity(msg.SoundSource.Value)); //cha-ching!
+        else
+            _audio.PlayEntity(component.BuySuccessSound, msg.Actor, uid); //cha-ching!
+
+        _PlayEject(uid); // backmen: currency
 
         var buyFinished = new StoreBuyFinishedEvent
         {

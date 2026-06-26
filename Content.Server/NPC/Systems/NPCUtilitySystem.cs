@@ -36,7 +36,6 @@ using Content.Server.Backmen.NPC.Queries.Queries;
 using Content.Server.Backmen.Vampiric;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
@@ -420,7 +419,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             {
                 if (blackboard.TryGetValue<HashSet<EntityUid>>(NPCRangedBlackboard.FailedGunTargetsKey, out var failed, EntityManager))
                 {
-                    if (!EntityManager.EntityExists(targetUid))
+                    if (!Exists(targetUid))
                         failed.Remove(targetUid);
                     else if (failed.Contains(targetUid))
                         return 0f;

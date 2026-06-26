@@ -1,5 +1,4 @@
 using Content.Server.Defusable.Systems;
-using Content.Server.Explosion.Components;
 using Content.Shared.Explosion.Components;
 using Robust.Shared.Audio;
 

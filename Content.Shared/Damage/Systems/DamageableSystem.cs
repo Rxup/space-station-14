@@ -1,32 +1,16 @@
 using System.Linq;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Wounds;
-using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Damage;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
-using Content.Shared.CCVar;
 using Content.Shared.Chemistry;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
-using Content.Shared.Inventory;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems; // backmen: body
-using Content.Shared.Radiation.Events;
-using Content.Shared.Rejuvenate;
-using Content.Shared.Backmen.Targeting;
-using Content.Shared.Body;
 using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Explosion.EntitySystems;
-using Content.Shared.FixedPoint;
-using Content.Shared.Mobs.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Damage.Systems;
 
@@ -43,11 +27,11 @@ public sealed partial class DamageableSystem : EntitySystem
 
     // backmen edit start
     [Dependency] private WoundSystem _wounds = default!;
+    [Dependency] private BackmenDamageModelSystem _backmenDamageModel = default!;
     // backmen edit end
 
     [Dependency] private EntityQuery<AppearanceComponent> _appearanceQuery = default!;
     [Dependency] private EntityQuery<DamageableComponent> _damageableQuery = default!;
-    [Dependency] private EntityQuery<InjurableComponent> _injurableQuery = default!;
 
     public float UniversalAllDamageModifier { get; private set; } = 1f;
     public float UniversalAllHealModifier { get; private set; } = 1f;

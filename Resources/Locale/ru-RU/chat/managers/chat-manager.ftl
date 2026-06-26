@@ -1,6 +1,6 @@
 ### UI
 
-chat-manager-max-message-length = Ваше сообщение превышает лимит в { $maxMessageLength } символов
+chat-manager-max-message-length = Ваше сообщение превышает лимит в {$maxMessageLength} символов
 chat-manager-ooc-chat-enabled-message = OOC чат был включён.
 chat-manager-ooc-chat-disabled-message = OOC чат был отключён.
 chat-manager-looc-chat-enabled-message = LOOC чат был включён.
@@ -11,22 +11,22 @@ chat-manager-crit-looc-chat-enabled-message = Игроки в критическ
 chat-manager-crit-looc-chat-disabled-message = Игроки в критическом состоянии больше не могут говорить в LOOC.
 chat-manager-admin-ooc-chat-enabled-message = Админ OOC чат был включён.
 chat-manager-admin-ooc-chat-disabled-message = Админ OOC чат был выключен.
-chat-manager-max-message-length-exceeded-message = Ваше сообщение превышает лимит в { $limit } символов
+chat-manager-max-message-length-exceeded-message = Ваше сообщение превышает лимит в {$limit} символов
 chat-manager-no-headset-on-message = У вас нет гарнитуры!
 chat-manager-no-radio-key = Не задан ключ канала!
 chat-manager-no-such-channel = Нет канала с ключём '{ $key }'!
 chat-manager-whisper-headset-on-message = Вы не можете шептать в радио!
 chat-manager-server-wrap-message = [bold]{ $message }[/bold]
 chat-manager-sender-announcement = Центральное командование
-chat-manager-sender-announcement-wrap-message = [font size=14][bold]Объявление { $sender }:[/font][font size=12]
-    { $message }[/bold][/font]
+chat-manager-sender-announcement-wrap-message = [font size=14][bold]Объявление {$sender}:[/font][font size=12]
+    {$message}[/bold][/font]
 chat-manager-wrap-language-font = [font="{ $fontType }" size={ $fontSize }]{ $message }[/font]
 chat-manager-wrap-language-font-whisper = [font="{ $fontType }"]{ $message }[/font]
 chat-manager-wrap-language-color = [color={ $color }]{ $message }[/color]
 chat-manager-entity-say-wrap-message = [BubbleHeader][Name]{ $entityName }[/Name][/BubbleHeader] { $verb }, "[BubbleContent]{ $message }[/BubbleContent]"
 chat-manager-entity-say-bold-wrap-message = [BubbleHeader][Name]{ $entityName }[/Name][/BubbleHeader] { $verb }, "[BubbleContent][bold]{ $message }[/bold][/font][/BubbleContent]"
-chat-manager-entity-whisper-wrap-message = [font size=11][italic][BubbleHeader][Name]{ $entityName }[/Name][/BubbleHeader] шепчет, "[BubbleContent]{ $message }[/BubbleContent]"[/italic][/font]
-chat-manager-entity-whisper-unknown-wrap-message = [font size=11][italic][BubbleHeader]Кто-то[/BubbleHeader] шепчет, "[BubbleContent]{ $message }[/BubbleContent]"[/italic][/font]
+chat-manager-entity-whisper-wrap-message = [font size=11][italic][BubbleHeader][Name]{$entityName}[/Name][/BubbleHeader] шепчет,"[BubbleContent]{$message}[/BubbleContent]"[/italic][/font]
+chat-manager-entity-whisper-unknown-wrap-message = [font size=11][italic][BubbleHeader]Кто-то[/BubbleHeader] шепчет, "[BubbleContent]{$message}[/BubbleContent]"[/italic][/font]
 chat-manager-entity-me-wrap-message = [italic]{ PROPER($entity) ->
        *[false] { $entityName } { $message }[/italic]
         [true] { CAPITALIZE($entityName) } { $message }[/italic]
@@ -39,11 +39,11 @@ chat-manager-send-admin-dead-chat-wrap-message = { $adminChannelName }: [bold]([
 chat-manager-send-admin-chat-wrap-message = { $adminChannelName }: [bold]{ $playerName }:[/bold] { $message }
 chat-manager-send-admin-announcement-wrap-message = [bold]{ $adminChannelName }: { $message }[/bold]
 chat-manager-send-hook-ooc-wrap-message = OOC: [bold](D){ $senderName }:[/bold] { $message }
-chat-manager-send-hook-admin-wrap-message = АДМИН: [bold](D){ $senderName }:[/bold] { $message }
+chat-manager-send-hook-admin-wrap-message = АДМИН: [bold](D){$senderName}:[/bold] {$message}
 chat-manager-dead-channel-name = МЁРТВЫЕ
 chat-manager-admin-channel-name = АДМИН
 chat-manager-rate-limited = Вы отправляете сообщения слишком быстро!
-chat-manager-rate-limit-admin-announcement = Предупреждение о превышении ограничения скорости: { $player }
+chat-manager-rate-limit-admin-announcement = Предупреждение о превышении ограничения скорости: {$player}
 chat-speech-verb-suffix-exclamation = !
 chat-speech-verb-suffix-exclamation-strong = !!
 chat-speech-verb-suffix-question = ?

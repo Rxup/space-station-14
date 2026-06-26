@@ -1,8 +1,3 @@
-using Content.Shared.Chasm;
-using Content.Shared.Speech.Components;
-using Content.Shared.Speech.Muting;
-using System;
-
 namespace Content.Shared.Speech.EntitySystems;
 
 /// <summary>

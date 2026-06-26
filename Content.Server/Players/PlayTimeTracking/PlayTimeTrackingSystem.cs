@@ -7,6 +7,7 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Events;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
@@ -37,6 +38,7 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private PlayTimeTrackingManager _tracking = default!;
+    [Dependency] private ISharedSponsorsManager _sponsorsManager = default!; // backmen: allRoles
 
     public override void Initialize()
     {
@@ -243,6 +245,11 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsServerAllRoles(player.UserId))
+            return true;
+        //end-backmen
+
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
         {
             Log.Error($"Unable to check playtimes {Environment.StackTrace}");
@@ -271,6 +278,11 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsServerAllRoles(player.UserId))
+            return true;
+        //end-backmen
+
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
         {
             Log.Error($"Unable to check playtimes {Environment.StackTrace}");
@@ -294,6 +306,11 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return roles;
 
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsServerAllRoles(player.UserId))
+            return roles;
+        //end-backmen
+
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))
         {
             Log.Error($"Unable to check playtimes {Environment.StackTrace}");
@@ -313,6 +330,11 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
     {
         if (!_cfg.GetCVar(CCVars.GameRoleTimers))
             return;
+
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsServerAllRoles(userId))
+            return;
+        //end-backmen
 
         var player = _playerManager.GetSessionById(userId);
         if (!_tracking.TryGetTrackerTimes(player, out var playTimes))

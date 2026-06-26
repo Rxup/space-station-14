@@ -38,6 +38,7 @@ namespace Content.Server.Backmen.Blob.Systems;
 
 public sealed partial class BlobCoreSystem : EntitySystem
 {
+    private static readonly EntProtoId BlobRuleId = "BlobRule";
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
@@ -209,7 +210,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
         var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
         if (blobRule == null)
         {
-            _gameTicker.StartGameRule("BlobRule", out _);
+            _gameTicker.StartGameRule(BlobRuleId, out _);
         }
 
         var ev = new CreateBlobObserverEvent(userId);
@@ -302,7 +303,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
         }
 
         var blobCoreComp = blobCore.Comp;
-        var blobTileUid = EntityManager.SpawnEntity(blobCoreComp.TilePrototypes[newBlobTile], coordinates);
+        var blobTileUid = Spawn(blobCoreComp.TilePrototypes[newBlobTile], coordinates);
 
         if (!_tile.TryGetComponent(blobTileUid, out var blobTileComp))
         {

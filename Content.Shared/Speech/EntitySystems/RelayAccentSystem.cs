@@ -1,4 +1,3 @@
-using Content.Shared.Speech;
 using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared.Speech.EntitySystems;

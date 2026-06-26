@@ -1,11 +1,9 @@
-using System.Collections.Generic;
 using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
-using Content.Shared.Body.Organ;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Backmen.Body;
@@ -13,15 +11,15 @@ namespace Content.Server.Backmen.Body;
 /// <summary>
 /// Staged burn handling for detached body bundles on the ground.
 /// </summary>
-public sealed class BkmDetachedBodyBurnSystem : EntitySystem
+public sealed partial class BkmDetachedBodyBurnSystem : EntitySystem
 {
-    [Dependency] private readonly BkmBodySharedSystem _body = default!;
-    [Dependency] private readonly BkmBrainPreservationSystem _brain = default!;
-    [Dependency] private readonly BkmBurnEffectsSystem _burnEffects = default!;
-    [Dependency] private readonly BkmDetachedBodyScatterSystem _scatter = default!;
-    [Dependency] private readonly FlammableSystem _flammable = default!;
-    [Dependency] private readonly OrganRelationSystem _organRelation = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
+    [Dependency] private BkmBrainPreservationSystem _brain = default!;
+    [Dependency] private BkmBurnEffectsSystem _burnEffects = default!;
+    [Dependency] private BkmDetachedBodyScatterSystem _scatter = default!;
+    [Dependency] private FlammableSystem _flammable = default!;
+    [Dependency] private OrganRelationSystem _organRelation = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
 
     public override void Initialize()
     {

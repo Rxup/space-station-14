@@ -18,15 +18,20 @@
       params:
         volume: -3
     damage:
-      groups:
-        Brute: 5
+      types:
+        Blunt: 1.25
+        Slash: 1.25
+        Piercing: 1.25
+        ArmorPiercing: 1.25
   - type: Wieldable
   - type: IncreaseDamageOnWield
     damage:
-      groups:
-        Brute: 10
       types:
         Structural: 30
+        Blunt: 2.5
+        Slash: 2.5
+        Piercing: 2.5
+        ArmorPiercing: 2.5
   - type: Item
     size: Normal
     shape:
@@ -62,11 +67,12 @@
       path: "/Audio/Items/drill_hit.ogg"
     attackRate: 4
     damage:
-      groups:
-        Brute: 3
       types:
         Structural: 15
-
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        ArmorPiercing: 0.75
 - type: entity
   name: diamond tipped mining drill
   parent: MiningDrill
@@ -84,12 +90,12 @@
       path: "/Audio/Items/drill_hit.ogg"
     attackRate: 4
     damage:
-      groups:
-        Brute: 6
       types:
         Structural: 30
-
-
+        Blunt: 1.5
+        Slash: 1.5
+        Piercing: 1.5
+        ArmorPiercing: 1.5
 - type: entity
   abstract: true
   parent: BaseItem
@@ -132,8 +138,11 @@
     delay: 0.9
   - type: LeechOnMarker
     leech:
-      groups:
-        Brute: -6
+      types:
+        Blunt: -1.5
+        Slash: -1.5
+        Piercing: -1.5
+        ArmorPiercing: -1.5
   - type: Gun
     soundGunshot: /Audio/Weapons/plasma_cutter.ogg
     fireRate: 1
@@ -151,7 +160,7 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 10 # Lavaland Change: no damage when unwielded2
+        Blunt: 10
         Slash: 4
     soundHit:
       collection: MetalThud
@@ -252,8 +261,11 @@
     count: 1
   - type: LeechOnMarker
     leech:
-      groups:
-        Brute: -21 # Lavaland Change: lower crusher healing
+      types:
+        Blunt: -5.25
+        Slash: -5.25
+        Piercing: -5.25
+        ArmorPiercing: -5.25
   - type: MeleeWeapon
     attackRate: 1
     wideAnimationRotation: -135

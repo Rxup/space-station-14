@@ -1,7 +1,18 @@
+using System.Linq;
 using Content.Shared.Atmos.Rotting;
+using Content.Shared.Backmen.Body.Systems; // backmen: body
+using Content.Shared.Backmen.Surgery.Consciousness;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body;
+using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chat;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.DoAfter;
 using Content.Shared.Electrocution;
 using Content.Shared.Interaction;
@@ -39,6 +50,10 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private ConsciousnessSystem _consciousness = default!; // backmen edit:
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!; // backmen edit: for blood level check
+    [Dependency] private BkmBodySharedSystem _body = default!; // backmen: body
+    [Dependency] private WoundSystem _wound = default!; // backmen edit: for checking wounds
 
     private readonly HashSet<EntityUid> _interacters = new();
 
@@ -206,7 +221,57 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
         else
         {
             if (_mobState.IsDead(target, targetMobState))
-                _damageable.TryChangeDamage(target, ent.Comp.ZapHeal, true, origin: user);
+            {
+                // backmen edit start
+                if (TryComp<ConsciousnessComponent>(target, out var consciousness)
+                    && _consciousness.TryGetNerveSystem(target, out var nerveSys))
+                {
+                    Entity<ConsciousnessComponent?> entConsciousness = (target, consciousness);
+                    _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, ConsciousnessModifierIds.Asphyxiation);
+                    _consciousness.RemoveConsciousnessModifier(entConsciousness, target, "DeathThreshold");
+
+                    if (TryComp<BloodstreamComponent>(target, out var bloodstream))
+                    {
+                        var bloodLevel = (FixedPoint2) _bloodstream.GetBloodLevel((target, bloodstream));
+                        var thresholdValue = bloodstream.LethalBloodlossThreshold * bloodstream.MaxVolumeModifier;
+                        if (bloodLevel >= thresholdValue)
+                        {
+                            _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "Bloodloss");
+                        }
+                    }
+
+                    var hasPainfulWounds = false;
+                    if (TryComp<BodyComponent>(target, out var body))
+                    {
+                        foreach (var bodyPartId in _body.GetDistributedDamageTargets(target, body))
+                        {
+                            if (_wound.GetWoundableWoundsWithComp<PainInflicterComponent>(bodyPartId).Any())
+                            {
+                                hasPainfulWounds = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (!hasPainfulWounds)
+                    {
+                        _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, "WoundPain");
+                    }
+
+                    if (_consciousness.CheckConscious((target, consciousness, targetMobState)))
+                    {
+                        _consciousness.ForceConscious(entConsciousness, ent.Comp.ForceConsciousnessDuration);
+                        failedRevive = false;
+                    }
+                    _consciousness.ForcePassOut(entConsciousness, TimeSpan.FromSeconds(10));
+                    _consciousness.RemoveConsciousnessModifier(entConsciousness, target, "DeathThreshold");
+                    _consciousness.RemoveConsciousnessModifier(entConsciousness, nerveSys.Value, ConsciousnessModifierIds.Asphyxiation);
+                }
+                else // backmen edit end
+                {
+                    _damageable.ChangeDamage(target, ent.Comp.ZapHeal, true, origin: user, targetPart: TargetBodyPart.Chest); // backmen: surgery
+                }
+            }
 
             if (TryComp<MobThresholdsComponent>(target, out var targetThresholds) &&
                 _mobThreshold.TryGetThresholdForState(target, MobState.Dead, out var threshold, targetThresholds) &&

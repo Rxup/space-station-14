@@ -24,8 +24,6 @@ using Robust.Shared.Replays;
 using System.Linq;
 
 using Content.Shared.Backmen.Language;
-using Content.Shared.Silicons.StationAi;
-using Content.Shared.Silicons.Borgs.Components;
 
 namespace Content.Server.Telephone;
 

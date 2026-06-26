@@ -25,9 +25,6 @@ public sealed partial class PowerSensorSystem : EntitySystem
     [Dependency] private SharedToolSystem _tool = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
 
-    private EntityQuery<NodeContainerComponent> _nodeQuery;
-    private EntityQuery<TransformComponent> _xformQuery;
-
     public override void Initialize()
     {
         base.Initialize();

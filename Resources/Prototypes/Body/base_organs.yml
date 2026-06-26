@@ -38,12 +38,13 @@
       state: torso
   - type: VisualOrganMarkings
     markingData:
-      group: None
       layers:
       - Chest
       - Tail
       - Overlay
       - TailOverlay
+      - UndergarmentTop
+      - UndergarmentBottom
       - Special
 
 - type: entity
@@ -64,7 +65,6 @@
     hideableLayers:
     - enum.HumanoidVisualLayers.Hair
     markingData:
-      group: None
       layers:
       - Head
       - Hair
@@ -90,7 +90,6 @@
       state: l_arm
   - type: VisualOrganMarkings
     markingData:
-      group: None
       layers:
       - LArm
 
@@ -110,7 +109,6 @@
       state: r_arm
   - type: VisualOrganMarkings
     markingData:
-      group: None
       layers:
       - RArm
 
@@ -134,7 +132,6 @@
       state: l_hand
   - type: VisualOrganMarkings
     markingData:
-      group: None
       layers:
       - LHand
 
@@ -158,7 +155,6 @@
       state: r_hand
   - type: VisualOrganMarkings
     markingData:
-      group: None
       layers:
       - RHand
 
@@ -178,7 +174,6 @@
       state: l_leg
   - type: VisualOrganMarkings
     markingData:
-      group: None
       layers:
       - LLeg
 
@@ -198,7 +193,6 @@
       state: r_leg
   - type: VisualOrganMarkings
     markingData:
-      group: None
       layers:
       - RLeg
 
@@ -218,7 +212,6 @@
       state: l_foot
   - type: VisualOrganMarkings
     markingData:
-      group: None
       layers:
       - LFoot
 
@@ -238,7 +231,6 @@
       state: r_foot
   - type: VisualOrganMarkings
     markingData:
-      group: None
       layers:
       - RFoot
 
@@ -293,7 +285,6 @@
       state: eyes
   - type: VisualOrganMarkings
     markingData:
-      group: None
       layers:
       - Eyes
 
@@ -347,23 +338,27 @@
     category: Lungs
   - type: Lung
   - type: Metabolizer
-    removeEmpty: true
-    solutionOnBody: false
-    solution: "Lung"
-    groups:
-    - id: Gas
-      rateModifier: 100.0
-  - type: SolutionContainerManager
+    stages: [ Respiration ]
+  - type: SolutionManager
     solutions:
-      Lung:
-        maxVol: 100.0
-        canReact: false
+    - SolutionLungGas
   - type: Sprite
     layers:
     - state: lung-l
     - state: lung-r
   - type: Item
     heldPrefix: lungs
+
+- type: entity
+  parent: Solution
+  id: SolutionLungGas # TODO: Metabolize directly from gasses :(
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: Lung
+    solution:
+      maxVol: 100.0
+      canReact: false
 
 - type: entity
   parent: OrganBase
@@ -380,10 +375,7 @@
     - state: heart-on
   - type: Metabolizer
     maxReagents: 2
-    groups:
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
+    stages: [ Bloodstream ]
 
 - type: entity
   parent: OrganBase
@@ -395,20 +387,27 @@
   - type: Organ
     category: Stomach
   - type: Stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
+    - SolutionStomach
   - type: Metabolizer
     maxReagents: 3
-    groups:
-    - id: Food
-    - id: Drink
+    stages: [ Digestion ]
   - type: Sprite
     layers:
     - state: stomach
   - type: Item
     heldPrefix: stomach
+
+- type: entity
+  parent: Solution
+  id: SolutionStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 150 # 1.25 liters which is average for a human
 
 - type: entity
   parent: OrganBase
@@ -427,8 +426,7 @@
     heldPrefix: liver
   - type: Metabolizer
     maxReagents: 1
-    groups:
-    - id: Alcohol
+    stages: [ Metabolites ]
 
 - type: entity
   parent: OrganBase
@@ -447,7 +445,6 @@
     heldPrefix: kidneys
   - type: Metabolizer
     maxReagents: 5
-    removeEmpty: true
 
 - type: entity
   id: OrganSpriteHumanInternal

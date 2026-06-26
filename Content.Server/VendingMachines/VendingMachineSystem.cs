@@ -4,7 +4,6 @@ using Content.Server.Cargo.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Vocalization.Systems;
 using Content.Shared.Cargo;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Power;

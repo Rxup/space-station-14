@@ -39,6 +39,7 @@
   - type: InteractionOutline
   - type: Clickable
   - type: Damageable
+  - type: Injurable
   - type: Appearance
   - type: AnimationPlayer
   - type: GuideHelp

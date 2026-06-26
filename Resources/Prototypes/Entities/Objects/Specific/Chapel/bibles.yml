@@ -4,24 +4,26 @@
   parent: BaseStorageItem
   id: Bible
   components:
-  - type: RevealRevenantOnCollide
-    popupText: revenant-revealed-default
-    revealTime: 5
-    stunTime: 2
-  - type: CollisionWake
-    enabled: false
   - type: UseDelay
     delay: 10.0
   - type: Bible
     damage:
-      groups:
-        Brute: -35
-        Burn: -35
-        Immaterial: -10
+      types:
+        Blunt: -8.75
+        Slash: -8.75
+        Piercing: -8.75
+        ArmorPiercing: -8.75
+        Heat: -8.75
+        Shock: -8.75
+        Cold: -8.75
+        Caustic: -8.75
+        Holy: -10
     damageOnFail:
-      groups:
-        Brute: 15
-        Airloss: 15
+      types:
+        Blunt: 5
+        Piercing: 5
+        Slash: 5
+        Asphyxiation: 15
     damageOnUntrainedUse: ## What a non-chaplain takes when attempting to heal someone
       types:
         Heat: 10
@@ -61,11 +63,6 @@
     - Book
   - type: StealTarget
     stealGroup: Bible
-  #Backmen-edit-start
-  - type: Construction
-    graph: BlessedBible
-    node: start
-  #Backmen-edit-end
 
 - type: entity
   parent: [Bible, BaseSyndicateContraband]
@@ -76,17 +73,20 @@
   - type: Bible
     damage:
       types:
-        Caustic: 20 ## ~15 dps
+        Caustic: 20
     damageOnFail:
-      groups:
-        Brute: 15
-        Airloss: 25
+      types:
+        Blunt: 5
+        Piercing: 5
+        Slash: 5
+        Asphyxiation: 25
     damageOnUntrainedUse:
       types:
         Caustic: 50
     failChance: 0
     locPrefix: "necro"
     healSound: "/Audio/Effects/lightburn.ogg"
+    healingLightEffect: EvilLightEffect
   - type: Summonable
     specialItem: SpawnPointGhostCerberus
     respawnTime: 300
@@ -94,19 +94,6 @@
     sprite: Objects/Specific/Chapel/necronomicon.rsi
   - type: Item
     sprite: Objects/Specific/Chapel/necronomicon.rsi
-# Corvax-HiddenDesc-Start
-  - type: HiddenDescription
-    entries:
-    - label: corvax-hidden-desc-BibleNecronomicon-syndicate
-      whitelistMind:
-        mindRoles:
-        - TraitorRole
-        - NukeopsRole
-    - label: corvax-hidden-desc-BibleNecronomicon-service
-      jobRequired:
-        - Chaplain
-        - Librarian
-# Corvax-HiddenDesc-End
 
 - type: entity
   parent: BaseAction
@@ -185,3 +172,26 @@
     sprite: Objects/Specific/Chapel/ratvartablet.rsi
   - type: Item
     sprite: Objects/Specific/Chapel/ratvartablet.rsi
+
+- type: entity
+  id: HolyLightEffect
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: PointLight
+      enabled: true
+      radius: 1.5
+      energy: 20
+      color: lightgoldenrodyellow
+      netsync: false
+    - type: LightFade
+      duration: 0.7
+    - type: TimedDespawn
+      lifetime: 0.7
+
+- type: entity
+  id: EvilLightEffect
+  categories: [ HideSpawnMenu ]
+  parent: HolyLightEffect
+  components:
+    - type: PointLight
+      color: red

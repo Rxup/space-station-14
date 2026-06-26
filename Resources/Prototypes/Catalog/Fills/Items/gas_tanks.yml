@@ -26,7 +26,7 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       # 31 minutes
       volume: 5
@@ -40,7 +40,7 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       # 4 minutes
       volume: 0.66
@@ -54,7 +54,7 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       # 4 minutes
       volume: 0.66
@@ -68,7 +68,7 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       # 9 minutes
       volume: 1.5
@@ -82,7 +82,7 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       # 9 minutes
       volume: 1.5
@@ -96,7 +96,7 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       # 15 minutes
       volume: 2.5
@@ -110,7 +110,7 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 21.3
+    releasePressure: 21.3
     air:
       # 15 minutes
       volume: 2.5
@@ -124,7 +124,7 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 22.4
+    releasePressure: 22.4
     air:
       # 4 minutes
       volume: 0.66
@@ -140,7 +140,7 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 101.3
+    releasePressure: 101.3
     air:
       # 6 minutes due to output pressure
       volume: 5
@@ -176,7 +176,7 @@
     #  * 101.325 | one atmosphere
     # __________
     #    30.3975   optimal output pressure
-    outputPressure: 30.4
+    releasePressure: 30.4
     air:
       # only 22 minutes due to pressure
       volume: 5
@@ -193,7 +193,7 @@
   suffix: Filled
   components:
   - type: GasTank
-    outputPressure: 101.3
+    releasePressure: 101.3
     air:
       # 6 minutes of agony
       volume: 5

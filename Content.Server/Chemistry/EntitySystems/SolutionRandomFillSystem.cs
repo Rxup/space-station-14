@@ -3,7 +3,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
-using Content.Shared.Storage.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -19,7 +18,9 @@ public sealed partial class SolutionRandomFillSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RandomFillSolutionComponent, MapInitEvent>(OnRandomSolutionFillMapInit);
+        SubscribeLocalEvent<RandomFillSolutionComponent, MapInitEvent>(
+            OnRandomSolutionFillMapInit,
+            after: [typeof(SharedSolutionContainerSystem)]);
     }
 
     private void OnRandomSolutionFillMapInit(Entity<RandomFillSolutionComponent> entity, ref MapInitEvent args)
@@ -38,10 +39,16 @@ public sealed partial class SolutionRandomFillSystem : EntitySystem
             return;
         }
 
-        _solutionsSystem.EnsureSolution(entity.Owner, entity.Comp.Solution, out var target);
-        if (target.Comp.Solution.AvailableVolume < quantity)
-            Log.Error($"A random solution fill {entity.Comp.WeightedRandomId} tried to put {pick.quantity} of {pick.reagent} into {ToPrettyString(target)} but there was not enough space!");
+        if (!_solutionsSystem.TryGetSolution(entity.Owner, entity.Comp.Solution, out var target, out _))
+        {
+            Log.Error(
+                $"A random solution fill {entity.Comp.WeightedRandomId} could not find solution {entity.Comp.Solution} on {ToPrettyString(entity)}");
+            return;
+        }
 
-        _solutionsSystem.TryAddReagent(target, reagent, quantity);
+        if (target!.Value.Comp.Solution.AvailableVolume < quantity)
+            Log.Error($"A random solution fill {entity.Comp.WeightedRandomId} tried to put {pick.quantity} of {pick.reagent} into {ToPrettyString(target.Value)} but there was not enough space!");
+
+        _solutionsSystem.TryAddReagent(target.Value, reagent, quantity);
     }
 }

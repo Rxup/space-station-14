@@ -1,7 +1,6 @@
 using Content.Shared._Goobstation.Weapons.Multishot;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 

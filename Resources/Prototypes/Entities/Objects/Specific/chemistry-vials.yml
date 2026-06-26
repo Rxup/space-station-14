@@ -23,7 +23,7 @@
 ## Entities
 
 - type: entity
-  parent: [SolutionTiny, BaseChemistryVial]
+  parent: BaseChemistryVial
   id: ChemistryEmptyVial
   name: vial
   description: A small vial.
@@ -65,11 +65,15 @@
         acts: [ "Destruction" ]
 
 - type: entity
-  parent: [SolutionVeryTiny, BaseChemistryVial]
+  parent: BaseChemistryVial
   id: ChemistryEmptyVialSmall
   name: mini vial
   description: A smaller vial.
   components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 15
   - type: Item
     sprite: Objects/Specific/Chemistry/vial_mini.rsi
   - type: Sprite
@@ -106,11 +110,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-vestine
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Vestine
-        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Vestine
+          Quantity: 30
   - type: Tag
     tags: &TagVial # Remove trash tag when we have a filled solution
     - CentrifugeCompatible
@@ -122,11 +127,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-radium
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Radium
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Radium
+          Quantity: 5
   - type: Tag
     tags: *TagVial
 
@@ -137,11 +143,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-chlorine
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Chlorine
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Chlorine
+          Quantity: 5
   - type: Tag
     tags: *TagVial
 
@@ -152,10 +159,11 @@
   components:
   - type: Label
     currentLabel: reagent-name-plasma
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Plasma
-        Quantity: 15
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Plasma
+          Quantity: 15
   - type: Tag
     tags: *TagVial

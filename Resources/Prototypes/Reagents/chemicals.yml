@@ -24,8 +24,7 @@
         damage:
           types:
             Caustic: 1
-            Poison: 2 # Phenol is definitely not safe
-
+            Poison: 2
 - type: reagent
   id: Charcoal
   name: reagent-name-charcoal
@@ -66,7 +65,6 @@
         damage:
           types:
             Caustic: 1
-
 - type: reagent
   id: SodiumCarbonate
   name: reagent-name-sodium-carbonate
@@ -128,8 +126,7 @@
       - !type:HealthChange
         damage:
           types:
-            Cellular: 1 #it's a carcinogen, reckon this is fine
-
+            Cellular: 1
 - type: reagent
   id: Hydroxide
   name: reagent-name-hydroxide

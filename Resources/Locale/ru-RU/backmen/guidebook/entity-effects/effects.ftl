@@ -1,5 +1,4 @@
-entity-effect-guidebook-adjust-traumas =
-    { $chance ->
+entity-effect-guidebook-adjust-traumas = { $chance ->
         [1]
             { $deltasign ->
                 [1] Применяет
@@ -14,13 +13,11 @@ entity-effect-guidebook-adjust-traumas =
 entity-effect-guidebook-adjust-traumas-target-body-parts = частей тела
 entity-effect-guidebook-adjust-traumas-target-organs = органов
 entity-effect-guidebook-adjust-traumas-targets = на цели: { $targets }
-entity-effect-guidebook-adjust-traumas-target-components =
-    с компонентами { $components } { $mustHaveAll ->
+entity-effect-guidebook-adjust-traumas-target-components = с компонентами { $components } { $mustHaveAll ->
         [true] (все должны быть)
        *[false] (любой из них)
     }
-entity-effect-guidebook-suppress-pain =
-    { $chance ->
+entity-effect-guidebook-suppress-pain = { $chance ->
         [1] Подавляет
        *[other] подавляет
     } боль на { NATURALFIXED($amount, 2) } на { NATURALFIXED($time, 3) } { MANY("секунду", $time) } (максимум до { NATURALFIXED($maximumSuppression, 2) } подавления)

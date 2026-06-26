@@ -10,12 +10,9 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Cargo.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Coordinates.Helpers;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
-using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
@@ -23,8 +20,6 @@ using Content.Shared.Popups;
 using Content.Shared.SubFloor;
 using Content.Shared.Warps;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
@@ -339,7 +334,7 @@ public sealed partial class FleshCultistSystem
                 PopupType.LargeCaution);
             if (TryComp<CuffableComponent>(uid, out var cuffableComponent))
             {
-                EntityManager.RemoveComponent<CuffableComponent>(uid);
+                RemComp<CuffableComponent>(uid);
             }
         }
         else
@@ -496,7 +491,7 @@ public sealed partial class FleshCultistSystem
                         ("Entity", uid)),
                     uid,
                     PopupType.LargeCaution);
-                EntityManager.DeleteEntity(outerClothing.Value);
+                Del(outerClothing.Value);
                 _movement.RefreshMovementSpeedModifiers(uid);
                 args.Handled = true;
             }
@@ -576,7 +571,7 @@ public sealed partial class FleshCultistSystem
                         ("Entity", uid)),
                     uid,
                     PopupType.LargeCaution);
-                EntityManager.DeleteEntity(shoes.Value);
+                Del(shoes.Value);
                 _movement.RefreshMovementSpeedModifiers(uid);
                 args.Handled = true;
             }

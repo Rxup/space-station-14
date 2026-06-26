@@ -99,6 +99,11 @@
   name: store-category-psionic
   priority: 12
 
+#nukie delivery
+- type: storeCategory
+  id: NukieDelivery
+  name: store-category-nukie-delivery
+
 #revenant
 - type: storeCategory
   id: RevenantAbilities
@@ -116,6 +121,18 @@
 
 #changeling
 #todo: add actual categories when changeling design/abilities are fleshed out
+- type: storeCategory
+  id: ChangelingStoreCombat
+  name: store-category-combat
+
+- type: storeCategory
+  id: ChangelingStoreUtility
+  name: store-category-utility
+
+- type: storeCategory
+  id: ChangelingStoreStealth
+  name: store-category-stealth
+
 - type: storeCategory
   id: ChangelingAbilities
   name: store-category-abilities

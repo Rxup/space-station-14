@@ -33,6 +33,7 @@
   setPreference: true
   objective: roles-antag-syndicate-agent-sleeper-objective
   guides: [ Traitors ]
+  discordRequired: true # backmen: antag
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 1h

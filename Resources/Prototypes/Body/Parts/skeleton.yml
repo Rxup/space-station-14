@@ -13,8 +13,6 @@
         sprite: Mobs/Effects/burn_damage.rsi
     bleedingOverlay: Mobs/Effects/bleeding_damage.rsi
   - type: Damageable
-  - type: Injurable
-    damageContainer: Biological
   - type: BodyPart
   - type: ContainerContainer
     containers:

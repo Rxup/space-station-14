@@ -188,7 +188,7 @@
 - type: soundCollection
   id: HarpyRevs
   files:
-    - /Audio/Weapons/chainsawwield.ogg
+    - /Audio/Weapons/chainsaw_pull.ogg
     - /Audio/Machines/blender.ogg
     - /Audio/Machines/juicer.ogg
     - /Audio/Machines/reclaimer_startup.ogg

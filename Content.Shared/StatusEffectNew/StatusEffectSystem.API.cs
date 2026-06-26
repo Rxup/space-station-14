@@ -1,9 +1,6 @@
-using System.ComponentModel.Design;
-using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Prototypes;
-using YamlDotNet.Core.Tokens;
 
 namespace Content.Shared.StatusEffectNew;
 

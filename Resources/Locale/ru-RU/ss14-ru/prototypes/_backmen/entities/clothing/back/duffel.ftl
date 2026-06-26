@@ -1,9 +1,3 @@
-ent-ClothingBackpackDuffelInteQ = combat duffel bag
-    .desc = A large duffel bag for holding weapons and supplies.
-ent-ClothingBackpackDuffelInteQAmmo = combat duffel bag
-    .desc = A large duffel bag for holding weapons and ammunition.
-ent-ClothingBackpackDuffelInteQMedical = combat duffel bag
-    .desc = A large duffel bag for holding weapons and medical things.
 ent-ClothingBackpackDuffelBlueshield = вещмешок офицера "Синий Щит"
     .desc = Большой вещмешок для хранения дополнительных припасов усиленной охраны.
 ent-ClothingBackpackDuffelWhiteCaptain = белый вещмешок капитана

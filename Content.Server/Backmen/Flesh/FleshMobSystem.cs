@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Interaction.Events;

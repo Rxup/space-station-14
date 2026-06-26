@@ -528,6 +528,20 @@ public sealed partial class PathfindingSystem
                                 flags |= PathfindingBreadcrumbFlag.Climb;
                             }
 
+                            // start-backmen: blob
+                            if (_tilesQuery.HasComponent(ent))
+                            {
+                                flags |= PathfindingBreadcrumbFlag.Blob;
+                            }
+                            // end-backmen: blob
+
+                            // start-backmen: web
+                            if (_webQuery.HasComponent(ent) || _spiderWebQuery.HasComponent(ent))
+                            {
+                                flags |= PathfindingBreadcrumbFlag.Web;
+                            }
+                            // end-backmen: web
+
                             if (_destructibleQuery.TryGetComponent(ent, out var damageable))
                             {
                                 damage += _destructible.DestroyedAt(ent, damageable).Float();

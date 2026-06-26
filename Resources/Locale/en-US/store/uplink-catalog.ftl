@@ -129,6 +129,9 @@ uplink-holopara-kit-name = Holoparasite Kit
 uplink-holopara-kit-desc = The pride and joy of Cybersun. Contains an injector that hosts a sentient metaphysical guardian made of hard light which resides in the user's body when not active.
     The guardian can punch rapidly and is immune to hazardous environments while being resistant to direct trauma, but shares any damage it takes with the user.
 
+uplink-glimmer-wisp-familiar-name = Glimmer Wisp Familiar
+uplink-glimmer-wisp-familiar-desc = A crystallized shard of noospheric energy. On purchase it immediately binds to you as a familiar that follows you and attacks nearby threats with zaps and arcane bolts.
+
 uplink-holoclown-kit-name = Holoclown Kit
 uplink-holoclown-kit-desc = A joint venture between Cybersun and Honk.co. Contains an injector that hosts a sentient metaphysical clown made of hard light which resides in the user's body when not active.
     The holoclown has pockets to store things, a hardlight hand it can manipulate the environment with and is immune to hazardous environments while being resistant to direct trauma, but shares any damage it takes with the user.

@@ -12,9 +12,9 @@
     sprite: Objects/Consumable/Food/meat.rsi
   - type: Extractable
     grindableSolutionName: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -80,9 +80,9 @@
   components:
   - type: Sprite
     state: plain
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 9
@@ -116,9 +116,9 @@
   components:
   - type: Sprite
     state: plain
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 9
@@ -149,9 +149,9 @@
     - Meat
   - type: Sprite
     state: fish
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: CarpoToxin
           Quantity: 5
@@ -181,9 +181,9 @@
     - Meat
   - type: Sprite
     state: bacon
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 2
@@ -213,9 +213,9 @@
   components:
   - type: Sprite
     state: bear
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 9
@@ -246,9 +246,9 @@
   components:
   - type: Sprite
     state: bird
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 9
@@ -277,9 +277,9 @@
   components:
   - type: Sprite
     state: bird
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 9
@@ -310,9 +310,9 @@
   components:
   - type: Sprite
     state: bird
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 9
@@ -347,9 +347,9 @@
     - Meat
   - type: Sprite
     state: corgi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Bicaridine
           Quantity: 20
@@ -377,9 +377,9 @@
       - crabby
   - type: Sprite
     state: crab
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 1
@@ -398,9 +398,9 @@
   components:
   - type: Sprite
     state: goliath
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
@@ -435,9 +435,9 @@
     - state: dragon
     - state: dragon_veins
       shader: unshaded
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Ichor
           Quantity: 10
@@ -469,9 +469,9 @@
   components:
   - type: Sprite
     state: plain
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 3
@@ -496,9 +496,9 @@
   components:
   - type: Sprite
     state: lizard
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 9
@@ -544,9 +544,9 @@
     - Recyclable
   - type: Sprite
     state: rotten
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
@@ -570,9 +570,9 @@
   components:
   - type: Sprite
     state: spider
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 9
@@ -593,9 +593,9 @@
   components:
   - type: Sprite
     state: spiderleg
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 10
@@ -624,9 +624,9 @@
       - falsemeat
   - type: Sprite
     state: clump
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 1
@@ -654,9 +654,9 @@
     - Meat
   - type: Sprite
     state: snake
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 10
@@ -687,9 +687,9 @@
     - Meat
   - type: Sprite
     state: xeno
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: SulfuricAcid
           Quantity: 20
@@ -724,9 +724,9 @@
     - Meat
   - type: Sprite
     state: rouny
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: SulfuricAcid
           Quantity: 20
@@ -894,9 +894,9 @@
   components:
   - type: Sprite
     state: snail
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: UncookedAnimalProteins
@@ -923,9 +923,9 @@
   components:
   - type: Sprite
     state: anomalymeat
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 90
@@ -974,9 +974,9 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: rainbow_slime_extract
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Omnizine
           Quantity: 30
@@ -1004,9 +1004,9 @@
   - type: Sprite
     layers:
     - state: plain-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -1049,9 +1049,9 @@
       - enum.DamageStateVisualLayers.Base:
           bacon-cooked: ""
           bacon2-cooked: ""
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1088,9 +1088,9 @@
   - type: Sprite
     layers:
     - state: product-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1123,9 +1123,9 @@
   - type: Sprite
     layers:
     - state: bird-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1164,9 +1164,9 @@
   - type: Sprite
     layers:
     - state: bird-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1211,9 +1211,9 @@
       - enum.DamageStateVisualLayers.Base:
           chicken-fried: ""
           chicken2-fried: ""
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1238,9 +1238,9 @@
   name: mystery fried chicken
   description: “Eleven secret herbs and… oh no. That’s not chicken."
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -1262,9 +1262,9 @@
   - type: Sprite
     layers:
     - state: bird-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1306,9 +1306,9 @@
   - type: Sprite
     layers:
     - state: crab-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1343,9 +1343,9 @@
   - type: Sprite
     layers:
     - state: goliath-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1384,9 +1384,9 @@
   - type: Sprite
     layers:
     - state: rouny-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
@@ -1420,9 +1420,9 @@
   - type: Sprite
     layers:
     - state: lizard-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1459,9 +1459,9 @@
   - type: Sprite
     layers:
     - state: spiderleg-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1493,9 +1493,9 @@
     - Meat
   - type: Sprite
     state: meatball-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
@@ -1528,9 +1528,9 @@
     - Steak
   - type: Sprite
     state: patty
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 7.5
@@ -1562,9 +1562,9 @@
   - type: Sprite
     layers:
     - state: snail-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -1600,9 +1600,9 @@
   - type: Sprite
     layers:
     - state: anomalymeat-cooked #Kinda hard to cook this... thing evenly
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 100
@@ -1639,9 +1639,9 @@
   - type: Sprite
     layers:
     - state: dragon-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Ichor
           Quantity: 6
@@ -1684,9 +1684,9 @@
     - Meat
   - type: Sprite
     state: cutlet
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 3
@@ -1722,9 +1722,9 @@
     - state: cutlet
     - state: cutlet-alpha
       color: brown
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 3
@@ -1760,9 +1760,9 @@
   - type: Sprite
     state: cutlet
     color: white
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 3
@@ -1798,9 +1798,9 @@
   - type: Sprite
     state: cutlet
     color: white
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 3
@@ -1834,9 +1834,9 @@
   - type: Sprite
     state: cutlet
     color: white
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 3
@@ -1873,9 +1873,9 @@
       color: green
     - state: cutlet-alpha
       color: pink
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 3
@@ -1910,9 +1910,9 @@
     - Meat
   - type: Sprite
     state: spidercutlet
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 3
@@ -1951,9 +1951,9 @@
     - Meat
   - type: Sprite
     state: xenocutlet
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: SulfuricAcid
           Quantity: 20
@@ -2012,9 +2012,9 @@
     - Meat
   - type: Sprite
     state: salami-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 1
@@ -2037,9 +2037,9 @@
     - state: dragoncutlet
     - state: dragoncutlet_veins
       shader: unshaded
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Ichor
           Quantity: 3
@@ -2074,9 +2074,9 @@
     - Meat
   - type: Sprite
     state: cutlet-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -2118,9 +2118,9 @@
     - state: cutlet-cooked
     - state: cutlet-alpha
       color: brown
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -2160,9 +2160,9 @@
   - type: Sprite
     state: cutlet-cooked
     color: white
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -2202,9 +2202,9 @@
   - type: Sprite
     state: cutlet-cooked
     color: white
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -2244,9 +2244,9 @@
   - type: Sprite
     state: cutlet-cooked
     color: white
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -2287,9 +2287,9 @@
     layers:
     - state: cutlet-cooked
       color: green
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 2
@@ -2328,9 +2328,9 @@
     - Meat
   - type: Sprite
     state: spidercutlet-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 1
@@ -2369,9 +2369,9 @@
     - Meat
   - type: Sprite
     state: xenocutlet-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Nutriment
           Quantity: 1
@@ -2410,9 +2410,9 @@
     - Meat
   - type: Sprite
     state: dragoncutlet-cooked
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         reagents:
         - ReagentId: Ichor
           Quantity: 2

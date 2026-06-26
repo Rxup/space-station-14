@@ -27,7 +27,6 @@ using Robust.Shared.Timing;
 using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared.Wieldable;
 

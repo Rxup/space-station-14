@@ -121,7 +121,6 @@ public sealed class FailAndStartPresetTest : GameTest
         await pair.WaitCommand("golobby");
         await pair.RunTicksSync(30);
         await pair.ReallyBeIdle();
-        await pair.CleanReturnAsync();
     }
 }
 

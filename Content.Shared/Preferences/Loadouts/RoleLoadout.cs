@@ -1,9 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.CCVar;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Corvax.Interfaces.Shared;
-using Content.Shared.Random;
 using Robust.Shared.Collections;
 using Robust.Shared.Network;
 using Robust.Shared.Configuration;

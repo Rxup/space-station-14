@@ -6,7 +6,6 @@ using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
-using Content.Shared.Projectiles;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;

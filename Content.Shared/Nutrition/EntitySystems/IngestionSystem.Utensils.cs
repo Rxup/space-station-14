@@ -1,11 +1,9 @@
-using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Tools.EntitySystems;
 using Robust.Shared.Audio;
-using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Nutrition.EntitySystems;

@@ -139,8 +139,6 @@
   - type: LightweightDrunk
   - type: Damageable
     damageModifierSet: Vulpkanin
-  - type: Injurable
-    damageContainer: Biological
   - type: Respirator
     damage:
       types:

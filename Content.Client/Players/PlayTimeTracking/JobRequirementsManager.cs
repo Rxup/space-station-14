@@ -1,4 +1,6 @@
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -24,10 +26,15 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;
 
+    [Dependency] private Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sponsorsManager = default!; // backmen: allRoles
+    [Dependency] private Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordManager = default!; // backmen: discord
+
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<ProtoId<JobPrototype>> _jobBans = new();
     private readonly List<ProtoId<AntagPrototype>> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
+
+    public ImmutableList<string> RoleBans => _antagBans.Select(a => a.ToString()).ToImmutableList(); // backmen: antag
 
     private ISawmill _sawmill = default!;
 
@@ -44,6 +51,13 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
     }
+
+    //start-backmen: whitelist
+    public bool IsWhitelisted()
+    {
+        return _entManager.SystemOrNull<Backmen.WL.WhitelistSystem>()?.Whitelisted ?? false;
+    }
+    //end-backmen: whitelist
 
     private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
     {
@@ -143,6 +157,22 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
             return false;
         }
 
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsClientAllRoles())
+        {
+            reason = null;
+            return true;
+        }
+        //end-backmen
+
+        //start-backmen: discord
+        if (job.DiscordRequired && _discordManager.IsEnabled && !_discordManager.IsVerified)
+        {
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("role-required-discord"));
+            return false;
+        }
+        //end-backmen: discord
+
         // Check whitelist requirements
         if (!CheckWhitelist(job, out reason))
             return false;
@@ -191,6 +221,11 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 
         if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
+
+        //start-backmen: allRoles
+        if (_sponsorsManager.IsClientAllRoles())
+            return true;
+        //end-backmen
 
         var reasons = new List<string>();
         foreach (var requirement in requirements)

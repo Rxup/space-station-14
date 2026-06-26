@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Armor;
 using Content.Shared.Backmen.CCVar;
-using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
@@ -12,7 +11,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
-using Robust.Shared.GameStates;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 

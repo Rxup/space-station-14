@@ -12,9 +12,9 @@
     sprite: Objects/Consumable/Food/cottonburger.rsi
     layers:
     - state: cottonbun
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -62,9 +62,9 @@
     nameGeneration: food-sequence-cotton-burger-gen
   - type: Appearance
   - type: FoodMetamorphableByAdding
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         canReact: false # Dont want cause reactions inside burgers after merging ingredients
         reagents:
@@ -90,9 +90,9 @@
     sprite: Objects/Consumable/Food/cottonburger.rsi
     layers:
     - state: cottonbun_top
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment

@@ -1,6 +1,4 @@
-using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Damage.Systems;

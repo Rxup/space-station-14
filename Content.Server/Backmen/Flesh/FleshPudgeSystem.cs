@@ -4,7 +4,6 @@ using Content.Server.Popups;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Popups;

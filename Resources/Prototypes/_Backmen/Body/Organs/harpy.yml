@@ -144,24 +144,37 @@
   - type: Lung
     solutionName: organ
   - type: Metabolizer
-    solution: organ
-    removeEmpty: true
-    solutionOnBody: false
     updateInterval: 2.0
-    groups:
-    - id: Gas
-      rateModifier: 200.0
-  - type: SolutionContainerManager
+    stages: [ Respiration ]
+  - type: SolutionManager
     solutions:
-      organ:
-        maxVol: 100
-        canReact: false
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 5
-        canReact: true
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionHarpyLungGas
+    - SolutionHarpyLungFood
+
+- type: entity
+  parent: Solution
+  id: SolutionHarpyLungGas
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: organ
+    solution:
+      maxVol: 100
+      canReact: false
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+
+- type: entity
+  parent: Solution
+  id: SolutionHarpyLungFood
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 5
+      canReact: true
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5

@@ -39,7 +39,7 @@ public sealed partial class WoundableComponent : Component
     /// The same as DamageableComponent's one
     /// </summary>
     [AutoNetworkedField, DataField("damageContainer"), ViewVariables]
-    public ProtoId<DamageContainerPrototype>? DamageContainerID;
+    public ProtoId<DamageContainerPrototype>? DamageContainer;
 
     [DataField]
     public EntProtoId BoneEntity = "Bone";

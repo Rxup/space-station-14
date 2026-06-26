@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Content.Shared.CCVar;
-using Content.Shared.GameTicking;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared.FeedbackSystem;

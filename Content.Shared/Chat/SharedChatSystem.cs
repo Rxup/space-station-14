@@ -39,9 +39,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
     // Corvax-TTS-End
-    public static readonly SoundSpecifier DefaultAnnouncementSound
-        = new SoundPathSpecifier("/Audio/Announcements/announce.ogg");
-
+    public static readonly SoundSpecifier DefaultAnnouncementSound = new SoundPathSpecifier( "/Audio/Corvax/Announcements/announce.ogg"); // Corvax-Announcements
     public static readonly ProtoId<RadioChannelPrototype> CommonChannel = "Common";
 
     public static readonly string DefaultChannelPrefix = $"{RadioChannelPrefix}{DefaultChannelKey}";

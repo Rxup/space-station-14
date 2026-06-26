@@ -95,6 +95,9 @@
             "name": "HeadRevolutionary"
         },
         {
+            "name": "IAA"
+        },
+        {
             "name": "InitialInfected"
         },
         {
@@ -147,6 +150,9 @@
         },
         {
             "name": "Pirate"
+        },
+        {
+            "name": "Pilot"
         },
         {
             "name": "Prisoner"

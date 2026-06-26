@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -6,6 +5,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Chat.Managers;
 using Content.Server.Connection;
+using Content.Server.Corvax.TTS;
 using Content.Server.Database;
 using Content.Server.Discord.DiscordLink;
 using Content.Server.EUI;
@@ -25,7 +25,6 @@ using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
 using Content.Shared.CCVar;
-using Content.Shared.FeedbackSystem;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
 using Robust.Server;
@@ -82,6 +81,14 @@ namespace Content.Server.Entry
         [Dependency] private ServerUpdateManager _updateManager = default!;
         [Dependency] private ServerFeedbackManager _feedbackManager = null!;
 
+        // start-backmen: IoC
+        [Dependency] private Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sharedSponsorsManager = default!;
+        [Dependency] private Content.Corvax.Interfaces.Server.IServerDiscordAuthManager _serverDiscordAuthManager = default!;
+        [Dependency] private Content.Corvax.Interfaces.Server.IServerJoinQueueManager _serverJoinQueueManager = default!;
+        [Dependency] private Content.Corvax.Interfaces.Shared.ISharedLoadoutsManager _sharedLoadoutsManager = default!;
+        [Dependency] private TTSManager _ttsManager = default!;
+        // end-backmen: IoC
+
         public override void PreInit()
         {
             ServerContentIoC.Register(Dependencies);
@@ -137,6 +144,14 @@ namespace Content.Server.Entry
             _watchlistWebhookManager.Initialize();
             _job.Initialize();
             _rateLimit.Initialize();
+
+            // start-backmen: IoC
+            _sharedSponsorsManager.Initialize();
+            _serverDiscordAuthManager.Initialize();
+            _serverJoinQueueManager.Initialize();
+            _sharedLoadoutsManager.Initialize();
+            _ttsManager.Initialize();
+            // end-backmen: IoC
         }
 
         public override void PostInit()
@@ -172,6 +187,11 @@ namespace Content.Server.Entry
             _connection.PostInit();
             _multiServerKick.Initialize();
             _cvarCtrl.Initialize();
+
+            // start-backmen: IoC
+            _serverJoinQueueManager.PostInitialize();
+            // end-backmen: IoC
+
             _feedbackManager.Initialize();
         }
 

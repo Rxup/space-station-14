@@ -1,5 +1,4 @@
 using Content.Server.Backmen.Vampiric.Role;
-using Content.Shared.Backmen.Vampiric;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Roles;
 using Robust.Shared.Player;

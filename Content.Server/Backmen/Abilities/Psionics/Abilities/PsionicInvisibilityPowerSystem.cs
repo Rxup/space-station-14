@@ -1,7 +1,5 @@
-using Content.Server.Backmen.Psionics;
 using Content.Shared.Actions;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared.Damage;
 using Content.Shared.Stunnable;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
@@ -10,10 +8,7 @@ using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Damage.Systems;
-using Content.Shared.StatusEffectNew;
-using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 

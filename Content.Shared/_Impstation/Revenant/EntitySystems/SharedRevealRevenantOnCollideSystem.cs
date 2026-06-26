@@ -1,5 +1,4 @@
 using Content.Shared.Popups;
-using Content.Shared._Impstation.Revenant;
 using Content.Shared._Impstation.Revenant.Components;
 using Content.Shared.Revenant.Components;
 using Content.Shared.StatusEffectNew;

@@ -60,6 +60,7 @@
       min: 420
       max: 600
   - type: AntagSelection
+    selectionTime: PrePlayerSpawn
     antags:
     - !type:LinearAntagCount
       proto: Blob
@@ -99,6 +100,7 @@
     - BloodsuckerDrinkObjective
     - BloodsuckerConvertObjective
   - type: AntagSelection
+    selectionTime: PrePlayerSpawn
     lateJoinAdditional: true
     antags:
     - !type:LinearAntagCount
@@ -189,10 +191,14 @@
   parent: BaseGameRule
   id: ExtendedThief
   components:
+  - type: GameRule
+    minPlayers: 1
   - type: ThiefRule
   - type: AntagObjectives
     objectives:
     - EscapeThiefShuttleObjective
+    - ThiefRaiseGlimmerObjective
+    - ThiefSupercritAnomaliesObjective
   - type: AntagRandomObjectives
     sets:
     - groups: ThiefObjectiveGroups
@@ -231,6 +237,7 @@
     #  min: 420
     #  max: 600
   - type: AntagSelection
+    selectionTime: PrePlayerSpawn
     antags:
     - !type:LinearAntagCount
       proto: XenoAgent
