@@ -211,13 +211,6 @@ public sealed partial class HungerSystem : EntitySystem
         if (!_actorQuery.HasComp(uid))
             return;
 
-        if (component.CurrentThreshold <= HungerThreshold.Starving &&
-            component.StarvationDamage is { } damage &&
-            !_mobState.IsDead(uid))
-        {
-            _damageable.ChangeDamage((uid, null), damage, true, false, targetPart: TargetBodyPart.Chest);
-        }
-
         TryPlayStomachGrowl(uid, component);
     }
 
@@ -244,6 +237,47 @@ public sealed partial class HungerSystem : EntitySystem
         var max = (int) component.StomachGrowlMaxInterval.TotalSeconds;
         component.NextStomachGrowlTime = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(min, max + 1));
     }
+
+    // start-backmen: hunger-pain
+    public void ConfigureHungerDecay(EntityUid uid, float baseDecayRate, HungerComponent? component = null, bool clearStarvationDamage = false)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        component.BaseDecayRate = baseDecayRate;
+
+        if (clearStarvationDamage)
+            component.StarvationDamage = null;
+
+        if (component.HungerThresholdDecayModifiers.TryGetValue(component.CurrentThreshold, out var modifier))
+        {
+            component.ActualDecayRate = component.BaseDecayRate * modifier;
+            DirtyField(uid, component, nameof(HungerComponent.ActualDecayRate));
+        }
+
+        SetAuthoritativeHungerValue((uid, component), GetHunger(component));
+    }
+
+    public void ConfigureStarvingPain(
+        EntityUid uid,
+        float? growthRate = null,
+        float? decayRate = null,
+        float? max = null,
+        HungerComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        if (growthRate != null)
+            component.StarvingPainGrowthRate = growthRate.Value;
+
+        if (decayRate != null)
+            component.StarvingPainDecayRate = decayRate.Value;
+
+        if (max != null)
+            component.StarvingPainMax = max.Value;
+    }
+    // end-backmen: hunger-pain
     // end-backmen: hunger
 
     /// <summary>

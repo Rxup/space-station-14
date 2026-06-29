@@ -27,6 +27,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Robust.Shared.Audio;
+using Robust.Shared.Random;
 
 namespace Content.Shared.Medical.Healing;
 
@@ -48,6 +49,7 @@ public sealed partial class HealingSystem : EntitySystem
     [Dependency] private WoundSystem _wounds = default!;
     [Dependency] private TraumaSystem _trauma = default!;
     [Dependency] private BackmenDamageModelSystem _backmenDamageModel = default!;
+    [Dependency] private IRobustRandom _random = default!;
     // backmen edit end
 
     public override void Initialize()
@@ -159,33 +161,13 @@ public sealed partial class HealingSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        var stuffToHeal = new Dictionary<string, FixedPoint2>();
-        var targetedWoundable = EntityUid.Invalid;
-        if (TryComp<TargetingComponent>(args.User, out var targeting))
-        {
-            var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
-            if (!_bodySystem.TryGetWoundableTargetByType(ent, partType, symmetry, out targetedWoundable))
-                return;
-
-            foreach (var damage in
-                     healing.Damage.DamageDict.Where(damage => _wounds.HasDamageOfType(targetedWoundable, damage.Key)))
-            {
-                stuffToHeal.Add(damage.Key, damage.Value);
-            }
-        }
+        if (!TryResolveHealTarget(ent, args.User, healing, out var targetedWoundable, out var stuffToHeal, out _))
+            return;
 
         if (!TryComp<WoundableComponent>(targetedWoundable, out var woundableComp))
             return;
 
-        var totalBleeds = FixedPoint2.Zero;
-        foreach (var wound in
-                 _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(targetedWoundable, woundableComp))
-        {
-            if (!wound.Comp2.IsBleeding)
-                continue;
-
-            totalBleeds += wound.Comp2.BleedingAmountRaw;
-        }
+        var totalBleeds = GetTotalBleeds(targetedWoundable, woundableComp);
 
         var woundableDamageContainer = woundableComp.DamageContainer;
         if (healing.DamageContainers != null && woundableDamageContainer.HasValue &&
@@ -203,15 +185,18 @@ public sealed partial class HealingSystem : EntitySystem
         var bleedsManipulated = false;
 
         var bleedStopAbility = FixedPoint2.New(-healing.BloodlossModifier);
-        if (totalBleeds > healing.UnableToHealBleedsThreshold)
+        // start-backmen: healing-fallback
+        if (totalBleeds > healing.UnableToHealBleedsThreshold
+            && (healing.BloodlossModifier != 0 || stuffToHeal.Count == 0))
         {
             _popupSystem.PopupEntity(
-                Loc.GetString("medical-item-cant-use-rebell", ("target", ent)),
+                Loc.GetString("medical-item-cant-use-bleeding-heavy", ("target", ent)),
                 ent,
                 args.User,
                 PopupType.MediumCaution);
             return;
         }
+        // end-backmen: healing-fallback
 
         if (healing.BloodlossModifier != 0)
         {
@@ -274,10 +259,18 @@ public sealed partial class HealingSystem : EntitySystem
 
         if (healedTotal <= 0 && !bleedsManipulated)
         {
+            string popup;
+            if (_trauma.AnyTraumasBlockingHealing(targetedWoundable, woundableComp))
+                popup = Loc.GetString("medical-item-requires-surgery-rebell", ("target", args.Target));
+            // start-backmen: healing-fallback
+            else if (totalBleeds > healing.UnableToHealBleedsThreshold && healing.BloodlossModifier != 0)
+                popup = Loc.GetString("medical-item-cant-use-bleeding-heavy", ("target", args.Target));
+            else
+                popup = Loc.GetString("medical-item-no-healable-damage", ("target", args.Target));
+            // end-backmen: healing-fallback
+
             _popupSystem.PopupEntity(
-                _trauma.AnyTraumasBlockingHealing(targetedWoundable, woundableComp)
-                    ? Loc.GetString("medical-item-requires-surgery-rebell", ("target", args.Target))
-                    : Loc.GetString("medical-item-cant-use-rebell", ("target", args.Target)),
+                popup,
                 args.Target.Value,
                 args.User,
                 PopupType.MediumCaution);
@@ -368,62 +361,128 @@ public sealed partial class HealingSystem : EntitySystem
         if (!HasComp<ConsciousnessComponent>(target))
             return false;
 
+        if (TryResolveHealTarget(target, user, healing.Comp, out _, out _, out _))
+            return true;
+
+        if (!throwPopups)
+            return false;
+
         if (!TryComp<TargetingComponent>(user, out var targeting))
             return false;
 
         var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
         if (!_bodySystem.TryGetWoundableTargetByType(target, partType, symmetry, out var targetedWoundable))
         {
-            if (throwPopups)
-                _popupSystem.PopupEntity(Loc.GetString("does-not-exist-rebell"), target, user, PopupType.MediumCaution);
+            _popupSystem.PopupEntity(Loc.GetString("does-not-exist-rebell"), target, user, PopupType.MediumCaution);
             return false;
         }
 
-        var totalBleeds =
-            _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(targetedWoundable)
-                .Select(woundEnt => woundEnt.Comp2)
-                .Where(bleeds => bleeds.IsBleeding)
-                .Aggregate(FixedPoint2.Zero, (current, bleeds) => current + bleeds.BleedingAmountRaw);
+        if (!TryComp<WoundableComponent>(targetedWoundable, out var woundableComp))
+            return false;
 
-        var stuffToHeal =
-            healing.Comp.Damage.DamageDict
-                .Where(damage => _wounds.HasDamageOfType(targetedWoundable, damage.Key))
-                .ToDictionary(damage => damage.Key, damage => damage.Value);
+        var totalBleeds = GetTotalBleeds(targetedWoundable, woundableComp);
+        var stuffToHeal = healing.Comp.Damage.DamageDict
+            .Where(damage => _wounds.HasDamageOfType(targetedWoundable, damage.Key))
+            .ToDictionary(damage => damage.Key, damage => damage.Value);
 
-        if (totalBleeds < healing.Comp.UnableToHealBleedsThreshold)
+        // start-backmen: healing-fallback
+        if (totalBleeds > healing.Comp.UnableToHealBleedsThreshold
+            && (healing.Comp.BloodlossModifier != 0 || stuffToHeal.Count == 0))
         {
-            if (totalBleeds > 0 && healing.Comp.BloodlossModifier != 0f
-                || healing.Comp.ModifyBloodLevel != 0f
-                && TryComp<BloodstreamComponent>(target, out var bloodstream)
-                && _solutionContainerSystem
-                    .ResolveSolution(target.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
-                && bloodSolution.Volume < bloodSolution.MaxVolume
-                || stuffToHeal.Count != 0)
-                return true;
+            _popupSystem.PopupEntity(
+                Loc.GetString("medical-item-cant-use-bleeding-heavy", ("target", target)),
+                target,
+                user,
+                PopupType.MediumCaution);
         }
-
-        if (throwPopups)
+        else if (_trauma.AnyTraumasBlockingHealing(targetedWoundable, woundableComp))
         {
-            if (totalBleeds > healing.Comp.UnableToHealBleedsThreshold)
-            {
-                _popupSystem.PopupEntity(
-                    Loc.GetString("medical-item-cant-use-rebell", ("target", target)),
-                    target,
-                    user,
-                    PopupType.MediumCaution);
-            }
-            else
-            {
-                _popupSystem.PopupEntity(
-                    Loc.GetString("medical-item-cant-use", ("item", healing.Owner)),
-                    target,
-                    user,
-                    PopupType.Medium);
-            }
+            _popupSystem.PopupEntity(
+                Loc.GetString("medical-item-requires-surgery-rebell", ("target", target)),
+                target,
+                user,
+                PopupType.MediumCaution);
         }
+        else
+        {
+            _popupSystem.PopupEntity(
+                Loc.GetString("medical-item-no-healable-damage", ("target", target)),
+                target,
+                user,
+                PopupType.MediumCaution);
+        }
+        // end-backmen: healing-fallback
 
         return false;
     }
+
+    // start-backmen: healing-fallback
+    private bool TryResolveHealTarget(
+        EntityUid body,
+        EntityUid healer,
+        HealingComponent healing,
+        out EntityUid woundable,
+        out Dictionary<string, FixedPoint2> stuffToHeal,
+        out bool usedFallback)
+    {
+        woundable = EntityUid.Invalid;
+        stuffToHeal = new Dictionary<string, FixedPoint2>();
+        usedFallback = false;
+
+        if (!TryComp<TargetingComponent>(healer, out var targeting))
+            return false;
+
+        bool TryCandidate(EntityUid candidate, out Dictionary<string, FixedPoint2> healDict)
+        {
+            healDict = new Dictionary<string, FixedPoint2>();
+            if (!TryComp<WoundableComponent>(candidate, out var woundableComp))
+                return false;
+
+            healDict = healing.Damage.DamageDict
+                .Where(damage => _wounds.HasDamageOfType(candidate, damage.Key))
+                .ToDictionary(damage => damage.Key.Id, damage => damage.Value);
+
+            var bleeds = GetTotalBleeds(candidate, woundableComp);
+            if (bleeds > healing.UnableToHealBleedsThreshold
+                && (healing.BloodlossModifier != 0 || healDict.Count == 0))
+                return false;
+
+            return healDict.Count > 0
+                   || healing.BloodlossModifier != 0
+                   || healing.ModifyBloodLevel > 0;
+        }
+
+        var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
+        if (_bodySystem.TryGetWoundableTargetByType(body, partType, symmetry, out var selected)
+            && TryCandidate(selected, out stuffToHeal))
+        {
+            woundable = selected;
+            return true;
+        }
+
+        var candidates = new List<EntityUid>();
+        foreach (var candidate in _bodySystem.GetWoundableTargets(body))
+        {
+            if (TryCandidate(candidate, out _))
+                candidates.Add(candidate);
+        }
+
+        if (candidates.Count == 0)
+            return false;
+
+        usedFallback = true;
+        woundable = _random.Pick(candidates);
+        TryCandidate(woundable, out stuffToHeal);
+        return true;
+    }
+
+    private FixedPoint2 GetTotalBleeds(EntityUid woundable, WoundableComponent woundableComp)
+    {
+        return _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(woundable, woundableComp)
+            .Where(wound => wound.Comp2.IsBleeding)
+            .Aggregate(FixedPoint2.Zero, (current, wound) => current + wound.Comp2.BleedingAmountRaw);
+    }
+    // end-backmen: healing-fallback
     // backmen edit end
 
     private void OnHealingUse(Entity<HealingComponent> healing, ref UseInHandEvent args)

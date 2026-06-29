@@ -26,6 +26,9 @@ using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Backmen.Surgery.Pain;
+using Content.Shared.FixedPoint;
+using Content.Shared.Nutrition.Components;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Surgery;

@@ -1,3 +1,4 @@
+using Content.Shared.Body;
 using Content.Shared.Body.Events;
 using Content.Shared.Destructible;
 using Content.Shared.Hands;
@@ -26,7 +27,7 @@ public sealed partial class InnateToolSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<InnateToolComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<InnateToolComponent, MapInitEvent>(OnMapInit, after: [typeof(InitialBodySystem)]);
         SubscribeLocalEvent<InnateToolComponent, InitialBodySpawnedEvent>(OnInitialBodySpawned);
         SubscribeLocalEvent<InnateToolComponent, HandCountChangedEvent>(OnHandCountChanged);
         SubscribeLocalEvent<InnateToolComponent, ComponentShutdown>(OnShutdown);
@@ -39,17 +40,23 @@ public sealed partial class InnateToolSystem : EntitySystem
             return;
 
         component.ToSpawn = EntitySpawnCollection.GetSpawns(component.Tools, _robustRandom);
+        // start-backmen: innate-tool-auto-hands
+        EnsureHandsForTools(uid, component);
+        // end-backmen: innate-tool-auto-hands
         TryFillHands(uid, component);
     }
 
     private void OnInitialBodySpawned(EntityUid uid, InnateToolComponent component, InitialBodySpawnedEvent args)
     {
+        // start-backmen: innate-tool-auto-hands
+        EnsureHandsForTools(uid, component);
+        // end-backmen: innate-tool-auto-hands
         TryFillHands(uid, component);
     }
 
     private void OnHandCountChanged(EntityUid uid, InnateToolComponent component, HandCountChangedEvent args)
     {
-        TrySpawnOneInHand(uid, component);
+        TryFillHands(uid, component);
     }
 
     private void TryFillHands(EntityUid uid, InnateToolComponent component)
@@ -60,6 +67,32 @@ public sealed partial class InnateToolSystem : EntitySystem
                 break;
         }
     }
+
+    // start-backmen: innate-tool-auto-hands
+    private void EnsureHandsForTools(EntityUid uid, InnateToolComponent component)
+    {
+        if (!TryComp<HandsComponent>(uid, out var hands))
+            return;
+
+        var requiredHands = component.Tools.Count;
+        var handIndex = 3;
+        var handCount = 0;
+        foreach (var _ in _sharedHandsSystem.EnumerateHands((uid, hands)))
+            handCount++;
+
+        while (handCount < requiredHands)
+        {
+            string handId;
+            do
+            {
+                handId = $"innate-{handIndex++}";
+            } while (_sharedHandsSystem.TryGetHand((uid, hands), handId, out _));
+
+            _sharedHandsSystem.AddHand((uid, hands), handId, HandLocation.Middle);
+            handCount++;
+        }
+    }
+    // end-backmen: innate-tool-auto-hands
 
     private bool TrySpawnOneInHand(EntityUid uid, InnateToolComponent component)
     {

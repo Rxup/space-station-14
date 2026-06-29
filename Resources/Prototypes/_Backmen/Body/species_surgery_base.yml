@@ -264,9 +264,9 @@
   save: false
   components:
   - type: Hunger
-    starvationDamage:
-      types:
-        Cold: 1
+    # start-backmen: hunger-pain
+    baseDecayRate: 0.04166666665
+    # end-backmen: hunger-pain
   - type: Thirst
   - type: Mood
   - type: Barotrauma

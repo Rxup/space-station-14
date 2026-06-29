@@ -10,3 +10,5 @@ ent-SurgeryAttachFeet = Прикрепить стопы
     .desc = { ent-SurgeryBase.desc }
 ent-SurgeryMendBrainTissue = Восстановить ткань мозга
     .desc = { ent-SurgeryBase.desc }
+ent-SurgeryRelieveStarvingPain = Купирование боли от голодания
+    .desc = { ent-SurgeryBase.desc }

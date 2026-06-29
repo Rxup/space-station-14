@@ -66,6 +66,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Paper;
 using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
@@ -109,6 +110,10 @@ namespace Content.Server.Backmen.Shipwrecked;
 
 public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRuleComponent>
 {
+    // start-backmen: hunger-pain
+    private const float ShipwreckedHungerDecayRate = 0.09375f;
+    // end-backmen: hunger-pain
+
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
@@ -819,14 +824,9 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         }
 
         var hunger = EnsureComp<HungerComponent>(mob);
-        hunger.StarvationDamage = new()
-        {
-            DamageDict = new()
-            {
-                { "Cold", 0.5f },
-                { "Bloodloss", 0.5f }
-            },
-        };
+        // start-backmen: hunger-pain
+        EntityManager.System<HungerSystem>().ConfigureHungerDecay(mob, ShipwreckedHungerDecayRate, hunger, clearStarvationDamage: true);
+        // end-backmen: hunger-pain
         Dirty(mob, hunger);
 
         EnsureComp<ZombieImmuneComponent>(mob);

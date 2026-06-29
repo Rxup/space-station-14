@@ -27,6 +27,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Server.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Nutrition.Components;
 
 namespace Content.Server.Medical;
 
@@ -272,6 +273,22 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         var totalPain = _consciousnessSystem.GetTotalPain(entity);
         var painImmune = _painImmuneQuery.HasComp(entity);
 
+        // start-backmen: analyzer-satiation
+        HungerThreshold? hungerAlert = null;
+        if (TryComp<HungerComponent>(entity, out var hunger)
+            && hunger.CurrentThreshold is HungerThreshold.Peckish or HungerThreshold.Starving)
+        {
+            hungerAlert = hunger.CurrentThreshold;
+        }
+
+        ThirstThreshold? thirstAlert = null;
+        if (TryComp<ThirstComponent>(entity, out var thirst)
+            && thirst.CurrentThirstThreshold is ThirstThreshold.Thirsty or ThirstThreshold.Parched)
+        {
+            thirstAlert = thirst.CurrentThirstThreshold;
+        }
+        // end-backmen: analyzer-satiation
+
         return new HealthAnalyzerUiState(
             GetNetEntity(entity),
             bodyTemperature,
@@ -283,7 +300,9 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             part != null ? GetNetEntity(part) : null,
             painCauses,
             totalPain,
-            painImmune);
+            painImmune,
+            hungerAlert,
+            thirstAlert);
     }
 
     /// <summary>

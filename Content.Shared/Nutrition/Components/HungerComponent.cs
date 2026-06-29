@@ -151,6 +151,23 @@ public sealed partial class HungerComponent : Component
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextStomachGrowlTime;
     // end-backmen: hunger
+
+    // start-backmen: hunger-pain
+    [DataField]
+    public bool StarvingPainEnabled = true;
+
+    [DataField]
+    public float StarvingPainGrowthRate = 1.1f;
+
+    [DataField]
+    public float StarvingPainMax = 250f;
+
+    [DataField]
+    public float StarvingPainDecayRate = 4f;
+
+    [DataField]
+    public float StarvingOrganTraumaThreshold = 10f;
+    // end-backmen: hunger-pain
 }
 
 [Serializable, NetSerializable]

@@ -16,3 +16,5 @@ ent-SurgeryStepLobotomize = Лоботомизировать пациента
     .desc = { ent-SurgeryStepBase.desc }
 ent-SurgeryStepMendBrainTissue = Восстановить ткань мозга
     .desc = { ent-SurgeryStepBase.desc }
+ent-SurgeryStepRelieveStarvingPain = Купировать боль от голодания
+    .desc = Снимает боль «Голодание» с торса, не восстанавливая сытость.

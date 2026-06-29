@@ -1,5 +1,6 @@
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Targeting;
+using Content.Shared.Nutrition.Components;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.MedicalScanner;
@@ -23,6 +24,10 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     public Dictionary<string, float>? PainCauses => State.PainCauses;
     public float? TotalPain => State.TotalPain;
     public bool? PainImmune => State.PainImmune;
+    // start-backmen: analyzer-satiation
+    public HungerThreshold? HungerAlert => State.HungerAlert;
+    public ThirstThreshold? ThirstAlert => State.ThirstAlert;
+    // end-backmen: analyzer-satiation
 
     public HealthAnalyzerScannedUserMessage(HealthAnalyzerUiState state)
     {
@@ -47,8 +52,12 @@ public struct HealthAnalyzerUiState
     public Dictionary<string, float>? PainCauses; // backmen: pain
     public float? TotalPain; // backmen: pain
     public bool? PainImmune; // backmen: pain
+    // start-backmen: analyzer-satiation
+    public HungerThreshold? HungerAlert;
+    public ThirstThreshold? ThirstAlert;
+    // end-backmen: analyzer-satiation
 
-    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null)
+    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null, HungerThreshold? hungerAlert = null, ThirstThreshold? thirstAlert = null)
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -61,6 +70,10 @@ public struct HealthAnalyzerUiState
         PainCauses = painCauses; // backmen: pain
         TotalPain = totalPain; // backmen: pain
         PainImmune = painImmune; // backmen: pain
+        // start-backmen: analyzer-satiation
+        HungerAlert = hungerAlert;
+        ThirstAlert = thirstAlert;
+        // end-backmen: analyzer-satiation
     }
 }
 

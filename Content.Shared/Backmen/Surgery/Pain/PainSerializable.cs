@@ -10,6 +10,7 @@ public enum PainType
 {
     WoundPain,
     TraumaticPain,
+    Starving,
 }
 
 [Serializable, NetSerializable]
