@@ -1,13 +1,11 @@
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Events;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Destructible;
 using Content.Shared.Nutrition;
 using Content.Shared.Prototypes;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Slippery;
 using Content.Shared.StatusEffect;
-using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
@@ -74,13 +72,6 @@ public abstract partial class SharedGodmodeSystem : EntitySystem
 
     public virtual void EnableGodmode(EntityUid uid, GodmodeComponent? godmode = null)
     {
-        godmode ??= EnsureComp<GodmodeComponent>(uid);
-
-        if (TryComp<DamageableComponent>(uid, out var damageable))
-        {
-            godmode.OldDamage = new DamageSpecifier(damageable.Damage);
-        }
-
         // Rejuv to cover other stuff
         RaiseLocalEvent(uid, new RejuvenateEvent());
     }
@@ -89,11 +80,6 @@ public abstract partial class SharedGodmodeSystem : EntitySystem
     {
         if (!Resolve(uid, ref godmode, false))
             return;
-
-        if (godmode.OldDamage != null)
-        {
-            _damageable.SetDamage(uid, godmode.OldDamage);
-        }
 
         RemComp<GodmodeComponent>(uid);
 

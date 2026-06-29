@@ -325,6 +325,7 @@
     sound:
       path: /Audio/Effects/balloon_hits.ogg
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: TileFrictionModifier
     modifier: 0.3
@@ -976,12 +977,12 @@
     flavors:
     - plastic
   - type: Edible
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        reagents:
-        - ReagentId: Nothing
-          Quantity: 100
+  - type: Solution
+    id: food
+    solution:
+      reagents:
+      - ReagentId: Nothing
+        Quantity: 100
   - type: Tag
     tags:
     - Banana

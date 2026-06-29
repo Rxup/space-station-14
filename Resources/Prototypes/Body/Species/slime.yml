@@ -134,12 +134,14 @@
   - type: PassiveDamage # Around 8 damage a minute healed
     allowedStates:
     - Alive
-    damageCap: 65
     damage:
       types:
         Heat: -0.14
-      groups:
-        Brute: -0.14
+        Blunt: -0.035
+        Slash: -0.035
+        Piercing: -0.035
+        ArmorPiercing: -0.035
+    damageCap: 65
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -155,8 +157,8 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.50 #per second, scales with pressure and other constants.
-        Heat: 0.2 # 0.1 more than humans, i feel like low pressure would make slime boil more than blunt stretch them so i decided on this instead.
+        Blunt: 0.50
+        Heat: 0.2
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -299,15 +301,7 @@
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Slime ]
-    removeEmpty: true
-    groups:
-    - id: Food
-    - id: Drink
-    - id: Medicine
-    - id: Poison
-    - id: Narcotic
-    - id: Alcohol
-      rateModifier: 2.5
+    stages: [ Digestion, Bloodstream ]
 
 - type: entity
   parent: [ OrganBaseLungs, OrganSlimePersonInternal, OrganSlimePersonMetabolizer ]

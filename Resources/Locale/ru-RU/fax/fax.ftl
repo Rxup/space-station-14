@@ -1,5 +1,5 @@
 fax-machine-popup-source-unknown = Неизвестно
-fax-machine-popup-received = Получена передача от { $from }.
+fax-machine-popup-received = Получена передача от {$from}.
 fax-machine-popup-name-long = Слишком длинное имя факса
 fax-machine-popup-name-exist = Факс с таким же именем уже существует в сети
 fax-machine-popup-name-set = Имя факса было обновлено
@@ -22,3 +22,8 @@ fax-machine-ui-paper-inserted = Бумага в лотке
 fax-machine-ui-paper-not-inserted = Нет бумаги
 fax-machine-chat-notify = Получено новое сообщение с "{ $fax }" факса
 fax-machine-printed-paper-name = распечатанная бумага
+fax-machine-sender-info = ─────────────────────────────────────
+    Факс отправлен
+    от: {$sender_name} [address: {$sender_addr}]
+    кому: {$recipient_name} [address: {$recipient_addr}]
+    когда: {$time}

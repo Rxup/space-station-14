@@ -4,11 +4,8 @@ using Robust.Shared.Timing;
 using Content.Server.Popups;
 using Robust.Shared.Physics.Events;
 using Content.Shared.Body;
-using Content.Server.Backmen.Body.Systems;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
@@ -45,8 +42,8 @@ public sealed partial class GibOnCollideSystem : EntitySystem
                 || !_mobStateSystem.IsAlive(otherUid, mobState))
                 return;
 
-            if (!TryComp<DamageableComponent>(otherUid, out var damageable)
-                || damageable.DamageContainerID?.Id != BiologicalDamageContainerPrototype.Id)
+            if (!TryComp<InjurableComponent>(otherUid, out var injurable)
+                || injurable.DamageContainer?.Id != BiologicalDamageContainerPrototype.Id)
                 return;
         }
 

@@ -9,13 +9,13 @@ using Content.Server.NPC.Systems;
 using Content.Shared.Zombies;
 using Content.Shared.CombatMode;
 using Content.Shared.Ghost;
-using Content.Shared.Damage;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Server.Backmen.VentCrawler;
 using Content.Shared._White.Headcrab;
 using Content.Shared.Backmen.VentCrawler;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -31,6 +31,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._White.Headcrab;
@@ -91,47 +92,47 @@ public sealed partial class HeadcrabSystem : EntitySystem
         if (!_mobState.IsAlive(uid))
             return;
 
-        EnsureComp<AutoEmoteComponent>(args.Equipee);
-        _autoEmote.AddEmote(args.Equipee, "ZombieGroan");
-        _tagSystem.AddTag(args.Equipee, "CannotSuicide");
+        EnsureComp<AutoEmoteComponent>(args.EquipTarget);
+        _autoEmote.AddEmote(args.EquipTarget, ZombieGroan);
+        _tagSystem.AddTag(args.EquipTarget, CannotSuicide);
 
-        component.EquippedOn = args.Equipee;
+        component.EquippedOn = args.EquipTarget;
         RemComp<CombatModeComponent>(uid);
         RemComp<HTNComponent>(uid);
 //        _action.RemoveAction(uid, component.JumpActionEntity, component.JumpAction); // Skill issue
-        var npcFaction = EnsureComp<NpcFactionMemberComponent>(args.Equipee);
+        var npcFaction = EnsureComp<NpcFactionMemberComponent>(args.EquipTarget);
         component.OldFactions.Clear();
         component.OldFactions.UnionWith(npcFaction.Factions);
-        _npcFaction.ClearFactions((args.Equipee, npcFaction), false);
-        _npcFaction.AddFaction((args.Equipee, npcFaction), component.HeadcrabFaction);
+        _npcFaction.ClearFactions((args.EquipTarget, npcFaction), false);
+        _npcFaction.AddFaction((args.EquipTarget, npcFaction), component.HeadcrabFaction);
 
-//        component.HasNpc = !EnsureComp<HTNComponent>(args.Equipee, out var htn);
+//        component.HasNpc = !EnsureComp<HTNComponent>(args.EquipTarget, out var htn);
 //        htn.RootTask = new HTNCompoundTask { Task = component.TakeoverTask };
-//        htn.Blackboard.SetValue(NPCBlackboard.Owner, args.Equipee);
-//        _npc.WakeNPC(args.Equipee, htn);
+//        htn.Blackboard.SetValue(NPCBlackboard.Owner, args.EquipTarget);
+//        _npc.WakeNPC(args.EquipTarget, htn);
 //        _htn.Replan(htn);
 
         var mindlostMessage = Loc.GetString(component.MindLostMessageSelf);
 
         var headcrabHasMind = _mindSystem.TryGetMind(uid, out var hostMindId, out var hostMind);
-        var entityHasMind = _mindSystem.TryGetMind(args.Equipee, out var mindId, out var mind);
+        var entityHasMind = _mindSystem.TryGetMind(args.EquipTarget, out var mindId, out var mind);
 
         if (!entityHasMind && !headcrabHasMind)
             goto AfterMindTransfer;
 
-        if (TryComp<ActorComponent>(args.Equipee, out var actor))
+        if (TryComp<ActorComponent>(args.EquipTarget, out var actor))
         {
             if (!headcrabHasMind && entityHasMind)
                 return;
 
             if (headcrabHasMind && entityHasMind)
             {
-                _mindSystem.TransferTo(hostMindId, args.Equipee, mind: hostMind);
+                _mindSystem.TransferTo(hostMindId, args.EquipTarget, mind: hostMind);
                 _mindSystem.TransferTo(mindId, uid, mind: mind);
             }
 
             _popup.PopupPredicted(mindlostMessage,
-                args.Equipee, args.Equipee, PopupType.LargeCaution);
+                args.EquipTarget, args.EquipTarget, PopupType.LargeCaution);
         }
 
         AfterMindTransfer:
@@ -139,27 +140,27 @@ public sealed partial class HeadcrabSystem : EntitySystem
             return;
 
         _popup.PopupEntity(Loc.GetString("headcrab-hit-entity-head",
-                ("entity", args.Equipee)),
+                ("entity", args.EquipTarget)),
             uid, uid, PopupType.LargeCaution);
 
         _popup.PopupEntity(Loc.GetString("headcrab-eat-other-entity-face",
-            ("entity", args.Equipee)), args.Equipee, Filter.PvsExcept(uid), true, PopupType.Large);
+            ("entity", args.EquipTarget)), args.EquipTarget, Filter.PvsExcept(uid), true, PopupType.Large);
 
-        _stunSystem.TryUpdateParalyzeDuration(args.Equipee, component.ParalyzeTime);
-        _damageableSystem.TryChangeDamage(args.Equipee, component.Damage, origin: uid); // Damage Entity
+        _stunSystem.TryUpdateParalyzeDuration(args.EquipTarget, component.ParalyzeTime);
+        _damageableSystem.TryChangeDamage(args.EquipTarget, component.Damage, origin: uid); // Damage Entity
         _damageableSystem.TryChangeDamage(uid, component.HealOnEquipped, true); // Heal headcrab
     }
 
     private void OnUnequipAttempt(EntityUid uid, HeadcrabComponent component, BeingUnequippedAttemptEvent args)
     {
         if (args.Slot != "mask" ||
-            component.EquippedOn != args.Unequipee ||
-            HasComp<ZombieComponent>(args.Unequipee) ||
+            component.EquippedOn != args.UnEquipTarget ||
+            HasComp<ZombieComponent>(args.UnEquipTarget) ||
             _mobState.IsDead(uid))
             return;
 
         _popup.PopupEntity(Loc.GetString("headcrab-try-unequip"),
-            args.Unequipee, args.Unequipee, PopupType.Large);
+            args.UnEquipTarget, args.UnEquipTarget, PopupType.Large);
         args.Cancel();
     }
 
@@ -176,40 +177,43 @@ public sealed partial class HeadcrabSystem : EntitySystem
             args.User, args.User);
     }
 
+    private static readonly ProtoId<TagPrototype> CannotSuicide = "CannotSuicide";
+    private static readonly ProtoId<AutoEmotePrototype> ZombieGroan = "ZombieGroan";
+
     private void OnGotUnequipped(EntityUid uid, HeadcrabComponent component, GotUnequippedEvent args)
     {
         if (args.Slot != "mask")
             return;
 
-        if (Terminating(args.Equipee))
+        if (Terminating(args.EquipTarget))
             return;
 
         if (Terminating(uid))
             return;
 
-        _autoEmote.RemoveEmote(args.Equipee, "ZombieGroan");
-        _tagSystem.RemoveTag(args.Equipee, "CannotSuicide");
+        _autoEmote.RemoveEmote(args.EquipTarget, ZombieGroan);
+        _tagSystem.RemoveTag(args.EquipTarget, CannotSuicide);
 
         component.EquippedOn = EntityUid.Invalid;
         var combatMode = EnsureComp<CombatModeComponent>(uid);
-//        EnsureComp<HTNComponent>(args.Equipee);
+//        EnsureComp<HTNComponent>(args.EquipTarget);
         _combat.SetInCombatMode(uid, true, combatMode);
 
 //        if (component.HasNpc)
-//            RemComp<HTNComponent>(args.Equipee);
+//            RemComp<HTNComponent>(args.EquipTarget);
 
-        var npcFaction = EnsureComp<NpcFactionMemberComponent>(args.Equipee);
-        _npcFaction.RemoveFaction((args.Equipee, npcFaction), component.HeadcrabFaction, false);
-        _npcFaction.AddFactions((args.Equipee, npcFaction), component.OldFactions);
+        var npcFaction = EnsureComp<NpcFactionMemberComponent>(args.EquipTarget);
+        _npcFaction.RemoveFaction((args.EquipTarget, npcFaction), component.HeadcrabFaction, false);
+        _npcFaction.AddFactions((args.EquipTarget, npcFaction), component.OldFactions);
 
         component.OldFactions.Clear();
 
         var headcrabHasMind = _mindSystem.TryGetMind(uid, out var mindId, out var mind);
-        var hostHasMind = _mindSystem.TryGetMind(args.Equipee, out var hostMindId, out var hostMind);
+        var hostHasMind = _mindSystem.TryGetMind(args.EquipTarget, out var hostMindId, out var hostMind);
 
         if (headcrabHasMind && hostHasMind)
         {
-            _mindSystem.TransferTo(mindId, args.Equipee, mind: mind);
+            _mindSystem.TransferTo(mindId, args.EquipTarget, mind: mind);
             _mindSystem.TransferTo(hostMindId, uid, mind: hostMind);
         }
 

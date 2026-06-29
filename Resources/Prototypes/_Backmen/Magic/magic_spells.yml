@@ -20,11 +20,19 @@
     canTargetSelf: true
     event: !type:HealSpellEvent
       healAmount:
-        groups:
-          Brute: -999
-          Burn: -999
-          Airloss: -999
-          Toxin: -999
+        types:
+          Blunt: -249.75
+          Slash: -249.75
+          Piercing: -249.75
+          ArmorPiercing: -249.75
+          Heat: -249.75
+          Shock: -249.75
+          Cold: -249.75
+          Caustic: -249.75
+          Asphyxiation: -499.5
+          Bloodloss: -499.5
+          Poison: -499.5
+          Radiation: -499.5
       speech: action-speech-spell-healing
   - type: TargetAction
     range: 64

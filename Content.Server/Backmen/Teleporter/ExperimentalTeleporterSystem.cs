@@ -16,6 +16,7 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Teleporter;
@@ -50,7 +51,7 @@ public sealed partial class ExperimentalTeleporterSystem : EntitySystem
         }
 
         if (_charges.IsEmpty(uid)
-            || !TryComp<TransformComponent>(args.User, out var xform)
+            || !TryComp(args.User, out TransformComponent? xform)
             || (_containerSystem.IsEntityInContainer(args.User)
                 && !_containerSystem.TryRemoveFromContainer(args.User)))
             return;
@@ -105,6 +106,8 @@ public sealed partial class ExperimentalTeleporterSystem : EntitySystem
         _entManager.SpawnEntity(component.TeleportOutEffect, oldCoords);
     }
 
+    private static readonly ProtoId<TagPrototype> Wall = "Wall";
+
     private bool TryCheckWall(EntityCoordinates coords)
     {
         if (!_turf.TryGetTileRef(coords, out var tile)
@@ -113,7 +116,7 @@ public sealed partial class ExperimentalTeleporterSystem : EntitySystem
 
         var anchoredEntities = _mapSystem.GetAnchoredEntities(tile.Value.GridUid, mapGridComponent, coords);
 
-        return anchoredEntities.Any(x => _tag.HasTag(x, "Wall"));
+        return anchoredEntities.Any(x => _tag.HasTag(x, Wall));
     }
 
     private Vector2 VectorRandomDirection(ExperimentalTeleporterComponent component, Vector2 offset, int length)

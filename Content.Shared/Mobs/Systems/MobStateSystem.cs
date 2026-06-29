@@ -1,7 +1,6 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Standing;
@@ -16,15 +15,17 @@ public partial class MobStateSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private StandingStateSystem _standing = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private ILogManager _logManager = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ConsciousnessSystem _consciousness = default!;
     [Dependency] private DamageableSystem _damageable = default!;
+    private ISawmill _sawmill = default!;
 
-    private EntityQuery<MobStateComponent> _mobStateQuery;
+    [Dependency] private EntityQuery<MobStateComponent> _mobStateQuery = default!;
 
     public override void Initialize()
     {
-        _mobStateQuery = GetEntityQuery<MobStateComponent>();
+        _sawmill = _logManager.GetSawmill("MobState");
         base.Initialize();
         SubscribeEvents();
     }
@@ -57,9 +58,6 @@ public partial class MobStateSystem : EntitySystem
     /// <summary>
     ///  Check if a Mob is Critical. ACTUALLY critical
     /// </summary>
-    /// <param name="target">Target Entity</param>
-    /// <param name="component">The MobState component owned by the target</param>
-    /// <returns>If the entity is Critical</returns>
     public bool IsHardCritical(EntityUid target, MobStateComponent? component = null)
     {
         if (!_mobStateQuery.Resolve(target, ref component, false))
@@ -100,7 +98,7 @@ public partial class MobStateSystem : EntitySystem
     /// </summary>
     /// <param name="target">Target Entity</param>
     /// <param name="component">The MobState component owned by the target</param>
-    /// <returns>If the entity is hard critical or dead</returns>
+    /// <returns>If the entity is Critical or Dead</returns>
     public bool IsIncapacitated(EntityUid target, MobStateComponent? component = null)
     {
         if (!_mobStateQuery.Resolve(target, ref component, false))

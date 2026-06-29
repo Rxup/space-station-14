@@ -1,24 +1,19 @@
-using Content.Server.Backmen.Psionics;
 using Content.Shared.Actions;
 using Content.Shared.Speech;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
-using Content.Shared.Damage;
 using Content.Server.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Popups;
-using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Shared.Backmen.Abilities.Psionics;
-using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mindshield.Components;
-using Content.Shared.NPC;
 using Content.Shared.SSDIndicator;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -73,7 +68,7 @@ public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
         if(args.Handled)
             return;
 
-        if (!(TryComp<DamageableComponent>(args.Target, out var damageable) && damageable.DamageContainerID == "Biological"))
+        if (!(TryComp<InjurableComponent>(args.Target, out var injurable) && injurable.DamageContainer == "Biological"))
             return;
 
         _psionics.LogPowerUsed(args.Performer, "mind swap");
@@ -154,9 +149,6 @@ public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
             return;
 
         if (!HasComp<MindSwappedComponent>(args.Mind.CurrentEntity))
-            return;
-
-        if (!args.ViaCommand)
             return;
 
         args.Result = false;

@@ -18,7 +18,7 @@ public sealed partial class VisualOrganMarkingsComponent : Component
     public OrganMarkingData MarkingData = default!;
 
     /// <summary>
-    /// The list of markings to apply to the entity
+    /// The list of markings this organ is currently providing to the entity
     /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<HumanoidVisualLayers, List<Marking>> Markings = new();

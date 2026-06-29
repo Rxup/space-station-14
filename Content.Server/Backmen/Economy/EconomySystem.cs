@@ -1,4 +1,4 @@
-﻿//using Content.Server.Backmen.Economy.ATM;
+//using Content.Server.Backmen.Economy.ATM;
 
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -10,7 +10,6 @@ using Content.Server.Backmen.Economy.Wage;
 using Content.Server.Backmen.Loadout;
 using Content.Server.Backmen.Mind;
 using Content.Server.Chat.Managers;
-using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Mind;
 using Content.Server.Roles;
@@ -26,7 +25,6 @@ using Content.Shared.Objectives.Components;
 using Content.Shared.PDA;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
-using Content.Shared.Roles.Jobs;
 using Content.Shared.Verbs;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
@@ -248,7 +246,7 @@ public sealed partial class EconomySystem : EntitySystem
         if (!_inventorySystem.TryGetSlotEntity(player, "id", out var idUid))
             return;
 
-        if (!EntityManager.TryGetComponent(idUid, out CartridgeLoaderComponent? cartrdigeLoaderComponent))
+        if (!TryComp(idUid, out CartridgeLoaderComponent? cartrdigeLoaderComponent))
             return;
 
         foreach (var uid in cartrdigeLoaderComponent.BackgroundPrograms)

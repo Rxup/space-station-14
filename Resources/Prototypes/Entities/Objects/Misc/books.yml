@@ -79,7 +79,7 @@
         Blunt: 1
   - type: DamageOtherOnHit
     damage:
-      types:
+      types: {}
 
 - type: entity
   id: BookSpaceEncyclopedia
@@ -95,7 +95,7 @@
     - state: decor_wingette
       color: "#082561"
     - state: icon_text
-      color: gold
+      color: "#FFD700"
     - state: icon_planet
       color: "#42b6f5"
   - type: GuideHelp
@@ -175,7 +175,7 @@
       color: "#2fa151"
     - state: icon_cabbage
     - state: icon_corner
-      color: gold
+      color: "#FFD700"
   - type: GuideHelp
     guides:
     - Botany
@@ -196,7 +196,7 @@
       color: "#b5913c"
     - state: icon_wrench
     - state: icon_corner
-      color: gold
+      color: "#FFD700"
   - type: GuideHelp
     guides:
     - Engineering
@@ -464,7 +464,7 @@
       color: "#2739b0"
     - state: icon_atmos
     - state: icon_corner
-      color: gold
+      color: "#FFD700"
   - type: Paper
     content: book-text-atmos-distro
 
@@ -483,7 +483,7 @@
       color: "#ab0730"
     - state: icon_atmos
     - state: icon_corner
-      color: gold
+      color: "#FFD700"
   - type: Paper
     content: book-text-atmos-waste
 
@@ -502,7 +502,7 @@
       color: "#9c7c14"
     - state: icon_atmos
     - state: icon_corner
-      color: gold
+      color: "#FFD700"
   - type: Paper
     content: book-text-atmos-alarms
 
@@ -521,6 +521,6 @@
       color: "#28a15a"
     - state: icon_atmos
     - state: icon_corner
-      color: gold
+      color: "#FFD700"
   - type: Paper
     content: book-text-atmos-vents

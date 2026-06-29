@@ -16,18 +16,15 @@ public sealed partial class SalvageSystem
 {
     [Dependency] private IRuntimeLog _runtimeLog = default!;
 
-    private static readonly ProtoId<RadioChannelPrototype> MagnetChannel = "Supply";
+    [Dependency] private EntityQuery<SalvageMobRestrictionsComponent> _salvMobQuery = default!;
+    [Dependency] private EntityQuery<MobStateComponent> _mobStateQuery = default!;
 
-    private EntityQuery<SalvageMobRestrictionsComponent> _salvMobQuery;
-    private EntityQuery<MobStateComponent> _mobStateQuery;
+    private static readonly ProtoId<RadioChannelPrototype> MagnetChannel = "Supply";
 
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _detachEnts = new();
 
     private void InitializeMagnet()
     {
-        _salvMobQuery = GetEntityQuery<SalvageMobRestrictionsComponent>();
-        _mobStateQuery = GetEntityQuery<MobStateComponent>();
-
         SubscribeLocalEvent<SalvageMagnetDataComponent, MapInitEvent>(OnMagnetDataMapInit);
 
         SubscribeLocalEvent<SalvageMagnetTargetComponent, GridSplitEvent>(OnMagnetTargetSplit);
@@ -48,12 +45,11 @@ public sealed partial class SalvageSystem
         }
 
         var index = args.Index;
-        var actor = args.Actor;
         async void TryTakeMagnetOffer()
         {
             try
             {
-                await TakeMagnetOffer((station.Value, dataComp), index, (uid, component), actor); // DeltaV: pass the user entity
+                await TakeMagnetOffer((station.Value, dataComp), index, (uid, component));
             }
             catch (Exception e)
             {
@@ -279,15 +275,11 @@ public sealed partial class SalvageSystem
         }
     }
 
-    private async Task TakeMagnetOffer(Entity<SalvageMagnetDataComponent> data, int index, Entity<SalvageMagnetComponent> magnet, EntityUid user) // DeltaV: add user param
+    private async Task TakeMagnetOffer(Entity<SalvageMagnetDataComponent> data, int index, Entity<SalvageMagnetComponent> magnet)
     {
         var seed = data.Comp.Offered[index];
 
         var offering = GetSalvageOffering(seed);
-        // Begin DeltaV Addition: make wrecks cost mining points to pull
-        if (offering.Cost > 0 && !(_points.TryFindIdCard(user) is {} idCard && _points.RemovePoints(idCard, offering.Cost)))
-            return;
-        // End DeltaV Addition
         var salvMap = _mapSystem.CreateMap();
         var salvMapXform = Transform(salvMap);
 
@@ -350,7 +342,7 @@ public sealed partial class SalvageSystem
             }
         }
 
-        var magnetXform = _xformQuery.GetComponent(magnet.Owner);
+        var magnetXform = Transform(magnet.Owner);
         var magnetGridUid = magnetXform.GridUid;
         var attachedBounds = new Box2Rotated();
         var mapId = MapId.Nullspace;
@@ -358,7 +350,7 @@ public sealed partial class SalvageSystem
 
         if (magnetGridUid != null)
         {
-            var magnetGridXform = _xformQuery.GetComponent(magnetGridUid.Value);
+            var magnetGridXform = Transform(magnetGridUid.Value);
             var (gridPos, gridRot) = _transform.GetWorldPositionRotation(magnetGridXform);
             var gridAABB = _gridQuery.GetComponent(magnetGridUid.Value).LocalAABB;
 
@@ -390,7 +382,7 @@ public sealed partial class SalvageSystem
         // It worked, move it into position and cleanup values.
         while (mapChildren.MoveNext(out var mapChild))
         {
-            var salvXForm = _xformQuery.GetComponent(mapChild);
+            var salvXForm = Transform(mapChild);
             var localPos = salvXForm.LocalPosition;
 
             _transform.SetParent(mapChild, salvXForm, spawnUid.Value);

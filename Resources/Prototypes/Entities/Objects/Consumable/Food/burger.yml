@@ -11,9 +11,9 @@
     sprite: Objects/Consumable/Food/burger.rsi
     layers:
     - state: bun
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -51,9 +51,9 @@
     nameGeneration: food-sequence-burger-gen
   - type: Appearance
   - type: FoodMetamorphableByAdding
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         canReact: false # Dont want cause reactions inside burgers after merging ingredients
         reagents:
@@ -70,9 +70,9 @@
     sprite: Objects/Consumable/Food/burger_sequence.rsi
     layers:
     - state: bun_top
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -94,9 +94,9 @@
       - meaty
   - type: Sprite
     sprite: Objects/Consumable/Food/burger.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -155,9 +155,9 @@
       - grass
   - type: Sprite
     state: appendix
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -197,9 +197,9 @@
       - bacon
   - type: Sprite
     state: bacon
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
@@ -237,9 +237,9 @@
       - homerun
   - type: Sprite
     state: baseball
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -281,9 +281,9 @@
       - meaty
   - type: Sprite
     state: bearger
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -317,9 +317,9 @@
       - meaty
       - oily
       - cheesy
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 45
         reagents:
         - ReagentId: Nutriment
@@ -354,9 +354,9 @@
       - meaty
   - type: Sprite
     state: brain
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -392,9 +392,9 @@
       - bun
       - meaty
       - cat
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -420,9 +420,9 @@
       - cheesy
   - type: Sprite
     state: cheese
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 26
         reagents:
         - ReagentId: Nutriment
@@ -462,9 +462,9 @@
       - chicken
   - type: Sprite
     state: chicken
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -513,9 +513,9 @@
       - funny
   - type: Sprite
     state: clown
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -540,9 +540,9 @@
       - validhunting
   - type: Sprite
     state: ian
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Bicaridine #keeping it somewhat consistent with the meat itself
@@ -571,9 +571,9 @@
       - crabby
   - type: Sprite
     state: crab
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -624,9 +624,9 @@
       - flare
   - type: Sprite
     state: crazy
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 65
         reagents:
         - ReagentId: Nutriment
@@ -670,9 +670,9 @@
       - duck
   - type: Sprite
     state: chicken
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -703,9 +703,9 @@
     flavors:
       - bun
       - shocking
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -768,9 +768,9 @@
       - spicy
   - type: Sprite
     state: fivealarm
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 55
         reagents:
         - ReagentId: Nutriment
@@ -821,9 +821,9 @@
       - spooky
   - type: Sprite
     state: ghost
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -848,9 +848,9 @@
       - people
   - type: Sprite
     state: human
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -896,9 +896,9 @@
       - egg
   - type: Sprite
     state: mcguffin
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -926,9 +926,9 @@
       - bacon
   - type: Sprite
     state: mcrib
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
@@ -970,9 +970,9 @@
       - nothing
   - type: Sprite
     state: mime
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -1003,9 +1003,9 @@
       - meaty
   - type: Sprite
     state: plain
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -1036,9 +1036,9 @@
       - meaty
   - type: Sprite
     state: rat
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -1074,9 +1074,9 @@
       - metallic
   - type: Sprite
     state: ro
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -1131,9 +1131,9 @@
       - soy
   - type: Sprite
     state: soylent
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -1164,9 +1164,9 @@
       - magical
   - type: Sprite
     state: spell
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -1198,9 +1198,9 @@
       - meaty
       - oily
       - cheesy
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 90
         reagents:
         - ReagentId: Nutriment
@@ -1230,9 +1230,9 @@
       - tofu
   - type: Sprite
     state: tofu
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -1268,9 +1268,9 @@
       - acid
   - type: Sprite
     state: x
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -1322,9 +1322,9 @@
       - light
   - type: Sprite
     state: mothroach
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment

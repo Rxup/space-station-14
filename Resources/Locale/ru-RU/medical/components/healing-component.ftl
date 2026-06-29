@@ -1,5 +1,5 @@
-medical-item-finished-using = Вы закончили лечить при помощи { $item }
-medical-item-cant-use = Нет повреждений, которые можно вылечить при помощи { $item }
+medical-item-finished-using = Вы закончили лечить при помощи {$item}.
+medical-item-cant-use = Нет повреждений, которые можно вылечить при помощи {$item}.
 medical-item-cant-use-rebell = Вы не можете помочь { $target }. Слишком много крови.
 rebell-medical-item-stop-bleeding-fully = Вы остановили кровотечение.
 rebell-medical-item-stop-bleeding-partially = Вы частично остановили кровотечение.

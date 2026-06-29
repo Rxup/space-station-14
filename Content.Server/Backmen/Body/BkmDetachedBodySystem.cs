@@ -1,30 +1,33 @@
-using System.Collections.Generic;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.Rotting;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Rotting;
+using Content.Shared.Backmen.Damage;
 using Content.Shared.Backmen.Body.OrganRelations;
-using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Temperature.Components;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Body;
 
 public sealed partial class BkmDetachedBodySystem : EntitySystem
 {
-    [Dependency] private readonly Shared.Backmen.Body.OrganRelations.BkmDetachedBodySystem _detached = default!;
-    [Dependency] private readonly OrganRelationInitializerSystem _organRelations = default!;
-    [Dependency] private readonly RottingSystem _rotting = default!;
+    [Dependency] private Shared.Backmen.Body.OrganRelations.BkmDetachedBodySystem _detached = default!;
+    [Dependency] private OrganRelationInitializerSystem _organRelations = default!;
+    [Dependency] private RottingSystem _rotting = default!;
+    [Dependency] private BackmenDamageModelExclusivitySystem _backmenDamageExclusivity = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<BkmDetachedBodyComponent, MapInitEvent>(OnDetachedBodyMapInit);
         SubscribeLocalEvent<BkmDetachedBodyComponent, EntInsertedIntoContainerMessage>(_detached.OnOrganInserted);
         SubscribeLocalEvent<BkmDetachedBodyComponent, EntRemovedFromContainerMessage>(_detached.OnOrganRemoved);
 
@@ -34,6 +37,9 @@ public sealed partial class BkmDetachedBodySystem : EntitySystem
         SubscribeLocalEvent<BkmDetachedBrainProtectionComponent, IsRottingEvent>(OnBrainIsRotting);
     }
 
+    private void OnDetachedBodyMapInit(Entity<BkmDetachedBodyComponent> ent, ref MapInitEvent args) =>
+        _backmenDamageExclusivity.RemoveInjurableIfPresent(ent);
+
     private void OnDetachedBodyCreated(Entity<BkmDetachedBodyComponent> ent, ref BkmDetachedBodyCreatedEvent args)
     {
         EnsureComp<DamageableComponent>(ent);
@@ -41,7 +47,7 @@ public sealed partial class BkmDetachedBodySystem : EntitySystem
         var flammable = EnsureComp<FlammableComponent>(ent);
         flammable.Damage = new DamageSpecifier
         {
-            DamageDict = new Dictionary<string, FixedPoint2> { { "Heat", 3 } }
+            DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2> { { "Heat", 3 } }
         };
 
         EnsureComp<TemperatureComponent>(ent);

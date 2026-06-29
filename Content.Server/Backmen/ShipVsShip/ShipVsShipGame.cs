@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Backmen.Arrivals;
 using Content.Server.Backmen.RoleWhitelist;
 using Content.Server.Backmen.ShipVsShip.Components;
@@ -22,7 +22,6 @@ using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
-using Content.Shared.Roles.Jobs;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Station.Components;
 using Content.Shared.Timing;
@@ -434,8 +433,7 @@ public sealed partial class ShipVsShipGame : GameRuleSystem<ShipVsShipGameCompon
 
         if (ct.Count == 0)
         {
-            GameTicker.EndGameRule(ruleId,ruleData);
-            GameTicker.EndRound("не правильная карта!");
+            GameTicker.EndGameRule(ruleId, ruleData);
             return;
         }
 

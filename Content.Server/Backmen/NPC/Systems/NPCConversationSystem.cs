@@ -35,6 +35,8 @@ namespace Content.Server.Backmen.NPC.Systems;
 
 public sealed partial class NPCConversationSystem : EntitySystem
 {
+    [GeneratedRegex(@"(\p{P})")]
+    private static partial Regex PunctuationRegex();
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
@@ -479,7 +481,7 @@ public sealed partial class NPCConversationSystem : EntitySystem
 
     private List<string> ParseMessageIntoWords(string message)
     {
-        return Regex.Replace(message.Trim().ToLower(), @"(\p{P})", "")
+        return PunctuationRegex().Replace(message.Trim().ToLower(), "")
             .Split()
             .ToList();
     }

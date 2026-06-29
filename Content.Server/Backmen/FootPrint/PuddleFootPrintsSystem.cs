@@ -21,7 +21,7 @@ public sealed partial class PuddleFootPrintsSystem : EntitySystem
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<PuddleComponent> _puddleQuery;
     private EntityQuery<FootPrintsComponent> _footPrintsQuery;
-    private EntityQuery<SolutionContainerManagerComponent> _solutionContainerManageQuery;
+    private EntityQuery<SolutionManagerComponent> _solutionManagerQuery;
 
     private static readonly ProtoId<ReagentPrototype> WaterId = "Water";
 
@@ -35,7 +35,7 @@ public sealed partial class PuddleFootPrintsSystem : EntitySystem
        _appearanceQuery = GetEntityQuery<AppearanceComponent>();
        _puddleQuery = GetEntityQuery<PuddleComponent>();
        _footPrintsQuery = GetEntityQuery<FootPrintsComponent>();
-       _solutionContainerManageQuery = GetEntityQuery<SolutionContainerManagerComponent>();
+       _solutionManagerQuery = GetEntityQuery<SolutionManagerComponent>();
 
        Subs.CVar(_configuration, CCVars.EnableFootPrints, value => _footprintEnabled = value, true);
    }
@@ -48,12 +48,12 @@ public sealed partial class PuddleFootPrintsSystem : EntitySystem
         if (!_appearanceQuery.TryComp(uid, out var appearance) ||
             !_puddleQuery.TryComp(uid, out var puddle) ||
             !_footPrintsQuery.TryComp(args.OtherEntity, out var tripper) ||
-            !_solutionContainerManageQuery.TryComp(uid, out var solutionManager))
+            !_solutionManagerQuery.HasComponent(uid))
         {
             return;
         }
 
-        if (!_solutionContainerSystem.ResolveSolution((uid, solutionManager), puddle.SolutionName, ref puddle.Solution, out var solutions))
+        if (!_solutionContainerSystem.ResolveSolution(uid, puddle.SolutionName, ref puddle.Solution, out var solutions))
             return;
 
         if (solutions.Contents.Count <= 0)
@@ -81,7 +81,10 @@ public sealed partial class PuddleFootPrintsSystem : EntitySystem
             AddColor((Color)color, (float)volumeRatio * comp.SizeRatio, tripper);
         }
 
-        _solutionContainerSystem.RemoveEachReagent(puddle.Solution.Value, 1);
+        if (puddle.Solution is not { } solution)
+            return;
+
+        _solutionContainerSystem.RemoveEachReagent(solution, 1);
     }
 
     private void AddColor(Color col, float quantity, FootPrintsComponent comp)

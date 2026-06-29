@@ -1,5 +1,3 @@
-using Robust.Shared.GameStates;
-
 namespace Content.Server.Backmen.Species.Shadowkin.Components;
 
 [RegisterComponent]

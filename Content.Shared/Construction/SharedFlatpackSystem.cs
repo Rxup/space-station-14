@@ -1,5 +1,7 @@
-using Content.Shared.Construction.Components;
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Construction.Components;
+using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Examine;
@@ -11,6 +13,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Construction;
@@ -20,16 +24,16 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
-    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] private AnchorableSystem _anchorable = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private EntityLookupSystem _entityLookup = default!;
     [Dependency] private SharedMapSystem _map = default!;
-    [Dependency] protected MachinePartSystem MachinePart = default!;
-    [Dependency] protected SharedMaterialStorageSystem MaterialStorage = default!;
-    [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedToolSystem _tool = default!;
+    [Dependency] protected MachinePartSystem MachinePart = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] protected SharedMaterialStorageSystem MaterialStorage = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -76,22 +80,23 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
             return;
         }
 
-        var buildPos = _map.TileIndicesFor(grid, gridComp, xform.Coordinates);
-        var coords = _map.ToCenterCoordinates(grid, buildPos);
-
-        // TODO FLATPAK
-        // Make this logic smarter. This should eventually allow for shit like building microwaves on tables and such.
-        // Also: make it ignore ghosts
-        if (_entityLookup.AnyEntitiesIntersecting(coords, LookupFlags.Dynamic | LookupFlags.Static))
+        if (!PrototypeManager.Resolve(comp.Entity, out var proto) ||
+            !proto.TryGetComponent<FixturesComponent>(out var fixture, EntityManager.ComponentFactory))
         {
-            // this popup is on the server because the predicts on the intersection is crazy
-            if (_net.IsServer)
-                _popup.PopupEntity(Loc.GetString("flatpack-unpack-no-room"), uid, args.User);
+            return;
+        }
+
+        var (layer, mask) = SharedPhysicsSystem.GetHardCollision(fixture);
+        var buildPos = _map.TileIndicesFor(grid, gridComp, xform.Coordinates);
+
+        if (!_anchorable.TileFree((grid, gridComp), buildPos, layer, mask))
+        {
+            _popup.PopupPredicted(Loc.GetString("flatpack-unpack-no-room"), uid, args.User);
             return;
         }
 
         // start-backmen: protection system
-        var ev = new Backmen.Arrivals.FlatPackUserAttemptUseEvent(args.User, comp.Entity, coords);
+        var ev = new Backmen.Arrivals.FlatPackUserAttemptUseEvent(args.User, comp.Entity, xform.Coordinates);
         if (xform.GridUid is { } gridUid)
         {
             RaiseLocalEvent(gridUid, ref ev, true);
@@ -146,14 +151,34 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
         Appearance.SetData(ent, FlatpackVisuals.Machine, MetaData(board).EntityPrototype?.ID ?? string.Empty);
     }
 
-    /// <param name="machineBoard">The machine board to pack. If null, this implies we are packing a computer board</param>
-    public Dictionary<string, int> GetFlatpackCreationCost(Entity<FlatpackCreatorComponent> entity, Entity<MachineBoardComponent>? machineBoard)
+    /// <summary>
+    /// Returns the prototype from a board that the flatpacker will create.
+    /// </summary>
+    public bool TryGetFlatpackResultPrototype(EntityUid board, [NotNullWhen(true)] out EntProtoId? prototype)
     {
-        Dictionary<string, int> cost = new();
+        prototype = null;
+
+        if (TryComp<MachineBoardComponent>(board, out var machine))
+            prototype = machine.Prototype;
+        else if (TryComp<ComputerBoardComponent>(board, out var computer))
+            prototype = computer.Prototype;
+        return prototype is not null;
+    }
+
+    /// <summary>
+    /// Tries to get the cost to produce an item, fails if unable to produce it.
+    /// </summary>
+    /// <param name="entity">The flatpacking machine</param>
+    /// <param name="machineBoard">The machine board to pack. If null, this implies we are packing a computer board</param>
+    /// <param name="cost">Cost to produce</param>
+    public bool TryGetFlatpackCreationCost(Entity<FlatpackCreatorComponent> entity, EntityUid machineBoard, out Dictionary<string, int> cost)
+    {
+        cost = new();
         Dictionary<ProtoId<MaterialPrototype>, int> baseCost;
-        if (machineBoard is not null)
+        if (TryComp<MachineBoardComponent>(machineBoard, out var machineBoardComp))
         {
-            cost = MachinePart.GetMachineBoardMaterialCost(machineBoard.Value, -1);
+            if (!MachinePart.TryGetMachineBoardMaterialCost((machineBoard, machineBoardComp), out cost, -1))
+                return false;
             baseCost = entity.Comp.BaseMachineCost;
         }
         else
@@ -165,6 +190,6 @@ public abstract partial class SharedFlatpackSystem : EntitySystem
             cost[mat] -= amount;
         }
 
-        return cost;
+        return true;
     }
 }

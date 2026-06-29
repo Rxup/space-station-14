@@ -122,7 +122,7 @@
   recipeUnlocks:
   - HandLabeler
   - Beaker
-  - BaseChemistryEmptyVial
+  - ChemistryEmptyVial
   - LargeBeaker
   - Dropper
   - Jug

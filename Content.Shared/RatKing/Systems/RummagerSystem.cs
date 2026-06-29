@@ -10,7 +10,7 @@ namespace Content.Shared.RatKing.Systems;
 
 public sealed partial class RummagerSystem : EntitySystem
 {
-    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private EntityTableSystem _entityTable =  default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private INetManager _net = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;

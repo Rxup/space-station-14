@@ -1,6 +1,5 @@
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.Containers;

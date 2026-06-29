@@ -29,6 +29,8 @@
           ajar: ""
           open: ""
   - type: Damageable
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:

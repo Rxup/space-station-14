@@ -1,4 +1,3 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Decals;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -60,6 +59,9 @@ public sealed partial class AtmosphereSystem
     {
         var gridAtmosphere = ent.Comp1;
 
+        // Hotspots that have fizzled out are assigned a new Hotspot struct
+        // with Valid set to false, so we can just check that here in
+        // one central place instead of manually removing it everywhere.
         if (!tile.Hotspot.Valid)
         {
             gridAtmosphere.HotspotTiles.Remove(tile);
@@ -68,6 +70,10 @@ public sealed partial class AtmosphereSystem
 
         AddActiveTile(gridAtmosphere, tile);
 
+        // Prevent the hotspot from processing on the same cycle it was created (???)
+        // TODO ATMOS: Is this even necessary anymore? The queue is kept per processing stage
+        // and is not updated until tne next cycle, so the condition of a hotspot being created
+        // and processed in the same cycle is impossible.
         if (!tile.Hotspot.SkippedFirstProcess)
         {
             tile.Hotspot.SkippedFirstProcess = true;
@@ -77,15 +83,13 @@ public sealed partial class AtmosphereSystem
         if (tile.ExcitedGroup != null)
             ExcitedGroupResetCooldowns(tile.ExcitedGroup);
 
-        // Условие тушения hotspot с учётом Backmen-изменений (hydrogen + hypernoblium suppression)
         if (tile.Hotspot.Temperature < Atmospherics.FireMinimumTemperatureToExist ||
             tile.Hotspot.Volume <= 1f ||
             tile.Air == null ||
-            tile.Air.GetMoles(Gas.Oxygen) < 0.5f ||
-            (tile.Air.GetMoles(Gas.Plasma) < 0.5f &&
-            tile.Air.GetMoles(Gas.Tritium) < 0.5f &&
-            tile.Air.GetMoles(Gas.Hydrogen) < 0.5f &&
-            tile.Air.GetMoles(Gas.HyperNoblium) > 5f))
+            !IsMixtureIgnitable(tile.Air) ||
+            // start-backmen: gases
+            tile.Air.GetMoles(Gas.HyperNoblium) > 5f)
+            // end-backmen: gases
         {
             tile.Hotspot = new Hotspot();
             InvalidateVisuals(ent, tile);
@@ -94,74 +98,85 @@ public sealed partial class AtmosphereSystem
 
         PerformHotspotExposure(tile);
 
-        var gridUid = ent.Owner;
-        var tilePos = tile.GridIndices;
-
-        // Обработка декалей (burnt floor) — из твоей ветки
-        var tileDecals = _decalSystem.GetDecalsInRange(gridUid, tilePos);
-        var tileBurntDecals = 0;
-
-        foreach (var set in tileDecals)
-        {
-            if (Array.IndexOf(_burntDecals, set.Decal.Id) == -1)
-                continue;
-
-            tileBurntDecals++;
-            if (tileBurntDecals > 4)
-                break;
-        }
-
-        if (tileBurntDecals < 4)
-        {
-            _decalSystem.TryAddDecal(_burntDecals[_random.Next(_burntDecals.Length)],
-                new EntityCoordinates(gridUid, tilePos),
-                out _,
-                cleanable: true);
-        }
-
+        // This tile has now turned into a full-blown tile-fire.
+        // Start applying fire effects and spreading to adjacent tiles.
         if (tile.Hotspot.Bypassing)
         {
             tile.Hotspot.State = 3;
 
-            if (tile.ExcitedGroup != null)
-                ExcitedGroupResetCooldowns(tile.ExcitedGroup);
+            var gridUid = ent.Owner;
+            var tilePos = tile.GridIndices;
 
-            // Распространение огня на соседние тайлы (из upstream, но с твоим комментарием)
+            // Get the existing decals on the tile
+            var tileDecals = _decalSystem.GetDecalsInRange(gridUid, tilePos);
+
+            // Count the burnt decals on the tile
+            var tileBurntDecals = 0;
+
+            foreach (var set in tileDecals)
+            {
+                if (Array.IndexOf(_burntDecals, set.Decal.Id) == -1)
+                    continue;
+
+                tileBurntDecals++;
+
+                if (tileBurntDecals > 4)
+                    break;
+            }
+
+            // Add a random burned decal to the tile only if there are less than 4 of them
+            if (tileBurntDecals < 4)
+            {
+                _decalSystem.TryAddDecal(_burntDecals[_random.Next(_burntDecals.Length)],
+                    new EntityCoordinates(gridUid, tilePos),
+                    out _,
+                    cleanable: true);
+            }
+
             if (tile.Air.Temperature > Atmospherics.FireMinimumTemperatureToSpread)
             {
                 var radiatedTemperature = tile.Air.Temperature * Atmospherics.FireSpreadRadiosityScale;
                 foreach (var otherTile in tile.AdjacentTiles)
                 {
-                    if (otherTile == null || otherTile.Hotspot.Valid)
+                    // TODO ATMOS: This is sus. Suss this out.
+                    // Spread this fire to other tiles by exposing them to a hotspot if air can flow there.
+                    // Unsure as to why this is sus.
+                    if (otherTile == null)
                         continue;
 
-                    HotspotExpose(gridAtmosphere, otherTile, radiatedTemperature, Atmospherics.CellVolume / 4);
+                    if (!otherTile.Hotspot.Valid)
+                        HotspotExpose(gridAtmosphere, otherTile, radiatedTemperature, Atmospherics.CellVolume / 4);
                 }
             }
         }
         else
         {
-            // Маленький огонь
+            // Little baby fire. Set the sprite state based on the current size of the fire.
             tile.Hotspot.State = (byte)(tile.Hotspot.Volume > Atmospherics.CellVolume * 0.4f ? 2 : 1);
         }
-
-        // Определение Bypassing с твоим изменением (backmen: gas)
-        tile.Hotspot.Bypassing = tile.Hotspot.SkippedFirstProcess && tile.Hotspot.Volume > tile.Air.Volume * 0.95f;
 
         if (tile.Hotspot.Temperature > tile.MaxFireTemperatureSustained)
             tile.MaxFireTemperatureSustained = tile.Hotspot.Temperature;
 
-        // Звук огня
         if (_hotspotSoundCooldown++ == 0 && HotspotSound != null)
         {
             var coordinates = _mapSystem.ToCenterCoordinates(tile.GridIndex, tile.GridIndices);
-            _audio.PlayPvs(HotspotSound, coordinates,
-                HotspotSound.Params.WithVariation(0.15f / tile.Hotspot.State).WithVolume(-5f + 5f * tile.Hotspot.State));
+
+            // A few details on the audio parameters for fire.
+            // The greater the fire state, the lesser the pitch variation.
+            // The greater the fire state, the greater the volume.
+            _audio.PlayPvs(HotspotSound,
+                coordinates,
+                HotspotSound.Params.WithVariation(0.15f / tile.Hotspot.State)
+                    .WithVolume(-5f + 5f * tile.Hotspot.State));
         }
 
         if (_hotspotSoundCooldown > HotspotSoundCooldownCycles)
             _hotspotSoundCooldown = 0;
+
+        // TODO ATMOS Maybe destroy location here?
     }
+
     /// <summary>
     /// Exposes a tile to a hotspot of given temperature and volume, igniting it if conditions are met.
     /// </summary>
@@ -187,39 +202,40 @@ public sealed partial class AtmosphereSystem
         if (tile.Air == null)
             return;
 
-        var oxygen = tile.Air.GetMoles(Gas.Oxygen);
-        if (oxygen < 0.5f)
+        if (!IsMixtureOxidizer(tile.Air))
             return;
 
-        var plasma = tile.Air.GetMoles(Gas.Plasma);
-        var tritium = tile.Air.GetMoles(Gas.Tritium);
-        var hydrogen = tile.Air.GetMoles(Gas.Hydrogen);       // backmen: gas
-        var hypernoblium = tile.Air.GetMoles(Gas.HyperNoblium); // backmen: gas
+        var isFlammable = IsMixtureFuel(tile.Air);
+        // start-backmen: gases
+        var hypernoblium = tile.Air.GetMoles(Gas.HyperNoblium);
+        // end-backmen: gases
 
         if (tile.Hotspot.Valid)
         {
             if (soh)
             {
-                // Усиление существующего огня только если есть топливо и нет супрессора
-                if ((plasma > 0.5f || tritium > 0.5f || hydrogen > 0.5f) && hypernoblium < 5f)
+                // start-backmen: gases
+                if (isFlammable && hypernoblium < 5f)
+                // end-backmen: gases
                 {
                     tile.Hotspot.Temperature = MathF.Max(tile.Hotspot.Temperature, exposedTemperature);
                     tile.Hotspot.Volume = MathF.Max(tile.Hotspot.Volume, exposedVolume);
                 }
             }
+
             return;
         }
 
-        // Зажигание нового hotspot — только если есть топливо и hypernoblium < 5
-        if (exposedTemperature > Atmospherics.PlasmaMinimumBurnTemperature &&
-            (plasma > 0.5f || tritium > 0.5f || hydrogen > 0.5f) &&
-            hypernoblium < 5f)
+        // start-backmen: gases
+        if (exposedTemperature > Atmospherics.PlasmaMinimumBurnTemperature && isFlammable && hypernoblium < 5f)
+        // end-backmen: gases
         {
             if (sparkSourceUid.HasValue)
             {
-                _adminLog.Add(LogType.Flammable, LogImpact.High,
+                _adminLog.Add(LogType.Flammable,
+                    LogImpact.High,
                     $"Heat/spark of {ToPrettyString(sparkSourceUid.Value)} caused atmos ignition of gas: " +
-                    $"{tile.Air.Temperature:0.##}K - {oxygen}mol Oxygen, {plasma}mol Plasma, {tritium}mol Tritium, {hydrogen}mol Hydrogen");
+                    $"{tile.Air.ToPrettyString()}");
             }
 
             tile.Hotspot = new Hotspot

@@ -5,7 +5,20 @@ loadout-group-brigmedic-jumpsuit = Униформа
 loadout-group-brigmedic-backpack = Рюкзак
 loadout-group-brigmedic-hat = Головной убор
 loadout-group-brigmedic-outer = Верхняя одежда
+# CentCom reinforcement loadouts
+loadout-group-captain-shoes = Captain shoes
+loadout-group-survival-mask = Mask
+loadout-group-gloves = Gloves
+loadout-group-id = ID
+loadout-group-ears = Ears
+loadout-group-pockets = Pockets
+loadout-group-neck = Neck
+loadout-group-security-eyes = Security eyes
 loadout-group-brigmedic-ear = Гарнитура
+loadout-group-belt = Belt
+loadout-group-medical-eyewear = Medical eyewear
+loadout-group-common-backpack = Backpack
+loadout-group-shoes = Shoes
 loadout-group-brigmedic-mask = Маска
 # Misc
 loadout-group-medals = Медали
@@ -28,6 +41,5 @@ loadout-group-virologist-backpack = Рюкзак
 loadout-group-surgeon-head = Головной убор
 loadout-group-surgeon-jumpsuit = Униформа
 loadout-group-surgeon-outerclothing = Верхняя одежда
-
 # Errors
 loadout-group-sex-restriction = Этот предмет недоступен для вашего текущего пола.

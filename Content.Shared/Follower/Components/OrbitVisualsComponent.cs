@@ -1,5 +1,4 @@
-﻿using Robust.Shared.Animations;
-using Robust.Shared.GameStates;
+﻿using Robust.Shared.GameStates;
 
 namespace Content.Shared.Follower.Components;
 

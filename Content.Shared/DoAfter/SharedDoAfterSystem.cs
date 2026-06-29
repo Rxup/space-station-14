@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Backmen.Surgery.Wounds;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
@@ -280,7 +279,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         doAfter.NetInitialItem = GetNetEntity(doAfter.InitialItem);
 
         // Initial checks
-        if (ShouldCancel(doAfter, GetEntityQuery<TransformComponent>(), GetEntityQuery<HandsComponent>()))
+        if (ShouldCancel(doAfter))
             return false;
 
         if (args.AttemptFrequency == AttemptFrequency.StartAndEnd && !TryAttemptEvent(doAfter))

@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Backmen.Abilities.Felinid;
+namespace Content.Server.Backmen.Abilities.Felinid;
 
 [RegisterComponent]
 public sealed partial class CoughingUpHairballComponent : Component

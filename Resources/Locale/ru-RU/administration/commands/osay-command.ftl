@@ -1,3 +1,5 @@
+cmd-osay-desc = Forces another entity to try to send a message
+cmd-osay-help = Usage: { $command } <uid> <type> <message>
 osay-command-description = Заставляет другую сущность попытаться отправить сообщение
 osay-command-help-text = Использование: { $command } <uid> <type> <message>
 osay-command-arg-uid = source uid

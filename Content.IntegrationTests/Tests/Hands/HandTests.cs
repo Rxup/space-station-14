@@ -1,7 +1,6 @@
 using System.Linq;
-using Content.Server.Damage.Systems;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.Storage.EntitySystems;
-using Content.Shared.Backmen.CCVar;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Server.GameObjects;
@@ -12,7 +11,7 @@ using Robust.Shared.GameObjects;
 namespace Content.IntegrationTests.Tests.Hands;
 
 [TestFixture]
-public sealed class HandTests
+public sealed class HandTests : GameTest
 {
     [TestPrototypes]
     private const string Prototypes = @"
@@ -27,14 +26,16 @@ public sealed class HandTests
 ";
 
 
+    public override PoolSettings PoolSettings => new()
+    {
+        Connected = true,
+        DummyTicker = false
+    };
+
     [Test]
     public async Task TestPickupDrop()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Connected = true,
-            DummyTicker = false
-        });
+        var pair = Pair;
         var server = pair.Server;
 
         var entMan = server.ResolveDependency<IEntityManager>();
@@ -75,20 +76,13 @@ public sealed class HandTests
         Assert.That(sys.GetActiveItem((player, hands)), Is.Null);
 
         await server.WaitPost(() => mapSystem.DeleteMap(data.MapId));
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task TestPickUpThenDropInContainer()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Connected = true,
-            DummyTicker = false,
-            Fresh = true, // backmen edit
-        });
+        var pair = Pair;
         var server = pair.Server;
-
         var map = await pair.CreateTestMap();
         await pair.RunTicksSync(5);
 
@@ -142,6 +136,5 @@ public sealed class HandTests
         Assert.That(containerSystem.IsInSameOrNoContainer((player, xform), (item, itemXform)));
 
         await server.WaitPost(() => mapSystem.DeleteMap(map.MapId));
-        await pair.CleanReturnAsync();
     }
 }

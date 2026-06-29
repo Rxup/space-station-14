@@ -1454,6 +1454,8 @@
         Heat: 0.5
   - type: Damageable
     damageModifierSet: Wood
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Appearance
   - type: FireVisuals
     sprite: Effects/fire.rsi

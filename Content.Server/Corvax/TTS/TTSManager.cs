@@ -33,7 +33,7 @@ public sealed partial class TTSManager
         "tts_reused_count",
         "Amount of reused TTS audio from cache.");
 
-    [Robust.Shared.IoC.Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Robust.Shared.IoC.Dependency] private IConfigurationManager _cfg = default!;
 
     private readonly HttpClient _httpClient = new();
 

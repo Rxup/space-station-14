@@ -1,7 +1,7 @@
 nuke-component-cant-anchor-floor = Крепёжным болтам не удаётся закрепиться в полу!
 nuke-component-cant-anchor-toggle = Для переключения крепёжных болтов требуется диск ядерной аутентификации!
 nuke-component-announcement-sender = Ядерная боеголовка
-nuke-component-announcement-armed = Внимание! Механизм самоуничтожения станции был активирован { $location }. До детонации { $time } секунд.
+nuke-component-announcement-armed = Внимание! Механизм самоуничтожения станции был активирован {$location}. До детонации {$time} секунд.
 nuke-component-announcement-unarmed = Механизм самоуничтожение станции деактивирован! Хорошего дня!
 nuke-component-announcement-send-codes = Внимание! Запрошенные коды самоуничтожения были отправлены на факс капитана.
 nuke-component-doafter-warning = Вы начинаете перебирать провода и кнопки, в попытке обезвредить ядерную бомбу. Это может занять некоторое время.
@@ -26,9 +26,9 @@ nuke-user-interface-status-error = ОШИБКА
 ## Lower status
 
 nuke-user-interface-second-status-await-disk = ОЖИДАНИЕ ДИСКА
-nuke-user-interface-second-status-time = ВРЕМЯ: { $time }
-nuke-user-interface-second-status-current-code = КОД: { $code }
-nuke-user-interface-second-status-cooldown-time = ОЖИДАНИЕ: { $time }
+nuke-user-interface-second-status-time = ВРЕМЯ: {$time}
+nuke-user-interface-second-status-current-code = КОД: {$code}
+nuke-user-interface-second-status-cooldown-time = ОЖИДАНИЕ: {$time}
 
 ## Nuke labels
 

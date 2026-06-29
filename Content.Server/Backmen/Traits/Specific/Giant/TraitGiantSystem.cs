@@ -1,5 +1,4 @@
 using Robust.Server.Console;
-using Robust.Server.GameObjects;
 
 namespace Content.Server.Backmen.Traits.Specific.Giant;
 

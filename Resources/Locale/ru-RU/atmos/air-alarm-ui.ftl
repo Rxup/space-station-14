@@ -24,9 +24,9 @@ air-alarm-ui-window-auto-mode-label = Авто-режим
     }
 air-alarm-ui-window-listing-title = {$address} : {-air-alarm-state-name(state:$state)}
 air-alarm-ui-window-pressure = { $pressure } кПа
-air-alarm-ui-window-pressure-indicator = Давление: [color={ $color }]{ $pressure } кПа[/color]
+air-alarm-ui-window-pressure-indicator = Давление: [color={$color}]{$pressure} кПа[/color]
 air-alarm-ui-window-temperature = { $tempC } °C ({ $temperature } К)
-air-alarm-ui-window-temperature-indicator = Температура: [color={ $color }]{ $tempC } °C ({ $temperature } К)[/color]
+air-alarm-ui-window-temperature-indicator = Температура: [color={$color}]{$tempC} °C ({$temperature} К)[/color]
 air-alarm-ui-window-alarm-state = [color={ $color }]{-air-alarm-state-name(state:$state)}[/color]
 air-alarm-ui-window-alarm-state-indicator = Статус: [color={ $color }]{-air-alarm-state-name(state:$state)}[/color]
 air-alarm-ui-window-tab-vents = Вентиляции
@@ -57,7 +57,7 @@ air-alarm-ui-widget-enable = Включено
 air-alarm-ui-widget-copy = Копировать настройки на похожие устройства
 air-alarm-ui-widget-copy-tooltip = Копирует настройки данного устройства на все устройства данной вкладки воздушной сигнализации.
 air-alarm-ui-widget-ignore = Игнорировать
-air-alarm-ui-atmos-net-device-label = Адрес: { $address }
+air-alarm-ui-atmos-net-device-label = Адрес: {$address}
 
 ### Vent pumps
 

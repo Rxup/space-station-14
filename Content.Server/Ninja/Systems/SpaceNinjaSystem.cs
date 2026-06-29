@@ -4,8 +4,6 @@ using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Research.Systems;
 using Content.Shared.Alert;
-using Content.Shared.Doors.Components;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Mind;
 using Content.Shared.Ninja.Components;
 using Content.Shared.Ninja.Systems;
@@ -33,7 +31,6 @@ public sealed partial class SpaceNinjaSystem : SharedSpaceNinjaSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SpaceNinjaComponent, EmaggedSomethingEvent>(OnDoorjack);
         SubscribeLocalEvent<SpaceNinjaComponent, ResearchStolenEvent>(OnResearchStolen);
         SubscribeLocalEvent<SpaceNinjaComponent, ThreatCalledInEvent>(OnThreatCalledIn);
         SubscribeLocalEvent<SpaceNinjaComponent, CriminalRecordsHackedEvent>(OnCriminalRecordsHacked);
@@ -111,23 +108,6 @@ public sealed partial class SpaceNinjaSystem : SharedSpaceNinjaSystem
     public override bool TryUseCharge(EntityUid user, float charge)
     {
         return GetNinjaBattery(user, out var uid, out var battery) && _battery.TryUseCharge((uid.Value, battery), charge);
-    }
-
-    /// <summary>
-    /// Increment greentext when emagging a door.
-    /// </summary>
-    private void OnDoorjack(EntityUid uid, SpaceNinjaComponent comp, ref EmaggedSomethingEvent args)
-    {
-        // incase someone lets ninja emag non-doors double check it here
-        if (!HasComp<DoorComponent>(args.Target))
-            return;
-
-        // this popup is serverside since door emag logic is serverside (power funnies)
-        Popup.PopupEntity(Loc.GetString("ninja-doorjack-success", ("target", Identity.Entity(args.Target, EntityManager))), uid, uid, PopupType.Medium);
-
-        // handle greentext
-        if (_mind.TryGetObjectiveComp<DoorjackConditionComponent>(uid, out var obj))
-            obj.DoorsJacked++;
     }
 
     /// <summary>

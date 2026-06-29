@@ -2,8 +2,7 @@ cable-multitool-system-internal-error-no-power-node = Ваш мультитул 
 cable-multitool-system-internal-error-missing-component = Ваш мультитул выдаёт сообщение: "ВНУТРЕННЯЯ ОШИБКА: КАБЕЛЬ АНОМАЛЕН".
 cable-multitool-system-verb-name = Питание
 cable-multitool-system-verb-tooltip = Используйте мультитул для просмотра статистики питания.
-cable-multitool-system-statistics =
-    Ваш мультитул показывает статистику:
+cable-multitool-system-statistics = Ваш мультитул показывает статистику:
     Источник тока: { POWERWATTS($supplyc) }
     От батарей: { POWERWATTS($supplyb) }
     Теоретическое снабжение: { POWERWATTS($supplym) }

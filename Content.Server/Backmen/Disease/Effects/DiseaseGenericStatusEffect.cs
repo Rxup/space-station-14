@@ -1,5 +1,4 @@
-﻿using Content.Shared.Backmen.Disease;
-using Content.Shared.StatusEffect;
+using Content.Shared.Backmen.Disease;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 

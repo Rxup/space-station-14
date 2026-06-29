@@ -1,8 +1,6 @@
 using Content.Server.Antag;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Spawners.Components;
 using Content.Shared.Whitelist;
-using Robust.Server.Physics;
 using Robust.Shared.Map;
 
 namespace Content.Server.GameTicking.Rules;
@@ -65,9 +63,9 @@ public sealed partial class RuleGridsSystem : GameRuleSystem<RuleGridsComponent>
             if (_whitelist.IsWhitelistFail(ent.Comp.SpawnerWhitelist, uid))
                 continue;
 
-            if (TryComp<GridSpawnPointWhitelistComponent>(uid, out var gridSpawnPointWhitelistComponent))
+            if (TryComp<AntagGridSpawnPointComponent>(uid, out var comp))
             {
-                if (!_whitelist.CheckBoth(args.Entity, gridSpawnPointWhitelistComponent.Blacklist, gridSpawnPointWhitelistComponent.Whitelist))
+                if (args.Antag == null || !comp.Whitelist.Contains(args.Antag))
                     continue;
             }
 

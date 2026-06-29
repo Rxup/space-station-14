@@ -8,7 +8,6 @@ using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
-using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -16,11 +15,9 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Gibbing.Events;
-using Content.Shared.Popups;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
@@ -36,13 +33,14 @@ public partial class WoundSystem
 
     protected EntityQuery<WoundComponent> WoundQuery;
     protected EntityQuery<WoundableComponent> WoundableQuery;
+    private EntityQuery<DamageableComponent> _damageableQuery;
 
     private void InitWounding()
     {
         SubscribeLocalEvent<WoundableComponent, ComponentInit>(OnWoundableInit);
         SubscribeLocalEvent<WoundableComponent, MapInitEvent>(OnWoundableMapInit);
 
-        SubscribeLocalEvent<WoundableComponent, DamageableWoundApplyEvent>(OnWoundableDamaged, after: [typeof(ConsciousnessSystem)]);
+        SubscribeLocalEvent<WoundableComponent, DamageDealtEvent>(OnWoundableDamageDealt, after: [typeof(ConsciousnessSystem)]);
 
         SubscribeLocalEvent<WoundableComponent, EntInsertedIntoContainerMessage>(OnWoundableInserted);
         SubscribeLocalEvent<WoundableComponent, EntRemovedFromContainerMessage>(OnWoundableRemoved);
@@ -63,6 +61,7 @@ public partial class WoundSystem
 
         WoundQuery = GetEntityQuery<WoundComponent>();
         WoundableQuery = GetEntityQuery<WoundableComponent>();
+        _damageableQuery = GetEntityQuery<DamageableComponent>();
     }
 
     #region Event Handling
@@ -73,15 +72,14 @@ public partial class WoundSystem
 
         woundable.RootWoundable = uid;
 
-        if (woundable.DamageContainerID == null && TryComp(uid, out DamageableComponent? damageable))
-            woundable.DamageContainerID = damageable.DamageContainerID; // Insane!!!!!!!!
-
         woundable.Wounds = Containers.EnsureContainer<Container>(uid, WoundContainerId);
         woundable.Bone = Containers.EnsureContainer<Container>(uid, BoneContainerId);
     }
 
     private void OnWoundableMapInit(Entity<WoundableComponent> entity, ref MapInitEvent args)
     {
+        BackmenDamageExclusivity.RemoveInjurableIfPresent(entity);
+
         var (uid, woundable) = entity;
 
         var bone = Spawn(woundable.BoneEntity);
@@ -129,24 +127,30 @@ public partial class WoundSystem
             QueueDel(entity);
     }
 
-    private void OnWoundableDamaged(Entity<WoundableComponent> entity, ref DamageableWoundApplyEvent args)
+    private void OnWoundableDamageDealt(Entity<WoundableComponent> entity, ref DamageDealtEvent args)
     {
-        if (args.Handled)
-            return;
-
         var (woundable, component) = entity;
 
         if (TryGetWoundableBody(woundable, out var bodyUid))
         {
-            var before = new BeforeDamageChangedEvent(args.Damage, args.Origin); // heheheha
+            var before = new BeforeDamageChangedEvent(args.Damage, args.Origin);
             RaiseLocalEvent(bodyUid, ref before);
 
             if (before.Cancelled)
                 return;
         }
 
-        args.Damage = GetWoundsChanged(woundable, args.Origin, args.Damage, component: component);
-        args.Handled = true;
+        var actuallyInduced = GetWoundsChanged(woundable, args.Origin, args.Damage, component: component);
+
+        if (!_damageableQuery.TryGetComponent(woundable, out var damageable))
+            return;
+
+        Damageable.ApplyDamageToDamageable(
+            (woundable, damageable),
+            actuallyInduced,
+            component.DamageContainer,
+            args.Origin,
+            args.InterruptsDoAfters);
     }
 
     private void OnWoundableInserted(Entity<WoundableComponent> parent, ref EntInsertedIntoContainerMessage args)
@@ -625,7 +629,7 @@ public partial class WoundSystem
 
         var unhandledWounds = damage.DamageDict
                 .Where(damagePiece => actuallyInducedDamage.DamageDict[damagePiece.Key] == 0)
-                .ToDictionary(damagePiece => damagePiece.Key, damagePiece => damagePiece.Value);
+                .ToDictionary(damagePiece => damagePiece.Key.Id, damagePiece => damagePiece.Value);
 
         if (unhandledWounds.Count != 0)
         {

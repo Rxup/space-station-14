@@ -4,17 +4,16 @@ using Content.Server.Atmos.Components;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
 using Content.Shared.Backmen.CCVar;
-using Content.Shared.Damage;
+using Content.Shared.Backmen.Mood;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Backmen.Mood;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
-using Content.Shared.Backmen.Targeting;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 
@@ -22,19 +21,20 @@ namespace Content.Server.Atmos.EntitySystems
 {
     public sealed partial class BarotraumaSystem : EntitySystem
     {
-        [Dependency] private IConfigurationManager _cfg = default!;
         [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private DamageableSystem _damageableSystem = default!;
         [Dependency] private AlertsSystem _alertsSystem = default!;
-        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private IAdminLogManager _adminLogger= default!;
         [Dependency] private InventorySystem _inventorySystem = default!;
+        [Dependency] private IConfigurationManager _cfg = default!;
         [Dependency] private WoundSystem _wounds = default!; // backmen edit: wounding
 
         private const float UpdateTimer = 1f;
         private float _timer;
 
         private bool _barotraumaEnabled = true; // Backmen edit
-        private EntityQuery<ConsciousnessComponent>  _consciousnessQuery; // Backmen edit
+        private EntityQuery<ConsciousnessComponent> _consciousnessQuery; // Backmen edit
+
         public override void Initialize()
         {
             SubscribeLocalEvent<PressureProtectionComponent, GotEquippedEvent>(OnPressureProtectionEquipped);
@@ -78,17 +78,17 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void OnPressureProtectionEquipped(EntityUid uid, PressureProtectionComponent pressureProtection, GotEquippedEvent args)
         {
-            if (TryComp<BarotraumaComponent>(args.Equipee, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
+            if (TryComp<BarotraumaComponent>(args.EquipTarget, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
             {
-                UpdateCachedResistances(args.Equipee, barotrauma);
+                UpdateCachedResistances(args.EquipTarget, barotrauma);
             }
         }
 
         private void OnPressureProtectionUnequipped(EntityUid uid, PressureProtectionComponent pressureProtection, GotUnequippedEvent args)
         {
-            if (TryComp<BarotraumaComponent>(args.Equipee, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
+            if (TryComp<BarotraumaComponent>(args.EquipTarget, out var barotrauma) && barotrauma.ProtectionSlots.Contains(args.Slot))
             {
-                UpdateCachedResistances(args.Equipee, barotrauma);
+                UpdateCachedResistances(args.EquipTarget, barotrauma);
             }
         }
 
@@ -232,11 +232,11 @@ namespace Content.Server.Atmos.EntitySystems
                     continue;
 
                 var totalDamage = FixedPoint2.Zero;
-                foreach (var (damageType, _) in barotrauma.Damage.DamageDict)
+                var damageSpecifier = _damageableSystem.GetAllDamage((uid, damageable));
+                foreach (var (barotraumaDamageType, _) in barotrauma.Damage.DamageDict)
                 {
-                    if (!damageable.Damage.DamageDict.TryGetValue(damageType, out var damage))
+                    if (!damageSpecifier.DamageDict.TryGetValue(barotraumaDamageType, out var damage))
                         continue;
-
                     totalDamage += damage;
                 }
 
@@ -269,7 +269,7 @@ namespace Content.Server.Atmos.EntitySystems
                 {
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
                     _damageableSystem.ChangeDamage(
-                        uid,
+                        (uid, damageable),
                         barotrauma.Damage * Atmospherics.LowPressureDamage,
                         true,
                         false,
@@ -289,7 +289,7 @@ namespace Content.Server.Atmos.EntitySystems
 
                     // Deal damage and ignore resistances. Resistance to pressure damage should be done via pressure protection gear.
                     _damageableSystem.ChangeDamage(
-                        uid,
+                        (uid, damageable),
                         barotrauma.Damage * damageScale,
                         true,
                         false,

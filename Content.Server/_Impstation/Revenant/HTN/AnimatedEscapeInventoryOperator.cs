@@ -5,8 +5,6 @@ using Content.Server.Resist;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Server.Containers;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
 
 namespace Content.Server._Impstation.Revenant.HTN;
 

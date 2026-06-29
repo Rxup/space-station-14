@@ -4,12 +4,8 @@
   # If item is not in list it will go at the bottom (ties broken by alert type enum value)
   id: BaseAlertOrder
   order:
-    - alertType: ChangelingBiomass
     - category: Health
-    - category: Mood
     - category: Stamina
-    - alertType: ChangelingChemicals
-    - category: ShadowkinPower
     - alertType: SuitPower
     - category: Internals
     - alertType: Fire
@@ -30,7 +26,6 @@
     - alertType: Magboots
     - alertType: Rooted
     - alertType: Pacified
-    - alertType: Offer #Ataraxia
     - alertType: Stealthy
 
 - type: entity
@@ -98,15 +93,6 @@
   clickEvent: !type:ResistFireAlertEvent
   name: alerts-on-fire-name
   description: alerts-on-fire-desc
-
-- type: alert #Ataraxia
-  id: Offer
-  clickEvent: !type:AcceptOfferAlertEvent
-  icons:
-  - sprite: /Textures/Interface/Alerts/offer_item.rsi
-    state: offer_item
-  name: alerts-offer-name
-  description: alerts-offer-desc
 
 
 - type: alert
@@ -491,6 +477,17 @@
     state: heart-on
   name: alerts-adrenaline-name
   description: alerts-adrenaline-desc
+
+# Making alerts for innate abilities like this should generally be avoided by turning them into actions or giving better UX.
+# This was done this way because several entities currently can pry innately and have no indicator for this whatsoever.
+# The ideal solution would be to clean up actions to handle this sort of thing easier while avoiding bloating the action UI.
+- type: alert
+  id: Prying
+  icons:
+  - sprite: /Textures/Objects/Tools/crowbar.rsi
+    state: icon
+  name: alerts-prying-name
+  description: alerts-prying-desc
 
 - type: alert
   id: Debug1

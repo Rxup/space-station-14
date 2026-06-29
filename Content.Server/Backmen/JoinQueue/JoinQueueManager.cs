@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Connection;
 using Content.Server.GameTicking;
 using Content.Shared.Backmen.JoinQueue;

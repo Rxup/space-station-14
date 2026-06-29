@@ -1,4 +1,3 @@
-using Content.Server.Backmen.CartridgeLoader.Cartridges;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;

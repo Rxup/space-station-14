@@ -9,6 +9,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
+using Content.Shared.Shuttles.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -47,19 +48,22 @@ public abstract partial class SharedMoverController : VirtualController
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TagSystem _tags = default!;
 
-    protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery;
-    protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery;
-    protected EntityQuery<InputMoverComponent> MoverQuery;
-    protected EntityQuery<MapComponent> MapQuery;
-    protected EntityQuery<MapGridComponent> MapGridQuery;
-    protected EntityQuery<MobMoverComponent> MobMoverQuery;
-    protected EntityQuery<MovementRelayTargetComponent> RelayTargetQuery;
-    protected EntityQuery<MovementSpeedModifierComponent> ModifierQuery;
-    protected EntityQuery<NoRotateOnMoveComponent> NoRotateQuery;
-    protected EntityQuery<PhysicsComponent> PhysicsQuery;
-    protected EntityQuery<RelayInputMoverComponent> RelayQuery;
-    protected EntityQuery<PullableComponent> PullableQuery;
-    protected EntityQuery<TransformComponent> XformQuery;
+    [Dependency] protected EntityQuery<CanMoveInAirComponent> CanMoveInAirQuery = default!;
+    [Dependency] protected EntityQuery<FootstepModifierComponent> FootstepModifierQuery = default!;
+    [Dependency] protected EntityQuery<FTLComponent> FTLQuery = default!;
+    [Dependency] protected EntityQuery<InputMoverComponent> MoverQuery = default!;
+    [Dependency] protected EntityQuery<MapComponent> MapQuery = default!;
+    [Dependency] protected EntityQuery<MapGridComponent> MapGridQuery = default!;
+    [Dependency] protected EntityQuery<MobMoverComponent> MobMoverQuery = default!;
+    [Dependency] protected EntityQuery<MovementRelayTargetComponent> RelayTargetQuery = default!;
+    [Dependency] protected EntityQuery<MovementSpeedModifierComponent> ModifierQuery = default!;
+    [Dependency] protected EntityQuery<NoRotateOnMoveComponent> NoRotateQuery = default!;
+    [Dependency] protected EntityQuery<PhysicsComponent> PhysicsQuery = default!;
+    [Dependency] protected EntityQuery<PilotComponent> PilotQuery = default!;
+    [Dependency] protected EntityQuery<PreventPilotComponent> PreventPilotQuery = default!;
+    [Dependency] protected EntityQuery<RelayInputMoverComponent> RelayQuery = default!;
+    [Dependency] protected EntityQuery<PullableComponent> PullableQuery = default!;
+    [Dependency] protected EntityQuery<TransformComponent> XformQuery = default!;
 
     private static readonly ProtoId<TagPrototype> FootstepSoundTag = "FootstepSound";
 
@@ -80,20 +84,6 @@ public abstract partial class SharedMoverController : VirtualController
         UpdatesBefore.Add(typeof(TileFrictionController));
         base.Initialize();
 
-        MoverQuery = GetEntityQuery<InputMoverComponent>();
-        MobMoverQuery = GetEntityQuery<MobMoverComponent>();
-        ModifierQuery = GetEntityQuery<MovementSpeedModifierComponent>();
-        RelayTargetQuery = GetEntityQuery<MovementRelayTargetComponent>();
-        PhysicsQuery = GetEntityQuery<PhysicsComponent>();
-        RelayQuery = GetEntityQuery<RelayInputMoverComponent>();
-        PullableQuery = GetEntityQuery<PullableComponent>();
-        XformQuery = GetEntityQuery<TransformComponent>();
-        NoRotateQuery = GetEntityQuery<NoRotateOnMoveComponent>();
-        CanMoveInAirQuery = GetEntityQuery<CanMoveInAirComponent>();
-        FootstepModifierQuery = GetEntityQuery<FootstepModifierComponent>();
-        MapGridQuery = GetEntityQuery<MapGridComponent>();
-        MapQuery = GetEntityQuery<MapComponent>();
-
         SubscribeLocalEvent<MovementSpeedModifierComponent, TileFrictionEvent>(OnTileFriction);
         SubscribeLocalEvent<InputMoverComponent, ComponentStartup>(OnMoverStartup);
         SubscribeLocalEvent<InputMoverComponent, PhysicsBodyTypeChangedEvent>(OnPhysicsBodyChanged);
@@ -109,7 +99,7 @@ public abstract partial class SharedMoverController : VirtualController
 
     protected virtual void OnMoverStartup(Entity<InputMoverComponent> ent, ref ComponentStartup args)
     {
-        _blocker.UpdateCanMove(ent, ent.Comp);
+       _blocker.UpdateCanMove(ent, ent.Comp);
     }
 
     public override void Shutdown()
@@ -482,7 +472,7 @@ public abstract partial class SharedMoverController : VirtualController
         var enlargedAABB = _lookup.GetWorldAABB(entity.Owner, transform).Enlarged(mover.GrabRange);
 
         _aroundColliderSet.Clear();
-        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet, LookupFlags.Approximate | LookupFlags.Uncontained);
+        lookupSystem.GetEntitiesIntersecting(transform.MapID, enlargedAABB, _aroundColliderSet);
         foreach (var otherEntity in _aroundColliderSet)
         {
             if (otherEntity == uid)
@@ -494,9 +484,9 @@ public abstract partial class SharedMoverController : VirtualController
             // Only allow pushing off of anchored things that have collision.
             if (otherCollider.BodyType != BodyType.Static ||
                 !otherCollider.CanCollide ||
-                ((collider.CollisionMask & otherCollider.CollisionLayer) == 0 &&
-                (otherCollider.CollisionMask & collider.CollisionLayer) == 0) ||
-                (TryComp(otherEntity, out PullableComponent? pullable) && pullable.BeingPulled))
+                (collider.CollisionMask & otherCollider.CollisionLayer) == 0 &&
+                (otherCollider.CollisionMask & collider.CollisionLayer) == 0 ||
+                PullableQuery.TryComp(otherEntity, out var pullable) && pullable.BeingPulled)
             {
                 continue;
             }
@@ -646,7 +636,7 @@ public abstract partial class SharedMoverController : VirtualController
 
     private void OnTileFriction(Entity<MovementSpeedModifierComponent> ent, ref TileFrictionEvent args)
     {
-        if (!TryComp<PhysicsComponent>(ent, out var physicsComponent) || !XformQuery.TryComp(ent, out var xform))
+        if (!PhysicsQuery.TryComp(ent, out var physicsComponent))
             return;
 
         if (physicsComponent.BodyStatus != BodyStatus.OnGround || _gravity.IsWeightless(ent.Owner))

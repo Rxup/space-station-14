@@ -132,6 +132,7 @@ barsign-prototype-description-whiskeyechoes = Элитный бар для эл�
 
 ## EmpBarSign
 
+barsign-prototype-name-empbarsign = глючащая вывеска бара
 barsign-prototype-description-empbarsign = Что-то пошло совсем не так.
 
 ## SignOff

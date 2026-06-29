@@ -5,7 +5,6 @@ using Content.Server.NPC.Events;
 using Content.Server.NPC.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.NPC;
-using Robust.Shared.Maths;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -14,7 +13,7 @@ namespace Content.Server.Backmen.NPC.Systems;
 /// <summary>
 /// Flying strafe for glimmer wisps during ranged combat. Tile-based <see cref="NPCJukeSystem"/> is unreliable with gravity ignored.
 /// </summary>
-public sealed class WispJukeSystem : EntitySystem
+public sealed partial class WispJukeSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -62,7 +61,7 @@ public sealed class WispJukeSystem : EntitySystem
             gun.Target.IsValid() &&
             !Deleted(gun.Target) &&
             gun.Status != CombatStatus.NotInSight &&
-            TryComp<TransformComponent>(gun.Target, out var gunTargetXform))
+            TryComp(gun.Target, out TransformComponent? gunTargetXform))
         {
             threatDir = _transform.GetWorldPosition(gunTargetXform) - args.WorldPosition;
             return threatDir.LengthSquared() > 0.01f;

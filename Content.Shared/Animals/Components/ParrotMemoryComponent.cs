@@ -1,4 +1,3 @@
-using Content.Shared.Animals.Systems;
 using Content.Shared.Backmen.Language;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;

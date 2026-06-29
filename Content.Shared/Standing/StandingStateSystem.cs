@@ -1,5 +1,3 @@
-using Content.Shared.Buckle;
-using Content.Shared.Buckle.Components;
 using Content.Shared.Climbing.Events;
 using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;

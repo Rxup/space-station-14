@@ -1,8 +1,6 @@
-﻿using Content.Server.Backmen.SpecForces;
-using Content.Server.GameTicking;
+﻿using Content.Server.GameTicking;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Corvax.CCCVars;
-using Content.Shared.Ghost;
 using Content.Shared.Mindshield.Components;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;

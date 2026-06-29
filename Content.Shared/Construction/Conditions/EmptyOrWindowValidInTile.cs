@@ -1,5 +1,4 @@
-﻿using Content.Shared.Maps;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
 using Robust.Shared.Map;
 
 namespace Content.Shared.Construction.Conditions

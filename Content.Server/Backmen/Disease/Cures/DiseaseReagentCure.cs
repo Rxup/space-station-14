@@ -1,4 +1,3 @@
-﻿using Content.Server.Body.Components;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;

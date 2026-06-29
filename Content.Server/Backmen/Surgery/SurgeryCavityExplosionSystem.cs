@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Body;
-using Content.Shared.Body.Organ;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Explosion;
 using Robust.Shared.Containers;
@@ -11,7 +10,7 @@ namespace Content.Server.Backmen.Surgery;
 /// <summary>
 /// Ensures explosives hidden in surgery cavities damage the host body and propagate through explosion recursion.
 /// </summary>
-public sealed class SurgeryCavityExplosionSystem : EntitySystem
+public sealed partial class SurgeryCavityExplosionSystem : EntitySystem
 {
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private SharedContainerSystem _containers = default!;

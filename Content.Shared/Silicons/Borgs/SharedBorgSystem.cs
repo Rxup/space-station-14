@@ -1,7 +1,6 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Body.Events;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Gibbing;
@@ -75,7 +74,7 @@ public abstract partial class SharedBorgSystem : EntitySystem
         InitializeRelay();
         InitializeUI();
 
-        SubscribeLocalEvent<TryGetIdentityShortInfoEvent>(OnTryGetIdentityShortInfo);
+        SubscribeLocalEvent<BorgChassisComponent, TryGetIdentityShortInfoEvent>(OnTryGetIdentityShortInfo);
 
         SubscribeLocalEvent<BorgChassisComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BorgChassisComponent, MapInitEvent>(OnMapInit);
@@ -100,21 +99,12 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
     }
 
-    private void OnTryGetIdentityShortInfo(TryGetIdentityShortInfoEvent args)
+    private void OnTryGetIdentityShortInfo(Entity<BorgChassisComponent> chassis, ref TryGetIdentityShortInfoEvent args)
     {
         if (args.Handled)
-        {
             return;
-        }
 
-        // TODO: Why the hell is this only broadcasted and not raised directed on the entity?
-        // This is doing a ton of HasComps/TryComps.
-        if (!HasComp<BorgChassisComponent>(args.ForActor))
-        {
-            return;
-        }
-
-        args.Title = Name(args.ForActor).Trim();
+        args.Title = Name(args.Target).Trim();
         args.Handled = true;
     }
 
@@ -183,6 +173,8 @@ public abstract partial class SharedBorgSystem : EntitySystem
     {
         if (_timing.ApplyingState)
             return; // The changes are already networked with the same game state
+
+        ValidateWhitelists(chassis, args.Entity);
 
         if (args.Container != chassis.Comp.BrainContainer)
             return;

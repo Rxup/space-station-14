@@ -1,12 +1,11 @@
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Explosion;
 using Content.Shared.FixedPoint;
-using Content.Shared.Roles;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Backmen.Blob.Components;
 
@@ -62,7 +61,7 @@ public sealed partial class BlobCoreComponent : Component
         {
             BlobChemType.BlazingOil, new DamageSpecifier()
             {
-                DamageDict = new Dictionary<string, FixedPoint2>
+                DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>
                 {
                     { "Heat", 15 },
                     { "Structural", 150 },
@@ -72,7 +71,7 @@ public sealed partial class BlobCoreComponent : Component
         {
             BlobChemType.ReactiveSpines, new DamageSpecifier()
             {
-                DamageDict = new Dictionary<string, FixedPoint2>
+                DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>
                 {
                     { "Blunt", 8 },
                     { "Slash", 8 },
@@ -84,7 +83,7 @@ public sealed partial class BlobCoreComponent : Component
         {
             BlobChemType.ExplosiveLattice, new DamageSpecifier()
             {
-                DamageDict = new Dictionary<string, FixedPoint2>
+                DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>
                 {
                     { "Heat", 5 },
                     { "Structural", 150 },
@@ -94,7 +93,7 @@ public sealed partial class BlobCoreComponent : Component
         {
             BlobChemType.ElectromagneticWeb, new DamageSpecifier()
             {
-                DamageDict = new Dictionary<string, FixedPoint2>
+                DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>
                 {
                     { "Structural", 150 },
                     { "Heat", 20 },
@@ -104,7 +103,7 @@ public sealed partial class BlobCoreComponent : Component
         {
             BlobChemType.RegenerativeMateria, new DamageSpecifier()
             {
-                DamageDict = new Dictionary<string, FixedPoint2>
+                DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>
                 {
                     { "Structural", 150 },
                     { "Poison", 15 },

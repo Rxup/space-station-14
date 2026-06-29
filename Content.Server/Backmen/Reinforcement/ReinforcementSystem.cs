@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Backmen.Reinforcement.Components;
@@ -20,7 +20,6 @@ using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
@@ -29,13 +28,11 @@ using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Reinforcement;
 
 
-public class ReinforcementSpawnPlayer : EntityEventArgs
+public sealed class ReinforcementSpawnPlayer : EntityEventArgs
 {
     public ICommonSession Player { get; }
     public Entity<ReinforcementSpawnerComponent> Source { get; }
@@ -381,7 +378,7 @@ public sealed partial class ReinforcementSystem : SharedReinforcementSystem
         msg.Brief = uid.Comp.Brief;
         msg.IsActive = uid.Comp.IsActive;
 
-        if (TryComp<MetaDataComponent>(uid.Comp.CalledBy, out var calledBy))
+        if (TryComp(uid.Comp.CalledBy, out MetaDataComponent? calledBy))
         {
             msg.CalledBy = calledBy.EntityName;
         }

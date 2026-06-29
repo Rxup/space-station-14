@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server.Atmos.Components;
 using Content.Server.Doors.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;

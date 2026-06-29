@@ -10,7 +10,6 @@ namespace Content.IntegrationTests.Tests.Body;
 public sealed class GibletTest : GameTest
 {
     public override PoolSettings PoolSettings => PsDisconnected;
-
     [TestPrototypes]
     private const string Prototypes = @"
 - type: entity

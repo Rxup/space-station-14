@@ -4,7 +4,6 @@ using Content.Server.Construction.Components;
 using Content.Server._Impstation.Revenant.Components;
 using Content.Server.Resist;
 using Content.Shared.CombatMode;
-using Content.Shared.Construction.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Trigger.Components.Triggers;
@@ -20,16 +19,14 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Revenant.Components;
 using Content.Shared.Trigger.Components;
-using Content.Shared.Trigger.Components.Triggers;
-using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -38,6 +35,9 @@ namespace Content.Server._Impstation.Revenant.EntitySystems;
 
 public sealed partial class RevenantAnimatedSystem : EntitySystem
 {
+    private static readonly ProtoId<DamageTypePrototype> BluntDamage = "Blunt";
+    private static readonly ProtoId<NpcFactionPrototype> SimpleHostileFaction = "SimpleHostile";
+
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private NpcFactionSystem _factionSystem = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
@@ -93,7 +93,7 @@ public sealed partial class RevenantAnimatedSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("revenant-animate-item-animate", ("target", uid)), uid, Filter.Pvs(uid), true);
 
         if (EnsureHelper<MeleeWeaponComponent>(uid, comp, out var melee))
-            melee.Damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 5);
+            melee.Damage = new DamageSpecifier(_prototypeManager.Index(BluntDamage), 5);
 
         EnsureHelper<CombatModeComponent>(uid, comp);
         EnsureHelper<MovementSpeedModifierComponent>(uid, comp, out var moveSpeed);
@@ -116,7 +116,7 @@ public sealed partial class RevenantAnimatedSystem : EntitySystem
 
         EnsureHelper<NpcFactionMemberComponent>(uid, comp, out var factions);
         _factionSystem.ClearFactions((uid, factions));
-        _factionSystem.AddFaction((uid, factions), "SimpleHostile");
+        _factionSystem.AddFaction((uid, factions), SimpleHostileFaction);
 
         EnsureHelper<MobStateComponent>(uid, comp);
 

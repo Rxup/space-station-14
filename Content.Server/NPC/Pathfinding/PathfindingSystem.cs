@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Destructible;
 using Content.Server.NPC.Systems;
+using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Arachne;
 using Content.Shared.Access.Components;
+using Content.Shared.Spider;
 using Content.Shared.Administration;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Doors.Components;
@@ -53,6 +56,16 @@ namespace Content.Server.NPC.Pathfinding
         [Dependency] private SharedPhysicsSystem _physics = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
 
+        [Dependency] private EntityQuery<AccessReaderComponent> _accessReaderQuery = default!;
+        [Dependency] private EntityQuery<DestructibleComponent> _destructibleQuery = default!;
+        [Dependency] private EntityQuery<DoorComponent> _doorQuery = default!;
+        [Dependency] private EntityQuery<ClimbableComponent> _climbableQuery = default!;
+        [Dependency] private EntityQuery<FixturesComponent> _fixturesQuery = default!;
+        [Dependency] private EntityQuery<MapGridComponent> _mapGridQuery = default!;
+        private EntityQuery<BlobTileComponent> _tilesQuery; // backmen: blob
+        private EntityQuery<WebComponent> _webQuery; // backmen: web
+        private EntityQuery<SpiderWebObjectComponent> _spiderWebQuery; // backmen: web
+
         private readonly Dictionary<ICommonSession, PathfindingDebugMode> _subscribedSessions = new();
 
         [ViewVariables]
@@ -68,32 +81,12 @@ namespace Content.Server.NPC.Pathfinding
         private int _portalIndex;
         private readonly Dictionary<int, PathPortal> _portals = new();
 
-        private EntityQuery<Shared.Backmen.Blob.Components.BlobTileComponent> _tilesQuery; // backmen: blob
-        private EntityQuery<Shared.Backmen.Arachne.WebComponent> _webQuery; // backmen: web
-        private EntityQuery<Shared.Spider.SpiderWebObjectComponent> _spiderWebQuery; // backmen: web
-        private EntityQuery<AccessReaderComponent> _accessQuery;
-        private EntityQuery<DestructibleComponent> _destructibleQuery;
-        private EntityQuery<DoorComponent> _doorQuery;
-        private EntityQuery<ClimbableComponent> _climbableQuery;
-        private EntityQuery<FixturesComponent> _fixturesQuery;
-        private EntityQuery<MapGridComponent> _gridQuery;
-        private EntityQuery<TransformComponent> _xformQuery;
-
         public override void Initialize()
         {
             base.Initialize();
-
-            _tilesQuery = GetEntityQuery<Shared.Backmen.Blob.Components.BlobTileComponent>(); // backmen: blob
-            _webQuery = GetEntityQuery<Shared.Backmen.Arachne.WebComponent>(); // backmen: web
-            _spiderWebQuery = GetEntityQuery<Shared.Spider.SpiderWebObjectComponent>(); // backmen: web
-            _accessQuery = GetEntityQuery<AccessReaderComponent>();
-            _destructibleQuery = GetEntityQuery<DestructibleComponent>();
-            _doorQuery = GetEntityQuery<DoorComponent>();
-            _climbableQuery = GetEntityQuery<ClimbableComponent>();
-            _fixturesQuery = GetEntityQuery<FixturesComponent>();
-            _gridQuery = GetEntityQuery<MapGridComponent>();
-            _xformQuery = GetEntityQuery<TransformComponent>();
-
+            _tilesQuery = GetEntityQuery<BlobTileComponent>(); // backmen: blob
+            _webQuery = GetEntityQuery<WebComponent>(); // backmen: web
+            _spiderWebQuery = GetEntityQuery<SpiderWebObjectComponent>(); // backmen: web
             _playerManager.PlayerStatusChanged += OnPlayerChange;
             InitializeGrid();
             SubscribeNetworkEvent<RequestPathfindingDebugMessage>(OnBreadcrumbs);
@@ -489,11 +482,6 @@ namespace Content.Server.NPC.Pathfinding
             if (blackboard.TryGetValue<bool>(NPCBlackboard.NavWeb, out var web, EntityManager) && web)
             {
                 flags |= PathFlags.Web;
-            }
-
-            if (blackboard.TryGetValue<bool>(NPCBlackboard.NavWebOnly, out var webOnly, EntityManager) && webOnly)
-            {
-                flags |= PathFlags.WebOnly;
             }
             // end-backmen: web
 

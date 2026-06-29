@@ -18,17 +18,9 @@
         Destroyed: 0
       slotId: core
     - type: Metabolizer
+      stages: [ Digestion, Bloodstream ]
       maxReagents: 3
       metabolizerTypes: [ Slime ]
-      removeEmpty: true
-      groups:
-        - id: Food
-        - id: Drink
-        - id: Medicine
-        - id: Poison
-        - id: Narcotic
-        - id: Alcohol
-          rateModifier: 2
     - type: SolutionContainerManager
       solutions:
         stomach:
@@ -41,7 +33,7 @@
 
 - type: entity
   id: OrganSlimesLungs
-  parent: BaseHumanOrgan
+  parent: [ OrganBaseLungs, BaseHumanOrgan ]
   name: slimes gas sacs
   description: "Collects nitrogen, which slime cells use for maintenance."
   components:
@@ -62,22 +54,14 @@
         Destroyed: 0
       slotId: lungs
     - type: Metabolizer
-      removeEmpty: true
-      solutionOnBody: false
-      solution: "Lung"
+      stages: [ Respiration ]
       metabolizerTypes: [ Slime ]
-      groups:
-      - id: Gas
-        rateModifier: 100.0
     - type: SolutionContainerManager
       solutions:
         organ:
           reagents:
           - ReagentId: Nutriment
             Quantity: 10
-        Lung:
-          maxVol: 100.0
-          canReact: false
         food:
           maxVol: 5
           reagents:

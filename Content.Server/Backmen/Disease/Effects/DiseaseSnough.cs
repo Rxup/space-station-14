@@ -1,8 +1,7 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 using Content.Shared.Chat.Prototypes;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Backmen.Disease.Effects;
 

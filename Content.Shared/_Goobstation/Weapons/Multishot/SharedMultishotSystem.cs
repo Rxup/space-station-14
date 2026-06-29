@@ -1,7 +1,6 @@
 using Content.Shared._Goobstation.Weapons.Multishot;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 
@@ -37,7 +36,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (gun.ShootCoordinates == null)
             return;
 
-        _gunSystem.AttemptShoot(args.User, comp.RelatedWeapon.Value, relatedGun, gun.ShootCoordinates.Value);
+        _gunSystem.AttemptShoot(args.User, (comp.RelatedWeapon.Value, relatedGun), gun.ShootCoordinates.Value);
 
         // Synchronizing reload timer
         var reloadDelta = relatedGun.LastFire - gun.LastFire;

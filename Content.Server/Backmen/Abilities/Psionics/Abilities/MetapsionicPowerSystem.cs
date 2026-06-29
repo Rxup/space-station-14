@@ -5,7 +5,6 @@ using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Eye;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Popups;
-using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Abilities.Psionics;

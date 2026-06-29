@@ -5,7 +5,6 @@
   name: IPC
   categories: [ HideSpawnMenu ]
   components:
-  - type: Consciousness
   - type: LayingDown
   - type: LanguageSpeaker
     currentLanguage: TauCetiBasic

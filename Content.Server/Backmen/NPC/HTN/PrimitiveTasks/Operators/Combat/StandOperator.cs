@@ -1,4 +1,4 @@
-﻿using Content.Server.NPC;
+using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Shared.Standing;

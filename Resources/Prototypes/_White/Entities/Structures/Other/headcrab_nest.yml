@@ -9,6 +9,7 @@
     layers:
     - state: icon
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Flammable
     fireSpread: true

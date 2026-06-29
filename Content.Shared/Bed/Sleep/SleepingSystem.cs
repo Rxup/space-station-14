@@ -1,10 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Mood;
-using Content.Shared.Backmen.Surgery.Consciousness.Systems;
-using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Actions.Components;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Damage.Systems;
@@ -169,7 +166,6 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void OnSpeakAttempt(Entity<SleepingComponent> ent, ref SpeakAttemptEvent args)
     {
-        // TODO reduce duplication of this behavior with MobStateSystem somehow
         if (HasComp<AllowNextCritSpeechComponent>(ent))
         {
             RemCompDeferred<AllowNextCritSpeechComponent>(ent);

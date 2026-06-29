@@ -9,8 +9,12 @@
 - type: entity
   parent: BaseGameRule
   id: SuperPsiRule
+  categories: [ HideSpawnMenu ]
   components:
   - type: SuperPsiRule
+  - type: AntagRandomSpawn
+  - type: AntagSpawner
+    prototype: UristMcNars
   - type: AntagObjectives
     objectives:
     - EscapeSuperPsiShuttleObjective
@@ -24,18 +28,13 @@
     - ClothingHeadsetAltMedicalStealSuperPsiObjective
   - type: AntagSelection
     agentName: superpsi-round-end-agent-name
-    definitions:
-    - allowNonHumans: true
-      max: 1
+    antags:
+    - !type:LinearAntagCount
+      proto: SuperPsi
       playerRatio: 30
-      spawnerPrototype: SpawnerUristMcNars
-      multiAntagSetting: None
-      pickPlayer: false
-      lateJoinAdditional: false
-      briefing:
-        sound: "/Audio/Misc/thief_greeting.ogg"
-      mindRoles:
-      - MindRoleSuperPsi
+      range:
+        min: 1
+        max: 1
 
 - type: entity
   id: SpawnerUristMcNars

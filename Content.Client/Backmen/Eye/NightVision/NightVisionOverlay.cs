@@ -21,10 +21,12 @@ namespace Content.Client.GG.Eye.NightVision
 
         private NightVisionComponent _nightvisionComponent = default!;
 
+        private static readonly ProtoId<ShaderPrototype> GreyscaleFullscreen = "GreyscaleFullscreen";
+
 	    public NightVisionOverlay(Color color)
         {
             IoCManager.InjectDependencies(this);
-            _greyscaleShader = _prototypeManager.Index<ShaderPrototype>("GreyscaleFullscreen").InstanceUnique();
+            _greyscaleShader = _prototypeManager.Index<ShaderPrototype>(GreyscaleFullscreen).InstanceUnique();
 
             NightvisionColor = color;
         }

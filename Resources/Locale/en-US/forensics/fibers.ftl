@@ -29,5 +29,3 @@ fibers-regal-blue = regal blue
 fibers-olive = olive
 fibers-silver = silver
 fibers-gold = gold
-fibers-maroon = maroon
-fibers-pink = pink

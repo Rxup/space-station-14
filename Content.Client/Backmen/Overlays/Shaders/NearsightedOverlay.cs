@@ -25,18 +25,21 @@ public sealed partial class NearsightedOverlay : Overlay
     private float _oldOxygenLevel = 0f;
     public float outerDarkness = 1f;
 
+
+    private static readonly ProtoId<ShaderPrototype> GradientCircleMask = "GradientCircleMask";
+
     public NearsightedOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _nearsightShader = _prototypeManager.Index<ShaderPrototype>("GradientCircleMask").InstanceUnique();
+        _nearsightShader = _prototypeManager.Index<ShaderPrototype>(GradientCircleMask).InstanceUnique();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (!_entityManager.TryGetComponent(_playerManager.LocalPlayer?.ControlledEntity, out NearsightedComponent? nearComp)) return;
-        if (_playerManager.LocalPlayer?.ControlledEntity != nearComp.Owner) return;
+        if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out NearsightedComponent? nearComp))
+            return;
 
-        if (nearComp.Glasses == true)
+        if (nearComp.Glasses)
         {
             OxygenLevel = nearComp.gRadius;
             outerDarkness = nearComp.gAlpha;
@@ -47,8 +50,11 @@ public sealed partial class NearsightedOverlay : Overlay
             outerDarkness = nearComp.Alpha;
         }
 
-        if (!_entityManager.TryGetComponent(_playerManager.LocalPlayer?.ControlledEntity, out EyeComponent? eyeComp)) return;
-        if (args.Viewport.Eye != eyeComp.Eye) return;
+        if (!_entityManager.TryGetComponent(_playerManager.LocalSession?.AttachedEntity, out EyeComponent? eyeComp))
+            return;
+
+        if (args.Viewport.Eye != eyeComp.Eye)
+            return;
 
         var viewport = args.WorldAABB;
         var handle = args.WorldHandle;

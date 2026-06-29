@@ -12,8 +12,7 @@ action-description-dispel = Рассеивайте призванные сущн
 action-name-mass-sleep = Массовый сон
 action-description-mass-sleep = Усыпите цели на небольшом участке.
 accept-psionics-window-title = Псионика!
-accept-psionics-window-prompt-text-part =
-    Вы использовали псионическую силу!
+accept-psionics-window-prompt-text-part = Вы использовали псионическую силу!
     Вполне возможно, что за вами могут охотиться определенные антипсихические силы,
     поэтому вам следует сохранить это в секрете.
     Вы все еще хотите стать псиоником?

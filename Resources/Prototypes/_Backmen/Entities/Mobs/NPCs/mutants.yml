@@ -143,7 +143,6 @@
     solution: melee
     transferAmount: 4
   - type: SolutionRegeneration
-    solution: melee
     generated:
       reagents:
         - ReagentId: Nocturine
@@ -179,8 +178,9 @@
       types:
         Piercing: 8
   - type: Damageable
-    damageContainer: HalfSpirit
     damageModifierSet: HalfSpirit
+  - type: Injurable
+    damageContainer: HalfSpirit
   - type: StatusEffects
     allowed:
       - Stun
@@ -277,7 +277,6 @@
       solution: melee
       transferAmount: 7
     - type: SolutionRegeneration
-      solution: melee
       generated:
         reagents:
           - ReagentId: Nocturine

@@ -1,25 +1,39 @@
+using System.Collections.Generic;
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.GameRules;
 
 [TestFixture]
-public sealed class StartEndGameRulesTest
+public sealed class StartEndGameRulesTest : GameTest
 {
+    /// <summary>
+    /// Rules that cannot be smoke-started in isolation during <see cref="TestAllConcurrent"/>.
+    /// </summary>
+    private static readonly HashSet<string> IgnoredRules =
+    [
+        "Secret", // Picks and starts other presets; deletes itself when none are valid.
+    ];
+
+    public override PoolSettings PoolSettings => new PoolSettings
+    {
+        Dirty = true,
+        DummyTicker = false,
+        Map = PoolManager.TestStation
+    };
+
     /// <summary>
     ///     Tests that all game rules can be added/started/ended at the same time without exceptions.
     /// </summary>
     [Test]
     public async Task TestAllConcurrent()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-        {
-            Dirty = true,
-            DummyTicker = false
-        });
+        var pair = Pair;
         var server = pair.Server;
         await server.WaitIdleAsync();
         var gameTicker = server.ResolveDependency<IEntitySystemManager>().GetEntitySystem<GameTicker>();
@@ -28,7 +42,9 @@ public sealed class StartEndGameRulesTest
 
         await server.WaitAssertion(() =>
         {
-            var rules = gameTicker.GetAllGameRulePrototypes().ToList();
+            var rules = gameTicker.GetAllGameRulePrototypes()
+                .Where(p => !p.HideSpawnMenu && !IgnoredRules.Contains(p.ID))
+                .ToList();
             rules.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
 
             // Start all rules
@@ -47,7 +63,5 @@ public sealed class StartEndGameRulesTest
             gameTicker.ClearGameRules();
             Assert.That(!gameTicker.GetAddedGameRules().Any());
         });
-
-        await pair.CleanReturnAsync();
     }
 }

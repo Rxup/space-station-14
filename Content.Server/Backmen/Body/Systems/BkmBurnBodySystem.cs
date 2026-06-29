@@ -1,6 +1,4 @@
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Backmen.Body.Systems;
-using Content.Server.Backmen.Body;
 using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
@@ -12,16 +10,16 @@ namespace Content.Server.Backmen.Body.Systems;
 /// <summary>
 /// Full-body and supermatter burn handling for layered humanoids vs flat NPCs.
 /// </summary>
-public sealed class BkmBurnBodySystem : EntitySystem
+public sealed partial class BkmBurnBodySystem : EntitySystem
 {
-    [Dependency] private readonly BkmBodySystem _body = default!;
-    [Dependency] private readonly BkmBodySharedSystem _bodyShared = default!;
-    [Dependency] private readonly BkmBrainPreservationSystem _brain = default!;
-    [Dependency] private readonly BkmBurnEffectsSystem _effects = default!;
-    [Dependency] private readonly BkmDetachedBodyBurnSystem _detachedBurn = default!;
-    [Dependency] private readonly FlammableSystem _flammable = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private BkmBodySystem _body = default!;
+    [Dependency] private BkmBodySharedSystem _bodyShared = default!;
+    [Dependency] private BkmBrainPreservationSystem _brain = default!;
+    [Dependency] private BkmBurnEffectsSystem _effects = default!;
+    [Dependency] private BkmDetachedBodyBurnSystem _detachedBurn = default!;
+    [Dependency] private FlammableSystem _flammable = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     /// <summary>
     /// Handles supermatter and other instant-dust paths. Returns true when custom handling ran.

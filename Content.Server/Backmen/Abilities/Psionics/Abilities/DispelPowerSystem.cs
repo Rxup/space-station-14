@@ -1,16 +1,12 @@
 using Content.Server.Actions;
-using Content.Shared.StatusEffect;
 using Content.Shared.Damage;
 using Content.Shared.Revenant.Components;
 using Content.Server.Guardian;
 using Content.Server.Bible.Components;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Abilities.Psionics;
-using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Damage.Systems;
-using Content.Shared.StatusEffectNew;
-using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;

@@ -1,16 +1,18 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Ghost;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Teleportation.Components;
+using Content.Shared.Weapons.Misc;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -31,6 +33,7 @@ public abstract partial class SharedPortalSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private PullingSystem _pulling = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedJointSystem _joints = default!;
 
     private const string PortalFixture = "portalFixture";
     private const string ProjectileFixture = "projectile";
@@ -104,6 +107,9 @@ public abstract partial class SharedPortalSystem : EntitySystem
         {
             _pulling.TryStopPull(pullerComp.Pulling.Value, subjectPulling);
         }
+
+        // also break grapple joints
+        _joints.RemoveJoint(subject, SharedGrapplingGunSystem.GrapplingJoint);
 
         // if they came from another portal, just return and wait for them to exit the portal
         if (HasComp<PortalTimeoutComponent>(subject))

@@ -1,10 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
-using Content.Shared.Interaction;
-using Content.Shared.Physics;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 

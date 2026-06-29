@@ -1,20 +1,16 @@
 using System.Linq;
-using System.Numerics;
 using Content.Server.Emp;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Backmen.Blob;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.GameObjects;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Blob.Systems;
 

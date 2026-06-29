@@ -1,8 +1,5 @@
 using Content.Shared.Database;
-using Content.Shared.Random;
-using Content.Shared.Trigger.Components.Triggers;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Trigger.Components.Effects;
 

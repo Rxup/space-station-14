@@ -14,6 +14,7 @@ using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.GameObjects;
@@ -294,10 +295,13 @@ public sealed class GibOnDamageTest : GameTest
                 $"Rejuvenate should restore consciousness: {speciesId}");
 
         if (entMan.TryGetComponent(mob, out DamageableComponent? damageable))
+        {
+            var damageableSystem = entMan.System<DamageableSystem>();
             Assert.That(
-                damageable.TotalDamage,
+                damageableSystem.GetTotalDamage((mob, damageable)),
                 Is.EqualTo(FixedPoint2.Zero),
                 $"Rejuvenate should clear damage: {speciesId}");
+        }
     }
 
     private static void AssertLimbsDestroyed(

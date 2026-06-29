@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Backmen.Arrivals.CentComm;
+namespace Content.Server.Backmen.Arrivals.CentComm;
 
 public enum CentComEventId : int
 {

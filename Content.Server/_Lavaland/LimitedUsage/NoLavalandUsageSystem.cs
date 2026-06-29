@@ -1,6 +1,5 @@
 ﻿using Content.Server.Construction;
 using Content.Shared._Lavaland.LimitedUsage;
-using Content.Shared.Construction.EntitySystems;
 
 namespace Content.Server._Lavaland.LimitedUsage;
 

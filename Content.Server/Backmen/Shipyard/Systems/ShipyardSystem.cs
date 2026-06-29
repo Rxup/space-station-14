@@ -1,11 +1,9 @@
 using Content.Server.Shuttles.Systems;
 using Content.Server.Shuttles.Components;
-using Content.Server.Station.Components;
 using Content.Server.Cargo.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Shipyard;
 using Content.Shared.GameTicking;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Content.Shared.Backmen.CCVar;
 using Robust.Shared.Configuration;
@@ -14,7 +12,6 @@ using System.Numerics;
 using Content.Shared.Backmen.Shipyard.Components;
 using Content.Shared.Backmen.Shipyard.Prototypes;
 using Content.Shared.Station.Components;
-using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
@@ -40,6 +37,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     public override void Initialize()
     {
+        base.Initialize();
         _enabled = _configManager.GetCVar(CCVars.Shipyard);
         _configManager.OnValueChanged(CCVars.Shipyard, SetShipyardEnabled);
         _sawmill = Logger.GetSawmill("shipyard");

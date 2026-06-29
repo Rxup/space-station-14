@@ -56,9 +56,9 @@
   - type: Edible
     trash:
     - FoodKebabSkewer
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         canReact: false # Dont want cause reactions inside skewers after merging ingredients
         maxVol: 0
   - type: FoodSequenceStartPoint

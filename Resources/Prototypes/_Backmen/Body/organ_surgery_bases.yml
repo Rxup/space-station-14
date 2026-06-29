@@ -27,7 +27,6 @@
   abstract: true
   components:
   - type: Damageable
-    damageContainer: OrganicPart
   - type: Woundable
     damageContainer: Biological
     integrity: 65

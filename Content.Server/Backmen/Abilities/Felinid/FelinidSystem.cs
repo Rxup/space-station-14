@@ -8,17 +8,12 @@ using Content.Shared.Hands;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Charges;
-using Content.Server.Chemistry.Containers.EntitySystems;
-using Content.Server.Medical;
-using Content.Server.Nutrition.Components;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Backmen.Psionics.Events;
-using Content.Shared.Body;
 using Content.Shared.Body.Systems;
-using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Medical;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -111,7 +106,7 @@ public sealed partial class FelinidSystem : EntitySystem
     private void OnHairball(EntityUid uid, FelinidComponent component, HairballActionEvent args)
     {
         if (_inventorySystem.TryGetSlotEntity(uid, "mask", out var maskUid) &&
-            EntityManager.TryGetComponent<IngestionBlockerComponent>(maskUid, out var blocker) &&
+            TryComp<IngestionBlockerComponent>(maskUid, out var blocker) &&
             blocker.Enabled)
         {
             _popupSystem.PopupEntity(Loc.GetString("hairball-mask", ("mask", maskUid)), uid, uid);
@@ -143,7 +138,7 @@ public sealed partial class FelinidSystem : EntitySystem
         }
 
         if (_inventorySystem.TryGetSlotEntity(uid, "mask", out var maskUid) &&
-            EntityManager.TryGetComponent<IngestionBlockerComponent>(maskUid, out var blocker) &&
+            TryComp<IngestionBlockerComponent>(maskUid, out var blocker) &&
             blocker.Enabled)
         {
             _popupSystem.PopupEntity(Loc.GetString("hairball-mask", ("mask", maskUid)), uid, uid, Shared.Popups.PopupType.SmallCaution);
@@ -167,7 +162,7 @@ public sealed partial class FelinidSystem : EntitySystem
 
     private void SpawnHairball(EntityUid uid, FelinidComponent component)
     {
-        var hairball = EntityManager.SpawnEntity(component.HairballPrototype, Transform(uid).Coordinates);
+        var hairball = Spawn(component.HairballPrototype, Transform(uid).Coordinates);
         var hairballComp = Comp<HairballComponent>(hairball);
 
         if (TryComp<BloodstreamComponent>(uid, out var bloodstream))

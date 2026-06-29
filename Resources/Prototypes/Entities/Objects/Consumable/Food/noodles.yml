@@ -12,9 +12,9 @@
     - 0,0,1,0
   - type: Sprite
     sprite: Objects/Consumable/Food/noodles.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -51,9 +51,9 @@
       - tomato
   - type: Sprite
     state: tomato
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -82,9 +82,9 @@
       - copypasta
   - type: Sprite
     state: copypasta
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 80
         reagents:
         - ReagentId: Nutriment
@@ -105,9 +105,9 @@
       - meaty
   - type: Sprite
     state: meatball
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -133,9 +133,9 @@
       - meaty
   - type: Sprite
     state: spesslaw
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -158,9 +158,9 @@
       - carrot
   - type: Sprite
     state: chowmein
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50
         reagents:
         - ReagentId: Nutriment
@@ -185,9 +185,9 @@
       - butter
   - type: Sprite
     state: butter
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment

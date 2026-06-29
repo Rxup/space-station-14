@@ -15,9 +15,9 @@
     - 0,0,1,0
   - type: Sprite
     sprite: Objects/Consumable/Food/meals.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 26
         reagents:
         - ReagentId: Nutriment
@@ -91,9 +91,9 @@
   - type: Tag
     tags:
     - CarrotFries
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 26
         reagents:
         - ReagentId: JuiceCarrot
@@ -116,9 +116,9 @@
       - nachos
   - type: Sprite
     state: nachos
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -144,9 +144,9 @@
       - cheesy
   - type: Sprite
     state: nachos-cheesy
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -173,9 +173,9 @@
       - spicy
   - type: Sprite
     state: nachos-cuban
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -199,9 +199,9 @@
       - minty
   - type: Sprite
     state: mint
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         # Note that this acts as the limiter against injecting anything.
         maxVol: 1
         reagents:
@@ -223,9 +223,9 @@
       - cheesy
   - type: Sprite
     state: eggplantparm
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -268,9 +268,9 @@
       - spicy
   - type: Sprite
     state: cubancarp
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 55
         reagents:
         - ReagentId: Nutriment
@@ -301,9 +301,9 @@
       - cabbage
   - type: Sprite
     state: cornedbeef
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -332,9 +332,9 @@
       - fishy
   - type: Sprite
     state: bearsteak
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -362,9 +362,9 @@
       - butter
   - type: Sprite
     state: pigblanket
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -393,9 +393,9 @@
       - smokey
   - type: Sprite
     state: ribs
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
@@ -422,9 +422,9 @@
       - bun
   - type: Sprite
     state: benedict
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -450,9 +450,9 @@
       - cheesy
   - type: Sprite
     state: omelette
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -477,9 +477,9 @@
       - peppery
   - type: Sprite
     state: friedegg
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -525,9 +525,9 @@
       - memoryleek
   - type: Sprite
     state: memoryLeek
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -549,9 +549,9 @@
     storedOffset: 0,-2
   - type: Sprite
     state: saltysweet
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -588,9 +588,9 @@
       - fishy
   - type: Sprite
     state: sashimi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -615,9 +615,9 @@
         - meaty
     - type: Sprite
       state: enchiladas
-    - type: SolutionContainerManager
-      solutions:
-        food:
+    - type: Solution
+      id: food
+      solution:
           maxVol: 35
           reagents:
           - ReagentId: Nutriment
@@ -647,9 +647,9 @@
       - sour
   - type: Sprite
     state: melonfruitbowl
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 65
         reagents:
         - ReagentId: Nutriment
@@ -683,9 +683,9 @@
       - butter
   - type: Sprite
     state: corn-in-butter
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment

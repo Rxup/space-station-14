@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Reinforcement.Components;
+using Content.Shared.Backmen.Reinforcement.Components;
 
 namespace Content.Server.Backmen.Reinforcement.Components;
 

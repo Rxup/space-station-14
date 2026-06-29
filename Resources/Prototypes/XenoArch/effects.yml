@@ -1032,7 +1032,6 @@
     damage:
       types:
         Structural: 200
-
 - type: entity
   id: XenoArtifactFoamGood
   parent: BaseXenoArtifactEffect
@@ -1282,10 +1281,15 @@
       components:
       - MobState
     damage:
-      groups:
-        Brute: -300
-        Burn: -300
-
+      types:
+        Blunt: -75
+        Slash: -75
+        Piercing: -75
+        ArmorPiercing: -75
+        Heat: -75
+        Shock: -75
+        Cold: -75
+        Caustic: -75
 - type: entity
   id: XenoArtifactTesla
   parent: BaseOneTimeXenoArtifactEffect

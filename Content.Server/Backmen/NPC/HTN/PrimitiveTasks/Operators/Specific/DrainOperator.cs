@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.Cocoon;
+using Content.Server.Backmen.Cocoon;
 using Content.Server.Backmen.Psionics.NPC.GlimmerWisp;
 using Content.Server.NPC;
 using Content.Server.NPC.Components;
@@ -6,7 +6,6 @@ using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.Systems;
 using Content.Shared.Mobs.Systems;
-using Robust.Shared.GameObjects;
 
 namespace Content.Server.Backmen.NPC.HTN.PrimitiveTasks.Operators.Specific;
 

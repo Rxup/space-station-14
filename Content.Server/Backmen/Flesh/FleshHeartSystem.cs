@@ -1,10 +1,8 @@
 using System.Linq;
 using System.Numerics;
 using Content.Server.AlertLevel;
-using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Backmen.Flesh.FleshGrowth;
-using Content.Server.Humanoid;
 using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
@@ -18,7 +16,6 @@ using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Climbing.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -45,6 +42,10 @@ namespace Content.Server.Backmen.Flesh;
 
 public sealed partial class FleshHeartSystem : EntitySystem
 {
+    private static readonly ProtoId<TagPrototype> WallTag = "Wall";
+    private static readonly ProtoId<TagPrototype> FleshTag = "Flesh";
+    private static readonly ProtoId<TagPrototype> WindowTag = "Window";
+
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private ContainerSystem _containerSystem = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
@@ -115,7 +116,7 @@ public sealed partial class FleshHeartSystem : EntitySystem
         var fleshWallsQuery = EntityQueryEnumerator<TagComponent>();
         while (fleshWallsQuery.MoveNext(out var ent, out var comp))
         {
-            if (_tagSystem.HasAllTags(comp, "Wall", "Flesh"))
+            if (_tagSystem.HasAllTags(comp, WallTag, FleshTag))
             {
                 _damageableSystem.TryChangeDamage(ent, component.DamageMobsIfHeartDestruct);
             }
@@ -348,7 +349,7 @@ public sealed partial class FleshHeartSystem : EntitySystem
             var canSpawnFloor = true;
             foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, tileref.GridIndices).ToList())
             {
-                if (_tagSystem.HasAnyTag(ent, "Wall", "Window", "Flesh"))
+                if (_tagSystem.HasAnyTag(ent, WallTag, WindowTag, FleshTag))
                     canSpawnFloor = false;
             }
 

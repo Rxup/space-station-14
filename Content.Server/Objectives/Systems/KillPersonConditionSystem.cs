@@ -1,18 +1,9 @@
-using System.Linq;
 using Content.Server.Objectives.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
-using Content.Shared.Roles;
-using Content.Shared.Roles.Jobs;
 using Robust.Shared.Configuration;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
-using System.Linq;
-using Content.Server.Revolutionary.Components;
-using Content.Shared.Roles.Components;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -25,11 +16,6 @@ public sealed partial class KillPersonConditionSystem : EntitySystem
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private TargetObjectiveSystem _target = default!;
-    [Dependency] private SharedRoleSystem _roleSystem = default!;
-    [Dependency] private IPrototypeManager _prototype = default!;
-    [Dependency] private IRobustRandom _random = default!;
-
-    private static readonly ProtoId<DepartmentPrototype> _ccDep = "CentCom";
 
     public override void Initialize()
     {
@@ -45,72 +31,6 @@ public sealed partial class KillPersonConditionSystem : EntitySystem
 
         args.Progress = GetProgress(target.Value, comp.RequireDead, comp.RequireMaroon);
     }
-
-    private void OnPersonAssigned(EntityUid uid, PickRandomPersonComponent comp, ref ObjectiveAssignedEvent args)
-    {
-        // invalid objective prototype
-        if (!TryComp<TargetObjectiveComponent>(uid, out var target))
-        {
-            args.Cancelled = true;
-            return;
-        }
-
-        // target already assigned
-        if (target.Target != null)
-            return;
-
-        var allHumans = _mind.GetAliveHumans(args.MindId);
-
-        // Can't have multiple objectives to kill the same person
-        foreach (var objective in args.Mind.Objectives)
-        {
-            if (HasComp<KillPersonConditionComponent>(objective) && TryComp<TargetObjectiveComponent>(objective, out var kill))
-            {
-                allHumans.RemoveWhere(x => x.Owner == kill.Target);
-            }
-        }
-
-        // no other humans to kill
-        if (allHumans.Count == 0)
-        {
-            args.Cancelled = true;
-            return;
-        }
-
-        // start-backmen: centcom
-        FilterCentCom(allHumans);
-
-        if (allHumans.Count == 0)
-        {
-            args.Cancelled = true;
-            return;
-        }
-        // end-backmen: centcom
-
-        _target.SetTarget(uid, _random.Pick(allHumans), target);
-
-    }
-
-    // start-backmen: centcom
-    private void FilterCentCom(HashSet<Entity<MindComponent>> minds)
-    {
-        var centcom = _prototype.Index(_ccDep);
-        foreach (var mindId in minds.ToArray())
-        {
-            if (!_roleSystem.MindHasRole<JobRoleComponent>(mindId.Owner, out var job) || job.Value.Comp1.JobPrototype == null)
-            {
-                continue;
-            }
-
-            if (!centcom.Roles.Contains(job.Value.Comp1.JobPrototype.Value))
-            {
-                continue;
-            }
-
-            minds.Remove(mindId);
-        }
-    }
-    // end-backmen: centcom
 
     private float GetProgress(EntityUid target, bool requireDead, bool requireMaroon)
     {

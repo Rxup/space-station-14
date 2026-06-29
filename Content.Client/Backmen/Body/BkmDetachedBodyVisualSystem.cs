@@ -15,8 +15,8 @@ namespace Content.Client.Backmen.Body;
 /// </summary>
 public sealed partial class BkmDetachedBodyVisualSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
 
     public override void Initialize()
     {

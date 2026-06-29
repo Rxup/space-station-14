@@ -2,9 +2,8 @@ using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
 using Content.Client.DebugMon;
-using Content.Client.Corvax.TTS;
-using Content.Client.Options;
 using Content.Client.Eui;
+using Content.Client.FeedbackPopup;
 using Content.Client.Fullscreen;
 using Content.Client.GameTicking.Managers;
 using Content.Client.GhostKick;
@@ -27,6 +26,7 @@ using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared.Ame.Components;
+using Content.Shared.FeedbackSystem;
 using Content.Shared.Gravity;
 using Content.Shared.Localizations;
 using Robust.Client;
@@ -79,7 +79,7 @@ namespace Content.Client.Entry
         [Dependency] private TitleWindowManager _titleWindowManager = default!;
         [Dependency] private IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
-
+        [Dependency] private ClientFeedbackManager _feedbackManager = null!;
 
         // start-backmen: ioc
         [Dependency] private Content.Corvax.Interfaces.Shared.ISharedSponsorsManager _sponsorsManager = default!; // Corvax-Sponsors
@@ -127,7 +127,6 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("noiseChannel");
             _prototypeManager.RegisterIgnore("playerConnectionWhitelist");
             _prototypeManager.RegisterIgnore("spaceBiome");
-            _prototypeManager.RegisterIgnore("worldgenConfig");
             _prototypeManager.RegisterIgnore("gameRule");
             _prototypeManager.RegisterIgnore("worldSpell");
             _prototypeManager.RegisterIgnore("entitySpell");
@@ -198,6 +197,8 @@ namespace Content.Client.Entry
             _discordAuthManager.Initialize();
             _sharedLoadoutsManager.Initialize();
             // end-backmen: ioc
+
+            _feedbackManager.Initialize();
 
             _baseClient.RunLevelChanged += (_, args) =>
             {

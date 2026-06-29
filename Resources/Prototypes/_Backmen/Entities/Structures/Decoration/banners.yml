@@ -33,8 +33,9 @@
   - type: InteractionOutline
   - type: Appearance
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Sprite
     drawdepth: WallTops
     sprite: Backmen/Structures/Decoration/wallbanner.rsi

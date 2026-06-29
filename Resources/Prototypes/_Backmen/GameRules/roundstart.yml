@@ -60,23 +60,14 @@
       min: 420
       max: 600
   - type: AntagSelection
-    definitions:
-    - prefRoles: [ Blob ]
-      min: 1
-      max: 2
-      playerRatio: 40 #players = 2 blobs
-      allowNonHumans: true
-      components:
-      - type: BlobCarrier
-      blacklist:
-        components:
-        - AntagImmune
-      briefing:
-        text: blob-carrier-role-greeting
-        color: Plum
-        sound: /Audio/Backmen/Ambience/Antag/blob_start.ogg
-      mindRoles:
-      - MindRoleBlob
+    selectionTime: PrePlayerSpawn
+    antags:
+    - !type:LinearAntagCount
+      proto: Blob
+      playerRatio: 40
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   id: BlobSpawn
@@ -109,22 +100,15 @@
     - BloodsuckerDrinkObjective
     - BloodsuckerConvertObjective
   - type: AntagSelection
-    definitions:
-    - prefRoles: [ Bloodsucker ]
-      min: 2
-      max: 8
+    selectionTime: PrePlayerSpawn
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: Bloodsucker
       playerRatio: 10
-      blacklist:
-        components:
-        - AntagImmune
-        - BibleUser
-      lateJoinAdditional: true
-      briefing:
-        text: vampire-role-greeting
-        color: Plum
-        sound: /Audio/Backmen/Ambience/Antag/vampier_start.ogg
-      mindRoles:
-      - MindRoleBloodsucker
+      range:
+        min: 2
+        max: 8
 
 ## Vampire Gamemode
 - type: entity
@@ -207,10 +191,14 @@
   parent: BaseGameRule
   id: ExtendedThief
   components:
+  - type: GameRule
+    minPlayers: 1
   - type: ThiefRule
   - type: AntagObjectives
     objectives:
     - EscapeThiefShuttleObjective
+    - ThiefRaiseGlimmerObjective
+    - ThiefSupercritAnomaliesObjective
   - type: AntagRandomObjectives
     sets:
     - groups: ThiefObjectiveGroups
@@ -221,23 +209,14 @@
     maxDifficulty: 3.5
   - type: AntagSelection
     agentName: thief-round-end-agent-name
-    definitions:
-    - prefRoles: [ Thief ]
-      max: 10
+    lateJoinAdditional: true
+    antags:
+    - !type:LinearAntagCount
+      proto: ExtendedThief
       playerRatio: 7
-      blacklist:
-        components:
-        - AntagImmune
-      lateJoinAdditional: true
-      allowNonHumans: true
-      multiAntagSetting: NotExclusive
-      startingGear: ThiefGear
-#      components: # Corvax-MRP
-#      - type: Pacified
-      mindRoles:
-      - MindRoleThief
-      briefing:
-        sound: "/Audio/Misc/thief_greeting.ogg"
+      range:
+        min: 1
+        max: 10
 
 - type: entity
   parent: BaseGameRule
@@ -258,21 +237,11 @@
     #  min: 420
     #  max: 600
   - type: AntagSelection
-    definitions:
-    - prefRoles: [ XenoAgent ]
-      min: 1
-      max: 2
-      playerRatio: 40 #players = 2 blobs
-      allowNonHumans: true
-      components:
-      - type: XenoAgent
-      - type: NpcFactionMember
-        factions:
-        - Xeno
-        - NanoTrasen
-      - type: XenoAcidSpiller
-      blacklist:
-        components:
-        - AntagImmune
-      mindRoles:
-      - MindRoleXenoAgent
+    selectionTime: PrePlayerSpawn
+    antags:
+    - !type:LinearAntagCount
+      proto: XenoAgent
+      playerRatio: 40
+      range:
+        min: 1
+        max: 2

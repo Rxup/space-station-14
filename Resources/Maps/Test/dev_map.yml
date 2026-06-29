@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 270.1.0
+  engineVersion: 273.0.0
   forkId: ""
   forkVersion: ""
-  time: 01/05/2026 13:54:29
-  entityCount: 3156
+  time: 03/15/2026 20:01:24
+  entityCount: 3155
 maps:
 - 23
 grids:
@@ -1621,6 +1621,8 @@ entities:
       id: Dev
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
+    - type: TileHistory
+      chunkHistory: {}
   - uid: 23
     components:
     - type: MetaData
@@ -1723,6 +1725,8 @@ entities:
     - type: RadiationGridResistance
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
+    - type: TileHistory
+      chunkHistory: {}
   - uid: 2869
     components:
     - type: MetaData
@@ -1765,6 +1769,8 @@ entities:
     - type: IFF
       flags: HideLabel
     - type: ImplicitRoof
+    - type: TileHistory
+      chunkHistory: {}
 - proto: AirAlarm
   entities:
   - uid: 1270
@@ -1986,14 +1992,6 @@ entities:
     components:
     - type: Transform
       pos: 33.5,48.5
-      parent: 1
-    - type: Fixtures
-      fixtures: {}
-  - uid: 1220
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 51.5,37.5
       parent: 1
     - type: Fixtures
       fixtures: {}
@@ -6296,6 +6294,11 @@ entities:
     - type: Transform
       pos: 77.5,11.5
       parent: 1
+  - uid: 3158
+    components:
+    - type: Transform
+      pos: 52.5,37.5
+      parent: 1
 - proto: CableApcStack
   entities:
   - uid: 3139
@@ -9229,6 +9232,14 @@ entities:
     - type: Transform
       pos: 50.5,59.5
       parent: 1
+- proto: ComputerSalvageExpedition
+  entities:
+  - uid: 2868
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-1.5
+      parent: 2709
 - proto: ComputerShuttle
   entities:
   - uid: 2638
@@ -9253,14 +9264,6 @@ entities:
     - type: Transform
       pos: 49.5,55.5
       parent: 1
-- proto: ComputerShuttleMiningLavaland
-  entities:
-  - uid: 2868
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -2.5,-1.5
-      parent: 2709
 - proto: ComputerShuttleSyndie
   entities:
   - uid: 2630
@@ -9805,6 +9808,27 @@ entities:
     - type: Transform
       pos: 70.5,15.5
       parent: 1
+- proto: DebugAPCRecharging
+  entities:
+  - uid: 1220
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 51.5,37.5
+      parent: 1
+    - type: AccessReader
+      accessListsOriginal:
+      - - Engineering
+    - type: Fixtures
+      fixtures: {}
+  - uid: 2115
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 52.5,37.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: DebugGenerator
   entities:
   - uid: 2256
@@ -11589,77 +11613,23 @@ entities:
     - type: Transform
       pos: 28.5,41.5
       parent: 1
-- proto: KitchenReagentGrinder
+- proto: KitchenReagentGrinderBeakerLarge
   entities:
   - uid: 979
     components:
     - type: Transform
       pos: 31.5,41.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        beakerSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 980
-        inputContainer: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-  - uid: 1044
+  - uid: 980
     components:
     - type: Transform
       pos: 30.5,44.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        beakerSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1045
-        inputContainer: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-  - uid: 1125
+  - uid: 1044
     components:
     - type: Transform
       pos: 52.5,42.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        beakerSlot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: 1126
-        inputContainer: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_board: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        machine_parts: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
 - proto: KitchenSpike
   entities:
   - uid: 963
@@ -11667,26 +11637,6 @@ entities:
     - type: Transform
       pos: 25.5,40.5
       parent: 1
-- proto: LargeBeaker
-  entities:
-  - uid: 980
-    components:
-    - type: Transform
-      parent: 979
-    - type: Physics
-      canCollide: False
-  - uid: 1045
-    components:
-    - type: Transform
-      parent: 1044
-    - type: Physics
-      canCollide: False
-  - uid: 1126
-    components:
-    - type: Transform
-      parent: 1125
-    - type: Physics
-      canCollide: False
 - proto: LockerAtmosphericsFilledHardsuit
   entities:
   - uid: 453
@@ -11844,12 +11794,112 @@ entities:
     - type: Transform
       pos: 35.5,16.5
       parent: 1
-- proto: MagazineBoxRifle762x39
+- proto: MagazineBoxLightRifle
+  entities:
+  - uid: 2071
+    components:
+    - type: Transform
+      parent: 2068
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazineBoxLightRifleBig
   entities:
   - uid: 2069
     components:
     - type: Transform
       parent: 2068
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazineBoxLightRifleIncendiary
+  entities:
+  - uid: 2072
+    components:
+    - type: Transform
+      parent: 2068
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazineBoxLightRiflePractice
+  entities:
+  - uid: 2073
+    components:
+    - type: Transform
+      parent: 2068
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazineBoxLightRifleUranium
+  entities:
+  - uid: 2070
+    components:
+    - type: Transform
+      parent: 2068
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazineBoxPistol
+  entities:
+  - uid: 2140
+    components:
+    - type: Transform
+      parent: 2139
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 2142
+    components:
+    - type: Transform
+      parent: 2139
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazineBoxPistolIncendiary
+  entities:
+  - uid: 2145
+    components:
+    - type: Transform
+      parent: 2139
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 2148
+    components:
+    - type: Transform
+      parent: 2139
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazineBoxPistolPractice
+  entities:
+  - uid: 2143
+    components:
+    - type: Transform
+      parent: 2139
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 2146
+    components:
+    - type: Transform
+      parent: 2139
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazineBoxPistolUranium
+  entities:
+  - uid: 2141
+    components:
+    - type: Transform
+      parent: 2139
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 2144
+    components:
+    - type: Transform
+      parent: 2139
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -11888,7 +11938,23 @@ entities:
     - type: Transform
       pos: 2.35,-1.35
       parent: 2709
-- proto: MagazineLightMachineGun762x39
+- proto: MagazineLightRifle
+  entities:
+  - uid: 2109
+    components:
+    - type: Transform
+      parent: 2107
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 2116
+    components:
+    - type: Transform
+      parent: 2107
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazineLightRifleBox
   entities:
   - uid: 2074
     components:
@@ -11918,99 +11984,55 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: MagazinePacketPistol9x17
+- proto: MagazineLightRifleIncendiary
   entities:
-  - uid: 2140
+  - uid: 2112
     components:
     - type: Transform
-      parent: 2139
+      parent: 2107
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2141
+  - uid: 2114
     components:
     - type: Transform
-      parent: 2139
+      parent: 2107
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2142
-    components:
-    - type: Transform
-      parent: 2139
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2143
-    components:
-    - type: Transform
-      parent: 2139
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2144
-    components:
-    - type: Transform
-      parent: 2139
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2146
-    components:
-    - type: Transform
-      parent: 2139
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazinePacketPistol9x17Incendiary
+- proto: MagazineLightRiflePractice
   entities:
-  - uid: 2145
+  - uid: 2110
     components:
     - type: Transform
-      parent: 2139
+      parent: 2107
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2148
+  - uid: 2113
     components:
     - type: Transform
-      parent: 2139
+      parent: 2107
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: MagazinePacketRifle762x39
+- proto: MagazineLightRifleUranium
   entities:
-  - uid: 2070
+  - uid: 2108
     components:
     - type: Transform
-      parent: 2068
+      parent: 2107
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2071
+  - uid: 2111
     components:
     - type: Transform
-      parent: 2068
+      parent: 2107
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2073
-    components:
-    - type: Transform
-      parent: 2068
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazinePacketRifle762x39Incendiary
-  entities:
-  - uid: 2072
-    components:
-    - type: Transform
-      parent: 2068
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazinePistolSubMachineGun9x17
+- proto: MagazinePistolSubMachineGun
   entities:
   - uid: 2062
     components:
@@ -12020,34 +12042,6 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
   - uid: 2063
-    components:
-    - type: Transform
-      parent: 2061
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2064
-    components:
-    - type: Transform
-      parent: 2061
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2065
-    components:
-    - type: Transform
-      parent: 2061
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2066
-    components:
-    - type: Transform
-      parent: 2061
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2067
     components:
     - type: Transform
       parent: 2061
@@ -12068,17 +12062,19 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2154
+- proto: MagazinePistolSubMachineGunPractice
+  entities:
+  - uid: 2066
     components:
     - type: Transform
-      parent: 2139
+      parent: 2061
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2155
+  - uid: 2067
     components:
     - type: Transform
-      parent: 2139
+      parent: 2061
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -12096,7 +12092,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: MagazinePistolTopSubMachineGun
+- proto: MagazinePistolSubMachineGunTopMounted
   entities:
   - uid: 2147
     components:
@@ -12126,7 +12122,37 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: MagazineRifle556UEG
+- proto: MagazinePistolSubMachineGunUranium
+  entities:
+  - uid: 2064
+    components:
+    - type: Transform
+      parent: 2061
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 2065
+    components:
+    - type: Transform
+      parent: 2061
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 2154
+    components:
+    - type: Transform
+      parent: 2139
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 2155
+    components:
+    - type: Transform
+      parent: 2139
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+- proto: MagazineRifle
   entities:
   - uid: 2091
     components:
@@ -12156,63 +12182,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2095
-    components:
-    - type: Transform
-      parent: 2078
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2096
-    components:
-    - type: Transform
-      parent: 2078
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2097
-    components:
-    - type: Transform
-      parent: 2078
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2098
-    components:
-    - type: Transform
-      parent: 2078
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2099
-    components:
-    - type: Transform
-      parent: 2078
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2100
-    components:
-    - type: Transform
-      parent: 2078
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2101
-    components:
-    - type: Transform
-      parent: 2078
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2102
-    components:
-    - type: Transform
-      parent: 2078
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazineRifle556UEGIncendiary
+- proto: MagazineRifleIncendiary
   entities:
   - uid: 2103
     components:
@@ -12242,63 +12212,63 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: MagazineRifleLight762x39
+- proto: MagazineRiflePractice
   entities:
-  - uid: 2108
+  - uid: 2099
     components:
     - type: Transform
-      parent: 2107
+      parent: 2078
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2109
+  - uid: 2100
     components:
     - type: Transform
-      parent: 2107
+      parent: 2078
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2110
+  - uid: 2101
     components:
     - type: Transform
-      parent: 2107
+      parent: 2078
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2111
+  - uid: 2102
     components:
     - type: Transform
-      parent: 2107
+      parent: 2078
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2113
-    components:
-    - type: Transform
-      parent: 2107
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 2116
-    components:
-    - type: Transform
-      parent: 2107
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: MagazineRifleLight762x39Incendiary
+- proto: MagazineRifleUranium
   entities:
-  - uid: 2112
+  - uid: 2095
     components:
     - type: Transform
-      parent: 2107
+      parent: 2078
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 2114
+  - uid: 2096
     components:
     - type: Transform
-      parent: 2107
+      parent: 2078
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 2097
+    components:
+    - type: Transform
+      parent: 2078
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 2098
+    components:
+    - type: Transform
+      parent: 2078
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -12378,8 +12348,8 @@ entities:
       text: Other
     - type: PointLight
       energy: 2
-      radius: 2
       offset: 0,1
+      radius: 2
   - uid: 610
     components:
     - type: Transform
@@ -12390,9 +12360,9 @@ entities:
       text: Weapons
     - type: PointLight
       energy: 5
+      offset: 0,1
       color: '#FF0000FF'
       radius: 2
-      offset: 0,1
   - uid: 611
     components:
     - type: Transform
@@ -12403,9 +12373,9 @@ entities:
       text: Service
     - type: PointLight
       energy: 5
+      offset: 0,1
       color: '#87EB87FF'
       radius: 2
-      offset: 0,1
   - uid: 612
     components:
     - type: Transform
@@ -12416,9 +12386,9 @@ entities:
       text: Medical
     - type: PointLight
       energy: 5
+      offset: 0,1
       color: '#87D1EBFF'
       radius: 2
-      offset: 0,1
   - uid: 613
     components:
     - type: Transform
@@ -12429,9 +12399,9 @@ entities:
       text: Engi & Atmos
     - type: PointLight
       energy: 5
+      offset: 0,1
       color: '#FFA500FF'
       radius: 2
-      offset: 0,1
   - uid: 614
     components:
     - type: Transform
@@ -12442,9 +12412,9 @@ entities:
       text: R&D
     - type: PointLight
       energy: 5
+      offset: 0,1
       color: '#EB87EBFF'
       radius: 2
-      offset: 0,1
 - proto: MaterialBiomass
   entities:
   - uid: 1186
@@ -14685,7 +14655,7 @@ entities:
       locked: False
     - type: Fixtures
       fixtures: {}
-- proto: ShotGunCabinetFilledBackmen
+- proto: ShotGunCabinetFilled
   entities:
   - uid: 1906
     components:
@@ -16394,15 +16364,10 @@ entities:
       parent: 1
     - type: TechnologyDatabase
       supportedDisciplines:
-      - Engineering
+      - Industrial
       - Arsenal
-      - Security
-      - Cargo
-      - Shaft
-      - Scientific
-      - Robotics
-      - Medical
-      - Service
+      - Experimental
+      - CivilianServices
 - proto: UraniumReinforcedWindowDirectional
   entities:
   - uid: 748
@@ -16834,9 +16799,9 @@ entities:
       parent: 1
     - type: PointLight
       energy: 5
+      offset: 0,2
       color: '#EB87EBFF'
       radius: 2
-      offset: 0,2
   - uid: 101
     components:
     - type: Transform
@@ -17202,9 +17167,9 @@ entities:
       parent: 1
     - type: PointLight
       energy: 5
+      offset: 0,2
       color: '#87EB87FF'
       radius: 2
-      offset: 0,2
   - uid: 891
     components:
     - type: Transform
@@ -17556,9 +17521,9 @@ entities:
       parent: 1
     - type: PointLight
       energy: 5
+      offset: 0,2
       color: '#87D1EBFF'
       radius: 2
-      offset: 0,2
   - uid: 1095
     components:
     - type: Transform
@@ -18017,9 +17982,9 @@ entities:
       parent: 1
     - type: PointLight
       energy: 5
+      offset: 0,2
       color: '#FFA500FF'
       radius: 2
-      offset: 0,2
   - uid: 1315
     components:
     - type: Transform
@@ -18619,9 +18584,9 @@ entities:
       parent: 1
     - type: PointLight
       energy: 5
+      offset: -2,0
       color: '#FF0000FF'
       radius: 2
-      offset: -2,0
   - uid: 1942
     components:
     - type: Transform
@@ -19491,8 +19456,8 @@ entities:
       parent: 1
     - type: PointLight
       energy: 2
-      radius: 2
       offset: 0,-2
+      radius: 2
   - uid: 2522
     components:
     - type: Transform
@@ -20332,13 +20297,6 @@ entities:
     - type: Transform
       pos: 96.5,12.5
       parent: 1
-- proto: WeaponAKMSRifle
-  entities:
-  - uid: 2170
-    components:
-    - type: Transform
-      pos: 73.5,40.5
-      parent: 1
 - proto: WeaponAntiqueLaser
   entities:
   - uid: 2168
@@ -20360,26 +20318,19 @@ entities:
     - type: Transform
       pos: 73.5,40
       parent: 1
-- proto: WeaponDominatorNT
-  entities:
-  - uid: 2165
-    components:
-    - type: Transform
-      pos: 73.5,39
-      parent: 1
-- proto: WeaponEarthGovLaserRifle
-  entities:
-  - uid: 2117
-    components:
-    - type: Transform
-      pos: 73.5,39.5
-      parent: 1
 - proto: WeaponEnergyShotgun
   entities:
   - uid: 2161
     components:
     - type: Transform
       pos: 67.5,39.5
+      parent: 1
+- proto: WeaponLaserCarbine
+  entities:
+  - uid: 2117
+    components:
+    - type: Transform
+      pos: 73.5,39.5
       parent: 1
 - proto: WeaponLaserCarbinePractice
   entities:
@@ -20388,7 +20339,7 @@ entities:
     - type: Transform
       pos: 58.492065,24.668179
       parent: 1
-- proto: WeaponLauncherRL5
+- proto: WeaponLauncherRocket
   entities:
   - uid: 2169
     components:
@@ -20409,7 +20360,14 @@ entities:
     - type: Transform
       pos: 67.5,38
       parent: 1
-- proto: WeaponRifleAR18
+- proto: WeaponRifleAk
+  entities:
+  - uid: 2170
+    components:
+    - type: Transform
+      pos: 73.5,40.5
+      parent: 1
+- proto: WeaponRifleLecter
   entities:
   - uid: 2171
     components:
@@ -20423,54 +20381,61 @@ entities:
     - type: Transform
       pos: 73.5,41
       parent: 1
-- proto: WeaponRifleSR127
-  entities:
-  - uid: 2210
-    components:
-    - type: Transform
-      pos: 74.5,35.499
-      parent: 1
-- proto: WeaponShotgun39
-  entities:
-  - uid: 2159
-    components:
-    - type: Transform
-      pos: 67.5,41
-      parent: 1
-- proto: WeaponShotguntrenchgun4034
-  entities:
-  - uid: 2160
-    components:
-    - type: Transform
-      pos: 67.5,40.5
-      parent: 1
-- proto: WeaponShotgunZauer
+- proto: WeaponShotgunBulldog
   entities:
   - uid: 2158
     components:
     - type: Transform
       pos: 67.5,41.5
       parent: 1
-- proto: WeaponSubMachineGunMP7
+- proto: WeaponShotgunEnforcer
+  entities:
+  - uid: 2159
+    components:
+    - type: Transform
+      pos: 67.5,41
+      parent: 1
+- proto: WeaponShotgunKammerer
+  entities:
+  - uid: 2160
+    components:
+    - type: Transform
+      pos: 67.5,40.5
+      parent: 1
+- proto: WeaponSniperHristov
+  entities:
+  - uid: 2210
+    components:
+    - type: Transform
+      pos: 74.5,35.499
+      parent: 1
+- proto: WeaponSubMachineGunC20r
   entities:
   - uid: 2207
     components:
     - type: Transform
       pos: 73.5,38
       parent: 1
-- proto: WeaponSubMachineGunP90
+- proto: WeaponSubMachineGunDrozd
+  entities:
+  - uid: 2173
+    components:
+    - type: Transform
+      pos: 67.5,38.5
+      parent: 1
+- proto: WeaponSubMachineGunWt550
   entities:
   - uid: 2208
     components:
     - type: Transform
       pos: 73.5,37.5
       parent: 1
-- proto: WeaponSubMachineGunVectorSpecial
+- proto: WeaponTaser
   entities:
-  - uid: 2173
+  - uid: 2165
     components:
     - type: Transform
-      pos: 67.5,38.5
+      pos: 73.5,39
       parent: 1
 - proto: WelderExperimental
   entities:

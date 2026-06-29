@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Teams;
+using Content.Shared.Backmen.Teams;
 using Content.Shared.Backmen.Teams.Components;
 
 namespace Content.Server.Backmen.Teams;

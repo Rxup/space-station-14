@@ -1,4 +1,3 @@
-using Content.Server.Backmen.Blob.Components;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.Popups;
 

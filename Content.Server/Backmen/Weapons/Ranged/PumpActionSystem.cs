@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Weapons.Ranged;
+using Content.Shared.Backmen.Weapons.Ranged;
 
 namespace Content.Server.Backmen.Weapons.Ranged;
 

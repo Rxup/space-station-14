@@ -1,4 +1,4 @@
-﻿using Content.Corvax.Interfaces.Shared;
+using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Backmen.GhostTheme;
 using Content.Shared.Ghost;
 using Robust.Server.Configuration;
@@ -62,8 +62,7 @@ public sealed partial class GhostThemeSystem : EntitySystem
         foreach (var entry in ghostThemePrototype.Components.Values)
         {
             var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
-            comp.Owner = uid;
-            EntityManager.AddComponent(uid, comp);
+            AddComp(uid, comp, true);
         }
 
         EnsureComp<GhostThemeComponent>(uid).GhostTheme = ghostThemePrototype.ID;

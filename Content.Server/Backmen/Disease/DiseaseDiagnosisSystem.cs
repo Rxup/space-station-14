@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Backmen.Disease.Components;
 using Content.Server.Backmen.Disease.Server;
 using Content.Server.Popups;

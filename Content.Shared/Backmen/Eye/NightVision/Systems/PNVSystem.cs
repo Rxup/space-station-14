@@ -1,10 +1,8 @@
 using Content.Shared.Backmen.Eye.NightVision.Components;
-using Content.Shared.Inventory;
 using Content.Shared.Actions;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.StatusEffectNew;
-using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 
@@ -78,7 +76,7 @@ public sealed partial class PNVSystem : EntitySystem
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        if (!_statusEffects.TrySetStatusEffectDuration(args.Equipee, component.StatusEffect))
+        if (!_statusEffects.TrySetStatusEffectDuration(args.EquipTarget, component.StatusEffect))
             return;
 
         component._hasEffect = true;
@@ -96,6 +94,6 @@ public sealed partial class PNVSystem : EntitySystem
             return;
 
         component._hasEffect = false;
-        _statusEffects.TryRemoveStatusEffect(args.Equipee, component.StatusEffect);
+        _statusEffects.TryRemoveStatusEffect(args.EquipTarget, component.StatusEffect);
     }
 }

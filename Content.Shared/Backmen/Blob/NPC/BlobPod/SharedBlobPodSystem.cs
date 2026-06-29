@@ -3,15 +3,10 @@ using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Events;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Verbs;
-using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Blob.NPC.BlobPod;
@@ -66,7 +61,7 @@ public abstract partial class SharedBlobPodSystem : EntitySystem
 
     private void OnUnequipAttempt(Entity<BlobPodComponent> ent, ref BeingUnequippedAttemptEvent args)
     {
-        if (args.Unequipee == args.UnEquipTarget)
+        if (args.UnEquipTarget == args.User)
         {
             args.Cancel();
             return;

@@ -2,11 +2,9 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Medical.Surgery.Conditions;
 using Content.Shared.Medical.Surgery.Steps;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Markings;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Part;
 using Content.Shared.Body;
-using Content.Shared.Body.Organ;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -15,7 +13,6 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
-using Content.Shared.StatusEffectNew;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Backmen.Mood;
@@ -29,14 +26,15 @@ using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
-using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Interaction;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Surgery;
 
 public abstract partial class SharedSurgerySystem
 {
+    private static readonly ProtoId<DamageTypePrototype> Poison = "Poison";
+    private static readonly ProtoId<DamageGroupPrototype> Brute = "Brute";
+
     private void InitializeSteps()
     {
         SubscribeLocalEvent<SurgeryStepComponent, SurgeryStepEvent>(OnToolStep);
@@ -164,7 +162,7 @@ public abstract partial class SharedSurgerySystem
         {
             if (!HasComp<SanitizedComponent>(args.User))
             {
-                var sepsis = new DamageSpecifier(_prototypes.Index<DamageTypePrototype>("Poison"), 5);
+                var sepsis = new DamageSpecifier(_prototypes.Index<DamageTypePrototype>(Poison), 5);
                 var ev = new SurgeryStepDamageEvent(args.User, args.Body, args.Part, args.Surgery, sepsis, 0.5f);
                 RaiseLocalEvent(args.Body, ref ev);
             }
@@ -504,7 +502,7 @@ public abstract partial class SharedSurgerySystem
     {
         if (TryGetGraftAttachOrgan(args.Body, args.Surgery, out var partId))
         {
-            _wounds.TryHealWoundsOnWoundable(partId, 12f, out _, damageGroup: _prototypes.Index<DamageGroupPrototype>("Brute"));
+            _wounds.TryHealWoundsOnWoundable(partId, 12f, out _, damageGroup: _prototypes.Index<DamageGroupPrototype>(Brute));
             RemComp<OrganReattachedComponent>(partId);
             RemComp<BodyPartReattachedComponent>(partId);
             RefreshBodyAppearance(args.Body, partId);
@@ -518,7 +516,7 @@ public abstract partial class SharedSurgerySystem
         if (!_targeting.TryGetEntityByBodyPartType(args.Body, removedComp.Part, removedComp.Symmetry, out var legacyPartId))
             return;
 
-        _wounds.TryHealWoundsOnWoundable(legacyPartId, 12f, out _, damageGroup: _prototypes.Index<DamageGroupPrototype>("Brute"));
+        _wounds.TryHealWoundsOnWoundable(legacyPartId, 12f, out _, damageGroup: _prototypes.Index<DamageGroupPrototype>(Brute));
 
         RemComp<OrganReattachedComponent>(legacyPartId);
         RemComp<BodyPartReattachedComponent>(legacyPartId);

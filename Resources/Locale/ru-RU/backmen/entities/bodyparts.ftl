@@ -20,5 +20,3 @@ ent-LeftLegKobold = левая нога кобольда
 ent-RightLegKobold = правая нога кобольда
 ent-LeftFootKobold = левая стопа кобольда
 ent-RightFootKobold = правая стопа кобольда
-ent-OrganAnimalBrain = мозг животного
-ent-OrganAnimalEyes = глаза животного

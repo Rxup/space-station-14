@@ -1,8 +1,7 @@
-﻿using Content.Server.Magic;
+using Content.Server.Magic;
 using Content.Shared.Backmen.Magic;
 using Content.Shared.Backmen.Magic.Events;
 using Content.Shared.Damage;
-using Content.Shared.Magic;
 using Content.Shared.Magic.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Audio;

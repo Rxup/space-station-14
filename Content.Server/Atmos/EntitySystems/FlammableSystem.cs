@@ -22,12 +22,10 @@ using Content.Shared.Timing;
 using Content.Shared.Toggleable;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands;
+using Content.Shared.Backmen.Mood;
+using Content.Shared.Standing;
 using Content.Shared.Temperature.Components;
 using Robust.Server.Audio;
-using Content.Shared.Backmen.Mood;
-using Content.Shared.Backmen.Surgery.Wounds;
-using Content.Shared.Standing;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
@@ -56,22 +54,16 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private IGameTiming _timing = default!;
         [Dependency] private StandingStateSystem _standing = default!; // backmen
 
-        private EntityQuery<InventoryComponent> _inventoryQuery;
-        private EntityQuery<PhysicsComponent> _physicsQuery;
+        [Dependency] private EntityQuery<InventoryComponent> _inventoryQuery = default!;
+        [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
 
-        // This should probably be moved to the component, requires a rewrite, all fires tick at the same time
         private static readonly TimeSpan UpdateTime = TimeSpan.FromSeconds(1);
-
-        private float _timer;
 
         private readonly Dictionary<Entity<FlammableComponent>, float> _fireEvents = new();
 
         public override void Initialize()
         {
             UpdatesAfter.Add(typeof(AtmosphereSystem));
-
-            _inventoryQuery = GetEntityQuery<InventoryComponent>();
-            _physicsQuery = GetEntityQuery<PhysicsComponent>();
 
             SubscribeLocalEvent<FlammableComponent, MapInitEvent>(OnMapInit);
             SubscribeLocalEvent<FlammableComponent, InteractUsingEvent>(OnInteractUsing);
@@ -144,6 +136,8 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void OnMapInit(EntityUid uid, FlammableComponent component, MapInitEvent args)
         {
+            component.NextUpdate = _timing.CurTime + UpdateTime;
+
             // Sets up a fixture for flammable collisions.
             // TODO: Should this be generalized into a general non-hard 'effects' fixture or something? I can't think of other use cases for it.
             // This doesn't seem great either (lots more collisions generated) but there isn't a better way to solve it either that I can think of.
@@ -152,7 +146,7 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
 
             _fixture.TryCreateFixture(uid, component.FlammableCollisionShape, component.FlammableFixtureID, density: 0,
-                hard: false, collisionMask: (int) CollisionGroup.FullTileLayer, body: body);
+                hard: false, collisionMask: (int)CollisionGroup.FullTileLayer, body: body);
         }
 
         private void OnInteractUsing(EntityUid uid, FlammableComponent flammable, InteractUsingEvent args)
@@ -343,7 +337,7 @@ namespace Content.Server.Atmos.EntitySystems
         public void Ignite(EntityUid uid, EntityUid ignitionSource, FlammableComponent? flammable = null,
             EntityUid? ignitionSourceUser = null)
         {
-            if (!Resolve(uid, ref flammable, false)) // Lavaland Change: SHUT THE FUCK UP FLAMMABLE
+            if (!Resolve(uid, ref flammable))
                 return;
 
             if (flammable.AlwaysCombustible)
@@ -380,7 +374,7 @@ namespace Content.Server.Atmos.EntitySystems
             if (args.DamageDelta.DamageDict.TryGetValue("Heat", out FixedPoint2 value))
             {
                 // Make sure the value is greater than the threshold
-                if(value <= component.Threshold)
+                if (value <= component.Threshold)
                     return;
 
                 // Ignite that sucker
@@ -426,7 +420,6 @@ namespace Content.Server.Atmos.EntitySystems
             var curTime = _timing.CurTime;
 
             // TODO: This needs cleanup to take off the crust from TemperatureComponent and shit.
-            var q = new Queue<(EntityUid, FlammableComponent)>();
             var query = EntityQueryEnumerator<FlammableComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out var flammable, out _))
             {
@@ -434,13 +427,6 @@ namespace Content.Server.Atmos.EntitySystems
                     continue;
 
                 flammable.NextUpdate += UpdateTime;
-
-                q.Enqueue((uid, flammable));
-            }
-
-            while (q.TryDequeue(out var d))
-            {
-                var (uid, flammable) = d;
 
                 // Check if we finished resisting.
                 if (curTime > flammable.ResistCompleteTime)
@@ -486,9 +472,9 @@ namespace Content.Server.Atmos.EntitySystems
                     if (_inventoryQuery.TryComp(uid, out var inv))
                         _inventory.RelayEvent((uid, inv), ref ev);
 
-                    _damageableSystem.ChangeDamage(uid, flammable.Damage * flammable.FireStacks * ev.Multiplier, interruptsDoAfters: false, partMultiplier: 0.3f); // Lavaland: Nerf fire delimbing
+                    _damageableSystem.TryChangeDamage(uid, flammable.Damage * flammable.FireStacks * ev.Multiplier, interruptsDoAfters: false);
 
-                    AdjustFireStacks(uid, flammable.FirestackFade * (flammable.Resisting ? 10f : 1f), flammable, flammable.OnFire);
+                    AdjustFireStacks(uid, flammable.FirestackFade * (flammable.Resisting ? 15f : 1f), flammable, flammable.OnFire);
                 }
                 else
                 {

@@ -1,6 +1,4 @@
-﻿using Content.Shared.Atmos.Prototypes;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
+﻿using Robust.Shared.Serialization;
 
 namespace Content.Shared.Atmos.Piping.Trinary.Components
 {

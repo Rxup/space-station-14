@@ -1,8 +1,4 @@
 using Content.Server.Radio.EntitySystems;
-using Content.Shared._DV.Salvage.Systems; // DeltaV
-using Content.Shared.Examine;
-using Content.Shared.Interaction;
-using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Salvage;
 using Robust.Server.GameObjects;
@@ -41,7 +37,6 @@ namespace Content.Server.Salvage
         [Dependency] private LabelSystem _labelSystem = default!;
         [Dependency] private MapLoaderSystem _loader = default!;
         [Dependency] private MetaDataSystem _metaData = default!;
-        [Dependency] private MiningPointsSystem _points = default!; // DeltaV
         [Dependency] private RadioSystem _radioSystem = default!;
         [Dependency] private SharedAudioSystem _audio = default!;
         [Dependency] private SharedTransformSystem _transform = default!;
@@ -50,16 +45,11 @@ namespace Content.Server.Salvage
         [Dependency] private ShuttleConsoleSystem _shuttleConsoles = default!;
         [Dependency] private StationSystem _station = default!;
         [Dependency] private UserInterfaceSystem _ui = default!;
-
-        private EntityQuery<MapGridComponent> _gridQuery;
-        private EntityQuery<TransformComponent> _xformQuery;
+        [Dependency] private EntityQuery<MapGridComponent> _gridQuery = default!;
 
         public override void Initialize()
         {
             base.Initialize();
-
-            _gridQuery = GetEntityQuery<MapGridComponent>();
-            _xformQuery = GetEntityQuery<TransformComponent>();
 
             InitializeExpeditions();
             InitializeMagnet();

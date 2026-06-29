@@ -121,15 +121,6 @@
       color: white
       netsync: false
     - type: Appearance
-    - type: ToggleableLightVisuals
-      spriteLayer: blade
-      inhandVisuals:
-        left:
-          - state: inhand-left-blade
-            shader: unshaded
-        right:
-          - state: inhand-right-blade
-            shader: unshaded
     - type: DisarmMalus
       malus: 0
     - type: StaminaDamageOnHit
@@ -559,6 +550,7 @@
     size: Small
     sprite: Backmen/Objects/Fun/inteq_balloon.rsi
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: Tag
     tags:

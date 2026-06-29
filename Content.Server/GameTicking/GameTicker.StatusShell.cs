@@ -29,7 +29,6 @@ namespace Content.Server.GameTicking
         // Corvax-Queue-Start
         [Dependency] private IServerJoinQueueManager _joinQueueManager = default!;
         // Corvax-Queue-End
-
         /// <summary>
         ///     For access to the round ID in status responses.
         /// </summary>

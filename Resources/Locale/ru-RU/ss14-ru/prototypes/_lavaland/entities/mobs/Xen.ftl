@@ -1,6 +1,8 @@
 ent-MobHeadcrabNPC = хедкраб
     .suffix = Xen suppa AI
     .desc = { ent-SimpleSpaceMobBase.desc }
+ent-ActionXenHeadcrabJump = Jump
+    .desc = Leap at a target and latch onto an unprotected face.
 ent-MobHeadcrabZombie = зомбированный
     .desc = Zombie.
     .suffix = Xen suppa Zombie Base

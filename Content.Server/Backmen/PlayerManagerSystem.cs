@@ -1,4 +1,3 @@
-﻿using Content.Corvax.Interfaces.Server;
 using Content.Corvax.Interfaces.Shared;
 using Content.Shared.GameTicking;
 using Robust.Server.Player;

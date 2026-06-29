@@ -1,10 +1,9 @@
-﻿using Content.Server.Station.Components;
+using Content.Server.Station.Components;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Random.Helpers;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Disease.StationEvents;

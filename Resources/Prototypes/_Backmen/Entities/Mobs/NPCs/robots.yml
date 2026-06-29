@@ -186,7 +186,6 @@
     - type: MeleeChemicalInjector
       solution: melee
     - type: SolutionRegeneration
-      solution: melee
       generated:
         reagents:
           - ReagentId: Toxin

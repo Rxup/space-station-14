@@ -29,6 +29,7 @@ public sealed partial class ChemAddMoodlet : EntityEffectBase<ChemAddMoodlet>
             return null;
         
         return Loc.GetString("reagent-effect-guidebook-add-moodlet",
+            ("chance", Probability),
             ("amount", moodProto.MoodChange),
             ("timeout", moodProto.Timeout));
     }

@@ -1,12 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server._Lavaland.Procedural.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Temperature.Systems;
 using Content.Server.Weather;
 using Content.Shared._Lavaland.Procedural.Components;
 using Content.Shared._Lavaland.Weather;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
@@ -120,7 +118,7 @@ public sealed partial class LavalandWeatherSystem : EntitySystem
 
         var proto = _proto.Index(weather);
 
-        _weather.SetWeather(Transform(map).MapID, _proto.Index(proto.WeatherType), null);
+        _weather.TrySetWeather(Transform(map).MapID, new EntProtoId(proto.WeatherType), out _, null);
 
         Log.Debug($"Starting dealing weather damage on lavaland map {ToPrettyString(map)}");
         var comp = EnsureComp<LavalandStormedMapComponent>(map);
@@ -140,7 +138,7 @@ public sealed partial class LavalandWeatherSystem : EntitySystem
 
     public void EndWeather(Entity<LavalandMapComponent> map)
     {
-        _weather.SetWeather(Transform(map).MapID, null, null);
+        _weather.TrySetWeather(Transform(map).MapID, null, out _, null);
         if (!TryComp<LavalandStormedMapComponent>(map, out var comp))
             return;
 

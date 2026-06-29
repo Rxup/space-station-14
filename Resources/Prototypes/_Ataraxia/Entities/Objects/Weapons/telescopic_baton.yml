@@ -30,13 +30,6 @@
         enum.ToggleableVisuals.Layer:
           True: {state: telescopic_baton_on}
           False: {state: telescopic_baton_off}
-  - type: ToggleableLightVisuals
-    spriteLayer: blade
-    inhandVisuals:
-      left:
-        - state: on-inhand-left
-      right:
-        - state: on-inhand-right
   - type: DisarmMalus
     malus: 0.225
   - type: MeleeWeapon

@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;

@@ -1,9 +1,5 @@
-﻿using Content.Shared.Antag;
-using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.Reagent;
+﻿using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
-using Content.Shared.Maps;
-using Content.Shared.StatusIcon;
 using Content.Shared.Store;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;

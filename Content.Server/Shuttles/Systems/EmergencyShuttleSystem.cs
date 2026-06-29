@@ -69,7 +69,6 @@ public sealed partial class EmergencyShuttleSystem : SharedEmergencyShuttleSyste
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
     [Dependency] private Content.Server.Backmen.Arrivals.CentcommSystem _centcommSystem = default!;
 
-
     private const float ShuttleSpawnBuffer = 1f;
 
     private bool _emergencyShuttleEnabled;

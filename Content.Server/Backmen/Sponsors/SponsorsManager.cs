@@ -1,18 +1,16 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Corvax.Interfaces.Server;
 using Content.Corvax.Interfaces.Shared;
 using Content.Shared.Backmen.Sponsors;
 using Content.Shared.Backmen.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
-using Robust.Shared.Utility;
 using Exception = System.Exception;
 
 namespace Content.Server.Backmen.Sponsors;

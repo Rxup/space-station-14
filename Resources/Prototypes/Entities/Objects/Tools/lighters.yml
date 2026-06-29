@@ -506,7 +506,6 @@
       collection: Welder
     qualities: Welding
   - type: SolutionRegeneration
-    solution: Welder
     generated:
       reagents:
       - ReagentId: Plasma

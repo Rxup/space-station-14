@@ -33,6 +33,7 @@
   - type: CombatMode
     toggleMouseRotator: false
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: MobState # can be npc targets
     allowedStates:

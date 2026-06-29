@@ -9,7 +9,6 @@ using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Errors;
-using Robust.Shared.Toolshed.TypeParsers;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Administration.Commands.Toolshed;

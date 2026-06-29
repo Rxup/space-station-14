@@ -1,6 +1,5 @@
 cmd-showaccessreaders-desc = Toggles showing access reader permissions on the map
-cmd-showaccessreaders-help =
-    Overlay Info:
+cmd-showaccessreaders-help = Overlay Info:
     -Disabled | The access reader is disabled
     +Unrestricted | The access reader has no restrictions
     +Set [Index]: [Tag Name]| A tag in an access set (accessor needs all tags in the set to be allowed by the set)

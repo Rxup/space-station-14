@@ -1,5 +1,4 @@
 using Content.Shared.Alert;
-using Content.Shared.Backmen.Standing;
 using Content.Shared.Buckle.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;
@@ -30,20 +29,20 @@ namespace Content.Shared.Stunnable;
 /// </summary>
 public abstract partial class SharedStunSystem
 {
-    private EntityQuery<CrawlerComponent> _crawlerQuery;
-
     [Dependency] private EntityLookupSystem _entityLookup = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private StandingStateSystem _standingState = default!;
     [Dependency] private IConfigurationManager _cfgManager = default!;
+
+    [Dependency] private EntityQuery<CrawlerComponent> _crawlerQuery = default!;
+    [Dependency] private EntityQuery<FixturesComponent> _fixtureQuery = default!;
 
     public static readonly ProtoId<AlertPrototype> KnockdownAlert = "Knockdown";
 
     private void InitializeKnockdown()
     {
-        _crawlerQuery = GetEntityQuery<CrawlerComponent>();
-
         SubscribeLocalEvent<KnockedDownComponent, RejuvenateEvent>(OnRejuvenate);
 
         // Startup and Shutdown
@@ -120,15 +119,7 @@ public abstract partial class SharedStunSystem
         entity.Comp.FrictionModifier = 1f;
         entity.Comp.SpeedModifier = 1f;
 
-        if (TryComp<LayingDownComponent>(entity, out var l))
-        {
-            _layingDown.TryProcessAutoGetUp((entity, l));
-        }
-        else
-        {
-            _standingState.Stand(entity);
-        }
-
+        _standingState.Stand(entity);
         Alerts.ClearAlert(entity.Owner, KnockdownAlert);
     }
 
@@ -469,17 +460,14 @@ public abstract partial class SharedStunSystem
         if (intersecting.Count == 0)
             return false;
 
-        var fixtureQuery = GetEntityQuery<FixturesComponent>();
-        var xformQuery = GetEntityQuery<TransformComponent>();
-
         var ourAABB = _entityLookup.GetAABBNoContainer(entity, entity.Comp.LocalPosition, entity.Comp.LocalRotation);
 
         foreach (var ent in intersecting)
         {
-            if (!fixtureQuery.TryGetComponent(ent, out var fixtures))
+            if (!_fixtureQuery.TryGetComponent(ent, out var fixtures))
                 continue;
 
-            if (!xformQuery.TryComp(ent, out var xformComp))
+            if (!TryComp(ent, out TransformComponent? xformComp))
                 continue;
 
             var xform = new Transform(xformComp.LocalPosition, xformComp.LocalRotation);

@@ -218,19 +218,21 @@ namespace Content.Server.Cloning
                 {
                     scanBodyInfo = MetaData(scanBody.Value).EntityName;
 
+                    /*
                     if (false) // GoobStation: Lets you clone living people
                     {
                         clonerStatus = ClonerStatus.ScannerOccupantAlive;
                     }
                     else
                     {
+                    */
                         if (!_mindSystem.TryGetMind(scanBody.Value, out _, out var mind) ||
                             mind.UserId == null ||
                             !_playerManager.TryGetSessionById(mind.UserId.Value, out _))
                         {
                             clonerStatus = ClonerStatus.NoMindDetected;
                         }
-                    }
+                    //}
                 }
             }
 

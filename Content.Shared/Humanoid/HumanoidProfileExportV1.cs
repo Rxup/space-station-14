@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
@@ -85,9 +84,7 @@ public sealed partial class HumanoidCharacterProfileV1
 
     public HumanoidCharacterProfile ToV2()
     {
-        var profile = new HumanoidCharacterProfile(Name, FlavorText, Species, Age, Sex, Gender, Appearance.ToV2(Species), SpawnPriority, JobPriorities, PreferenceUnavailable, AntagPreferences, TraitPreferences, Loadouts);
-        profile.Voice = Voice;
-        return profile;
+        return new(Name, FlavorText, Species, Age, Sex, Gender, Appearance.ToV2(Species), SpawnPriority, JobPriorities, PreferenceUnavailable, AntagPreferences, TraitPreferences, Loadouts);
     }
 }
 

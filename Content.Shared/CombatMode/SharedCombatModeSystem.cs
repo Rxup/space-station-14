@@ -1,13 +1,9 @@
 using Content.Shared.Actions;
-using Content.Shared.CombatMode;
 using Content.Shared.Mind;
 using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Popups;
-using Robust.Shared.Audio; // Ataraxia
-using Robust.Shared.Audio.Systems; // Ataraxia
-using Robust.Shared.GameObjects; // Ataraxia
-using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.CombatMode;
@@ -17,8 +13,8 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
     [Dependency] protected IGameTiming Timing = default!;
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedMindSystem  _mind = default!;
-    [Dependency] private SharedAudioSystem _audio = default!; // backmen: combatmode
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedNPCSystem _npc = default!;
 
     public override void Initialize()
     {
@@ -54,7 +50,6 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
         _popup.PopupClient(Loc.GetString(msg), args.Performer, args.Performer);
     }
 
-
     public void SetCanDisarm(EntityUid entity, bool canDisarm, CombatModeComponent? component = null)
     {
         if (!Resolve(entity, ref component))
@@ -83,7 +78,7 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
             _actionsSystem.SetToggled(component.CombatToggleActionEntity, component.IsInCombatMode);
 
         // Change mouse rotator comps if flag is set
-        if (!component.ToggleMouseRotator || IsNpc(entity) && !_mind.TryGetMind(entity, out _, out _))
+        if (!component.ToggleMouseRotator || _npc.IsNpc(entity) && !_mind.TryGetMind(entity, out _, out _))
             return;
 
         SetMouseRotatorComponents(entity, value);
@@ -93,14 +88,7 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
     {
         if (value)
         {
-            var rot = EnsureComp<MouseRotatorComponent>(uid);
-            // BACKMEN EDIT START
-            if (TryComp<CombatModeComponent>(uid, out var comp) && comp.SmoothRotation) // no idea under which (intended) circumstances this can fail (if any), so i'll avoid Comp<>().
-            {
-                rot.AngleTolerance = Angle.FromDegrees(1); // arbitrary
-                rot.Simple4DirMode = false;
-            }
-            // BACKMEN EDIT END
+            EnsureComp<MouseRotatorComponent>(uid);
             EnsureComp<NoRotateOnMoveComponent>(uid);
         }
         else
@@ -109,9 +97,6 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
             RemComp<NoRotateOnMoveComponent>(uid);
         }
     }
-
-    // todo: When we stop making fucking garbage abstract shared components, remove this shit too.
-    protected abstract bool IsNpc(EntityUid uid);
 }
 
 public sealed partial class ToggleCombatActionEvent : InstantActionEvent

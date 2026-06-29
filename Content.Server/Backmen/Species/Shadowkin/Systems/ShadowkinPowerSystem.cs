@@ -1,7 +1,6 @@
 using Content.Shared.Alert;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Events;
-using System.Threading.Tasks;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 

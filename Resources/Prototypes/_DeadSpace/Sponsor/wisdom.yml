@@ -63,7 +63,7 @@
       - Dropper
       - SecBeltEquip
       components:
-      - Hypospray
+      - Injector
       - Injector
       - Pill
 

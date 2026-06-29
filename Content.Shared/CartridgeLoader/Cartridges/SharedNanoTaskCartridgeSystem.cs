@@ -1,6 +1,3 @@
-using Content.Shared.CartridgeLoader;
-using Content.Shared.CartridgeLoader.Cartridges;
-
 namespace Content.Shared.CartridgeLoader.Cartridges;
 
 public abstract class SharedNanoTaskCartridgeSystem : EntitySystem

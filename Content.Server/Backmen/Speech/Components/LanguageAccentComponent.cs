@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Language;
+using Content.Shared.Backmen.Language;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Speech.Components;

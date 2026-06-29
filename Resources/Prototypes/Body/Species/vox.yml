@@ -224,13 +224,15 @@
     # This allows Vox to take their mask off temporarily to eat something without needing a trip to medbay afterwards.
     allowedStates:
     - Alive
-    damageCap: 20
     damage:
       types:
         Heat: -0.07
-        Poison: -0.2 # needs to be less than the PendingZombieComponent does or they never become zombies by the disease.
-      groups:
-        Brute: -0.07
+        Poison: -0.2
+        Blunt: -0.0175
+        Slash: -0.0175
+        Piercing: -0.0175
+        ArmorPiercing: -0.0175
+    damageCap: 20
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -250,8 +252,7 @@
     animation: WeaponArcClaw
     damage:
       types:
-        Slash: 5 # Reduce?
-
+        Slash: 5
 - type: entity
   parent: OrganBase
   id: OrganVox

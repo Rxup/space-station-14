@@ -246,6 +246,7 @@
         layer:
         - MobLayer
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:

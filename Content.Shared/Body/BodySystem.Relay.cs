@@ -1,7 +1,7 @@
 using Content.Shared.Body.Events;
-using Content.Shared.Gibbing;
 using Content.Shared.Humanoid;
 using Content.Shared.Medical;
+using JetBrains.Annotations;
 
 namespace Content.Shared.Body;
 
@@ -29,7 +29,6 @@ public sealed partial class BodySystem
 
     partial void RelayApplyMetabolicMultiplierToHierarchy(Entity<BodyComponent> ent, ref ApplyMetabolicMultiplierEvent args);
     // end-backmen: body
-
     private void RefRelayBodyEvent<T>(EntityUid uid, BodyComponent component, ref T args) where T : struct
     {
         RelayEvent((uid, component), ref args);
@@ -40,6 +39,13 @@ public sealed partial class BodySystem
         RelayEvent((uid, component), args);
     }
 
+    /// <summary>
+    /// Relays the given event to organs within a body.
+    /// </summary>
+    /// <param name="ent">The body to relay the event within</param>
+    /// <param name="args">The event to relay</param>
+    /// <typeparam name="T">The type of the event</typeparam>
+    [PublicAPI]
     public void RelayEvent<T>(Entity<BodyComponent> ent, ref T args) where T : struct
     {
         var ev = new BodyRelayedEvent<T>(ent, args);
@@ -50,6 +56,13 @@ public sealed partial class BodySystem
         args = ev.Args;
     }
 
+    /// <summary>
+    /// Relays the given event to organs within a body.
+    /// </summary>
+    /// <param name="ent">The body to relay the event within</param>
+    /// <param name="args">The event to relay</param>
+    /// <typeparam name="T">The type of the event</typeparam>
+    [PublicAPI]
     public void RelayEvent<T>(Entity<BodyComponent> ent, T args) where T : class
     {
         var ev = new BodyRelayedEvent<T>(ent, args);
@@ -61,7 +74,7 @@ public sealed partial class BodySystem
 }
 
 /// <summary>
-/// Event wrapper for relayed events.
+/// Event wrapper for events being relayed to organs within a body.
 /// </summary>
 [ByRefEvent]
 public record struct BodyRelayedEvent<TEvent>(Entity<BodyComponent> Body, TEvent Args);

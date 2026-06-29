@@ -9,7 +9,6 @@ using Content.Shared.Dataset;
 using Content.Shared.Mobs;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Humanoid;
-using Content.Server.Speech;
 using Content.Server.Mind;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Mind.Components;
@@ -20,9 +19,7 @@ using Robust.Server.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
 using Robust.Server.GameObjects;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Soul;
 

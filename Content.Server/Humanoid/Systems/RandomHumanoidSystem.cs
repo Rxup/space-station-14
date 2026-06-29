@@ -18,7 +18,7 @@ public sealed partial class RandomHumanoidSystem : EntitySystem
     [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private ISerializationManager _serialization = default!;
-    [Dependency] private  MetaDataSystem _metaData = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private SharedVisualBodySystem _visualBody = default!;
 
     /// <inheritdoc/>

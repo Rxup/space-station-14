@@ -11,9 +11,9 @@
       - FoodSnack
   - type: Sprite
     sprite: Objects/Consumable/Food/snacks.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30 # Room for extra condiments
         reagents:
         - ReagentId: Nutriment
@@ -139,9 +139,9 @@
     tags:
       - FoodSnack
       - ReptilianFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
@@ -314,9 +314,9 @@
     solution: food
   - type: InjectableSolution
     solution: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50 #big cup
         reagents:
         - ReagentId: DryRamen
@@ -338,9 +338,9 @@
   name: hell ramen
   description: Super spicy flavor!
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50
         reagents:
         - ReagentId: DryRamen
@@ -364,9 +364,9 @@
   - type: Item
     heldPrefix: chinese1
     storedOffset: 1,-2
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30 # Room for extra condiments
         reagents:
         - ReagentId: Nutriment
@@ -393,9 +393,9 @@
   - type: Item
     heldPrefix: chinese2
     storedOffset: 0,-2
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30 # Room for extra condiments
         reagents:
         - ReagentId: Nutriment
@@ -419,9 +419,9 @@
       - fortunecookie
   - type: Sprite
     state: cookie_fortune
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 1
         reagents:
         - ReagentId: Nutriment
@@ -476,9 +476,9 @@
       - ReptilianFood
   - type: Sprite
     state: nutribrick-open
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -522,9 +522,9 @@
   - type: Item
     heldPrefix: mre-brownie-open
     storedOffset: -1,-1
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -551,9 +551,9 @@
     tags:
     - FoodSnack
     - ReptilianFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20 # Room for extra condiments
         reagents:
         - ReagentId: Sugar
@@ -592,9 +592,9 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 0
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: ToxinTrash
@@ -861,9 +861,9 @@
   components:
   - type: Edible
     requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Fiber

@@ -2,7 +2,6 @@ using Content.Shared.Maps;
 using Robust.Shared.Noise;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Parallax.Biomes.Layers;
 

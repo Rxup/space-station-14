@@ -1,9 +1,10 @@
+using Content.Shared.Speech.Components;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Speech.EntitySystems;
 
-public abstract partial class SharedStutteringSystem : EntitySystem
+public abstract partial class SharedStutteringSystem : RelayAccentSystem<StutteringAccentComponent>
 {
     public static readonly EntProtoId Stuttering = "StatusEffectStutter";
 

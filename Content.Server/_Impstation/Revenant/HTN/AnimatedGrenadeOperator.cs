@@ -7,7 +7,7 @@ using Content.Shared.Trigger.Components;
 using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.Trigger.Systems;
 using Content.Shared.Timing;
-using Robust.Shared.GameObjects;
+
 namespace Content.Server._Impstation.Revenant.HTN;
 
 /// <summary>

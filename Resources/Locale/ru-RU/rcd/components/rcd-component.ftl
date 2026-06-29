@@ -1,12 +1,12 @@
 ### UI
 
-rcd-component-examine-mode-details = Выбран режим: '{ $mode }'.
+rcd-component-examine-mode-details = Выбран режим: '{$mode}'.
 rcd-component-examine-build-details = Выбран режим строительства: { $name }.
 
 ### Interaction Messages
 
 # Mode change
-rcd-component-change-mode = РСУ переключён в режим '{ $mode }'.
+rcd-component-change-mode = РСУ переключёно в режим '{$mode}'.
 rcd-component-change-build-mode = РСУ переключён в режим строительства. Строится { $name }.
 # Ammo count
 rcd-component-no-ammo-message = В РСУ закончились заряды!
@@ -24,6 +24,7 @@ rcd-component-must-build-on-subfloor-message = Это может быть пос
 rcd-component-cannot-build-on-subfloor-message = Это не может быть построено на покрытии!
 rcd-component-cannot-build-on-occupied-tile-message = Здесь нельзя строить, место уже занято!
 rcd-component-cannot-build-identical-tile = Эта клетка уже тут имеется!
+rcd-component-cannot-build-identical-entity = Эта постройка уже есть тут!
 
 ### Category names
 

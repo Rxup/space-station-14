@@ -1,0 +1,11 @@
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: SuperPsi
+  allowNonHumans: true
+  pickPlayer: false
+  spawnerPrototype: SpawnerUristMcNars
+  multiAntagSetting: None
+  mindRoles:
+  - MindRoleSuperPsi
+  briefing:
+    sound: "/Audio/Misc/thief_greeting.ogg"

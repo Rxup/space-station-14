@@ -12,11 +12,24 @@
   - type: Sprite
     sprite: Mobs/Species/Reptilian/parts.rsi
   - type: Damageable
-    damageContainer: OrganicPart # Shitmed
+  - type: Woundable
+    damageContainer: OrganicPart
+    integrity: 65
+    integrityCap: 65
+    thresholds:
+      Minor: 60
+      Moderate: 45
+      Severe: 30
+      Critical: 12
+      Loss: 0
   - type: BodyPart
   - type: ContainerContainer
     containers:
       bodypart: !type:Container
+        ents: []
+      Wounds: !type:Container # backmen: wounding
+        ents: []
+      Bone: !type:Container # backmen: wounding
         ents: []
   - type: StaticPrice
     price: 50
@@ -87,7 +100,22 @@
   - type: BodyPart
     partType: Chest
   - type: Damageable
+  - type: Woundable
     damageContainer: Biological
+    integrity: 100
+    integrityCap: 100
+    thresholds:
+      Minor: 84
+      Moderate: 70
+      Severe: 55
+      Critical: 30
+      Loss: 0
+    passiveTraumaChances:
+      BoneDamage: 0
+      OrganDamage: 0
+      Dismemberment: -1
+      NerveDamage: -0.2
+      VeinsDamage: 0
   - type: Extractable
     juiceSolution:
       reagents:

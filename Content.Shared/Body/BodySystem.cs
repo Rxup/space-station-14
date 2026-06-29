@@ -3,12 +3,23 @@ using Robust.Shared.Containers;
 
 namespace Content.Shared.Body;
 
+/// <summary>
+/// System responsible for coordinating entities with <see cref="BodyComponent" /> and their entities with <see cref="OrganComponent" />.
+/// This system is primarily responsible for event relaying and the relationships between a body and its organs.
+/// It is not responsible for player-facing body features, e.g. "blood" or "breathing."
+/// Such features should be implemented in systems relying on the various events raised by this class.
+/// </summary>
+/// <seealso cref="OrganGotInsertedEvent" />
+/// <seealso cref="OrganGotRemovedEvent" />
+/// <seealso cref="OrganInsertedIntoEvent" />
+/// <seealso cref="OrganRemovedFromEvent" />
+/// <seealso cref="BodyRelayedEvent{TEvent}" />
 public sealed partial class BodySystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
 
-    [Dependency] private EntityQuery<BodyComponent> _bodyQuery;
-    [Dependency] private EntityQuery<OrganComponent> _organQuery;
+    [Dependency] private EntityQuery<BodyComponent> _bodyQuery = default!;
+    [Dependency] private EntityQuery<OrganComponent> _organQuery = default!;
 
     public override void Initialize()
     {

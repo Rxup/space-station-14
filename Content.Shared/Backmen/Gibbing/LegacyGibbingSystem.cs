@@ -6,7 +6,6 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Shared.Gibbing.Systems;
@@ -14,7 +13,7 @@ namespace Content.Shared.Gibbing.Systems;
 /// <summary>
 /// Legacy gibbing API used by Backmen surgery / hierarchical body until fully migrated to nubody gibbing.
 /// </summary>
-public sealed class LegacyGibbingSystem : EntitySystem
+public sealed partial class LegacyGibbingSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _containerSystem = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;

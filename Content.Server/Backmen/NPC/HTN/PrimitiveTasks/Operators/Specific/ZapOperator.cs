@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server.Backmen.NPC.HTN;
 using Content.Server.Interaction;
 using Content.Server.NPC;
 using Content.Server.NPC.Components;
@@ -12,7 +10,6 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.CombatMode;
-using Content.Shared.Interaction;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;

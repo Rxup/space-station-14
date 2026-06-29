@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.DoAfter;

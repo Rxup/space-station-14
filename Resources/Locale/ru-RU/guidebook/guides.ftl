@@ -75,7 +75,7 @@ guide-entry-partmanipulation = Манипулирование конечност
 guide-entry-organmanipulation = Манипулирование органами
 guide-entry-utilitysurgeries = Особые применения
 guide-entry-chemist = Химик
-guide-entry-brute =
+guide-entry-brute = Продвинутое лечение
     Продвинутое лечение
     механических повреждений
 guide-entry-botanical = Ботанические

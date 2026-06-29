@@ -150,8 +150,9 @@
     nextAutoRecharge: null
     autoRechargeRate: -800   #<- discharge per second while active
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:

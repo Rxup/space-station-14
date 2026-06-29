@@ -3,7 +3,6 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Tag;
-using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
@@ -19,6 +18,11 @@ namespace Content.Server.Backmen.Flesh.FleshGrowth;
 // Future work includes making the growths per interval thing not global, but instead per "group"
 public sealed partial class SpreaderFleshSystem : EntitySystem
 {
+    private static readonly ProtoId<TagPrototype> WallTag = "Wall";
+    private static readonly ProtoId<TagPrototype> WindowTag = "Window";
+    private static readonly ProtoId<TagPrototype> DirectionalTag = "Directional";
+    private static readonly ProtoId<TagPrototype> FleshTag = "Flesh";
+
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private TagSystem _tagSystem = default!;
@@ -51,7 +55,7 @@ public sealed partial class SpreaderFleshSystem : EntitySystem
 
     public void UpdateNearbySpreaders(EntityUid blocker, AirtightComponent comp)
     {
-        if (!EntityManager.TryGetComponent<TransformComponent>(blocker, out var transform))
+        if (!TryComp(blocker, out TransformComponent? transform))
             return; // how did we get here?
 
         if (!TryComp<MapGridComponent>(transform.GridUid, out var grid))
@@ -136,9 +140,9 @@ public sealed partial class SpreaderFleshSystem : EntitySystem
             string entityStrucrureId = String.Empty;
             foreach (var entityUid in entityUids)
             {
-                if (_tagSystem.HasAnyTag(entityUid, "Wall", "Window"))
+                if (_tagSystem.HasAnyTag(entityUid, WallTag, WindowTag))
                 {
-                    if (!_tagSystem.HasAnyTag(entityUid, "Directional"))
+                    if (!_tagSystem.HasAnyTag(entityUid, DirectionalTag))
                     {
                         if (TryComp(entityUid, out MetaDataComponent? metaData))
                         {
@@ -150,7 +154,7 @@ public sealed partial class SpreaderFleshSystem : EntitySystem
                     }
                 }
 
-                if (_tagSystem.HasAnyTag(entityUid, "Flesh", "Directional"))
+                if (_tagSystem.HasAnyTag(entityUid, FleshTag, DirectionalTag))
                 {
                     canSpawnWall = false;
                 }
@@ -159,7 +163,7 @@ public sealed partial class SpreaderFleshSystem : EntitySystem
             if (canSpawnFloor)
             {
                 didGrow = true;
-                EntityManager.SpawnEntity(spreader.GrowthResult,
+                Spawn(spreader.GrowthResult,
                     transform.Coordinates.Offset(direction.AsDir().ToVec()));
             }
             else
@@ -167,9 +171,9 @@ public sealed partial class SpreaderFleshSystem : EntitySystem
                 if (!canSpawnWall)
                     continue;
                 didGrow = true;
-                var uid = EntityManager.SpawnEntity(spreader.WallResult,
+                var uid = Spawn(spreader.WallResult,
                     transform.Coordinates.Offset(direction.AsDir().ToVec()));
-                if (EntityManager.TryGetComponent(uid, out DestructibleComponent? destructible))
+                if (TryComp(uid, out DestructibleComponent? destructible))
                 {
                     destructible.Thresholds.Clear();
                     var damageThreshold = new DamageThreshold
@@ -190,7 +194,7 @@ public sealed partial class SpreaderFleshSystem : EntitySystem
 
                 foreach (var entityUid in entityUids)
                 {
-                    if (_tagSystem.HasAnyTag(entityUid, "Wall", "Window"))
+                    if (_tagSystem.HasAnyTag(entityUid, WallTag, WindowTag))
                         QueueDel(entityUid);
                 }
             }
@@ -201,10 +205,10 @@ public sealed partial class SpreaderFleshSystem : EntitySystem
 
     private bool IsTileBlockedFrom(EntityUid ent, DirectionFlag dir)
     {
-        if (EntityManager.TryGetComponent<SpreaderFleshComponent>(ent, out _))
+        if (TryComp<SpreaderFleshComponent>(ent, out _))
             return true;
 
-        if (EntityManager.TryGetComponent<AirtightComponent>(ent, out var airtight))
+        if (TryComp<AirtightComponent>(ent, out _))
             return true;
 
         return false;

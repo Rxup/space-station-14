@@ -104,24 +104,39 @@
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -0.15
+          types:
+            Blunt: -0.0375
+            Slash: -0.0375
+            Piercing: -0.0375
+            ArmorPiercing: -0.0375
     - reagents: [ Blood ]
       methods: [ Touch ]
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -0.25
-            Burn: -0.25
+          types:
+            Blunt: -0.0625
+            Slash: -0.0625
+            Piercing: -0.0625
+            ArmorPiercing: -0.0625
+            Heat: -0.0625
+            Shock: -0.0625
+            Cold: -0.0625
+            Caustic: -0.0625
     - reagents: [ RobustHarvest ]
       methods: [ Touch ]
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -1
-            Burn: -1
+          types:
+            Blunt: -0.25
+            Slash: -0.25
+            Piercing: -0.25
+            ArmorPiercing: -0.25
+            Heat: -0.25
+            Shock: -0.25
+            Cold: -0.25
+            Caustic: -0.25
     - reagents: [ WeedKiller, PlantBGone ]
       methods: [ Touch ]
       effects:
@@ -202,8 +217,11 @@
   - type: MeleeWeapon
     hidden: true
     damage:
-      groups:
-        Brute: 9
+      types:
+        Blunt: 2.25
+        Slash: 2.25
+        Piercing: 2.25
+        ArmorPiercing: 2.25
     animation: WeaponArcBite
   - type: Climbing
   - type: NameIdentifier
@@ -225,7 +243,6 @@
     allowedStates:
     - Alive
     - Dead
-    damageCap: 50
     damage:
       types:
         Blunt: 0.11

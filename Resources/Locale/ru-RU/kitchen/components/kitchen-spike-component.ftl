@@ -25,12 +25,12 @@ comp-kitchen-spike-begin-butcher = { CAPITALIZE(THE($user)) } начинает �
 comp-kitchen-spike-butcher-self = Вы разделали { THE($victim) }!
 comp-kitchen-spike-butcher = { CAPITALIZE(THE($user)) } разделал { THE($victim) }!
 comp-kitchen-spike-unhook-verb = Снять
-comp-kitchen-spike-hooked = [color=red]{ CAPITALIZE(THE($victim)) } насажен на этот крюк![/color]
+comp-kitchen-spike-hooked = [color=red]На крюке { CAPITALIZE(THE($victim)) }![/color]
 comp-kitchen-spike-deny-butcher = { CAPITALIZE($victim) } не может быть разделан на { $this }.
 comp-kitchen-spike-victim-examine = [color=orange]{ CAPITALIZE(SUBJECT($target)) } выглядит довольно худым.[/color]
+comp-kitchen-spike-deconstruct-occupied = Далее, [color=red]снимите тело с крюка[/color].
 comp-kitchen-spike-deny-butcher-knife = { CAPITALIZE($victim) } не может быть разделан на { $this }, используйте нож для разделки.
-comp-kitchen-spike-deny-not-dead =
-    { CAPITALIZE($victim) } не может быть разделан. { CAPITALIZE(SUBJECT($victim)) } { GENDER($victim) ->
+comp-kitchen-spike-deny-not-dead = { CAPITALIZE($victim) } не может быть разделан. { CAPITALIZE(SUBJECT($victim)) } { GENDER($victim) ->
         [male] ещё жив
         [female] ещё жива
         [epicene] ещё живы

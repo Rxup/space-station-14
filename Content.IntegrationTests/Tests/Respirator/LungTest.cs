@@ -1,16 +1,13 @@
-using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Body.Components;
-using Content.IntegrationTests.Fixtures;
-using Content.Shared.Body;
 using Content.Shared.Body.Systems;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using System.Numerics;
+using Content.IntegrationTests.Fixtures;
+using Content.Shared.Atmos.Components;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
 
@@ -20,8 +17,6 @@ namespace Content.IntegrationTests.Tests.Respirator;
 [TestOf(typeof(LungSystem))]
 public sealed class LungTest : GameTest
 {
-    public override PoolSettings PoolSettings => PsDisconnected;
-
     [TestPrototypes]
     private const string Prototypes = @"
 - type: entity
@@ -66,11 +61,11 @@ public sealed class LungTest : GameTest
         await server.WaitIdleAsync();
 
         var entityManager = server.ResolveDependency<IEntityManager>();
-        var mobStateSystem = entityManager.System<MobStateSystem>();
         var mapLoader = entityManager.System<MapLoaderSystem>();
         var mapSys = entityManager.System<SharedMapSystem>();
 
         EntityUid? grid = null;
+        RespiratorComponent resp = default;
         EntityUid human = default;
         GridAtmosphereComponent relevantAtmos = default;
         var startingMoles = 0.0f;
@@ -105,15 +100,10 @@ public sealed class LungTest : GameTest
             relevantAtmos = entityManager.GetComponent<GridAtmosphereComponent>(grid.Value);
             startingMoles = 100f; // Hardcoded because GetMapMoles returns 900 here for some reason.
 
-            Assert.That(entityManager.TryGetComponent(human, out BodyComponent? body), Is.True);
-            Assert.That(body!.Organs, Is.Not.Null);
-            Assert.That(body.Organs!.Count, Is.GreaterThan(0), "HumanLungDummy should have lungs in body_organs.");
-            Assert.That(entityManager.TryGetComponent(human, out RespiratorComponent? _), Is.True);
-            Assert.That(mobStateSystem.IsDead(human), Is.False, "Dummy should be alive when spawned.");
+#pragma warning disable NUnit2045
+            Assert.That(entityManager.TryGetComponent(human, out resp), Is.True);
+#pragma warning restore NUnit2045
         });
-
-        // MapInit / EntityTableContainerFill / respirator scheduling
-        await server.WaitRunTicks(5);
 
         // --- End setup
 
@@ -121,18 +111,14 @@ public sealed class LungTest : GameTest
         for (var i = 0; i < inhaleCycles; i++)
         {
             // Breathe in
-            await PoolManager.WaitUntil(server, () =>
-                entityManager.TryGetComponent(human, out RespiratorComponent? resp)
-                && resp.Status == RespiratorStatus.Exhaling);
+            await PoolManager.WaitUntil(server, () => resp.Status == RespiratorStatus.Exhaling);
             Assert.That(
                 GetMapMoles(), Is.LessThan(startingMoles),
                 "Did not inhale in any gas"
             );
 
             // Breathe out
-            await PoolManager.WaitUntil(server, () =>
-                entityManager.TryGetComponent(human, out RespiratorComponent? resp)
-                && resp.Status == RespiratorStatus.Inhaling);
+            await PoolManager.WaitUntil(server, () => resp.Status == RespiratorStatus.Inhaling);
             Assert.That(
                 GetMapMoles(), Is.EqualTo(startingMoles).Within(0.0002),
                 "Did not exhale as much gas as was inhaled"

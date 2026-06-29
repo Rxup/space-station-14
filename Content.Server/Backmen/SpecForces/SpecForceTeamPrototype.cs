@@ -7,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.Backmen.SpecForces;
 
-[Prototype("specForceTeam")]
+[Prototype]
 public sealed partial class SpecForceTeamPrototype : IPrototype, IInheritingPrototype
 {
     /// <summary>

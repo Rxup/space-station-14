@@ -18,6 +18,5 @@ disease-proto-tongue-twister = Языковой Твистер
 disease-proto-tongue-greenflue = зеленый грипп
 disease-proto-xeno = Ксеновирус
 disease-proto-xenodrone = Ксеновирус
-
 # Wet Hands
 disease-proto-wet-hands = Мокрые руки

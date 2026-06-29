@@ -16,10 +16,9 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Gibbing.Systems;
-using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Events;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Silicons.Borgs.Components;
@@ -27,8 +26,6 @@ using Content.Shared.Standing;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -401,6 +398,9 @@ public partial class BkmBodySharedSystem
         {
             foreach (var item in _inventorySystem.GetHandOrInventoryEntities(bodyId))
             {
+                if (HasComp<VirtualItemComponent>(item))
+                    continue;
+
                 SharedTransform.DropNextTo(item, (bodyId, bodyTransform));
                 gibs.Add(item);
             }
@@ -444,70 +444,6 @@ public partial class BkmBodySharedSystem
         _physics.ApplyLinearImpulse(target, scatterVector);
     }
 
-    public virtual HashSet<EntityUid> GibPart(
-        EntityUid partId,
-        BodyPartComponent? part = null,
-        bool launchGibs = true,
-        Vector2? splatDirection = null,
-        float splatModifier = 1,
-        Angle splatCone = default,
-        SoundSpecifier? gibSoundOverride = null)
-    {
-        var gibs = new HashSet<EntityUid>();
-
-        if (!Resolve(partId, ref part, logMissing: false))
-            return gibs;
-
-        if (part.Body is { } bodyEnt)
-        {
-            if (IsPartRoot(bodyEnt, partId, part: part))
-                return gibs;
-
-            DropSlotContents((partId, part));
-            foreach (var organ in GetPartOrgans(partId, part))
-            {
-                _gibbingSystem.TryGibEntityWithRef(bodyEnt, organ.Id, GibType.Drop, GibContentsOption.Skip,
-                    ref gibs, playAudio: false, launchImpulse: GibletLaunchImpulse * splatModifier,
-                    launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone);
-            }
-        }
-
-        _gibbingSystem.TryGibEntityWithRef(partId, partId, GibType.Gib, GibContentsOption.Drop, ref gibs,
-                playAudio: true, launchGibs: true, launchDirection: splatDirection, launchImpulse: GibletLaunchImpulse * splatModifier,
-                launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone);
-
-
-        if (HasComp<InventoryComponent>(partId))
-        {
-            foreach (var item in _inventorySystem.GetHandOrInventoryEntities(partId))
-            {
-                SharedTransform.AttachToGridOrMap(item);
-                gibs.Add(item);
-            }
-        }
-        _audioSystem.PlayPredicted(gibSoundOverride, Transform(partId).Coordinates, null);
-        return gibs;
-    }
-
-    public virtual bool BurnPart(EntityUid partId,
-        BodyPartComponent? part = null)
-    {
-        if (!Resolve(partId, ref part, logMissing: false))
-            return false;
-
-        if (part.Body is { } bodyEnt)
-        {
-            if (IsPartRoot(bodyEnt, partId, part: part))
-                return false;
-
-            DropSlotContents((partId, part));
-            QueueDel(partId);
-            return true;
-        }
-
-        return false;
-    }
-
     private void TryDropFootwearWithoutHumanFeet(Entity<BodyComponent> ent)
     {
         if (HasBothHumanFeet(ent, ent.Comp) || !TryComp<InventoryComponent>(ent, out var inventory))
@@ -522,6 +458,9 @@ public partial class BkmBodySharedSystem
         if (!TryGetRequiredBodyPartForSlot(args.Slot, out var bodyPart))
             return;
 
+        if (UsesFlatOrgans(args.EquipTarget))
+            return;
+
         if (bodyPart == BodyPartType.Foot)
         {
             if (!HasBothHumanFeet(args.EquipTarget))
@@ -529,7 +468,7 @@ public partial class BkmBodySharedSystem
                 if (_timing.IsFirstTimePredicted)
                 {
                     _popup.PopupEntity(Loc.GetString("equip-part-missing-error",
-                        ("target", args.EquipTarget), ("part", bodyPart.ToString())), args.Equipee, args.Equipee);
+                        ("target", args.EquipTarget), ("part", bodyPart.ToString())), args.EquipTarget, args.EquipTarget);
                 }
 
                 args.Cancel();
@@ -542,7 +481,7 @@ public partial class BkmBodySharedSystem
         {
             if (_timing.IsFirstTimePredicted)
                 _popup.PopupEntity(Loc.GetString("equip-part-missing-error",
-                    ("target", args.EquipTarget), ("part", bodyPart.ToString())), args.Equipee, args.Equipee);
+                    ("target", args.EquipTarget), ("part", bodyPart.ToString())), args.EquipTarget, args.EquipTarget);
             args.Cancel();
         }
     }

@@ -1,36 +1,25 @@
-using Content.Server.Atmos.Rotting;
 using Content.Server.Backmen.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Shared.Body;
-using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Server.Popups;
 using Content.Shared.Damage;
-using Content.Shared.Interaction;
 using Content.Shared.Medical.Surgery.Conditions;
-using Content.Shared.Medical.Surgery.Effects.Step;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Prototypes;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.Backmen.Surgery.Conditions;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Medical.Surgery.Steps;
-using Content.Shared.Body.Part;
 using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Backmen.Surgery.Tools;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Medical.Surgery;
 using Content.Shared.Verbs;
-using Content.Shared.Weapons.Melee.Events;
 
 namespace Content.Server.Backmen.Surgery;
 

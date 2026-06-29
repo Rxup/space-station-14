@@ -1,5 +1,4 @@
 using Content.Shared.Implants.Components;
-using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Language.Components;
 using Robust.Shared.Containers;
 

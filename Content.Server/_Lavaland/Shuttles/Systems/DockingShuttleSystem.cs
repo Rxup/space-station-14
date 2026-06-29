@@ -1,17 +1,12 @@
 using Content.Server.Shuttles.Events;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Lavaland.Shuttles.Components;
 using Content.Shared._Lavaland.Shuttles.Systems;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Map.Components;
-using System.Linq;
-using Content.Server.GameTicking;
 using Content.Shared.Station.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Timing;
 
 namespace Content.Server._Lavaland.Shuttles.Systems;
 

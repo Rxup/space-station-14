@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Systems;
 

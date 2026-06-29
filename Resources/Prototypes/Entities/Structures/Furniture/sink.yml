@@ -27,7 +27,6 @@
       tank:
         maxVol: 500
   - type: SolutionRegeneration
-    solution: tank
     generated:
       reagents:
       - ReagentId: Water
@@ -40,8 +39,9 @@
   - type: DumpableSolution
     solution: drainBuffer
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:

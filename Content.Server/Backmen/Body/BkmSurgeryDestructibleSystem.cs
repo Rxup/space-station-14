@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Backmen.Body.Systems;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
@@ -14,14 +15,15 @@ namespace Content.Server.Backmen.Body;
 
 /// <summary>
 /// Surgery patients inherit MobDamageable's blunt gib threshold (400) via prototype merge.
-/// Strip early gib triggers and require total wound damage before full-body gib.
+/// Strip early gib triggers and require current total wound damage before full-body gib.
 /// </summary>
-public sealed class BkmSurgeryDestructibleSystem : EntitySystem
+public sealed partial class BkmSurgeryDestructibleSystem : EntitySystem
 {
-    public static readonly FixedPoint2 SurgeryGibTotalDamage = 1000;
+    public static readonly FixedPoint2 SurgeryGibTotalDamage = 1600;
 
-    [Dependency] private readonly DestructibleSystem _destructible = default!;
-    [Dependency] private readonly WoundSystem _wound = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private WoundSystem _wound = default!;
+    [Dependency] private BkmBodySystem _body = default!;
 
     public override void Initialize()
     {
@@ -33,8 +35,6 @@ public sealed class BkmSurgeryDestructibleSystem : EntitySystem
 
     private void OnSurgeryTargetMapInit(Entity<SurgeryTargetComponent> ent, ref MapInitEvent args)
     {
-        EnsureComp<BkmSurgeryGibTrackerComponent>(ent);
-
         if (!TryComp<DestructibleComponent>(ent, out var destructible))
             return;
 
@@ -45,9 +45,6 @@ public sealed class BkmSurgeryDestructibleSystem : EntitySystem
     {
         if (args.DamageDelta == null || !args.DamageIncreased)
             return;
-
-        if (TryComp<BkmSurgeryGibTrackerComponent>(ent, out var tracker))
-            tracker.AccumulatedDamage += args.DamageDelta.GetTotal();
 
         if (!ShouldFullBodyGib(ent))
             return;
@@ -63,31 +60,31 @@ public sealed class BkmSurgeryDestructibleSystem : EntitySystem
             if (threshold.Triggered)
                 return;
 
-            _destructible.Execute(threshold, ent, args.Origin);
+            threshold.Triggered = true;
+            _body.GibBody(ent);
             return;
         }
     }
 
     public bool ShouldFullBodyGib(EntityUid body)
     {
-        return GetAccumulatedGibDamage(body) >= SurgeryGibTotalDamage;
+        return GetGibDamage(body) >= SurgeryGibTotalDamage;
     }
 
-    public FixedPoint2 GetAccumulatedGibDamage(EntityUid body)
+    /// <summary>
+    /// Current damage used for full-body gib checks: max of wound severity and damageable total.
+    /// </summary>
+    public FixedPoint2 GetGibDamage(EntityUid body)
     {
-        var woundSeverity = TryComp<BodyComponent>(body, out var bodyComp)
-            ? _wound.GetBodySeverityPoint(body, bodyComp)
-            : FixedPoint2.Zero;
+        var damage = FixedPoint2.Zero;
 
-        var accumulated = FixedPoint2.Zero;
-
-        if (TryComp<BkmSurgeryGibTrackerComponent>(body, out var tracker))
-            accumulated = tracker.AccumulatedDamage;
+        if (TryComp<BodyComponent>(body, out var bodyComp))
+            damage = _wound.GetBodySeverityPoint(body, bodyComp);
 
         if (TryComp<DamageableComponent>(body, out var damageable))
-            accumulated = FixedPoint2.Max(accumulated, damageable.TotalDamage);
+            damage = FixedPoint2.Max(damage, _damageable.GetTotalDamage((body, damageable)));
 
-        return FixedPoint2.Max(accumulated, woundSeverity);
+        return damage;
     }
 
     private static void PatchSurgeryGibThresholds(DestructibleComponent comp)

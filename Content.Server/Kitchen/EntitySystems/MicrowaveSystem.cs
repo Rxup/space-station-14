@@ -7,7 +7,6 @@ using Content.Server.Kitchen.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Temperature.Systems;
-using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Construction.EntitySystems;
@@ -37,6 +36,7 @@ using Content.Shared.Stacks;
 using Content.Server.Construction.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Temperature.Components;
 
 namespace Content.Server.Kitchen.EntitySystems
@@ -64,6 +64,7 @@ namespace Content.Server.Kitchen.EntitySystems
         [Dependency] private IPrototypeManager _prototype = default!;
         [Dependency] private IAdminLogManager _adminLogger = default!;
         [Dependency] private SharedSuicideSystem _suicide = default!;
+        [Dependency] private SharedPowerStateSystem _powerState = default!;
 
         private static readonly EntProtoId MalfunctionSpark = "Spark";
 
@@ -76,7 +77,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
             SubscribeLocalEvent<MicrowaveComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<MicrowaveComponent, MapInitEvent>(OnMapInit);
-            SubscribeLocalEvent<MicrowaveComponent, SolutionContainerChangedEvent>(OnSolutionChange);
+            SubscribeLocalEvent<MicrowaveComponent, SolutionChangedEvent>(OnSolutionChange);
             SubscribeLocalEvent<MicrowaveComponent, EntInsertedIntoContainerMessage>(OnContentUpdate);
             SubscribeLocalEvent<MicrowaveComponent, EntRemovedFromContainerMessage>(OnContentUpdate);
             SubscribeLocalEvent<MicrowaveComponent, InteractUsingEvent>(OnInteractUsing, after: new[] { typeof(AnchorableSystem) });
@@ -112,6 +113,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
             microwaveComponent.PlayingStream =
                 _audio.PlayPvs(microwaveComponent.LoopingSound, ent, AudioParams.Default.WithLoop(true).WithMaxDistance(5))?.Entity;
+            _powerState.SetWorkingState(ent.Owner, true);
         }
 
         private void OnCookStop(Entity<ActiveMicrowaveComponent> ent, ref ComponentShutdown args)
@@ -121,6 +123,7 @@ namespace Content.Server.Kitchen.EntitySystems
 
             SetAppearance(ent.Owner, MicrowaveVisualState.Idle, microwaveComponent);
             microwaveComponent.PlayingStream = _audio.Stop(microwaveComponent.PlayingStream);
+            _powerState.SetWorkingState(ent.Owner, false);
         }
 
         private void OnActiveMicrowaveInsert(Entity<ActiveMicrowaveComponent> ent, ref EntInsertedIntoContainerMessage args)
@@ -177,9 +180,7 @@ namespace Content.Server.Kitchen.EntitySystems
                 if (TryComp<TemperatureComponent>(entity, out var tempComp))
                     _temperature.ChangeHeat(entity, heatToAdd * component.ObjectHeatMultiplier, false, tempComp);
 
-                if (!TryComp<SolutionContainerManagerComponent>(entity, out var solutions))
-                    continue;
-                foreach (var (_, soln) in _solutionContainer.EnumerateSolutions((entity, solutions)))
+                foreach (var (_, soln) in _solutionContainer.EnumerateSolutions(entity))
                 {
                     var solution = soln.Comp.Solution;
                     if (solution.Temperature > component.TemperatureUpperThreshold)
@@ -315,7 +316,7 @@ namespace Content.Server.Kitchen.EntitySystems
             args.Handled = true;
         }
 
-        private void OnSolutionChange(Entity<MicrowaveComponent> ent, ref SolutionContainerChangedEvent args)
+        private void OnSolutionChange(Entity<MicrowaveComponent> ent, ref SolutionChangedEvent args)
         {
             UpdateUserInterfaceState(ent, ent.Comp);
         }

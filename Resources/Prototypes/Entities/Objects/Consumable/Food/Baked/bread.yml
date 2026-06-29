@@ -16,9 +16,9 @@
   - type: Tag
     tags:
     - Bread
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 26
         reagents:
         - ReagentId: Nutriment
@@ -38,9 +38,9 @@
     tags:
     - Bread
     - Slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 8
         reagents:
         - ReagentId: Nutriment
@@ -139,9 +139,9 @@
     tags:
     - ClothMade
     - Bread
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 26
         reagents:
         - ReagentId: Nutriment
@@ -169,9 +169,9 @@
     - ClothMade
     - Bread
     - Slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 8
         reagents:
         - ReagentId: Nutriment
@@ -194,9 +194,9 @@
     - state: cornbread
   - type: SliceableFood
     slice: FoodBreadCornSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -216,9 +216,9 @@
   - type: Sprite
     layers:
     - state: cornbread-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -240,9 +240,9 @@
     - state: creamcheese
   - type: SliceableFood
     slice: FoodBreadCreamcheeseSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
@@ -265,9 +265,9 @@
   - type: Sprite
     layers:
     - state: creamcheese-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -290,9 +290,9 @@
     - state: meat
   - type: SliceableFood
     slice: FoodBreadMeatSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 45
         reagents:
         - ReagentId: Nutriment
@@ -318,9 +318,9 @@
   - type: Sprite
     layers:
     - state: meat-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -348,9 +348,9 @@
     - state: mimana
   - type: SliceableFood
     slice: FoodBreadMimanaSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -376,9 +376,9 @@
   - type: Sprite
     layers:
     - state: mimana-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -427,9 +427,9 @@
     - state: sausage
   - type: SliceableFood
     slice: FoodBreadSausageSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 45
         reagents:
         - ReagentId: Nutriment
@@ -456,9 +456,9 @@
   - type: Sprite
     layers:
     - state: sausage-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -488,9 +488,9 @@
     - state: spidermeat
   - type: SliceableFood
     slice: FoodBreadMeatSpiderSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 45
         reagents:
         - ReagentId: Nutriment
@@ -516,9 +516,9 @@
   - type: Sprite
     layers:
     - state: spidermeat-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 12
         reagents:
         - ReagentId: Nutriment
@@ -546,9 +546,9 @@
     - state: tofu
   - type: SliceableFood
     slice: FoodBreadTofuSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 48
         reagents:
         - ReagentId: Nutriment
@@ -570,9 +570,9 @@
   - type: Sprite
     layers:
     - state: tofu-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -595,9 +595,9 @@
     - state: xenomeat
   - type: SliceableFood
     slice: FoodBreadMeatXenoSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 45
         reagents:
         - ReagentId: Nutriment
@@ -623,9 +623,9 @@
   - type: Sprite
     layers:
     - state: xenomeat-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -651,9 +651,9 @@
   - type: SliceableFood
     count: 12
     slice: FoodBreadBaguetteSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -681,7 +681,7 @@
     wideAnimationRotation: -120
     damage:
       types:
-        Blunt: 1 # bonk
+        Blunt: 1
 # Tastes like France.
 
 - type: entity
@@ -711,9 +711,9 @@
       - state: baguette-cotton-inhand-left
       right:
       - state: baguette-cotton-inhand-right
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -735,9 +735,9 @@
   components:
   - type: Sprite
     state: crostini
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 2
         reagents:
         - ReagentId: Nutriment
@@ -764,9 +764,9 @@
     - Bread
     - Slice
     - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 2
         reagents:
         - ReagentId: Nutriment
@@ -792,9 +792,9 @@
       - bread
   - type: Sprite
     state: buttered-toast
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -815,9 +815,9 @@
       - bread
   - type: Sprite
     state: french-toast
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -839,9 +839,9 @@
   - type: Sprite
     layers:
     - state: garlic-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -863,9 +863,9 @@
   - type: Sprite
     layers:
     - state: jelly-toast
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -886,9 +886,9 @@
   - type: Tag
     tags:
     - Trash
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -906,9 +906,9 @@
   - type: Sprite
     layers:
     - state: two-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -931,9 +931,9 @@
     - bread
   - type: SliceableFood
     slice: FoodBreadSausageSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 45
         reagents:
         - ReagentId: Nutriment
@@ -1007,9 +1007,11 @@
       path: /Audio/Animals/dog_bark1.ogg
     hidden: true
     damage:
-      groups:
-        Brute: 1
-
+      types:
+        Blunt: 0.25
+        Slash: 0.25
+        Piercing: 0.25
+        ArmorPiercing: 0.25
 - type: entity
   parent: FoodBreadBase
   id: FoodBreadNutriBatard
@@ -1056,9 +1058,9 @@
     size: Small
     storedOffset: -1,0
     heldPrefix: batard-cotton
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 26
         reagents:
         - ReagentId: Fiber

@@ -298,7 +298,6 @@
   suffix: Golem Cult
   components:
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
   - type: Sprite
     sprite: Backmen/Mobs/Species/Golem/cult.rsi
@@ -314,6 +313,20 @@
     state: cultgolem_chest
   - type: Woundable
     damageContainer: Inorganic
+    integrity: 100
+    integrityCap: 100
+    thresholds:
+      Minor: 84
+      Moderate: 70
+      Severe: 55
+      Critical: 30
+      Loss: 0
+    passiveTraumaChances:
+      BoneDamage: 0
+      OrganDamage: 0
+      Dismemberment: -1
+      NerveDamage: -0.2
+      VeinsDamage: 0
 
 - type: entity
   parent: [ OrganBase, OrganSurgeryHead, OrganGolemCult ]
@@ -326,6 +339,20 @@
     state: cultgolem_head
   - type: Woundable
     damageContainer: Inorganic
+    integrity: 42
+    integrityCap: 42
+    thresholds:
+      Minor: 36
+      Moderate: 30
+      Severe: 24
+      Critical: 12
+      Loss: 0
+    passiveTraumaChances:
+      BoneDamage: 0.4
+      OrganDamage: 0.4
+      Dismemberment: -0.2
+      NerveDamage: 1
+      VeinsDamage: 0
 
 - type: entity
   parent: [ OrganBase, OrganSurgeryArmLeft, OrganGolemCult ]
@@ -421,7 +448,6 @@
   suffix: IPC
   components:
   - type: Damageable
-    damageContainer: Silicon
     damageModifierSet: IPC
   - type: Sprite
     sprite: _Shitmed/Mobs/Species/IPC/parts.rsi
@@ -432,6 +458,20 @@
   components:
   - type: Woundable
     damageContainer: Silicon
+    integrity: 100
+    integrityCap: 100
+    thresholds:
+      Minor: 84
+      Moderate: 70
+      Severe: 55
+      Critical: 30
+      Loss: 0
+    passiveTraumaChances:
+      BoneDamage: 0
+      OrganDamage: 0
+      Dismemberment: -1
+      NerveDamage: -0.2
+      VeinsDamage: 0
 
 - type: entity
   parent: [ OrganHumanHead, OrganIPC ]
@@ -497,6 +537,8 @@
   parent: [ OrganHumanBrain, OrganIPC ]
   id: OrganIPCBrain
   components:
+  - type: Injurable
+    damageContainer: Silicon
   - type: Sprite
     sprite: _Shitmed/Mobs/Species/IPC/organs.rsi
     layers:
@@ -506,6 +548,8 @@
   parent: [ OrganHumanEyes, OrganIPC ]
   id: OrganIPCEyes
   components:
+  - type: Injurable
+    damageContainer: Silicon
   - type: Sprite
     sprite: _Shitmed/Mobs/Species/IPC/organs.rsi
     state: eyes
@@ -540,7 +584,6 @@
   suffix: Drone
   components:
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
 
 - type: entity

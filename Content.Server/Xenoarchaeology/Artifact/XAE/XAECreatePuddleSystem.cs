@@ -15,8 +15,8 @@ public sealed partial class XAECreatePuddleSystem: BaseXAESystem<XAECreatePuddle
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private PuddleSystem _puddle = default!;
-    [Dependency] private MetaDataSystem _metaData = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MetaDataSystem _metaData= default!;
+    [Dependency] private IPrototypeManager _prototypeManager= default!;
 
     /// <inheritdoc />
     public override void Initialize()

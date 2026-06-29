@@ -55,7 +55,6 @@
     equipDelay: 10
     unequipDelay: 10
   - type: PowerCell
-  - type: PowerCellVisuals
   - type: Battery
     pricePerJoule: 0.15
     maxCharge: 500000

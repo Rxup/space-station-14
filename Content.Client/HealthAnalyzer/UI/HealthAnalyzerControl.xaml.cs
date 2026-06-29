@@ -31,6 +31,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
     private readonly SpriteSystem _spriteSystem;
     private readonly IPrototypeManager _prototypes;
     private readonly IResourceCache _cache;
+    private readonly DamageableSystem _damageable;
 
     public HealthAnalyzerControl()
     {
@@ -41,6 +42,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         _spriteSystem = _entityManager.System<SpriteSystem>();
         _prototypes = dependencies.Resolve<IPrototypeManager>();
         _cache = dependencies.Resolve<IResourceCache>();
+        _damageable = _entityManager.System<DamageableSystem>();
     }
 
     public void Populate(HealthAnalyzerUiState state)
@@ -102,7 +104,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         // Total Damage
 
-        DamageLabel.Text = damageable.TotalDamage.ToString();
+        DamageLabel.Text = _damageable.GetTotalDamage(target.Value).ToString();
 
         // Alerts
 
@@ -132,12 +134,12 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         // Damage Groups
 
-        var damageSortedGroups = damageable.DamagePerGroup
-            .OrderByDescending(damage => damage.Value)
-            .ToDictionary(x => new ProtoId<DamageGroupPrototype>(x.Key), x => x.Value);
+        var damageSortedGroups =
+            _damageable.GetDamagePerGroup(target.Value)
+                .OrderByDescending(damage => damage.Value)
+                .ToDictionary(x => x.Key, x => x.Value);
 
-        var damagePerType = damageable.Damage.DamageDict
-            .ToDictionary(x => new ProtoId<DamageTypePrototype>(x.Key), x => x.Value);
+        var damagePerType = _damageable.GetAllDamage(target.Value).DamageDict;
 
         DrawDiagnosticGroups(damageSortedGroups, damagePerType);
     }

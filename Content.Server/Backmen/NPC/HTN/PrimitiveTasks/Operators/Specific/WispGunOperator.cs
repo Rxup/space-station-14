@@ -1,7 +1,5 @@
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server.Backmen.NPC.HTN;
 using Content.Server.NPC;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
@@ -10,7 +8,6 @@ using Content.Shared.CombatMode;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Audio;
-using Robust.Shared.Maths;
 
 namespace Content.Server.Backmen.NPC.HTN.PrimitiveTasks.Operators.Specific;
 

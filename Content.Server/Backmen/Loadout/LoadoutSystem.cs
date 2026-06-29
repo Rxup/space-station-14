@@ -1,8 +1,7 @@
-﻿using Content.Corvax.Interfaces.Server;
 using Content.Corvax.Interfaces.Shared;
-using Content.Server.GameTicking;
 using Content.Server.Hands.Systems;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared.Backmen.Loadout;
 using Content.Shared.Clothing.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.Inventory;

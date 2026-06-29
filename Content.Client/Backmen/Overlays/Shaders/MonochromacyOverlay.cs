@@ -18,10 +18,13 @@ namespace Content.Client.Backmen.Overlays
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
         private readonly ShaderInstance _greyscaleShader;
 
+        private static readonly ProtoId<ShaderPrototype> GreyscaleFullscreen = "GreyscaleFullscreen";
+
+
         public MonochromacyOverlay()
         {
             IoCManager.InjectDependencies(this);
-            _greyscaleShader = _prototypeManager.Index<ShaderPrototype>("GreyscaleFullscreen").InstanceUnique();
+            _greyscaleShader = _prototypeManager.Index<ShaderPrototype>(GreyscaleFullscreen).InstanceUnique();
         }
 
         protected override void Draw(in OverlayDrawArgs args)
@@ -29,7 +32,7 @@ namespace Content.Client.Backmen.Overlays
             if (ScreenTexture == null)
                 return;
             if (
-                _playerManager.LocalSession?.AttachedEntity
+                _playerManager.LocalEntity
                 is not { Valid: true } player
                 )
                 return;

@@ -1,4 +1,4 @@
-﻿using Content.Server.Access.Systems;
+using Content.Server.Access.Systems;
 using Content.Server.Popups;
 using Content.Shared.Access.Components;
 using Content.Shared.Backmen.Economy;
@@ -11,7 +11,6 @@ using Content.Shared.UserInterface;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Economy.Eftpos;

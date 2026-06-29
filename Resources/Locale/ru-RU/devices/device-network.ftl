@@ -36,17 +36,19 @@ device-address-prefix-heater = НГР-
 device-address-prefix-freezer = ОХЛ-
 device-address-prefix-volume-pump = ОБН-
 device-address-prefix-smes = СМС-
-device-address-prefix-turret = TRT-
+device-address-prefix-turret = ТРЛ-
 #PDAs and terminals
 device-address-prefix-console = Конс-
 device-address-prefix-fire-alarm = Пож-
 device-address-prefix-air-alarm = Возд-
 device-address-prefix-sensor-monitor = МОН-
-device-address-examine-message = Адрес устройства: { $address }.
+device-address-examine-message = Адрес устройства: {$address}.
 #Device net ID names
 device-net-id-private = Частные
 device-net-id-wired = Проводные
 device-net-id-wireless = Беспроводные
 device-net-id-apc = ЛКП
+# Unknown
+device-address-unknown = ????-????
 device-net-id-atmos-devices = Атмос-устройства
 device-net-id-reserved = Резерв

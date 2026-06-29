@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using JetBrains.Annotations;

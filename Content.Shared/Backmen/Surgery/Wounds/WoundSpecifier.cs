@@ -41,9 +41,9 @@ public sealed partial class WoundSpecifier : IEquatable<WoundSpecifier>
     public WoundSpecifier(DamageSpecifier damageSpecifier, IPrototypeManager manager)
     {
         foreach (var damagePair in
-                 damageSpecifier.DamageDict.Where(damagePair => manager.TryIndex<EntityPrototype>(damagePair.Key, out _)))
+                 damageSpecifier.DamageDict.Where(damagePair => manager.TryIndex<EntityPrototype>(damagePair.Key.Id, out _)))
         {
-            WoundDict.Add(damagePair.Key, damagePair.Value);
+            WoundDict.Add((EntProtoId<WoundComponent>)damagePair.Key.Id, damagePair.Value);
         }
     }
 

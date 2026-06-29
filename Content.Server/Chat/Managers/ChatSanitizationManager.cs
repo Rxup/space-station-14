@@ -14,31 +14,6 @@ public sealed partial class ChatSanitizationManager : IChatSanitizationManager
 {
     private static readonly (Regex regex, string emoteKey)[] ShorthandToEmote =
     [
-        // Corvax-Localization-Start
-        Entry("хд", "chatsan-laughs"),
-        Entry("о-о", "chatsan-wide-eyed"),
-        Entry("о.о", "chatsan-wide-eyed"),
-        Entry("0_о", "chatsan-wide-eyed"),
-        Entry("о/", "chatsan-waves"),
-        Entry("о7", "chatsan-salutes"),
-        Entry("0_o", "chatsan-wide-eyed"),
-        Entry("лмао", "chatsan-laughs"),
-        Entry("рофл", "chatsan-laughs"),
-        Entry("яхз", "chatsan-shrugs"),
-        Entry(":0", "chatsan-surprised"),
-        Entry(":р", "chatsan-stick-out-tongue"),
-        Entry("кек", "chatsan-laughs"),
-        Entry("T_T", "chatsan-cries"),
-        Entry("Т_Т", "chatsan-cries"),
-        Entry("=_(", "chatsan-cries"),
-        Entry("!с", "chatsan-laughs"),
-        Entry("!в", "chatsan-sighs"),
-        Entry("!х", "chatsan-claps"),
-        Entry("!щ", "chatsan-snaps"),
-        Entry("))", "chatsan-smiles-widely"),
-        Entry(")", "chatsan-smiles"),
-        Entry("((", "chatsan-frowns-deeply"),
-        Entry("(", "chatsan-frowns"),
         Entry(":)", "chatsan-smiles"),
         Entry(":]", "chatsan-smiles"),
         Entry("=)", "chatsan-smiles"),
@@ -91,6 +66,7 @@ public sealed partial class ChatSanitizationManager : IChatSanitizationManager
         Entry(".-.", "chatsan-confused"),
         Entry("-_-", "chatsan-unimpressed"),
         Entry("smh", "chatsan-unimpressed"),
+        Entry(":?", "chatsan-shrugs"),
         Entry("o/", "chatsan-waves"),
         Entry("^^/", "chatsan-waves"),
         Entry(":/", "chatsan-uncertain"),
@@ -116,7 +92,6 @@ public sealed partial class ChatSanitizationManager : IChatSanitizationManager
         Entry("('=", "chatsan-tearfully-smiles"),
         Entry("['=", "chatsan-tearfully-smiles"),
     ];
-
 
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private ILocalizationManager _loc = default!;

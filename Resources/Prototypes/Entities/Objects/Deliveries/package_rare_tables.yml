@@ -60,7 +60,7 @@
     - id: Syringe
       amount: !type:RangeNumberSelector
         range: 1, 2
-    - id: BaseChemistryEmptyVial
+    - id: ChemistryEmptyVial
       amount: !type:RangeNumberSelector
         range: 0, 2
 

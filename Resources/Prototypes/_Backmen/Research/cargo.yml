@@ -3,7 +3,7 @@
   name: research-technology-factorio
   icon:
     sprite: Structures/conveyor.rsi
-    state: conveyor_started_cw
+    state: conveyor_started
   discipline: Cargo
   tier: 1
   cost: 500

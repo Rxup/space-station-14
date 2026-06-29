@@ -1,7 +1,5 @@
 using System.Diagnostics.Contracts;
 using Content.Shared.Light.Components;
-using Content.Shared.Maps;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
 namespace Content.Shared.Light.EntitySystems;

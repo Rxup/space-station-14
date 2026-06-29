@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;

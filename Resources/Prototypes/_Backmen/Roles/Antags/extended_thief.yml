@@ -1,0 +1,16 @@
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: ExtendedThief
+  prefRoles:
+  - Thief
+  allowNonHumans: true
+  multiAntagSetting: NotExclusive
+  startingGear: ThiefGear
+  components:
+  - type: Thieving
+    stripTimeReduction: 2
+    stealthy: true
+  mindRoles:
+  - MindRoleThief
+  briefing:
+    sound: "/Audio/Misc/thief_greeting.ogg"

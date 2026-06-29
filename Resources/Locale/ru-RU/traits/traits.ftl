@@ -6,7 +6,7 @@ trait-poor-vision-desc = Ваши глаза уже не те, что раньш
 trait-narcolepsy-desc = Вас одолевают приступы сонливости
 trait-pacifist-name = Пацифист
 trait-pacifist-desc = Вы не можете нападать и причинять вред живым существам.
-permanent-blindness-trait-examined = [color=lightblue]{ CAPITALIZE(POSS-ADJ($target)) } глаза остекленелые и расфокусированные. Не похоже, что { SUBJECT($target) } может хорошо вас видеть, если может вообще.[/color]
+permanent-blindness-trait-examined = [color=lightblue]{CAPITALIZE(POSS-ADJ($target))} глаза остекленелые и расфокусированные. Не похоже, что {SUBJECT($target)} может хорошо вас видеть, если может вообще.[/color]
 trait-lightweight-name = Быстрое опьянение
 trait-lightweight-desc = Алкоголь оказывает на вас более сильное воздействие
 trait-monochromacy-name = Монохромазия
@@ -35,6 +35,8 @@ trait-cowboy-name = Ковбойский акцент
 trait-cowboy-desc = Вы говорите с заметным ковбойским акцентом!
 trait-german-name = Немецкий акцент
 trait-german-desc = Вы, кажется, родом из Космической Германии.
+trait-scottish-name = Шотландский акцент
+trait-scottish-desc = Ты говоришь как настоящий шотландец!
 trait-italian-name = Итальянский акцент
 trait-italian-desc = Мамма миа! Похоже, вы жили в Космической Италии!
 trait-french-name = Французский акцент

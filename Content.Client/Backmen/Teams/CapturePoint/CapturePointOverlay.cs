@@ -24,6 +24,8 @@ public sealed class CapturePointOverlay : Overlay
     private readonly Texture _barTexture;
     private readonly ShaderInstance _unshadedShader;
 
+    private static readonly ProtoId<ShaderPrototype> Unshaded = "unshaded";
+
     public CapturePointOverlay(IEntityManager entManager, IPrototypeManager protoManager, IGameTiming timing, IPlayerManager player)
     {
         _entManager = entManager;
@@ -33,7 +35,7 @@ public sealed class CapturePointOverlay : Overlay
         var sprite = new SpriteSpecifier.Rsi(new("/Textures/Interface/Misc/progress_bar.rsi"), "icon");
         _barTexture = _entManager.EntitySysManager.GetEntitySystem<SpriteSystem>().Frame0(sprite);
 
-        _unshadedShader = protoManager.Index<ShaderPrototype>("unshaded").Instance();
+        _unshadedShader = protoManager.Index<ShaderPrototype>(Unshaded).InstanceUnique();
     }
 
     /// <summary>

@@ -1,4 +1,4 @@
-﻿using Content.Server.CartridgeLoader;
+using Content.Server.CartridgeLoader;
 using Content.Server.Chat.Managers;
 using Content.Server.PDA.Ringer;
 using Content.Server.Popups;
@@ -9,7 +9,6 @@ using Content.Shared.Chat;
 using Content.Shared.PDA.Ringer;
 using Content.Shared.Popups;
 using Content.Shared.Store;
-using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -19,7 +18,7 @@ namespace Content.Server.Backmen.CartridgeLoader.Cartridges;
 public sealed partial class BankCartridgeSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
     [Dependency] private RingerSystem _ringerSystem = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private IChatManager _chatManager = default!;

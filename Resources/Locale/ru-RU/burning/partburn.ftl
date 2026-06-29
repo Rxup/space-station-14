@@ -1,1 +1,1 @@
-partburn-text-others = {CAPITALIZE(THE($name))} сгорает в пепел!
+partburn-text-others = { CAPITALIZE(THE($name)) } сгорает в пепел!

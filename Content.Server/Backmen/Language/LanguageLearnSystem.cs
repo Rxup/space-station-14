@@ -97,7 +97,7 @@ public sealed partial class LanguageLearnSystem : EntitySystem
 
             if (component.DeleteAfterUse && usesRemaining <= 0)
             {
-                EntityManager.QueueDeleteEntity(uid);
+                QueueDel(uid);
             }
         }
     }

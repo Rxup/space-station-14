@@ -1,11 +1,20 @@
+gas-oxygen = Кислород
 gas-ammonia-abbreviation = NH₃
+gas-nitrogen = Азот
 gas-carbon-dioxide-abbreviation = CO₂
+gas-carbon-dioxide = Углекислый газ
 gas-frezon-abbreviation = Fr # backmen change
+gas-plasma = Плазма
 gas-nitrogen-abbreviation = N₂
+gas-tritium = Тритий
 gas-nitrous-oxide-abbreviation = N₂O
+gas-water-vapor = Водяной пар
 gas-oxygen-abbreviation = O₂
+gas-ammonia = Аммиак
 gas-plasma-abbreviation = Pl # backmen change
+gas-nitrous-oxide = Оксид азота
 gas-tritium-abbreviation = T
+gas-frezon = Фрезон
 gas-water-vapor-abbreviation = H₂O
 gas-unknown-abbreviation = X
 # backmen gases

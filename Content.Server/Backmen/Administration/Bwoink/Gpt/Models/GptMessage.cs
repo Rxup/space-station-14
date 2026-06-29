@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Backmen.Administration.Bwoink.Gpt.Models;
+namespace Content.Server.Backmen.Administration.Bwoink.Gpt.Models;
 
 public abstract class GptMessage
 {

@@ -6,7 +6,6 @@ using Content.Server.Chat;
 using Content.Server.Chat.Managers;
 using Content.Server.Ghost;
 using Content.Server.Ghost.Roles.Components;
-using Content.Server.Humanoid;
 using Content.Server.Inventory;
 using Content.Server.Mind;
 using Content.Server.NPC;
@@ -15,6 +14,7 @@ using Content.Server.NPC.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Server.Speech.Components;
 using Content.Shared.Body;
+using Content.Shared.Body.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Hands.Components;
@@ -37,13 +37,13 @@ using Content.Shared.Prying.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Ghost.Roles.Components;
-using Content.Shared.Humanoid.Markings;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Tag;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Zombies;
 
@@ -77,7 +77,7 @@ public sealed partial class ZombieSystem
     private static readonly ProtoId<NpcFactionPrototype> ZombieFaction = "Zombie";
     private static readonly string MindRoleZombie = "MindRoleZombie";
     private static readonly List<ProtoId<AntagPrototype>> BannableZombiePrototypes = ["Zombie"];
-    private static readonly HashSet<HumanoidVisualLayers> AdditionalZombieLayers = [HumanoidVisualLayers.Tail, HumanoidVisualLayers.HeadSide, HumanoidVisualLayers.HeadTop, HumanoidVisualLayers.Snout];
+    internal static readonly HashSet<HumanoidVisualLayers> AdditionalZombieLayers = [HumanoidVisualLayers.Tail, HumanoidVisualLayers.HeadSide, HumanoidVisualLayers.HeadTop, HumanoidVisualLayers.Snout];
 
     /// <summary>
     /// Handles an entity turning into a zombie when they die or go into crit
@@ -200,27 +200,33 @@ public sealed partial class ZombieSystem
                 kvp => kvp.Key,
                 kvp => kvp.Value.ToDictionary(
                     it => it.Key,
-                    it => it.Value.Select(marking => new Marking(marking)).ToList()));
+                    it => it.Value.ShallowClone()));
 
             var zombifiedProfiles = profiles.ToDictionary(pair => pair.Key,
                 pair => pair.Value with { EyeColor = zombiecomp.EyeColor, SkinColor = zombiecomp.SkinColor });
             _visualBody.ApplyProfiles(target, zombifiedProfiles);
 
-            foreach (var markingSet in markings.Values)
+            var newMarkings = markings.ToDictionary(
+                kvp => kvp.Key,
+                kvp => kvp.Value.ToDictionary(
+                    it => it.Key,
+                    it => it.Value.ShallowClone()));
+
+            foreach (var markingSet in newMarkings.Values)
             {
                 foreach (var (layer, layerMarkings) in markingSet)
                 {
                     if (!AdditionalZombieLayers.Contains(layer))
                         continue;
 
-                    foreach (var marking in layerMarkings)
+                    for (var i = 0; i < layerMarkings.Count; i++)
                     {
-                        marking.SetColor(zombiecomp.SkinColor);
+                        layerMarkings[i] = layerMarkings[i].WithColor(zombiecomp.SkinColor);
                     }
                 }
             }
 
-            _visualBody.ApplyMarkings(target, markings);
+            _visualBody.ApplyMarkings(target, newMarkings);
         }
 
         //We have specific stuff for humanoid zombies because they matter more
@@ -261,7 +267,7 @@ public sealed partial class ZombieSystem
         _mind.MakeSentient(target);
 
         //Make the zombie not die in the cold. Good for space zombies
-        if (TryComp<TemperatureComponent>(target, out var tempComp))
+        if (TryComp<TemperatureDamageComponent>(target, out var tempComp))
             tempComp.ColdDamage.ClampMax(0);
 
         //Heals the zombie from all the damage it took while human

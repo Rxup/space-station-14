@@ -21,13 +21,11 @@ public sealed partial class HitscanBasicRaycastSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _log = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
-    private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery;
+    [Dependency] private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _visualsQuery = GetEntityQuery<HitscanBasicVisualsComponent>();
 
         SubscribeLocalEvent<HitscanBasicRaycastComponent, HitscanTraceEvent>(OnHitscanFired);
     }

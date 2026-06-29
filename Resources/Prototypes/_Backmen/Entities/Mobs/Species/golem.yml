@@ -157,8 +157,9 @@
         layer:
           - MobLayer
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -375,8 +376,9 @@
   - type: Inventory
     templateId: golem_shoeless
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Wood
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Flammable
     fireSpread: true
     canResistFire: true

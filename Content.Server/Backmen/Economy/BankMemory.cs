@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Economy;
+using Content.Shared.Backmen.Economy;
 
 namespace Content.Server.Backmen.Economy;
 

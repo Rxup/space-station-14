@@ -18,9 +18,9 @@
   - type: Item
     sprite: Objects/Consumable/Food/egg.rsi
     size: Tiny
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: Egg
@@ -38,6 +38,7 @@
       types:
         Blunt: 1
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:
@@ -75,9 +76,9 @@
     state: eggshells
   - type: Item
     size: Tiny
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 2
         reagents:
         - ReagentId: Egg
@@ -118,9 +119,9 @@
     layers:
     - state: icon
       map: [ "enum.DamageStateVisualLayers.Base" ]
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: EggCooked

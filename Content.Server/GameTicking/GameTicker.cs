@@ -15,7 +15,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Robust.Server;
-using Robust.Server.GameObjects;
 using Robust.Server.GameStates;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Console;

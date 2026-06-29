@@ -1,5 +1,4 @@
 using Content.Server.Antag;
-using Content.Server.Backmen.GameTicking.Rules.Components;
 using Content.Server.Backmen.Vampiric;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;

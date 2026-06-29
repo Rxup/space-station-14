@@ -1,30 +1,21 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Explosion.Components;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
 using Content.Shared.Database;
 using Content.Shared.Explosion;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Maps;
 using Content.Shared.Physics;
-using Content.Shared.Projectiles;
-using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
-using System.Numerics;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Server.Explosion.EntitySystems;
@@ -538,7 +529,6 @@ public sealed partial class ExplosionSystem
                 dir,
                 physics,
                 xform,
-                _projectileQuery,
                 throwForce);
         }
     }
@@ -580,6 +570,9 @@ public sealed partial class ExplosionSystem
                 break;
 
             tileDef = newDef;
+
+            if (newDef.Indestructible)
+                break;
         }
 
         if (tileDef.TileId == tileRef.Tile.TypeId)
@@ -723,13 +716,6 @@ sealed class Explosion
     /// </summary>
     private readonly Dictionary<Entity<MapGridComponent>, List<(Vector2i, Tile)>> _tileUpdateDict = new();
 
-    // Entity Queries
-    private readonly EntityQuery<TransformComponent> _xformQuery;
-    private readonly EntityQuery<PhysicsComponent> _physicsQuery;
-    private readonly EntityQuery<DamageableComponent> _damageQuery;
-    private readonly EntityQuery<ProjectileComponent> _projectileQuery;
-    private readonly EntityQuery<TagComponent> _tagQuery;
-
     /// <summary>
     ///     Total area that the explosion covers.
     /// </summary>
@@ -794,12 +780,6 @@ sealed class Explosion
         _canCreateVacuum = canCreateVacuum;
         _entMan = entMan;
         _damageable = damageable;
-
-        _xformQuery = entMan.GetEntityQuery<TransformComponent>();
-        _physicsQuery = entMan.GetEntityQuery<PhysicsComponent>();
-        _damageQuery = entMan.GetEntityQuery<DamageableComponent>();
-        _tagQuery = entMan.GetEntityQuery<TagComponent>();
-        _projectileQuery = entMan.GetEntityQuery<ProjectileComponent>();
 
         if (spaceData != null)
         {

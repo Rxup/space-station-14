@@ -23,6 +23,7 @@ public sealed partial class AnomalySystem
 {
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
 
     private void InitializeGenerator()
     {
@@ -103,19 +104,18 @@ public sealed partial class AnomalySystem
 
             // no air-blocked areas.
             if (_atmosphere.IsTileSpace(grid, xform.MapUid, tile) ||
-                _atmosphere.IsTileAirBlocked(grid, tile, mapGridComp: gridComp))
+                _atmosphere.IsTileAirBlockedCached(grid, tile))
             {
                 continue;
             }
 
             // don't spawn inside of solid objects
-            var physQuery = GetEntityQuery<PhysicsComponent>();
             var valid = true;
 
             // TODO: This should be using static lookup.
             foreach (var ent in _mapSystem.GetAnchoredEntities(grid, gridComp, tile))
             {
-                if (!physQuery.TryGetComponent(ent, out var body))
+                if (!_physicsQuery.TryGetComponent(ent, out var body))
                     continue;
                 if (body.BodyType != BodyType.Static ||
                     !body.Hard ||

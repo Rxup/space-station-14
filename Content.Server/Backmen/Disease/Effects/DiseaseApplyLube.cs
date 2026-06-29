@@ -1,6 +1,5 @@
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Backmen.Disease.Effects;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Lube;

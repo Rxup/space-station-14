@@ -23,10 +23,12 @@ public sealed partial class RMCExplosionShockWaveOverlay : Overlay, IEntityEvent
     /// </summary>
     public const int MaxCount = 10;
 
+    private static readonly ProtoId<ShaderPrototype> ShockWave = "ShockWave";
+
     public RMCExplosionShockWaveOverlay()
     {
         IoCManager.InjectDependencies(this);
-        _shader = _prototypeManager.Index<ShaderPrototype>("ShockWave").Instance().Duplicate();
+        _shader = _prototypeManager.Index<ShaderPrototype>(ShockWave).InstanceUnique();
     }
 
     private readonly Vector2[] _positions = new Vector2[MaxCount];
@@ -84,7 +86,7 @@ public sealed partial class RMCExplosionShockWaveOverlay : Overlay, IEntityEvent
 
         var worldHandle = args.WorldHandle;
         worldHandle.UseShader(_shader);
-        worldHandle.DrawRect(args.WorldAABB, Color.White);
+        worldHandle.DrawRect(args.WorldBounds, Color.White);
         worldHandle.UseShader(null);
     }
 }

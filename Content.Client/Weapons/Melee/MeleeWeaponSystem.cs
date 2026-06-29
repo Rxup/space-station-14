@@ -1,7 +1,6 @@
 using System.Linq;
-using System.Numerics;
 using Content.Client.Gameplay;
-using Content.Shared._White.Blink;
+using Content.Shared.CCVar;
 using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
@@ -11,12 +10,12 @@ using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Wieldable.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
 using Robust.Client.State;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -33,17 +32,15 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private InputSystem _inputSystem = default!;
     [Dependency] private SharedColorFlashEffectSystem _color = default!;
     [Dependency] private MapSystem _map = default!;
-    [Dependency] private TransformSystem _transform = default!; // Goobstation
     [Dependency] private SpriteSystem _sprite = default!;
-
-    private EntityQuery<TransformComponent> _xformQuery;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private const string MeleeLungeKey = "melee-lunge";
 
     public override void Initialize()
     {
         base.Initialize();
-        _xformQuery = GetEntityQuery<TransformComponent>();
+
         SubscribeNetworkEvent<MeleeLungeEvent>(OnMeleeLunge);
         UpdatesOutsidePrediction = true;
     }
@@ -80,7 +77,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var useDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.Use);
         var altDown = _inputSystem.CmdStates.GetState(EngineKeyFunctions.UseSecondary);
 
-        if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down)
+        if (weapon.AutoAttack || useDown != BoundKeyState.Down && altDown != BoundKeyState.Down || _cfg.GetCVar(CCVars.ControlHoldToAttackMelee))
         {
             if (weapon.Attacking)
             {
@@ -94,12 +91,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         }
 
         // TODO using targeted actions while combat mode is enabled should NOT trigger attacks.
-
-        // TODO: Need to make alt-fire melee its own component I guess?
-        // Melee and guns share a lot in the middle but share virtually nothing at the start and end so
-        // it's kinda tricky.
-        // I think as long as we make secondaries their own component it's probably fine
-        // as long as guncomp has an alt-use key then it shouldn't be too much of a PITA to deal with.
 
         var mousePos = _eyeManager.PixelToMap(_inputManager.MouseScreenPosition);
 
@@ -184,7 +175,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     private void ClientHeavyAttack(EntityUid user, EntityCoordinates coordinates, EntityUid meleeUid, MeleeWeaponComponent component)
     {
         // Only run on first prediction to avoid the potential raycast entities changing.
-        if (!_xformQuery.TryGetComponent(user, out var userXform) ||
+        if (!TryComp(user, out TransformComponent? userXform) ||
             !Timing.IsFirstTimePredicted)
         {
             return;

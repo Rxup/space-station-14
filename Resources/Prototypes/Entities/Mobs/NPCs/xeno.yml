@@ -78,8 +78,11 @@
      collection: AlienClaw
     animation: WeaponArcBite
     damage:
-      groups:
-        Brute: 6
+      types:
+        Blunt: 1.5
+        Slash: 1.5
+        Piercing: 1.5
+        ArmorPiercing: 1.5
   - type: DamageStateVisuals
     states:
       Alive:
@@ -107,9 +110,10 @@
   - type: TypingIndicator
     proto: alien
   - type: Temperature
+    currentTemperature: 310.15
+  - type: TemperatureDamage
     heatDamageThreshold: 360
     coldDamageThreshold: -150
-    currentTemperature: 310.15
   - type: Tag
     tags:
       - CannotSuicide
@@ -194,8 +198,11 @@
       40: 0.7
   - type: MeleeWeapon
     damage:
-      groups:
-        Brute: 6
+      types:
+        Blunt: 1.5
+        Slash: 1.5
+        Piercing: 1.5
+        ArmorPiercing: 1.5
   - type: MovementSpeedModifier
     baseSprintSpeed: 4
   - type: Fixtures
@@ -232,8 +239,11 @@
   - type: MovementSpeedModifier
   - type: MeleeWeapon
     damage:
-     groups:
-       Brute: 12
+     types:
+       Blunt: 3
+       Slash: 3
+       Piercing: 3
+       ArmorPiercing: 3
   - type: Fixtures
     fixtures:
       fix1:
@@ -269,8 +279,11 @@
     baseSprintSpeed: 4
   - type: MeleeWeapon
     damage:
-     groups:
-       Brute: 10
+     types:
+       Blunt: 2.5
+       Slash: 2.5
+       Piercing: 2.5
+       ArmorPiercing: 2.5
   - type: SlowOnDamage
     speedModifierThresholds:
       50: 0.7
@@ -302,8 +315,11 @@
     baseSprintSpeed: 6.0
   - type: MeleeWeapon
     damage:
-     groups:
-       Brute: 5
+     types:
+       Blunt: 1.25
+       Slash: 1.25
+       Piercing: 1.25
+       ArmorPiercing: 1.25
   - type: Fixtures
     fixtures:
       fix1:
@@ -524,8 +540,11 @@
      collection: AlienClaw
     animation: WeaponArcBite
     damage:
-     groups:
-       Brute: 5
+     types:
+       Blunt: 1.25
+       Slash: 1.25
+       Piercing: 1.25
+       ArmorPiercing: 1.25
   - type: DamageStateVisuals
     states:
       Alive:
@@ -543,9 +562,10 @@
   - type: TypingIndicator
     proto: alien
   - type: Temperature
+    currentTemperature: 310.15
+  - type: TemperatureDamage
     heatDamageThreshold: 360
     coldDamageThreshold: -150
-    currentTemperature: 310.15
   - type: NoSlip
   - type: Perishable #Ummmm the acid kills a lot of the bacteria or something
     molsPerSecondPerUnitMass: 0.0005

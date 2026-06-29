@@ -1,7 +1,5 @@
 using System.Text;
 using Content.Server.Backmen.Speech.Components;
-using Content.Server.Speech;
-using Content.Server.Speech.Components;
 using Content.Shared.Speech;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;

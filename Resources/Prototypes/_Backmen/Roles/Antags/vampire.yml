@@ -11,3 +11,19 @@
     department: Security
     time: 18000 # 5h
   discordRequired: true # backmen: antag
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Bloodsucker
+  prefRoles:
+  - Bloodsucker
+  blacklist:
+    components:
+    - AntagImmune
+    - BibleUser
+  briefing:
+    text: vampire-role-greeting
+    color: Plum
+    sound: /Audio/Backmen/Ambience/Antag/vampier_start.ogg
+  mindRoles:
+  - MindRoleBloodsucker

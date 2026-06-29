@@ -36,6 +36,7 @@
         - Impassable
         - BulletImpassable
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: Explosive
     explosionType: Default

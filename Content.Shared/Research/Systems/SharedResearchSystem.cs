@@ -9,7 +9,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Research.Systems;
 
-public abstract partial class SharedResearchSystem : EntitySystem   // Goobstation - made class partial
+public abstract partial class SharedResearchSystem : EntitySystem
 {
     [Dependency] protected IPrototypeManager PrototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -73,8 +73,8 @@ public abstract partial class SharedResearchSystem : EntitySystem   // Goobstati
         if (!component.SupportedDisciplines.Contains(tech.Discipline))
             return false;
 
-        // if (tech.Tier > disciplineTiers[tech.Discipline])    // Goobstation R&D Console rework - removed main discipline checks
-        //     return false;
+        if (tech.Tier > disciplineTiers[tech.Discipline])
+            return false;
 
         if (component.UnlockedTechnologies.Contains(tech.ID))
             return false;

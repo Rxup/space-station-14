@@ -14,9 +14,9 @@
       - sweet
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/pie.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50
         reagents: #Most of these are this with slight variations, not worth changing until we have the rest of the reagents
         - ReagentId: Nutriment
@@ -47,9 +47,9 @@
       - sweet
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/pie.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 7
         reagents:
         - ReagentId: Nutriment
@@ -475,9 +475,9 @@
       - mushroom
   - type: Sprite
     state: amanita
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 17
         reagents:
         - ReagentId: Nutriment
@@ -514,9 +514,9 @@
       - sweet
   - type: Sprite
     state: grape
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
@@ -559,9 +559,9 @@
       - chocolate
   - type: Sprite
     state: cocolava
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 35
         reagents:
         - ReagentId: Nutriment

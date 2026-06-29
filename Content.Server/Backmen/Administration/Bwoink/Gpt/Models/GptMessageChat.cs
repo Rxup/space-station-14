@@ -1,4 +1,4 @@
-﻿using System.Text.Json;
+using System.Text.Json;
 
 namespace Content.Server.Backmen.Administration.Bwoink.Gpt.Models;
 

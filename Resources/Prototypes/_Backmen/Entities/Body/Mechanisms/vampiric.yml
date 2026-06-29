@@ -3,20 +3,15 @@
   parent: OrganHumanStomach
   components:
     - type: Metabolizer
+      stages: [ Digestion ]
       # mm yummy
       maxReagents: 3
       metabolizerTypes: [Bloodsucker]
-      groups:
-        - id: Food
-        - id: Drink
-
 - type: entity
   id: OrganVampiricStomach
   parent: OrganAnimalStomach
   components:
     - type: Metabolizer
+      stages: [ Digestion ]
       maxReagents: 3
       metabolizerTypes: [Bloodsucker]
-      groups:
-        - id: Food
-        - id: Drink

@@ -35,6 +35,7 @@ namespace Content.Server.Communications
         [Dependency] private UserInterfaceSystem _uiSystem = default!;
         [Dependency] private IConfigurationManager _cfg = default!;
         [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private IdentitySystem _identity = default!;
 
         private const float UIUpdateInterval = 5.0f;
 
@@ -244,22 +245,7 @@ namespace Content.Server.Communications
                     return;
                 }
 
-                // User has an id
-                /*if (_idCardSystem.TryFindIdCard(mob, out var id))
-                {
-                    author = $"{id.Comp.FullName} ({CultureInfo.CurrentCulture.TextInfo.ToTitleCase(id.Comp.JobTitle ?? string.Empty)})".Trim();
-                }
-
-                // User does not have an id and is a borg, so use the borg's name
-                if (
-                    HasComp<BorgChassisComponent>(mob)
-                    )
-                {
-                    author = Name(mob).Trim();
-                }*/
-                var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, mob);
-                RaiseLocalEvent(tryGetIdentityShortInfoEvent);
-                author = tryGetIdentityShortInfoEvent.Title;
+                author = _identity.GetIdentityShortInfo(mob, uid) ?? author;
             }
 
             comp.AnnouncementCooldownRemaining = comp.Delay;
@@ -325,7 +311,7 @@ namespace Content.Server.Communications
                 return;
             }
 
-            _roundEndSystem.RequestRoundEnd(uid);
+            _roundEndSystem.RequestRoundEnd(mob, uid);
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(mob):player} has called the shuttle.");
         }
 
@@ -334,13 +320,15 @@ namespace Content.Server.Communications
             if (!CanCallOrRecall(comp))
                 return;
 
-            if (!CanUse(message.Actor, uid))
+            var mob = message.Actor;
+
+            if (!CanUse(mob, uid))
             {
                 _popupSystem.PopupEntity(Loc.GetString("comms-console-permission-denied"), uid, message.Actor);
                 return;
             }
 
-            _roundEndSystem.CancelRoundEndCountdown(uid);
+            _roundEndSystem.CancelRoundEndCountdown(mob, uid);
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(message.Actor):player} has recalled the shuttle.");
         }
     }

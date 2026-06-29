@@ -791,6 +791,11 @@
   - GroupPocketTankDouble
 
 - type: roleLoadout
+  id: RoleSurvivalSpaceNinja
+  groups:
+  - GroupEVATank
+
+- type: roleLoadout
   id: RoleSurvivalEVA
   groups:
   - GroupEVATank

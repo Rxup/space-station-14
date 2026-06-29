@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Text;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Traumas;
@@ -7,7 +6,6 @@ using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body;
-using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
@@ -15,7 +13,6 @@ using Content.Shared.Mobs.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
 using Robust.Shared.Utility;
@@ -288,7 +285,7 @@ public sealed partial class AdjustTraumasEntityEffectSystem : EntityEffectSystem
                         return true;
                     }
                 }
-                catch (KeyNotFoundException err)
+                catch (KeyNotFoundException)
                 {
                     Log.Error($"Ошибка компонент не найден! {component.Name}");
                     continue;

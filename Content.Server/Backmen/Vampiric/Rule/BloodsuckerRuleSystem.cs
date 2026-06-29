@@ -1,18 +1,16 @@
 using Content.Server.Antag;
 using Content.Server.Backmen.Vampiric.Objective;
 using Content.Server.Backmen.Vampiric.Role;
-using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
-using Content.Shared.Backmen.Vampiric.Components;
+using Content.Server.Preferences.Managers;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Vampiric.Rule;
@@ -25,6 +23,7 @@ public sealed partial class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRu
     [Dependency] private SharedMindSystem _mind = default!;
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IServerPreferencesManager _prefs = default!;
 
     public override void Initialize()
     {
@@ -36,23 +35,50 @@ public sealed partial class BloodsuckerRuleSystem : GameRuleSystem<BloodsuckerRu
 
     private void OnSelectEntity(Entity<BloodsuckerRuleComponent> ent, ref AntagSelectCheckEvent args)
     {
-        if (args.Session?.AttachedEntity is not {} plr || !TryComp<HumanoidProfileComponent>(plr, out var humComp))
+        if (args.Session == null)
         {
             args.Canceled = true;
             return;
         }
 
-        if (humComp.Species.Id is "Monkey" or "Kobold")
+        if (args.Session.AttachedEntity is { } plr)
+        {
+            if (!TryComp<HumanoidProfileComponent>(plr, out var humComp))
+            {
+                args.Canceled = true;
+                return;
+            }
+
+            if (humComp.Species.Id is "Monkey" or "Kobold")
+            {
+                args.Canceled = true;
+                return;
+            }
+
+            args.Canceled = !_bloodSuckerSystem.CanBeSucked(plr);
+            return;
+        }
+
+        // PrePlayerSpawn: players have no mob yet — validate profile only.
+        // Bloodstream checks run after spawn in AfterAntagSelected.
+        var profile = _prefs.GetPreferences(args.Session.UserId).SelectedCharacter as HumanoidCharacterProfile;
+        if (profile == null)
         {
             args.Canceled = true;
             return;
         }
 
-        args.Canceled = !_bloodSuckerSystem.CanBeSucked(plr);
+        if (profile.Species.Id is "Monkey" or "Kobold")
+        {
+            args.Canceled = true;
+        }
     }
 
     private void AfterAntagSelected(EntityUid uid, BloodsuckerRuleComponent component, AfterAntagEntitySelectedEvent args)
     {
+        if (!_bloodSuckerSystem.CanBeSucked(args.EntityUid))
+            return;
+
         _bloodSuckerSystem.MakeVampire(args.EntityUid, true);
     }
 

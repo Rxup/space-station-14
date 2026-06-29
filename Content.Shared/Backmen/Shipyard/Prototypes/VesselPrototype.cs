@@ -1,11 +1,8 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Shipyard.Prototypes;
-
-[NetSerializable, Serializable]
 
 [Prototype]
 public sealed partial class VesselPrototype : IPrototype

@@ -5,7 +5,7 @@ role-type-free-agent-name = Свободный агент
 role-type-familiar-name = Фамильяр
 role-type-silicon-name = Синтетик
 role-type-silicon-antagonist-name = Изменённый синтетик
-role-type-update-message = Ваша роль: [color = { $color }]{ $role }[/color]
+role-type-update-message = Ваша роль: [color = {$color}]{$role}[/color]
 role-type-inteq-name = Экипаж Интек
 # If you change a color here, you might want to also change it in role_types.yml
 role-type-crew-aligned-color = #eeeeee

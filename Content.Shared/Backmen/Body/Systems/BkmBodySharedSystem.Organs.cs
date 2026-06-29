@@ -2,9 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Body;
 using Content.Shared.Body.Events;
-using Content.Shared.Body;
 using Content.Shared.Body.Part;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Robust.Shared.Containers;
 
@@ -51,7 +49,7 @@ public partial class BkmBodySharedSystem
 
         // Shitmed Change Start
         if (TryComp(parentPartUid, out DamageableComponent? damageable)
-            && damageable.TotalDamage > 200)
+            && Damageable.GetTotalDamage((parentPartUid, damageable)) > 200)
             TrySetOrganUsed(organEnt, true, organEnt.Comp);
         // Shitmed Change End
 
@@ -76,7 +74,7 @@ public partial class BkmBodySharedSystem
 
         if (parentPartUid is { Valid: true }
             && TryComp(parentPartUid, out DamageableComponent? damageable)
-            && damageable.TotalDamage > 200)
+            && Damageable.GetTotalDamage((parentPartUid, damageable)) > 200)
             TrySetOrganUsed(organEnt, true, organEnt.Comp);
 
         organEnt.Comp.Body = null;

@@ -1,4 +1,3 @@
-using Content.Shared.Body;
 using Content.Shared.FixedPoint;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Nutrition.Prototypes;

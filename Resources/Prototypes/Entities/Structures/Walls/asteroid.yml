@@ -38,8 +38,9 @@
       tags:
         - Pickaxe
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Rock
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -785,8 +786,9 @@
     toolWhitelist:
         tags: [] # Lavaland Change
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: Rock # Lavaland Change
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     # Lavaland Change start

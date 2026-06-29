@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server._Lavaland.Procedural.Components;
 using Content.Server._Lavaland.Procedural.Systems;
 using Content.Server.GameTicking;
@@ -12,31 +13,36 @@ namespace Content.IntegrationTests.Tests._Lavaland;
 
 [TestFixture]
 [TestOf(typeof(LavalandPlanetSystem))]
-public sealed class LavalandGenerationTest
+public sealed class LavalandGenerationTest : GameTest
 {
+    public override PoolSettings PoolSettings => new()
+    {
+        DummyTicker = false,
+        Dirty = true,
+        Fresh = true,
+    };
+
     [Test]
     public async Task LavalandPlanetGenerationTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings
-            { DummyTicker = false, Dirty = true, Fresh = true });
-        var server = pair.Server;
-        var entMan = server.EntMan;
-        var protoMan = server.ProtoMan;
-        var mapMan = server.MapMan;
+        var pair = Pair;
+        var entMan = Server.EntMan;
+        var protoMan = Server.ProtoMan;
+        var mapMan = Server.MapMan;
 
-        var ticker = server.System<GameTicker>();
+        var ticker = Server.System<GameTicker>();
         var lavaSystem = entMan.System<LavalandPlanetSystem>();
         var mapSystem = entMan.System<SharedMapSystem>();
 
         // Setup
-        pair.Server.CfgMan.SetCVar(CCVars.LavalandEnabled, true);
-        pair.Server.CfgMan.SetCVar(CCVars.GameDummyTicker, false);
-        var gameMap = pair.Server.CfgMan.GetCVar(CCVars.GameMap);
-        pair.Server.CfgMan.SetCVar(CCVars.GameMap, "Saltern");
-        var gameMode = pair.Server.CfgMan.GetCVar(CCVars.GameLobbyDefaultPreset);
-        pair.Server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "secret");
+        Server.CfgMan.SetCVar(CCVars.LavalandEnabled, true);
+        Server.CfgMan.SetCVar(CCVars.GameDummyTicker, false);
+        var gameMap = Server.CfgMan.GetCVar(CCVars.GameMap);
+        Server.CfgMan.SetCVar(CCVars.GameMap, "Saltern");
+        var gameMode = Server.CfgMan.GetCVar(CCVars.GameLobbyDefaultPreset);
+        Server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, "secret");
 
-        await server.WaitPost(() => ticker.RestartRound());
+        await Server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(25);
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.InRound));
 
@@ -50,8 +56,8 @@ public sealed class LavalandGenerationTest
             Entity<LavalandMapComponent>? lavaland = null;
 
             // Seed is always the same to reduce randomness
-            await server.WaitPost(() => lavaSystem.EnsurePreloaderMap());
-            await server.WaitPost(() => attempt = lavaSystem.SetupLavalandPlanet(out lavaland, planet, seed));
+            await Server.WaitPost(() => lavaSystem.EnsurePreloaderMap());
+            await Server.WaitPost(() => attempt = lavaSystem.SetupLavalandPlanet(out lavaland, planet, seed));
             await pair.RunTicksSync(30);
 
             Assert.That(attempt, Is.True);
@@ -88,9 +94,8 @@ public sealed class LavalandGenerationTest
 
         await pair.RunTicksSync(10);
 
-        pair.Server.CfgMan.SetCVar(CCVars.GameMap, gameMap);
-        pair.Server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, gameMode);
+        Server.CfgMan.SetCVar(CCVars.GameMap, gameMap);
+        Server.CfgMan.SetCVar(CCVars.GameLobbyDefaultPreset, gameMode);
         pair.ClearModifiedCvars();
-        await pair.CleanReturnAsync();
     }
 }

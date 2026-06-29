@@ -42,8 +42,9 @@
       100: Dead
   - type: Internals
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Xenolian
+  - type: Injurable
+    damageContainer: Biological
   - type: Actions
   - type: DoAfter
   - type: Polymorphable
@@ -88,7 +89,6 @@
   - type: Eye
     drawFov: false
   - type: SolutionRegeneration
-    solution: spray
     generated:
       reagents:
       - ReagentId: Water

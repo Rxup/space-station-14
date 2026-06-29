@@ -11,7 +11,6 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
@@ -23,7 +22,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.EntityEffects;
@@ -303,6 +301,7 @@ public sealed partial class PlantHolderSystem : EntitySystem
             {
                 healthOverride = component.Health;
             }
+            component.Seed.Unique = false;
             var packetSeed = component.Seed;
             var seed = _botany.SpawnSeedPacket(packetSeed, Transform(args.User).Coordinates, args.User, healthOverride);
             _randomHelper.RandomOffset(seed, 0.25f);
@@ -428,6 +427,7 @@ public sealed partial class PlantHolderSystem : EntitySystem
             && component.WeedLevel >= component.Seed.WeedHighLevelThreshold)
         {
             Spawn(component.Seed.KudzuPrototype, Transform(uid).Coordinates.SnapToGrid(EntityManager));
+            EnsureUniqueSeed(uid, component);
             component.Seed.TurnIntoKudzu = false;
             component.Health = 0;
         }

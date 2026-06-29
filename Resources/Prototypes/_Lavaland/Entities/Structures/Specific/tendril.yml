@@ -12,8 +12,9 @@
     drawdepth: Mobs
   - type: Tendril
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: Skeleton
+  - type: Injurable
+    damageContainer: Biological
   - type: Destructible
     thresholds:
     - trigger:

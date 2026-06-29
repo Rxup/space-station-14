@@ -1,3 +1,5 @@
+using Content.Shared.Backmen.Shipyard.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.Shipyard.Events;
@@ -6,12 +8,7 @@ namespace Content.Shared.Backmen.Shipyard.Events;
 ///     Purchase a Vessel from the console
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class ShipyardConsolePurchaseMessage : BoundUserInterfaceMessage
+public sealed class ShipyardConsolePurchaseMessage(ProtoId<VesselPrototype> vessel) : BoundUserInterfaceMessage
 {
-    public string Vessel; //vessel prototype ID
-
-    public ShipyardConsolePurchaseMessage(string vessel)
-    {
-        Vessel = vessel;
-    }
+    public ProtoId<VesselPrototype> Vessel = vessel; //vessel prototype ID
 }

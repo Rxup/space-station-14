@@ -1,6 +1,5 @@
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Damage;
-using Content.Shared.FixedPoint;
 using Content.Shared.Guidebook;
 using Robust.Shared.GameStates;
 
@@ -67,7 +66,7 @@ public sealed partial class DeltaPressureComponent : Component
     [DataField]
     public DamageSpecifier BaseDamage = new()
     {
-        DamageDict = new Dictionary<string, FixedPoint2>
+        DamageDict = new ()
         {
             { "Structural", 10 },
         },

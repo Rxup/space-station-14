@@ -1,6 +1,5 @@
 salvage-expedition-structure-examine = Это необходимо [color=#B02E26]уничтожить[/color]
-salvage-expedition-structure-remaining =
-    Осталось разрушить { $count } { $count ->
+salvage-expedition-structure-remaining = Осталось разрушить { $count } { $count ->
         [one] цель.
         [few] цели.
        *[other] целей.
@@ -23,20 +22,18 @@ salvage-expedition-difficulty-Extreme = Экстремальная
 # Runner
 salvage-expedition-not-all-present = Не все утилизаторы вернулись на борт шаттла!
 # Runner
-salvage-expedition-announcement-countdown-minutes =
-    До окончания экспедиции осталась { $duration } { $duration ->
+salvage-expedition-announcement-countdown-minutes = До окончания экспедиции осталась { $duration } { $duration ->
         [one] минута
         [few] минуты
        *[other] минут
     }.
-salvage-expedition-announcement-countdown-seconds =
-    До окончания экспедиции осталось { $duration } { $duration ->
+salvage-expedition-announcement-countdown-seconds = До окончания экспедиции осталось { $duration } { $duration ->
         [one] секунда
         [few] секунды
        *[other] секунд
     }.
 salvage-expedition-reward-description = Награда за завершение миссии
-salvage-expedition-announcement-dungeon = Подземелье расположено от вас на { $direction }.
+salvage-expedition-announcement-dungeon = Подземелье расположено от вас на {$direction}.
 salvage-expedition-completed = Экспедиция окончена.
 # Salvage biome mod
 salvage-biome-mod-caves = Пещеры

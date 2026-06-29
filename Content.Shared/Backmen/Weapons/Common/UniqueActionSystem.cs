@@ -1,6 +1,5 @@
 using Content.Shared.Backmen.Input;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Verbs;
 using Robust.Shared.Input.Binding;

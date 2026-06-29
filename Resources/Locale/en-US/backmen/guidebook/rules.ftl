@@ -1,0 +1,10 @@
+backmen-rules-header-1 = Server Rules
+backmen-rules-header-2 = Introductory Words
+backmen-rules-header-3 = Chat Rules
+backmen-rules-header-4 = About Gameplay
+backmen-rules-header-5 = About Command, Departments and Roles Marked "Above Average" Difficulty
+backmen-rules-header-6 = About Departments and Special Teams Not Present at Round Start
+backmen-rules-header-7 = About the Syndicate
+backmen-rules-header-8 = About White-List Roles
+backmen-rules-header-9 = About AHelp
+backmen-rules-header-10 = About Administration

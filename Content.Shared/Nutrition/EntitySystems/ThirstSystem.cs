@@ -8,7 +8,6 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 using Content.Shared.Backmen.Mood;
 using System.Diagnostics.CodeAnalysis;
 // start-backmen: thirst

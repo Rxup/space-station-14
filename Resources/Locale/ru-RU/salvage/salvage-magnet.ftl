@@ -1,12 +1,11 @@
-salvage-system-announcement-losing = Магнит больше не может удерживать обломок. Оставшееся время удержания: { $timeLeft } секунд.
+salvage-system-announcement-losing = Магнит больше не может удерживать обломок. Оставшееся время удержания: {$timeLeft} секунд.
 salvage-system-announcement-spawn-debris-disintegrated = Обломок дезинтегрировал во время орбитального перемещения.
 salvage-system-announcement-spawn-no-debris-available = Нет обломков, которые можно притянуть магнитом.
-salvage-system-announcement-arrived = Обломок был притянут для утилизации. Расчётное время удержания: { $timeLeft } секунд.
+salvage-system-announcement-arrived = Обломок был притянут для утилизации. Расчётное время удержания: {$timeLeft} секунд.
 salvage-asteroid-name = Астероид
 salvage-magnet-window-title = Магнит обломков
 salvage-expedition-window-progression = Прогресс
-salvage-magnet-resources =
-    { $resource ->
+salvage-magnet-resources = { $resource ->
         [OreIron] Железо
         [OreCoal] Уголь
         [OreQuartz] Кварц
@@ -20,8 +19,7 @@ salvage-magnet-resources =
         [OreBananium] Бананиум
        *[other] { $resource }
     }
-salvage-magnet-resources-count =
-    { $count ->
+salvage-magnet-resources-count = { $count ->
         [1] (Мало)
         [2] (Средне)
         [3] (Средне)

@@ -547,7 +547,7 @@ namespace Content.Shared.Preferences
                 if (defaultVoice is { } voice)
                     Voice = new ProtoId<TTSVoicePrototype>(voice.ID);
                 else
-                    Voice = default;
+                    Voice = HumanoidProfileSystem.DefaultVoice;
             }
 
             string name;

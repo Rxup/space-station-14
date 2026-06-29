@@ -9,7 +9,7 @@ public sealed partial class EmpOnTriggerSystem : XOnTriggerSystem<EmpOnTriggerCo
 
     protected override void OnTrigger(Entity<EmpOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
-        _emp.EmpPulse(Transform(target).Coordinates, ent.Comp.Range, ent.Comp.EnergyConsumption, ent.Comp.DisableDuration, args.User);
+        _emp.EmpPulse(Transform(target).Coordinates, ent.Comp.Range, ent.Comp.EnergyConsumption, ent.Comp.DisableDuration, args.User, predicted: args.Predicted);
         args.Handled = true;
     }
 }
