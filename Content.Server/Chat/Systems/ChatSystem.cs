@@ -82,9 +82,17 @@ public sealed partial class ChatSystem : SharedChatSystem
     {
         base.Initialize();
 
-        Subs.CVar(_configurationManager, CCVars.LoocEnabled, OnLoocEnabledChanged, true);
-        Subs.CVar(_configurationManager, CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged, true);
-        Subs.CVar(_configurationManager, CCVars.CritLoocEnabled, OnCritLoocEnabledChanged, true);
+        // start-backmen: looc-cvar-init-crash
+        // ChatManager is initialized in PostInit, after entity systems, so do not invoke
+        // CVar handlers immediately or they will try to announce before ChatManager is ready.
+        _loocEnabled = _configurationManager.GetCVar(CCVars.LoocEnabled);
+        _deadLoocEnabled = _configurationManager.GetCVar(CCVars.DeadLoocEnabled);
+        _critLoocEnabled = _configurationManager.GetCVar(CCVars.CritLoocEnabled);
+
+        Subs.CVar(_configurationManager, CCVars.LoocEnabled, OnLoocEnabledChanged);
+        Subs.CVar(_configurationManager, CCVars.DeadLoocEnabled, OnDeadLoocEnabledChanged);
+        Subs.CVar(_configurationManager, CCVars.CritLoocEnabled, OnCritLoocEnabledChanged);
+        // end-backmen: looc-cvar-init-crash
 
         SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameChange);
     }

@@ -5,6 +5,7 @@ soft_max_players = 60
 desc="""Русскоязычный сервер Backmen\nКлассический геймплей, собственная сборка, умеренное РП\nДобро пожаловать в сообщество! ✨"""
 map_pool="BackmenDefaultMapPool"
 defaultpreset="secret"
+secret_weight_prototype = "BackmenSecret"
 lobbyenabled = true
 cryo_sleep_rejoining = true
 lobbyduration=300
