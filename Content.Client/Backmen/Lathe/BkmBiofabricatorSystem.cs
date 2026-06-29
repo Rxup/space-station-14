@@ -5,7 +5,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Backmen.Lathe;
 
-public sealed class BkmBiofabricatorSystem : EntitySystem
+public sealed partial class BkmBiofabricatorSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SpriteSystem _sprite = default!;

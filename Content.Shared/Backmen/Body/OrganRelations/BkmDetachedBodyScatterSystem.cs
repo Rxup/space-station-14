@@ -10,7 +10,7 @@ namespace Content.Shared.Backmen.Body.OrganRelations;
 /// <summary>
 /// Shared scatter helpers for detached limb bundles.
 /// </summary>
-public sealed class BkmDetachedBodyScatterSystem : EntitySystem
+public sealed partial class BkmDetachedBodyScatterSystem : EntitySystem
 {
     public const float ViolentScatterMin = 1f;
     public const float ViolentScatterMax = 2.5f;
@@ -19,9 +19,9 @@ public sealed class BkmDetachedBodyScatterSystem : EntitySystem
     public const float ViolentFlingImpulseVariance = 3f;
     public static readonly Angle ViolentBurstCone = Angle.FromDegrees(360);
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 
     public void ScatterViolentBundle(
         EntityUid bundle,

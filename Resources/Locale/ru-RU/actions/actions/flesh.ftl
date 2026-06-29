@@ -8,12 +8,10 @@ flesh-pudge-throw-worm-hit-others = { CAPITALIZE(THE($worm)) } вцепился 
 flesh-pudge-throw-worm-hit-mob = Вы ухватились за лицо { CAPITALIZE(THE($entity)) }!
 flesh-pudge-throw-worm-hit-user = { CAPITALIZE(THE($worm)) } вцепился вам в лицо!
 flesh-pudge-throw-worm-desc = Вырвите червя из своей плоти и держите его в руке, чтобы швырнуть во врагов.
-
 flesh-worm-wearer-examine = [color=red]{ CAPITALIZE(THE($ent)) } вцепился в лицо { DAT-GEN($target) }![/color]
-
 flesh-worm-verb-remove = Сорвать червя
-flesh-worm-remove-start-user = Вы начинаете срывать {THE($worm)}.
-flesh-worm-remove-start-wearer = {CAPITALIZE(THE($user))} пытается сорвать с вашего лица червя!
+flesh-worm-remove-start-user = Вы начинаете срывать { THE($worm) }.
+flesh-worm-remove-start-wearer = { CAPITALIZE(THE($user)) } пытается сорвать с вашего лица червя!
 flesh-worm-remove-self-start = Вы пытаетесь сорвать червя со своего лица...
 flesh-worm-remove-self-too-tired = Вы слишком устали, чтобы сорвать червя со своего лица!
 flesh-worm-head-trauma-user = { CAPITALIZE(THE($worm)) } вгрызается глубже — голова сильно повреждена!

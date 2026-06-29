@@ -1,9 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.CCVar;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Corvax.Interfaces.Shared;
-using Content.Shared.Random;
 using Robust.Shared.Collections;
 using Robust.Shared.Network;
 using Robust.Shared.Configuration;
@@ -145,7 +143,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             }
             // Corvax-Loadouts-End
 
-            var loadouts = groupLoadouts[..Math.Min(groupLoadouts.Count, groupProto.MaxLimit)];
+            var loadouts = groupProto.MaxLimit > 0 ? groupLoadouts[..Math.Min(groupLoadouts.Count, groupProto.MaxLimit)] : groupLoadouts;
 
             // Validate first
             for (var i = loadouts.Count - 1; i >= 0; i--)
@@ -322,7 +320,8 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
         var groupLoadouts = SelectedLoadouts[selectedGroup];
 
         // Need to unselect existing ones if we're at or above limit
-        var limit = Math.Max(0, groupLoadouts.Count + 1 - protoManager.Index(selectedGroup).MaxLimit);
+        var groupProto = protoManager.Index(selectedGroup);
+        var limit = groupProto.MaxLimit > 0 ? Math.Max(0, groupLoadouts.Count + 1 - protoManager.Index(selectedGroup).MaxLimit) : 0;
 
         for (var i = 0; i < groupLoadouts.Count; i++)
         {

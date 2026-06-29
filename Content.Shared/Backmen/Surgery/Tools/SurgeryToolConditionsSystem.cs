@@ -1,6 +1,5 @@
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
-using Content.Shared.Backmen.Smoking;
 using Content.Shared.Backmen.Smoking.Components;
 using Content.Shared.Smoking;
 using Content.Shared.Weapons.Ranged;

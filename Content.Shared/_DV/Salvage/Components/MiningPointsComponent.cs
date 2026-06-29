@@ -1,5 +1,4 @@
 using Content.Shared._DV.Salvage.Systems;
-using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._DV.Salvage.Components;

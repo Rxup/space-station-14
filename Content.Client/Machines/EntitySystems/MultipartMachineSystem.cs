@@ -23,7 +23,7 @@ public sealed partial class MultipartMachineSystem : SharedMultipartMachineSyste
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
-    [Dependency] private ISerializationManager _serialization = default!;
+    [Dependency] private ISerializationManager _serialization= default!;
 
     public override void Initialize()
     {
@@ -58,7 +58,7 @@ public sealed partial class MultipartMachineSystem : SharedMultipartMachineSyste
             var entityCoords = new EntityCoordinates(ent.Owner, part.Offset);
             var ghostEnt = Spawn(_ghostPrototype, entityCoords);
 
-            if (!XformQuery.TryGetComponent(ghostEnt, out var xform))
+            if (!TryComp(ghostEnt, out TransformComponent? xform))
                 break;
 
             xform.LocalRotation = part.Rotation;

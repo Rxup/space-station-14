@@ -48,7 +48,7 @@ public sealed class PartBurnToAshTest : GameTest
             netMob = entMan.GetNetEntity(mob);
             netHand = entMan.GetNetEntity(hand);
 
-            var heat = new DamageSpecifier { DamageDict = new Dictionary<string, FixedPoint2> { { "Heat", 500 } } };
+            var heat = new DamageSpecifier { DamageDict = { ["Heat"] = FixedPoint2.New(500) } };
             for (var i = 0; i < 30 && entMan.EntityExists(hand); i++)
                 damageable.ChangeDamage(hand, heat, ignoreResistances: true);
         });
@@ -88,7 +88,7 @@ public sealed class PartBurnToAshTest : GameTest
             netHand = entMan.GetNetEntity(hand);
 
             Assert.That(entMan.TryGetComponent(hand, out WoundableComponent? handWoundable), Is.True);
-            var blunt = new DamageSpecifier { DamageDict = new Dictionary<string, FixedPoint2> { { "Blunt", 500 } } };
+            var blunt = new DamageSpecifier { DamageDict = { ["Blunt"] = FixedPoint2.New(500) } };
             for (var i = 0; i < 30 && entMan.EntityExists(hand); i++)
                 damageable.ChangeDamage(hand, blunt, ignoreResistances: true);
         });
@@ -191,7 +191,7 @@ public sealed class PartBurnToAshTest : GameTest
             netBrain = entMan.GetNetEntity(brain);
             netBundle = entMan.GetNetEntity(bundle);
 
-            var blunt = new DamageSpecifier { DamageDict = new Dictionary<string, FixedPoint2> { { "Blunt", 9999 } } };
+            var blunt = new DamageSpecifier { DamageDict = { ["Blunt"] = FixedPoint2.New(9999) } };
             damageableSys.TryChangeDamage(bundle, blunt, ignoreResistances: true);
         });
 

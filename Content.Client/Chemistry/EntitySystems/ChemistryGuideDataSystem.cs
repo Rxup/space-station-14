@@ -68,19 +68,22 @@ public sealed partial class ChemistryGuideDataSystem : SharedChemistryGuideDataS
                 reaction);
             foreach (var product in reaction.Products.Keys)
             {
-                _reagentSources[product].Add(data);
+                if (!_reagentSources.TryGetValue(product, out var sources))
+                    continue;
+
+                sources.Add(data);
             }
         }
 
         foreach (var gas in PrototypeManager.EnumeratePrototypes<GasPrototype>())
         {
-            if (gas.Reagent == null)
+            if (gas.Reagent == null || !_reagentSources.TryGetValue(gas.Reagent, out var gasSources))
                 continue;
 
             var data = new ReagentGasSourceData(
                 new () { DefaultCondenseCategory },
                 gas);
-            _reagentSources[gas.Reagent].Add(data);
+            gasSources.Add(data);
         }
 
         // store the names of the entities used so we don't get repeats in the guide.
@@ -109,16 +112,16 @@ public sealed partial class ChemistryGuideDataSystem : SharedChemistryGuideDataS
                     juiceSolution);
                 foreach (var (id, _) in juiceSolution.Contents)
                 {
-                    _reagentSources[id.Prototype].Add(data);
+                    if (_reagentSources.TryGetValue(id.Prototype, out var juiceSources))
+                        juiceSources.Add(data);
                 }
 
                 usedNames.Add(entProto.Name);
             }
 
 
-            if (extractableComponent.GrindableSolution is { } grindableSolutionId &&
-                entProto.TryGetComponent<SolutionContainerManagerComponent>(out var manager, EntityManager.ComponentFactory) &&
-                _solutionContainer.TryGetSolution(manager, grindableSolutionId, out var grindableSolution))
+            if (extractableComponent.GrindableSolutionName is { } grindableSolutionId &&
+                _solutionContainer.TryGetSolution(entProto, grindableSolutionId, out var grindableSolution))
             {
                 var data = new ReagentEntitySourceData(
                     new() { DefaultGrindCategory },
@@ -126,7 +129,8 @@ public sealed partial class ChemistryGuideDataSystem : SharedChemistryGuideDataS
                     grindableSolution);
                 foreach (var (id, _) in grindableSolution.Contents)
                 {
-                    _reagentSources[id.Prototype].Add(data);
+                    if (_reagentSources.TryGetValue(id.Prototype, out var grindSources))
+                        grindSources.Add(data);
                 }
                 usedNames.Add(entProto.Name);
             }

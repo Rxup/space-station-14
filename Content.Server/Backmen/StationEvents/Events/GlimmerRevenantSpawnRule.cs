@@ -1,5 +1,4 @@
 using Robust.Shared.Random;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Backmen.Psionics.Glimmer;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.Station.Systems;
@@ -40,6 +39,6 @@ internal sealed partial class GlimmerRevenantRule : StationEventSystem<GlimmerRe
         var coords = Transform(_random.Pick(glimmerSources)).Coordinates;
 
         Sawmill.Info($"Spawning revenant at {coords}");
-        EntityManager.SpawnEntity(component.RevenantPrototype, coords);
+        Spawn(component.RevenantPrototype, coords);
     }
 }

@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Backmen.Body.Systems;
-using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Buckle;
@@ -23,7 +22,6 @@ using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
-using Content.Shared.Tag;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.UserInterface;
 using Robust.Shared.Audio;
@@ -32,14 +30,11 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
-using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Standing;
 

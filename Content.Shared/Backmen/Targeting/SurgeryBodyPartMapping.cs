@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Robust.Shared.Prototypes;

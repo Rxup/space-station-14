@@ -10,7 +10,7 @@
     sprite: Backmen/Objects/Consumable/Drinks/RedOrdenDrink.rsi
     state: icon
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 3
@@ -19,14 +19,17 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -0.4
-            Airloss: -0.6
-
+          types:
+            Blunt: -0.1
+            Slash: -0.1
+            Piercing: -0.1
+            ArmorPiercing: -0.1
+            Asphyxiation: -0.3
+            Bloodloss: -0.3
 - type: reagent
   id: CondensedMilk
   name: reagent-name-milk-condensed
@@ -42,17 +45,19 @@
     - !type:PlantAdjustWater
       amount: 0.9
   metabolisms:
-    Drink:
+    Digestion:
       effects:
         - !type:SatiateThirst
           factor: 4
-    Medicine:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
-          groups:
-            Brute: -0.2
-
+          types:
+            Blunt: -0.05
+            Slash: -0.05
+            Piercing: -0.05
+            ArmorPiercing: -0.05
 - type: reagent
   id: Soju
   name: reagent-name-soju
@@ -65,7 +70,7 @@
     sprite: Backmen/Objects/Consumable/Drinks/sojuglass.rsi
     state: icon
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateThirst
         factor: 2

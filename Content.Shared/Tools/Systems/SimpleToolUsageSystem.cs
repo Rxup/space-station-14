@@ -2,7 +2,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Tools.Components;
 using Content.Shared.Verbs;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Tools.Systems;
 

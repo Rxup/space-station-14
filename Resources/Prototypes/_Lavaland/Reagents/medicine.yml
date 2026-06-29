@@ -8,17 +8,22 @@
   color: "#f2c777"
   recognizable: true
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:ModifyBloodLevel
         amount: 1.5
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -3.75
-            Brute: -1.25
           types:
             Bloodloss: -1.25
+            Heat: -0.9375
+            Shock: -0.9375
+            Cold: -0.9375
+            Caustic: -0.9375
+            Blunt: -0.3125
+            Slash: -0.3125
+            Piercing: -0.3125
+            ArmorPiercing: -0.3125
       - !type:ModifyBloodLevel
         amount: 1.5
         conditions:
@@ -28,11 +33,16 @@
           worksOnLavaland: true
       - !type:HealthChange
         damage:
-          groups:
-            Burn: -3.75
-            Brute: -1.25
           types:
             Bloodloss: -1.25
+            Heat: -0.9375
+            Shock: -0.9375
+            Cold: -0.9375
+            Caustic: -0.9375
+            Blunt: -0.3125
+            Slash: -0.3125
+            Piercing: -0.3125
+            ArmorPiercing: -0.3125
         conditions:
         - !type:PressureThreshold
           min: 0

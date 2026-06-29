@@ -1,4 +1,3 @@
-﻿using Content.Server.Administration.Commands;
 using Content.Server.Backmen.Cloning.Components;
 using Content.Server.Backmen.Cloning.Events;
 using Content.Server.Clothing.Systems;
@@ -40,7 +39,7 @@ public sealed partial class CloningAppearanceSystem : EntitySystem
         foreach (var entry in ev.Component.Components.Values)
         {
             var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
-            EntityManager.AddComponent(mobUid, comp, true);
+            AddComp(mobUid, comp, true);
         }
 
         if (ev.Component.Gear != null)

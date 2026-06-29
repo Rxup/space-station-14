@@ -1,5 +1,3 @@
-using Robust.Shared.Serialization;
-
 namespace Content.Shared.Backmen.Species.Shadowkin.Events;
 
 /// <summary>

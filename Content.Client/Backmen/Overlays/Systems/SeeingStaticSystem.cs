@@ -1,6 +1,6 @@
 using Content.Client.Backmen.Overlays.Shaders;
 using Content.Shared.Backmen.Silicon.Components;
-using Robust.Client.GameObjects;
+using Content.Shared.StatusEffectNew;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
@@ -14,43 +14,52 @@ public sealed partial class SeeingStaticSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
     private StaticOverlay _overlay = default!;
-    public const string StaticKey = "SeeingStatic";
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SeeingStaticComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<SeeingStaticComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<SeeingStaticComponent, StatusEffectAppliedEvent>(OnApplied);
+        SubscribeLocalEvent<SeeingStaticComponent, StatusEffectRemovedEvent>(OnRemoved);
 
-        SubscribeLocalEvent<SeeingStaticComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<SeeingStaticComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<SeeingStaticComponent, StatusEffectRelayedEvent<LocalPlayerAttachedEvent>>(OnPlayerAttached);
+        SubscribeLocalEvent<SeeingStaticComponent, StatusEffectRelayedEvent<LocalPlayerDetachedEvent>>(OnPlayerDetached);
 
         _overlay = new();
     }
 
-    private void OnPlayerAttached(EntityUid uid, SeeingStaticComponent component, PlayerAttachedEvent args)
+    private void OnApplied(Entity<SeeingStaticComponent> ent, ref StatusEffectAppliedEvent args)
+    {
+        if (_player.LocalEntity == args.Target)
+            _overlayMan.AddOverlay(_overlay);
+    }
+
+    private void OnRemoved(Entity<SeeingStaticComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        if (_player.LocalEntity != args.Target)
+            return;
+
+        if (!_statusEffects.HasEffectComp<SeeingStaticComponent>(_player.LocalEntity.Value))
+        {
+            _overlay.MixAmount = 0;
+            _overlayMan.RemoveOverlay(_overlay);
+        }
+    }
+
+    private void OnPlayerAttached(Entity<SeeingStaticComponent> ent, ref StatusEffectRelayedEvent<LocalPlayerAttachedEvent> args)
     {
         _overlayMan.AddOverlay(_overlay);
     }
 
-    private void OnPlayerDetached(EntityUid uid, SeeingStaticComponent component, PlayerDetachedEvent args)
+    private void OnPlayerDetached(Entity<SeeingStaticComponent> ent, ref StatusEffectRelayedEvent<LocalPlayerDetachedEvent> args)
     {
-        _overlay.MixAmount = 0;
-        _overlayMan.RemoveOverlay(_overlay);
-    }
+        if (_player.LocalEntity is null)
+            return;
 
-    private void OnInit(EntityUid uid, SeeingStaticComponent component, ComponentInit args)
-    {
-        if (_player.LocalSession?.AttachedEntity == uid)
-            _overlayMan.AddOverlay(_overlay);
-    }
-
-    private void OnShutdown(EntityUid uid, SeeingStaticComponent component, ComponentShutdown args)
-    {
-        if (_player.LocalSession?.AttachedEntity == uid)
+        if (!_statusEffects.HasEffectComp<SeeingStaticComponent>(_player.LocalEntity.Value))
         {
             _overlay.MixAmount = 0;
             _overlayMan.RemoveOverlay(_overlay);

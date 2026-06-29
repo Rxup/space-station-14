@@ -1,3 +1,4 @@
+using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Pair;
 using Content.Server.Backmen.VentCrawler;
 using Content.Shared.Backmen.VentCrawler;
@@ -13,7 +14,7 @@ namespace Content.IntegrationTests.Tests.Backmen.VentCrawler;
 
 [TestFixture]
 [TestOf(typeof(VentCrawlerSystem))]
-public sealed class VentCrawlerTest
+public sealed class VentCrawlerTest : GameTest
 {
     [TestPrototypes]
     private const string Prototypes = @"
@@ -35,8 +36,8 @@ public sealed class VentCrawlerTest
     [Test]
     public async Task EnterVent_AddsVentCrawlingComponent()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
+        var pair = Pair;
+        var server = Server;
         var (vent, _, ventCoords) = await SetupVentLine(pair);
 
         await server.WaitAssertion(() =>
@@ -49,15 +50,13 @@ public sealed class VentCrawlerTest
             Assert.That(ventCrawler.TryEnterVent(headcrab, vent), Is.True);
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.True);
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task StepAlongPipe_MovesToNextTile()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
+        var pair = Pair;
+        var server = Server;
         var (vent, pipe, ventCoords) = await SetupVentLine(pair);
 
         EntityUid headcrab = default;
@@ -86,15 +85,13 @@ public sealed class VentCrawlerTest
             var headcrabCoords = server.EntMan.GetComponent<TransformComponent>(headcrab).Coordinates;
             Assert.That(headcrabCoords, Is.EqualTo(pipeCoords));
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task ExitVent_RemovesVentCrawlingComponent()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
+        var pair = Pair;
+        var server = Server;
         var (vent, _, ventCoords) = await SetupVentLine(pair);
 
         await server.WaitAssertion(() =>
@@ -106,15 +103,13 @@ public sealed class VentCrawlerTest
             Assert.That(ventCrawler.TryExitVent(headcrab), Is.True);
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.False);
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task WeldedVent_BlocksEnter()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
+        var pair = Pair;
+        var server = Server;
         var (vent, _, ventCoords) = await SetupVentLine(pair);
 
         await server.WaitAssertion(() =>
@@ -128,15 +123,13 @@ public sealed class VentCrawlerTest
             Assert.That(ventCrawler.TryEnterVent(headcrab, vent), Is.False);
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.False);
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task DeadEndStep_ForcesExit()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
+        var pair = Pair;
+        var server = Server;
         var (vent, _, ventCoords) = await SetupVentLine(pair);
 
         EntityUid headcrab = default;
@@ -158,15 +151,13 @@ public sealed class VentCrawlerTest
             Assert.That(ventCrawler.TryStep(headcrab, Direction.South), Is.True);
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.False);
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task BrokenPipeUnderCrawler_ForcesExit()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
+        var pair = Pair;
+        var server = Server;
         var (vent, pipe, ventCoords) = await SetupVentLine(pair);
 
         EntityUid headcrab = default;
@@ -194,15 +185,13 @@ public sealed class VentCrawlerTest
         {
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.False);
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task PerpendicularStep_BlockedOnStraightPipe()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
+        var pair = Pair;
+        var server = Server;
         var (vent, _, ventCoords) = await SetupVentLine(pair);
 
         EntityUid headcrab = default;
@@ -228,15 +217,13 @@ public sealed class VentCrawlerTest
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.True);
             Assert.That(server.EntMan.GetComponent<TransformComponent>(headcrab).Coordinates, Is.EqualTo(coordsBefore));
         });
-
-        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task StepIntoBrokenPipe_ForcesExitAtGap()
     {
-        await using var pair = await PoolManager.GetServerClient();
-        var server = pair.Server;
+        var pair = Pair;
+        var server = Server;
         var (vent, _, ventCoords) = await SetupVentLine(pair, extraPipeTile: new Vector2i(0, -1), broken: true);
 
         EntityUid headcrab = default;
@@ -265,8 +252,6 @@ public sealed class VentCrawlerTest
             var tile = mapSys.TileIndicesFor(gridUid, grid, headcrabXform.Coordinates);
             Assert.That(tile, Is.EqualTo(new Vector2i(0, -1)));
         });
-
-        await pair.CleanReturnAsync();
     }
 
     private static async Task<(EntityUid Vent, EntityUid Pipe, EntityCoordinates VentCoords)> SetupVentLine(

@@ -26,6 +26,7 @@
         20
   - type: TemperatureProtection
   - type: Temperature
+  - type: TemperatureDamage
     damageCap: 0
   - type: MobThresholds
     thresholds:

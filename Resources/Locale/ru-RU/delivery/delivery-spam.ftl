@@ -41,8 +41,7 @@ delivery-spam-robust-toolboxes = [color=blue][head=1]
     -ИЛИ СО СВИНЦОМ И АСБЕСТОМ, ЕСЛИ ВЫ ПРЕДПОЧИТАЕТЕ ТАК!
     -ДЁШЕВО! ВСЕГО ЛИШЬ ОДИН ОРГАН! ЭТО МЕНЬШЕ ЧЕМ ДВА ОРГАНЫ!
     -НЕВАЖНО, ЕСЛИ ОРГАН НЕ ВАШ! НАМ НАСРАТЬ!
-delivery-spam-reasons-to-chose-nanotrasen =
-    { -delivery-header-nanotrasen }
+delivery-spam-reasons-to-chose-nanotrasen = { -delivery-header-nanotrasen }
 
     { "[head=2]ТОП ТРИ ПРИЧИНЫ НЕКОМПЕТЕНТНОСТИ СИНДИКАТА[/head]" }
 

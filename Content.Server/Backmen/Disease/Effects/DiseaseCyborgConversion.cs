@@ -2,7 +2,6 @@ using Content.Shared.Backmen.Disease;
 using Content.Shared.Body;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Markings;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Preferences;

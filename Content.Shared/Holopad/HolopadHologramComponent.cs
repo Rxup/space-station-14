@@ -1,5 +1,4 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 using System.Numerics;
 
 namespace Content.Shared.Holopad;

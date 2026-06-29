@@ -1,4 +1,3 @@
-using Content.Server.Kitchen.Components;
 using Content.Shared._Lavaland.Weapons;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Kitchen.Components;

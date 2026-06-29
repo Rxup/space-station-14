@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Backmen.Vampiric.Rule;
+namespace Content.Server.Backmen.Vampiric.Rule;
 
 [RegisterComponent]
 public sealed partial class BloodsuckerRuleComponent : Component

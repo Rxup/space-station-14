@@ -15,19 +15,18 @@ alerts-too-cold-desc = Вы [color=cyan]замерзаете[/color]! Перем
 alerts-too-hot-name = [color=red]Слишком жарко[/color]
 alerts-too-hot-desc = Тут [color=red]слишком жарко[/color]! Переместитесь в более прохладное место, наденьте любую изолирующую тепло одежду, например, скафандр, или по крайней мере отойдите от огня.
 alerts-weightless-name = Невесомость
-alerts-weightless-desc =
-    Гравитация перестала воздействовать на вас, и вы свободно парите. Найдите за что можно ухватиться, или метните или выстрелите чем-нибудь в противоположном направлении.
+alerts-weightless-desc = Гравитация перестала воздействовать на вас, и вы свободно парите. Найдите за что можно ухватиться, или метните или выстрелите чем-нибудь в противоположном направлении.
     Магнитные ботинки и джетпак помогут вам передвигаться с большей эффективностью.
 alerts-walking-name = Шаг
 alerts-walking-desc = Вы идёте шагом, двигаясь в медленном темпе.
 alerts-stunned-name = [color=yellow]Оглушены[/color]
 alerts-stunned-desc = Вы [color=yellow]оглушены[/color]! Что-то мешает вам двигаться или взаимодействовать с объектами.
-alerts-knockdown-name = [color=yellow]Сбит с ног[/color]
-alerts-knockdown-desc = Вас [color=yellow]сбили с ног[/color]! Что-то заставило вас поскользнуться или упасть, затрудняя ваше движение.
+alerts-knockdown-name = [color=yellow]На полу[/color]
+alerts-knockdown-desc = Вы оказались [color=yellow]на полу[/color]! Вы на чём-то поскользнулись или вас толкнули, помешав вашему движению.
 alerts-handcuffed-name = [color=yellow]В наручниках[/color]
 alerts-handcuffed-desc = На вас [color=yellow]надели наручники[/color] и вы не можете использовать руки. Если кто-нибудь вас потащит, вы не сможете сопротивляться.
-alerts-ensnared-name = [color=yellow]Захваченный[/color]
-alerts-ensnared-desc = Вы [color=yellow]попали в ловушку[/color], и это мешает вам двигаться.
+alerts-ensnared-name = [color=yellow]Опутаны[/color]
+alerts-ensnared-desc = Ваши конечности [color=yellow]чем-то опутаны[/color], и это мешает вам двигаться.
 alerts-buckled-name = [color=yellow]Пристёгнуты[/color]
 alerts-buckled-desc = Вы к чему-то [color=yellow]пристёгнуты[/color]. Щёлкните по иконке чтобы отстегнуться, если на вас [color=yellow]не надеты наручники.[/color]
 alerts-crit-name = [color=red]Критическое состояние[/color]
@@ -86,5 +85,7 @@ alerts-rooted-name = Закреплён
 alerts-rooted-desc = Вы прикреплены к земле. Невозможно скользить, но вы поглощаете жидкости под собой.
 alerts-stealthy-name = Кража из карманов
 alerts-stealthy-desc = Вы в процессе кражи из карманов. Щёлкните, чтобы переключить.
+alerts-prying-name = Вскрытие
+alerts-prying-desc = Вы можете вскрывать двери, используя альтернативное взаимодействие.
 alerts-changeling-biomass-name = Биомасса
 alerts-changeling-biomass-desc = Это ваше здоровье. Если оно достигнет 0 - это [color=red]конец игры[/color]. Поглощайте гуманоидов, чтобы восстановить часть биомассы.

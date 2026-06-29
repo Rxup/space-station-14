@@ -3,7 +3,6 @@ using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.HealthExaminable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.GameStates;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Systems;

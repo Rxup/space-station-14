@@ -36,6 +36,7 @@ public abstract partial class ObfuscationMethod
 ///     The most primitive method of obfuscation - replaces the entire message with one random replacement phrase.
 ///     Similar to ReplacementAccent. Base for all replacement-based obfuscation methods.
 /// </summary>
+[Virtual]
 public partial class ReplacementObfuscation : ObfuscationMethod
 {
     /// <summary>

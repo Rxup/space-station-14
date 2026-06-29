@@ -12,7 +12,7 @@
       effects:
       - !type:RemoveDiseaseLubeHandsEntityEffect
   metabolisms:
-    Medicine:
+    Bloodstream:
       effects:
       - !type:EvenHealthChange
         damage:

@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.Shipwrecked.Prototypes;
+using Content.Server.Backmen.Shipwrecked.Prototypes;
 using Content.Server.Spawners.Components;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Procedural;

@@ -1,5 +1,7 @@
 using System.Numerics;
-using Content.Shared.Damage;
+using Content.Shared.Backmen.Damage;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -28,12 +30,16 @@ public sealed partial class BkmEntityHealthBarOverlay : Overlay
     private readonly SharedTransformSystem _transform;
     private readonly MobStateSystem _mobStateSystem;
     private readonly MobThresholdSystem _mobThresholdSystem;
+    private readonly DamageableSystem _damageable;
+    private readonly BackmenDamageModelSystem _backmenDamageModel;
     private readonly ShaderInstance _shader;
     private readonly SharedInteractionSystem _interaction;
 
     [Dependency] private IPlayerManager _playerManager = default!;
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
     public List<string> DamageContainers = new();
+
+    private static readonly ProtoId<ShaderPrototype> Unshaded = "unshaded";
 
     public BkmEntityHealthBarOverlay()
     {
@@ -42,9 +48,11 @@ public sealed partial class BkmEntityHealthBarOverlay : Overlay
         _transform = _entManager.System<SharedTransformSystem>();
         _mobStateSystem = _entManager.System<MobStateSystem>();
         _mobThresholdSystem = _entManager.System<MobThresholdSystem>();
+        _damageable = _entManager.System<DamageableSystem>();
+        _backmenDamageModel = _entManager.System<BackmenDamageModelSystem>();
         _interaction = _entManager.System<SharedInteractionSystem>();
 
-        _shader = _protoManager.Index<ShaderPrototype>("unshaded").Instance();
+        _shader = _protoManager.Index<ShaderPrototype>(Unshaded).InstanceUnique();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -64,6 +72,7 @@ public sealed partial class BkmEntityHealthBarOverlay : Overlay
         var rotationMatrix = Matrix3x2.CreateRotation(-((float)rotation.Theta));
         handle.UseShader(_shader);
 
+        // start-backmen: health-ui
         var q = _entManager.AllEntityQueryEnumerator<MobThresholdsComponent, MobStateComponent, DamageableComponent>();
         while (q.MoveNext(out var owner, out var thresholds, out var mob, out var dmg))
         {
@@ -73,8 +82,9 @@ public sealed partial class BkmEntityHealthBarOverlay : Overlay
                 continue;
             }
 
-            if (dmg.DamageContainerID == null || !DamageContainers.Contains(dmg.DamageContainerID))
+            if (!_backmenDamageModel.MatchesDamageContainerFilter(owner, DamageContainers))
                 continue;
+        // end-backmen: health-ui
 
             if (!_interaction.InRangeUnobstructed(_playerManager.LocalEntity.Value, owner, range: 30f, collisionMask: CollisionGroup.Opaque))
                 continue;
@@ -159,12 +169,36 @@ public sealed partial class BkmEntityHealthBarOverlay : Overlay
     /// </summary>
     private (float, bool) CalcProgress(EntityUid uid, MobStateComponent component, DamageableComponent dmg, MobThresholdsComponent thresholds)
     {
+        var totalDamage = _damageable.GetTotalDamage((uid, dmg));
+        // start-backmen: health-ui
+        if (_entManager.TryGetComponent<ConsciousnessComponent>(uid, out var consciousness))
+        {
+            if (_mobStateSystem.IsAlive(uid, component))
+            {
+                var ratio = Math.Clamp(
+                    1 - ((consciousness.Cap - consciousness.Consciousness) / (consciousness.Cap - consciousness.Threshold)).Float(),
+                    0,
+                    1);
+                return (ratio, false);
+            }
+
+            if (_mobStateSystem.IsCritical(uid, component))
+            {
+                var ratio = Math.Clamp(
+                    1 - ((consciousness.Threshold - consciousness.Consciousness) / consciousness.Threshold).Float(),
+                    0,
+                    1);
+                return (ratio, true);
+            }
+        }
+        else
+        // end-backmen: health-ui
         if (_mobStateSystem.IsAlive(uid, component))
         {
             if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var threshold, thresholds))
                 return (1, false);
 
-            var ratio = 1 - ((FixedPoint2)(dmg.TotalDamage / threshold)).Float();
+            var ratio = 1 - ((FixedPoint2)(totalDamage / threshold)).Float();
             return (ratio, false);
         }
 
@@ -177,7 +211,7 @@ public sealed partial class BkmEntityHealthBarOverlay : Overlay
             }
 
             var ratio = 1 -
-                    ((dmg.TotalDamage - critThreshold) /
+                    ((totalDamage - critThreshold) /
                     (deadThreshold - critThreshold)).Value.Float();
 
             return (ratio, true);

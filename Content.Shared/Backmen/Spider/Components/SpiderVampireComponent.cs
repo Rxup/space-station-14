@@ -1,7 +1,6 @@
 
 using Robust.Shared.GameStates;
 using Content.Shared.DoAfter;
-using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
 using Robust.Shared.Prototypes;
 

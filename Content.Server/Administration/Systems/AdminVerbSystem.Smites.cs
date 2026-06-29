@@ -2,7 +2,7 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Backmen.Body.Systems;
+using Content.Server.Body.Systems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
@@ -13,18 +13,16 @@ using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Server.Roles;
 using Content.Server.Speech.Components;
+using Content.Shared.Speech.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Tabletop;
 using Content.Server.Tabletop.Components;
 using Content.Shared.Actions;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
-using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Body;
-using Content.Server.Backmen.Body.Systems;
-using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
+using Content.Shared.Body.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clumsy;
 using Content.Shared.Cluwne;
@@ -32,6 +30,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.Electrocution;
+using Content.Shared.Gibbing;
 using Content.Shared.Gravity;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory;
@@ -66,13 +65,13 @@ namespace Content.Server.Administration.Systems;
 
 public sealed partial class AdminVerbSystem
 {
-    private static readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
-    private static readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
+    private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
+    private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
 
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private BkmBodySystem _bodySystem = default!;
+    [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
     [Dependency] private CreamPieSystem _creamPieSystem = default!;
     [Dependency] private ElectrocutionSystem _electrocutionSystem = default!;
     [Dependency] private EntityStorageSystem _entityStorageSystem = default!;
@@ -95,9 +94,11 @@ public sealed partial class AdminVerbSystem
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private SuperBonkSystem _superBonkSystem = default!;
     [Dependency] private SlipperySystem _slipperySystem = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
-    private static readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
+    private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
 
     private readonly EntProtoId _siliconMindRole = "MindRoleSiliconBrain";
     private const string SiliconLawBoundUserInterface = "SiliconLawBoundUserInterface";
@@ -131,7 +132,7 @@ public sealed partial class AdminVerbSystem
                         4, 1, 2, args.Target, maxTileBreak: 0), // it gibs, damage doesn't need to be high.
                     CancellationToken.None);
 
-                _bodySystem.GibBody(args.Target);
+                _gibbing.Gib(args.Target);
             },
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", explodeName, Loc.GetString("admin-smite-explode-description")) // we do this so the description tells admins the Text to run it via console.
@@ -230,6 +231,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Clothing/Hands/Gloves/Color/yellow.rsi"), "icon"),
                 Act = () =>
                 {
+                    var totalDamage = _damageable.GetTotalDamage((args.Target, damageable));
                     int damageToDeal;
                     if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Critical, out var criticalThreshold))
                     {
@@ -237,11 +239,11 @@ public sealed partial class AdminVerbSystem
                         if (!_mobThresholdSystem.TryGetThresholdForState(args.Target, MobState.Dead,
                                 out var deadThreshold))
                             return;// whelp.
-                        damageToDeal = deadThreshold.Value.Int() - (int)damageable.TotalDamage;
+                        damageToDeal = deadThreshold.Value.Int() - (int)totalDamage;
                     }
                     else
                     {
-                        damageToDeal = criticalThreshold.Value.Int() - (int)damageable.TotalDamage;
+                        damageToDeal = criticalThreshold.Value.Int() - (int)totalDamage;
                     }
 
                     if (damageToDeal <= 0)
@@ -277,7 +279,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Consumable/Food/Baked/pie.rsi"), "plain-slice"),
                 Act = () =>
                 {
-                    _creamPieSystem.SetCreamPied(args.Target, creamPied, true);
+                    _creamPieSystem.SetCreamPied((args.Target, creamPied), true);
                 },
                 Impact = LogImpact.Extreme,
                 Message = string.Join(": ", creamPieName, Loc.GetString("admin-smite-creampie-description"))
@@ -308,7 +310,6 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(bloodRemoval);
         }
 
-        // bobby...
         if (TryComp<BodyComponent>(args.Target, out var body))
         {
             var vomitOrgansName = Loc.GetString("admin-smite-vomit-organs-name").ToLowerInvariant();
@@ -320,14 +321,14 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     _vomitSystem.Vomit(args.Target, -1000, -1000); // You feel hollow!
-                    var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, body));
+                    _bodySystem.TryGetOrgansWithComponent<TransformComponent>((args.Target, body), out var organs);
                     var baseXform = Transform(args.Target);
                     foreach (var organ in organs)
                     {
                         if (HasComp<BrainComponent>(organ.Owner) || HasComp<EyeComponent>(organ.Owner))
                             continue;
 
-                        _transformSystem.PlaceNextTo((organ.Owner, organ.Comp1), (args.Target, baseXform));
+                        _transformSystem.PlaceNextTo((organ.Owner, organ.Comp), (args.Target, baseXform));
                     }
 
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-vomit-organs-self"), args.Target,
@@ -349,7 +350,12 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    RemoveHandsSmite(args.Target, body, single: false);
+                    var parts = new HashSet<ProtoId<OrganCategoryPrototype>>() { "HandRight", "HandLeft" };
+                    _bodySystem.TryGetOrgansWithComponent<OrganComponent>((args.Target, body), out var organs);
+                    foreach (var organ in organs.Where(it => it.Comp.Category is { } category && parts.Contains(category)))
+                    {
+                        _transformSystem.AttachToGridOrMap(organ);
+                    }
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-remove-hands-self"), args.Target,
                         args.Target, PopupType.LargeCaution);
                     _popupSystem.PopupCoordinates(Loc.GetString("admin-smite-remove-hands-other", ("name", args.Target)), baseXform.Coordinates,
@@ -369,7 +375,13 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    RemoveHandsSmite(args.Target, body, single: true);
+                    var parts = new HashSet<ProtoId<OrganCategoryPrototype>>() { "HandRight", "HandLeft" };
+                    _bodySystem.TryGetOrgansWithComponent<OrganComponent>((args.Target, body), out var organs);
+                    foreach (var organ in organs.Where(it => it.Comp.Category is { } category && parts.Contains(category)))
+                    {
+                        _transformSystem.AttachToGridOrMap(organ);
+                        break;
+                    }
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-remove-hands-self"), args.Target,
                         args.Target, PopupType.LargeCaution);
                     _popupSystem.PopupCoordinates(Loc.GetString("admin-smite-remove-hands-other", ("name", args.Target)), baseXform.Coordinates,
@@ -388,7 +400,8 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "stomach"),
                 Act = () =>
                 {
-                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((args.Target, body)))
+                    _bodySystem.TryGetOrgansWithComponent<StomachComponent>((args.Target, body), out var organs);
+                    foreach (var entity in organs)
                     {
                         QueueDel(entity.Owner);
                     }
@@ -409,7 +422,8 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "lung-r"),
                 Act = () =>
                 {
-                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<LungComponent>((args.Target, body)))
+                    _bodySystem.TryGetOrgansWithComponent<LungComponent>((args.Target, body), out var organs);
+                    foreach (var entity in organs)
                     {
                         QueueDel(entity.Owner);
                     }
@@ -733,47 +747,6 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(reptilian);
 
-        Verb dwarf = new()
-        {
-            Text = "Dwarf Species Swap",
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Plushies/lizard.rsi"), "icon"),
-            Act = () =>
-            {
-                _polymorphSystem.PolymorphEntity(args.Target, "BDwarfMorph");
-            },
-            Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-dwarf-species-swap-description"),
-        };
-        args.Verbs.Add(dwarf);
-
-        Verb vox = new()
-        {
-            Text = "Vox Species Swap",
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Plushies/lizard.rsi"), "icon"),
-            Act = () =>
-            {
-                _polymorphSystem.PolymorphEntity(args.Target, "BVoxMorph");
-            },
-            Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-vox-species-swap-description"),
-        };
-        args.Verbs.Add(vox);
-
-        Verb skilet = new()
-        {
-            Text = "Skilet Species Swap",
-            Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new ("/Textures/Objects/Fun/Plushies/lizard.rsi"), "icon"),
-            Act = () =>
-            {
-                _polymorphSystem.PolymorphEntity(args.Target, "BSkeletonMorph");
-            },
-            Impact = LogImpact.Extreme,
-            Message = Loc.GetString("admin-smite-skilet-species-swap-description"),
-        };
-        args.Verbs.Add(skilet);
         var vulpName = Loc.GetString("admin-smite-vulpkanin-species-swap-name").ToLowerInvariant();
         Verb vulp = new()
         {
@@ -1099,22 +1072,6 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", homingRodSlowName, Loc.GetString("admin-smite-homing-rod-slow-description"))
         };
         args.Verbs.Add(homingRodSlow);
-    }
-
-    private void RemoveHandsSmite(EntityUid target, BodyComponent body, bool single)
-    {
-        foreach (var symmetry in new[] { BodyPartSymmetry.Left, BodyPartSymmetry.Right })
-        {
-            if (!_bodySystem.TryGetWoundableTargetByType(target, BodyPartType.Hand, symmetry, out var hand)
-                || !TryComp<OrganComponent>(hand, out var organ))
-                continue;
-
-            _bodySystem.RemoveOrgan(hand, organ);
-            _transformSystem.AttachToGridOrMap(hand);
-
-            if (single)
-                break;
-        }
     }
 
     public void HomingLaunchSequence(EntityUid target, EntProtoId proto, float distance, float speed)

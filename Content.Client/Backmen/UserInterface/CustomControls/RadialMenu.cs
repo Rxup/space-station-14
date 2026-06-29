@@ -290,7 +290,7 @@ public sealed class RadialMenuOuterAreaButton : RadialMenuTextureButtonBase
     protected override bool HasPoint(Vector2 point)
     {
         return false; // Goobstation edit
-
+/*
         if (ParentCenter == null)
         {
             return base.HasPoint(point);
@@ -302,6 +302,7 @@ public sealed class RadialMenuOuterAreaButton : RadialMenuTextureButtonBase
 
         // comparing to squared values is faster, then making sqrt
         return distSquared > outerRadiusSquared;
+        */
     }
 }
 

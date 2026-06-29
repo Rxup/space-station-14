@@ -10,7 +10,6 @@ using Robust.Shared.Utility;
 // start-backmen: whitelist
 using Robust.Shared.Configuration;
 using Robust.Client.UserInterface;
-using Robust.Client.UserInterface.Controls;
 // end-backmen: whitelist
 
 namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles

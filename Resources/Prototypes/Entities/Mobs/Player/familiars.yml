@@ -1,11 +1,9 @@
 - type: entity
   name: Remilia
-  parent: [ MobBat, BaseMobNpcVampiricAnimalFill ]
+  parent: MobBat
   id: MobBatRemilia
   description: The chaplain's familiar. Likes fruit.
   components:
-  - type: BloodSucker
-    unitsToSucc: 5
   - type: GhostRole
     makeSentient: true
     allowMovement: true
@@ -16,9 +14,6 @@
     mindRoles:
     - MindRoleGhostRoleFamiliar
   - type: GhostTakeoverAvailable
-  - type: Dispellable
-  - type: Psionic
-    removable: false
   - type: Grammar
     attributes:
       gender: female
@@ -31,7 +26,7 @@
     tags:
     - Chapel
   - type: MindContainer
-    showExamineInfo: true
+  - type: MindExaminable
   - type: NpcFactionMember
     factions:
     - PetsNT
@@ -92,11 +87,8 @@
     tags:
     - Chapel
   - type: MindContainer
-    showExamineInfo: true
+  - type: MindExaminable
   - type: Familiar
-  - type: Dispellable
-  - type: Psionic
-    removable: false
   - type: Vocal
     sounds:
       Male: Cerberus

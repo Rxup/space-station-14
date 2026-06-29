@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using JetBrains.Annotations;

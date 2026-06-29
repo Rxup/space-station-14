@@ -1,5 +1,4 @@
 using Content.Shared.Atmos.Components;
-using Content.Shared.Body;
 using Content.Shared.Clothing;
 
 namespace Content.Shared.Atmos.EntitySystems;

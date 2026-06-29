@@ -1,6 +1,5 @@
 using Content.Shared.NPC;
 using Robust.Shared.Collections;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Procedural;
 

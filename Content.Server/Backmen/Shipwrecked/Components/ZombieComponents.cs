@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Backmen.Shipwrecked.Components;
+namespace Content.Server.Backmen.Shipwrecked.Components;
 
 [RegisterComponent]
 [Access(typeof(NPCZombieSystem))]

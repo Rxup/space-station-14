@@ -1,5 +1,5 @@
 ent-CrateServiceJanitorialSupplies = ящик с уборочным инвентарём
-    .desc = Победите копоть и грязь с Незаменимыми Припасами для Уборки от Nanotrasen! Содержит три ведра, таблички мокрого пола, и очищающие гранаты. Также содержит одну швабру, тряпку, щётку, чистящий спрей, и мусорный пакет.
+    .desc = Победите копоть и грязь с Незаменимыми Припасами для Уборки от Nanotrasen! Содержит три ведра, таблички мокрого пола и очищающие гранаты. Также содержит одну швабру, тряпку, щётку, чистящий спрей, проволочную щётку и мусорный пакет.
 ent-CrateServiceCleanerGrenades = bulk cleanades crate
     .desc = Contains two boxes of cleaner grenades, for those deeply-entrenched stains.
 ent-CrateServiceReplacementLights = ящик запасных лампочек

@@ -7,7 +7,6 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Ninja.Components;
 using Content.Shared.Popups;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.Ninja.Systems;
 

@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Backmen.Economy.Wage;
 using Content.Server.Backmen.RoleWhitelist;
@@ -158,8 +158,8 @@ public sealed partial class WageConsoleSystem : SharedWageConsoleSystem
             return;
         }
 
-        if(!TryComp<MetaDataComponent>(wagePayout.FromAccountNumber, out var mdFrom) ||
-           !TryComp<MetaDataComponent>(wagePayout.ToAccountNumber, out var mdTp))
+        if(!TryComp(wagePayout.FromAccountNumber, out MetaDataComponent? mdFrom) ||
+           !TryComp(wagePayout.ToAccountNumber, out MetaDataComponent? mdTp))
             return;
 
         _ui.SetUiState(ent.Owner, WageUiKey.Key, new OpenEditWageConsoleUi
@@ -189,8 +189,8 @@ public sealed partial class WageConsoleSystem : SharedWageConsoleSystem
 
         foreach (var wagePayout in _wageManager.PayoutsList)
         {
-            if(!TryComp<MetaDataComponent>(wagePayout.FromAccountNumber, out var mdFrom) ||
-               !TryComp<MetaDataComponent>(wagePayout.ToAccountNumber, out var mdTp))
+            if(!TryComp(wagePayout.FromAccountNumber, out MetaDataComponent? mdFrom) ||
+               !TryComp(wagePayout.ToAccountNumber, out MetaDataComponent? mdTp))
                 continue;
             msg.Records.Add(new UpdateWageRow
             {

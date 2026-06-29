@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.Disease.Components;
+using Content.Server.Backmen.Disease.Components;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Backmen.Disease.Effects;
 using Content.Shared.Interaction;

@@ -1,4 +1,4 @@
-﻿using System.Collections.Immutable;
+using System.Collections.Immutable;
 using Content.Corvax.Interfaces.Server;
 using Content.Server.GameTicking.Events;
 using Content.Server.Station.Events;

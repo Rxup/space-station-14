@@ -28,6 +28,4 @@
     # mm yummy
     maxReagents: 3
     metabolizerTypes: [Human]
-    groups:
-    - id: Food
-    - id: Drink
+    stages: [ Digestion ]

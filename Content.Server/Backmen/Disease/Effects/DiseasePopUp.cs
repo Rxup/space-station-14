@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
 using JetBrains.Annotations;

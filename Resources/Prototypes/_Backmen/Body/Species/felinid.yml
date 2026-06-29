@@ -116,7 +116,6 @@
         layer:
         - MobLayer
   - type: Damageable
-    damageContainer: Biological
   - type: MeleeWeapon
     hidden: true
     soundHit:

@@ -1,19 +1,15 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.DeviceLinking.Systems;
-using Content.Server.DeviceNetwork.Components;
-using Content.Server.DeviceNetwork.Systems;
 using Content.Shared.Backmen.Teams;
 using Content.Shared.Backmen.Teams.CapturePoint;
 using Content.Shared.Backmen.Teams.CapturePoint.Components;
 using Content.Shared.Backmen.Teams.Components;
-using Content.Shared.DeviceNetwork;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Teams.CapturePoint;

@@ -1,4 +1,4 @@
-﻿using Content.Shared.Construction.Prototypes;
+using Content.Shared.Construction.Prototypes;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Server.Construction;

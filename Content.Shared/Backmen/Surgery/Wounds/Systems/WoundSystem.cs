@@ -1,15 +1,15 @@
 using System.Linq;
+using Content.Shared.Backmen.Damage;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
-using Content.Shared.Body.Part;
-using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -19,7 +19,6 @@ using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
-using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -39,6 +38,7 @@ public abstract partial class WoundSystem : EntitySystem
     [Dependency] private IComponentFactory _factory = default!;
 
     [Dependency] protected BkmBodySharedSystem Body = default!;
+    [Dependency] protected BackmenDamageModelExclusivitySystem BackmenDamageExclusivity = default!;
     [Dependency] protected SharedTargetingSystem Targeting = default!;
     [Dependency] protected SharedHandsSystem Hands = default!;
 
@@ -51,6 +51,7 @@ public abstract partial class WoundSystem : EntitySystem
     [Dependency] protected InventorySystem Inventory = default!;
     [Dependency] protected TraumaSystem Trauma = default!;
     [Dependency] protected MobStateSystem MobState = default!;
+    [Dependency] protected DamageableSystem Damageable = default!;
 
     [Dependency] private SharedPopupSystem _popup = default!;
 

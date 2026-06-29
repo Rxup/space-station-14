@@ -1,0 +1,13 @@
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: GlimmerWispFamiliarSpawner
+  name: glimmer wisp familiar spawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Backmen/Icons/psi.rsi
+    state: psi
+  - type: SpawnCompanionOnMapInit
+    companion: MobGlimmerWispFamiliar
+  - type: Item
+    size: Tiny

@@ -15,62 +15,32 @@
   standsout: true
   physicalDesc: reagent-physical-desc-ferrous
   metabolisms:
-    Drink:
+    Digestion:
+      metabolites:
+        UncookedAnimalProteins: 0.2
       effects:
       - !type:SatiateThirst
         factor: 1.0
         conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Human ]
-          inverted: true
-      - !type:AdjustReagent # backmen
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Bloodsucker ]
-        reagent: Omnizine
-        amount: 0.1
-      - !type:AdjustReagent # backmen: oneirophage spiders metabolize blood into more omnizine
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Bloodsucker ]
-        - !type:TagCondition
-          tag: Oneirophage
-        reagent: Omnizine
-        amount: 0.4
-      - !type:SatiateThirst # backmen
-        factor: 1.5
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Bloodsucker ]
-      - !type:SatiateHunger # backmen
-        factor: 0.5
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Bloodsucker ]
-    Food:
-      effects:
-      - !type:AdjustReagent
-        reagent: UncookedAnimalProteins
-        amount: 0.1
-    Medicine:
-      effects:
-      - !type:SuppressPain # backmen
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Bloodsucker ]
-        amount: 10
-        time: 15
-      - !type:HealthChange
+          - !type:MetabolizerTypeCondition
+            type: [ Human ]
+            inverted: true
+      - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Bloodsucker ]
         damage:
-          groups:
-            Brute: -3
-            Burn: -1.25
+          Brute: -3
+          Burn: -1.25
+    Bloodstream: # Don't inject someone else's blood into yourself! Your own blood won't actually metabolise.
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 4
   plantMetabolism:
-  - !type:PlantAdjustWater
-    amount: 0.5
+    - !type:PlantAdjustWater
+      amount: 0.5
   footstepSound:
     collection: FootstepBlood
     params:
@@ -99,9 +69,9 @@
   physicalDesc: reagent-physical-desc-viscous
   viscosity: 0.25
   tileReactions:
-  - !type:SpillTileReaction
+    - !type:SpillTileReaction
   metabolisms:
-    Food:
+    Digestion:
       # Delicious!
       effects:
       - !type:SatiateHunger
@@ -131,9 +101,9 @@
   physicalDesc: reagent-physical-desc-sticky
   viscosity: 0.10
   tileReactions:
-  - !type:SpillTileReaction
+    - !type:SpillTileReaction
   metabolisms:
-    Food:
+    Digestion:
       # Sweet!
       effects:
       - !type:SatiateHunger
@@ -168,6 +138,17 @@
   physicalDesc: reagent-physical-desc-pungent
 
 - type: reagent
+  parent: Blood
+  id: SulfurBlood
+  name: reagent-name-sulfur-blood
+  group: Biological
+  desc: reagent-desc-sulfur-blood
+  flavor: bitter
+  color: "#ccac1f"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-strong-smelling
+
+- type: reagent
   id: ZombieBlood
   name: reagent-name-zombie-blood
   group: Biological
@@ -176,17 +157,17 @@
   flavor: bitter
   color: "#2b0700"
   metabolisms:
-    Drink:
+    Digestion:
       # Disgusting!
       effects:
       - !type:SatiateThirst
         factor: -0.5
-    Poison:
+    Bloodstream:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Poison: 4
+            Bloodloss: -3
       - !type:Vomit
         probability: 0.25
 
@@ -200,11 +181,11 @@
   color: "#f4692e"
   recognizable: true
   metabolisms:
-    Drink:
+    Bloodstream:
       effects:
       - !type:SatiateThirst
         factor: 1.5
-      # Dragon doesn't require airloss healing, so omnizine is still best for humans.
+    # Dragon doesn't require airloss healing, so omnizine is still best for humans.
       - !type:ModifyBloodLevel
         amount: 3
       - !type:EvenHealthChange
@@ -212,6 +193,10 @@
           Burn: -3
           Brute: -3
           Toxin: -2
+      - !type:HealthChange
+        damage:
+          types:
+            Cellular: 2
       - !type:HealthChange
         damage:
           types:
@@ -252,13 +237,12 @@
     requiredSlipSpeed: 4.0 #It's not as slippery as water
   friction: 0.4
   metabolisms:
-    Drink:
+    Digestion:
+      metabolites:
+        Nutriment: 0.1
       effects:
       - !type:SatiateThirst
         factor: 0.5
-      - !type:AdjustReagent
-        reagent: Nutriment
-        amount: 0.1
   footstepSound:
     collection: FootstepBlood
     params:
@@ -273,12 +257,10 @@
   flavor: mindful
   color: "#C584B8"
   metabolisms:
-    Drink:
+    Digestion:
       effects:
       - !type:SatiateHunger
         factor: 1.5
-    Poison:
-      effects:
       - !type:HealthChange
         damage:
           types:

@@ -1,6 +1,5 @@
 using Content.Server.Popups;
 using Content.Server.Cargo.Systems;
-using Content.Server.Cargo.Components;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Systems;
@@ -49,6 +48,8 @@ public sealed partial class ShipyardConsoleSystem : SharedShipyardSystem
     {
         //_shipyard.Shutdown(); //round cleanup event in case of needing OnInit;
     }
+
+    private static readonly ProtoId<RadioChannelPrototype> Command = "Command";
 
     private void OnPurchaseMessage(EntityUid uid, ShipyardConsoleComponent component, ShipyardConsolePurchaseMessage args)
     {
@@ -109,7 +110,7 @@ public sealed partial class ShipyardConsoleSystem : SharedShipyardSystem
         }
 
         _cargo.DeductFunds(bank, vessel.Price);
-        var channel = _prototypeManager.Index<RadioChannelPrototype>("Command");
+        var channel = _prototypeManager.Index<RadioChannelPrototype>(Command);
         _radio.SendRadioMessage(uid, Loc.GetString("shipyard-console-docking", ("vessel", vessel.Name.ToString())), channel, uid);
         PlayConfirmSound(uid, component);
 

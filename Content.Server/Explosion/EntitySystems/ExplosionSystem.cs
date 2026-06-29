@@ -7,8 +7,6 @@ using Content.Server.Backmen.Surgery; // backmen: surgery
 using Content.Server.Destructible;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NPC.Pathfinding;
-using Content.Shared.Armor;
-using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
@@ -122,7 +120,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         _bodyQuery = GetEntityQuery<BodyComponent>(); // backmen edit
         _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>(); // backmen edit
         _tileHistoryQuery = GetEntityQuery<TileHistoryComponent>();
-
         _prototypeManager.PrototypesReloaded += ReloadExplosionPrototypes;
     }
 

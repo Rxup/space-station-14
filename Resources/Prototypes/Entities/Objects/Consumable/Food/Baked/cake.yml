@@ -11,9 +11,9 @@
       - sweet
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/cake.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 55 # flavored cakes have less room for spiking
         reagents:
         - ReagentId: Nutriment
@@ -49,9 +49,9 @@
     flavors:
       - sweet
   - type: Edible
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 12
         reagents:
         - ReagentId: Nutriment
@@ -134,9 +134,9 @@
     state: plain
   - type: SliceableFood
     slice: FoodCakePlainSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 55
         reagents:
         - ReagentId: Nutriment
@@ -155,9 +155,9 @@
   components:
   - type: Sprite
     state: plain-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
@@ -178,9 +178,9 @@
     state: carrot
   - type: SliceableFood
     slice: FoodCakeCarrotSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: JuiceCarrot
@@ -214,9 +214,9 @@
   components:
   - type: Sprite
     state: carrot-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 6
         reagents:
         - ReagentId: JuiceCarrot
@@ -519,9 +519,9 @@
       - berry
   - type: SliceableFood
     slice: FoodCakeLemoonSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 70
         reagents:
         - ReagentId: Nutriment
@@ -549,9 +549,9 @@
     flavors:
       - lemoon
       - berry
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -590,9 +590,9 @@
       color: "#ba672e"
   - type: SliceableFood
     slice: FoodCakeChocolateSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 55
         reagents:
         - ReagentId: Nutriment
@@ -619,9 +619,9 @@
     layers:
     - state: alpha-slice
       color: "#ba672e"
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -761,9 +761,9 @@
     state: pumpkinspice
   - type: SliceableFood
     slice: FoodCakePumpkinSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 60
         reagents:
         - ReagentId: Nutriment
@@ -793,9 +793,9 @@
   components:
   - type: Sprite
     state: pumpkinspice-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -899,9 +899,9 @@
     state: vanilla
   - type: SliceableFood
     slice: FoodCakeVanillaSlice
-  - type: SolutionContainerManager #TODO Sprinkles
-    solutions:
-      food:
+  - type: Solution #TODO Sprinkles
+    id: food
+    solution:
         maxVol: 55
         reagents:
         - ReagentId: Nutriment
@@ -921,9 +921,9 @@
   components:
   - type: Sprite
     state: vanilla-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -952,9 +952,9 @@
     state: clown
   - type: SliceableFood
     slice: FoodCakeClownSlice
-  - type: SolutionContainerManager #TODO Sprinkles
-    solutions:
-      food:
+  - type: Solution #TODO Sprinkles
+    id: food
+    solution:
         maxVol: 55
         reagents:
         - ReagentId: Nutriment
@@ -974,9 +974,9 @@
   components:
   - type: Sprite
     state: clown-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -999,9 +999,9 @@
     state: trumpet
   - type: SliceableFood
     slice: FoodCakeSpacemanSlice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 55
         reagents:
         - ReagentId: Nutriment
@@ -1021,9 +1021,9 @@
   components:
   - type: Sprite
     state: trumpet-slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -1049,9 +1049,9 @@
     solution: food
   - type: RefillableSolution
     solution: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
@@ -1121,8 +1121,11 @@
       path: /Audio/Animals/cat_hiss.ogg
     hidden: true
     damage:
-      groups:
-        Brute: 1
+      types:
+        Blunt: 0.25
+        Slash: 0.25
+        Piercing: 0.25
+        ArmorPiercing: 0.25
   - type: LanguageSpeaker
     currentLanguage: Cat
   - type: LanguageKnowledge #backmen: languages
@@ -1146,9 +1149,9 @@
   - type: SliceableFood
     slice: FoodCakeSuppermatterSlice
     count: 8
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 125 # SUPER dense cake
         reagents:
         - ReagentId: Nutriment
@@ -1173,9 +1176,9 @@
   components:
   - type: Sprite
     state: suppermatter-shard
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -1212,9 +1215,9 @@
     tags:
     - Cake
     - ClothMade
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 55
         reagents:
         - ReagentId: Nutriment
@@ -1239,9 +1242,9 @@
     - Cake
     - ClothMade
     - Slice
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -1268,9 +1271,9 @@
       - sweet
       - berry
       - motivating
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 55
         reagents:
         - ReagentId: Nutriment
@@ -1309,9 +1312,9 @@
       - sweet
       - berry
       - motivating
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 12
         reagents:
         - ReagentId: Nutriment

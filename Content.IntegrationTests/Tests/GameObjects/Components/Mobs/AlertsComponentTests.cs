@@ -1,8 +1,7 @@
 using System.Linq;
 using Content.Client.UserInterface.Systems.Alerts.Controls;
 using Content.Client.UserInterface.Systems.Alerts.Widgets;
-using Content.Server.Administration.Systems;
-using Content.Server.Atmos.Components;
+using Content.IntegrationTests.Fixtures;
 using Content.Shared.Alert;
 using Content.Shared.Backmen.CCVar;
 using Robust.Client.UserInterface;
@@ -13,16 +12,18 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components.Mobs
 {
     [TestFixture]
     [TestOf(typeof(AlertsComponent))]
-    public sealed class AlertsComponentTests
+    public sealed class AlertsComponentTests : GameTest
     {
+        public override PoolSettings PoolSettings => new()
+        {
+            Connected = true,
+            DummyTicker = false
+        };
+
         [Test]
         public async Task AlertsTest()
         {
-            await using var pair = await PoolManager.GetServerClient(new PoolSettings
-            {
-                Connected = true,
-                DummyTicker = false
-            });
+            var pair = Pair;
             var server = pair.Server;
             var client = pair.Client;
 
@@ -110,8 +111,6 @@ namespace Content.IntegrationTests.Tests.GameObjects.Components.Mobs
                 var expectedIDs = new[] { "HumanHealth", "Debug2" };
                 Assert.That(alertIDs, Is.SupersetOf(expectedIDs));
             });
-
-            await pair.CleanReturnAsync();
         }
     }
 }

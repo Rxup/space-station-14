@@ -14,6 +14,8 @@ namespace Content.Server.Backmen.Species.Shadowkin.Systems;
 
 public sealed partial class ShadowkinBlackeyeSystem : EntitySystem
 {
+    private static readonly ProtoId<DamageTypePrototype> CellularDamage = "Cellular";
+
     [Dependency] private ShadowkinPowerSystem _power = default!;
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private DamageableSystem _damageable = default!;
@@ -83,11 +85,11 @@ public sealed partial class ShadowkinBlackeyeSystem : EntitySystem
             !_mobThreshold.TryGetThresholdForState(ent, MobState.Critical, out var key))
             return;
 
-        var minus = damageable.TotalDamage;
+        var minus = _damageable.GetTotalDamage((ent, damageable));
 
         _damageable.ChangeDamage(
             ent,
-            new DamageSpecifier(_prototype.Index<DamageTypePrototype>("Cellular"),
+            new DamageSpecifier(_prototype.Index(CellularDamage),
                 Math.Max((double) (key.Value - minus - 5), 0)),
             true,
             true

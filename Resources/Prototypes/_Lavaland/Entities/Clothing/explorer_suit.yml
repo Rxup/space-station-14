@@ -416,7 +416,6 @@
   - type: ClothingGrant
     component:
     - type: SolutionRegeneration
-      solution: chemicals
       generated:
         reagents:
         - ReagentId: TranexamicAcidPlus

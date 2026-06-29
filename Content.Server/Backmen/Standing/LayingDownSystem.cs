@@ -1,7 +1,6 @@
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Standing;
 using Content.Shared.Rotation;
-using Content.Shared.Standing;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 

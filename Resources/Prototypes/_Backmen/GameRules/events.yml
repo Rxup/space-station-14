@@ -8,6 +8,49 @@
     children:
     - id: BluespaceGoat
 
+# Mild backmen events for calm schedulers (no station-wide destruction or heavy antags)
+- type: entityTable
+  id: CalmBackmenEventsTable
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: AnomalousEventsTableBackmen
+    - id: FugitiveSpawn
+
+# Full backmen event pool for StandardStationEventScheduler
+- type: entityTable
+  id: StandardBackmenEventsTable
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: AnomalousEventsTableBackmen
+    - !type:NestedSelector
+      tableId: StationDestructiveEventsBackmen
+    - !type:NestedSelector
+      tableId: BasicVentSpawnEventsBackmen
+    - !type:NestedSelector
+      tableId: BasicAntagEventsTableBackmen
+    - !type:NestedSelector
+      tableId: SpicyAntagEventsTableBackmen
+
+- type: entityTable
+  id: StandardGameRulesTableBackmen
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: BasicGameRulesTable
+    - !type:NestedSelector
+      tableId: StandardBackmenEventsTable
+
+- type: entityTable
+  id: CalmGameRulesTableBackmen
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: DynamicGameRulesTable
+    - !type:NestedSelector
+      tableId: CalmBackmenEventsTable
+
 # Events that can cause inner station destruction
 - type: entityTable
   id: StationDestructiveEventsBackmen
@@ -29,6 +72,7 @@
     - id: FugitiveSpawn
     - id: BlobSpawn
     - id: VampireOutbreak
+    - id: InteQAgentInvasion
 
 - type: entityTable
   id: SpicyAntagEventsTableBackmen

@@ -8,15 +8,12 @@ using Content.Server.Speech.EntitySystems;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Armor;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
-using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Body.Systems;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Chat;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -24,6 +21,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Revolutionary;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Weapons.Melee.Events;
@@ -39,7 +37,7 @@ namespace Content.Server.Zombies
         [Dependency] private IGameTiming _timing = default!;
         [Dependency] private IPrototypeManager _protoManager = default!;
         [Dependency] private IRobustRandom _random = default!;
-        [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
+        [Dependency] private BloodstreamSystem _bloodstream = default!;
         [Dependency] private DamageableSystem _damageable = default!;
         [Dependency] private ChatSystem _chat = default!;
         [Dependency] private ActionsSystem _actions = default!;
@@ -78,6 +76,7 @@ namespace Content.Server.Zombies
             SubscribeLocalEvent<ZombieComponent, GetCharacterUnrevivableIcEvent>(OnGetCharacterUnrevivableIC);
             SubscribeLocalEvent<ZombieComponent, MindAddedMessage>(OnMindAdded);
             SubscribeLocalEvent<ZombieComponent, MindRemovedMessage>(OnMindRemoved);
+            SubscribeLocalEvent<ZombieComponent, AttemptConvertRevolutionaryEvent>(OnAttemptConvert);
 
             SubscribeLocalEvent<PendingZombieComponent, MapInitEvent>(OnPendingMapInit);
             SubscribeLocalEvent<PendingZombieComponent, BeforeRemoveAnomalyOnDeathEvent>(OnBeforeRemoveAnomalyOnDeath);
@@ -271,7 +270,7 @@ namespace Content.Server.Zombies
                     _damageable.TryChangeDamage(args.User, entity.Comp.HealingOnBite, true, false);
 
                     // If we cannot infect the living target, the zed will just heal itself.
-                    if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread || _random.Prob(GetZombieInfectionChance(uid, entity.Comp)))
+                    if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread || !_random.Prob(GetZombieInfectionChance(uid, entity.Comp)))
                         continue;
 
                     EnsureComp<PendingZombieComponent>(uid);
@@ -338,6 +337,11 @@ namespace Content.Server.Zombies
         private void OnMindRemoved(Entity<ZombieComponent> ent, ref MindRemovedMessage args)
         {
             _role.MindRemoveRole<ZombieRoleComponent>((args.Mind.Owner,  args.Mind.Comp));
+        }
+
+        private void OnAttemptConvert(Entity<ZombieComponent> ent, ref AttemptConvertRevolutionaryEvent args)
+        {
+            args.Cancelled = true;
         }
     }
 }

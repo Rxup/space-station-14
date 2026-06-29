@@ -1,6 +1,6 @@
 hud-chatbox-info = { $talk-key } чтобы говорить, { $cycle-key } для переключения каналов.
 hud-chatbox-info-talk = { $talk-key } чтобы говорить.
-hud-chatbox-info-cycle = Нажмите здесь чтобы говорить, { $cycle-key } для переключения каналов.
+hud-chatbox-info-cycle = Нажмите здесь чтобы говорить, {$cycle-key} для переключения каналов.
 hud-chatbox-info-unbound = Нажмите здесь чтобы говорить.
 hud-chatbox-select-name-prefixed = { $prefix } { $name }
 hud-chatbox-select-channel-Admin = Админ
@@ -33,11 +33,11 @@ hud-chatbox-channel-Damage = Повреждения
 hud-chatbox-channel-Unspecified = Неопределённый
 hud-chatbox-highlights = Выделения:
 hud-chatbox-highlights-button = Отправить
-hud-chatbox-highlights-tooltip =
+hud-chatbox-highlights-tooltip = Каждое слово должно начинаться с новой строки.
     Слова необходимо разделять переводом строки,
     если они обернуты в "", они будут выделены
     только при разделении пробелами или пунктуацией.
-hud-chatbox-highlights-placeholder =
-    McHands
-    "Judge"
-    Медицинский
+hud-chatbox-highlights-placeholder = @МакХэндс
+    @МакХэндс
+    "Судья"
+    Медблок

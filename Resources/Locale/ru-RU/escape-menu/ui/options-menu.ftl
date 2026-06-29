@@ -89,13 +89,13 @@ ui-options-filter-label = Фильтр масштабирования:
 ui-options-filter-nearest = Ближайший (без сглаживания)
 ui-options-filter-bilinear = Билинейный (сглаженный)
 ui-options-vp-integer-scaling = Использовать целочисленное масштабирование (может вызывать появление чёрных полос/обрезания)
-ui-options-vp-integer-scaling-tooltip =
+ui-options-vp-integer-scaling-tooltip = Если эта опция включена, область просмотра будет масштабироваться,
     Если эта опция включена, область просмотра будет масштабироваться,
     используя целочисленное значение при определённых разрешениях. Хотя это и
     приводит к чётким текстурам, это часто означает, что сверху/снизу экрана будут
     чёрные полосы или что часть окна не будет видна.
 ui-options-vp-vertical-fit = Подгон окна просмотра по вертикали
-ui-options-vp-vertical-fit-tooltip =
+ui-options-vp-vertical-fit-tooltip = Когда функция включена, основное окно просмотра не будет учитывать горизонтальную ось
     Когда функция включена, основное окно просмотра не будет учитывать горизонтальную ось
     при подгонке под ваш экран. Если ваш экран меньше, чем окно просмотра,
     то это приведёт к его обрезанию по горизонтальной оси.
@@ -104,6 +104,8 @@ ui-options-vp-low-res = Изображение низкого разрешени
 ui-options-parallax-low-quality = Низкокачественный параллакс (фон)
 ui-options-fps-counter = Показать счётчик FPS
 ui-options-vp-width = Ширина окна игры:
+ui-options-hold-to-attack-melee = Удерживать чтобы атаковать (ближний бой)
+ui-options-hold-to-attack-ranged = Удерживать чтобы атаковать (дальний бой)
 ui-options-hud-layout = Тип HUD:
 
 ## Controls menu
@@ -222,11 +224,11 @@ ui-options-function-editor-rotate-object = Повернуть
 ui-options-function-editor-flip-object = Перевернуть
 ui-options-function-editor-copy-object = Копировать
 ui-options-function-show-debug-console = Открыть консоль
-ui-options-function-inspect-entity-tooltip = Открыть окно ViewVariables для сущности, над которой находится курсор мыши.
+ui-options-function-inspect-entity-tooltip = Открыть меню ViewVariables сущности, над которой находится курсор.
 ui-options-function-inspect-server-component = Изучить серверный компонент
-ui-options-function-inspect-server-component-tooltip = Открыть окно ViewVariables с серверным компонентом, установленным командой "quickinspect", для сущности, над которой находится курсор мыши.
+ui-options-function-inspect-server-component-tooltip = Открыть меню ViewVariables для сущности под курсором, используя серверный компонент, заданный командой "quickinspect".
 ui-options-function-inspect-client-component = Изучить клиентский компонент
-ui-options-function-inspect-client-component-tooltip = Открыть окно ViewVariables с клиентским компонентом, установленным командой "quickinspect", для сущности, над которой находится курсор мыши.
+ui-options-function-inspect-client-component-tooltip = Открыть меню ViewVariables для сущности под курсором, используя клиентский компонент, заданный командой "quickinspect".
 ui-options-function-show-debug-monitors = Показать дебаг информацию
 ui-options-function-inspect-entity = Изучить сущность
 ui-options-function-hide-ui = Спрятать интерфейс
@@ -238,16 +240,16 @@ ui-options-function-hotbar5 = 5 слот хотбара
 ui-options-function-hotbar6 = 6 слот хотбара
 ui-options-function-hotbar7 = 7 слот хотбара
 ui-options-function-hotbar8 = 8 слот хотбара
-ui-options-function-hotbar-shift1 = Горячая клавиша Shift+1
-ui-options-function-hotbar-shift2 = Горячая клавиша Shift+2
-ui-options-function-hotbar-shift3 = Горячая клавиша Shift+3
-ui-options-function-hotbar-shift4 = Горячая клавиша Shift+4
-ui-options-function-hotbar-shift5 = Горячая клавиша Shift+5
-ui-options-function-hotbar-shift6 = Горячая клавиша Shift+6
-ui-options-function-hotbar-shift7 = Горячая клавиша Shift+7
-ui-options-function-hotbar-shift8 = Горячая клавиша Shift+8
-ui-options-function-hotbar-shift9 = Горячая клавиша Shift+9
-ui-options-function-hotbar-shift0 = Горячая клавиша Shift+0
+ui-options-function-hotbar-shift1 = Слот хотбара Shift+1
+ui-options-function-hotbar-shift2 = Слот хотбара Shift+2
+ui-options-function-hotbar-shift3 = Слот хотбара Shift+3
+ui-options-function-hotbar-shift4 = Слот хотбара Shift+4
+ui-options-function-hotbar-shift5 = Слот хотбара Shift+5
+ui-options-function-hotbar-shift6 = Слот хотбара Shift+6
+ui-options-function-hotbar-shift7 = Слот хотбара Shift+7
+ui-options-function-hotbar-shift8 = Слот хотбара Shift+8
+ui-options-function-hotbar-shift9 = Слот хотбара Shift+9
+ui-options-function-hotbar-shift0 = Слот хотбара Shift+0
 ui-options-function-hotbar9 = 9 слот хотбара
 ui-options-function-hotbar0 = 0 слот хотбара
 ui-options-function-hotbarshift1 = Shift+1 слот хотбара
@@ -270,16 +272,16 @@ ui-options-function-loadout7 = 7 страница хотбара
 ui-options-function-loadout8 = 8 страница хотбара
 ui-options-function-loadout9 = 9 страница хотбара
 ui-options-function-loadout0 = 0 страница хотбара
-ui-options-function-loadoutshift1 = Shift+1 страница хотбара
-ui-options-function-loadoutshift2 = Shift+2 страница хотбара
-ui-options-function-loadoutshift3 = Shift+3 страница хотбара
-ui-options-function-loadoutshift4 = Shift+4 страница хотбара
-ui-options-function-loadoutshift5 = Shift+5 страница хотбара
-ui-options-function-loadoutshift6 = Shift+6 страница хотбара
-ui-options-function-loadoutshift7 = Shift+7 страница хотбара
-ui-options-function-loadoutshift8 = Shift+8 страница хотбара
-ui-options-function-loadoutshift9 = Shift+9 страница хотбара
-ui-options-function-loadoutshift0 = Shift+0 страница хотбара
+ui-options-function-loadoutshift1 = Страница хотбара Shift+1
+ui-options-function-loadoutshift2 = Страница хотбара Shift+2
+ui-options-function-loadoutshift3 = Страница хотбара Shift+3
+ui-options-function-loadoutshift4 = Страница хотбара Shift+4
+ui-options-function-loadoutshift5 = Страница хотбара Shift+5
+ui-options-function-loadoutshift6 = Страница хотбара Shift+6
+ui-options-function-loadoutshift7 = Страница хотбара Shift+7
+ui-options-function-loadoutshift8 = Страница хотбара Shift+8
+ui-options-function-loadoutshift9 = Страница хотбара Shift+9
+ui-options-function-loadoutshift0 = Страница хотбара Shift+0
 ui-options-function-shuttle-strafe-up = Стрейф вверх
 ui-options-function-shuttle-strafe-right = Стрейф вправо
 ui-options-function-shuttle-strafe-left = Стрейф влево
@@ -324,29 +326,30 @@ ui-options-function-text-complete-next = Продолжить следующее
 ui-options-function-text-complete-prev = Продолжить прошлое
 ui-options-net-interp-ratio = Сетевое сглаживание
 ui-options-net-predict = Предугадывание на стороне клиента
-ui-options-net-interp-ratio-tooltip =
+ui-options-net-interp-ratio-tooltip = Увеличение этого параметра, как правило, делает игру
     Увеличение этого параметра, как правило, делает игру
     более устойчивой к потере пакетов, однако при этом
     это так же добавляет немного больше задержки и
     требует от клиента предсказывать больше будущих тиков.
 ui-options-net-predict-tick-bias = Погрешность тиков предугадывания
-ui-options-net-predict-tick-bias-tooltip =
+ui-options-net-predict-tick-bias-tooltip = Увеличение этого параметра, как правило, делает игру более устойчивой
     Увеличение этого параметра, как правило, делает игру более устойчивой
     к потере пакетов между клиентом и сервером, однако при этом
     немного возрастает задержка, и клиенту требуется предугадывать
     больше будущих тиков
 ui-options-net-pvs-spawn = Лимит появление PVS сущностей
-ui-options-net-pvs-spawn-tooltip =
+ui-options-net-pvs-spawn-tooltip = Ограничение частоты отправки новых появившихся сущностей сервером на клиент.
     Ограничение частоты отправки новых появившихся сущностей сервером на клиент.
     Снижение этого параметра может помочь уменьшить "захлёбывания",
     вызываемые спавном сущностей, но может привести к их резкому появлению.
 ui-options-net-pvs-entry = Лимит PVS сущностей
-ui-options-net-pvs-entry-tooltip =
+ui-options-net-pvs-entry-tooltip = Ограничение частоты отправки новых видимых сущностей сервером на клиент.
     Ограничение частоты отправки новых видимых сущностей сервером на клиент.
     Снижение этого параметра может помочь уменьшить "захлёбывания",
     вызываемые спавном сущностей, но может привести к их резкому появлению.
+ui-options-disable-ai-static = Отключить статический эффект помех на ИИ.
 ui-options-net-pvs-leave = Частота удаления PVS
-ui-options-net-pvs-leave-tooltip =
+ui-options-net-pvs-leave-tooltip = Ограничение частоты, с которой клиент будет удалять
     Ограничение частоты, с которой клиент будет удалять
     сущности вне поля зрения. Снижение этого параметра может помочь
     уменьшить "захлёбывания" при ходьбе, но иногда может
@@ -385,6 +388,8 @@ ui-options-admin-player-tab-color-setting-roletype = Окрашивать рол
 ui-options-admin-player-tab-color-setting-both = Окрашивать оба
 ui-options-admin-overlay-title = Админ оверлей
 ui-options-admin-overlay-antag-format = Стиль иконки антагониста
+ui-options-admin-strip-overlay-title = Оверлей обыска
+ui-options-admin-strip-overlay-setting = Показывать админ-вид обыска по умолчанию
 ui-options-admin-overlay-antag-format-binary = Показывать статус антагониста
 ui-options-admin-overlay-antag-format-roletype = Показать тип роли
 ui-options-admin-overlay-antag-format-subtype = Показать субтип роли

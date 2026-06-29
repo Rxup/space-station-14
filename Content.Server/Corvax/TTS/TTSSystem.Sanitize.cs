@@ -1,6 +1,5 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
-using Content.Server.Chat.Systems;
 using Content.Shared.Chat;
 
 namespace Content.Server.Corvax.TTS;
@@ -8,6 +7,21 @@ namespace Content.Server.Corvax.TTS;
 // ReSharper disable once InconsistentNaming
 public sealed partial class TTSSystem
 {
+    [GeneratedRegex(@"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ]")]
+    private static partial Regex SanitizeInvalidCharsRegex();
+
+    [GeneratedRegex(@"[a-zA-Z]", RegexOptions.Multiline | RegexOptions.IgnoreCase)]
+    private static partial Regex LatToCyrRegex();
+
+    [GeneratedRegex(@"(?<![a-zA-Zа-яёА-ЯЁ])[a-zA-Zа-яёА-ЯЁ]+?(?![a-zA-Zа-яёА-ЯЁ])", RegexOptions.Multiline | RegexOptions.IgnoreCase)]
+    private static partial Regex MatchedWordRegex();
+
+    [GeneratedRegex(@"(?<=[1-90])(\.|,)(?=[1-90])")]
+    private static partial Regex DecimalSeparatorRegex();
+
+    [GeneratedRegex(@"\d+")]
+    private static partial Regex DigitsRegex();
+
     private void OnTransformSpeech(TransformSpeechEvent args)
     {
         if (!_isEnabled) return;
@@ -17,11 +31,11 @@ public sealed partial class TTSSystem
     private string Sanitize(string text)
     {
         text = text.Trim();
-        text = Regex.Replace(text, @"[^a-zA-Zа-яА-ЯёЁ0-9,\-+?!. ]", "");
-        text = Regex.Replace(text, @"[a-zA-Z]", ReplaceLat2Cyr, RegexOptions.Multiline | RegexOptions.IgnoreCase);
-        text = Regex.Replace(text, @"(?<![a-zA-Zа-яёА-ЯЁ])[a-zA-Zа-яёА-ЯЁ]+?(?![a-zA-Zа-яёА-ЯЁ])", ReplaceMatchedWord, RegexOptions.Multiline | RegexOptions.IgnoreCase);
-        text = Regex.Replace(text, @"(?<=[1-90])(\.|,)(?=[1-90])", " целых ");
-        text = Regex.Replace(text, @"\d+", ReplaceWord2Num);
+        text = SanitizeInvalidCharsRegex().Replace(text, "");
+        text = LatToCyrRegex().Replace(text, ReplaceLat2Cyr);
+        text = MatchedWordRegex().Replace(text, ReplaceMatchedWord);
+        text = DecimalSeparatorRegex().Replace(text, " целых ");
+        text = DigitsRegex().Replace(text, ReplaceWord2Num);
         text = text.Trim();
         return text;
     }

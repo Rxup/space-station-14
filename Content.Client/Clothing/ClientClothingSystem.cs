@@ -35,7 +35,7 @@ public sealed partial class ClientClothingSystem : ClothingSystem
         {"ears", "EARS"},
         {"mask", "MASK"},
         {"outerClothing", "OUTERCLOTHING"},
-        {"jumpsuit", "INNERCLOTHING"},
+        {Jumpsuit, "INNERCLOTHING"},
         {"neck", "NECK"},
         {"back", "BACKPACK"},
         {"belt", "BELT"},
@@ -237,7 +237,7 @@ public sealed partial class ClientClothingSystem : ClothingSystem
     {
         base.OnGotEquipped(uid, component, args);
 
-        RenderEquipment(args.Equipee, uid, args.Slot, clothingComponent: component);
+        RenderEquipment(args.EquipTarget, uid, args.Slot, clothingComponent: component);
     }
 
     private void RenderEquipment(EntityUid equipee, EntityUid equipment, string slot,

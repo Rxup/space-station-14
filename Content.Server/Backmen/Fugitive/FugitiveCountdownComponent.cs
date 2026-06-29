@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Backmen.Fugitive;
+namespace Content.Server.Backmen.Fugitive;
 
 [AutoGenerateComponentPause]
 [RegisterComponent]

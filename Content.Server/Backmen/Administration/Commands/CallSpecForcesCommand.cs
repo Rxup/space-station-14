@@ -5,7 +5,6 @@ using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Content.Shared.Database;
 using Robust.Shared.Prototypes;
-using static System.Int32;
 
 namespace Content.Server.Backmen.Administration.Commands;
 

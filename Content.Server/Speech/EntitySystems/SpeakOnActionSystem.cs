@@ -5,7 +5,6 @@ using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Speech.Muting;
-using Content.Shared.Actions.Events;
 
 
 namespace Content.Server.Speech.EntitySystems;

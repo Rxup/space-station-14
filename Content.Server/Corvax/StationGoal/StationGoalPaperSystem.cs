@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Backmen.Arrivals;
 using Content.Server.Fax;
 using Content.Server.GameTicking.Events;

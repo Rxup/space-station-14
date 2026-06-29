@@ -1,6 +1,6 @@
 - type: guideEntry
   id: RulesBackmen
-  name: Правила сервера
+  name: backmen-rules-header-1
   priority: 0
   ruleEntry: true
   text: "/ServerInfo/_Backmen/Guidebook/ServerRules/RulesBackmen.xml"
@@ -17,63 +17,63 @@
 
 - type: guideEntry
   id: BackmenCat1
-  name: Напутствующие слова
+  name: backmen-rules-header-2
   priority: 1
   ruleEntry: true
   text: "/ServerInfo/_Backmen/Guidebook/ServerRules/Cat1.xml"
 
 - type: guideEntry
   id: BackmenCat2
-  name: Правила чата
+  name: backmen-rules-header-3
   priority: 2
   ruleEntry: true
   text: "/ServerInfo/_Backmen/Guidebook/ServerRules/Cat2.xml"
 
 - type: guideEntry
   id: BackmenCat3
-  name: Про игровой процесс
+  name: backmen-rules-header-4
   priority: 3
   ruleEntry: true
   text: "/ServerInfo/_Backmen/Guidebook/ServerRules/Cat3.xml"
 
 - type: guideEntry
   id: BackmenCat4
-  name: Про командный состав, отделы и роли с пометкой сложности \"выше среднего\"
+  name: backmen-rules-header-5
   priority: 4
   ruleEntry: true
   text: "/ServerInfo/_Backmen/Guidebook/ServerRules/Cat4.xml"
 
 - type: guideEntry
   id: BackmenCat5
-  name: Про департаменты и спецотряды, которые изначально не появляются на станции
+  name: backmen-rules-header-6
   priority: 5
   ruleEntry: true
   text: "/ServerInfo/_Backmen/Guidebook/ServerRules/Cat5.xml"
 
 - type: guideEntry
   id: BackmenCat6
-  name: Про синдикат
+  name: backmen-rules-header-7
   priority: 6
   ruleEntry: true
   text: "/ServerInfo/_Backmen/Guidebook/ServerRules/Cat6.xml"
 
 - type: guideEntry
   id: BackmenCat7
-  name: Про White-List роли
+  name: backmen-rules-header-8
   priority: 7
   ruleEntry: true
   text: "/ServerInfo/_Backmen/Guidebook/ServerRules/Cat7.xml"
 
 - type: guideEntry
   id: BackmenCat8
-  name: Про AHelp
+  name: backmen-rules-header-9
   priority: 8
   ruleEntry: true
   text: "/ServerInfo/_Backmen/Guidebook/ServerRules/Cat8.xml"
 
 - type: guideEntry
   id: BackmenCat9
-  name: Про администрацию
+  name: backmen-rules-header-10
   priority: 9
   ruleEntry: true
   text: "/ServerInfo/_Backmen/Guidebook/ServerRules/Cat9.xml"

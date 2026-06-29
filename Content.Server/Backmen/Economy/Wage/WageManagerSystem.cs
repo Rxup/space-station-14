@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Shared.Backmen.Economy;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;

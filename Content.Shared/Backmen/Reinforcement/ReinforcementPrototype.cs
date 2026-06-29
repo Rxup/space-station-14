@@ -3,7 +3,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Reinforcement;
 
-[Prototype("reinforcement")]
+[Prototype]
 public sealed partial class ReinforcementPrototype : IPrototype
 {
     [IdDataField]

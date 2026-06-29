@@ -1,5 +1,4 @@
 using Content.Shared.NPC.Components;
-using System.Linq;
 
 namespace Content.Shared.NPC.Systems;
 
@@ -9,14 +8,11 @@ namespace Content.Shared.NPC.Systems;
 /// </summary>
 public sealed partial class NpcFactionSystem
 {
-    private EntityQuery<FactionExceptionComponent> _exceptionQuery;
-    private EntityQuery<FactionExceptionTrackerComponent> _trackerQuery;
+    [Dependency] private EntityQuery<FactionExceptionComponent> _exceptionQuery = default!;
+    [Dependency] private EntityQuery<FactionExceptionTrackerComponent> _trackerQuery = default!;
 
     public void InitializeException()
     {
-        _exceptionQuery = GetEntityQuery<FactionExceptionComponent>();
-        _trackerQuery = GetEntityQuery<FactionExceptionTrackerComponent>();
-
         SubscribeLocalEvent<FactionExceptionComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<FactionExceptionTrackerComponent, ComponentShutdown>(OnTrackerShutdown);
     }
@@ -25,13 +21,13 @@ public sealed partial class NpcFactionSystem
     {
         foreach (var uid in ent.Comp.Hostiles)
         {
-            if (_trackerQuery.TryGetComponent(uid, out var tracker))
+            if (_trackerQuery.TryComp(uid, out var tracker))
                 tracker.Entities.Remove(ent);
         }
 
         foreach (var uid in ent.Comp.Ignored)
         {
-            if (_trackerQuery.TryGetComponent(uid, out var tracker))
+            if (_trackerQuery.TryComp(uid, out var tracker))
                 tracker.Entities.Remove(ent);
         }
     }
@@ -40,7 +36,7 @@ public sealed partial class NpcFactionSystem
     {
         foreach (var uid in ent.Comp.Entities)
         {
-            if (!_exceptionQuery.TryGetComponent(uid, out var exception))
+            if (!_exceptionQuery.TryComp(uid, out var exception))
                 continue;
 
             exception.Ignored.Remove(ent);
@@ -114,7 +110,7 @@ public sealed partial class NpcFactionSystem
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
-        if (!ent.Comp.Hostiles.Remove(target) || !_trackerQuery.TryGetComponent(target, out var tracker))
+        if (!ent.Comp.Hostiles.Remove(target) || !_trackerQuery.TryComp(target, out var tracker))
             return;
 
         tracker.Entities.Remove(ent);

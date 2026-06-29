@@ -8,7 +8,6 @@ using Content.Shared.Research.Components;
 using Content.Shared.Research.Systems;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Research.Systems

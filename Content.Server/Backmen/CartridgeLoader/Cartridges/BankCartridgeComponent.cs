@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Economy;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.FixedPoint;
 
 namespace Content.Server.Backmen.CartridgeLoader.Cartridges;

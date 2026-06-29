@@ -259,6 +259,7 @@ public abstract partial class InteractionTest
 
     /// <summary>
     /// Drops the currently held entity.
+    /// Causes an error if no entity was held.
     /// </summary>
     protected async Task Drop()
     {
@@ -275,6 +276,36 @@ public abstract partial class InteractionTest
 
         await RunTicks(1);
         Assert.That(HandSys.GetActiveItem((ToServer(Player), Hands)), Is.Null);
+    }
+
+    /// <summary>
+    /// Drops all currently held entities.
+    /// Does nothing if no entity was held.
+    /// </summary>
+    protected async Task DropAll()
+    {
+        await Server.WaitPost(() =>
+        {
+            HandSys.DropAll((ToServer(Player), Hands));
+        });
+
+        await RunTicks(1);
+
+        // make sure that all hands are empty
+        Assert.That(HandSys.GetEmptyHandCount((ToServer(Player), Hands)), Is.EqualTo(HandSys.GetHandCount((ToServer(Player), Hands))));
+    }
+
+    /// <summary>
+    /// Swaps the current hand.
+    /// </summary>
+    protected async Task SwapHands(bool reverse = false)
+    {
+        await Server.WaitPost(() =>
+        {
+            HandSys.SwapHands((ToServer(Player), Hands), reverse: reverse);
+        });
+
+        await RunTicks(1);
     }
 
     #region Interact
@@ -509,11 +540,11 @@ public abstract partial class InteractionTest
         var wasInCombatMode = IsInCombatMode();
         await SetCombatMode(true);
 
-        Assert.That(SGun.TryGetGun(SPlayer, out var gun, out var gunComp), "Player was not holding a gun!");
+        Assert.That(SGun.TryGetGun(SPlayer, out var gun), "Player was not holding a gun!");
 
         await Server.WaitAssertion(() =>
         {
-            var success = SGun.AttemptShoot(SPlayer, gun, gunComp!, actualTarget);
+            var success = SGun.AttemptShoot(SPlayer, gun, actualTarget);
             if (assert)
                 Assert.That(success, "Gun failed to shoot.");
         });
@@ -548,11 +579,11 @@ public abstract partial class InteractionTest
         var wasInCombatMode = IsInCombatMode();
         await SetCombatMode(true);
 
-        Assert.That(SGun.TryGetGun(SPlayer, out var gun, out var gunComp), "Player was not holding a gun!");
+        Assert.That(SGun.TryGetGun(SPlayer, out var gun), "Player was not holding a gun!");
 
         await Server.WaitAssertion(() =>
         {
-            var success = SGun.AttemptShoot(SPlayer, gun, gunComp!, Position(actualTarget!.Value), ToServer(actualTarget));
+            var success = SGun.AttemptShoot(SPlayer, gun, Position(actualTarget!.Value), ToServer(actualTarget));
             if (assert)
                 Assert.That(success, "Gun failed to shoot.");
         });

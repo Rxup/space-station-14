@@ -10,7 +10,7 @@
   - !type:PlantAdjustToxins
     amount: 10
   metabolisms:
-    Poison:
+    Bloodstream:
       effects:
       - !type:ChemBloodSucker
         scaling: false
@@ -42,7 +42,7 @@
         disease: XenoMaidVirus
 # end-backmen: Disease
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate: 1
       effects:
 # start-backmen: Disease
@@ -75,7 +75,7 @@
   flavor: soda
   color: "#b428c9"
   metabolisms:
-    Narcotic:
+    Bloodstream:
       effects:
       - !type:GenericStatusEffect
         key: SeeingRainbows

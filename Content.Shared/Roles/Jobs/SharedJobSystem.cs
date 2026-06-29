@@ -205,10 +205,11 @@ public abstract partial class SharedJobSystem : EntitySystem
         return name;
     }
 
+    /// <summary>
+    ///     Checks if a player can be assigned an antagonist role based on their current job.
+    /// </summary>
     public bool CanBeAntag(ICommonSession player)
     {
-        // If the player does not have any mind associated with them (e.g., has not spawned in or is in the lobby), then
-        // they are eligible to be given an antag role/entity.
         if (_playerSystem.ContentData(player) is not { Mind: { } mindId })
             return true;
 

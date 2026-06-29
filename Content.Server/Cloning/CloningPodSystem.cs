@@ -31,6 +31,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Cloning;
 
@@ -56,6 +57,7 @@ public sealed partial class CloningPodSystem : EntitySystem
     [Dependency] private SharedMindSystem _mindSystem = default!;
     [Dependency] private CloningSystem _cloning = default!;
     [Dependency] private EmagSystem _emag = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
 
     public readonly Dictionary<MindComponent, EntityUid> ClonesWaitingForMind = new();
     public readonly ProtoId<CloningSettingsPrototype> SettingsId = "CloningPod";
@@ -181,7 +183,7 @@ public sealed partial class CloningPodSystem : EntitySystem
 
         // genetic damage checks
         if (TryComp<DamageableComponent>(bodyToClone, out var damageable) &&
-            damageable.Damage.DamageDict.TryGetValue("Cellular", out var cellularDmg))
+            _damageable.GetAllDamage((bodyToClone, damageable)).DamageDict.TryGetValue("Cellular", out var cellularDmg))
         {
             var chance = Math.Clamp((float)(cellularDmg / 100), 0, 1);
             chance *= failChanceModifier;

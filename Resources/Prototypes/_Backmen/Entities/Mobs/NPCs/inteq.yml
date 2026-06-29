@@ -46,8 +46,9 @@
     factions:
       - InteQHostile
   - type: Damageable
-    damageContainer: Biological
     damageModifierSet: HellSpawn
+  - type: Injurable
+    damageContainer: Biological
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3

@@ -16,9 +16,9 @@
     - state: tacoshell_back
     - map: ["foodSequenceLayers"]
     - state: tacoshell_forward
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         canReact: false # Dont want cause reactions inside tacos after merging ingredients
         maxVol: 10
         reagents:
@@ -50,9 +50,9 @@
     transferAmount: 3
   - type: Sprite
     sprite: Objects/Consumable/Food/taco.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -98,9 +98,9 @@
       - fishy
   - type: Sprite
     state: fishtaco
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -116,9 +116,9 @@
   components:
   - type: Sprite
     state: rattaco
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -134,9 +134,9 @@
   components:
   - type: Sprite
     state: beeftacosupreme
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
@@ -152,9 +152,9 @@
   components:
   - type: Sprite
     state: chickentacosupreme
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
@@ -176,9 +176,9 @@
     - spicy
   - type: Sprite
     state: dragontaco
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 32
         reagents:
         - ReagentId: Nutriment
@@ -204,9 +204,9 @@
       - onion
   - type: Sprite
     state: softtaco
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment

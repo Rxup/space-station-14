@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Backmen.Vampiric.Objective;
+namespace Content.Server.Backmen.Vampiric.Objective;
 
 [RegisterComponent]
 public sealed partial class BloodsuckerDrinkConditionComponent : Component

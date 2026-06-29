@@ -114,7 +114,6 @@
     heldOnly: true
     exactVolume: true
   - type: SolutionRegeneration
-    solution: Welder
     generated:
       reagents:
       - ReagentId: WeldingFuel

@@ -1,3 +1,1 @@
-﻿using Content.Shared.Corvax.TTS;
-
-namespace Content.Shared.Humanoid;
+﻿namespace Content.Shared.Humanoid;

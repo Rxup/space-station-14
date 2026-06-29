@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen;
+using Content.Shared.Backmen;
 
 namespace Content.Server.Backmen;
 

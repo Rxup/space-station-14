@@ -11,16 +11,16 @@ namespace Content.Server.Backmen.Body.Systems;
 /// <summary>
 /// Shared visual/audio effects for burning body parts and mobs to ash.
 /// </summary>
-public sealed class BkmBurnEffectsSystem : EntitySystem
+public sealed partial class BkmBurnEffectsSystem : EntitySystem
 {
     public static readonly EntProtoId Ash = "Ash";
 
     private static readonly SoundSpecifier BurnSound =
         new SoundCollectionSpecifier("MeatLaserImpact");
 
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     public void SpawnAshAt(EntityCoordinates coordinates)
     {

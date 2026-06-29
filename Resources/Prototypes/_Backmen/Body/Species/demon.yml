@@ -93,6 +93,7 @@
     currentLanguage: TauCetiBasic
   - type: Consciousness
     capBonus: 20
+    damageContainer: RaceDemon
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -118,7 +119,6 @@
       Female: FemaleHuman
       Unsexed: FemaleHuman
   - type: Damageable
-    damageContainer: RaceDemon
     damageModifierSet: RaceDemon
   - type: MeleeWeapon
     hidden: true
@@ -130,10 +130,11 @@
       types:
         Piercing: 5
   - type: Temperature
-    heatDamageThreshold: 400
-    coldDamageThreshold: 193
     currentTemperature: 310.15
     specificHeat: 46
+  - type: TemperatureDamage
+    heatDamageThreshold: 400
+    coldDamageThreshold: 193
     coldDamage:
       types:
         Cold: 0.1

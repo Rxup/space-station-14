@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Shared.Medical.Cryogenics;
 using Robust.Client.GameObjects;
 
@@ -46,8 +46,8 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
             return;
         }
 
-        if (!_appearance.TryGetData<bool>(uid, CryoPodVisuals.ContainsEntity, out var isOpen, args.Component)
-            || !_appearance.TryGetData<bool>(uid, CryoPodVisuals.IsOn, out var isOn, args.Component))
+        if (!Appearance.TryGetData<bool>(uid, CryoPodVisuals.ContainsEntity, out var isOpen, args.Component)
+            || !Appearance.TryGetData<bool>(uid, CryoPodVisuals.IsOn, out var isOn, args.Component))
         {
             return;
         }
@@ -63,6 +63,11 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
             _sprite.LayerSetRsiState((uid, args.Sprite), CryoPodVisualLayers.Cover, isOn ? "cover-on" : "cover-off");
             _sprite.LayerSetVisible((uid, args.Sprite), CryoPodVisualLayers.Cover, true);
         }
+    }
+
+    protected override void UpdateUi(Entity<CryoPodComponent> cryoPod)
+    {
+        // Atmos and health scanner aren't predicted currently...
     }
 }
 

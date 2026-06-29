@@ -3,9 +3,7 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Camera;
 using Content.Shared.CCVar;
 using Content.Shared.Construction.Components;
-using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Database;
-using Content.Shared.Friction;
 using Content.Shared.Projectiles;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -38,13 +36,13 @@ public sealed partial class ThrowingSystem : EntitySystem
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
 
-    private EntityQuery<AnchorableComponent> _anchorableQuery;
+    [Dependency] private EntityQuery<AnchorableComponent> _anchorableQuery = default!;
+    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private EntityQuery<ProjectileComponent> _projectileQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _anchorableQuery = GetEntityQuery<AnchorableComponent>();
 
         Subs.CVar(_configManager, CCVars.TileFrictionModifier, value => _frictionModifier = value, true);
         Subs.CVar(_configManager, CCVars.AirFriction, value => _airDamping = value, true);
@@ -97,18 +95,14 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool doSpin = true,
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
-        var physicsQuery = GetEntityQuery<PhysicsComponent>();
-        if (!physicsQuery.TryGetComponent(uid, out var physics))
+        if (!_physicsQuery.TryComp(uid, out var physics))
             return;
-
-        var projectileQuery = GetEntityQuery<ProjectileComponent>();
 
         TryThrow(
             uid,
             direction,
             physics,
             Transform(uid),
-            projectileQuery,
             baseThrowSpeed,
             user,
             pushbackRatio,
@@ -130,7 +124,6 @@ public sealed partial class ThrowingSystem : EntitySystem
         Vector2 direction,
         PhysicsComponent physics,
         TransformComponent transform,
-        EntityQuery<ProjectileComponent> projectileQuery,
         float baseThrowSpeed = 10.0f,
         EntityUid? user = null,
         float pushbackRatio = PushbackDefault,
@@ -159,7 +152,7 @@ public sealed partial class ThrowingSystem : EntitySystem
             return;
 
         // Allow throwing if this projectile only acts as a projectile when shot, otherwise disallow
-        if (projectileQuery.TryGetComponent(uid, out var proj) && !proj.OnlyCollideWhenShot)
+        if (_projectileQuery.TryComp(uid, out var proj) && !proj.OnlyCollideWhenShot)
             return;
 
         var comp = new ThrownItemComponent

@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.StationEvents.Events;
+using Content.Server.Backmen.StationEvents.Events;
 
 namespace Content.Server.Backmen.StationEvents.Components;
 

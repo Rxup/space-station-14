@@ -1,13 +1,10 @@
-﻿using Content.Server.Atmos;
-using Content.Server.Atmos.EntitySystems;
-using Content.Server.Atmos.Piping.Components;
+﻿using Content.Server.Atmos.EntitySystems;
 using Content.Server.Audio;
-using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Power.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.Examine;
@@ -17,7 +14,6 @@ using Content.Shared.Power.EntitySystems;
 using Content.Shared.Power.Generation.Teg;
 using Content.Shared.Rounding;
 using Robust.Server.GameObjects;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Power.Generation.Teg;
 
@@ -76,8 +72,7 @@ public sealed partial class TegSystem : EntitySystem
     [Dependency] private DeviceNetworkSystem _deviceNetwork = default!;
     [Dependency] private PointLightSystem _pointLight = default!;
     [Dependency] private SharedPowerReceiverSystem _receiver = default!;
-
-    private EntityQuery<NodeContainerComponent> _nodeContainerQuery;
+    [Dependency] private EntityQuery<NodeContainerComponent> _nodeContainerQuery = default!;
 
     public override void Initialize()
     {
@@ -88,8 +83,6 @@ public sealed partial class TegSystem : EntitySystem
         SubscribeLocalEvent<TegGeneratorComponent, DeviceNetworkPacketEvent>(DeviceNetworkPacketReceived);
 
         SubscribeLocalEvent<TegGeneratorComponent, ExaminedEvent>(GeneratorExamined);
-
-        _nodeContainerQuery = GetEntityQuery<NodeContainerComponent>();
     }
 
     private void GeneratorExamined(EntityUid uid, TegGeneratorComponent component, ExaminedEvent args)

@@ -8,8 +8,6 @@
   components:
   - type: BodyPart
     partType: Chest
-  - type: Damageable
-    damageContainer: Biological
   - type: Tag
     tags:
       - Trash

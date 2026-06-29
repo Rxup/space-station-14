@@ -1,8 +1,6 @@
 using Content.Shared.Body;
 using Content.Shared.Body.Events;
-using Content.Shared.Body;
 using Content.Shared.Body.Part;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Content.Shared.Standing;
@@ -15,7 +13,6 @@ using System.Linq;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Surgery.Body.Organs;
-using Content.Shared.Backmen.Targeting;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Random;

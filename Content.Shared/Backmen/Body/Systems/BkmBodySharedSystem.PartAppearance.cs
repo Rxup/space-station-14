@@ -2,8 +2,6 @@ using Content.Shared.Body;
 using System.Linq;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
-using Content.Shared.Humanoid.Prototypes;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Body.Systems;
 
@@ -52,6 +50,6 @@ public partial class BkmBodySharedSystem
             return false;
 
         return visualMarkings.Markings.TryGetValue(category, out var layerMarkings)
-            && layerMarkings.Any(m => m.MarkingId.Contains(matchString));
+            && layerMarkings.Any(m => m.MarkingId.Id.Contains(matchString));
     }
 }

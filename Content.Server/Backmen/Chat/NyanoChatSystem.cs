@@ -15,7 +15,6 @@ using Robust.Shared.Random;
 using System.Linq;
 
 using Content.Shared.Backmen.Psionics.Glimmer;
-using Content.Shared.Item;
 using Content.Shared.StatusEffectNew.Components;
 
 namespace Content.Server.Backmen.Chat;

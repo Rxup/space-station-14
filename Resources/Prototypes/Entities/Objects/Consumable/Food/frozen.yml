@@ -8,9 +8,9 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Food/frozen.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20 # For sprinkles or something? Idk.
         reagents:
         - ReagentId: Nutriment
@@ -70,9 +70,9 @@
     storedRotation: -45
   - type: Sprite
     state: cornuto
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -135,9 +135,9 @@
   - type: Edible
     trash:
     - FoodFrozenPopsicleTrash
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
@@ -166,9 +166,9 @@
     - type: Edible
       trash:
       - FoodFrozenSnowconeTrash
-    - type: SolutionContainerManager
-      solutions:
-        food:
+    - type: Solution
+      id: food
+      solution:
           maxVol: 20 # For sprinkles or something? Idk.
           reagents:
             - ReagentId: Ice
@@ -184,9 +184,9 @@
   id: FoodFrozenSnowcone
   description: It's just shaved ice. Still fun to chew on.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
           - ReagentId: Ice

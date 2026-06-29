@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.Psionics.Objectives.Components;
+using Content.Server.Backmen.Psionics.Objectives.Components;
 using Content.Shared.Backmen.Psionics.Glimmer;
 using Content.Shared.Objectives.Components;
 

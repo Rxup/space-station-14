@@ -1,7 +1,6 @@
 using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
-using Content.Shared.Body.Organ;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 
@@ -10,11 +9,11 @@ namespace Content.Server.Backmen.Body.Systems;
 /// <summary>
 /// Keeps brains intact when bodies or organs are burned or dusted by supermatter.
 /// </summary>
-public sealed class BkmBrainPreservationSystem : EntitySystem
+public sealed partial class BkmBrainPreservationSystem : EntitySystem
 {
-    [Dependency] private readonly BkmBodySharedSystem _body = default!;
-    [Dependency] private readonly BkmDetachedBodyScatterSystem _scatter = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private BkmBodySharedSystem _body = default!;
+    [Dependency] private BkmDetachedBodyScatterSystem _scatter = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     /// <summary>
     /// Ejects and protects a brain organ so it can be used for revival.

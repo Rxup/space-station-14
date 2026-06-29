@@ -1,12 +1,10 @@
 using System.Numerics;
 using Content.Server.Decals;
 using Content.Server.Backmen.Explosion.Components;
-using Content.Server.Explosion.EntitySystems;
 using Content.Shared.Trigger;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 
 namespace Content.Server.Backmen.Explosion.EntitySystems
 {
@@ -43,7 +41,7 @@ namespace Content.Server.Backmen.Explosion.EntitySystems
         /// </summary>
         private void SpawnDecals(EntityUid grenadeUid, DecalGrenadeComponent component)
         {
-            if (!TryComp<TransformComponent>(grenadeUid, out var grenadeXform))
+            if (!TryComp(grenadeUid, out TransformComponent? grenadeXform))
                 return;
 
             var grenadePosition = grenadeXform.Coordinates;

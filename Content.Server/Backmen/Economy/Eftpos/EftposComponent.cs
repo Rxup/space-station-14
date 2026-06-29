@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Economy;
+using Content.Shared.Backmen.Economy;
 using Content.Shared.Backmen.Economy.Eftpos;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;

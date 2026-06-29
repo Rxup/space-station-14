@@ -28,8 +28,12 @@ lathe-category-maints-tile = Сервисные
 # Cutter
 lathe-category-concrete = Бетон
 lathe-category-steel-tile = Сталь
+lathe-category-shuttle-tile = Шаттл
 lathe-category-white-tile = Белый
 lathe-category-wood-tile = Дерево
+lathe-category-plastic-tile = Пластик
+lathe-category-precious-tile = Драгоценный
+lathe-category-industrial-tile = Индустриальный
 lathe-category-dark = Тёмный
 lathe-category-maints = Сервисные
 lathe-category-steel = Сталь

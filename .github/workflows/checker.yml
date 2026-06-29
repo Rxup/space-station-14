@@ -33,6 +33,6 @@ jobs:
 #        run: |
 #          sed -i 's/_logSawmill.Error(sbErr.ToString());/_logSawmill.Warning(sbErr.ToString());/g' RobustToolbox/Robust.Shared/Localization/LocalizationManager.cs
       - name: Build
-        run: dotnet build --configuration Release --no-restore /p:WarningsAsErrors= /m
+        run: dotnet build --configuration Release --no-restore /p:TreatWarningsAsErrors=false /m
       - name: Run Linter
         run: dotnet run --project Content.YAMLLinter/Content.YAMLLinter.csproj --no-build

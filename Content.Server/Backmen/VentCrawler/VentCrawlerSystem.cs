@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Server._White.Headcrab;
 using Content.Server.Atmos.Piping.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
@@ -11,15 +10,12 @@ using Content.Shared.Atmos;
 using Content.Shared.Backmen.VentCrawler;
 using Content.Shared.Eye;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NodeContainer;
-using Content.Shared.Popups;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
-using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -27,7 +23,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.VentCrawler;
 

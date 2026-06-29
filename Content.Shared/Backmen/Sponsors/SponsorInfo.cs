@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 using Lidgren.Network;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Sponsors;
 

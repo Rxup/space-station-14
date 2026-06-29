@@ -1,6 +1,4 @@
 using Content.Shared.Actions;
-using Content.Shared.Ghost;
-using Content.Shared.Magic;
 using Robust.Shared.Audio;
 
 

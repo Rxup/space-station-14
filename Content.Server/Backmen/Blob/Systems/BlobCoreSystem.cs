@@ -38,6 +38,7 @@ namespace Content.Server.Backmen.Blob.Systems;
 
 public sealed partial class BlobCoreSystem : EntitySystem
 {
+    private static readonly EntProtoId BlobRuleId = "BlobRule";
     [Dependency] private AlertsSystem _alerts = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
@@ -195,7 +196,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
         if (!TryComp<DamageableComponent>(core.Owner, out var damageComp))
             return;
 
-        var currentHealth = component.CoreBlobTotalHealth - damageComp.TotalDamage;
+        var currentHealth = component.CoreBlobTotalHealth - _damageable.GetTotalDamage((core.Owner, damageComp));
         var healthSeverity = (short) Math.Clamp(Math.Round(currentHealth.Float() / 20f), 0, 20);
 
         _alerts.ShowAlert(component.Observer.Value, BlobHealth, healthSeverity);
@@ -209,7 +210,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
         var blobRule = EntityQuery<BlobRuleComponent>().FirstOrDefault();
         if (blobRule == null)
         {
-            _gameTicker.StartGameRule("BlobRule", out _);
+            _gameTicker.StartGameRule(BlobRuleId, out _);
         }
 
         var ev = new CreateBlobObserverEvent(userId);
@@ -302,7 +303,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
         }
 
         var blobCoreComp = blobCore.Comp;
-        var blobTileUid = EntityManager.SpawnEntity(blobCoreComp.TilePrototypes[newBlobTile], coordinates);
+        var blobTileUid = Spawn(blobCoreComp.TilePrototypes[newBlobTile], coordinates);
 
         if (!_tile.TryGetComponent(blobTileUid, out var blobTileComp))
         {
@@ -524,7 +525,7 @@ public sealed partial class BlobCoreSystem : EntitySystem
                 if(stationUid != null)
                     _alertLevelSystem.SetLevel(stationUid.Value, "green", true, true, true);
 
-                _roundEndSystem.CancelRoundEndCountdown(null, false);
+                _roundEndSystem.CancelRoundEndCountdown(forceRecall: false);
                 blobRuleComp.Stage = BlobStage.Default;
             }
         }

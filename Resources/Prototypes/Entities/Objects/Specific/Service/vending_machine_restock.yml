@@ -23,8 +23,9 @@
   - type: Item
     size: Normal
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -362,23 +363,6 @@
     - state: green_bit
       shader: unshaded
     - state: refill_sec
-
-- type: entity
-  abstract: true # DeltaV: Salvage vendor doesn't have stock anymore
-  parent: BaseVendingMachineRestock
-  id: VendingMachineRestockSalvageEquipment
-  name: Salvage Vendor restock box
-  description: Strike the earth ere the space carp nip your behind! Slam into a salvage vendor to begin.
-  components:
-  - type: VendingMachineRestock
-    canRestock:
-    - SalvageEquipmentInventory
-  - type: Sprite
-    layers:
-    - state: base
-    - state: green_bit
-      shader: unshaded
-    - state: refill_salvage
 
 - type: entity
   parent: BaseVendingMachineRestock

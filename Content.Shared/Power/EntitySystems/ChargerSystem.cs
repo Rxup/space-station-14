@@ -1,4 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Emp;
 using Content.Shared.Examine;
 using Content.Shared.Power.Components;

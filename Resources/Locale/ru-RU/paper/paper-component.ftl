@@ -11,5 +11,5 @@ paper-component-action-stamp-paper-other = { CAPITALIZE($user) } ставит п
 paper-component-action-stamp-paper-self = Вы ставите печать на { $target } с помощью { $stamp }.
 # Indicator to show how full a paper is
 paper-ui-fill-level = { $currentLength }/{ $maxLength }
-paper-ui-save-button = Сохранить ({ $keybind })
+paper-ui-save-button = Сохранить ({$keybind})
 paper-tamper-proof-modified-message = Текст на странице был написан с использованием нефальсицицируемых чернил.

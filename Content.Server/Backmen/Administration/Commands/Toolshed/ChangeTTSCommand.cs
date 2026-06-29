@@ -1,15 +1,10 @@
 using System.Linq;
 using Content.Server.Administration;
-using Content.Server.Backmen.Disease;
-using Content.Server.Corvax.TTS;
-using Content.Server.Humanoid;
 using Content.Shared.Administration;
-using Content.Shared.Backmen.Disease;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.Humanoid;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
-using Robust.Shared.Toolshed.TypeParsers;
 
 namespace Content.Server.Backmen.Administration.Commands.Toolshed;
 

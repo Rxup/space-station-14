@@ -1,4 +1,3 @@
-﻿using System.ComponentModel.DataAnnotations;
 using Content.Server.Backmen.SpecForces;
 using Robust.Shared.Prototypes;
 

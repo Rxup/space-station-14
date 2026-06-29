@@ -1,4 +1,4 @@
-﻿using Content.Shared.Polymorph;
+using Content.Shared.Polymorph;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 

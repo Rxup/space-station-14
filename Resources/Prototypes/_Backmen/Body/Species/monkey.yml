@@ -119,7 +119,6 @@
     needsHands: false
   - type: Crawler
   - type: Damageable
-    damageContainer: Biological
   - type: MobThresholds
     thresholds:
       0: Alive

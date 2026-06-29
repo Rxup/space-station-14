@@ -1,6 +1,5 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Content.Server.Database;
-using Content.Server.GameTicking;
 using Content.Server.Traits;
 using Content.Shared.Backmen;
 using Content.Shared.Backmen.WL;

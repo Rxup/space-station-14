@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
-using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Backmen.Cloning;
 using Content.Server.Backmen.Economy;
@@ -10,7 +9,6 @@ using Content.Server.Backmen.Fugitive;
 using Content.Server.CartridgeLoader.Cartridges;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
-using Content.Server.Humanoid;
 using Content.Server.Prayer;
 using Content.Server.Preferences.Managers;
 using Content.Server.Shuttles.Components;
@@ -34,10 +32,8 @@ using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
-using Content.Server.PDA;
 using Content.Server.Roles;
 using Content.Server.Station.Components;
-using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
@@ -51,13 +47,9 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.NukeOps;
 using Content.Shared.Objectives.Components;
-using Content.Shared.PDA;
-using Content.Shared.Players;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles.Components;
-using Content.Shared.Roles.Jobs;
 using Content.Shared.Station.Components;
-using Content.Shared.StatusIcon;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -68,6 +60,7 @@ namespace Content.Server.Backmen.EvilTwin;
 
 public sealed partial class EvilTwinSystem : EntitySystem
 {
+    private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
     public override void Initialize()
     {
         base.Initialize();
@@ -385,7 +378,7 @@ public sealed partial class EvilTwinSystem : EntitySystem
 
         EnsureComp<PendingClockInComponent>(uid);
 
-        _tagSystem.AddTag(uid, "CannotSuicide");
+        _tagSystem.AddTag(uid, CannotSuicideTag);
     }
 
     #region OnRoundEnd

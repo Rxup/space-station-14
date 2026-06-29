@@ -4,7 +4,6 @@ using Content.Server.Ghost;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Gibbing;
 using Content.Shared.Gibbing.Events;
@@ -30,13 +29,6 @@ public sealed partial class BkmBodySystem : BkmBodySharedSystem
         base.Initialize();
 
         SubscribeLocalEvent<BodyComponent, MoveInputEvent>(OnRelayMoveInput);
-        SubscribeLocalEvent<BodyPartComponent, AttemptEntityGibEvent>(OnGibTorsoAttempt);
-    }
-
-    private void OnGibTorsoAttempt(Entity<BodyPartComponent> ent, ref AttemptEntityGibEvent args)
-    {
-        if (ent.Comp.PartType == BodyPartType.Chest)
-            args.GibType = GibType.Skip;
     }
 
     private void OnRelayMoveInput(Entity<BodyComponent> ent, ref MoveInputEvent args)
@@ -103,45 +95,6 @@ public sealed partial class BkmBodySystem : BkmBodySharedSystem
         QueueDel(bodyId);
 
         return gibs;
-    }
-
-    public override HashSet<EntityUid> GibPart(
-        EntityUid partId,
-        BodyPartComponent? part = null,
-        bool launchGibs = true,
-        Vector2? splatDirection = null,
-        float splatModifier = 1,
-        Angle splatCone = default,
-        SoundSpecifier? gibSoundOverride = null)
-    {
-        if (!Resolve(partId, ref part, logMissing: false)
-            || TerminatingOrDeleted(partId)
-            || EntityManager.IsQueuedForDeletion(partId))
-            return new HashSet<EntityUid>();
-
-        if (Transform(partId).MapUid is null)
-            return new HashSet<EntityUid>();
-
-        var gibs = base.GibPart(partId, part, launchGibs: launchGibs,
-            splatDirection: splatDirection, splatModifier: splatModifier, splatCone: splatCone);
-
-        var ev = new BeingGibbedEvent(gibs);
-        RaiseLocalEvent(partId, ref ev);
-
-        if (gibs.Any())
-            QueueDel(partId);
-
-        return gibs;
-    }
-
-    public override bool BurnPart(EntityUid partId, BodyPartComponent? part = null)
-    {
-        if (!Resolve(partId, ref part, logMissing: false)
-            || TerminatingOrDeleted(partId)
-            || EntityManager.IsQueuedForDeletion(partId))
-            return false;
-
-        return base.BurnPart(partId, part);
     }
 
     protected override void ApplyPartMarkings(EntityUid target, EntityUid part)

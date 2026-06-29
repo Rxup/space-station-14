@@ -1,6 +1,4 @@
-﻿using Robust.Shared.Prototypes;
-
-namespace Content.Shared.Implants;
+﻿namespace Content.Shared.Implants;
 
 public abstract partial class SharedChameleonControllerSystem : EntitySystem
 {

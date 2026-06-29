@@ -63,7 +63,7 @@ public sealed partial class AnnounceTTSSystem : EntitySystem
                        (_currentlyPlaying.AudioStream != null && TerminatingOrDeleted(_currentlyPlaying.AudioStream!.Value))
                        || !(_currentlyPlaying.AudioStream?.Comp.Playing ?? false);
         }
-        catch (Exception err)
+        catch (Exception)
         {
             isDoNext = true;
         }

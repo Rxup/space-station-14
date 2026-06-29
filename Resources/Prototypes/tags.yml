@@ -34,9 +34,6 @@
   id: AppraisalTool # Storage whitelist: BaseClothingBeltEngineering
 
 - type: Tag
-  id: BroneArachne #backmen
-
-- type: Tag
   id: Apron # ConstructionGraph: scraparmor
 
 - type: Tag
@@ -298,7 +295,7 @@
   id: ChefPilot # Tagged entity can control someone wearing a Chef's hat if inside their hat.
 
 - type: Tag
-  id: ChemDispensable # Storage whitelist: ChemDispenserEmpty, SmartFridge, BorgModuleAdvancedChemical
+  id: ChemDispensable # Storage whitelist: ChemDispenserEmpty, SmartFridge, BorgModuleChemical
 
 - type: Tag
   id: Chicken # Reproductive partner key. MetamorphRecipe: FoodBurgerChicken
@@ -322,16 +319,19 @@
   id: Cleaver # Storage whitelist: ClothingBeltChef. ItemMapper: ClothingBeltChef
 
 - type: Tag
+  id: CleanerGrenade # Storage whitelist: ClothingBeltJanitor. ItemMapper: ClothingBeltJanitor
+
+- type: Tag
   id: ClothMade # SpecialDigestible: OrganMothStomach. Storage whitelist: FoodBoxCloth
 
 - type: Tag
-  id: ClownMask # CargoBounty: BountyClownCostume. ConstructionGraph: Honker, BananaClownMask
+  id: ClownMask # ConstructionGraph: Honker, BananaClownMask
 
 - type: Tag
   id: ClownRecorder # ConstructionGraph: ClownHardsuit
 
 - type: Tag
-  id: ClownShoes # CargoBounty: BountyClownCostume. ConstructionGraph: Honker, BananaClownShoes
+  id: ClownShoes # ConstructionGraph: Honker, BananaClownShoes
 
 - type: Tag
   id: ClownSuit # ConstructionGraph: BananaClownJumpsuit
@@ -356,9 +356,6 @@
 
 - type: Tag
   id: ConstructionMaterial # Storage whitelist: BorgModuleConstruction
-
-- type: Tag
-  id: ConveyorAssembly # ConstructionGraph: ConveyorGraph
 
 - type: Tag
   id: Cooked # MetamorphRecipe: FoodBurgerCheese, FoodBurgerChicken, FoodBurgerCrab, FoodBurgerDuck
@@ -493,6 +490,9 @@
   id: DoorElectronicsConfigurator # Used by ActivatableUIComponent on entity DoorElectronics to whitelist a tagged tool to open the UI.
 
 - type: Tag
+  id: DoorRemoteWhitelist # Doors with this tag can be interacted with door remotes
+
+- type: Tag
   id: DrinkBottle # Storage whitelist: BoozeDispenserEmpty, SodaDispenserEmpty
 
 - type: Tag
@@ -503,9 +503,6 @@
 
 - type: Tag
   id: Duck # Reproductive partner key. MetamorphRecipe: FoodBurgerDuck
-
-- type: Tag
-  id: Debug #backmen
 
 ## E ##
 
@@ -615,9 +612,6 @@
 
 - type: Tag
   id: Fruit # SpecialDigestible: OrganReptilianStomach. CargoBounty: BountyFruit
-
-- type: Tag
-  id: FullBodyOuter #backmen # this outerclothing wraps around the feet and legs
 
 ## G ##
 
@@ -742,13 +736,7 @@
   id: HideCorgi # corgi hide for crafting, not for making corgis invisible
 
 - type: Tag
-  id: HidesNose #backmen
-
-- type: Tag
   id: HidesHair # Used by MagicMirrorSystem to prevent haircuts if a tagged entity is worn.
-
-- type: Tag
-  id: HidesLegs # backmen
 
 - type: Tag
   id: HighRiskItem # Storage blacklist: ClothingHeadHatDetGadget. Blacklisted on MaterialReclaimerComponent by both entities
@@ -801,6 +789,9 @@
 
 - type: Tag
   id: HudSecurity # ConstructionGraph: HudMedSec, GlassesSecHUD
+
+- type: Tag
+  id: Hypospray # ItemMapper: ClothingBeltMedical
 
 ## I ##
 
@@ -858,9 +849,6 @@
   id: KnockdownImmune # Tagged mob entity is immune to knockdown I'm guessing. (no implementations of MobStandStatusEffectBase).
                       # Blacklist on MobStandStatusEffectBase.
 
-- type: Tag
-  id: Katana #backmen
-
 ## L ##
 
 - type: Tag
@@ -874,6 +862,9 @@
 
 - type: Tag
   id: LightBulb # Storage whitelist: BoxLightbulb. ConstructionGraph: HelmetJustice
+
+- type: Tag
+  id: LightReplacer # Storage whitelist: ClothingBeltJanitor. ItemMapper: ClothingBeltJanitor
 
 - type: Tag
   id: Lime # CargoBounty: BountyLime
@@ -920,13 +911,6 @@
 
 - type: Tag
   id: MagazineShotgun # WeaponShotgunBulldog
-
-- type: Tag
-  id: MagazineHeavyRifle #backmen
-
-
-- type: Tag
-  id: MagazineCaselessRifle #backmen
 
 #endregion
 
@@ -998,6 +982,9 @@
 
 - type: Tag
   id: MothershipModule # Cyborg module category for evil xenoborg core
+
+- type: Tag
+  id: MothershipPinpointerPiece # ConstructionGraph: RepairMothershipPinpointer
 
 - type: Tag
   id: Mouse # CargoBounty: BountyMouse
@@ -1252,12 +1239,6 @@
 ## S ##
 
 - type: Tag
-  id: Salt # Revenant grinder / salt puddles
-
-- type: Tag
-  id: Holy # Revenant grinder (holy reagents)
-
-- type: Tag
   id: SaltShaker # Storage whitelist: ClothingBeltChef. ItemMapper: ClothingBeltChef
 
 - type: Tag # Used on DungeonRoom prototypes.
@@ -1469,6 +1450,9 @@
   id: TrashBag # Storage whitelist: BoxTrashbag, ClothingBeltJanitor, JanitorialTrolley. ItemMapper: JanitorialTrolley
 
 - type: Tag
+  id: TrashBagBlue # Storage whitelist: BoxTrashbag, ClothingBeltJanitor, JanitorialTrolley. ItemMapper: JanitorialTrolley
+
+- type: Tag
   id: Truncheon # Storage whitelist: ClothingBeltSecurity
 
 - type: Tag
@@ -1607,9 +1591,5 @@
   id: XenoborgModuleStealth # Cyborg module category for evil stealth xenoborg
 
 ## Y ##
-
-- type: Tag
-  id: YamatoSabre #backmen
-
 ## Z ##
 # ALPHABETICAL

@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.JobWhitelist;
@@ -29,11 +30,11 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private Content.Corvax.Interfaces.Client.IClientDiscordAuthManager _discordManager = default!; // backmen: discord
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
-    private readonly List<string> _jobBans = new();
-    private readonly List<string> _antagBans = new();
+    private readonly List<ProtoId<JobPrototype>> _jobBans = new();
+    private readonly List<ProtoId<AntagPrototype>> _antagBans = new();
     private readonly List<string> _jobWhitelists = new();
 
-    public ImmutableList<string> RoleBans => _antagBans.ToImmutableList(); // backmen: antag
+    public ImmutableList<string> RoleBans => _antagBans.Select(a => a.ToString()).ToImmutableList(); // backmen: antag
 
     private ISawmill _sawmill = default!;
 
@@ -210,6 +211,8 @@ public sealed partial class JobRequirementsManager : ISharedPlaytimeManager
 
         return true;
     }
+
+    public bool IsAntagBanned(AntagPrototype antag) => _antagBans.Contains(antag.ID);
 
     // This must be private so code paths can't accidentally skip requirement overrides. Call this through IsAllowed()
     public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)

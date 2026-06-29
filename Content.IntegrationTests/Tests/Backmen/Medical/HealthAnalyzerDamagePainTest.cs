@@ -141,6 +141,8 @@ public sealed class HealthAnalyzerDamagePainTest : GameTest
                 .Aggregate(FixedPoint2.Zero, (sum, w) => sum + w.Comp.WoundSeverityPoint);
 
             Assert.That(woundSys.GetBodySeverityPoint(human), Is.EqualTo(fromWounds));
+            Assert.That(damageSys.GetTotalDamage(human), Is.EqualTo(woundSys.GetBodySeverityPoint(human)),
+                "Damageable totals must match wound severity for health analyzer UI.");
         });
     }
 

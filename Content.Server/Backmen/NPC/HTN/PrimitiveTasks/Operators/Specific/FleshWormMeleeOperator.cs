@@ -1,6 +1,5 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server.Backmen.Flesh;
 using Content.Shared.Backmen.Flesh;
 using Content.Server.NPC;
 using Content.Server.NPC.Components;

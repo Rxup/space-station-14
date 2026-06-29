@@ -47,15 +47,15 @@ public sealed partial class PsionicItemsSystem : EntitySystem
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        if (!_statusEffects.TrySetStatusEffectDuration(args.Equipee, StatusEffectPsionicallyInsulated, out var effect))
+        if (!_statusEffects.TrySetStatusEffectDuration(args.EquipTarget, StatusEffectPsionicallyInsulated, out var effect))
             return;
         var insul = EnsureComp<PsionicInsulationComponent>(effect.Value);
         insul.Passthrough = component.Passthrough;
         component.IsActive = true;
-        _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
+        _psiAbilities.SetPsionicsThroughEligibility(args.EquipTarget);
 
         // Visibility mask will be set automatically by OnGetVisMask event handler
-        _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
+        _sharedEyeSystem.RefreshVisibilityMask(args.EquipTarget);
     }
 
     private void OnTinfoilUnequipped(EntityUid uid, TinfoilHatComponent component, GotUnequippedEvent args)
@@ -63,10 +63,10 @@ public sealed partial class PsionicItemsSystem : EntitySystem
         if (!component.IsActive)
             return;
 
-        _statusEffects.TryRemoveStatusEffect(args.Equipee, StatusEffectPsionicallyInsulated);
+        _statusEffects.TryRemoveStatusEffect(args.EquipTarget, StatusEffectPsionicallyInsulated);
         component.IsActive = false;
-        _psiAbilities.SetPsionicsThroughEligibility(args.Equipee);
-        _sharedEyeSystem.RefreshVisibilityMask(args.Equipee);
+        _psiAbilities.SetPsionicsThroughEligibility(args.EquipTarget);
+        _sharedEyeSystem.RefreshVisibilityMask(args.EquipTarget);
     }
 
     private void OnGranterEquipped(EntityUid uid, ClothingGrantPsionicPowerComponent component, GotEquippedEvent args)
@@ -79,10 +79,10 @@ public sealed partial class PsionicItemsSystem : EntitySystem
         if (!clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        if (_statusEffects.HasStatusEffect(args.Equipee, component.StatusEffect))
+        if (_statusEffects.HasStatusEffect(args.EquipTarget, component.StatusEffect))
             return;
 
-        if (!_statusEffects.TrySetStatusEffectDuration(args.Equipee, component.StatusEffect))
+        if (!_statusEffects.TrySetStatusEffectDuration(args.EquipTarget, component.StatusEffect))
             return;
 
         component._hasEffect = true;
@@ -94,6 +94,6 @@ public sealed partial class PsionicItemsSystem : EntitySystem
             return;
 
         component._hasEffect = false;
-        _statusEffects.TryRemoveStatusEffect(args.Equipee, component.StatusEffect);
+        _statusEffects.TryRemoveStatusEffect(args.EquipTarget, component.StatusEffect);
     }
 }

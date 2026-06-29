@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.StationEvents.Events;
+using Content.Server.Backmen.StationEvents.Events;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Backmen.StationEvents.Components;

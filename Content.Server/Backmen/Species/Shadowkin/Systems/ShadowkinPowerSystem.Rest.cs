@@ -2,7 +2,6 @@ using Content.Server.Backmen.Species.Shadowkin.Components;
 using Content.Server.Backmen.Species.Shadowkin.Events;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
-using Content.Shared.Cuffs.Components;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Prototypes;

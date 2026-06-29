@@ -10,14 +10,11 @@ namespace Content.Client.Movement.Systems;
 public sealed partial class ClientSpriteMovementSystem : SharedSpriteMovementSystem
 {
     [Dependency] private SpriteSystem _sprite = default!;
-
-    private EntityQuery<SpriteComponent> _spriteQuery;
+    [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _spriteQuery = GetEntityQuery<SpriteComponent>();
 
         SubscribeLocalEvent<SpriteMovementComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
     }

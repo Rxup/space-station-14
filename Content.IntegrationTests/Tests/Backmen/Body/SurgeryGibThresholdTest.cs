@@ -65,17 +65,16 @@ public sealed class SurgeryGibThresholdTest : GameTest
             }
 
             Assert.That(
-                gibSys.GetAccumulatedGibDamage(patient),
+                gibSys.GetGibDamage(patient),
                 Is.GreaterThanOrEqualTo(FixedPoint2.New(400)));
 
-            blunt.DamageDict["Blunt"] = FixedPoint2.New(600);
+            blunt.DamageDict["Blunt"] = FixedPoint2.New(1200);
             damageable.ChangeDamage(patient, blunt, targetPart: TargetBodyPart.All);
 
-            Assert.That(gibSys.ShouldFullBodyGib(patient), Is.True);
             Assert.That(
                 bodySystem.GetWoundableTargets(patient).Count(),
                 Is.LessThan(initialWoundables),
-                "Reaching 1000 total wound damage should full-body gib");
+                "Reaching 1600 current wound damage should full-body gib");
         });
     }
 }

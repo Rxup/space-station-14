@@ -1,4 +1,4 @@
-﻿using Content.Server.Backmen.Psionics.Glimmer;
+using Content.Server.Backmen.Psionics.Glimmer;
 using Content.Server.CartridgeLoader;
 using Content.Shared.Backmen.CartridgeLoader.Cartridges;
 using Content.Shared.CartridgeLoader;
@@ -7,7 +7,7 @@ namespace Content.Server.Backmen.CartridgeLoader.Cartridges;
 
 public sealed partial class GlimmerMonitorCartridgeSystem : EntitySystem
 {
-    [Dependency] private CartridgeLoaderSystem? _cartridgeLoaderSystem = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
     [Dependency] private PassiveGlimmerReductionSystem _glimmerReductionSystem = default!;
 
     public override void Initialize()

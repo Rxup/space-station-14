@@ -1,5 +1,4 @@
 using Content.Server.Administration;
-using Content.Server.Humanoid;
 using Content.Shared.Administration;
 using Content.Shared.Body;
 using Content.Shared.Cloning;

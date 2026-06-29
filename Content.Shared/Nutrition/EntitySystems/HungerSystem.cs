@@ -9,7 +9,6 @@ using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 // start-backmen: mood
 using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.CCVar;

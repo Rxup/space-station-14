@@ -85,16 +85,6 @@
     quickEquip: false
     slots:
     - Belt
-  - type: ToggleableLightVisuals
-    spriteLayer: on
-    clothingVisuals:
-      belt:
-      - state: equipped-BELT-on
-    inhandVisuals:
-      left:
-      - state: inhand-left-on
-      right:
-      - state: inhand-right-on
   - type: Welder
     fuelLitCost: 2
   - type: RefillableSolution

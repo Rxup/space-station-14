@@ -33,8 +33,7 @@ shuttle-console-ftl-state-Invalid = Ошибка
 shuttle-console-ftl-state-Cooldown = Перезарядка
 shuttle-console-map-settings = Настройки
 shuttle-console-ftl-button = БСС
-shuttle-console-map-rebuild =
-    Сканировать на
+shuttle-console-map-rebuild = Сканировать на
     наличие объектов
 shuttle-console-map-beacons = Показ маяков
 shuttle-console-no-signal = Нет сигнала

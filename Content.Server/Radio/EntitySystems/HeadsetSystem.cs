@@ -1,7 +1,5 @@
 using Content.Server.Backmen.Language;
-using Content.Server.Chat.Systems;
 using Content.Server.Corvax.TTS;
-using Content.Server.Emp;
 using Content.Shared.Chat;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
@@ -68,7 +66,7 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
         base.OnGotEquipped(uid, component, args);
         if (component.IsEquipped && component.Enabled)
         {
-            EnsureComp<WearingHeadsetComponent>(args.Equipee).Headset = uid;
+            EnsureComp<WearingHeadsetComponent>(args.EquipTarget).Headset = uid;
             UpdateRadioChannels(uid, component);
         }
     }
@@ -77,7 +75,7 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
     {
         base.OnGotUnequipped(uid, component, args);
         RemComp<ActiveRadioComponent>(uid);
-        RemComp<WearingHeadsetComponent>(args.Equipee);
+        RemComp<WearingHeadsetComponent>(args.EquipTarget);
     }
 
     public void SetEnabled(EntityUid uid, bool value, HeadsetComponent? component = null)

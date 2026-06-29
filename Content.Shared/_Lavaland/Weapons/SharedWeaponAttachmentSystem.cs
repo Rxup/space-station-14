@@ -99,6 +99,9 @@ public abstract partial class SharedWeaponAttachmentSystem : EntitySystem
             RemoveLight(uid, component);
     }
 
+    private static readonly ProtoId<DamageTypePrototype> Slash = "Slash";
+    private static readonly ProtoId<DamageTypePrototype> Blunt = "Blunt";
+
     private void BayonetChanged(EntityUid uid, bool attached, WeaponAttachmentComponent component)
     {
         if (component.BayonetAttached == attached
@@ -109,12 +112,12 @@ public abstract partial class SharedWeaponAttachmentSystem : EntitySystem
 
         if (attached)
         {
-            meleeComp.Damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Slash"), 12);
+            meleeComp.Damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>(Slash), 12);
             AddSharp(uid);
         }
         else
         {
-            meleeComp.Damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 5);
+            meleeComp.Damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>(Blunt), 5);
             RemSharp(uid);
         }
 

@@ -1,28 +1,20 @@
-using Content.Shared.Verbs;
 using Content.Shared.Item;
-using Content.Shared.Hands;
 using Content.Shared.DoAfter;
-using Content.Shared.IdentityManagement;
-using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
-using Content.Server.DoAfter;
 using Content.Server.Item;
 using Content.Server.Popups;
 using Content.Server.Resist;
 using Content.Shared.Backmen.Item;
 using Content.Shared.Backmen.Item.PseudoItem;
 using Content.Shared.Examine;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Resist;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
-using Content.Shared.Throwing;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Item.PseudoItem;
 

@@ -1,9 +1,8 @@
 using System.Linq;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Popups;
-using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Forensics.Components;

@@ -5,8 +5,6 @@ using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Shared.Backmen.Arachne;
 using Content.Shared.Coordinates.Helpers;
 using Content.Shared.DoAfter;
-using Robust.Shared.GameObjects;
-using Robust.Shared.Map;
 
 namespace Content.Server.Backmen.NPC.HTN.PrimitiveTasks.Operators.Specific;
 

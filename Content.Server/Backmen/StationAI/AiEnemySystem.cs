@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.StationAI;
+using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;

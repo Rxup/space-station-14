@@ -5,16 +5,10 @@ using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Server.EUI;
 using Content.Server.Mind;
-using Content.Server.Popups;
 using Content.Shared.Backmen.Abilities.Psionics;
-using Content.Shared.Backmen.Psionics;
-using Content.Shared.Interaction;
-using Content.Shared.Physics;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
-using Robust.Server.Player;
-using Robust.Shared.Map;
 using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Abilities.Psionics;

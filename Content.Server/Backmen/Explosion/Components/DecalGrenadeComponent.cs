@@ -1,5 +1,4 @@
 using Content.Server.Backmen.Explosion.EntitySystems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Explosion.Components;

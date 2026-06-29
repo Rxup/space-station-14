@@ -1,5 +1,4 @@
 using Content.Server.Tools;
-using Content.Shared.Tools.Components;
 using Content.Shared.Damage.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;

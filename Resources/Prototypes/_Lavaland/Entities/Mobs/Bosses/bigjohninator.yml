@@ -262,6 +262,7 @@
   - type: Appearance
   - type: AnimationPlayer
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: Destructible
     thresholds:

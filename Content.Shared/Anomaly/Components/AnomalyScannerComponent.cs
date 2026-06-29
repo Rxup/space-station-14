@@ -1,5 +1,4 @@
-﻿using Content.Shared.Anomaly;
-using Robust.Shared.Audio;
+﻿using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Anomaly.Components;
@@ -29,4 +28,10 @@ public sealed partial class AnomalyScannerComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? CompleteSound = new SoundPathSpecifier("/Audio/Items/beep.ogg");
+
+    /// <summary>
+    /// Whether to ignore the secret data on the anomaly.
+    /// </summary>
+    [DataField]
+    public bool IgnoreSecret;
 }

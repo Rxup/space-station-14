@@ -11,9 +11,9 @@
     - Donut
   - type: Sprite
     sprite: Objects/Consumable/Food/Baked/donut.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -63,9 +63,9 @@
       - jelly
   - type: Sprite
     state: jelly-plain
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -180,9 +180,9 @@
       - chocolate
   - type: Sprite
     state: choc
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -254,9 +254,9 @@
     state: jelly-homer
   - type: Item
     heldPrefix: pink
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -274,9 +274,9 @@
     state: jelly-pink
   - type: Item
     heldPrefix: pink
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -292,9 +292,9 @@
   components:
   - type: Sprite
     state: jelly-purple
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -311,9 +311,9 @@
   components:
   - type: Sprite
     state: jelly-green
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -331,9 +331,9 @@
   components:
   - type: Sprite
     state: jelly-beige
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -350,9 +350,9 @@
   components:
   - type: Sprite
     state: jelly-choc
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -375,9 +375,9 @@
       - bluepumpkin
   - type: Sprite
     state: jelly-blue
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -394,9 +394,9 @@
   components:
   - type: Sprite
     state: jelly-yellow
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -413,9 +413,9 @@
   components:
   - type: Sprite
     state: jelly-olive
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -432,9 +432,9 @@
   components:
   - type: Sprite
     state: jelly-laugh
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -451,9 +451,9 @@
   components:
   - type: Sprite
     state: jelly-slug
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
@@ -468,9 +468,9 @@
   id: FoodDonutPoison
   suffix: Poison
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 10
         reagents:
         - ReagentId: Amatoxin

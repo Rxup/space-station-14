@@ -5,7 +5,6 @@ using Content.Shared.Foldable;
 using Content.Shared.Hands.Components;
 using Content.Shared.Explosion;
 using Content.Shared.Interaction;
-using Content.Shared.Item;
 using Content.Shared.Lock;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
@@ -15,7 +14,6 @@ using Content.Shared.Verbs;
 using Content.Shared.Wall;
 using Content.Shared.Whitelist;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Mobs.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -377,12 +375,8 @@ public abstract partial class SharedEntityStorageSystem : EntitySystem
         if (containerAttemptEvent.Cancelled)
             return false;
 
-        // Consult the whitelist. The whitelist ignores the default assumption about how entity storage works.
-        if (component.Whitelist != null)
-            return _whitelistSystem.IsValid(component.Whitelist, toInsert);
-
-        // The inserted entity must be a mob or an item.
-        return HasComp<MobStateComponent>(toInsert) || HasComp<ItemComponent>(toInsert);
+        // Check the whitelist/blacklist.
+        return _whitelistSystem.CheckBoth(toInsert, component.Blacklist, component.Whitelist);
     }
 
     public bool TryOpenStorage(EntityUid user, EntityUid target, bool silent = false)

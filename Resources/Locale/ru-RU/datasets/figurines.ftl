@@ -1,6 +1,6 @@
 figurines-hop-1 = Бумаги, пожалуйста.
 figurines-hop-2 = Вы уволены.
-figurines-hop-3 = BRB.
+figurines-hop-3 = ОБЕД.
 figurines-hop-4 = Заполните форму, и получите полный доступ.
 figurines-hop-5 = Я отлучился на две секунды...
 figurines-passenger-1 = Изоли пожалуйста.

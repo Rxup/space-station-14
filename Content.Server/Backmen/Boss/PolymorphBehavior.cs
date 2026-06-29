@@ -1,4 +1,4 @@
-﻿using Content.Server.Destructible;
+using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.Polymorph.Systems;
 using Content.Shared.Polymorph;

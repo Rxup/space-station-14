@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Backmen.Disease.Components;
+namespace Content.Server.Backmen.Disease.Components;
 
 /// <summary>
 /// Value added to clothing to give its wearer

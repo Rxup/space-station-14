@@ -1,4 +1,4 @@
-﻿prayer-verbs-bank-new = новый банк
+prayer-verbs-bank-new = новый банк
 prayer-verbs-bank-getpin = пин код карты
 prayer-verbs-psi = Псионик
 prayer-verbs-team-a = Команду красных

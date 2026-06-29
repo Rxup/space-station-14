@@ -8,7 +8,7 @@ namespace Content.Client.Backmen.Teams.CapturePoint;
 
 public sealed partial class CapturePointSystem : SharedCapturePointSystem
 {
-    [Dependency] protected IGameTiming GameTiming = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private IOverlayManager _overlay = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
@@ -17,7 +17,7 @@ public sealed partial class CapturePointSystem : SharedCapturePointSystem
     public override void Initialize()
     {
         base.Initialize();
-        _overlay.AddOverlay(new CapturePointOverlay(EntityManager, _prototype, GameTiming, _player));
+        _overlay.AddOverlay(new CapturePointOverlay(EntityManager, _prototype, _gameTiming, _player));
     }
 
     public override void Shutdown()

@@ -1,7 +1,4 @@
 using System.Linq;
-using System.Net.Sockets;
-using Content.Shared.Backmen.Surgery.Consciousness.Components;
-using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Damage.Components;
@@ -13,11 +10,17 @@ namespace Content.Shared.Damage.Systems;
 
 public sealed partial class DamageableSystem
 {
+    /// <returns>If the damage container can take the given damage type</returns>
+    private bool SupportsType(ProtoId<DamageContainerPrototype>? container, ProtoId<DamageTypePrototype> type)
+    {
+        if (container is null)
+            return true;
+
+        return _supportedTypesByContainer[container.Value].Contains(type);
+    }
+
     /// <summary>
     ///     Directly sets the damage in a damageable component.
-    ///     This method keeps the damage types supported by the DamageContainerPrototype in the component.
-    ///     If a type is given in <paramref name="damage"/>, but not supported then it will not be set.
-    ///     If a type is supported but not given in <paramref name="damage"/> then it will be set to 0.
     /// </summary>
     /// <remarks>
     ///     Useful for some unfriendly folk. Also ensures that cached values are updated and that a damage changed
@@ -30,30 +33,14 @@ public sealed partial class DamageableSystem
 
         foreach (var type in ent.Comp.Damage.DamageDict.Keys)
         {
-            if (damage.DamageDict.TryGetValue(type, out var value))
-                ent.Comp.Damage.DamageDict[type] = value;
-            else
-                ent.Comp.Damage.DamageDict[type] = 0;
+            if (!damage.DamageDict.ContainsKey(type))
+                ent.Comp.Damage.DamageDict.Remove(type);
         }
 
-        OnEntityDamageChanged((ent, ent.Comp));
-    }
-
-    /// <summary>
-    ///     Directly sets the damage specifier of a damageable component.
-    ///     This will overwrite the complete damage dict, meaning it will bulldoze the supported damage types.
-    /// </summary>
-    /// <remarks>
-    ///     This may break persistance as the supported types are reset in case the component is initialized again.
-    ///     So this only makes sense if you also change the DamageContainerPrototype in the component at the same time.
-    ///     Only use this method if you know what you are doing.
-    /// </remarks>
-    public void SetDamageSpecifier(Entity<DamageableComponent?> ent, DamageSpecifier damage)
-    {
-        if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
-            return;
-
-        ent.Comp.Damage = damage;
+        foreach (var (type, amount) in damage.DamageDict)
+        {
+            ent.Comp.Damage.DamageDict[type] = amount;
+        }
 
         OnEntityDamageChanged((ent, ent.Comp));
     }
@@ -108,16 +95,8 @@ public sealed partial class DamageableSystem
     {
         //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
         // If you deal 0.0 of some damage type, Empty will be false!
-        newDamage = ChangeDamage(
-            ent,
-            damage,
-            ignoreResistances,
-            interruptsDoAfters,
-            origin,
-            ignoreGlobalModifiers,
-            partMultiplier,
-            targetPart);
-        return !damage.Empty;
+        newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, partMultiplier, targetPart);
+        return !newDamage.Empty;
     }
 
     /// <summary>
@@ -129,7 +108,7 @@ public sealed partial class DamageableSystem
     ///     stored damage data. Division of group damage into types is managed by <see cref="DamageSpecifier"/>.
     /// </remarks>
     /// <returns>
-    ///     The actual amount of damage taken, as a DamageSpecifier.
+    ///     The actual amount of damage dealt, as a DamageSpecifier.
     /// </returns>
     public DamageSpecifier ChangeDamage(
         Entity<DamageableComponent?> ent,
@@ -182,31 +161,14 @@ public sealed partial class DamageableSystem
             damage = ApplyUniversalAllModifiers(damage);
         }
 
-        // backmen edit start
-        var woundApplyEvent = new DamageableWoundApplyEvent(
-            damage,
-            targetPart,
-            origin);
-        RaiseLocalEvent(ent, ref woundApplyEvent);
-
-        if (woundApplyEvent.Handled)
-        {
-            if(!woundApplyEvent.Damage.Empty)
-                OnEntityDamageChanged((ent, ent.Comp), woundApplyEvent.Damage, interruptsDoAfters, origin);
-            return woundApplyEvent.Damage;
-        }
-
-        // start-backmen: damage type aliases
-        damage = Backmen.Damage.DamageSpecifierAliases.ApplyDamageTypeAliases(damage, _prototypeManager);
-        // end-backmen
-        // backmen edit end
+        if (_backmenDamageModel.TryDispatchModelDamage((ent, ent.Comp), damage, origin, interruptsDoAfters, targetPart, out var dispatched)) // backmen: damage-model
+            return dispatched;
 
         damageDone.DamageDict.EnsureCapacity(damage.DamageDict.Count);
 
         var dict = ent.Comp.Damage.DamageDict;
         foreach (var (type, value) in damage.DamageDict)
         {
-            // CollectionsMarshal my beloved.
             if (!dict.TryGetValue(type, out var oldValue))
                 continue;
 
@@ -352,7 +314,7 @@ public sealed partial class DamageableSystem
         ProtoId<DamageGroupPrototype>? group = null)
     {
         // get the damage should be healed (either all or only from one group)
-        damage = group == null ? GetDamage(ent) : GetDamage(ent, group.Value);
+        damage = group == null ? GetPositiveDamage(ent) : GetPositiveDamage(ent, group.Value);
 
         // If trying to heal more than the total damage of damageEntity just heal everything
         return damage.GetTotal() > amount;
@@ -364,7 +326,7 @@ public sealed partial class DamageableSystem
     /// <param name="ent">entity with damage</param>
     /// <param name="group">group of damage to get values from</param>
     /// <returns></returns>
-    public DamageSpecifier GetDamage(Entity<DamageableComponent> ent, ProtoId<DamageGroupPrototype> group)
+    public DamageSpecifier GetPositiveDamage(Entity<DamageableComponent> ent, ProtoId<DamageGroupPrototype> group)
     {
         var customDamageEv = new DamageableGetHealableDamageEvent(ent, group, new DamageSpecifier());
         RaiseLocalEvent(ent.Owner, ref customDamageEv);
@@ -394,7 +356,7 @@ public sealed partial class DamageableSystem
     /// </summary>
     /// <param name="ent">entity with damage</param>
     /// <returns></returns>
-    public DamageSpecifier GetDamage(Entity<DamageableComponent> ent)
+    public DamageSpecifier GetPositiveDamage(Entity<DamageableComponent> ent)
     {
         var customDamageEv = new DamageableGetHealableDamageEvent(ent, null, new DamageSpecifier());
         RaiseLocalEvent(ent.Owner, ref customDamageEv);
@@ -474,22 +436,7 @@ public sealed partial class DamageableSystem
         // empty damage delta.
         OnEntityDamageChanged((ent, ent.Comp), new DamageSpecifier());
 
-        // backmen edit start
-        // Синхронизация severity ран с общим уроном (для rejuvenate и т.п.)
-        if (TryComp<BodyComponent>(ent, out var body) && TryComp<ConsciousnessComponent>(ent, out _))
-        {
-            foreach (var part in _body.GetDistributedDamageTargets(ent.Owner, body))
-            {
-                if (!TryComp(part, out WoundableComponent? woundable))
-                    continue;
-
-                foreach (var wound in _wounds.GetWoundableWounds(part, woundable))
-                {
-                    _wounds.SetWoundSeverity(wound, newValue, wound);
-                }
-            }
-        }
-        // backmen edit end
+        SyncBackmenWoundSeverityFromSetAllDamage(ent, newValue); // backmen: damage-model
     }
 
     /// <summary>
@@ -506,4 +453,46 @@ public sealed partial class DamageableSystem
 
         Dirty(ent);
     }
+
+    /// <summary>
+    /// Gets the damages currently sustained by an entity.
+    /// </summary>
+    [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")]
+    public DamageSpecifier GetAllDamage(Entity<DamageableComponent?> ent)
+    {
+        if (!_damageableQuery.Resolve(ent, ref ent.Comp))
+            return new();
+
+        return ent.Comp.Damage.Clone();
+    }
+
+    /// <summary>
+    /// Gets the total amount of damage currently sustained by an entity.
+    /// </summary>
+    [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")]
+    public FixedPoint2 GetTotalDamage(Entity<DamageableComponent?> ent)
+    {
+        if (!_damageableQuery.Resolve(ent, ref ent.Comp, false))
+            return FixedPoint2.Zero;
+
+        return ent.Comp.TotalDamage;
+    }
+
+    /// <summary>
+    /// Gets the total amount of damage currently sustained by an entity, indexed by damage group.
+    /// </summary>
+    [Obsolete("Do not rely on the ability to determine a numerically quantifiable amount of damage")]
+    public IReadOnlyDictionary<ProtoId<DamageGroupPrototype>, FixedPoint2> GetDamagePerGroup(Entity<DamageableComponent?> ent)
+    {
+        if (!_damageableQuery.Resolve(ent, ref ent.Comp))
+            return new Dictionary<ProtoId<DamageGroupPrototype>, FixedPoint2>();
+
+        return ent.Comp.DamagePerGroup;
+    }
+
+    /// <summary>
+    /// Returns whether the entity can be damaged by the given type of damage.
+    /// </summary>
+    public bool CanBeDamagedBy(Entity<DamageableComponent?> ent, ProtoId<DamageTypePrototype> type) =>
+        _backmenDamageModel.CanBeDamagedBy(ent, type); // backmen: damage-container
 }

@@ -1,9 +1,8 @@
-﻿using Content.Server.NPC.HTN;
+using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks.Operators;
 using Content.Server.Polymorph.Systems;
 using Content.Shared.CombatMode;
 using Content.Shared.NPC;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 

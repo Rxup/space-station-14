@@ -19,8 +19,7 @@ news-write-ui-cancel-text = Очистить
 news-write-ui-save-text = Сохранить
 news-write-ui-preview-text = Предпросмотр
 news-write-ui-article-count-0 = 0 статей
-news-write-ui-article-count-text =
-    { $count } { $count ->
+news-write-ui-article-count-text = { $count } { $count ->
         [one] статья
         [few] статьи
        *[other] статей
@@ -31,13 +30,13 @@ news-write-ui-article-name-label = Заголовок:
 news-write-no-access-popup = Нет доступа
 news-writer-text-length-exceeded = Текст превышает максимальный объём
 news-write-ui-richtext-tooltip =
-    Новостные статьи поддерживают формат Rich Text
+        Новостные статьи поддерживают формат Rich Text
     Поддерживаются следующие теги Rich Text:
-    { "[color=Gray][bullet/]heading \\[size=1-3\\]" }
-    { "[bullet/]bold" }
-    { "[bullet/]italic" }
-    { "[bullet/]bolditalic" }
-    { "[bullet/]color" }
-    { "[bullet/]bullet[/color]" }
+    {"[color=Gray][bullet/]heading \\[size=1-3\\]"}
+    {"[bullet/]bold"}
+    {"[bullet/]italic"}
+    {"[bullet/]bolditalic"}
+    {"[bullet/]color"}
+    {"[bullet/]bullet[/color]"}
 news-pda-notification-header = Новая новостная статья
 news-publish-admin-announcement = { $actor } опубликовал(а) новостную статью { $title } за авторством { $author }

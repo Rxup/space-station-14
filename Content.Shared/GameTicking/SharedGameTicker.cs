@@ -8,7 +8,6 @@ using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Value;
 using Robust.Shared.Timing;
 using Robust.Shared.Audio;
-using Content.Shared.GameTicking.Prototypes;
 
 namespace Content.Shared.GameTicking
 {

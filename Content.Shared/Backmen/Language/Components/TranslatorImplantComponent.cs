@@ -1,5 +1,4 @@
 using Content.Shared.Backmen.Language.Components.Translators;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Backmen.Language.Components;
 

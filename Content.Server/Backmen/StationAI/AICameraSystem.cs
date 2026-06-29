@@ -1,21 +1,18 @@
-﻿using System.Numerics;
+using System.Numerics;
 using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.SurveillanceCamera;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.SurveillanceCamera.Components;
-using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationAI;
@@ -25,7 +22,6 @@ public sealed partial class AICameraSystem : EntitySystem
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private InteractionSystem _interaction = default!;
-    [Dependency] private SurveillanceCameraSystem _cameraSystem = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private GunSystem _gun = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -230,13 +226,11 @@ public sealed partial class AICameraSystem : EntitySystem
              return;
          }
 
-         if (!TryComp<SurveillanceCameraComponent>(eye.Comp.Camera.Value, out var camera))
+         if (!TryComp<SurveillanceCameraComponent>(eye.Comp.Camera.Value, out _))
          {
              return;
          }
-         var v = camera.ActiveViewers;
-         v.Remove(eye);
-         _cameraSystem.UpdateVisuals(eye.Comp.Camera.Value, camera);
+
          EnsureComp<AICameraComponent>(eye.Comp.Camera.Value).ActiveViewers.Remove(eye);
          eye.Comp.Camera = null;
          DirtyField(eye, eye.Comp, nameof(AIEyeComponent.Camera));
@@ -258,12 +252,8 @@ public sealed partial class AICameraSystem : EntitySystem
              return;
          }
 
-         var v = cameraComponent.ActiveViewers;
-
          eye.Comp.Camera = camUid;
          DirtyField(eye, eye.Comp, nameof(AIEyeComponent.Camera));
-         v.Add(eye);
-         _cameraSystem.UpdateVisuals(camUid, cameraComponent);
          EnsureComp<AICameraComponent>(camUid).ActiveViewers.Add(eye);
      }
 
@@ -271,7 +261,6 @@ public sealed partial class AICameraSystem : EntitySystem
      {
          foreach (var cameraComponent in cameraComponents)
          {
-             var v = cameraComponent.Comp.ActiveViewers;
              if(!cameraComponent.Comp.Active)
                  continue;
 

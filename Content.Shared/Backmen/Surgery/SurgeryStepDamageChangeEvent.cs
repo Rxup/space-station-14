@@ -1,5 +1,3 @@
-using Content.Shared.Damage;
-
 namespace Content.Shared.Backmen.Surgery;
 
 /// <summary>

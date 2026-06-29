@@ -17,9 +17,9 @@
       layers:
         - state: plate
         - state: baked_vulpkanin
-    - type: SolutionContainerManager
-      solutions:
-        food:
+    - type: Solution
+      id: food
+      solution:
           maxVol: 30
           reagents:
             - ReagentId: Nutriment

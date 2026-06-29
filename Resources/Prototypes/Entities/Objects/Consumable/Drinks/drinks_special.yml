@@ -7,7 +7,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 5
+        maxVol: 5 # Shot glass translates to about 5.3u so we round down because Nanotrasen is cheap.
   - type: Item
     size: Tiny
   - type: Sprite
@@ -24,12 +24,15 @@
   name: ice bucket
   description: A special bucket of refreshy ice. Prohibited use for challenge with the same name!
   components:
+  - type: Item
+    size: Large
   - type: SolutionContainerManager
     solutions:
       drink:
+        maxVol: 240
         reagents:
         - ReagentId: Ice
-          Quantity: 200
+          Quantity: 240
   - type: Sprite
     sprite: Objects/Consumable/Drinks/icebucket.rsi
     state: icon
@@ -43,13 +46,15 @@
   name: teapot  # short and stout
   description: An elegant teapot. It simply oozes class.
   components:
+  - type: Item
+    size: Normal
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 100
+        maxVol: 120
         reagents:
         - ReagentId: Tea
-          Quantity: 100
+          Quantity: 120
   - type: Sprite
     sprite: Objects/Consumable/Drinks/teapot.rsi
   - type: FitsInDispenser
@@ -116,7 +121,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 100
+        maxVol: 90 # Shakers are often about 700ml give or take and I like weird sizes so.
   - type: FitsInDispenser
     solution: drink
   - type: ExaminableSolution
@@ -126,12 +131,14 @@
     state: icon
   - type: Item
     sprite: Objects/Consumable/Drinks/shaker.rsi
+    shape:
+    - 0,0,0,2 # 3 tall
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
   - type: Shakeable
   - type: ReactionMixer
-    mixOnInteract: false
+    mixerType: None
     reactionTypes:
     - Shake
 
@@ -156,10 +163,12 @@
   name: jigger
   description: Like a shaker, but smaller. Used to control the amount of ingredients.
   components:
+  - type: Item
+    size: Tiny
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 20
+        maxVol: 10 # Two shot glasses in size
   - type: SolutionTransfer
     canChangeTransferAmount: true
     minTransferAmount: 1
@@ -185,7 +194,9 @@
   - type: SolutionContainerManager
     solutions:
       drink:
-        maxVol: 60
+        maxVol: 120
+  - type: Item
+    size: Normal
   - type: Sprite
     sprite: Objects/Consumable/Drinks/pitcher.rsi
   - type: SolutionContainerVisuals

@@ -1,8 +1,5 @@
-using Content.Shared.Examine;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
-using Content.Shared.Item;
-using Content.Shared.Item.ItemToggle;
-using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
@@ -20,42 +17,24 @@ public sealed partial class MagnetPickupSystem : EntitySystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedStorageSystem _storage = default!;
-    [Dependency] private ItemToggleSystem _itemToggle = default!;
-    [Dependency] private SharedItemSystem _item = default!; // White Dream
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
 
+    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
 
     private static readonly TimeSpan ScanDelay = TimeSpan.FromSeconds(1);
 
-    private EntityQuery<PhysicsComponent> _physicsQuery;
 
     public override void Initialize()
     {
         base.Initialize();
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        SubscribeLocalEvent<MagnetPickupComponent, ItemToggledEvent>(OnItemToggled); // White Dream
-        SubscribeLocalEvent<MagnetPickupComponent, ExaminedEvent>(OnExamined); // WD EDIT
         SubscribeLocalEvent<MagnetPickupComponent, MapInitEvent>(OnMagnetMapInit);
     }
-    //WD EDIT start
-    private void OnExamined(Entity<MagnetPickupComponent> entity, ref ExaminedEvent args)
-    {
-        var onMsg = _itemToggle.IsActivated(entity.Owner)
-            ? Loc.GetString("comp-magnet-pickup-examined-on")
-            : Loc.GetString("comp-magnet-pickup-examined-off");
-        args.PushMarkup(onMsg);
-    }
 
-    private void OnItemToggled(Entity<MagnetPickupComponent> entity, ref ItemToggledEvent args)
-    {
-        _item.SetHeldPrefix(entity.Owner, args.Activated ? "on" : "off");
-    }
-    //WD EDIT end
     private void OnMagnetMapInit(EntityUid uid, MagnetPickupComponent component, MapInitEvent args)
     {
         component.NextScan = _timing.CurTime;
     }
-
 
     public override void Update(float frameTime)
     {
@@ -65,29 +44,30 @@ public sealed partial class MagnetPickupSystem : EntitySystem
 
         while (query.MoveNext(out var uid, out var comp, out var storage, out var xform, out var meta))
         {
-            // WD EDIT START
-            if (!TryComp<ItemToggleComponent>(uid, out var toggle))
-                continue;
-
-            if (!toggle.Activated)
-                continue;
-            // WD EDIT END
-
-             if (comp.NextScan > currentTime)
+            if (comp.NextScan > currentTime)
                 continue;
 
             comp.NextScan += ScanDelay;
             Dirty(uid, comp);
 
-                        // WD EDIT START. Added ForcePickup.
-            if (!comp.ForcePickup && !_inventory.TryGetContainingSlot((uid, xform, meta), out _))
+            var parentUid = xform.ParentUid;
+
+            if (comp.RequireActiveHand && (!_hands.TryGetActiveItem(parentUid, out var activeItem) || activeItem != uid))
                 continue;
+
+            if (comp.SlotFlags != null)
+            {
+                if (!_inventory.TryGetContainingSlot((uid, xform, meta), out var slotDef))
+                    continue;
+
+                if ((slotDef.SlotFlags & comp.SlotFlags) == 0x0)
+                    continue;
+            }
 
             // No space
             if (!_storage.HasSpace((uid, storage)))
                 continue;
-            //WD EDIT END.
-            var parentUid = xform.ParentUid;
+
             var playedSound = false;
             var finalCoords = xform.Coordinates;
             var moverCoords = _transform.GetMoverCoordinates(uid, xform);
@@ -115,7 +95,10 @@ public sealed partial class MagnetPickupSystem : EntitySystem
                     continue;
 
                 // Play pickup animation for either the stack entity or the original entity.
-                _storage.PlayPickupAnimation(stacked ?? near, nearCoords, finalCoords, nearXform.LocalRotation);
+                if (stacked != null)
+                    _storage.PlayPickupAnimation(stacked.Value, nearCoords, finalCoords, nearXform.LocalRotation);
+                else
+                    _storage.PlayPickupAnimation(near, nearCoords, finalCoords, nearXform.LocalRotation);
 
                 playedSound = true;
             }

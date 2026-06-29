@@ -19,7 +19,7 @@
           amount: 4
 
 - type: entity
-  name: Огнемет М6
+  name: Огнемёт М6
   parent: BaseItem
   id: WeaponflamethrowerSG
   suffix: Огнемёт
@@ -67,7 +67,6 @@
         - ReagentId: Water
           Quantity: 100
   - type: SolutionRegeneration
-    solution: spray
     generated:
       reagents:
       - ReagentId: Water
@@ -125,7 +124,7 @@
   - type: Appearance
 
 - type: entity
-  name: ручной огнемет М6
+  name: ручной огнемёт М6
   parent: BaseWeaponRifle
   id: FirethrowerGun
   suffix: Огнемёт
@@ -188,7 +187,6 @@
         - ReagentId: Water
           Quantity: 100
   - type: SolutionRegeneration
-    solution: spray
     generated:
       reagents:
       - ReagentId: Water
@@ -212,7 +210,7 @@
 - type: entity
   id: FuelTankFirethrower
   name: топливный бак для огнемёта
-  description: Удивительная горючая реактивная смесь, которая вспыхивает ярко голубым пламенем.
+  description: Удивительная горючая смесь, вспыхивающая ярким голубым пламенем.
   parent: BaseItem
   components:
   - type: Tag
@@ -242,10 +240,10 @@
   name: реактивная смесь
   parent: FoodInjectableBase
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 0
+  - type: Solution
+    id: food
+    solution:
+      maxVol: 0
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
     netsync: false
@@ -256,6 +254,7 @@
       types:
         Blunt: 1
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:
@@ -343,6 +342,7 @@
       types:
         Asphyxiation: 0
   - type: Temperature
+  - type: TemperatureDamage
     coldDamage:
       types:
         Cold: 5 #per second, scales with temperature & other constants
@@ -372,6 +372,8 @@
     ignited: true
   - type: Damageable
     damageModifierSet: Wood
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -405,7 +407,7 @@
   description: Очень горячо!
   id: ParticlesFireNRFHELL
   parent: ParticlesFireNRF
-  suffix: АДское пламе
+  suffix: Адское Пламя
   components:
   - type: EdgeSpreader
     id: Kudzu

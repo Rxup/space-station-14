@@ -78,6 +78,7 @@
   abstract: true
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:
@@ -167,9 +168,11 @@
     soundHit:
       collection: MetalThud
     damage:
-      groups:
-        Brute: 5
-
+      types:
+        Blunt: 1.25
+        Slash: 1.25
+        Piercing: 1.25
+        ArmorPiercing: 1.25
 # Used for mobs that are affected by atmospherics, pressure, and heat
 - type: entity
   save: false
@@ -178,13 +181,14 @@
   components:
   - type: AtmosExposed
   - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
+  - type: TemperatureDamage
     heatDamageThreshold: 325
     coldDamageThreshold: 0
-    currentTemperature: 310.15
     coldDamage: #per second, scales with temperature & other constants
       types:
         Cold : 0.1
-    specificHeat: 42
     heatDamage: #per second, scales with temperature & other constants
       types:
         Heat : 1.5
@@ -213,10 +217,11 @@
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 2
   - type: Temperature
-    heatDamageThreshold: 325
-    coldDamageThreshold: 260
     currentTemperature: 310.15
     specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
     coldDamage:
       types:
         Cold: 1 #per second, scales with temperature & other constants
@@ -226,8 +231,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.15 #per second, scales with pressure and other constants.
-
+        Blunt: 0.15
 # Used for mobs that can be set on fire
 - type: entity
   save: false

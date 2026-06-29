@@ -1,4 +1,4 @@
-﻿using Content.Server.Shuttles.Components;
+using Content.Server.Shuttles.Components;
 
 namespace Content.Server.Backmen.Arrivals.CentComm;
 

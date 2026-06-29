@@ -140,6 +140,9 @@
             "name":"xenoborg-basic-module"
         },
         {
+            "name":"xenoborg-jump-module"
+        },
+        {
             "name":"xenoborg-camera-computer"
         },
         {
@@ -183,6 +186,9 @@
         },
         {
             "name":"xenoborg-sword2-module"
+        },
+        {
+            "name":"xenoborg-tile-module"
         },
         {
             "name":"xenoborg-tool-module"

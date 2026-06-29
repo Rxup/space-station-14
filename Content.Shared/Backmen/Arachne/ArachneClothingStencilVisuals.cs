@@ -1,6 +1,5 @@
 using Content.Shared.Clothing.Components;
 using Content.Shared.Humanoid;
-using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Backmen.Arachne;
 

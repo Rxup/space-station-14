@@ -1,4 +1,4 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server.Backmen.Abilities.Felinid;
 using Content.Server.Backmen.StationEvents.Components;
 using Content.Server.Ghost.Roles.Events;
@@ -10,14 +10,16 @@ using Robust.Shared.Random;
 using Content.Server.StationEvents.Events;
 using Content.Shared.Backmen.Blob.Components;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Nutrition.Components;
 using Content.Shared.Station.Components;
 using Robust.Server.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.StationEvents.Events;
 
 public sealed partial class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComponent>
 {
+    private static readonly EntProtoId BlobRuleId = "BlobRule";
+
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPlayerManager _playerSystem = default!;
 
@@ -69,7 +71,7 @@ public sealed partial class BlobSpawnRule : StationEventSystem<BlobSpawnRuleComp
         }
 
         // start blob rule incase it isn't, for the sweet greentext
-        GameTicker.StartGameRule("BlobRule");
+        GameTicker.StartGameRule(BlobRuleId);
     }
 
     // Because GameRule spawns just a GhostRoleSpawner, we can't just remove components

@@ -20,6 +20,9 @@
   id: FleshBlocker
 
 - type: Tag
+  id: Directional
+
+- type: Tag
   id: CoreSilver
 
 - type: Tag
@@ -237,3 +240,33 @@
 
 - type: Tag
   id: SpeedLoader44Magnum
+
+- type: Tag
+  id: BroneArachne
+
+- type: Tag
+  id: FullBodyOuter
+
+- type: Tag
+  id: Katana
+
+- type: Tag
+  id: MagazineHeavyRifle
+
+- type: Tag
+  id: MagazineCaselessRifle
+
+- type: Tag
+  id: HidesLegs
+
+- type: Tag
+  id: HidesNose
+
+- type: Tag
+  id: YamatoSabre
+
+- type: Tag
+  id: Salt
+
+- type: Tag
+  id: Debug

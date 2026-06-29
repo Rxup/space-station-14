@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using Content.Server.Antag;
 using Content.Shared.Verbs;
@@ -14,22 +13,18 @@ using Content.Server.Backmen.Surgery.Wounds.Systems;
 using Content.Server.Backmen.Vampiric.Role;
 using Content.Server.Backmen.Vampiric.Rule;
 using Content.Server.Bible.Components;
-using Content.Server.Body.Components;
-using Content.Server.Body.Systems;
+using Content.Shared.Body.Components;
 using Content.Server.Popups;
 using Content.Server.DoAfter;
 using Content.Server.Mind;
 using Content.Server.NPC.Components;
-using Content.Server.NPC.Systems;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Wounds;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Vampiric.Components;
 using Content.Shared.Body;
-using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Chemistry;
@@ -43,7 +38,6 @@ using Content.Server.Backmen.Cocoon;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
-using Content.Shared.Stunnable;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Forensics.Systems;
 using Content.Shared.HealthExaminable;
@@ -215,11 +209,7 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
         if (!TryComp<ActorComponent>(uid, out var actor) || !CanBeSucked(uid))
             return;
 
-        var assignedSessions = _antag
-            .ForceGetGameRuleEnt<BloodsuckerRuleComponent>(DefaultVampireRule)
-            .Comp.AssignedSessions;
-
-        if(assignedSessions.Contains(actor.PlayerSession))
+        if (_roleSystem.MindHasRole<VampireRoleComponent>(uid, out _))
             return;
 
         _antag.ForceMakeAntag<BloodsuckerRuleComponent>(actor.PlayerSession, DefaultVampireRule);
@@ -254,13 +244,18 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
         ev.Verbs.Add(verb);
     }
 
+    private static readonly ProtoId<DamageGroupPrototype> Brute = "Brute";
+    private static readonly ProtoId<DamageGroupPrototype> Airloss = "Airloss";
+
     private void OnDamageChanged(EntityUid uid, BloodSuckedComponent component, DamageChangedEvent args)
     {
         if (args.DamageIncreased)
             return;
 
-        if (_prototypeManager.TryIndex<DamageGroupPrototype>("Brute", out var brute) && args.Damageable.Damage.TryGetDamageInGroup(brute, out var bruteTotal)
-            && _prototypeManager.TryIndex<DamageGroupPrototype>("Airloss", out var airloss) && args.Damageable.Damage.TryGetDamageInGroup(airloss, out var airlossTotal))
+        if (_prototypeManager.TryIndex<DamageGroupPrototype>(Brute, out var brute)
+            && _damageableSystem.GetDamagePerGroup((uid, args.Damageable)).TryGetValue(brute, out var bruteTotal)
+            && _prototypeManager.TryIndex<DamageGroupPrototype>(Airloss, out var airloss)
+            && _damageableSystem.GetDamagePerGroup((uid, args.Damageable)).TryGetValue(airloss, out var airlossTotal))
         {
             if (bruteTotal == 0 && airlossTotal == 0)
                 RemComp<BloodSuckedComponent>(uid);
@@ -342,7 +337,7 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
             }
 
             if (_inventorySystem.TryGetSlotEntity(bloodsucker, "mask", out var maskUid) &&
-                EntityManager.TryGetComponent<IngestionBlockerComponent>(maskUid, out var blocker) &&
+                TryComp<IngestionBlockerComponent>(maskUid, out var blocker) &&
                 blocker.Enabled)
             {
                 _popups.PopupEntity(Loc.GetString("bloodsucker-fail-mask", ("mask", maskUid)), victim, bloodsucker, Shared.Popups.PopupType.Medium);
@@ -447,7 +442,7 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
 
         _reactiveSystem.DoEntityReaction(bloodsucker, temp, ReactionMethod.Ingestion);
 
-        if (!_stomachSystem.TryTransferSolution(suckerStomach.Owner, temp, suckerStomach))
+        if (!_stomachSystem.TryTransferSolution((suckerStomach.Owner, suckerStomach), temp))
         {
             _solutionSystem.TryAddSolution(victimBloodSolution, temp);
             return false;
@@ -723,7 +718,7 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
         _solutionSystem.UpdateChemicals(puddleSolution.Value);
         _reactiveSystem.DoEntityReaction(bloodsucker, temp, ReactionMethod.Ingestion);
 
-        if (!_stomachSystem.TryTransferSolution(stomach.Value.Owner, temp, stomach.Value))
+        if (!_stomachSystem.TryTransferSolution((stomach.Value.Owner, stomach.Value), temp))
             return false;
 
         _audio.PlayPvs("/Audio/Items/drink.ogg", bloodsucker);

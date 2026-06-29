@@ -38,14 +38,24 @@
   - type: Gibbable
 
 - type: entity
+  parent: SolutionStomach
+  id: SolutionMouseStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 30
+
+- type: entity
   id: OrganMouseStomach
   parent: OrganAnimalStomach
   categories: [ HideSpawnMenu ]
   components:
+  - type: SolutionManager
+    solutions:
+    - SolutionMouseStomach
   - type: SolutionContainerManager
     solutions:
-      stomach:
-        maxVol: 30
       food:
         maxVol: 5
         reagents:

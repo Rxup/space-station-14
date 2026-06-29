@@ -21,7 +21,7 @@ criminal-records-status-eliminated = Устранён
 criminal-records-console-wanted-reason = Причина розыска
 criminal-records-console-suspected-reason = Причина подозрения
 criminal-records-console-reason = Причина
-criminal-records-console-reason-placeholder = Пример: { $placeholder }
+criminal-records-console-reason-placeholder = Пример: {$placeholder}
 
 ## Crime History
 
@@ -59,5 +59,5 @@ criminal-records-species-filter = Вид
 
 ## Arrest auto history lines
 
-criminal-records-console-auto-history = АРЕСТОВАН: { $reason }
+criminal-records-console-auto-history = АРЕСТОВАН: {$reason}
 criminal-records-console-unspecified-reason = <причина не указана>

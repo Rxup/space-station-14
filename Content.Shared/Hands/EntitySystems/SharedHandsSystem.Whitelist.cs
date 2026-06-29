@@ -1,5 +1,4 @@
 using Content.Shared.Hands.Components;
-using Content.Shared.Whitelist;
 
 namespace Content.Shared.Hands.EntitySystems;
 

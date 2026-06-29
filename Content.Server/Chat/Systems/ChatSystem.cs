@@ -8,13 +8,9 @@ using Content.Server.Backmen.Language;
 using Content.Server.Chat.Managers;
 using Content.Server.Corvax.TTS;
 using Content.Server.GameTicking;
-using Content.Server.Players;
-using Content.Server.Popups;
 using Content.Server.SS220.Chat.Systems;
-using Content.Server.Players.RateLimiting;
 using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
-using Content.Server.Speech.Prototypes;
 using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
@@ -26,14 +22,11 @@ using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Ghost;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Radio;
-using Content.Shared.Speech;
 using Content.Shared.Station.Components;
-using Content.Shared.Whitelist;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -74,8 +67,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private ExamineSystemShared _examineSystem = default!;
     [Dependency] private LanguageSystem _language = default!;
 
-    public const string DefaultAnnouncementSound = "/Audio/Corvax/Announcements/announce.ogg"; // Corvax-Announcements
-    public const string CentComAnnouncementSound = "/Audio/Corvax/Announcements/centcomm.ogg"; // Corvax-Announcements
+    public static readonly SoundSpecifier CentComAnnouncementSound = new SoundPathSpecifier("/Audio/Corvax/Announcements/centcomm.ogg"); // Corvax-Announcements
     //start-backmen: languages
     public const float DefaultObfuscationFactor = 0.2f; // Percentage of symbols in a whispered message that can be seen even by "far" listeners
     public readonly Color DefaultSpeakColor = Color.White;
@@ -338,8 +330,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playSound)
         {
             if (sender == Loc.GetString("admin-announce-announcer-default"))
-                announcementSound = new SoundPathSpecifier(CentComAnnouncementSound); // Corvax-Announcements: Support custom alert sound from admin panel
-            announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
+                announcementSound = CentComAnnouncementSound; // Corvax-Announcements: Support custom alert sound from admin panel
+            announcementSound ??= DefaultAnnouncementSound;
 
             var announcementFilename = _audio.GetSound(announcementSound);
             var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), announcementFilename, announcementSound?.Params
@@ -365,7 +357,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
         if (playSound)
         {
-            _audio.PlayGlobal(announcementSound ?? new SoundPathSpecifier(DefaultAnnouncementSound), filter, true, AudioParams.Default.WithVolume(-2f));
+            _audio.PlayGlobal(announcementSound ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
         }
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
@@ -398,7 +390,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (announcementSound != null || playDefaultSound) // Corvax-TTS
         {
-            announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
+            announcementSound ??= DefaultAnnouncementSound;
             var announcementEv = new AnnouncementSpokeEvent(filter, _audio.GetSound(announcementSound), AudioParams.Default.WithVolume(-2f), message);
             RaiseLocalEvent(announcementEv);
         }

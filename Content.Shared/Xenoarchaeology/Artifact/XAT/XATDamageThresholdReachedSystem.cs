@@ -1,4 +1,3 @@
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Content.Shared.Xenoarchaeology.Artifact.XAT.Components;

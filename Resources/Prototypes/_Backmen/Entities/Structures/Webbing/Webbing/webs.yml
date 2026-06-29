@@ -40,6 +40,8 @@
     anchored: true
   - type: Damageable
     damageModifierSet: Web
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -49,6 +51,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Temperature
+  - type: TemperatureDamage
     heatDamage:
       types:
         Heat: 5
@@ -81,11 +84,16 @@
         - Arachne
   - type: HealOnBuckle
     damage:
-      groups:
-        Brute: -0.4
-        Burn: -0.4
       types:
         Poison: -0.2
+        Blunt: -0.1
+        Slash: -0.1
+        Piercing: -0.1
+        ArmorPiercing: -0.1
+        Heat: -0.1
+        Shock: -0.1
+        Cold: -0.1
+        Caustic: -0.1
   - type: Appearance
   - type: FireVisuals
     sprite: Effects/fire.rsi
@@ -123,6 +131,8 @@
     noRot: true
   - type: Damageable
     damageModifierSet: Web
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -167,7 +177,7 @@
 - type: entity
   id: CocoonSmall
   parent: CocoonedHumanoid
-  name: кокон
+  name: Кокон
   description: What could be inside...?
   placement:
     mode: SnapgridCenter

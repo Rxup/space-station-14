@@ -2,7 +2,6 @@
 using Content.Shared._Lavaland.Shuttles.Components;
 using Content.Shared.Backmen.Arrivals;
 using Content.Shared.Foldable;
-using Content.Shared.Interaction;
 using Content.Shared.Prototypes;
 using Content.Shared.Tools.Components;
 using Robust.Shared.Prototypes;

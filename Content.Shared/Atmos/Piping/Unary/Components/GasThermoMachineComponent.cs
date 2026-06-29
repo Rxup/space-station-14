@@ -1,4 +1,3 @@
-using Content.Shared.Atmos;
 using Content.Shared.Guidebook;
 using Robust.Shared.GameStates;
 

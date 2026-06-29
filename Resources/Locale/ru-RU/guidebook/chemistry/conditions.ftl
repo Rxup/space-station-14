@@ -1,5 +1,4 @@
-reagent-effect-condition-guidebook-total-damage =
-    { $max ->
+reagent-effect-condition-guidebook-total-damage = { $max ->
         [2147483648] тело имеет по крайней мере { NATURALFIXED($min, 2) } общего урона
        *[other]
             { $min ->
@@ -7,8 +6,7 @@ reagent-effect-condition-guidebook-total-damage =
                *[other] имеет между { NATURALFIXED($min, 2) } и { NATURALFIXED($max, 2) } общего урона
             }
     }
-reagent-effect-condition-guidebook-total-hunger =
-    { $max ->
+reagent-effect-condition-guidebook-total-hunger = { $max ->
         [2147483648] цель имеет по крайней мере { NATURALFIXED($min, 2) } общего голода
        *[other]
             { $min ->
@@ -16,8 +14,7 @@ reagent-effect-condition-guidebook-total-hunger =
                *[other] цель имеет между  { NATURALFIXED($min, 2) } и { NATURALFIXED($max, 2) } общего голода
             }
     }
-reagent-effect-condition-guidebook-reagent-threshold =
-    { $max ->
+reagent-effect-condition-guidebook-reagent-threshold = { $max ->
         [2147483648] в кровеносной системе имеется по крайней мере { NATURALFIXED($min, 2) } ед. { $reagent }
        *[other]
             { $min ->
@@ -27,8 +24,7 @@ reagent-effect-condition-guidebook-reagent-threshold =
     }
 reagent-effect-condition-guidebook-mob-state-condition = пациент в { $state }
 reagent-effect-condition-guidebook-job-condition = должность цели - { $job }
-reagent-effect-condition-guidebook-solution-temperature =
-    температура раствора составляет { $max ->
+reagent-effect-condition-guidebook-solution-temperature = температура раствора составляет { $max ->
         [2147483648] не менее { NATURALFIXED($min, 2) }k
        *[other]
             { $min ->
@@ -36,8 +32,7 @@ reagent-effect-condition-guidebook-solution-temperature =
                *[other] между { NATURALFIXED($min, 2) }k и { NATURALFIXED($max, 2) }k
             }
     }
-reagent-effect-condition-guidebook-body-temperature =
-    температура тела составляет { $max ->
+reagent-effect-condition-guidebook-body-temperature = температура тела составляет { $max ->
         [2147483648] не менее { NATURALFIXED($min, 2) }k
        *[other]
             { $min ->
@@ -45,24 +40,20 @@ reagent-effect-condition-guidebook-body-temperature =
                *[other] между { NATURALFIXED($min, 2) }k и { NATURALFIXED($max, 2) }k
             }
     }
-reagent-effect-condition-guidebook-organ-type =
-    метаболизирующий орган { $shouldhave ->
+reagent-effect-condition-guidebook-organ-type = метаболизирующий орган { $shouldhave ->
         [true] это
        *[false] это не
     } { $name } орган
-reagent-effect-condition-guidebook-has-tag =
-    цель { $invert ->
+reagent-effect-condition-guidebook-has-tag = цель { $invert ->
         [true] не имеет
        *[false] имеет
     } метку { $tag }
 reagent-effect-condition-guidebook-this-reagent = этот реагент
-reagent-effect-condition-guidebook-breathing =
-    метаболизатор { $isBreathing ->
+reagent-effect-condition-guidebook-breathing = метаболизатор { $isBreathing ->
         [true] дышит нормально
        *[false] задушен
     }
-reagent-effect-condition-guidebook-internals =
-    метаболизатор { $usingInternals ->
+reagent-effect-condition-guidebook-internals = метаболизатор { $usingInternals ->
         [true] использует внутренние системы
        *[false] дышит атмосферным воздухом
     }

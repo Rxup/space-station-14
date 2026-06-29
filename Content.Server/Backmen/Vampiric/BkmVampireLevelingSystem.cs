@@ -1,5 +1,5 @@
 using Content.Server.Backmen.Vampiric.Role;
-using Content.Server.Body.Components;
+using Content.Shared.Body.Components;
 using Content.Server.Mind;
 using Content.Server.Polymorph.Components;
 using Content.Server.Polymorph.Systems;
@@ -10,7 +10,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Vampiric;
 using Content.Shared.Backmen.Vampiric.Components;
-using Content.Shared.Body;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
@@ -116,6 +115,8 @@ public sealed partial class BkmVampireLevelingSystem : EntitySystem
         _stun.TryUpdateStunDuration(ent, TimeSpan.FromSeconds(_random.Next(1, 3)));
     }
 
+    private static readonly ProtoId<ReagentPrototype> Blood = "Blood";
+
     private void OnUseNewVamp(Entity<BkmVampireComponent> ent, ref InnateNewVampierActionEvent args)
     {
         if (HasComp<BkmVampireComponent>(args.Target))
@@ -132,7 +133,7 @@ public sealed partial class BkmVampireLevelingSystem : EntitySystem
             return;
 
         var bloodReferenceSolution = bloodstream.BloodReferenceSolution;
-        if (bloodReferenceSolution == null || !bloodReferenceSolution.ContainsPrototype("Blood"))
+        if (bloodReferenceSolution == null || !bloodReferenceSolution.ContainsPrototype(Blood))
         {
             _popupSystem.PopupEntity(Loc.GetString("bloodsucker-fail-not-blood", ("target", args.Target)), args.Target, ent.Owner, Shared.Popups.PopupType.Medium);
             return;

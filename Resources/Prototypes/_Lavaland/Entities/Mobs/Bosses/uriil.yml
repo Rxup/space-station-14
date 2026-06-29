@@ -47,7 +47,6 @@
     damage:
       types:
         Bloodloss: 1
-
 - type: entity
   id: SpawnerWallOfSteadfastnessSeal
   parent:
@@ -111,6 +110,7 @@
   - type: Icon
     sprite: Structures/Walls/cult.rsi
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:
@@ -157,16 +157,22 @@
   components:
   - type: Bible
     damage:
-      groups:
-        Brute: -1
-        Burn: -1
-        Immaterial: -1
+      types:
+        Blunt: -0.25
+        Slash: -0.25
+        Piercing: -0.25
+        ArmorPiercing: -0.25
+        Heat: -0.25
+        Shock: -0.25
+        Cold: -0.25
+        Caustic: -0.25
+        Holy: -1
     damageOnFail:
-      groups:
-        Airloss: 1
+      types:
+        Asphyxiation: 1
     damageOnUntrainedUse:
-      groups:
-        Burn: 80
+      types:
+        Heat: 80
     failChance: 0
   - type: MeleeWeapon
     soundHit:
@@ -332,11 +338,19 @@
       tags:
       - HolySpirit
     damage:
-      groups:
-        Brute: -30
-        Burn: -30
-        Airloss: -30
-        Toxin: -30
+      types:
+        Blunt: -7.5
+        Slash: -7.5
+        Piercing: -7.5
+        ArmorPiercing: -7.5
+        Heat: -7.5
+        Shock: -7.5
+        Cold: -7.5
+        Caustic: -7.5
+        Asphyxiation: -15
+        Bloodloss: -15
+        Poison: -15
+        Radiation: -15
   - type: Sprite
     sprite: Backmen/Objects/Misc/Holy/holybeam.rsi
     drawdepth: Mobs
@@ -392,8 +406,11 @@
     maxDistance: 12
   - type: HitscanBasicDamage
     damage:
-      groups:
-        Burn: 5
+      types:
+        Heat: 1.25
+        Shock: 1.25
+        Cold: 1.25
+        Caustic: 1.25
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Backmen/Objects/Misc/Holy/laserbeam.rsi
@@ -414,8 +431,11 @@
     maxDistance: 0
   - type: HitscanBasicDamage
     damage:
-      groups:
-        Burn: 0
+      types:
+        Heat: 0
+        Shock: 0
+        Cold: 0
+        Caustic: 0
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: Backmen/test/base/rsi/Textures/Effects/none.rsi
@@ -794,6 +814,7 @@
       shader: unshaded
       color: "#00eaff"
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:
@@ -1205,6 +1226,7 @@
       - HolyLightRandomSpawnerArea
     intervalSeconds: 1
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   - type: Fixtures
     fixtures:
@@ -1279,7 +1301,6 @@
     damage:
       types:
         Bloodloss: 1
-
 - type: Tag
   id: ArchangelUriil
 
@@ -1819,6 +1840,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Damageable
+  - type: Injurable
     damageContainer: Biological
   #- type: Fixtures
   #  fixtures:

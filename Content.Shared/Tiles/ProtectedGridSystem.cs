@@ -1,4 +1,3 @@
-using System.Linq;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Enumerators;
 

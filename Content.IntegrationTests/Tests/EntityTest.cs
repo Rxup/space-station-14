@@ -252,6 +252,7 @@ namespace Content.IntegrationTests.Tests
 
                 "AnnounceOnSpawn", // makes an announcement on mapInit.
                 "AirDrop", // spawn DropPodMarkerSimple on mapinit
+                "SpawnCompanionOnMapInit", // uplink familiar spawner summons a mob on mapinit
             };
 
             Assert.That(server.CfgMan.GetCVar(CVars.NetPVS), Is.False);

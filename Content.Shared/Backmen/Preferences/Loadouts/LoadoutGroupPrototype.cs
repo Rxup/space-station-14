@@ -1,5 +1,4 @@
 using Content.Shared.Humanoid;
-using Content.Shared.Preferences.Loadouts;
 
 namespace Content.Shared.Preferences.Loadouts;
 

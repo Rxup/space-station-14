@@ -23,6 +23,8 @@
         layer:
         - WallLayer
   - type: Damageable # Да, я специально сделал неразрушаемым, но damageable.
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: MeleeSound
     soundGroups:
       Brute:

@@ -1,6 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 using Content.Corvax.Interfaces.Shared;
-using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.Network;
 
 namespace Content.Server.Backmen.Sponsors;

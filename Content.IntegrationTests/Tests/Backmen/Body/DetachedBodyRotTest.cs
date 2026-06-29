@@ -80,7 +80,7 @@ public sealed class DetachedBodyRotTest : GameTest
             var created = new BkmDetachedBodyCreatedEvent(bundle, bundle, BkmDetachContext.Violent);
             entMan.EventBus.RaiseLocalEvent(bundle, ref created);
 
-            var damage = new DamageSpecifier { DamageDict = new Dictionary<string, FixedPoint2> { { "Blunt", 9999 } } };
+            var damage = new DamageSpecifier { DamageDict = { ["Blunt"] = FixedPoint2.New(9999) } };
             damageableSys.TryChangeDamage(bundle, damage, ignoreResistances: true);
 
             netBrain = entMan.GetNetEntity(brain);

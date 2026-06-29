@@ -13,6 +13,7 @@
     tags:
       - RawMaterial
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: Destructible
     thresholds:
@@ -531,9 +532,9 @@
     materialComposition:
       Bananium: 150
   - type: Sprite
-    state: bananium_1
+    state: bananium_3
     layers:
-    - state: bananium_1
+    - state: bananium_3
       map: ["base"]
   - type: Stack
     stackType: Bananium
@@ -541,7 +542,8 @@
     baseLayer: base
     layerStates:
       - bananium
-      - bananium_1
+      - bananium_2
+      - bananium_3
   - type: FlavorProfile
     flavors:
       - banana

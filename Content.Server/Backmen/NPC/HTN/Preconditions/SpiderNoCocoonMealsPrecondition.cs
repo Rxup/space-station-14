@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Content.Server.Backmen.Vampiric;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN.Preconditions;

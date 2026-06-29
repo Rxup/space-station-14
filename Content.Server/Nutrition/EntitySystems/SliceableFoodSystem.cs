@@ -4,6 +4,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Nutrition;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
@@ -34,7 +35,7 @@ public sealed partial class SliceableFoodSystem : EntitySystem
 
         SubscribeLocalEvent<SliceableFoodComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<SliceableFoodComponent, SliceFoodDoAfterEvent>(OnSlicedoAfter);
-        SubscribeLocalEvent<SliceableFoodComponent, ComponentStartup>(OnComponentStartup);
+        SubscribeLocalEvent<SliceableFoodComponent, MapInitEvent>(OnMapInit);
     }
 
     private void OnInteractUsing(Entity<SliceableFoodComponent> entity, ref InteractUsingEvent args)
@@ -156,15 +157,15 @@ public sealed partial class SliceableFoodSystem : EntitySystem
         _solutionContainer.TryAddSolution(itsSoln.Value, lostSolutionPart);
     }
 
-    private void OnComponentStartup(Entity<SliceableFoodComponent> entity, ref ComponentStartup args)
+    private void OnMapInit(Entity<SliceableFoodComponent> entity, ref MapInitEvent args)
     {
-        // TODO: When Food Component is fully kill delete this awful method
-        // This exists just to make tests fail I guess, awesome!
+        // This exists just to make tests fail!
         // If you're here because your test just failed, make sure that:
         // Your food has the edible component
         // The solution listed in the edible component exists
         var foodComp = EnsureComp<EdibleComponent>(entity);
-        _solutionContainer.EnsureSolution(entity.Owner, foodComp.Solution, out _);
+        if (!HasComp<SolutionContainerManagerComponent>(entity))
+            _solutionContainer.EnsureSolution(entity.Owner, foodComp.Solution, out _);
     }
 }
 

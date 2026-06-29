@@ -6,12 +6,15 @@ using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Backmen.Body;
 
 [TestFixture]
 public sealed class TargetBodyPartMappingTest : GameTest
 {
+    private static readonly ProtoId<SpeciesPrototype> Human = "Human";
+
     public override PoolSettings PoolSettings => new()
     {
         Dirty = true,
@@ -47,7 +50,7 @@ public sealed class TargetBodyPartMappingTest : GameTest
             });
         });
 
-        var human = Server.ProtoMan.Index<SpeciesPrototype>("Human");
+        var human = Server.ProtoMan.Index(Human);
         EntityUid mob = default;
 
         await Server.WaitAssertion(() =>

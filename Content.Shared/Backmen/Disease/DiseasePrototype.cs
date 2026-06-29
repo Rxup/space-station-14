@@ -7,7 +7,7 @@ namespace Content.Shared.Backmen.Disease;
 /// Diseases encompass everything from viruses to cancers to heart disease.
 /// It's not just a virology thing.
 /// </summary>
-[Prototype("disease")]
+[Prototype]
 [DataDefinition]
 public sealed partial class DiseasePrototype : IPrototype, IInheritingPrototype
 {

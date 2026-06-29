@@ -141,6 +141,31 @@
   categories:
   - UplinkPsionic
 
+- type: listing
+  id: UplinkGlimmerWispFamiliar
+  name: uplink-glimmer-wisp-familiar-name
+  description: uplink-glimmer-wisp-familiar-desc
+  icon: { sprite: Backmen/Icons/psi.rsi, state: psi }
+  productEntity: GlimmerWispFamiliarSpawner
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 6
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkAllies
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
 # ADT-Gas Grenades Uplink Listings Start
 - type: listing
   id: UplinkBZGrenadeBundle

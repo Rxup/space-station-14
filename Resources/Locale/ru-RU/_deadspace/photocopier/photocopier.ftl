@@ -31,6 +31,5 @@ photocopier-ui-categorie-title-syndicate = О̞̓̆̕Шͯ͏ИБͭК͊А
 photocopier-ui-categorie-title-nukeops = Я̙̐Д̗͗Е̭̜̄ͅР͛̄Н̫ͩАͮͥЯ О̿Ш͗ͧ̅И̦̲ͣБ̜̆К͐Ӓ̙̻́
 photocopier-ui-title-bureaucracy-forms = Образцы форм
 photocopier-ui-title-search-bar-placeholder = Поиск
-photocopier-ui-pre-footer-text =
-    Данные образцы форм предоставляются в качестве рекомендованных шаблонов для документирования большинства
+photocopier-ui-pre-footer-text = Данные образцы форм предоставляются в качестве рекомендованных шаблонов для документирования большинства
     действий на станции. Многие документы могут быть дополнены или изменены с учётом конкретного случая.

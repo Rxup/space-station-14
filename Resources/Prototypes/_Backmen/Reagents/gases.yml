@@ -6,7 +6,7 @@
   flavor: bitter
   color: "#e69edd"
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:GenericStatusEffect
         key: SeeingRainbows
@@ -64,7 +64,7 @@
   boilingPoint: -183.0
   meltingPoint: -218.4
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:Oxygenate
         factor: 8
@@ -96,16 +96,6 @@
           Pluoxium: -1.0
 
 - type: reagent
-  id: Hydrogen
-  name: reagent-name-hydrogen
-  desc: reagent-desc-hydrogen
-  physicalDesc: reagent-physical-desc-gaseous
-  flavor: bitter
-  color: "#808080"
-  boilingPoint: -253.0
-  meltingPoint: -259.2
-
-- type: reagent
   id: Nitrium
   name: reagent-name-nitrium
   desc: reagent-desc-nitrium
@@ -115,7 +105,7 @@
   boilingPoint: -253.0
   meltingPoint: -259.2
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:MovementSpeedModifier
         conditions:
@@ -159,7 +149,6 @@
         damage:
           types:
             Poison: 0.05
-
 - type: reagent
   id: Healium
   name: reagent-name-healium
@@ -170,7 +159,7 @@
   boilingPoint: -253.0
   meltingPoint: -259.2
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:GenericStatusEffect
         conditions:
@@ -188,11 +177,17 @@
           min: 2
         ignoreResistances: true
         damage:
-          groups:
-            Brute: -0.5
-            Burn: -0.5
-            Toxin: -1.25
-
+          types:
+            Blunt: -0.125
+            Slash: -0.125
+            Piercing: -0.125
+            ArmorPiercing: -0.125
+            Heat: -0.125
+            Shock: -0.125
+            Cold: -0.125
+            Caustic: -0.125
+            Poison: -0.625
+            Radiation: -0.625
 - type: reagent
   id: Hyper-Noblium
   name: reagent-name-hyper-nob
@@ -223,7 +218,7 @@
   boilingPoint: -253.0
   meltingPoint: -259.2
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         conditions:
@@ -250,7 +245,6 @@
             Heat: 0.005
             Poison: 0.005
             Bloodloss: 0.005
-
 - type: reagent
   id: Halon
   name: reagent-name-halon

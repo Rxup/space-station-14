@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
@@ -55,23 +56,30 @@ public sealed partial class CursedHeartSystem : EntitySystem
         }
     }
 
+    private static readonly ProtoId<DamageGroupPrototype> Airloss = "Airloss";
+
     private void Damage(EntityUid uid)
     {
         // TODO: WHY BLOODSTREAM IS NOT IN SHARED RAAAAAGH
         //_bloodstream.TryModifyBloodLevel(uid, -50, spill: false);
-        _damage.TryChangeDamage(uid, new DamageSpecifier(_proto.Index<DamageGroupPrototype>("Airloss"), 50), true, false);
+        _damage.TryChangeDamage(uid, new DamageSpecifier(_proto.Index<DamageGroupPrototype>(Airloss), 50), true, false);
         _popup.PopupEntity(Loc.GetString("popup-cursed-heart-damage"), uid, uid, PopupType.MediumCaution);
     }
 
+    private static readonly EntProtoId<ActionComponent> ActionPumpCursedHeart = "ActionPumpCursedHeart";
+
     private void OnMapInit(EntityUid uid, CursedHeartComponent comp, MapInitEvent args)
     {
-        _actions.AddAction(uid, ref comp.PumpActionEntity, "ActionPumpCursedHeart");
+        _actions.AddAction(uid, ref comp.PumpActionEntity, ActionPumpCursedHeart);
     }
 
     private void OnShutdown(EntityUid uid, CursedHeartComponent comp, ComponentShutdown args)
     {
         _actions.RemoveAction(uid, comp.PumpActionEntity);
     }
+
+    private static readonly ProtoId<DamageGroupPrototype> Brute = "Brute";
+
 
     private void OnPump(EntityUid uid, CursedHeartComponent comp, PumpHeartActionEvent args)
     {
@@ -80,8 +88,8 @@ public sealed partial class CursedHeartSystem : EntitySystem
 
         args.Handled = true;
         _audio.PlayGlobal(new SoundPathSpecifier("/Audio/_Lavaland/heartbeat.ogg"), uid);
-        _damage.TryChangeDamage(uid, new DamageSpecifier(_proto.Index<DamageGroupPrototype>("Brute"), -5), true, false);
-        _damage.TryChangeDamage(uid, new DamageSpecifier(_proto.Index<DamageGroupPrototype>("Airloss"), -5), true, false);
+        _damage.TryChangeDamage(uid, new DamageSpecifier(_proto.Index<DamageGroupPrototype>(Brute), -5), true, false);
+        _damage.TryChangeDamage(uid, new DamageSpecifier(_proto.Index<DamageGroupPrototype>(Airloss), -5), true, false);
         //_bloodstream.TryModifyBloodLevel(uid, 17);
         comp.LastPump = _timing.CurTime;
     }

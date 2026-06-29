@@ -1,5 +1,4 @@
 using Content.Shared.Atmos.Rotting;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Atmos.Rotting;
 

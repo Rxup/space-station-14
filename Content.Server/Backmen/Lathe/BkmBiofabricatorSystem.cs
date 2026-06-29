@@ -5,18 +5,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Lathe;
 
-public sealed class BkmBiofabricatorSystem : EntitySystem
+public sealed partial class BkmBiofabricatorSystem : EntitySystem
 {
-    [Dependency] private IGameTiming _timing = default!;
-
-    private EntityQuery<LatheProducingComponent> _producingQuery;
+    [Dependency] private EntityQuery<LatheProducingComponent> _producingQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
-        _producingQuery = GetEntityQuery<LatheProducingComponent>();
-
         SubscribeLocalEvent<BkmBiofabricatorComponent, LatheStartPrintingEvent>(OnStartPrinting);
     }
 

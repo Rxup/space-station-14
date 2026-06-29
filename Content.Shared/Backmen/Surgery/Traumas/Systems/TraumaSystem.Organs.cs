@@ -5,7 +5,6 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
-using Content.Shared.Movement.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Audio;
 

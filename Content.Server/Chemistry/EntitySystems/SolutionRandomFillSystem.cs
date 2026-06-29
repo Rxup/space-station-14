@@ -18,7 +18,9 @@ public sealed partial class SolutionRandomFillSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RandomFillSolutionComponent, MapInitEvent>(OnRandomSolutionFillMapInit);
+        SubscribeLocalEvent<RandomFillSolutionComponent, MapInitEvent>(
+            OnRandomSolutionFillMapInit,
+            after: [typeof(SharedSolutionContainerSystem)]);
     }
 
     private void OnRandomSolutionFillMapInit(Entity<RandomFillSolutionComponent> entity, ref MapInitEvent args)
@@ -37,8 +39,16 @@ public sealed partial class SolutionRandomFillSystem : EntitySystem
             return;
         }
 
-        _solutionsSystem.EnsureSolutionEntity(entity.Owner, entity.Comp.Solution, out var target , pick.quantity);
-        if(target.HasValue)
-            _solutionsSystem.TryAddReagent(target.Value, reagent, quantity);
+        if (!_solutionsSystem.TryGetSolution(entity.Owner, entity.Comp.Solution, out var target, out _))
+        {
+            Log.Error(
+                $"A random solution fill {entity.Comp.WeightedRandomId} could not find solution {entity.Comp.Solution} on {ToPrettyString(entity)}");
+            return;
+        }
+
+        if (target!.Value.Comp.Solution.AvailableVolume < quantity)
+            Log.Error($"A random solution fill {entity.Comp.WeightedRandomId} tried to put {pick.quantity} of {pick.reagent} into {ToPrettyString(target.Value)} but there was not enough space!");
+
+        _solutionsSystem.TryAddReagent(target.Value, reagent, quantity);
     }
 }

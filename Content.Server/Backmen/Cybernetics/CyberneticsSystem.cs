@@ -1,4 +1,3 @@
-using Content.Server.Emp;
 using Content.Shared.Backmen.Surgery.Body;
 using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;

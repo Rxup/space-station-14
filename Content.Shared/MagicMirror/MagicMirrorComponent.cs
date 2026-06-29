@@ -1,5 +1,4 @@
 using Content.Shared.Body;
-using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;

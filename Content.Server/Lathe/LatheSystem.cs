@@ -6,7 +6,6 @@ using Content.Server.Fluids.EntitySystems;
 using Content.Server.Lathe.Components;
 using Content.Server.Materials;
 using Content.Server.Popups;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Stack;
@@ -16,9 +15,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.UserInterface;
 using Content.Shared.Database;
-using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
-using Content.Shared.Examine;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Localizations;
@@ -182,15 +179,8 @@ namespace Content.Server.Lathe
             if (!CanProduce(uid, recipe, quantity, component))
                 return false;
 
-            foreach (var (mat, amount) in recipe.Materials)
-            {
-                var adjustedAmount = recipe.ApplyMaterialDiscount
-                    ? (int)(-amount * component.MaterialUseMultiplier)
-                    : -amount;
-                adjustedAmount *= quantity;
-
-                _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
-            }
+            foreach (var (mat, amount) in GetAdjustedAmount(component, recipe))
+                _materialStorage.TryChangeMaterialAmount(uid, mat, -amount * quantity);
 
             if (component.Queue.Last is { } node && node.ValueRef.Recipe == recipe.ID)
                 node.ValueRef.ItemsRequested += quantity;
@@ -429,6 +419,48 @@ namespace Content.Server.Lathe
             return GetAvailableRecipes(uid, component).Contains(recipe.ID);
         }
 
+        /// <summary>
+        /// Iterator returning adjusted amount of material needed to
+        /// produce a given recipe
+        /// </summary>
+        private static IEnumerable<(ProtoId<MaterialPrototype> mat, int amount)> GetAdjustedAmount(LatheComponent lathe, LatheRecipePrototype recipe)
+        {
+            foreach (var (mat, amount) in recipe.Materials)
+            {
+                var adjustedAmount = recipe.ApplyMaterialDiscount
+                    ? (int)(amount * lathe.MaterialUseMultiplier)
+                    : amount;
+
+                yield return (mat, adjustedAmount);
+            }
+        }
+
+        /// <summary>
+        /// Refunds the material cost of the currently running recipe,
+        /// without cancelling production
+        /// </summary>
+        private void RefundCurrentRecipe(EntityUid uid, LatheComponent lathe)
+        {
+            _proto.Resolve(lathe.CurrentRecipe, out var recipe);
+
+            foreach (var (mat, amount) in GetAdjustedAmount(lathe, recipe!))
+                _materialStorage.TryChangeMaterialAmount(uid, mat, amount);
+        }
+
+        /// <summary>
+        /// Refunds the material cost of a given batch,
+        /// without deleting it
+        /// </summary>
+        private void RefundBatch(EntityUid uid, LatheComponent lathe, LatheRecipeBatch batch)
+        {
+            var delta = batch.ItemsRequested - batch.ItemsPrinted;
+
+            _proto.Resolve(batch.Recipe, out var recipe);
+
+            foreach (var (mat, amount) in GetAdjustedAmount(lathe, recipe!))
+                _materialStorage.TryChangeMaterialAmount(uid, mat, amount * delta);
+        }
+
         public void AbortProduction(EntityUid uid, LatheComponent? component = null)
         {
             if (!Resolve(uid, ref component))
@@ -451,6 +483,7 @@ namespace Content.Server.Lathe
                     }
                 }
 
+                RefundCurrentRecipe(uid, component);
                 component.CurrentRecipe = null;
             }
             RemCompDeferred<LatheProducingComponent>(uid);
@@ -504,6 +537,7 @@ namespace Content.Server.Lathe
                 LogImpact.Low,
                 $"{ToPrettyString(args.Actor):player} deleted a lathe job for ({batch.ItemsPrinted}/{batch.ItemsRequested}) {GetRecipeName(batch.Recipe)} at {ToPrettyString(uid):lathe}");
 
+            RefundBatch(uid, component, batch);
             component.Queue.Remove(node);
             UpdateUserInterfaceState(uid, component);
         }
@@ -562,6 +596,7 @@ namespace Content.Server.Lathe
                 LogImpact.Low,
                 $"{ToPrettyString(args.Actor):player} aborted printing {GetRecipeName(component.CurrentRecipe.Value)} at {ToPrettyString(uid):lathe}");
 
+            RefundCurrentRecipe(uid, component);
             component.CurrentRecipe = null;
             FinishProducing(uid, component);
         }

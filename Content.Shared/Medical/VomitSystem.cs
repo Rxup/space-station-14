@@ -1,5 +1,5 @@
 using Content.Shared.Body;
-using Content.Shared.Body;
+using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -52,9 +52,18 @@ public sealed partial class VomitSystem : EntitySystem
 
     private void TryVomitSolution(Entity<StomachComponent> ent, ref BodyRelayedEvent<TryVomitEvent> args)
     {
-        if (_solutionContainer.ResolveSolution(ent.Owner, StomachSystem.DefaultSolutionName, ref ent.Comp.Solution, out var sol))
-            _solutionContainer.TryTransferSolution(ent.Comp.Solution.Value, args.Args.Sol, sol.AvailableVolume);
+        if (!_solutionContainer.ResolveSolution(ent.Owner,
+                StomachSystem.DefaultSolutionName,
+                ref ent.Comp.Solution,
+                out var sol))
+            return;
 
+        // Empty stomach solution into the new vomit solution
+        args.Args.Sol.AddSolution(sol, _proto);
+        sol.RemoveAllSolution();
+
+        // Remind the stomach that it's empty.
+        _solutionContainer.UpdateChemicals(ent.Comp.Solution.Value);
         args.Args = args.Args with { Handled = true };
     }
 

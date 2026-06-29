@@ -49,9 +49,6 @@ namespace Content.Shared.Light.Components
         [AutoNetworkedField]
         public bool CurrentLit;
 
-        [DataField, AutoNetworkedField]
-        public bool IsBlinking;
-
         [DataField, AutoNetworkedField, AutoPausedField]
         public TimeSpan LastThunk;
 

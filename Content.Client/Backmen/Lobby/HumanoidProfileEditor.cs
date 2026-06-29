@@ -30,7 +30,7 @@ public sealed partial class HumanoidProfileEditor
             return;
         }
 
-        if (_jobRequirementsMgr.RoleBans.Contains("Antag:" + antag.ID))
+        if (_jobRequirementsMgr.IsAntagBanned(antag))
         {
             unlocked = false;
             if (reason is not { })

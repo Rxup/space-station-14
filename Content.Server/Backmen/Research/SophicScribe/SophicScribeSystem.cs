@@ -13,6 +13,8 @@ namespace Content.Server.Backmen.Research.SophicScribe;
 
 public sealed partial class SophicScribeSystem : EntitySystem
 {
+    private static readonly ProtoId<RadioChannelPrototype> CommonChannel = "Common";
+
     [Dependency] private GlimmerSystem _glimmerSystem = default!;
     [Dependency] private RadioSystem _radioSystem = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
@@ -67,7 +69,7 @@ public sealed partial class SophicScribeSystem : EntitySystem
             }
 
             var message = Loc.GetString(args.Message, ("decrease", args.GlimmerBurned), ("level", _glimmerSystem.Glimmer));
-            var channel = _prototypeManager.Index<RadioChannelPrototype>("Common");
+            var channel = _prototypeManager.Index(CommonChannel);
             _radioSystem.SendRadioMessage(speaker, message, channel, speaker);
         }
     }

@@ -1,6 +1,8 @@
 ﻿using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Blob.Components;
 
@@ -25,7 +27,7 @@ public sealed partial class BlobTileComponent : Component
     [DataField]
     public DamageSpecifier HealthOfPulse = new()
     {
-        DamageDict = new Dictionary<string, FixedPoint2>
+        DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>
         {
             { "Blunt", -4 },
             { "Slash", -4 },
@@ -39,7 +41,7 @@ public sealed partial class BlobTileComponent : Component
     [DataField]
     public DamageSpecifier FlashDamage = new()
     {
-        DamageDict = new Dictionary<string, FixedPoint2>
+        DamageDict = new Dictionary<ProtoId<DamageTypePrototype>, FixedPoint2>
         {
             { "Heat", 12 }, // Makes normal tile 1 HP away from death
         }

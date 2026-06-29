@@ -13,9 +13,9 @@
     trash:
     - FoodBowlBig
     utensil: Spoon
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -40,6 +40,7 @@
       types:
         Blunt: 0
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: Tag
     tags:
@@ -82,9 +83,9 @@
     - state: bowl
     - state: alpha-filling
       color: green
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -107,9 +108,9 @@
     layers:
     - state: bowl
     - state: aesir
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -137,9 +138,9 @@
     layers:
     - state: bowl
     - state: herb
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 70
         reagents:
         - ReagentId: Nutriment
@@ -171,9 +172,9 @@
     layers:
     - state: bowl
     - state: valid
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50
         reagents:
         - ReagentId: Nutriment
@@ -203,9 +204,9 @@
     layers:
     - state: bowl
     - state: coleslaw
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 45
         reagents:
         - ReagentId: Nutriment
@@ -231,9 +232,9 @@
     layers:
     - state: bowl
     - state: caesar
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 50
         reagents:
         - ReagentId: Nutriment
@@ -256,9 +257,9 @@
     layers:
     - state: bowl
     - state: kimchi
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
@@ -281,9 +282,9 @@
     layers:
     - state: bowl
     - state: fruit
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 35
         reagents:
         - ReagentId: Sugar
@@ -309,9 +310,9 @@
     layers:
     - state: bowl
     - state: fruit
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 35
         reagents:
         - ReagentId: Sugar
@@ -337,9 +338,9 @@
     layers:
     - state: bowl
     - state: citrusdelight
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 38
         reagents:
         - ReagentId: Nutriment
@@ -365,9 +366,9 @@
     layers:
     - state: bowl
     - state: eden
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -407,9 +408,9 @@
     layers:
     - state: bowl
     - state: rice-egg
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
@@ -437,9 +438,9 @@
     layers:
     - state: bowl
     - state: rice-pork
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40.5
         reagents:
         - ReagentId: Nutriment
@@ -469,9 +470,9 @@
     layers:
     - state: bowl
     - state: rice-pudding
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
@@ -499,9 +500,9 @@
     layers:
     - state: bowl
     - state: gumbo
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 30
         reagents:
         - ReagentId: Nutriment
@@ -531,9 +532,9 @@
     layers:
     - state: bowl
     - state: oatmeal
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
@@ -574,9 +575,9 @@
   - type: Sprite
     sprite: Objects/Consumable/Food/meals.rsi
     state: amanita-jelly
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
@@ -599,9 +600,9 @@
     layers:
     - state: bowl
     - state: meatball
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -628,9 +629,9 @@
     layers:
     - state: bowl
     - state: slime
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -654,9 +655,9 @@
     layers:
     - state: bowl
     - state: tomato
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -684,9 +685,9 @@
     layers:
     - state: bowl
     - state: wingfangchu
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Protein
@@ -709,9 +710,9 @@
     layers:
     - state: bowl
     - state: clowntears
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 55
         reagents:
         - ReagentId: Nutriment
@@ -737,9 +738,9 @@
     layers:
     - state: bowl
     - state: vegetable
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -764,9 +765,9 @@
     layers:
     - state: bowl
     - state: nettle
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
@@ -807,9 +808,9 @@
     layers:
     - state: bowl
     - state: chili-hot
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -839,9 +840,9 @@
     layers:
     - state: bowl
     - state: chili-cold
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -868,9 +869,9 @@
     layers:
     - state: bowl
     - state: chili-clown
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -899,9 +900,9 @@
     layers:
     - state: bowl
     - state: monkeydelight
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -930,9 +931,9 @@
     layers:
     - state: bowl
     - state: tomato
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -960,9 +961,9 @@
     layers:
     - state: bowl
     - state: eyeball
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -991,9 +992,9 @@
     - state: bowl2
     - state: miso
         #rip milo
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1020,9 +1021,9 @@
     layers:
     - state: bowl
     - state: mushroom
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1044,9 +1045,9 @@
     layers:
     - state: bowl
     - state: beet
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1067,9 +1068,9 @@
     layers:
     - state: bowl
     - state: redbeet
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1093,9 +1094,9 @@
     layers:
     - state: bowl
     - state: stew
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1123,9 +1124,9 @@
     layers:
     - state: bowl
     - state: sweetpotato
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1147,9 +1148,9 @@
     layers:
     - state: bowl
     - state: onion
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1172,9 +1173,9 @@
     layers:
     - state: bowl
     - state: bisque
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1206,9 +1207,9 @@
     layers:
     - state: bowl
     - state: electron
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1229,9 +1230,9 @@
     layers:
     - state: bowl
     - state: bungo
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment
@@ -1260,9 +1261,9 @@
     layers:
     - state: bowl
     - state: escargot
-  - type: SolutionContainerManager
-    solutions:
-      food:
+  - type: Solution
+    id: food
+    solution:
         maxVol: 40
         reagents:
           - ReagentId: Nutriment

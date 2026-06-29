@@ -1,6 +1,5 @@
 // Мёртвый Космос, Licensed under custom terms with restrictions on public hosting and commercial use, full text: https://raw.githubusercontent.com/dead-space-server/space-station-14-fobos/master/LICENSE.TXT
 
-using System.Linq;
 using Content.Shared.Paper;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
@@ -204,9 +203,9 @@ public sealed partial class PhotocopierSystem : EntitySystem
             Priority = 11,
             Act = () =>
             {
-                if (EntityManager.TryGetComponent(args.User, out HandsComponent? hands)
+                if (TryComp(args.User, out HandsComponent? hands)
                     && _handsSystem.TryGetHeldItem((uid, hands), hands.ActiveHandId, out var held)
-                    && EntityManager.TryGetComponent(held, out TonerCartridgeComponent? toner))
+                    && TryComp(held, out TonerCartridgeComponent? toner))
                 {
                     if (component.TonerLeft == component.MaxTonerAmount)
                     {
@@ -383,7 +382,7 @@ public sealed partial class PhotocopierSystem : EntitySystem
 
         var printout = component.PrintingQueue.Dequeue();
 
-        var printed = EntityManager.SpawnEntity(printout.PrototypeId, Transform(uid).Coordinates);
+        var printed = Spawn(printout.PrototypeId, Transform(uid).Coordinates);
 
         if (TryComp<PaperComponent>(printed, out var paper))
         {

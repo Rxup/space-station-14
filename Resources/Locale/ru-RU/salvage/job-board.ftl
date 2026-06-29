@@ -1,19 +1,18 @@
-salvage-job-rank-title-0 = [color=gray]Разбойник[/color]
-salvage-job-rank-title-1 = [color=white]Скрэпер[/color]
+salvage-job-rank-title-0 = [color=gray]Мусорщик[/color]
+salvage-job-rank-title-1 = [color=white]Обломщик[/color]
 salvage-job-rank-title-2 = [color=yellow]Специалист[/color]
-salvage-job-rank-title-MAX = [color=gold]Супр. Разбойник[/color]
-job-board-radio-announce = Ранг разбоевщика повышен до [bold]{ $rank }[/bold]! Новые заказы можно приобрести в Карго.
+salvage-job-rank-title-MAX = [color=gold]Верховный утилизатор[/color]
+job-board-radio-announce = Утилизаторский ранг повышен до [bold]{$rank}[/bold]! В отделе снабжения можно купить новые товары.
 job-board-ui-window-title = Таблица заданий
 job-board-ui-label-rank = [bold]Ранг:[/bold]
-job-board-ui-label-items = Цель: [color=red]{ $item }[/color]
-job-board-label-text = [head=2]Задание по разбору[/head]
-    { "[italic]Только для официальных внеслужебных поставок утиля.[/italic]" }
-    
-    { "[bold]Цель:[/bold]" } { $target }
-    { "[bold]Награда:[/bold]" } ${ $reward }
-    
-    
-    { "[italic]Поставки подлежат проверке корпорацией Donk[/italic]" }
+job-board-ui-label-items = Цель: [color=red]{$item}[/color]
+job-board-label-text = [head=2]Поставка утилизаторской работы[/head]
+    {"[italic]Только для официальных поставок утилизаторских заданий за пределами станции.[/italic]"}
+
+    {"[bold]Цель:[/bold]"} {$target}
+    {"[bold]Награда:[/bold]"} ${$reward}
+
+    {"[italic]Поставки подлежат проверке корпорацией Donk[/italic]"}
 salv-job-board-name-BountyTeethSpaceCarp = Космическая карась
 salv-job-board-name-BountySalvageScrap = Глубокий космос мусор
 salv-job-board-name-BountySalvageOreGold = Золото (Руда)

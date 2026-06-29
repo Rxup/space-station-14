@@ -16,12 +16,10 @@ station-goal-start = [color=#b8972d]███[/color][color=#1d7a1d]░███
     
     При выполнении первостепенной [bold]или[/bold] второстепенной цели вы получите полный оклад, но лишитесь премиальных.
     При выполнении первостепенной [bold]и[/bold] второстепенной цели вы получите полный оклад и премиальные.
-station-goal-end =
-    Слава NanoTrasen!
+station-goal-end = Слава NanoTrasen!
     ==================================================[italic]
                                           Место для печати[/italic]
-station-goal-singularity =
-    { station-goal-start }[bold]
+station-goal-singularity = { station-goal-start }[bold]
     
     Второстепенная цель — постройка генератора, основанного на сингулярности.[/bold]
     
@@ -32,8 +30,7 @@ station-goal-singularity =
     После окончания смены вся конструкция будет отсоединена от станции и транспортирована на другой объект.
     
     { station-goal-end }
-station-goal-solar-panels =
-    { station-goal-start }[bold]
+station-goal-solar-panels = { station-goal-start }[bold]
     
     Второстепенная цель — постройка сети солнечных панелей.[/bold]
     
@@ -43,8 +40,7 @@ station-goal-solar-panels =
     - Каждая ветвь должна иметь минимум два СМЭСа, несоединённых со станцией.
     
     { station-goal-end }
-station-goal-artifacts =
-    { station-goal-start }[bold]
+station-goal-artifacts = { station-goal-start }[bold]
     
     Второстепенная цель — нахождение и исследование артефактов.[/bold]
     
@@ -57,8 +53,7 @@ station-goal-artifacts =
     Каждый документ должен быть подтверждён печатью научного руководителя или капитана. Артефакты с документацией должны быть доставлены на станцию центрального командования.
     
     { station-goal-end }
-station-goal-bank =
-    { station-goal-start }[bold]
+station-goal-bank = { station-goal-start }[bold]
     
     Второстепенная цель — постройка орбитального хранилища с припасами и технологиями.[/bold]
     
@@ -101,8 +96,7 @@ station-goal-bank =
     Платы от научного отдела должны быть уникальными и созданными с использованием золота, серебра или урана в количестве как минимум десяти единиц.
     
     { station-goal-end }
-station-goal-zoo =
-    { station-goal-start }[bold]
+station-goal-zoo = { station-goal-start }[bold]
     
     Второстепенная цель — улучшение рекреации персонала станции.[/bold]
     
@@ -111,8 +105,7 @@ station-goal-zoo =
     Животные должны быть заказаны в отделе снабжения.
     
     { station-goal-end }
-station-goal-mining-outpost =
-    { station-goal-start }[bold]
+station-goal-mining-outpost = { station-goal-start }[bold]
     
     Второстепенная цель — постройка орбитального шахтёрского аванпоста.[/bold]
     
@@ -123,8 +116,7 @@ station-goal-mining-outpost =
     На территории аванпоста должен быть склад для размещения добытого сырья и припасов: как минимум 500u (пятьсот единиц) пива в ящике-холодильнике для закусок. Как минимум по четыре набора медикаментов от физического и механического урона
     
     { station-goal-end }
-station-goal-tesla =
-    { station-goal-start }[bold]
+station-goal-tesla = { station-goal-start }[bold]
     
     Второстепенная цель — постройка генератора, основанного на тесле.[/bold]
     
@@ -135,8 +127,7 @@ station-goal-tesla =
     После окончания смены вся конструкция будет отсоединена от станции и транспортирована на другой объект.
     
     { station-goal-end }
-station-goal-security =
-    { station-goal-start }[bold]
+station-goal-security = { station-goal-start }[bold]
     
     Второстепенная цель — постройка и снабжение тренировочного комплекса для Службы Безопасности, с последующей проверкой состава.[/bold]
     В будущем данная станция будет передислоцирована в сектор граничащий с небезопасным.
@@ -153,8 +144,7 @@ station-goal-security =
     Задачей Службы Безопасности является проведение для каждого члена своего отдела тренировки на данной полосе с письменной фиксацией результатов. В результатах должно быть описано Имя и Фамилия сотрудника, а так же время за которое им была пройдена полоса. Лучшие сотрудники получат шанс на контракт о последующей работе на следующей смене данной станции. Результаты каждого сотрудника будет необходимо указать в отчете о состоянии цели.
     
     { station-goal-end }
-station-goal-shuttle-med =
-    { station-goal-start }[bold]
+station-goal-shuttle-med = { station-goal-start }[bold]
     
     Второстепенная цель — постройка пилотируемого медицинского шаттла.[/bold]
     
@@ -172,8 +162,7 @@ station-goal-shuttle-med =
     Рысканье — поступательное движение "боком".
     
     { station-goal-end }
-station-goal-shuttle-sec =
-    { station-goal-start }[bold]
+station-goal-shuttle-sec = { station-goal-start }[bold]
     
     Второстепенная цель — постройка пилотируемого десантного шаттла.[/bold]
     
@@ -191,8 +180,7 @@ station-goal-shuttle-sec =
     Рысканье — поступательное движение "боком".
     
     { station-goal-end }
-station-goal-shuttle-rnd =
-    { station-goal-start }[bold]
+station-goal-shuttle-rnd = { station-goal-start }[bold]
     
     Второстепенная цель — постройка пилотируемого исследовательского шаттла.[/bold]
     
@@ -208,8 +196,7 @@ station-goal-shuttle-rnd =
     Рысканье — поступательное движение "боком".
     
     { station-goal-end }
-station-goal-shuttle-srv =
-    { station-goal-start }[bold]
+station-goal-shuttle-srv = { station-goal-start }[bold]
     
     Второстепенная цель — постройка пилотируемого пассажирского шаттла.[/bold]
     
@@ -228,8 +215,7 @@ station-goal-shuttle-srv =
     Рысканье — поступательное движение "боком".
     
     { station-goal-end }
-station-goal-shuttle-emergency =
-    { station-goal-start }[bold]
+station-goal-shuttle-emergency = { station-goal-start }[bold]
     
     Второстепенная цель — постройка пилотируемого спасательного шаттла.[/bold]
     
@@ -245,8 +231,7 @@ station-goal-shuttle-emergency =
     Рысканье — поступательное движение "боком".
     
     { station-goal-end }
-station-goal-theatre =
-    { station-goal-start }[bold]
+station-goal-theatre = { station-goal-start }[bold]
     
     Второстепенная цель — постройка театральной зоны.[/bold]
     На данной станции пройдут переговоры с крупными компаниями для заключения партнёрских соглашений. Важно обеспечить тёплый приём гостей.
@@ -262,8 +247,7 @@ station-goal-theatre =
     По окончании работ ЦК может прислать представителя для проведения тестового представления.
     
     { station-goal-end }
-station-goal-ai =
-    { station-goal-start }[bold]
+station-goal-ai = { station-goal-start }[bold]
     
     Второстепенная цель — постройка автономного отсека ИИ.[/bold]
     По окончанию строительства отсек должен быть отстыкован от станции и отправлен дрейфовать в космосе.
@@ -283,8 +267,7 @@ station-goal-ai =
     - Сеть вокруг отсека под высоким напряжением.
     
     { station-goal-end }
-station-goal-botany =
-    { station-goal-start }[bold]
+station-goal-botany = { station-goal-start }[bold]
     
     Второстепенная цель — постройка теплиц и выведение приспособленных к температуре растений.[/bold]
     
@@ -298,8 +281,7 @@ station-goal-botany =
     Для ускоренного выполнения рекомендуется заливать в гидропонные лотки по 10u–20u нестабильного мутагена.
     
     { station-goal-end }
-station-goal-bunker =
-    { station-goal-start }[bold]
+station-goal-bunker = { station-goal-start }[bold]
     
     Второстепенная цель — приспособить станцию к мощным гиперэнергетическим потокам.[/bold]
     
@@ -319,8 +301,7 @@ station-goal-bunker =
     Бункер Медицинского отдела должен дополнительно оснащаться Дефиблилятором и зарядником батарей.
     
     { station-goal-end }
-station-goal-frame-repair =
-    { station-goal-start }[bold]
+station-goal-frame-repair = { station-goal-start }[bold]
     
     Второстепенная цель — окончание строительных работ на станции.[/bold]
     
@@ -329,24 +310,21 @@ station-goal-frame-repair =
     Для помощи в выполнении цели центральное командование будет каждые пять минут высылать припасы на специальной посадочной площадке в центре станции.
     
     { station-goal-end }
-station-goal-delta-xeno-repair =
-    { station-goal-start }[bold]
+station-goal-delta-xeno-repair = { station-goal-start }[bold]
     
     Второстепенная цель — восстановление заброшенного ксенобиологического сектора научного отдела.[/bold]
     
     Вам необходимо полностью восстановить электропитание, атмосферу, привести внешний вид к изначальному состоянию, и поймать минимум трёх слаймов любых форм в ксенобиологические клетки, для их изучения последующей сменой.
     
     { station-goal-end }
-station-goal-delta-ambusol =
-    { station-goal-start }[bold]
+station-goal-delta-ambusol = { station-goal-start }[bold]
     
     Второстепенная цель — восстановление заброшенного вирусологического сектора медицинского отдела.[/bold]
     
     Вам необходимо полностью восстановить электропитание, атмосферу, привести внешний вид к изначальному состоянию. После в стерильных условиях вирусологии провести синтезацию 500u (пятисот единиц) амбузола, для этого Вам предоставлены 3 (три) пилюли ромерола.
     
     { station-goal-end }
-station-goal-split-secure =
-    { station-goal-start }[bold]
+station-goal-split-secure = { station-goal-start }[bold]
     
     Второстепенная цель — обеспечить безопасность в субсекторе Split.[/bold]
     
@@ -355,8 +333,7 @@ station-goal-split-secure =
     По нашей информации в секторе находится база пиратов, охраняйте логистические маршруты в секторе и не допустите потерю имущества корпорации в случае грабежей.
     
     { station-goal-end }
-station-goal-astra-repair =
-    { station-goal-start }[bold]
+station-goal-astra-repair = { station-goal-start }[bold]
     
     Второстепенная цель — восстановление заброшенной станции Vasilisk, находящейся в центральной части.[/bold]
     

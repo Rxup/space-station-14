@@ -1,4 +1,4 @@
-﻿using Content.Shared.Backmen.Disease;
+using Content.Shared.Backmen.Disease;
 
 namespace Content.Server.Backmen.Disease.Server;
 

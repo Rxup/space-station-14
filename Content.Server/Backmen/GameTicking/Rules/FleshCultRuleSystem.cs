@@ -5,14 +5,12 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Mind;
-using Content.Server.NPC.Systems;
 using Content.Server.Objectives;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Server.Store.Components;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Flesh;
@@ -20,6 +18,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
+using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Players;
@@ -43,6 +42,10 @@ namespace Content.Server.Backmen.GameTicking.Rules;
 
 public sealed partial class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 {
+    private static readonly EntProtoId FleshCultRuleId = "FleshCult";
+    private static readonly ProtoId<NpcFactionPrototype> NanoTrasenFaction = "NanoTrasen";
+    private static readonly ProtoId<NpcFactionPrototype> FleshFaction = "Flesh";
+
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
@@ -369,8 +372,8 @@ public sealed partial class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleCo
             fleshCultRule.Cultists.Add((mindId, mind));
         }
 
-        _faction.RemoveFaction(entity, "NanoTrasen", false);
-        _faction.AddFaction(entity, "Flesh");
+        _faction.RemoveFaction(entity, NanoTrasenFaction, false);
+        _faction.AddFaction(entity, FleshFaction);
 
         var storeComp = EnsureComp<StoreComponent>(mind.OwnedEntity.Value);
 
@@ -407,8 +410,8 @@ public sealed partial class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleCo
         if (fleshCultRule == null)
         {
             //todo fuck me this shit is awful
-            GameTicker.StartGameRule("FleshCult", out var ruleEntity);
-            fleshCultRule = EntityManager.GetComponent<FleshCultRuleComponent>(ruleEntity);
+            GameTicker.StartGameRule(FleshCultRuleId, out var ruleEntity);
+            fleshCultRule = Comp<FleshCultRuleComponent>(ruleEntity);
         }
 
         var mindId = traitor.Data.ContentData()?.Mind;
@@ -427,8 +430,8 @@ public sealed partial class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleCo
         if (fleshCultRule == null)
         {
             //todo fuck me this shit is awful
-            GameTicker.StartGameRule("FleshCult", out var ruleEntity);
-            fleshCultRule = EntityManager.GetComponent<FleshCultRuleComponent>(ruleEntity);
+            GameTicker.StartGameRule(FleshCultRuleId, out var ruleEntity);
+            fleshCultRule = Comp<FleshCultRuleComponent>(ruleEntity);
         }
 
         var mindId = traitor.Data.ContentData()?.Mind;

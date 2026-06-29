@@ -1,5 +1,4 @@
 using Content.Server.Administration.Logs;
-using Content.Server.Backmen.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Jittering;
 using Content.Server.Mind;
@@ -7,10 +6,9 @@ using Content.Server.Stunnable;
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Anomaly.Effects;
-using Content.Shared.Body;
-using Content.Server.Backmen.Body.Systems;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.Gibbing;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Whitelist;
@@ -26,7 +24,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private AnomalySystem _anomaly = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private BkmBodySystem _body = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
     [Dependency] private IChatManager _chat = default!;
     [Dependency] private ISharedPlayerManager _player = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
@@ -132,10 +130,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
     private void OnAnomalySupercritical(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySupercriticalEvent args)
     {
-        if (!TryComp<BodyComponent>(ent, out var body))
-            return;
-
-        _body.GibBody(ent, true, body, splatModifier: 5f);
+        _gibbing.Gib(ent.Owner);
     }
 
     private void OnSeverityChanged(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySeverityChangedEvent args)

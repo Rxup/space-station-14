@@ -6,8 +6,6 @@ using Content.Shared.Examine;
 using Content.Shared.HealthExaminable;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
-using Content.Shared.Inventory.Events;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.Strip;
 using Content.Shared.Verbs;
