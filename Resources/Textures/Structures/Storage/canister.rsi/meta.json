@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Frezon canister modified from tgstation, the rest are taken from tgstation at commit https://github.com/tgstation/tgstation/commit/f8581a636acfc1517611a680b7711a74fc7ef335. Paper Sprites by Vermidia.",
+    "copyright": "Taken from TauCetiClassic at commit https://github.com/TauCetiStation/TauCetiClassic/tree/13b5c47145804dd24507b75f250de5e87d34e194, New canisters was drawn by discord:unlumy. Paper Sprites by Vermidia. Integrity & masks fixed by @mishutka09 (discord:1152277579206774854).",
     "size": {
         "x": 32,
         "y": 32
@@ -167,25 +167,13 @@
             "name": "paper"
         },
         {
-            "name": "integrity-unshaded-0"
-        },
-        {
-            "name": "integrity-unshaded-1"
-        },
-        {
-            "name": "integrity-unshaded-2"
-        },
-        {
-            "name": "integrity-unshaded-3"
-        },
-        {
-            "name": "integrity-unshaded-4"
-        },
-        {
             "name": "brown"
         },
         {
             "name": "brown-1"
+        },
+        {
+            "name": "mask-brown"
         },
         {
             "name": "purple"
@@ -194,10 +182,16 @@
             "name": "purple-1"
         },
         {
+            "name": "mask-purple"
+        },
+        {
             "name": "helium"
         },
         {
             "name": "helium-1"
+        },
+        {
+            "name": "mask-helium"
         },
         {
             "name": "nob"
@@ -206,10 +200,16 @@
             "name": "nob-1"
         },
         {
+            "name": "mask-nob"
+        },
+        {
             "name": "healium"
         },
         {
             "name": "healium-1"
+        },
+        {
+            "name": "mask-healium"
         },
         {
             "name": "proto_nitrate"
@@ -218,10 +218,16 @@
             "name": "proto_nitrate-1"
         },
         {
+            "name": "mask-proto_nitrate"
+        },
+        {
             "name": "halon"
         },
         {
             "name": "halon-1"
+        },
+        {
+            "name": "mask-halon"
         },
         {
             "name": "darkpurple"
@@ -236,16 +242,40 @@
             "name": "antinob-1"
         },
         {
+            "name": "mask-antinob"
+        },
+        {
             "name": "h2"
         },
         {
             "name": "h2-1"
         },
         {
+            "name": "mask-h2"
+        },
+        {
             "name": "zauker"
         },
         {
             "name": "zauker-1"
+        },
+        {
+            "name": "mask-zauker"
+        },
+        {
+            "name": "integrity-unshaded-0"
+        },
+        {
+            "name": "integrity-unshaded-1"
+        },
+        {
+            "name": "integrity-unshaded-2"
+        },
+        {
+            "name": "integrity-unshaded-3"
+        },
+        {
+            "name": "integrity-unshaded-4"
         }
     ]
 }

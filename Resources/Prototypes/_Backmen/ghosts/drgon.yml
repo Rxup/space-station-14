@@ -12,4 +12,5 @@
     color: "#fff8"
     layers:
     - state: drgon
+      map: [ "ghostVariant" ]
       shader: unshaded

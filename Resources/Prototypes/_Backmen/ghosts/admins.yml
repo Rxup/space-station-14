@@ -9,4 +9,5 @@
     sprite: Backmen/Mobs/Ghost/angel.rsi
     layers:
       - state: angel
+        map: [ "ghostVariant" ]
         shader: unshaded

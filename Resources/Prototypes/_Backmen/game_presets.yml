@@ -199,26 +199,6 @@
   - LavalandStormScheduler # Lavaland Change
 
 - type: gamePreset
-  id: NukeopsFleshCultTraitor
-  alias:
-    - nukeops
-    - fleshcult
-    - syndinukies
-  name: nukeops-fleshcult-traitor-title
-  description: nukeops-fleshcult-traitor-description
-  showInVote: false
-  rules:
-    - Nukeops
-    - FleshCult
-    - BasicStationEventScheduler
-    - WageScheduler #backmen: currency
-    - PsiScheduler #backmen: psi
-    - Traitor
-    - BasicRoundstartVariation
-    - MeteorSwarmScheduler
-    - LavalandStormScheduler # Lavaland Change
-
-- type: gamePreset
   id: SurvivalNukeops
   alias:
     - survival
