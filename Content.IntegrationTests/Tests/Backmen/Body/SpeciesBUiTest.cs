@@ -27,7 +27,7 @@ public sealed class SpeciesBUiTest : GameTest
 - type: entity
   name: BaseMobSpeciesTest
   id: BaseMobSpeciesTest
-  parent: BaseSpeciesMobSurgery
+  parent: BaseSpeciesMob
 ";
 
     private Dictionary<Enum, InterfaceData> GetInterfaces(UserInterfaceComponent comp) =>
