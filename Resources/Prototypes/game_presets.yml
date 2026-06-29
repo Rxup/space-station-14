@@ -127,7 +127,7 @@
   showInVote: false #4boring4vote
   description: greenshift-description
   rules:
-  - SpaceTrafficControlFriendlyEventScheduler
+  #- SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
   - WageScheduler #backmen: currency
   - LavalandStormScheduler # Lavaland Change
