@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Damage.Components;
@@ -136,6 +137,8 @@ public sealed partial class DamageableSystem
             return damageDone;
 
         damage *= partMultiplier; // backmen
+
+        targetPart = ResolveTargetBodyPart(ent, origin, targetPart);
 
         // Apply resistances
         if (!ignoreResistances)
@@ -495,4 +498,23 @@ public sealed partial class DamageableSystem
     /// </summary>
     public bool CanBeDamagedBy(Entity<DamageableComponent?> ent, ProtoId<DamageTypePrototype> type) =>
         _backmenDamageModel.CanBeDamagedBy(ent, type); // backmen: damage-container
+
+    /// <summary>
+    /// Picks a hit location for locational armor and wound routing when callers omit <paramref name="targetPart"/>.
+    /// </summary>
+    private TargetBodyPart? ResolveTargetBodyPart(EntityUid ent, EntityUid? origin, TargetBodyPart? targetPart)
+    {
+        if (targetPart != null)
+            return targetPart;
+
+        if (!HasComp<ConsciousnessComponent>(ent))
+            return null;
+
+        var target = _body.GetRandomBodyPart(ent);
+
+        if (origin != null && TryComp<TargetingComponent>(origin.Value, out var attackerTargeting))
+            target = _body.GetRandomBodyPart(ent, origin.Value, attackerComp: attackerTargeting) ?? target;
+
+        return target;
+    }
 }
