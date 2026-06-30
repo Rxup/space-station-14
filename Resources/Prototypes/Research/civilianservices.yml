@@ -13,7 +13,6 @@
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
   - ReagentGrinderIndustrialMachineCircuitboard
-  position: 10, 5 #Backmen EDIT
 
 - type: technology
   id: CritterMechs
@@ -37,7 +36,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
   - RoboticsMachines
-  position: 8,-1
   # Backmen-Edit-End
 
 - type: technology
@@ -61,7 +59,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
   - EngineeringMachines
-  position: -4,3
   # Backmen-Edit-End
 
 - type: technology
@@ -82,7 +79,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
    - Entertainment
-  position: 3,10
   # Backmen-Edit-End
 
 - type: technology
@@ -107,7 +103,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
    - Kitchen
-  position: 5,8
   # Backmen-Edit-End
 
 # Tier 2
@@ -133,7 +128,6 @@
   - FauxTileDesertAstroSand
   technologyPrerequisites:
   - Entertainment
-  position: 2,9  #Backmen EDIT
 
 - type: technology
   id: BiochemicalStasis
@@ -151,7 +145,6 @@
   - SyringeCryostasis
   technologyPrerequisites:
   - Medicine
-  position: 5,-5 #Backmen EDIT
 
 - type: technology # Merge with other T2 medical research if possible!
   id: MechanizedTreatment
@@ -167,7 +160,6 @@
   technologyPrerequisites:
   - CyborgModules
   - BiochemicalStasis
-  position: 6,-5 # Backmen-Edit
 
 - type: technology
   id: AdvancedCleaning
@@ -185,7 +177,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
   - Cleaning
-  position: 4,7
   # Backmen-Edit-End
 
 - type: technology
@@ -209,7 +200,6 @@
   - MechEquipmentHorn
   technologyPrerequisites:
   - RoboticsMachines
-  position: 8,0 #Backmen EDIT
 
 - type: technology
   id: AdvancedSpray
@@ -223,7 +213,6 @@
   recipeUnlocks:
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
-  position: 5,7 # Backmen-Edit
 
 - type: technology
   id: BluespaceCargoTransport
@@ -240,7 +229,6 @@
   technologyPrerequisites:
   - Factorio
   - SalvageEquipmentAdvanced
-  position: 7,5
   # Backmen-Edit-End
 
 - type: technology
@@ -257,7 +245,6 @@
   - BorgModuleAdvancedClowning
   technologyPrerequisites:
   - EntertainmentAdvanced
-  position: 4,10 #Backmen EDIT
 
 # Tier 3
 
@@ -276,7 +263,6 @@
   technologyPrerequisites:
   - MagneticBoots
   - QuantumLeaping
-  position: 5,4
   # Backmen-Edit-End
 
 - type: technology
@@ -295,7 +281,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
   - ChemistryMachines
-  position: 2,-7
   # Backmen-Edit-End
 
 - type: technology
@@ -312,4 +297,3 @@
   - MiniSyringe
   technologyPrerequisites:
   - Medicine
-  position: 4,-7 #Backmen EDIT

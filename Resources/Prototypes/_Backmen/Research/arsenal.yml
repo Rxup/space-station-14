@@ -41,7 +41,6 @@
   technologyPrerequisites:
 #  - RiotControl
   - NonlethalAmmunition
-  position: -3,-2
 
 - type: technology
   id: ArmorPiercingAmmo
@@ -60,7 +59,6 @@
   - MagazinePacketHeavyRifle50BMG #Becouse this is a very huge calibre
   technologyPrerequisites:
   - LethalAmmunition
-  position: -4,-2
 
 - type: technology
   id: CombatLaserConcentrated
@@ -73,7 +71,6 @@
   cost: 8000
   recipeUnlocks:
   - WeaponLaserCannon
-  position: 0,-3
 
 - type: technology
   id: CombatLaserExperimental
@@ -87,7 +84,6 @@
   recipeUnlocks:
   - WeaponLaserSvalinn
   - WeaponLaserPistol
-  position: -2,-4
 
 - type: technology
   id: EnergyBarriers
@@ -100,7 +96,6 @@
   cost: 6000
   recipeUnlocks:
   - EnergyDomeDirectionalTurtle
-  position: 2,-1
 
 - type: technology
   id: WeaponPistolBase
@@ -115,7 +110,6 @@
   - WeaponPistolG23
   technologyPrerequisites:
   - GunsmithPrinterMachines
-  position: -1,-5
 
 - type: technology
   id: WeaponRifleBase
@@ -129,7 +123,6 @@
   technologyPrerequisites:
   - LightAutoWeaponBase
   - WeaponPistolBase
-  position: 0,-6
 
 - type: technology
   id: LightAutoWeaponBase
@@ -145,7 +138,6 @@
   - MagazinePistolNail
   technologyPrerequisites:
   - WeaponPistolBase
-  position: -1,-7
 
 - type: technology
   id: AdvancedAutoWeaponBase
@@ -158,7 +150,6 @@
   cost: 30000
   technologyPrerequisites:
   - WeaponRifleBase
-  position: 0,-8
 
 - type: technology
   id: ReinforcedBarrelBase
@@ -171,7 +162,6 @@
   cost: 40000
   technologyPrerequisites:
   - AdvancedAutoWeaponBase
-  position: -2,-8
 
 - type: technology
   id: EarthArmoriesPistols
@@ -187,7 +177,6 @@
   - WeaponPistolACP14
   technologyPrerequisites:
   - WeaponPistolBase
-  position: -2,-6
 
 - type: technology
   id: EarthArmoriesLightAutoWeapons
@@ -204,7 +193,6 @@
   technologyPrerequisites:
   - LightAutoWeaponBase
   - EarthArmoriesPistols
-  position: -3,-7
 
 - type: technology
   id: EarthArmoriesReinforcedWeapons
@@ -221,7 +209,6 @@
   technologyPrerequisites:
   - EarthArmoriesPistols
   - ReinforcedBarrelBase
-  position: -3,-6
 
 - type: technology
   id: EarthArmoriesRiflesWeapons
@@ -237,7 +224,6 @@
   - WeaponShotgunPaladin12
   technologyPrerequisites:
   - WeaponRifleBase
-  position: 0,-10
 
 - type: technology
   id: EarthArmoriesRiflesHeavyWeapons
@@ -253,7 +239,6 @@
   technologyPrerequisites:
   - ReinforcedBarrelBase
   - EarthArmoriesRiflesWeapons
-  position: 0,-11
 
 - type: technology
   id: EarthArmoriesRiflesAutoWeapons
@@ -272,7 +257,6 @@
   technologyPrerequisites:
   - AdvancedAutoWeaponBase
   - EarthArmoriesRiflesWeapons
-  position: -1,-10
 
 - type: technology
   id: EarthArmoriesRiflesAutoHeavyWeapons
@@ -289,4 +273,3 @@
   technologyPrerequisites:
   - ReinforcedBarrelBase
   - EarthArmoriesRiflesWeapons
-  position: -2,-10

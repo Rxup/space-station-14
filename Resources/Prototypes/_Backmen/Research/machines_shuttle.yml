@@ -11,7 +11,6 @@
   - ShuttleGunKineticCircuitboard
   technologyPrerequisites:
   - SalvageWeapons
-  position: 10,-1
 
 - type: technology
   id: ShuttleWeaponMachines
@@ -30,7 +29,6 @@
   technologyPrerequisites:
   - SalvageWeapons
   - ShuttleWeapon
-  position: 11,-1
 
 - type: technology
   id: ShuttleWeaponAdvancedMachines
@@ -45,7 +43,6 @@
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - ShuttleWeaponMachines
-  position: 11,-2
 
 - type: technology
   id: ShuttlecraftMachines
@@ -63,4 +60,3 @@
   - MiniGravityGeneratorCircuitboard
   technologyPrerequisites:
   - PowerGenerationMachines
-  position: -4,5

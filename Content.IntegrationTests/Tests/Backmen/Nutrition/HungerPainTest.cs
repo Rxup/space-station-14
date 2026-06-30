@@ -58,24 +58,39 @@ public sealed class HungerPainTest : GameTest
         var map = await Pair.CreateTestMap();
         var hungerSys = Server.EntMan.System<HungerSystem>();
         var woundSys = Server.EntMan.System<WoundSystem>();
+        var consciousnessSys = Server.EntMan.System<ServerConsciousnessSystem>();
         EntityUid human = default;
+        var coldWoundsBefore = 0;
 
         await Server.WaitPost(() =>
         {
             human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
-            hungerSys.ConfigureHungerDecay(human, ExpectedBaseDecayRate, clearStarvationDamage: true);
+            var body = Server.EntMan.GetComponent<BodyComponent>(human);
+            coldWoundsBefore = woundSys.GetBodyWounds(human, body)
+                .Count(wound => wound.Comp.DamageType == "Cold");
+
+            Assert.That(Server.EntMan.GetComponent<HungerComponent>(human).StarvationDamage, Is.Null);
+
             var hunger = Server.EntMan.GetComponent<HungerComponent>(human);
-            hungerSys.SetHunger(human, 10, hunger);
+            hungerSys.SetHunger(human, hunger.Thresholds[HungerThreshold.Starving] - 1, hunger);
         });
 
-        await Pair.RunTicksSync(150);
+        await Pair.RunTicksSync(90);
 
         await Server.WaitAssertion(() =>
         {
             var body = Server.EntMan.GetComponent<BodyComponent>(human);
-            var coldWounds = woundSys.GetBodyWounds(human, body)
-                .Where(wound => wound.Comp.DamageType == "Cold");
-            Assert.That(coldWounds.Any(), Is.False);
+            var coldWoundsAfter = woundSys.GetBodyWounds(human, body)
+                .Count(wound => wound.Comp.DamageType == "Cold");
+
+            Assert.That(
+                coldWoundsAfter,
+                Is.EqualTo(coldWoundsBefore),
+                "Starving should not create new Cold wounds.");
+
+            var causes = consciousnessSys.GetPainCauses(human);
+            Assert.That(causes, Is.Not.Null);
+            Assert.That(causes!.ContainsKey("Starving"), Is.True, "Starving should apply pain instead of Cold wounds.");
         });
     }
 

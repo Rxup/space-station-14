@@ -18,7 +18,6 @@
   - Zipties
   - ModularReceiver
   - WeaponFlareGunSecurity
-  position: 1,-3
 
 - type: technology
   id: Targets
@@ -35,7 +34,6 @@
   - TargetSyndicate
   technologyPrerequisites:
   - Security
-  position: 1,-4
 
 - type: technology
   id: RiotControl
@@ -52,7 +50,6 @@
   - RiotShield
   technologyPrerequisites:
   - Security
-  position: 1,-2
 
 - type: technology
   id: WarCrimes
@@ -66,4 +63,3 @@
   recipeUnlocks:
   - ClothingBackpackElectropack
   - WeaponParticleDecelerator
-  position: 2,-3

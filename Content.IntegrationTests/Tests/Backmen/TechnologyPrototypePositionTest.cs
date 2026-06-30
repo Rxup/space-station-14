@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using System.Numerics;
 using Content.IntegrationTests.Fixtures;
 using Content.Shared.Research.Prototypes;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests.Backmen;
 
@@ -14,13 +14,14 @@ public sealed class TechnologyPrototypePositionTests : GameTest
         var protoManager = Server.ResolveDependency<IPrototypeManager>();
 
         var fails = new List<string>();
-        var positions = new Dictionary<Vector2, string>();
+        var positions = new Dictionary<Vector2i, string>();
 
         await Server.WaitAssertion(() =>
         {
             foreach (var techProto in protoManager.EnumeratePrototypes<TechnologyPrototype>())
             {
-                Vector2 position = techProto.Position;
+                if (techProto.Position is not { } position)
+                    continue;
 
                 if (!positions.TryAdd(position, techProto.Name))
                 {
