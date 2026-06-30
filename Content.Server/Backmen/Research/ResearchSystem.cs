@@ -28,20 +28,27 @@ public sealed partial class ResearchSystem
         if (TryGetClientServer(uid, out var serverUid, out var server, clientComponent) &&
             TryComp<TechnologyDatabaseComponent>(serverUid, out var db))
         {
-            var unlockedTechs = db.UnlockedTechnologies.ToHashSet();
+            var disciplineTiers = GetDisciplineTiers(db);
             techList = allTechs.ToDictionary(
                 proto => proto.ID,
                 proto =>
                 {
-                    if (unlockedTechs.Contains(proto))
+                    if (db.UnlockedTechnologies.Contains(proto))
                         return ResearchAvailability.Researched;
 
-                    var prereqsMet = proto.TechnologyPrerequisites.All(p => unlockedTechs.Contains(p));
-                    var canAfford = server.Points >= proto.Cost;
+                    if (proto.Hidden)
+                        return ResearchAvailability.Unavailable;
 
-                    return prereqsMet
-                        ? (canAfford ? ResearchAvailability.Available : ResearchAvailability.PrereqsMet)
-                        : ResearchAvailability.Unavailable;
+                    var canAfford = server.Points >= proto.Cost;
+                    var available = IsTechnologyAvailable(db, proto, disciplineTiers);
+
+                    if (available && canAfford)
+                        return ResearchAvailability.Available;
+
+                    if (available)
+                        return ResearchAvailability.PrereqsMet;
+
+                    return ResearchAvailability.Unavailable;
                 });
 
             points = clientComponent.ConnectedToServer ? server.Points : 0;
