@@ -141,13 +141,7 @@ public sealed partial class DamageableSystem
         // Wound routing needs a body part on consciousness mobs; armor keeps legacy global stacking when targetPart is null.
         var dispatchTargetPart = targetPart;
         if (dispatchTargetPart == null && HasComp<ConsciousnessComponent>(ent.Owner))
-        {
-            // start-backmen: consciousness damage routing
-            dispatchTargetPart = damage.GetTotal() < FixedPoint2.Zero
-                ? TargetBodyPart.All
-                : ResolveTargetBodyPart(ent, origin, null);
-            // end-backmen: consciousness damage routing
-        }
+            dispatchTargetPart = ResolveTargetBodyPart(ent, origin, null);
 
         // Apply resistances
         if (!ignoreResistances)

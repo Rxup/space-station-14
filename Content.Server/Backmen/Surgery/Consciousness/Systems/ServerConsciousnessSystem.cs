@@ -228,46 +228,12 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         if (!TryComp<DamageableComponent>(uid, out var damageable))
             return;
 
-        SyncDamageableFromWounds((uid, component), (uid, damageable));
-    }
-
-    /// <summary>
-    /// Keeps <see cref="DamageableComponent"/> totals aligned with wound severity and consciousness airloss.
-    /// </summary>
-    private void SyncDamageableFromWounds(
-        Entity<ConsciousnessComponent> consciousness,
-        Entity<DamageableComponent?> damageable)
-    {
-        _damageable.SetDamage(damageable, BuildSyncedBodyDamage(consciousness));
-    }
-
-    private DamageSpecifier BuildSyncedBodyDamage(Entity<ConsciousnessComponent> consciousness)
-    {
-        var damage = new DamageSpecifier();
-
-        if (!TryComp<BodyComponent>(consciousness.Owner, out var bodyComp))
-            return damage;
-
-        foreach (var wound in Wound.GetBodyWounds(consciousness.Owner, bodyComp))
-        {
-            if (wound.Comp.IsScar)
-                continue;
-
-            var type = wound.Comp.DamageType;
-            damage.DamageDict.TryGetValue(type, out var existing);
-            damage.DamageDict[type] = existing + wound.Comp.WoundSeverityPoint;
-        }
-
-        if (consciousness.Comp.NerveSystem is { } nerveSys
-            && consciousness.Comp.Modifiers.TryGetValue((nerveSys, ConsciousnessModifierIds.Asphyxiation), out var asphyxiationMod)
-            && asphyxiationMod.Change < FixedPoint2.Zero)
-        {
-            var asphyxiation = -asphyxiationMod.Change;
-            damage.DamageDict.TryGetValue(AsphyxiationDamageType, out var existing);
-            damage.DamageDict[AsphyxiationDamageType] = existing + asphyxiation;
-        }
-
-        return damage;
+        _damageable.ApplyDamageToDamageable(
+            (uid, damageable),
+            actuallyInducedDamage,
+            component.DamageContainer,
+            args.Origin,
+            args.InterruptsDoAfters);
     }
 
     protected override void OnMobStateChanged(Entity<ConsciousnessComponent> consciousness, ref MobStateChangedEvent args)
