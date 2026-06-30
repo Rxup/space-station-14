@@ -13,6 +13,7 @@ public sealed partial class AntagRandomSpawnSystem : GameRuleSystem<AntagRandomS
         base.Initialize();
 
         SubscribeLocalEvent<AntagRandomSpawnComponent, AntagSelectLocationEvent>(OnSelectLocation);
+        InitializeAntagRandomSpawnBackmen(); // backmen: antag random spawn
     }
 
     protected override void Added(EntityUid uid, AntagRandomSpawnComponent comp, GameRuleComponent gameRule, GameRuleAddedEvent args)
@@ -21,25 +22,21 @@ public sealed partial class AntagRandomSpawnSystem : GameRuleSystem<AntagRandomS
 
         // we have to select this here because AntagSelectLocationEvent is raised twice because MakeAntag is called twice
         // once when a ghost role spawner is created and once when someone takes the ghost role
-        TryCacheCoords(comp);
+
+        if (TryFindRandomTile(out _, out _, out _, out var coords))
+            comp.Coords = coords;
     }
 
     private void OnSelectLocation(Entity<AntagRandomSpawnComponent> ent, ref AntagSelectLocationEvent args)
     {
-        // Rules started before the station map is initialized (e.g. dynamic midround picks during lobby)
-        // may fail to find a tile in Added; retry when ghost roles are actually spawned.
-        TryCacheCoords(ent.Comp);
+        // start-backmen: antag random spawn
+        if (TrySelectLocationBackmen(ent, ref args))
+            return;
+        // end-backmen: antag random spawn
 
         if (ent.Comp.Coords != null)
             args.Coordinates.Add(_transform.ToMapCoordinates(ent.Comp.Coords.Value));
     }
 
-    private void TryCacheCoords(AntagRandomSpawnComponent comp)
-    {
-        if (comp.Coords != null)
-            return;
-
-        if (TryFindRandomTile(out _, out _, out _, out var coords))
-            comp.Coords = coords;
-    }
+    partial void InitializeAntagRandomSpawnBackmen(); // backmen: antag random spawn
 }
