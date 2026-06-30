@@ -10,7 +10,6 @@
   recipeUnlocks:
   - ProximitySensor
   - PersonalAI
-  position: 7,2
 
 - type: technology
   id: RoboticsAdvanced
@@ -34,7 +33,6 @@
    - SciFlash
   technologyPrerequisites:
   - Robotics
-  position: 6,1
 
 - type: technology
   id: RipleyAPLUMech
@@ -56,7 +54,6 @@
   - MechEquipmentGrabber
   technologyPrerequisites:
   - RoboticsMachines
-  position: 8,1
 
 - type: technology
   id: CyborgModules
@@ -77,7 +74,6 @@
    - BorgModuleSurgery
   technologyPrerequisites:
   - RoboticsAdvanced
-  position: 6,-2
 
 - type: technology
   id: AdvancedSurgeryModules
@@ -90,7 +86,6 @@
   cost: 1500
   recipeUnlocks:
   - BorgModuleAdvancedSurgery
-  position: 8,-2
 
 #- type: technology
 #  id: SpaceScanningModules
@@ -122,7 +117,6 @@
   technologyPrerequisites:
   - CyborgModules
 #  - EngineeringAdvancedTools
-  position: 8,-3
 
 - type: technology
   id: HydroponicsModules
@@ -138,7 +132,6 @@
   - BorgModuleHarvesting
   technologyPrerequisites:
   - CyborgModules
-  position: 7,-3
 
 - type: technology
   id: RoboticCleanlinessModules
@@ -154,7 +147,6 @@
   technologyPrerequisites:
   - CyborgModules
 #  - CleaningAdvanced
-  position: 7,-4
 
 #- type: technology
 #  id: XenoArcheologyModules
@@ -186,4 +178,3 @@
   - BorgModuleAdvancedMining
   technologyPrerequisites:
   - SalvageEquipmentAdvanced
-  position: 10,-4

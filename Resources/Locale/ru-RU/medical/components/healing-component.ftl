@@ -16,3 +16,7 @@ cant-tourniquet = Hевозможно наложить тyрникет.
 medical-item-stop-bleeding = { CAPITALIZE(OBJECT($target)) } кровотечение прекратилось
 medical-item-stop-bleeding-self = Ваше кровотечение прекратилось
 medical-item-popup-target = { CAPITALIZE($user) } пытается лечить вас при помощи { $item }!
+# start-backmen: healing-fallback
+medical-item-cant-use-bleeding-heavy = Вы не можете помочь { $target }. Слишком много крови. Используйте медицинскую нить, марлю или хирургию (зажимание кровоточащих сосудов).
+medical-item-no-healable-damage = Вы не можете помочь { $target }. Нет лечимых повреждений на подходящих частях тела.
+# end-backmen: healing-fallback

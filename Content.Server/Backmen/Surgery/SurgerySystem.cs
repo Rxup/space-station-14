@@ -4,6 +4,7 @@ using Content.Shared.Body;
 using Content.Shared.Body.Part;
 using Content.Server.Popups;
 using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Content.Shared.Medical.Surgery.Conditions;
 using Content.Shared.Prototypes;
 using Robust.Server.GameObjects;
@@ -13,6 +14,13 @@ using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Surgery;
+using Content.Shared.Backmen.Surgery.Steps;
+using Content.Server.Backmen.Nutrition;
+using Content.Server.Backmen.Surgery.Pain.Systems;
+using Content.Shared.Backmen.Nutrition;
+using Content.Shared.Backmen.Surgery.Consciousness.Systems;
+using Content.Shared.Backmen.Surgery.Pain;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.Medical.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Backmen.Surgery.Tools;
@@ -20,6 +28,8 @@ using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Verbs;
+using Content.Shared.Storage;
+using Content.Server.Tools.Innate;
 
 namespace Content.Server.Backmen.Surgery;
 
@@ -40,6 +50,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private WoundSystem _wounds = default!;
+    [Dependency] private ConsciousnessSystem _consciousness = default!;
+    [Dependency] private ServerPainSystem _pain = default!;
 
     private readonly List<EntProtoId> _surgeries = new();
 
@@ -48,6 +60,8 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         base.Initialize();
 
         SubscribeLocalEvent<SurgeryToolComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
+        SubscribeLocalEvent<SurgeryRelieveStarvingPainEffectComponent, SurgeryStepEvent>(OnRelieveStarvingPainStep);
+        SubscribeLocalEvent<SurgeryRelieveStarvingPainEffectComponent, SurgeryStepCompleteCheckEvent>(OnRelieveStarvingPainCheck);
         SubscribeLocalEvent<SurgeryTargetComponent, SurgeryStepDamageEvent>(OnSurgeryStepDamage);
         // You might be wondering "why aren't we using StepEvent for these two?" reason being that StepEvent fires off regardless of success on the previous functions
         // so this would heal entities even if you had a used or incorrect organ.
@@ -356,5 +370,66 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
             TryAddMissingPartSurgery(body, missingParts, "arachne:spider-leg-right",
                 Loc.GetString("surgery-ui-part-missing-spider-leg-right"), SurgeryGraftSpiderLegRight);
         }
+    }
+
+    // start-backmen: surgery-get-tools-storage
+    protected override List<EntityUid> GetTools(EntityUid surgeon)
+    {
+        var tools = base.GetTools(surgeon);
+        var seen = new HashSet<EntityUid>(tools);
+        var toScan = new Queue<EntityUid>(tools);
+
+        while (toScan.Count > 0)
+        {
+            var item = toScan.Dequeue();
+            if (!TryComp<StorageComponent>(item, out var storage))
+                continue;
+
+            foreach (var stored in storage.Container.ContainedEntities)
+            {
+                if (!seen.Add(stored))
+                    continue;
+
+                tools.Add(stored);
+                toScan.Enqueue(stored);
+            }
+        }
+
+        if (TryComp<InnateToolComponent>(surgeon, out var innate))
+        {
+            foreach (var toolUid in innate.ToolUids)
+            {
+                if (seen.Add(toolUid))
+                    tools.Add(toolUid);
+            }
+        }
+
+        return tools;
+    }
+    // end-backmen: surgery-get-tools-storage
+
+    private void OnRelieveStarvingPainStep(Entity<SurgeryRelieveStarvingPainEffectComponent> ent, ref SurgeryStepEvent args)
+    {
+        if (!_consciousness.TryGetNerveSystem(args.Body, out var nerveSys)
+            || !_pain.TryGetPainModifier(nerveSys.Value, args.Part, "Starving", out var modifier))
+            return;
+
+        var remaining = modifier.Value.Change * (FixedPoint2.New(1) - ent.Comp.PainReduction);
+        if (remaining <= FixedPoint2.Zero)
+            _pain.TryRemovePainModifier(nerveSys.Value, args.Part, "Starving");
+        else
+            _pain.TryChangePainModifier(nerveSys.Value, args.Part, "Starving", remaining, painType: PainType.Starving);
+
+        if (TryComp<HungerPainTrackerComponent>(args.Body, out var tracker))
+        {
+            EntityManager.System<HungerPainSystem>().ResetStarvingPain(args.Body, (float)remaining);
+        }
+    }
+
+    private void OnRelieveStarvingPainCheck(Entity<SurgeryRelieveStarvingPainEffectComponent> ent, ref SurgeryStepCompleteCheckEvent args)
+    {
+        if (_consciousness.TryGetNerveSystem(args.Body, out var nerveSys)
+            && _pain.TryGetPainModifier(nerveSys.Value, args.Part, "Starving", out _))
+            args.Cancelled = true;
     }
 }

@@ -39,5 +39,12 @@ health-analyzer-window-pain-cause-death-threshold = Состояние близ�
 health-analyzer-window-pain-cause-suicide = Самоповреждение
 # backmen: organ-damage
 health-analyzer-window-pain-cause-organ-damage = Повреждение органов
+health-analyzer-window-pain-cause-starving = Голодание
+# start-backmen: analyzer-satiation
+health-analyzer-window-patient-starving = Пациента мучает голод
+health-analyzer-window-patient-peckish = Пациент голоден
+health-analyzer-window-patient-parched = Пациента мучает жажда
+health-analyzer-window-patient-thirsty = Пациент испытывает жажду
+# end-backmen: analyzer-satiation
 health-analyzer-window-pain-help-button = Помощь
 health-analyzer-popup-scan-target = { CAPITALIZE($user) } пытается просканировать вас!

@@ -1743,14 +1743,7 @@
     - state: icon-surgery
   - type: ItemBorgModule
     hands:
-    - item: Scalpel
-    - item: MedicalStitches
-    - item: Drill
-    - item: Hemostat
-    - item: Retractor
-    - item: Cautery
-    - item: SawElectric
-    - item: BoneGel
+    - item: OmnimedTool
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: surgery-module }
 

@@ -115,6 +115,14 @@ public sealed partial class ThirstSystem : EntitySystem
         );
 
         DirtyField(uid, component, nameof(ThirstComponent.CurrentThirst));
+
+        var calculatedThirstThreshold = GetThirstThreshold(component, component.CurrentThirst);
+        if (calculatedThirstThreshold == component.CurrentThirstThreshold)
+            return;
+
+        component.CurrentThirstThreshold = calculatedThirstThreshold;
+        DirtyField(uid, component, nameof(ThirstComponent.CurrentThirstThreshold));
+        UpdateEffects(uid, component);
     }
 
     private bool IsMovementThreshold(ThirstThreshold threshold)

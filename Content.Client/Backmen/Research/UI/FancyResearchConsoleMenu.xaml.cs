@@ -59,10 +59,17 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     private bool _draggin;
 
     /// <summary>
+    /// Cached auto-layout grid positions for technologies.
+    /// </summary>
+    private Dictionary<string, Vector2i> _layoutPositions = new();
+
+    /// <summary>
     /// Global position that all tech relates to.
     /// For dragging mostly
     /// </summary>
     private Vector2 _position = new Vector2(45, 250);
+
+    private const float CellSize = 150f; // backmen: rnd-auto-layout
 
     public FancyResearchConsoleMenu()
     {
@@ -92,15 +99,31 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         DragContainer.RemoveAllChildren();
         List = dict;
 
+        // start-backmen: rnd-auto-layout
+        IReadOnlyList<ProtoId<TechDisciplinePrototype>>? disciplineOrder = null;
+        if (_entity.TryGetComponent(Entity, out TechnologyDatabaseComponent? database))
+            disciplineOrder = database.SupportedDisciplines;
+
+        var protos = List.Keys
+            .Select(k => _prototype.Index<TechnologyPrototype>(k))
+            .Where(p => !p.Hidden)
+            .ToList();
+        _layoutPositions = BkmResearchTreeLayout.ComputeLayout(protos, disciplineOrder);
+        // end-backmen: rnd-auto-layout
+
         foreach (var tech in List)
         {
             var proto = _prototype.Index<TechnologyPrototype>(tech.Key);
+            if (proto.Hidden)
+                continue;
 
             var control = new FancyResearchConsoleItem(proto, _sprite, tech.Value);
             DragContainer.AddChild(control);
 
-            // Set position for all tech, relating to _position
-            LayoutContainer.SetPosition(control, _position + proto.Position * 150);
+            // start-backmen: rnd-auto-layout
+            var layoutPosition = proto.Position ?? _layoutPositions.GetValueOrDefault(proto.ID);
+            LayoutContainer.SetPosition(control, _position + layoutPosition * CellSize);
+            // end-backmen: rnd-auto-layout
             control.SelectAction += SelectTech;
 
             if (tech.Key == CurrentTech)
@@ -124,7 +147,7 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
         foreach (var disciplineId in database.SupportedDisciplines)
         {
             var discipline = _prototype.Index<TechDisciplinePrototype>(disciplineId);
-            var tier = _research.GetTierCompletionPercentage(database, discipline, _prototype);
+            var tier = BkmResearchRequirements.GetTierCompletionPercentage(_research, database, discipline, _prototype); // backmen: rnd-console-prereqs
 
             // i'm building the small-ass control here to spare me some mild annoyance in making a new file
             var texture = new TextureRect
@@ -203,7 +226,15 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             return;
 
         CurrentTech = proto.ID;
-        var control = new FancyTechnologyInfoPanel(proto, _accessReader.IsAllowed(_player.LocalEntity.Value, Entity), availability, _sprite);
+        // start-backmen: rnd-console-prereqs
+        _entity.TryGetComponent(Entity, out TechnologyDatabaseComponent? database);
+        var control = new FancyTechnologyInfoPanel(
+            proto,
+            _accessReader.IsAllowed(_player.LocalEntity.Value, Entity),
+            availability,
+            _sprite,
+            database);
+        // end-backmen: rnd-console-prereqs
         control.BuyAction += args => OnTechnologyCardPressed?.Invoke(args.ID);
         InfoContainer.AddChild(control);
     }
@@ -233,7 +264,11 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             if (item is not FancyResearchConsoleItem research)
                 continue;
 
-            LayoutContainer.SetPosition(item, _position + research.Prototype.Position * 150);
+            // start-backmen: rnd-auto-layout
+            var layoutPosition = research.Prototype.Position
+                ?? _layoutPositions.GetValueOrDefault(research.Prototype.ID);
+            LayoutContainer.SetPosition(item, _position + layoutPosition * CellSize);
+            // end-backmen: rnd-auto-layout
         }
     }
 

@@ -13,7 +13,6 @@
   - WeaponPlasmaCutter # Goobstation
   - ClothingMaskWeldingGas
   - ClothingShoesBootsJump
-  position: 10,1
 
 - type: technology
   id: SalvageEquipmentAdvanced
@@ -32,7 +31,6 @@
   technologyPrerequisites:
   - SalvageEquipment
   - SalvageEquipmentMachines
-  position: 10,4
 
 - type: technology
   id: Fulton
@@ -48,7 +46,6 @@
   - FultonBeacon
   technologyPrerequisites:
   - SalvageEquipment
-  position: 9,1
 
 - type: technology
   id: SpaceScanning
@@ -65,4 +62,3 @@
   - RadarConsoleCircuitboard
   technologyPrerequisites:
   - SalvageEquipment
-  position: 9,2

@@ -806,3 +806,20 @@
 #  - type: Sprite
 #    sprite: Objects/Specific/Medical/Surgery/manipulation.rsi
 #    state: insertion
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRelieveStarvingPain
+  name: Relieve starvation pain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SurgeryStep
+    tool:
+    - type: Tending
+    duration: 2
+  - type: SurgeryRelieveStarvingPainEffect
+    painReduction: 1.0
+  - type: SurgeryRepeatableStep
+  - type: Sprite
+    sprite: _Shitmed/Objects/Specific/Medical/Surgery/hemostat.rsi
+    state: hemostat

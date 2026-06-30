@@ -28,7 +28,6 @@
   - CircuitImprinterMachineCircuitboard
   technologyPrerequisites:
   - MachineParts
-  position: -3,3
 
 - type: technology
   id: EngineeringAdvancedMachines
@@ -46,7 +45,6 @@
    - SheetifierMachineCircuitboard
   technologyPrerequisites:
   - PowerGenerationAdvancedMachines
-  position: -4,4
 
 - type: technology
   id: PowerGenerationMachines
@@ -66,7 +64,6 @@
   - EmitterCircuitboard
   technologyPrerequisites:
   - EngineeringMachines
-  position: -3,5
 
 - type: technology
   id: PowerGenerationAdvancedMachines
@@ -83,7 +80,6 @@
   - SMESAdvancedMachineCircuitboard
   technologyPrerequisites:
   - PowerGenerationMachines
-  position: -3,6
 
 - type: technology
   id: MechanicalCompressionMachines
@@ -98,7 +94,6 @@
   - FlatpackerMachineCircuitboard
   technologyPrerequisites:
   - EngineeringAdvancedMachines
-  position: -5,4
 
 - type: technology
   id: AtmosphericMachines
@@ -116,7 +111,6 @@
   technologyPrerequisites:
   - EngineeringMachines
   - AtmosphericTools
-  position: -2,3
 
 - type: technology
   id: AtmosphericAdvancedMachines
@@ -132,4 +126,3 @@
   - SpaceHeaterMachineCircuitBoard
   technologyPrerequisites:
   - AtmosphericMachines
-  position: -2,4

@@ -14,7 +14,6 @@
   - BiogeneratorMachineCircuitboard
   technologyPrerequisites:
   - ServiceMachines
-  position: 3,7
 
 - type: technology
   id: BarMachines
@@ -31,7 +30,6 @@
   - SmartFridgeCircuitboard
   technologyPrerequisites:
    - Bootlegging
-  position: 1,8
 
 - type: technology
   id: ServiceMachines
@@ -45,4 +43,3 @@
   recipeUnlocks:
   - UniformPrinterMachineCircuitboard
   - PrinterDocMachineCircuitboard
-  position: 3,8

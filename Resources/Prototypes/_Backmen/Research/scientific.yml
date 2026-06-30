@@ -11,7 +11,6 @@
   - AnomalyScanner
   - AnomalyLocator
   - NodeScanner
-  position: 4,1
 
 - type: technology
   id: AnomalousResearchAdvanced
@@ -27,7 +26,6 @@
   - WeaponPistolCHIMP
   technologyPrerequisites:
   - AnomalousResearch
-  position: 4,2
 
 - type: technology
   id: IntegratedHUDs
@@ -46,7 +44,6 @@
 #  - Security
 #  - Chemistry
 #  - Robotics
-  position: 2,4
 
 - type: technology
   id: GravityManipulation
@@ -62,7 +59,6 @@
   - WeaponTetherGun
   technologyPrerequisites:
   - AnomalousResearchAdvanced
-  position: 4,3
 
 - type: technology
   id: AnomalyCoreHarnessing
@@ -77,7 +73,6 @@
   - WeaponGauntletGorilla
   technologyPrerequisites:
   - GravityManipulation
-  position: 5,3
 
 - type: technology
   id: QuantumLeaping
@@ -93,7 +88,6 @@
   technologyPrerequisites:
   - GravityManipulation
 #  - BluespaceTheory
-  position: 3,3
 
 - type: technology
   id: MagneticBoots
@@ -109,7 +103,6 @@
   - ClothingShoesBootsMoon
   technologyPrerequisites:
   - GravityManipulation
-  position: 4,4
 
 - type: technology
   id: PsionicCountermeasures
@@ -127,7 +120,6 @@
   - AntiPsychicKnife
   technologyPrerequisites:
   - AnomalousResearch
-  position: 5,2
 
 # No bluespace crystals, lol
 #- type: technology
@@ -160,7 +152,6 @@
 #  - QSI
   technologyPrerequisites:
   - QuantumLeaping
-  position: 2,3
 
 - type: technology
   id: BluespaceStorage
@@ -180,7 +171,6 @@
 #  - BluespaceTheory
   - PowercellsBluespace
   - SalvageEquipmentAdvanced
-  position: 5,5
 
 - type: technology
   id: BluespaceTimeManipulation
@@ -195,4 +185,3 @@
   - DeviceDesynchronizer
   technologyPrerequisites:
   - Teleportation
-  position: 2,2

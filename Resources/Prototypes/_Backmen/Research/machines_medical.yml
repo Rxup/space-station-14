@@ -16,7 +16,6 @@
   - HotplateMachineCircuitboard
   technologyPrerequisites:
   - Chemistry
-  position: 2,-6
 
 - type: technology
   id: BiomassMachines
@@ -31,7 +30,6 @@
   - BiomassReclaimerMachineCircuitboard
   technologyPrerequisites:
   - Medicine
-  position: 5,-4
 
 - type: technology
   id: BiochemicalStasisMachines
@@ -47,4 +45,3 @@
   - CryoPodMachineCircuitboard
   technologyPrerequisites:
   - BiochemicalStasis
-  position: 5,-6

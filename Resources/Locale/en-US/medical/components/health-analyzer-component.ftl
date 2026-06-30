@@ -42,6 +42,14 @@ health-analyzer-window-pain-cause-death-threshold = Near Death State
 health-analyzer-window-pain-cause-suicide = Self-Inflicted Harm
 # backmen: organ-damage
 health-analyzer-window-pain-cause-organ-damage = Organ Damage
+health-analyzer-window-pain-cause-starving = Starvation
+
+# start-backmen: analyzer-satiation
+health-analyzer-window-patient-starving = Patient is starving!
+health-analyzer-window-patient-peckish = Patient is hungry
+health-analyzer-window-patient-parched = Patient is parched!
+health-analyzer-window-patient-thirsty = Patient is thirsty
+# end-backmen: analyzer-satiation
 
 health-analyzer-window-pain-help-button = Help
 

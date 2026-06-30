@@ -32,7 +32,6 @@
   - BodyBag
   - OffsetCane
   - OffsetCaneWood
-  position: 4,-5
 
 - type: technology
   id: Surgery
@@ -55,7 +54,6 @@
   - BoneGel
   technologyPrerequisites:
   - Medicine
-  position: 4,-4
 
 - type: technology
   id: SurgeryAdvanced
@@ -72,7 +70,6 @@
   - AdvancedRetractor
   technologyPrerequisites:
   - Surgery
-  position: 4,-3
 
 - type: technology
   id: CyberneticEnhancements
@@ -93,7 +90,6 @@
   - MedicalCyberneticEyes
   technologyPrerequisites:
   - SurgeryAdvanced
-  position: 5,-3
 
 - type: technology
   id: HighEndSurgery
@@ -108,7 +104,6 @@
   - OmnimedTool
   technologyPrerequisites:
   - SurgeryAdvanced
-  position: 4,-2
 
 - type: technology
   id: Chemistry
@@ -131,7 +126,6 @@
   - Syringe
   technologyPrerequisites:
   - Medicine
-  position: 2,-5
 
 - type: technology
   id: BodyBags
@@ -148,7 +142,6 @@
   - RadiationBodyBag
   technologyPrerequisites:
   - Medicine
-  position: 3,-6
 
 - type: technology
   id: BodyBagsBluespace
@@ -163,4 +156,3 @@
   - BluespaceBodyBag
   technologyPrerequisites:
   - BodyBags
-  position: 3,-7

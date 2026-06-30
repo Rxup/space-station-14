@@ -11,7 +11,6 @@
   - MicroManipulatorStockPart
   - PowerCellSmall
   - PowerCellMedium
-  position: -3,2
 
 - type: technology
   id: PowercellsUpgraded
@@ -24,7 +23,6 @@
   cost: 5500
   recipeUnlocks:
   - PowerCellHigh
-  position: 0,4
 
 - type: technology
   id: PowercellsPrototypes
@@ -41,7 +39,6 @@
   technologyPrerequisites:
   - PowercellsUpgraded
   - PowerGenerationMachines
-  position: 0,5
 
 - type: technology
   id: PowercellsBluespace
@@ -58,7 +55,6 @@
   - PowercellsPrototypes
 #  - BluespaceTheory
   - PowerGenerationAdvancedMachines
-  position: 0,6
 
 - type: technology
   id: PowercellsBluespaceReactor
@@ -73,7 +69,6 @@
    - PowerCellBluespaceReactor
   technologyPrerequisites:
   - PowercellsBluespace
-  position: 1,6
 
 - type: technology
   id: PowercellsVortex
@@ -89,7 +84,6 @@
   technologyPrerequisites:
   - PowercellsBluespaceReactor
   - QuantumLeaping
-  position: 1,5
 
 #- type: technology
 #  id: PortableFission
@@ -167,7 +161,6 @@
   - VoiceSensor
   - UtilityKnife
   - WireBrush
-  position: -2,1
 
 - type: technology
   id: EngineeringAdvancedTools
@@ -185,7 +178,6 @@
   technologyPrerequisites:
   - EngineeringTools
   - EngineeringAdvancedMachines
-  position: -2,0
 
 - type: technology
   id: AtmosphericTools
@@ -200,4 +192,3 @@
   - HolofanProjector
   technologyPrerequisites:
   - EngineeringTools
-  position: -1,2

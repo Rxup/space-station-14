@@ -12,7 +12,6 @@
   - AnomalyVesselCircuitboard
   technologyPrerequisites:
   - AnomalousResearch
-  position: 4,0
 
 - type: technology
   id: AnomalyResearchAdvancedMachines
@@ -29,7 +28,6 @@
   technologyPrerequisites:
   - AnomalousResearchAdvanced
   - AbnormalArtifactManipulationMachines
-  position: 3,-1
 
 - type: technology
   id: XenoArcheologyMachines
@@ -45,7 +43,6 @@
   - ArtifactAnalyzerMachineCircuitboard
   technologyPrerequisites:
   - AnomalousResearch
-  position: 3,1
 
 - type: technology
   id: AlternativeResearchMachines
@@ -60,7 +57,6 @@
   - TechDiskComputerCircuitboard
   technologyPrerequisites:
   - AnomalousResearchAdvanced
-  position: 3,2
 
 - type: technology
   id: AbnormalArtifactManipulationMachines
@@ -76,7 +72,6 @@
   technologyPrerequisites:
   - AnomalousResearchMachines
   - XenoArcheologyMachines
-  position: 3,0
 
 - type: technology
   id: Metempsychosis
@@ -94,4 +89,3 @@
 #  - MetempsychoticMachineCircuitboard
   technologyPrerequisites:
   - PsionicCountermeasures
-  position: 6,2

@@ -13,7 +13,6 @@
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
   # These are roundstart but not replenishable for salvage
-  position: 11,1 # Backmen-EDIT
 
 - type: technology
   id: DraconicMunitions
@@ -53,7 +52,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
   - LethalAmmunition
-  position: -4,-1
   # Backmen-Edit-End
 
 - type: technology
@@ -71,7 +69,6 @@
   technologyPrerequisites:
   - RiotControl
   - NonlethalAmmunition
-  position: -1,-2
   # Backmen-Edit-End
 
 - type: technology
@@ -97,7 +94,6 @@
   - SpeedLoaderMagnumPractice
   - MagazinePistolSubMachineGunPractice
   # Backmen-End
-  position: -2,-2 # Backmen-EDIT
 
 - type: technology
   id: UraniumMunitions
@@ -122,7 +118,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
   - LethalAmmunition
-  position: -4,-3
   # Backmen-Edit-End
 
 - type: technology
@@ -142,7 +137,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
   - RiotControl
-  position: 2,-2
   # Backmen-Edit-End
 
 - type: technology
@@ -164,7 +158,6 @@
   - ChemicalPayload
   - CableDetStack1
   - EmptyDetonator
-  position: 0,-1 # Backmen-Edit
 
 - type: technology
   id: SpecialMeans
@@ -177,7 +170,6 @@
   cost: 5000
   recipeUnlocks:
   - ClothingBackpackElectropack
-  position: 12,-2 # Backmen-EDIT
 
 # Tier 2
 
@@ -192,7 +184,6 @@
   cost: 10000
   recipeUnlocks:
   - WeaponLaserCannon
-  position: 12,-1 # Backmen-EDIT
 
 - type: technology
   id: WaveParticleHarnessing
@@ -205,7 +196,6 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
-  position: -2,-3 # Backmen-Edit
 
 - type: technology
   id: KineticModifications
@@ -220,7 +210,6 @@
   - PKAUpgradeDamage
   - PKAUpgradeRange
   - PKAUpgradeFireRate
-  position: 12,1 # Backmen-EDIT
   technologyPrerequisites:
   - SalvageWeapons # Backmen-EDIT
 
@@ -243,7 +232,6 @@
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunFriendshipCircuitboard
-  position: 12,2 # Backmen-EDIT
   technologyPrerequisites:
   - SalvageWeapons
 
@@ -261,7 +249,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
   - RiotControl
-  position: 1,-1
   # Backmen-Edit-End
 
 # Tier 3
@@ -281,7 +268,6 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
   - CombatLaserConcentrated
-  position: 0,-4
   # Backmen-Edit-End
 
 - type: technology
@@ -295,7 +281,6 @@
   cost: 15000
   recipeUnlocks:
   - WeaponTemperatureGun
-  position: -3,-4 # Backmen-Edit
 
 - type: technology
   id: AdvancedShuttleWeapon
@@ -313,5 +298,4 @@
   # Backmen-Edit-Start
   technologyPrerequisites:
   - ShuttleWeapon
-  position: 13,-2
   # Backmen-Edit-End

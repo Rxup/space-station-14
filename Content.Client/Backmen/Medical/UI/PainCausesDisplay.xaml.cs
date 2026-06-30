@@ -273,6 +273,7 @@ public sealed partial class PainCausesDisplay : Control
             "DeathThreshold" => Loc.GetString("health-analyzer-window-pain-cause-death-threshold"),
             "Suicide" => Loc.GetString("health-analyzer-window-pain-cause-suicide"),
             "OrganDamage" => Loc.GetString("health-analyzer-window-pain-cause-organ-damage"),
+            "Starving" => Loc.GetString("health-analyzer-window-pain-cause-starving"),
             _ => identifier,
         };
     }

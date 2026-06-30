@@ -37,6 +37,15 @@
       useCharge: 0
 
 - type: entity
+  parent: OmnimedTool
+  id: OmnimedToolINF
+  suffix: Backmen, INF
+  components:
+  - type: Tag
+    tags:
+    - InnateDontDelete
+
+- type: entity
   parent: Defibrillator
   id: DefibrillatorINF
   name: defibrillator
@@ -85,8 +94,7 @@
     tools:
       - id: BSSClothingBackpackSatchelDroneMED
       - id: HandheldHealthAnalyzerINF
-      #- id: DefibrillatorINF #Broken
-      #- id: HandheldCrewMonitorINF
+      - id: OmnimedToolINF
   - type: Inventory
     templateId: drone
   - type: InventorySlots

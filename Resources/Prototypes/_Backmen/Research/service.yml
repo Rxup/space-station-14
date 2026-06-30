@@ -11,7 +11,6 @@
    - LightTube
    - LightBulb
    - WarmLightBulb
-  position: 2,7
 
 - type: technology
   id: LightningAdvanced
@@ -30,7 +29,6 @@
    - DimLightBulb
   technologyPrerequisites:
    - Lightning
-  position: 1,7
 
 - type: technology
   id: Bootlegging
@@ -50,7 +48,6 @@
   - CustomDrinkJug
   technologyPrerequisites:
   - ServiceMachines
-  position: 2,8
 
 - type: technology
   id: Kitchen
@@ -73,7 +70,6 @@
   - Ashtray
   technologyPrerequisites:
   - ServiceMachines
-  position: 4,8
 
 - type: technology
   id: Entertainment
@@ -89,7 +85,6 @@
    - HandheldStationMap
   technologyPrerequisites:
   - ServiceMachines
-  position: 3,9
 
 - type: technology
   id: EntertainmentAdvanced
@@ -102,7 +97,6 @@
   cost: 6500
   recipeUnlocks:
    - ConfettiGrenade
-  position: 4,9
 
 - type: technology
   id: Cleaning
@@ -124,7 +118,6 @@
   - Bucket
   technologyPrerequisites:
   - ServiceMachines
-  position: 4,6
 
 - type: technology
   id: TranslationDevice
@@ -149,7 +142,6 @@
   - ValyrianStandardTranslator
   - EvePishtuTranslator
   - CarshnilTranslator
-  position: 7,6
 
 - type: technology
   id: TranslationImplanter
@@ -164,7 +156,6 @@
   - BasicGalaticCommonTranslatorImplanter
   technologyPrerequisites:
   - TranslationDevice
-  position: 8,6
 
 - type: technology
   id: TranslationDeviceAdvanced
@@ -180,7 +171,6 @@
   - AnimalTranslator
   technologyPrerequisites:
   - TranslationDevice
-  position: 7,7
 
 - type: technology
   id: TranslationImplanterAdvanced
@@ -209,4 +199,3 @@
   technologyPrerequisites:
   - TranslationImplanter
   - TranslationDeviceAdvanced
-  position: 8,7

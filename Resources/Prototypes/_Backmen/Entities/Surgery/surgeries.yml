@@ -443,6 +443,21 @@
 
 - type: entity
   parent: SurgeryBase
+  id: SurgeryRelieveStarvingPain
+  name: Relieve Starvation Pain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Surgery
+    steps:
+    - SurgeryStepCarefulIncisionScalpel
+    - SurgeryStepRelieveStarvingPain
+    - SurgeryStepSealTendWound
+  - type: SurgeryStarvingPainCondition
+  - type: SurgeryPartCondition
+    part: Chest
+
+- type: entity
+  parent: SurgeryBase
   id: SurgeryInsertItem
   name: Cavity Implant
   categories: [ HideSpawnMenu ]
