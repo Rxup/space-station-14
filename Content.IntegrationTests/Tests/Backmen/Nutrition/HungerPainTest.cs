@@ -3,6 +3,7 @@ using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Nutrition;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body;
 using Content.Shared.Mobs.Systems;
@@ -10,6 +11,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.Server.Player;
 
 namespace Content.IntegrationTests.Tests.Backmen.Nutrition;
 
@@ -26,6 +28,11 @@ public sealed class HungerPainTest : GameTest
         Dirty = true,
     };
 
+    private void AttachActor(EntityUid uid)
+    {
+        Server.PlayerMan.SetAttachedEntity(Pair.Player!, uid);
+    }
+
     [Test]
     public async Task Starving_AppliesStarvingPainCause()
     {
@@ -37,6 +44,7 @@ public sealed class HungerPainTest : GameTest
         await Server.WaitPost(() =>
         {
             human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            AttachActor(human);
             hungerSys.ConfigureStarvingPain(human, growthRate: 5f);
             var hunger = Server.EntMan.GetComponent<HungerComponent>(human);
             hungerSys.SetHunger(human, hunger.Thresholds[HungerThreshold.Starving] - 1, hunger);
@@ -49,6 +57,7 @@ public sealed class HungerPainTest : GameTest
             var causes = consciousnessSys.GetPainCauses(human);
             Assert.That(causes, Is.Not.Null);
             Assert.That(causes!.ContainsKey("Starving"), Is.True);
+            Assert.That(causes.ContainsKey("WoundPain"), Is.False, "Starving pain must not be shown as wound pain.");
         });
     }
 
@@ -65,6 +74,7 @@ public sealed class HungerPainTest : GameTest
         await Server.WaitPost(() =>
         {
             human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            AttachActor(human);
             var body = Server.EntMan.GetComponent<BodyComponent>(human);
             coldWoundsBefore = woundSys.GetBodyWounds(human, body)
                 .Count(wound => wound.Comp.DamageType == "Cold");
@@ -91,6 +101,7 @@ public sealed class HungerPainTest : GameTest
             var causes = consciousnessSys.GetPainCauses(human);
             Assert.That(causes, Is.Not.Null);
             Assert.That(causes!.ContainsKey("Starving"), Is.True, "Starving should apply pain instead of Cold wounds.");
+            Assert.That(causes.ContainsKey("WoundPain"), Is.False, "Starving pain must not be shown as wound pain.");
         });
     }
 
@@ -106,6 +117,7 @@ public sealed class HungerPainTest : GameTest
         await Server.WaitPost(() =>
         {
             human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            AttachActor(human);
             hungerSys.ConfigureStarvingPain(human, growthRate: 3f, decayRate: 6f);
             var hunger = Server.EntMan.GetComponent<HungerComponent>(human);
             hungerSys.SetHunger(human, hunger.Thresholds[HungerThreshold.Starving] - 5, hunger);
@@ -132,6 +144,32 @@ public sealed class HungerPainTest : GameTest
             var causes = consciousnessSys.GetPainCauses(human);
             var painAfter = causes != null && causes.TryGetValue("Starving", out var starving) ? starving : 0;
             Assert.That(painAfter, Is.LessThan(painBeforeEat));
+        });
+    }
+
+    [Test]
+    public async Task Starving_WithoutActor_DoesNotApplyPain()
+    {
+        var map = await Pair.CreateTestMap();
+        var hungerSys = Server.EntMan.System<HungerSystem>();
+        var consciousnessSys = Server.EntMan.System<ServerConsciousnessSystem>();
+        EntityUid human = default;
+
+        await Server.WaitPost(() =>
+        {
+            human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            hungerSys.ConfigureStarvingPain(human, growthRate: 5f);
+            var hunger = Server.EntMan.GetComponent<HungerComponent>(human);
+            hungerSys.SetHunger(human, hunger.Thresholds[HungerThreshold.Starving] - 1, hunger);
+        });
+
+        await Pair.RunTicksSync(90);
+
+        await Server.WaitAssertion(() =>
+        {
+            var causes = consciousnessSys.GetPainCauses(human);
+            Assert.That(causes == null || !causes.ContainsKey("Starving"), Is.True);
+            Assert.That(Server.EntMan.HasComponent<HungerPainTrackerComponent>(human), Is.False);
         });
     }
 
@@ -163,6 +201,7 @@ public sealed class HungerPainTest : GameTest
         await Server.WaitPost(() =>
         {
             human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            AttachActor(human);
             var hunger = Server.EntMan.GetComponent<HungerComponent>(human);
             hungerSys.SetHunger(human, 5, hunger);
         });

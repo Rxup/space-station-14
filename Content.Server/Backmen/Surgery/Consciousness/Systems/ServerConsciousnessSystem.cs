@@ -279,6 +279,12 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
             return false;
         }
 
+        if (!MobStateSys.IsCritical(consciousness, mobState))
+        {
+            _popup.PopupPredicted(Loc.GetString("cpr-cant-perform-not-crit"), consciousness, user, PopupType.Medium);
+            return false;
+        }
+
         return true;
     }
 
@@ -290,24 +296,26 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         if (!CanPerformCpr(consciousness, args.User))
             return;
 
+        if (!_doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager,
+                args.User,
+                consciousness.Comp.CprDoAfterDuration,
+                new CprDoAfterEvent(),
+                args.Target,
+                args.Target)
+            {
+                NeedHand = true,
+                BreakOnMove = true,
+                BreakOnHandChange = true,
+                CancelDuplicate = true,
+                BlockDuplicate = true,
+            }))
+            return;
+
+        args.Handled = true;
+
         _popup.PopupEntity(
             Loc.GetString("user-began-cpr", ("user", args.User), ("target", args.Target)),
             args.Target);
-
-        args.Handled = _doAfter.TryStartDoAfter(new
-            DoAfterArgs(EntityManager,
-            args.User,
-            consciousness.Comp.CprDoAfterDuration,
-            new CprDoAfterEvent(),
-            args.Target,
-            args.Target)
-        {
-            NeedHand = true,
-            BreakOnMove = true,
-            BreakOnHandChange = true,
-            CancelDuplicate = true,
-            BlockDuplicate = true,
-        });
     }
 
     private void OnCprDoAfter(Entity<ConsciousnessComponent> consciousness, ref CprDoAfterEvent args)
@@ -1008,11 +1016,12 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
             return null;
 
         var painCauses = new Dictionary<string, float>();
+        var hasNervePainBreakdown = TryGetNerveSystem(target, out var nerveSys);
 
-        // Get pain modifiers from nerve system (physical pain from wounds)
-        if (TryGetNerveSystem(target, out var nerveSys))
+        // Get pain modifiers from nerve system (physical pain from wounds, starving, etc.)
+        if (hasNervePainBreakdown)
         {
-            foreach (var ((nerveUid, identifier), modifier) in nerveSys.Value.Comp.Modifiers)
+            foreach (var ((nerveUid, identifier), modifier) in nerveSys!.Value.Comp.Modifiers)
             {
                 // Apply modifiers to get actual pain value (with multipliers)
                 var actualPain = _pain.ApplyModifiersToPain(
@@ -1039,6 +1048,10 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         foreach (var ((modifierOwner, identifier), modifier) in target.Comp.Modifiers)
         {
             if (modifier.Type != ConsciousnessModType.Pain)
+                continue;
+
+            // UpdateNerveSystemPain mirrors total nerve pain here; per-cause breakdown is on the nerve system.
+            if (hasNervePainBreakdown && identifier == "WoundPain")
                 continue;
 
             // Only include negative modifiers (they reduce consciousness, which is what we want to show as pain)

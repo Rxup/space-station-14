@@ -37,19 +37,16 @@
       - !type:SuppressPain
         amount: 3
         time: 60 # it accumulated 1.2*quantity and then exists for 60 seconds.
-      - !type:GenericStatusEffect
-        key: Stun
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDesoxyStamina
+        time: 5
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
         time: 5
         type: Remove
-      - !type:GenericStatusEffect
-        key: KnockedDown
+      - !type:ModifyKnockdown
         time: 5
         type: Remove
-      - !type:GenericStatusEffect
-        key: StaminaModifier
-        component: StaminaModifier
-        time: 5
-        type: Add
       - !type:PopupMessage
         visualType: Medium
         messages: ["ephedrine-effect-tight-pain", "ephedrine-effect-heart-pounds"]
@@ -102,21 +99,19 @@
         emote: Yawn
         showInChat: true
         probability: 0.1
-      - !type:GenericStatusEffect
-        key: Drowsiness
+      - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentCondition
           reagent: Morphine
           min: 12
-        component: Drowsiness
+        effectProto: StatusEffectDrowsiness
         time: 30
-      - !type:GenericStatusEffect
-        key: ForcedSleeping
+      - !type:ModifyStatusEffect
         conditions:
         - !type:ReagentCondition
           reagent: Morphine
           min: 20
-        component: ForcedSleeping
+        effectProto: StatusEffectForcedSleeping
         time: 10
       - !type:HealthChange
         conditions:
@@ -136,3 +131,4 @@
           min: 10
         key: Adrenaline
         component: IgnoreSlowOnDamage
+        time: 30

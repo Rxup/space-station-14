@@ -251,6 +251,7 @@
   - type: Input
     context: "ghost"
   - type: Brain
+  - type: BkmSupermatterImmune
   - type: NerveOrgan
   - type: ConsciousnessRequired
     identifier: nerveSystem

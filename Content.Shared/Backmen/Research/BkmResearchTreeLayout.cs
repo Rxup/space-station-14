@@ -10,9 +10,10 @@ namespace Content.Shared.Backmen.Research;
 /// </summary>
 public static class BkmResearchTreeLayout
 {
-    private const int TierRowSpacing = 4;
-    private const int DisciplineMacroColumns = 3;
-    private const int MacroCellPadding = 2;
+    private const int MaxTechsPerRow = 4;
+    private const int TierGap = 1;
+    private const int DisciplineMacroColumns = 4;
+    private const int MacroCellPadding = 1;
 
     // start-backmen: rnd-auto-layout
     public static Dictionary<string, Vector2i> ComputeLayout(
@@ -20,24 +21,34 @@ public static class BkmResearchTreeLayout
         IReadOnlyList<ProtoId<TechDisciplinePrototype>>? disciplineOrder = null)
     {
         var visible = technologies.Where(t => !t.Hidden).ToList();
-        var byId = visible.ToDictionary(t => t.ID);
 
         var disciplines = BuildDisciplineOrder(visible, disciplineOrder);
         var disciplineCells = BuildDisciplineCells(visible, disciplines);
 
-        var macroCellWidth = (disciplineCells.Count == 0 ? 0 : disciplineCells.Values.Max(c => c.Width)) + MacroCellPadding;
-        var macroCellHeight = (disciplineCells.Count == 0 ? 0 : disciplineCells.Values.Max(c => c.Height)) + MacroCellPadding;
-
         var result = new Dictionary<string, Vector2i>();
+
+        var rowStartX = 0;
+        var rowStartY = 0;
+        var rowMaxHeight = 0;
 
         for (var disciplineIndex = 0; disciplineIndex < disciplines.Count; disciplineIndex++)
         {
+            if (disciplineIndex % DisciplineMacroColumns == 0 && disciplineIndex > 0)
+            {
+                rowStartY += rowMaxHeight + MacroCellPadding;
+                rowStartX = 0;
+                rowMaxHeight = 0;
+            }
+
             var discipline = disciplines[disciplineIndex];
             if (!disciplineCells.TryGetValue(discipline, out var cell))
                 continue;
 
-            var macroX = disciplineIndex % DisciplineMacroColumns * macroCellWidth;
-            var macroY = disciplineIndex / DisciplineMacroColumns * macroCellHeight;
+            var macroX = rowStartX;
+            var macroY = rowStartY;
+
+            rowStartX += cell.Width + MacroCellPadding;
+            rowMaxHeight = Math.Max(rowMaxHeight, cell.Height);
 
             foreach (var (techId, localPosition) in cell.Positions)
             {
@@ -46,6 +57,16 @@ public static class BkmResearchTreeLayout
         }
 
         return result;
+    }
+
+    public static Vector2i GetBounds(Dictionary<string, Vector2i> layout)
+    {
+        if (layout.Count == 0)
+            return Vector2i.Zero;
+
+        var maxX = layout.Values.Max(p => p.X);
+        var maxY = layout.Values.Max(p => p.Y);
+        return new Vector2i(maxX + 1, maxY + 1);
     }
 
     private static List<string> BuildDisciplineOrder(
@@ -81,22 +102,25 @@ public static class BkmResearchTreeLayout
 
             var positions = new Dictionary<string, Vector2i>();
             var maxWidth = 0;
-            var maxHeight = 0;
+            var currentY = 0;
 
             foreach (var tierGroup in disciplineTechs.GroupBy(t => t.Tier).OrderBy(g => g.Key))
             {
                 var ordered = OrderWithinTier(tierGroup.ToList(), disciplineTechs);
-                var rowY = (tierGroup.Key - 1) * TierRowSpacing;
-                maxHeight = Math.Max(maxHeight, rowY + 1);
+                var rowsInTier = Math.Max(1, (ordered.Count + MaxTechsPerRow - 1) / MaxTechsPerRow);
 
                 for (var i = 0; i < ordered.Count; i++)
                 {
-                    positions[ordered[i].ID] = new Vector2i(i, rowY);
-                    maxWidth = Math.Max(maxWidth, i + 1);
+                    var col = i % MaxTechsPerRow;
+                    var subRow = i / MaxTechsPerRow;
+                    positions[ordered[i].ID] = new Vector2i(col, currentY + subRow);
+                    maxWidth = Math.Max(maxWidth, col + 1);
                 }
+
+                currentY += rowsInTier + TierGap;
             }
 
-            cells[discipline] = new DisciplineCell(positions, maxWidth, maxHeight);
+            cells[discipline] = new DisciplineCell(positions, maxWidth, currentY);
         }
 
         return cells;

@@ -39,6 +39,7 @@ public abstract partial class SharedSolutionContainerSystem
                             $"from a {nameof(SolutionContainerManagerComponent)} on {ToPrettyString(container)}, {MetaData(container).EntityPrototype}, " +
                             $"but the entity already had a solution with that id.");
                 solutionEnt.Value.Comp.Solution = solution.Solution;
+                UpdateChemicals(solutionEnt.Value);
             }
             else
             {
@@ -70,6 +71,7 @@ public abstract partial class SharedSolutionContainerSystem
 
             // Clone the solution to the component.
             solutionEnt.Comp.Solution = solution;
+            UpdateChemicals(solutionEnt);
         }
 
         // Clear its data

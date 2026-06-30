@@ -58,7 +58,7 @@
 - type: securityIcon
   id: MindShieldIcon
   priority: 2
-  locationPreference: Left # Corvax-TypingIndicator
+  locationPreference: Right # backmen: mindshield-hud
   layer: Mod
   isShaded: true
   icon:

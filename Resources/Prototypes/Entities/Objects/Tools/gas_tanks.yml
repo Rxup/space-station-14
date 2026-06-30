@@ -25,6 +25,9 @@
     interfaces:
       enum.SharedGasTankUiKey.Key:
         type: GasTankBoundUserInterface
+  - type: AtmosDevice
+    requireAnchored: false
+    joinSystem: true
   - type: GasTank
     releasePressure: 21.3
     air:

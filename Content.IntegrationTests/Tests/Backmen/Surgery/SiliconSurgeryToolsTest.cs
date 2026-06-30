@@ -7,6 +7,7 @@ using Content.Server.Tools.Innate;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Body.Part;
+using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
@@ -42,6 +43,19 @@ public sealed class SiliconSurgeryToolsTest : GameTest
             Assert.That(Server.EntMan.TryGetComponent(drone, out InnateToolComponent? innate), Is.True);
             Assert.That(innate!.ToolUids.Count, Is.EqualTo(3));
             Assert.That(handsSys.EnumerateHands(drone).Count(), Is.GreaterThanOrEqualTo(3));
+
+            Assert.That(Server.EntMan.TryGetComponent(drone, out HandsComponent? hands), Is.True);
+            Assert.That(handsSys.HandIsEmpty((drone, hands!), "left"), Is.True);
+            Assert.That(handsSys.HandIsEmpty((drone, hands!), "right"), Is.True);
+
+            foreach (var handId in hands!.SortedHands)
+            {
+                if (hands.Hands[handId].Location != HandLocation.Middle)
+                    continue;
+
+                Assert.That(handsSys.TryGetHeldItem((drone, hands), handId, out var held), Is.True);
+                Assert.That(innate.ToolUids, Does.Contain(held!.Value));
+            }
         });
     }
 

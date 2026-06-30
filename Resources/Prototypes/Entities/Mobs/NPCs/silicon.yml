@@ -5,6 +5,15 @@
   parent: BaseMob
   id: MobRobotic
   components:
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge #backmen: languages
+    speaks:
+    - TauCetiBasic
+    - Binary
+    understands:
+    - Binary
+    - TauCetiBasic
   - type: Reactive
     groups:
       Acidic: [Touch]

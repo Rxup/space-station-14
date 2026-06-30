@@ -10,6 +10,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
+using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Nutrition;
 
@@ -22,7 +23,15 @@ public sealed partial class HungerPainSystem : EntitySystem
     [Dependency] private PainSystem _pain = default!;
     [Dependency] private TraumaSystem _trauma = default!;
 
+    private EntityQuery<ActorComponent> _actorQuery;
+
     public const string PainStarvingModifierIdentifier = "Starving";
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        _actorQuery = GetEntityQuery<ActorComponent>();
+    }
 
     public override void Update(float frameTime)
     {
@@ -34,9 +43,16 @@ public sealed partial class HungerPainSystem : EntitySystem
             if (!hunger.StarvingPainEnabled)
                 continue;
 
+            if (_mobState.IsDead(uid) || !_actorQuery.HasComp(uid))
+            {
+                if (TryComp<HungerPainTrackerComponent>(uid, out var inactiveTracker))
+                    ClearStarvingPain(uid, inactiveTracker);
+                continue;
+            }
+
             var tracker = EnsureComp<HungerPainTrackerComponent>(uid);
 
-            if (_mobState.IsDead(uid) || !_consciousness.TryGetNerveSystem(uid, out var nerveSys))
+            if (!_consciousness.TryGetNerveSystem(uid, out var nerveSys))
             {
                 ClearStarvingPain(uid, tracker);
                 continue;

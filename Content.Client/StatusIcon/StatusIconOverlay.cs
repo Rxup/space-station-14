@@ -70,6 +70,10 @@ public sealed partial class StatusIconOverlay : Overlay
             var countR = 0;
             var accOffsetL = 0;
             var accOffsetR = 0;
+            // start-backmen: mindshield-hud
+            Vector2? lastLeftBasePos = null;
+            Vector2? lastRightBasePos = null;
+            // end-backmen: mindshield-hud
             icons.Sort();
 
             foreach (var proto in icons)
@@ -90,26 +94,41 @@ public sealed partial class StatusIconOverlay : Overlay
                 {
                     if (accOffsetL + texture.Height > _sprite.GetLocalBounds((uid, sprite)).Height * EyeManager.PixelsPerMeter)
                         break;
+                    // start-backmen: mindshield-hud
+                    yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)(accOffsetL - proto.Offset) / EyeManager.PixelsPerMeter;
+                    xOffset = -(bounds.Width + sprite.Offset.X) / 2f + (float)proto.OffsetHorizontal / EyeManager.PixelsPerMeter;
+
+                    if (proto.Layer == StatusIconLayer.Mod && lastLeftBasePos != null)
+                        yOffset = lastLeftBasePos.Value.Y + (float)proto.Offset / EyeManager.PixelsPerMeter;
+
                     if (proto.Layer == StatusIconLayer.Base)
                     {
                         accOffsetL += texture.Height;
                         countL++;
+                        lastLeftBasePos = new Vector2(xOffset, yOffset);
                     }
-                    yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)(accOffsetL - proto.Offset) / EyeManager.PixelsPerMeter;
-                    xOffset = -(bounds.Width + sprite.Offset.X) / 2f + (float)proto.OffsetHorizontal / EyeManager.PixelsPerMeter;
+                    // end-backmen: mindshield-hud
 
                 }
                 else
                 {
                     if (accOffsetR + texture.Height > _sprite.GetLocalBounds((uid, sprite)).Height * EyeManager.PixelsPerMeter)
                         break;
+
+                    // start-backmen: mindshield-hud
+                    yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)(accOffsetR - proto.Offset) / EyeManager.PixelsPerMeter;
+                    xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)(texture.Width - proto.OffsetHorizontal) / EyeManager.PixelsPerMeter;
+
+                    if (proto.Layer == StatusIconLayer.Mod && lastRightBasePos != null)
+                        yOffset = lastRightBasePos.Value.Y + (float)proto.Offset / EyeManager.PixelsPerMeter;
+
                     if (proto.Layer == StatusIconLayer.Base)
                     {
                         accOffsetR += texture.Height;
                         countR++;
+                        lastRightBasePos = new Vector2(xOffset, yOffset);
                     }
-                    yOffset = (bounds.Height + sprite.Offset.Y) / 2f - (float)(accOffsetR - proto.Offset) / EyeManager.PixelsPerMeter;
-                    xOffset = (bounds.Width + sprite.Offset.X) / 2f - (float)(texture.Width - proto.OffsetHorizontal) / EyeManager.PixelsPerMeter;
+                    // end-backmen: mindshield-hud
 
                 }
 
