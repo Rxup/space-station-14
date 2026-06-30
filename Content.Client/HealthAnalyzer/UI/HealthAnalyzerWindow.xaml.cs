@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Client.Message;
 using Content.Shared.Atmos;
 using Content.Client.UserInterface.Controls;
+using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
@@ -231,6 +232,8 @@ namespace Content.Client.HealthAnalyzer.UI
                         damageTypes[wound.Comp.DamageType] += wound.Comp.WoundSeverityPoint;
                     }
                 }
+
+                AddConsciousnessAsphyxiationDamage(_target.Value, damageGroups, damageTypes);
 
                 var damageSortedGroups =
                     damageGroups.OrderByDescending(damage => damage.Value)
@@ -537,6 +540,30 @@ namespace Content.Client.HealthAnalyzer.UI
 
             sprite.LayerSetScale(layer, new Vector2(3f, 3f));
             return layer + 1;
+        }
+
+        private void AddConsciousnessAsphyxiationDamage(
+            EntityUid target,
+            Dictionary<string, FixedPoint2> damageGroups,
+            Dictionary<string, FixedPoint2> damageTypes)
+        {
+            if (!_entityManager.TryGetComponent<ConsciousnessComponent>(target, out var consciousness)
+                || consciousness.NerveSystem is not { } nerveSys
+                || !consciousness.Modifiers.TryGetValue((nerveSys, ConsciousnessModifierIds.Asphyxiation), out var mod)
+                || mod.Change >= FixedPoint2.Zero)
+            {
+                return;
+            }
+
+            var asphyxiation = -mod.Change;
+            const string group = "Airloss";
+            var type = ConsciousnessModifierIds.Asphyxiation;
+
+            if (!damageGroups.TryAdd(group, asphyxiation))
+                damageGroups[group] += asphyxiation;
+
+            if (!damageTypes.TryAdd(type, asphyxiation))
+                damageTypes[type] += asphyxiation;
         }
         // End-backmen: surgery
     }
