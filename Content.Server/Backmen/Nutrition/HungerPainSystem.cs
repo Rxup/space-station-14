@@ -13,7 +13,7 @@ using Content.Shared.Nutrition.EntitySystems;
 
 namespace Content.Server.Backmen.Nutrition;
 
-public sealed class HungerPainSystem : EntitySystem
+public sealed partial class HungerPainSystem : EntitySystem
 {
     [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private ConsciousnessSystem _consciousness = default!;
