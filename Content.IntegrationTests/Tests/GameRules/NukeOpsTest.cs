@@ -13,6 +13,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Components;
 using BackmenCCVars = Content.Shared.Backmen.CCVar.CCVars;
 using Content.Shared.CCVar;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
@@ -237,6 +238,30 @@ public sealed class NukeOpsTest : GameTest
         // Check the nukie commander passed basic training and figured out how to breathe.
         if (entMan.TryGetComponent<RespiratorComponent>(player, out var resp))
         {
+            // Breathing can glitch for a tick during round setup (+2 asphyxiation, -1 recovery).
+            // Stabilize before monitoring so we only catch ongoing suffocation.
+            await pair.RunTicksSync(10);
+
+            await server.WaitPost(() =>
+            {
+                Assert.That(resp.SuffocationCycles, Is.EqualTo(0));
+                Assert.That(resp.Saturation, Is.GreaterThan(resp.SuffocationThreshold));
+
+#pragma warning disable CS0618
+                var scratchDamage = damageSys.GetAllDamage(player);
+#pragma warning restore CS0618
+                if (scratchDamage.GetTotal() > FixedPoint2.Zero)
+                {
+                    damageSys.TryChangeDamage(
+                        player,
+                        scratchDamage * -1,
+                        ignoreResistances: true,
+                        interruptsDoAfters: false);
+                }
+            });
+
+            Assert.That(damageSys.GetTotalDamage(player), Is.EqualTo(FixedPoint2.Zero));
+
             var totalSeconds = 30;
             var totalTicks = (int)Math.Ceiling(totalSeconds / server.Timing.TickPeriod.TotalSeconds);
             var increment = 5;
