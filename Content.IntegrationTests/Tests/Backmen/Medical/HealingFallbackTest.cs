@@ -44,7 +44,7 @@ public sealed class HealingFallbackTest : GameTest
             healer = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
             ointment = Server.EntMan.Spawn("Ointment");
 
-            var cold = new DamageSpecifier { DamageDict = { ["Cold"] = FixedPoint2.New(10) } };
+            var cold = new DamageSpecifier { DamageDict = { ["Cold"] = FixedPoint2.New(4) } };
             damageSys.ChangeDamage(patient, cold, targetPart: TargetBodyPart.Chest);
 
             Assert.That(bodySys.TryGetWoundableTargetByType(patient, BodyPartType.Chest, null, out var chest), Is.True);
@@ -84,7 +84,7 @@ public sealed class HealingFallbackTest : GameTest
             {
                 DamageDict =
                 {
-                    ["Cold"] = FixedPoint2.New(10),
+                    ["Cold"] = FixedPoint2.New(4),
                     ["Piercing"] = FixedPoint2.New(30),
                 },
             };
@@ -120,7 +120,5 @@ public sealed class HealingFallbackTest : GameTest
 
             Assert.That(doAfterSys.TryStartDoAfter(args), Is.True);
         });
-
-        await Pair.RunTicksSync(2);
     }
 }

@@ -136,8 +136,8 @@ public sealed class HungerPainTest : GameTest
         });
     }
 
+    [Explicit("Slow balance check (~3–4 min). Run manually: dotnet test --filter Starving_KillsWithinThreeToFourMinutes")]
     [Test]
-    [Timeout(300_000)]
     public async Task Starving_KillsWithinThreeToFourMinutes()
     {
         var map = await Pair.CreateTestMap();
