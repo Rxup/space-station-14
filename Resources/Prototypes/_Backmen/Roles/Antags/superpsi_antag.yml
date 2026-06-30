@@ -3,7 +3,6 @@
   id: SuperPsi
   allowNonHumans: true
   pickPlayer: false
-  spawnerPrototype: SpawnerUristMcNars
   multiAntagSetting: None
   mindRoles:
   - MindRoleSuperPsi

@@ -77,7 +77,7 @@ public sealed partial class ResearchSystem
         if (!TryGetClientServer(client, out var serverEnt, out _, component))
             return false;
 
-        if (!CanServerUnlockTechnology(client, prototype, clientDatabase, component))
+        if (!CanServerUnlockTechnology(client, prototype, component))
             return false;
 
         AddTechnology(serverEnt.Value, prototype);
@@ -141,14 +141,15 @@ public sealed partial class ResearchSystem
     /// <returns>Whether it could be unlocked or not</returns>
     public bool CanServerUnlockTechnology(EntityUid uid,
         TechnologyPrototype technology,
-        TechnologyDatabaseComponent? database = null,
         ResearchClientComponent? client = null)
     {
-
-        if (!Resolve(uid, ref client, ref database, false))
+        if (!Resolve(uid, ref client, false))
             return false;
 
-        if (!TryGetClientServer(uid, out _, out var serverComp, client))
+        if (!TryGetClientServer(uid, out var serverEnt, out var serverComp, client))
+            return false;
+
+        if (!TryComp<TechnologyDatabaseComponent>(serverEnt, out var database))
             return false;
 
         if (!IsTechnologyAvailable(database, technology))

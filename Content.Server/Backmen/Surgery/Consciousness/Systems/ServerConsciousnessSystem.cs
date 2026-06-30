@@ -209,10 +209,11 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
                     foreach (var damagePair in args.Damage.DamageDict)
                     {
-                        if (damagePair.Key != AsphyxiationDamageType || damagePair.Value <= 0)
+                        if (damagePair.Key != AsphyxiationDamageType)
                             continue;
 
-                        if (actuallyInducedDamage.DamageDict.GetValueOrDefault(damagePair.Key) != 0)
+                        if (damagePair.Value > 0
+                            && actuallyInducedDamage.DamageDict.GetValueOrDefault(damagePair.Key) != 0)
                             continue;
 
                         actuallyInducedDamage.DamageDict[damagePair.Key] =

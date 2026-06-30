@@ -60,8 +60,8 @@
   id: CaptainIDCard
   name: steal-target-groups-captain-id-card
   sprite:
-    sprite: Objects/Misc/id_cards.rsi
-    state: icon-captain
+    sprite: Backmen/Objects/Misc/id_cards.rsi
+    state: idcaptain
 
 - type: stealTargetGroup
   id: JetpackCaptainFilled
@@ -153,8 +153,8 @@
   id: IDCard
   name: steal-target-groups-id-cards
   sprite:
-    sprite: Objects/Misc/id_cards.rsi
-    state: default
+    sprite: Backmen/Objects/Misc/id_cards.rsi
+    state: card_default
 
 - type: stealTargetGroup
   id: LAMP

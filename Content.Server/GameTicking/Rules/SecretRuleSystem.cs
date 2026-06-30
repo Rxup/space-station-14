@@ -36,8 +36,10 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
 
         if (!TryPickPreset(weights, out var preset))
         {
-            Log.Error($"{ToPrettyString(uid)} failed to pick any preset. Removing rule.");
+            // start-backmen: secret-fallback
+            Log.Error($"{ToPrettyString(uid)} failed to pick any secret preset; round will have no antag rules.");
             Del(uid);
+            // end-backmen: secret-fallback
             return;
         }
 
@@ -90,8 +92,8 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
                 if (accumulated < rand)
                     continue;
 
-                if (!_prototypeManager.TryIndex(key, out selectedPreset))
-                    Log.Error($"Invalid preset {selectedPreset} in secret rule weights: {weights}");
+                if (!_prototypeManager.TryIndex<GamePresetPrototype>(key, out selectedPreset))
+                    Log.Error($"Invalid preset {key} in secret rule weights: {weights}");
 
                 options.Remove(key);
                 sum -= weight;
@@ -107,6 +109,35 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
             if (selectedPreset != null)
                 Log.Info($"Excluding {selectedPreset.ID} from secret preset selection.");
         }
+
+        // start-backmen: secret-fallback
+        foreach (var id in _prototypeManager.Index(weights).Weights.Keys)
+        {
+            if (!_prototypeManager.TryIndex<GamePresetPrototype>(id, out var candidate))
+                continue;
+
+            if (!CanPick(candidate, players))
+                continue;
+
+            preset = candidate;
+            Log.Warning($"Secret weighted pick failed, falling back to {candidate.ID}.");
+            return true;
+        }
+
+        ReadOnlySpan<string> backmenFallbacks = ["Calm", "Standard", "Greenshift"];
+        foreach (var id in backmenFallbacks)
+        {
+            if (!_prototypeManager.TryIndex<GamePresetPrototype>(id, out var candidate))
+                continue;
+
+            if (!CanPick(candidate, players))
+                continue;
+
+            preset = candidate;
+            Log.Warning($"Secret pick failed, using backmen fallback {candidate.ID}.");
+            return true;
+        }
+        // end-backmen: secret-fallback
 
         preset = null;
         return false;
@@ -137,8 +168,8 @@ public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponen
         var players = GameTicker.ReadyPlayerCount();
         foreach (var id in protos)
         {
-            if (!_prototypeManager.TryIndex(id, out var selectedPreset))
-                Log.Error($"Invalid preset {selectedPreset} in secret rule weights: {id}");
+            if (!_prototypeManager.TryIndex<GamePresetPrototype>(id, out var selectedPreset))
+                Log.Error($"Invalid preset {id} in secret rule weights: {id}");
 
             if (CanPick(selectedPreset, players))
                 return true;

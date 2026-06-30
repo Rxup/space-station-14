@@ -61,13 +61,18 @@ internal sealed partial class ChatManager : IChatManager
 
     public void Initialize()
     {
+        // start-backmen: looc-cvar-init-crash
+        _sawmill = _logManager.GetSawmill("SERVER");
+
         _netManager.RegisterNetMessage<MsgChatMessage>();
         _netManager.RegisterNetMessage<MsgDeleteChatMessagesBy>();
 
-        _configurationManager.OnValueChanged(CCVars.OocEnabled, OnOocEnabledChanged, true);
-        _configurationManager.OnValueChanged(CCVars.AdminOocEnabled, OnAdminOocEnabledChanged, true);
+        _oocEnabled = _configurationManager.GetCVar(CCVars.OocEnabled);
+        _adminOocEnabled = _configurationManager.GetCVar(CCVars.AdminOocEnabled);
 
-        _sawmill = _logManager.GetSawmill("SERVER");
+        _configurationManager.OnValueChanged(CCVars.OocEnabled, OnOocEnabledChanged);
+        _configurationManager.OnValueChanged(CCVars.AdminOocEnabled, OnAdminOocEnabledChanged);
+        // end-backmen: looc-cvar-init-crash
 
         RegisterRateLimits();
     }

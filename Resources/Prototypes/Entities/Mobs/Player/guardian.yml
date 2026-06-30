@@ -21,6 +21,7 @@
     - type: GhostTakeoverAvailable
     - type: Input
       context: "human"
+    - type: DoAfter
     - type: MobMover
     - type: InputMover
     - type: MovementSpeedModifier
@@ -151,6 +152,9 @@
           map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
           color: "#40a7d7"
           shader: unshaded
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound

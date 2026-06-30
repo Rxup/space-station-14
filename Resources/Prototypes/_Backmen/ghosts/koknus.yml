@@ -11,6 +11,7 @@
       - state: magic_base
         shader: unshaded
       - state: magic_flare
+        map: [ "ghostVariant" ]
         color: "#40a7d7"
         shader: unshaded
 
@@ -25,4 +26,5 @@
     sprite: Backmen/Mobs/Ghost/mujik.rsi
     layers:
       - state: mujik
+        map: [ "ghostVariant" ]
         shader: unshaded

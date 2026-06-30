@@ -296,7 +296,6 @@ public sealed partial class AutoPsiSystem : EntitySystem
         }
         RemCompDeferred<AutoPsiComponent>(ent);
 
-        // Ghost role antag selection pre-selects the player before assigning the mind.
         var query = EntityQueryEnumerator<SuperPsiRuleComponent, AntagSelectionComponent>();
         while (query.MoveNext(out var uid, out _, out var selection))
         {

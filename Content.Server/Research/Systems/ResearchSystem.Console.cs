@@ -41,6 +41,8 @@ public sealed partial class ResearchSystem
             return;
         }
 
+        SyncClientWithServer(uid);
+
         if (!UnlockTechnology(uid, args.Id, act))
             return;
 
@@ -63,6 +65,7 @@ public sealed partial class ResearchSystem
     private void OnConsoleBeforeUiOpened(EntityUid uid, ResearchConsoleComponent component, BeforeActivatableUIOpenEvent args)
     {
         SyncClientWithServer(uid);
+        UpdateConsoleInterface(uid, component);
     }
 
     private void UpdateConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? clientComponent = null)
