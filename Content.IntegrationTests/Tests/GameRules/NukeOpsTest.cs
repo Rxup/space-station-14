@@ -250,8 +250,28 @@ public sealed class NukeOpsTest : GameTest
 #pragma warning disable CS0618
                 var scratchDamage = damageSys.GetAllDamage(player);
 #pragma warning restore CS0618
-                if (scratchDamage.GetTotal() > FixedPoint2.Zero)
+                var scratchTotal = scratchDamage.GetTotal();
+                if (scratchTotal > FixedPoint2.Zero)
                 {
+                    // One respirator suffocation tick applies +2 Asphyxiation; recovery is only -1.
+                    const int maxStartupAsphyxiationScratch = 2;
+
+                    Assert.That(
+                        scratchTotal,
+                        Is.LessThanOrEqualTo(FixedPoint2.New(maxStartupAsphyxiationScratch)),
+                        "Unexpected startup damage magnitude; only transient respirator scratch is allowed.");
+
+                    foreach (var (damageType, amount) in scratchDamage.DamageDict)
+                    {
+                        if (amount == FixedPoint2.Zero)
+                            continue;
+
+                        Assert.That(
+                            damageType.Id,
+                            Is.EqualTo("Asphyxiation"),
+                            $"Unexpected startup damage type '{damageType.Id}' ({amount}); only transient asphyxiation is allowed.");
+                    }
+
                     damageSys.TryChangeDamage(
                         player,
                         scratchDamage * -1,
