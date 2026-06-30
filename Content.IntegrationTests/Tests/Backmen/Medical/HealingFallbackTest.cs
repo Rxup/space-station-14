@@ -2,6 +2,8 @@ using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body.Part;
@@ -80,18 +82,21 @@ public sealed class HealingFallbackTest : GameTest
             healer = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
             ointment = Server.EntMan.Spawn("Ointment");
 
-            var chestDamage = new DamageSpecifier
-            {
-                DamageDict =
-                {
-                    ["Cold"] = FixedPoint2.New(4),
-                    ["Piercing"] = FixedPoint2.New(30),
-                },
-            };
-            damageSys.ChangeDamage(patient, chestDamage, targetPart: TargetBodyPart.Chest);
+            var cold = new DamageSpecifier { DamageDict = { ["Cold"] = FixedPoint2.New(4) } };
+            damageSys.ChangeDamage(patient, cold, targetPart: TargetBodyPart.Chest);
 
             Assert.That(bodySys.TryGetWoundableTargetByType(patient, BodyPartType.Chest, null, out var chest), Is.True);
+            Assert.That(Server.EntMan.TryGetComponent(chest, out WoundableComponent? chestWoundable), Is.True);
             Assert.That(woundSys.HasDamageOfType(chest, "Cold"), Is.True);
+
+            // Induce light slash bleeding without trauma, then crank bleed above the ointment threshold (4.5).
+            Assert.That(woundSys.TryInduceWound(chest, "Slash", FixedPoint2.New(5), out _, chestWoundable), Is.True);
+            foreach (var wound in woundSys.GetWoundableWoundsWithComp<BleedInflicterComponent>(chest, chestWoundable))
+            {
+                wound.Comp2.BleedingAmountRaw = FixedPoint2.New(10);
+                wound.Comp2.IsBleeding = true;
+                wound.Comp2.Scaling = FixedPoint2.New(1);
+            }
 
             var targeting = Server.EntMan.EnsureComponent<TargetingComponent>(healer);
             targeting.Target = TargetBodyPart.Chest;
@@ -116,6 +121,7 @@ public sealed class HealingFallbackTest : GameTest
             {
                 EventTarget = patient,
                 NeedHand = false,
+                RequireCanInteract = false,
             };
 
             Assert.That(doAfterSys.TryStartDoAfter(args), Is.True);
