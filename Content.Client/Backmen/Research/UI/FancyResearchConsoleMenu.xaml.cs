@@ -209,6 +209,20 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     }
 
     /// <summary>
+    /// Refreshes the info panel for the currently selected technology.
+    /// </summary>
+    public void RefreshSelectedTech()
+    {
+        if (CurrentTech is not { } currentTech ||
+            !List.TryGetValue(currentTech, out var availability))
+        {
+            return;
+        }
+
+        SelectTech(_prototype.Index<TechnologyPrototype>(currentTech), availability);
+    }
+
+    /// <summary>
     /// Sets <see cref="_position"/> to its default value
     /// </summary>
     public void Recenter()

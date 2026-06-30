@@ -13,6 +13,7 @@ public sealed partial class AntagRandomSpawnSystem : GameRuleSystem<AntagRandomS
         base.Initialize();
 
         SubscribeLocalEvent<AntagRandomSpawnComponent, AntagSelectLocationEvent>(OnSelectLocation);
+        InitializeAntagRandomSpawnBackmen(); // backmen: antag random spawn
     }
 
     protected override void Added(EntityUid uid, AntagRandomSpawnComponent comp, GameRuleComponent gameRule, GameRuleAddedEvent args)
@@ -28,7 +29,14 @@ public sealed partial class AntagRandomSpawnSystem : GameRuleSystem<AntagRandomS
 
     private void OnSelectLocation(Entity<AntagRandomSpawnComponent> ent, ref AntagSelectLocationEvent args)
     {
+        // start-backmen: antag random spawn
+        if (TrySelectLocationBackmen(ent, ref args))
+            return;
+        // end-backmen: antag random spawn
+
         if (ent.Comp.Coords != null)
             args.Coordinates.Add(_transform.ToMapCoordinates(ent.Comp.Coords.Value));
     }
+
+    partial void InitializeAntagRandomSpawnBackmen(); // backmen: antag random spawn
 }

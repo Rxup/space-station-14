@@ -9,6 +9,7 @@
     sprite: Backmen/Mobs/Ghost/luna.rsi
     layers:
       - state: pony
+        map: [ "ghostVariant" ]
         shader: unshaded
 
 - type: ghostTheme
@@ -22,6 +23,7 @@
     sprite: Backmen/Mobs/Ghost/p03.rsi
     layers:
       - state: p03
+        map: [ "ghostVariant" ]
         shader: unshaded
 
 - type: ghostTheme
@@ -35,6 +37,7 @@
     sprite: Backmen/Mobs/Ghost/astronaut.rsi
     layers:
       - state: astronaut
+        map: [ "ghostVariant" ]
         shader: unshaded
 
 - type: ghostTheme
@@ -48,6 +51,7 @@
     sprite: Backmen/Mobs/Ghost/Boroven-ghost.rsi
     layers:
     - state: animated-Boroven
+      map: [ "ghostVariant" ]
       shader: unshaded
 
 - type: ghostTheme
@@ -61,6 +65,7 @@
     sprite: Backmen/Mobs/Ghost/Vetochka-ghost.rsi
     layers:
     - state: animated-Veta
+      map: [ "ghostVariant" ]
       shader: unshaded
 
 
@@ -75,6 +80,7 @@
     sprite: Backmen/Mobs/Ghost/Memes-ghost.rsi
     layers:
     - state: animated-Memes
+      map: [ "ghostVariant" ]
       shader: unshaded
 
 - type: ghostTheme
@@ -88,6 +94,7 @@
     sprite: Backmen/Mobs/Ghost/Wisdom-ghost.rsi
     layers:
     - state: angel_nelle
+      map: [ "ghostVariant" ]
       shader: unshaded
 
 
@@ -102,5 +109,6 @@
     sprite: Backmen/Mobs/Ghost/Wendor-ghost.rsi
     layers:
     - state: Wend
+      map: [ "ghostVariant" ]
       shader: unshaded
 

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Damage.Components;
@@ -137,6 +138,11 @@ public sealed partial class DamageableSystem
 
         damage *= partMultiplier; // backmen
 
+        // Wound routing needs a body part on consciousness mobs; armor keeps legacy global stacking when targetPart is null.
+        var dispatchTargetPart = targetPart;
+        if (dispatchTargetPart == null && HasComp<ConsciousnessComponent>(ent.Owner))
+            dispatchTargetPart = ResolveTargetBodyPart(ent, origin, null);
+
         // Apply resistances
         if (!ignoreResistances)
         {
@@ -161,7 +167,7 @@ public sealed partial class DamageableSystem
             damage = ApplyUniversalAllModifiers(damage);
         }
 
-        if (_backmenDamageModel.TryDispatchModelDamage((ent, ent.Comp), damage, origin, interruptsDoAfters, targetPart, out var dispatched)) // backmen: damage-model
+        if (_backmenDamageModel.TryDispatchModelDamage((ent, ent.Comp), damage, origin, interruptsDoAfters, dispatchTargetPart, out var dispatched)) // backmen: damage-model
             return dispatched;
 
         damageDone.DamageDict.EnsureCapacity(damage.DamageDict.Count);
@@ -495,4 +501,20 @@ public sealed partial class DamageableSystem
     /// </summary>
     public bool CanBeDamagedBy(Entity<DamageableComponent?> ent, ProtoId<DamageTypePrototype> type) =>
         _backmenDamageModel.CanBeDamagedBy(ent, type); // backmen: damage-container
+
+    /// <summary>
+    /// Picks a hit location for wound routing on consciousness mobs when callers omit an explicit target part.
+    /// </summary>
+    private TargetBodyPart? ResolveTargetBodyPart(EntityUid ent, EntityUid? origin, TargetBodyPart? targetPart)
+    {
+        if (targetPart != null)
+            return targetPart;
+
+        var target = _body.GetRandomBodyPart(ent);
+
+        if (origin != null && TryComp<TargetingComponent>(origin.Value, out var attackerTargeting))
+            target = _body.GetRandomBodyPart(ent, origin.Value, attackerComp: attackerTargeting) ?? target;
+
+        return target;
+    }
 }

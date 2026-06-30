@@ -420,6 +420,9 @@ namespace Content.Server.Atmos.EntitySystems
             var curTime = _timing.CurTime;
 
             // TODO: This needs cleanup to take off the crust from TemperatureComponent and shit.
+
+            var q = new Queue<Entity<FlammableComponent>>();
+
             var query = EntityQueryEnumerator<FlammableComponent, TransformComponent>();
             while (query.MoveNext(out var uid, out var flammable, out _))
             {
@@ -427,6 +430,13 @@ namespace Content.Server.Atmos.EntitySystems
                     continue;
 
                 flammable.NextUpdate += UpdateTime;
+
+                q.Enqueue((uid, flammable));
+            }
+
+            while (q.TryDequeue(out var ent))
+            {
+                var (uid, flammable) = ent;
 
                 // Check if we finished resisting.
                 if (curTime > flammable.ResistCompleteTime)

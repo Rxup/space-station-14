@@ -102,17 +102,10 @@ public sealed partial class BloodSuckerSystem : SharedBloodSuckerSystem
         SubscribeLocalEvent<BloodSuckerComponent, BloodSuckDoAfterEvent>(OnDoAfter);
 
 
-        SubscribeLocalEvent<BkmVampireComponent, MapInitEvent>(OnInitVmp);
-
         SubscribeLocalEvent<BkmVampireComponent, PlayerAttachedEvent>(OnAttachedVampireMind);
         SubscribeLocalEvent<BkmVampireComponent, HealthBeingExaminedEvent>(OnVampireExamined);
 
         _bsQuery = GetEntityQuery<BloodSuckerComponent>();
-    }
-
-    private void OnInitVmp(Entity<BkmVampireComponent> ent, ref MapInitEvent args)
-    {
-        _leveling.InitShop(ent);
     }
 
     private void OnVampireExamined(Entity<BkmVampireComponent> ent, ref HealthBeingExaminedEvent args)

@@ -111,8 +111,8 @@
 - type: cargoProduct
   id: ServicePersonnel
   icon:
-    sprite: Objects/Misc/id_cards.rsi
-    state: default
+    sprite: Backmen/Objects/Misc/id_cards.rsi
+    state: card_default
   product: CrateServicePersonnel
   cost: 1000
   category: cargoproduct-category-name-service

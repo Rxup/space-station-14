@@ -152,6 +152,8 @@
         You have been given every Psionic power via the Noosphere, you should be theoretically unstoppable if you time everything right.
       raffle:
         settings: default
+    - type: Loadout
+      prototypes: [ PrisonerGear ]
     - type: RandomMetadata
       nameSegments:
         - NamesWizardFirst
