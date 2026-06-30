@@ -138,7 +138,10 @@ public sealed partial class DamageableSystem
 
         damage *= partMultiplier; // backmen
 
-        targetPart = ResolveTargetBodyPart(ent, origin, targetPart);
+        // Wound routing needs a body part on consciousness mobs; armor keeps legacy global stacking when targetPart is null.
+        var dispatchTargetPart = targetPart;
+        if (dispatchTargetPart == null && HasComp<ConsciousnessComponent>(ent))
+            dispatchTargetPart = ResolveTargetBodyPart(ent, origin, null);
 
         // Apply resistances
         if (!ignoreResistances)
@@ -164,7 +167,7 @@ public sealed partial class DamageableSystem
             damage = ApplyUniversalAllModifiers(damage);
         }
 
-        if (_backmenDamageModel.TryDispatchModelDamage((ent, ent.Comp), damage, origin, interruptsDoAfters, targetPart, out var dispatched)) // backmen: damage-model
+        if (_backmenDamageModel.TryDispatchModelDamage((ent, ent.Comp), damage, origin, interruptsDoAfters, dispatchTargetPart, out var dispatched)) // backmen: damage-model
             return dispatched;
 
         damageDone.DamageDict.EnsureCapacity(damage.DamageDict.Count);
@@ -500,15 +503,12 @@ public sealed partial class DamageableSystem
         _backmenDamageModel.CanBeDamagedBy(ent, type); // backmen: damage-container
 
     /// <summary>
-    /// Picks a hit location for locational armor and wound routing when callers omit <paramref name="targetPart"/>.
+    /// Picks a hit location for wound routing on consciousness mobs when callers omit an explicit target part.
     /// </summary>
     private TargetBodyPart? ResolveTargetBodyPart(EntityUid ent, EntityUid? origin, TargetBodyPart? targetPart)
     {
         if (targetPart != null)
             return targetPart;
-
-        if (!HasComp<ConsciousnessComponent>(ent))
-            return null;
 
         var target = _body.GetRandomBodyPart(ent);
 
