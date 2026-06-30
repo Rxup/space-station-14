@@ -4,7 +4,7 @@
                  xmlns:goob="clr-namespace:Content.Client.Backmen.Research.UI"
                  Margin="5"
                  HorizontalExpand="False">
-    <BoxContainer Orientation="Vertical" SetSize="80 80">
+    <BoxContainer Orientation="Vertical" SetSize="68 68">
         <PanelContainer VerticalExpand="True"
                         HorizontalExpand="True"
                         Name="Panel">
@@ -19,8 +19,8 @@
                              HorizontalExpand="True"/>
             <TextureRect
                 Name="ResearchDisplay"
-                TextureScale="2 2"
-                SetSize="64 64"
+                TextureScale="1.6 1.6"
+                SetSize="52 52"
                 Stretch="KeepAspectCentered">
             </TextureRect>
         </PanelContainer>

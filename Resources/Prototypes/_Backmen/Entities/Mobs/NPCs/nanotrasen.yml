@@ -280,20 +280,12 @@
     rootTask:
       task: NPCGuardRangedCompound
 
+# start-backmen: mindshield-hud
 - type: securityIcon
+  parent: MindShieldIcon
   id: DSOSecurity
-  priority: 2
-  locationPreference: Left
-  layer: Mod
-  icon:
-    sprite: /Textures/Backmen/Icons/jobicon.rsi
-    state: NanotrasenSec
 
 - type: securityIcon
+  parent: MindShieldIcon
   id: NTSecurity
-  priority: 2
-  locationPreference: Left
-  layer: Mod
-  icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: SecurityOfficer
+# end-backmen: mindshield-hud

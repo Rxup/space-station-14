@@ -67,9 +67,9 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// Global position that all tech relates to.
     /// For dragging mostly
     /// </summary>
-    private Vector2 _position = new Vector2(45, 250);
+    private Vector2 _position = Vector2.Zero;
 
-    private const float CellSize = 150f; // backmen: rnd-auto-layout
+    private const float CellSize = 84f; // backmen: rnd-auto-layout
 
     public FancyResearchConsoleMenu()
     {
@@ -129,6 +129,8 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             if (tech.Key == CurrentTech)
                 SelectTech(proto, tech.Value);
         }
+
+        Recenter(); // backmen: rnd-auto-layout
     }
 
     public void UpdateInformationPanel(int points)
@@ -258,18 +260,26 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
     /// </summary>
     public void Recenter()
     {
-        _position = new(45, 250);
+        // start-backmen: rnd-auto-layout
+        var bounds = BkmResearchTreeLayout.GetBounds(_layoutPositions);
+        var treeSize = new Vector2(bounds.X * CellSize, bounds.Y * CellSize);
+        var viewSize = DragContainer.Size;
+        _position = viewSize.X > 0 && viewSize.Y > 0
+            ? new Vector2(
+                Math.Max(0, (viewSize.X - treeSize.X) / 2f),
+                Math.Max(0, (viewSize.Y - treeSize.Y) / 2f))
+            : new Vector2(10, 10);
+
         foreach (var item in DragContainer.Children)
         {
             if (item is not FancyResearchConsoleItem research)
                 continue;
 
-            // start-backmen: rnd-auto-layout
             var layoutPosition = research.Prototype.Position
                 ?? _layoutPositions.GetValueOrDefault(research.Prototype.ID);
             LayoutContainer.SetPosition(item, _position + layoutPosition * CellSize);
-            // end-backmen: rnd-auto-layout
         }
+        // end-backmen: rnd-auto-layout
     }
 
     public override void Close()

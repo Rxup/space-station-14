@@ -8,6 +8,7 @@ using Content.Shared.Medical.Surgery.Conditions;
 using Content.Shared.Body.Part;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
+using Robust.Server.Player;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -27,6 +28,11 @@ public sealed class StarvingPainSurgeryTest : GameTest
         Dirty = true,
     };
 
+    private void AttachActor(EntityUid uid)
+    {
+        Server.PlayerMan.SetAttachedEntity(Pair.Player!, uid);
+    }
+
     [Test]
     public async Task RelieveStarvingPain_RemovesPainButKeepsHunger()
     {
@@ -41,6 +47,7 @@ public sealed class StarvingPainSurgeryTest : GameTest
         await Server.WaitPost(() =>
         {
             patient = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            AttachActor(patient);
             hungerSys.ConfigureStarvingPain(patient, growthRate: 5f);
             var hunger = Server.EntMan.GetComponent<HungerComponent>(patient);
             hungerSys.SetHunger(patient, hunger.Thresholds[HungerThreshold.Starving] - 1, hunger);

@@ -1,4 +1,5 @@
 using Content.Client.Lathe;
+using Content.Client.Message;
 using Content.Client.Research;
 using Content.Client.Research.UI;
 using Content.Shared.Backmen.Research;
@@ -78,6 +79,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
         // start-backmen: rnd-console-prereqs
         var hasRequirements = BkmResearchRequirements.HasUnmetRequirements(research, proto, database, _proto);
         NoPrereqLabel.Visible = !hasRequirements;
+        NoPrereqLabel.SetMarkup(Loc.GetString("research-console-no-tech-requirements"));
         PrereqsContainer.Visible = hasRequirements;
 
         RequiredTechContainer.RemoveAllChildren();
@@ -101,26 +103,29 @@ public sealed partial class FancyTechnologyInfoPanel : Control
         {
             var mainDiscipline = _proto.Index<TechDisciplinePrototype>(database.MainDiscipline!);
             var lockoutLabel = new RichTextLabel();
-            lockoutLabel.SetMessage(Loc.GetString("research-console-discipline-lockout-requirement",
+            lockoutLabel.SetMarkup(Loc.GetString("research-console-discipline-lockout-requirement",
                 ("discipline", Loc.GetString(discipline.Name)),
-                ("color", discipline.Color),
+                ("color", discipline.Color.ToHex()),
                 ("mainDiscipline", Loc.GetString(mainDiscipline.Name)),
-                ("mainColor", mainDiscipline.Color)));
+                ("mainColor", mainDiscipline.Color.ToHex())));
             RequiredTechContainer.AddChild(lockoutLabel);
         }
         else if (!BkmResearchRequirements.IsTierRequirementMet(research, proto, database)
                  && discipline.TierPrerequisites.TryGetValue(proto.Tier, out var requiredRatio))
         {
             var previousTier = proto.Tier - 1;
-            var currentProgress = (int) (BkmResearchRequirements.GetTierProgress(research, database, discipline, previousTier, _proto) * 100f);
-            var requiredProgress = (int) (requiredRatio * 100f);
+            var progress = BkmResearchRequirements.GetTierProgressInfo(
+                research, database, discipline, previousTier, requiredRatio, _proto);
             var tierLabel = new RichTextLabel();
-            tierLabel.SetMessage(Loc.GetString("research-console-tier-requirement",
-                ("percent", requiredProgress),
+            tierLabel.SetMarkup(Loc.GetString("research-console-tier-requirement",
+                ("percent", progress.RequiredPercent),
                 ("tier", previousTier),
                 ("discipline", Loc.GetString(discipline.Name)),
-                ("color", discipline.Color),
-                ("current", currentProgress)));
+                ("color", discipline.Color.ToHex()),
+                ("unlocked", progress.Unlocked),
+                ("total", progress.Total),
+                ("current", progress.CurrentPercent),
+                ("remaining", progress.Remaining)));
             RequiredTechContainer.AddChild(tierLabel);
         }
         // end-backmen: rnd-console-prereqs

@@ -90,6 +90,7 @@
   - type: Input
     context: "ghost"
   - type: Brain
+  - type: BkmSupermatterImmune
   - type: InputMover
   - type: Examiner
   - type: BlockMovement

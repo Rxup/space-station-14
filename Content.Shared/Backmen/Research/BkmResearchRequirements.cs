@@ -51,15 +51,35 @@ public static class BkmResearchRequirements
         int tier,
         IPrototypeManager prototypeManager)
     {
+        return GetTierProgressInfo(research, component, discipline, tier, 1f, prototypeManager).Progress;
+    }
+
+    public static TierProgressInfo GetTierProgressInfo(
+        SharedResearchSystem research,
+        TechnologyDatabaseComponent component,
+        TechDisciplinePrototype discipline,
+        int tier,
+        float requiredRatio,
+        IPrototypeManager prototypeManager)
+    {
         var tierTech = prototypeManager.EnumeratePrototypes<TechnologyPrototype>()
             .Where(p => p.Discipline == discipline.ID && !p.Hidden && p.Tier == tier)
             .ToList();
 
         if (tierTech.Count == 0)
-            return 1f;
+        {
+            return new TierProgressInfo(0, 0, 0, 0, 100, (int) (requiredRatio * 100f), 1f);
+        }
 
         var unlocked = tierTech.Count(t => research.IsTechnologyUnlocked(EntityUid.Invalid, t.ID, component));
-        return (float) unlocked / tierTech.Count;
+        var total = tierTech.Count;
+        var requiredCount = (int) Math.Ceiling(total * requiredRatio);
+        var remaining = Math.Max(0, requiredCount - unlocked);
+        var currentPercent = (int) Math.Clamp((float) unlocked / total * 100f, 0, 100);
+        var requiredPercent = (int) (requiredRatio * 100f);
+        var progress = (float) unlocked / total;
+
+        return new TierProgressInfo(unlocked, total, requiredCount, remaining, currentPercent, requiredPercent, progress);
     }
 
     public static bool IsTierRequirementMet(
@@ -90,5 +110,14 @@ public static class BkmResearchRequirements
 
         return !IsTierRequirementMet(research, technology, component);
     }
+
+    public readonly record struct TierProgressInfo(
+        int Unlocked,
+        int Total,
+        int RequiredCount,
+        int Remaining,
+        int CurrentPercent,
+        int RequiredPercent,
+        float Progress);
     // end-backmen: rnd-console-prereqs
 }

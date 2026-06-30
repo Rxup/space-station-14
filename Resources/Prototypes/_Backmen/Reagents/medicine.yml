@@ -127,11 +127,10 @@
             Shock: -0.075
             Cold: -0.075
             Caustic: -0.075
-      - !type:GenericStatusEffect
-        key: Stun
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
         time: 0.75
         type: Remove
-      - !type:GenericStatusEffect
-        key: KnockedDown
+      - !type:ModifyKnockdown
         time: 0.75
         type: Remove

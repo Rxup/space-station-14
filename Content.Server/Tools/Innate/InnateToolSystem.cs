@@ -74,13 +74,16 @@ public sealed partial class InnateToolSystem : EntitySystem
         if (!TryComp<HandsComponent>(uid, out var hands))
             return;
 
-        var requiredHands = component.Tools.Count;
-        var handIndex = 3;
-        var handCount = 0;
-        foreach (var _ in _sharedHandsSystem.EnumerateHands((uid, hands)))
-            handCount++;
+        var requiredMiddleHands = component.Tools.Count;
+        var middleHandCount = 0;
+        foreach (var (_, hand) in hands.Hands)
+        {
+            if (hand.Location == HandLocation.Middle)
+                middleHandCount++;
+        }
 
-        while (handCount < requiredHands)
+        var handIndex = 3;
+        while (middleHandCount < requiredMiddleHands)
         {
             string handId;
             do
@@ -89,8 +92,25 @@ public sealed partial class InnateToolSystem : EntitySystem
             } while (_sharedHandsSystem.TryGetHand((uid, hands), handId, out _));
 
             _sharedHandsSystem.AddHand((uid, hands), handId, HandLocation.Middle);
-            handCount++;
+            middleHandCount++;
         }
+    }
+
+    private bool TryPickupInnateHand(EntityUid uid, EntityUid item, HandsComponent hands)
+    {
+        foreach (var handId in hands.SortedHands)
+        {
+            if (hands.Hands[handId].Location != HandLocation.Middle)
+                continue;
+
+            if (!_sharedHandsSystem.HandIsEmpty((uid, hands), handId))
+                continue;
+
+            if (_sharedHandsSystem.TryPickup(uid, item, handId, checkActionBlocker: false))
+                return true;
+        }
+
+        return _sharedHandsSystem.TryPickupAnyHand(uid, item, checkActionBlocker: false);
     }
     // end-backmen: innate-tool-auto-hands
 
@@ -99,12 +119,17 @@ public sealed partial class InnateToolSystem : EntitySystem
         if (component.ToSpawn.Count == 0)
             return false;
 
+        if (!TryComp<HandsComponent>(uid, out var hands))
+            return false;
+
         var spawnCoord = Transform(uid).Coordinates;
         var toSpawn = component.ToSpawn[0];
 
         var item = Spawn(toSpawn, spawnCoord);
         AddComp<UnremoveableComponent>(item);
-        if (!_sharedHandsSystem.TryPickupAnyHand(uid, item, checkActionBlocker: false))
+        // start-backmen: innate-tool-auto-hands
+        if (!TryPickupInnateHand(uid, item, hands))
+        // end-backmen: innate-tool-auto-hands
         {
             QueueDel(item);
             return false;
