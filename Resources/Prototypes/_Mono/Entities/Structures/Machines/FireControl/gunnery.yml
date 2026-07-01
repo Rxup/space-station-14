@@ -62,6 +62,7 @@
     signature: 100000 # ~630m
   - type: ThermalSignature
   - type: Battery
+    netsync: false
     maxCharge: 125
     startingCharge: 125
   - type: ApcPowerReceiver
@@ -86,6 +87,7 @@
     signature: 250000 # ~1km
   - type: ThermalSignature
   - type: Battery
+    netsync: false
     maxCharge: 250
     startingCharge: 250
   - type: ApcPowerReceiver
@@ -110,6 +112,7 @@
     signature: 1000000 # ~2km
   - type: ThermalSignature
   - type: Battery
+    netsync: false
     maxCharge: 500
     startingCharge: 500
   - type: ApcPowerReceiver
@@ -136,6 +139,7 @@
     signature: 4000000 # ~4km
   - type: ThermalSignature
   - type: Battery
+    netsync: false
     maxCharge: 1000
     startingCharge: 1000
   - type: ApcPowerReceiver
@@ -162,6 +166,7 @@
     signature: 8000000 # ~5.6km
   - type: ThermalSignature
   - type: Battery
+    netsync: false
     maxCharge: 2000
     startingCharge: 2000
   - type: ApcPowerReceiver
@@ -187,6 +192,7 @@
   # no thermal sig
   # TODO: nuke this off ships
   - type: Battery
+    netsync: false
     maxCharge: 2500
     startingCharge: 2500
   - type: ApcPowerReceiver
@@ -212,6 +218,7 @@
     enforceMaxConsoles: true
     maxConsoles: 2
   - type: Battery
+    netsync: false
     maxCharge: 2500
     startingCharge: 2500
   - type: ApcPowerReceiver
