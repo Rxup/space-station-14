@@ -1,0 +1,183 @@
+- type: entity
+  parent: BaseStructure
+  id: WeaponTurretBaseLaserLuaTech
+  suffix: Фронтир
+  abstract: true
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Actions
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Turrets/laserluatech.rsi
+      drawdepth: Mobs
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+        - state: impulselaser
+          sprite: _Lua/Objects/Weapons/Guns/Turrets/laserluatech.rsi
+        - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          state: impulselaser-unshaded
+          sprite: _Lua/Objects/Weapons/Guns/Turrets/laserluatech.rsi
+          shader: unshaded
+    - type: FireControlRotate
+    - type: InteractionPopup
+      interactDelay: 0.2
+      successChance: 0.8
+      interactSuccessString: petting-success-generic
+      interactFailureString: petting-failure-generic
+      interactSuccessSound:
+        path: /Audio/Effects/double_beep.ogg
+    - type: CombatMode
+      toggleMouseRotator: false
+    - type: Damageable
+    - type: Injurable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 900 #600<900
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 600 #300<600
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalGlassBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 3
+                  max: 5
+    - type: BatterySelfRecharger
+      autoRechargeRate: 80
+    - type: Gun
+      fireRate: 1
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+        params:
+          volume: -2
+    - type: Battery
+      maxCharge: 2000
+      startingCharge: 2000
+    - type: MouseRotator
+      angleTolerance: 6
+      rotationSpeed: 300
+      simple4DirMode: false
+    - type: NoRotateOnInteract
+    - type: NoRotateOnMove
+    - type: Input
+      context: "human"
+    - type: StaticPrice
+      price: 750
+
+- type: entity
+  parent: WeaponTurretBaseLaserLuaTech
+  id: WeaponTurretLaserLuaTech
+  suffix: LuaTech, HTN, Фронтир
+  name: оборонная турель "LuaTech"
+  components:
+  - type: Gun
+    fireRate: 10
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+      params:
+        volume: -2
+  - type: BatteryAmmoProvider
+    proto: VioletLaserDefence
+    fireCost: 10
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        3.141
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
+  - type: LuaTech
+  - type: NpcFactionMember
+    factions:
+    - LuaTech
+
+- type: entity
+  parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaserLuaTech]
+  id: WeaponTurretLaserShuttleLuaTech
+  suffix: LuaTech, Shuttle, Фронтир
+  name: лазерная турель LuaTech
+  components:
+  - type: RadarBlip
+    radarColor: "#1a4a88"
+    scale: 1.5
+  - type: FireControllable
+  - type: BatteryAmmoProvider
+    proto: VioletLaserShip
+    fireCost: 300
+  - type: LuaTech
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+
+- type: entity
+  parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaserLuaTech]
+  id: WeaponTurretBigLaserShuttleLuaTech
+  suffix: LuaTech, Shuttle, Фронтир
+  name: большая лазерная турель LuaTech
+  components:
+  - type: Gun
+    fireRate: 13
+    minAngle: 0
+    maxAngle: 0
+    burstCooldown: 35
+    burstFireRate: 13
+    shotsPerBurst: 40
+    selectedMode: Burst
+    availableModes: Burst
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Turrets/luabiglaser.rsi
+    drawdepth: Mobs
+    layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+      - state: railgun
+        sprite: _Lua/Objects/Weapons/Guns/Turrets/luabiglaser.rsi
+      - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+        state: railgun-unshaded
+        sprite: _Lua/Objects/Weapons/Guns/Turrets/luabiglaser.rsi
+        shader: unshaded
+  - type: RadarBlip
+    radarColor: "#1a4a88"
+    scale: 2
+  - type: FireControllable
+  - type: BatteryAmmoProvider
+    proto: VioletBigLaserShip
+    fireCost: 50
+  - type: LuaTech
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container

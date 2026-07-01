@@ -1,0 +1,12 @@
+# Frontier ship ordnance — unlocked by FrontierGunneryMachines
+- type: latheRecipePack
+  id: BackmenFrontierShipAmmo
+  recipes:
+  - CharonSlugUniversal
+  - ASM220TorpedoHEUniversal
+  - ASM220TorpedoECMUniversal
+  - 150mmApShellUniversal
+  - 150mmEmpShellUniversal
+  - GPOL50BombUniversal
+  - ZenithRocketUniversal
+  - QuasarAcceleratorUniversal

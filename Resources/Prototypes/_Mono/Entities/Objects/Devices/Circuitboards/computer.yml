@@ -1,0 +1,24 @@
+#- type: entity
+#  parent: BaseComputerCircuitboard
+#  id: ShieldControlComputerCircuitboard
+#  name: shield control computer board
+#  description: A computer printed circuit board for a shield control computer.
+#  components:
+#    - type: Sprite
+#      state: cpu_security
+#    - type: ComputerBoard
+#      prototype: CircularShieldConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: GunneryControlComputerCircuitboard
+  suffix: Фронтир
+  name: gunnery control computer board
+  description: A computer printed circuit board for a gunnery control computer.
+  components:
+    - type: Sprite
+      state: cpu_command
+    - type: ComputerBoard
+      prototype: ComputerGunneryConsole
+    - type: ComputerTabletopBoard
+      prototype: ComputerTabletopGunneryConsole

@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client._Mono.Radar; // backmen: shuttle-gunnery
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
@@ -20,7 +21,8 @@ using Robust.Shared.Utility;
 namespace Content.Client.Shuttles.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class ShuttleNavControl : BaseShuttleControl
+[Virtual]
+public partial class ShuttleNavControl : BaseShuttleControl
 {
     [Dependency] private IMapManager _mapManager = default!;
     private readonly SharedShuttleSystem _shuttles;
@@ -31,14 +33,19 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     /// <summary>
     /// Used to transform all of the radar objects. Typically is a shuttle console parented to a grid.
     /// </summary>
-    private EntityCoordinates? _coordinates;
+    protected EntityCoordinates? _coordinates;
 
     /// <summary>
     /// Entity of controlling console
     /// </summary>
     private EntityUid? _consoleEntity;
 
-    private Angle? _rotation;
+    protected Angle? _rotation;
+
+    // backmen: shuttle-gunnery — used by FireControlNavControl
+    protected bool _isMouseDown;
+    protected bool _isMouseInside;
+    protected Vector2 _lastMousePos;
 
     private Dictionary<NetEntity, List<DockingPortState>> _docks = new();
     private List<DetectablePointState> _detectables = new(); // backmen edit
@@ -63,6 +70,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         var cache = IoCManager.Resolve<IResourceCache>();
         _font = new VectorFont(cache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Regular.ttf"), 8);
+
+        // start-backmen: shuttle-gunnery
+        _blips = EntManager.System<RadarBlipsSystem>();
+        // end-backmen: shuttle-gunnery
     }
 
     public void SetMatrix(EntityCoordinates? coordinates, Angle? angle)
@@ -301,6 +312,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             }
         }
 
+        // start-backmen: shuttle-gunnery
+        DrawMonoRadarBlips(handle, mapPos, xform, worldToShuttle, shuttleToView);
+        // end-backmen: shuttle-gunnery
+
     }
 
     private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3x2 gridToView)
@@ -437,7 +452,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     }
     // backmen edit end
 
-    private Vector2 InverseScalePosition(Vector2 value)
+    protected Vector2 InverseScalePosition(Vector2 value)
     {
         return (value - MidPointVector) / MinimapScale;
     }

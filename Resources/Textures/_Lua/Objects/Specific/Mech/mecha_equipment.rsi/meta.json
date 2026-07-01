@@ -1,0 +1,23 @@
+{
+  "copyright" : "Made by LuaWorld/LuaTech tm. (discord)#hackslua",
+  "license" : "CC-BY-SA-4.0",
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "mecha_minigun"
+    },
+	{
+	  "name": "mecha_mrack"
+	},
+	{
+	  "name": "mecha_sniper"
+	},
+    {
+      "name": "mag-1"
+    }
+  ]
+}

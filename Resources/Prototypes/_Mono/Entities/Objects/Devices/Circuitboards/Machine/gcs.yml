@@ -1,0 +1,69 @@
+- type: entity
+  id: MachineGCSLowCircuitboard
+  parent: BaseMachineCircuitboard
+  suffix: Фронтир
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GunneryServerLow
+    stackRequirements:
+      Manipulator: 2
+      Glass: 10
+      Steel: 10
+
+- type: entity
+  id: MachineGCSMediumCircuitboard
+  parent: BaseMachineCircuitboard
+  suffix: Фронтир
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GunneryServerMedium
+    stackRequirements:
+      Manipulator: 2
+      Glass: 10
+      Steel: 10
+
+- type: entity
+  id: MachineGCSHighCircuitboard
+  parent: BaseMachineCircuitboard
+  suffix: Фронтир
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GunneryServerHigh
+    stackRequirements:
+      Manipulator: 2
+      Glass: 10
+      Steel: 10
+
+- type: entity
+  id: MachineGCSUltraCircuitboard
+  parent: BaseMachineCircuitboard
+  suffix: Фронтир
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GunneryServerUltra
+    stackRequirements:
+      Manipulator: 2
+      Glass: 10
+      Steel: 10
+
+- type: entity
+  id: MachineGCSStationCircuitboard
+  parent: BaseMachineCircuitboard
+  suffix: Фронтир
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GunneryServerStation
+    stackRequirements:
+      Manipulator: 2
+      Glass: 10
+      Steel: 10

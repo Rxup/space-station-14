@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:abt="clr-namespace:Content.Client.Administration.UI.Tabs.AdminbusTab"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     Margin="4"
     MinSize="50 50">
     <GridContainer Columns="3">
@@ -12,5 +13,11 @@
         <Button Name="LoadGamePrototypeButton" Text="{Loc 'load-game-prototype'}"/>
         <cc:UICommandButton Name="LoadBlueprintsButton" Command="loadbp" Text="{Loc 'load-blueprints'}" WindowType="{x:Type abt:LoadBlueprintsWindow}"/>
         <cc:CommandButton Command="deleteewc Singularity" Name="DeleteSingulos" Text="{Loc 'delete-singularities'}"/>
+        <!-- start-backmen: shuttle-gunnery -->
+        <controls:ConfirmButton
+            Name="BluespaceArtilleryButton"
+            Text="{Loc 'admin-bus-bsa-button'}"
+            ConfirmationText="{Loc 'admin-bus-bsa-confirm'}" />
+        <!-- end-backmen: shuttle-gunnery -->
     </GridContainer>
 </Control>

@@ -1,6 +1,8 @@
 using System.Numerics;
 using Content.Server.Cargo.Systems;
 using Content.Server.Weapons.Ranged.Components;
+using Content.Server._Mono.FireControl; // backmen: shuttle-gunnery
+using Content.Shared._Mono; // backmen: shuttle-gunnery
 using Content.Shared.Cargo;
 using Content.Shared.Damage;
 using Content.Shared.Projectiles;
@@ -210,6 +212,11 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         ShootProjectile(uid, mapDirection, gunVelocity, gun, user, gun.Comp.ProjectileSpeedModified);
+
+        // start-backmen: shuttle-gunnery
+        if (HasComp<FireControllableComponent>(gun))
+            EnsureComp<ProjectileGridPhaseComponent>(uid);
+        // end-backmen: shuttle-gunnery
     }
 
     /// <summary>

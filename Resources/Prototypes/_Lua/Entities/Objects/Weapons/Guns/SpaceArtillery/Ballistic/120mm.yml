@@ -1,0 +1,83 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseWeaponNavalBallisctic
+  id: Weapon120mm
+  suffix: ShuttleGun, Фронтир
+  name: Миномёт "120мм"
+  description: Средний миномёт, использует снаряды 120мм.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: RadarBlip
+      radarColor: "#229e51"
+      scale: 1
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets120mm.rsi
+      drawdepth: Mobs
+      layers:
+        - state: turrets120mm
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 2250
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Gun
+      fireRate: 2
+      projectileSpeed: 80
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+
+        path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    - type: Battery
+      maxCharge: 300
+      startingCharge: 300
+    - type: ExaminableBattery
+    - type: AutoShootGun
+    - type: GunSignalControl
+    - type: WirelessNetworkConnection
+      range: 700
+    - type: FireControllable
+    - type: SpaceArtillery
+      powerChargeRate: 50
+      powerUseActive: 1200
+      powerUsePassive: 2500
+    - type: ShipGunClass
+      shipClass: Medium
+    - type: BatterySelfRecharger
+      autoRechargeRate: 50
+    - type: BatteryAmmoProvider
+      proto: Bullet120mm
+      fireCost: 150
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: Weapon120mmBaseFlatpack
+  suffix: Фронтир
+  name: упакованный средний миномёт
+  description: Упакованный Средний Миномёт (.120мм)
+  components:
+  - type: Flatpack
+    entity: Weapon120mm
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

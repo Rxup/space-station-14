@@ -1,0 +1,175 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: Bullet20mm
+
+  suffix: Фронтир
+  name: 20mm
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 20mmhe
+    - type: Projectile
+      damage:
+       types:
+        Piercing: 35
+        Blunt: 10
+    - type: RadarBlip
+      scale: 0.25
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet53mm
+
+  suffix: Фронтир
+  name: 53mm
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 53mmhe
+    - type: Projectile
+      damage:
+       types:
+        Structural: 125
+        Blunt: 50
+        Piercing: 125
+    - type: RadarBlip
+      scale: 0.35
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet80mm
+
+  suffix: Фронтир
+  name: 80mm
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 80mmhe
+    - type: Projectile
+      damage:
+       types:
+         Structural: 500
+         Blunt: 100
+         Piercing: 500
+    - type: RadarBlip
+      scale: 0.55
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet105mm
+
+  suffix: Фронтир
+  name: 105mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 105mmhe
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: MicroBomb
+      totalIntensity: 115.0
+      intensitySlope: 5
+      maxIntensity: 25
+    - type: Projectile
+      damage:
+       types:
+        Structural: 50
+        Blunt: 25
+    - type: RadarBlip
+      scale: 0.55
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet120mm
+
+  suffix: Фронтир
+  name: 120mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 120mmhe
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: MicroBomb
+      totalIntensity: 300.0
+      intensitySlope: 5
+      maxIntensity: 35
+      maxTileBreak: 1
+    - type: Projectile
+      damage:
+       types:
+        Structural: 100
+        Blunt: 50
+    - type: RadarBlip
+      scale: 0.55
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet140mm
+
+  suffix: Фронтир
+  name: 140mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 140mmhe
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: MicroBomb
+      totalIntensity: 600.0
+      intensitySlope: 10
+      maxIntensity: 35
+      maxTileBreak: 1
+    - type: Projectile
+      damage:
+       types:
+        Structural: 200
+        Blunt: 75
+    - type: RadarBlip
+      scale: 0.75
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile

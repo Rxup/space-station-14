@@ -1,0 +1,31 @@
+# LuaWorld ship combat factions (minimal port for gunnery/PD)
+
+- type: npcFaction
+  id: Missile
+  hostile:
+  - PointDefenseGun
+
+- type: npcFaction
+  id: PointDefenseGun
+  hostile:
+  - Missile
+
+- type: npcFaction
+  id: LuaTech
+  hostile:
+  - NanoTrasen
+  - Dragon
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - AllHostile
+  - Wizard
+  - Xenoborg
+  - Missile
+  - PointDefenseGun

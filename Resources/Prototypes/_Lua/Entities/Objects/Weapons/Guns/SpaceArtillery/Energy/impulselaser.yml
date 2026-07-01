@@ -1,0 +1,106 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: [BaseWeaponNavalEnergy, BaseStructure]
+  id: ImpulseLaserBase
+  suffix: ShuttleGun, Фронтир
+  name: Импульсный Лазер
+  description: Лёгий лазер, использует для питания энергоячейки импульсного лазера.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: RadarBlip
+      radarColor: "#1a4a88"
+      scale: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Turrets/impulselaser.rsi
+      drawdepth: Mobs
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+        - state: impulselaser
+          sprite: _Lua/Objects/Weapons/Guns/Turrets/impulselaser.rsi
+        - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          state: impulselaser-unshaded
+          sprite: _Lua/Objects/Weapons/Guns/Turrets/impulselaser.rsi
+          shader: unshaded
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: impulselaser
+          BaseUnshaded: impulselaser-unshaded
+        Critical:
+          Base: impulselaser-unshaded
+        Dead:
+          Base: impulselaser
+          BaseUnshaded: impulselaser
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3000 #Durable
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Gun
+      fireRate: 4
+      projectileSpeed: 110
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+
+        path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
+    - type: Battery
+      maxCharge: 4500
+      startingCharge: 4500
+    - type: ExaminableBattery
+    - type: AutoShootGun
+    - type: GunSignalControl
+    - type: WirelessNetworkConnection
+      range: 700
+    - type: FireControllable
+    - type: SpaceArtillery
+      powerChargeRate: 50
+      powerUseActive: 50
+      powerUsePassive: 3100
+    - type: ShipGunClass
+      shipClass: Light
+    - type: BatterySelfRecharger
+      autoRechargeRate: 50
+    - type: BatteryAmmoProvider
+      proto: BulletMachineGunImpulseTurret
+      fireCost: 150
+
+- type: entity
+  parent: [BaseStructureDisableToolUse, ImpulseLaserBase]
+  id: ImpulseLaserUnanchor
+  suffix: Неоткрепляемый, ShuttleGun, Фронтир
+  placement:
+    mode: SnapgridCenter
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: ImpulseLaserBaseFlatpack
+  suffix: Фронтир
+  name: упакованный импульсный лазер
+  description: Упакованный лёгий лазер, использует для питания энергоячейки импульсного лазера.
+  components:
+  - type: Flatpack
+    entity: ImpulseLaserBase
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

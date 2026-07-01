@@ -1,0 +1,278 @@
+# Base
+- type: entity
+  id: BallisticArtilleryBase
+  save: false
+
+  suffix: Фронтир
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ExtensionCableReceiver
+  - type: ApcPowerReceiver
+    powerLoad: 250
+  - type: Damageable
+    damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 800
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: Rotatable
+    rotateWhilePulling: false
+    rotateWhileAnchored: false
+    increment: 45
+  - type: SpaceArtillery
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: FireControllable
+  - type: RadarBlip
+    visibleFromOtherGrids: false
+    radarColor: "#9999FF"
+    scale: 1
+  - type: ShipGunType
+    shipType: Kinetic
+  - type: ShipGunClass
+    shipClass: Medium
+  - type: LightningTarget
+    priority: 1
+  - type: ThermalSignature # at least most have a thermal signature when firing
+
+- type: entity
+  id: BallisticArtilleryUnanchorable
+
+  suffix: Фронтир
+  parent: BallisticArtillery
+  abstract: true
+
+- type: entity
+  id: BallisticArtillery
+
+  suffix: Фронтир
+  parent: BallisticArtilleryBase
+  abstract: true
+  components:
+  - type: Anchorable
+  - type: Pullable
+
+- type: entity
+  id: BallisticArtilleryBaseCartridge
+
+  suffix: Фронтир
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Damageable
+    damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 800
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: SpaceArtillery
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: FireControllable
+  - type: RadarBlip
+    visibleFromOtherGrids: false
+    radarColor: "#9999FF"
+    scale: 1
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: ShipGunType
+    shipType: Kinetic
+  - type: ShipGunClass
+    shipClass: Medium
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    capacity: 2
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+
+- type: entity
+  id: BallisticArtilleryCartridge
+
+  suffix: Фронтир
+  parent: BallisticArtilleryBaseCartridge
+  abstract: true
+  components:
+  - type: Anchorable
+  - type: Pullable
+
+- type: entity
+  id: BallisticArtilleryUnanchorableCartridge
+
+  suffix: Фронтир
+  parent: BallisticArtilleryCartridge
+  abstract: true
+
+- type: entity
+  id: BallisticArtilleryBaseMagazine
+
+  suffix: Фронтир
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Damageable
+    damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 800
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    anchored: true
+  - type: SpaceArtillery
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+  - type: FireControllable
+  - type: RadarBlip
+    visibleFromOtherGrids: false
+    radarColor: "#9999FF"
+    scale: 1
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: ShipGunType
+    shipType: Kinetic
+  - type: ShipGunClass
+    shipClass: Medium
+  - type: MagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        priority: 2
+        whitelist:
+          tags:
+          - Magazine40mm
+        insertSound:
+          path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+          params:
+            pitch: 2
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+
+
+- type: entity
+  id: BallisticArtilleryMagazine
+
+  suffix: Фронтир
+  parent: BallisticArtilleryBaseMagazine
+  abstract: true
+  components:
+  - type: Anchorable
+  - type: Pullable
+
+- type: entity
+  id: BallisticArtilleryUnanchorableMagazine
+
+  suffix: Фронтир
+  parent: BallisticArtilleryMagazine
+  abstract: true

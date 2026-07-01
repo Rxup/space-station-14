@@ -1,0 +1,27 @@
+- type: latheRecipePack
+  id: UniversalTorpedoAmmo
+  recipes:
+  - ASM220TorpedoHEUniversal
+  - ASM220TorpedoECMUniversal
+
+- type: latheRecipePack
+  id: UniversalRailgunAmmo
+  recipes:
+  - CharonSlugUniversal
+
+- type: latheRecipePack
+  id: UniversalShellAmmo
+  recipes:
+  - 150mmApShellUniversal
+  - 150mmEmpShellUniversal
+
+- type: latheRecipePack
+  id: UniversalLightOrdinance
+  recipes:
+  - GPOL50BombUniversal
+  - ZenithRocketUniversal
+
+- type: latheRecipePack
+  id: UniversalAdvancedLightOrdinance
+  recipes:
+  - QuasarAcceleratorUniversal

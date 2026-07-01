@@ -1,0 +1,6 @@
+- type: damageType
+  id: Ion
+  name: damage-type-ion
+  appliesAs: Shock
+  armorCoefficientPrice: 2.5
+  armorFlatPrice: 20

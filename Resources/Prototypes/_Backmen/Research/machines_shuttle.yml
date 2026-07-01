@@ -60,3 +60,30 @@
   - MiniGravityGeneratorCircuitboard
   technologyPrerequisites:
   - PowerGenerationMachines
+
+- type: technology
+  id: FrontierGunneryMachines
+  name: research-technology-frontier-gunnery-machines
+  icon:
+    sprite: _Mono/Structures/Machines/computers.rsi
+    state: gunnery_screen
+  discipline: Arsenal
+  tier: 3
+  cost: 3000000
+  recipeUnlocks:
+  - GunneryControlComputerCircuitboard
+  - MachineGCSLowCircuitboard
+  - MachineGCSMediumCircuitboard
+  - MachineGCSHighCircuitboard
+  - MachineGCSUltraCircuitboard
+  - MachineGCSStationCircuitboard
+  - CharonSlugUniversal
+  - ASM220TorpedoHEUniversal
+  - ASM220TorpedoECMUniversal
+  - 150mmApShellUniversal
+  - 150mmEmpShellUniversal
+  - GPOL50BombUniversal
+  - ZenithRocketUniversal
+  - QuasarAcceleratorUniversal
+  technologyPrerequisites:
+  - ShuttleWeaponAdvancedMachines

@@ -1,0 +1,29 @@
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: GunneryControlComputerCircuitboard
+  result: GunneryControlComputerCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: MachineGCSLowCircuitboard
+  result: MachineGCSLowCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: MachineGCSMediumCircuitboard
+  result: MachineGCSMediumCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: MachineGCSHighCircuitboard
+  result: MachineGCSHighCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: MachineGCSUltraCircuitboard
+  result: MachineGCSUltraCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: MachineGCSStationCircuitboard
+  result: MachineGCSStationCircuitboard

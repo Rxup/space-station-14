@@ -1,0 +1,166 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+# Base Weapon (корневой прототип)
+- type: entity
+  parent: BaseStructure
+  id: BaseWeaponShipsArtillery
+  save: false
+  suffix: Фронтир
+  name: base weapon
+  description: base weapon
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Gun
+    - type: Rotatable
+    - type: Anchorable
+    - type: Pullable
+    - type: ExtensionCableReceiver
+    - type: LightningTarget
+      priority: 1
+    - type: ApcPowerReceiver
+      powerLoad: 250
+    - type: FireControllable
+    - type: InteractionOutline
+    - type: Clickable
+    - type: Actions
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 60
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: WorldLoader
+      radius: 256
+    - type: InteractionPopup
+      interactDelay: 0.2
+      successChance: 0.8
+      interactSuccessString: petting-success-generic
+      interactFailureString: petting-failure-generic
+      interactSuccessSound:
+        path: /Audio/Effects/double_beep.ogg
+    - type: Damageable
+      damageModifierSet: Metallic
+    - type: Injurable
+      damageContainer: Inorganic
+    - type: Machine
+    - type: Construction
+      graph: Machine
+      node: machine
+      containers:
+      - machine_parts
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 350
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: StaticPrice
+      price: 1500
+
+# Energy Weapon
+- type: entity
+  parent: BaseWeaponShipsArtillery
+  id: BaseWeaponNavalEnergy
+  suffix: Фронтир
+  name: base energy weapon
+  description: base energy weapon
+  abstract: true
+  components:
+    - type: ShipGunType
+      shipType: Energy
+
+# Ballistic Weapon
+- type: entity
+  parent: BaseWeaponShipsArtillery
+  id: BaseWeaponNavalBallisctic
+  suffix: Фронтир
+  name: base weapon ballistic
+  description: base weapon ballistic
+  abstract: true
+  components:
+    - type: ShipGunType
+      shipType: Ballistic
+
+# Missile Weapon
+- type: entity
+  parent: BaseWeaponShipsArtillery
+  id: BaseWeaponMissile
+  suffix: Фронтир
+  name: base weapon missile
+  description: base weapon missile
+  abstract: true
+  components:
+    - type: ShipGunType
+      shipType: Missile
+
+#Ammo
+- type: entity
+  id: BaseMissile
+
+  suffix: Фронтир
+  name: missile
+  parent: BaseItem
+  abstract: true
+  description: A missile designed to be fired by missile launchers.
+  components:
+    - type: Item
+      size: Ginormous
+    - type: MultiHandedItem
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+      state: sdm
+    - type: Tag
+      tags:
+        - Missile
+    - type: CartridgeAmmo
+      deleteOnSpawn: true
+      proto: BulletTomahawk
+    - type: StaticPrice
+      price: 150
+    - type: DamageOnLand
+      ignoreResistances: true
+      damage:
+        types:
+          Blunt: 10
+    - type: DamageOtherOnHit
+      damage:
+        types:
+          Blunt: 10
+    - type: Explosive
+      explosionType: Default
+      maxIntensity: 5
+      intensitySlope: 25
+      totalIntensity: 100
+    - type: Damageable
+      damageModifierSet: Metallic
+    - type: Injurable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 200
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 30
+          behaviors:
+            - !type:ExplodeBehavior

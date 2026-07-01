@@ -1,0 +1,100 @@
+# ASM
+- type: entity
+  id: ShipMissileASM19
+
+  suffix: Фронтир
+  name: MPSSM ASM-19 man-portable anti-ship missile
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 1500
+        Blunt: 65
+        Heat: 50
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/mini_rocket.rsi
+    layers:
+    - state: mini-rocket
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffect
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#FCBA03"
+    scale: 1
+    requireNoGrid: true
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 10
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DefaultShipGun
+    totalIntensity: 150
+    intensitySlope: 8
+    maxIntensity: 75
+  - type: TargetSeeking
+    acceleration: 170
+    detectionRange: 1200
+    scanArc: 35
+    launchSpeed: 10
+    maxSpeed: 180
+    trackDelay: 0.1
+  - type: EmpOnTrigger
+    range: 2
+    energyConsumption: 2700000
+    disableDuration: 20
+
+# HEAT
+
+- type: entity
+  id: RocketMk248
+
+  suffix: Фронтир
+  name: MPSSM Mk.248 HEAT rocket
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Structural: 2500
+        Blunt: 150
+        Piercing: 500
+        Heat: 50
+  - type: Sprite
+    sprite: _Mono/Objects/SpaceArtillery/mini_rocket.rsi
+    layers:
+    - state: mini-rocket
+  - type: Ammo
+    muzzleFlash: MuzzleFlashEffect
+  - type: ShipWeaponProjectile
+  - type: RadarBlip
+    radarColor: "#FCBA03"
+    scale: 1
+    requireNoGrid: true
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 10
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+  - type: TargetSeeking # This is just for the acceleration and rocket shit, to make it, you know, be an actual rocket.
+    acceleration: 170
+    detectionRange: 0
+    scanArc: 0
+    launchSpeed: 10
+    maxSpeed: 180
+    trackDelay: 0
+    exposesTracking: false
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DefaultShipGun
+    totalIntensity: 200
+    intensitySlope: 80
+    maxIntensity: 1000
