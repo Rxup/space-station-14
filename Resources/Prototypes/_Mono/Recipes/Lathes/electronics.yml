@@ -37,3 +37,13 @@
   parent: BaseGoldCircuitboardRecipe
   id: MachineGCSHighCircuitboard
   result: MachineGCSHighCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: MachineGCSUltraCircuitboard
+  result: MachineGCSUltraCircuitboard
+
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: MachineGCSStationCircuitboard
+  result: MachineGCSStationCircuitboard

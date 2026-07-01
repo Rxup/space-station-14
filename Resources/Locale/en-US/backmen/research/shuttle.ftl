@@ -4,3 +4,4 @@ research-technology-shuttle-weapon-advanced = Advanced shuttle weapon
 research-technology-shuttle-weapon-machines = Shuttle weapon machines
 research-technology-shuttle-weapon-advanced-machines = Advanced shuttle weapon machines
 research-technology-shuttlecraft-machines = Shuttlecraft machines
+research-technology-frontier-gunnery-machines = Frontier gunnery control (GCS) and ship ordnance

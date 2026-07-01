@@ -10,6 +10,12 @@
   recipes:
   - ShipyardCircuitboard # backmen
   - SalvageExpeditionsComputerCircuitboard
+  - GunneryControlComputerCircuitboard
+  - MachineGCSLowCircuitboard
+  - MachineGCSMediumCircuitboard
+  - MachineGCSHighCircuitboard
+  - MachineGCSUltraCircuitboard
+  - MachineGCSStationCircuitboard
 #  - CloningConsoleComputerCircuitboard
 #  - MedicalScannerMachineCircuitboard
 #  - VaccinatorMachineCircuitboard

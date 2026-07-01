@@ -412,6 +412,7 @@
     - SecurityAmmo
     - SecurityDisablers
     - BackmenCircuboardArsenal #backmen-gumsmiths
+    - BackmenFrontierShipAmmo # backmen
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic
