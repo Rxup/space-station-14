@@ -26,6 +26,11 @@
   - PermanentBlindness
   - Snoring
   - Unrevivable
+  # backmen traits
+  - Monolingual
+  - MoodModifyTrait
+  # backmen languages
+  - LanguageKnowledge
   # accents
   - Accentless
   - BackwardsAccent
@@ -55,6 +60,7 @@
   - SouthernAccent
   - SpanishAccent
   - StutteringAccent
+  - TTS
 
 # for job-specific traits etc.
 - type: cloningSettings
@@ -79,6 +85,13 @@
 - type: cloningSettings
   id: BaseClone
   parent: [Body, Special]
+  components:
+  - BodyEmotes
+  - Speech
+  - TypingIndicator
+  eventComponents:
+  - Vocal # emote sounds
+  - Wagging # lizard and fox tails
   blacklist:
     components:
     - AttachedClothing # helmets, which are part of the suit
@@ -116,12 +129,11 @@
   - Speech
   - TemperatureProtection
   - TypingIndicator
-  - ScaleVisuals # for dwarf height
   eventComponents:
   # these need special treatment in the event subscription
   - Inventory # arachnid pockets and diona feet
-  - Wagging # lizard tails
-  - Vocal # voice sounds
+  - Wagging # lizard and fox tails
+  - Vocal # emote sounds
   - Storage # slime storage
   - Rootable # diona
   - Sericulture # arachnids

@@ -2,6 +2,7 @@
 - type: entity
   id: GunneryServerBase
   parent: BaseMachinePowered
+  save: false
   name: gunnery control server
   description: Manages the remote operation of ship weapons.
   abstract: true

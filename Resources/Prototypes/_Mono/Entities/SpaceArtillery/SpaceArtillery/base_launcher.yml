@@ -1,6 +1,7 @@
 # Base
 - type: entity
   id: BallisticArtilleryBase
+  save: false
 
   suffix: Фронтир
   abstract: true

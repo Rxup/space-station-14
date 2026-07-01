@@ -6,6 +6,7 @@
 - type: entity
   parent: BaseStructure
   id: BaseWeaponShipsArtillery
+  save: false
   suffix: Фронтир
   name: base weapon
   description: base weapon
