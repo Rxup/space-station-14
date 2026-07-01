@@ -9,18 +9,23 @@ ent-150mmEmpShell = 150mm EMP shell
     .suffix = Frontier
 
 ent-20mmBulletArmorPiercing = 20mm AP bullet
+    .desc = { ent-20mmBulletBase.desc }
     .suffix = Frontier
 
 ent-30mmBullet = 30mmBullet
+    .desc = { ent-BaseBullet.desc }
     .suffix = Frontier
 
 ent-90mmBulletArmorPiercing = 90mmBulletArmorPiercing
+    .desc = { ent-90mmBulletExplosiveBase.desc }
     .suffix = Frontier
 
 ent-ApolloExplosion = ApolloExplosion
+    .desc = { "" }
     .suffix = Frontier
 
 ent-ApolloLaser = ApolloLaser
+    .desc = { ent-BasicHitscan.desc }
     .suffix = Frontier
 
 ent-Asm220TorpedoECM = ASM-220 ECM torpedo
@@ -36,6 +41,7 @@ ent-Asm220TorpedoLOSAT = ASM-220 LOSAT missile
     .suffix = Frontier
 
 ent-CerberusSpread = cerberus spread
+    .desc = { ent-ShipMediumPlasmaProjectile.desc }
     .suffix = Frontier
 
 ent-CharonSlugAmmo = M381 CHARON 280mm 26.5kg slug cartridge
@@ -59,24 +65,31 @@ ent-GunneryControlComputerCircuitboard = gunnery control computer board
     .suffix = Frontier
 
 ent-GunneryServerHigh = high-power gunnery control server
+    .desc = { "" }
     .suffix = 60, Frontier
 
 ent-GunneryServerLow = low-power gunnery control server
+    .desc = Manages the remote operation of ship weapons.
     .suffix = 24, Frontier
 
 ent-GunneryServerMedium = medium-power gunnery control server
+    .desc = Manages the remote operation of ship weapons.
     .suffix = 42, Frontier
 
 ent-GunneryServerOmega = omega-high-power gunnery control server
+    .desc = { "" }
     .suffix = 500, Frontier
 
 ent-GunneryServerStation = station gunnery control server
+    .desc = { "" }
     .suffix = Frontier
 
 ent-GunneryServerStationConsolesEnforced = station gunnery control server
+    .desc = { "" }
     .suffix = 3000 Enforced Max Consoles, Frontier
 
 ent-GunneryServerUltra = ultra-high-power gunnery control server
+    .desc = { "" }
     .suffix = 96, Frontier
 
 ent-LightFighterOrdinanceGPOItem = GPO-L 50kg Unguided Bomb
@@ -92,6 +105,7 @@ ent-LightFighterOrdinanceQuasarItem = AD-901 "QUASAR" disposable hyperpenetrator
     .suffix = Frontier
 
 ent-LightFighterOrdinanceQuasarProjectile = QUASAR hyperpenetrator
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-LightFighterOrdinanceZenithItem = ASM(LF)5 "Zenith" Anti-Ship Warhead
@@ -99,6 +113,7 @@ ent-LightFighterOrdinanceZenithItem = ASM(LF)5 "Zenith" Anti-Ship Warhead
     .suffix = Frontier
 
 ent-LightFighterOrdinanceZenithProjectile = ASM(LF) "Zenith" Anti-Ship Warhead
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-MachineGCSHighCircuitboard = high-power gunnery control server board
@@ -122,42 +137,55 @@ ent-MachineGCSUltraCircuitboard = ultra-high-power gunnery control server board
     .suffix = Frontier
 
 ent-MuzzleFlashEffectPlasmaPulser = MuzzleFlashEffectPlasmaPulser
+    .desc = { ent-MuzzleFlashEffectHeavyLaser.desc }
     .suffix = Frontier
 
 ent-MuzzleFlashEffectSmall = MuzzleFlashEffectSmall
+    .desc = { ent-MuzzleFlashEffect.desc }
     .suffix = Frontier
 
 ent-MuzzleFlashEffectTempCold = MuzzleFlashEffectTempCold
+    .desc = { ent-MuzzleFlashEffectHeavyLaser.desc }
     .suffix = Frontier
 
 ent-PeacekeeperSpread = peacekeeper spread
+    .desc = { ent-ShipDravonProjectile.desc }
     .suffix = Frontier
 
 ent-PhalanxLaser = PhalanxLaser
+    .desc = { ent-BasicHitscan.desc }
     .suffix = Frontier
 
 ent-RocketMk248 = MPSSM Mk.248 HEAT rocket
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ScyllaSpread = Scylla spread
+    .desc = { ent-ShipMediumPlasmaProjectile.desc }
     .suffix = Frontier
 
 ent-ShipAutopulserPlasmaProjectile = plasma projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipBoforsProjectile = Bofors 255mm projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipCyrexaProjectile = CYREXA 220mm projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipDravonProjectile = DRAVON 57mm projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipDymereProjectile = Ionized Gas Projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipGlassingBeamPlasmaProjectile = plasma projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipHadesProjectile = HADES 305mm projectile
@@ -165,60 +193,79 @@ ent-ShipHadesProjectile = HADES 305mm projectile
     .suffix = Frontier
 
 ent-ShipKargilProjectile = Kargil 203mm projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipM25Projectile = M25 projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipMediumPlasmaProjectile = plasma projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipMiniRailgunProjectile = M194 CHARONETTE 280mm 10.25 kg slug
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipMissileASM19 = MPSSM ASM-19 man-portable anti-ship missile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipMissileASM220ECM = ASM-220 torpedo (ECM)
+    .desc = If you can see this you're probably dead!
     .suffix = Frontier
 
 ent-ShipMissileASM220HE = ASM-220 torpedo (HE)
+    .desc = If you can see this you're probably dead!
     .suffix = Frontier
 
 ent-ShipMissileASM220LOSAT = ASM-220 LOSAT hyper-penetrator
+    .desc = If you can see this you're probably dead!
     .suffix = Frontier
 
 ent-ShipMissileASM302 = ASM-302 missile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipMissileASM417 = ASM-417 Mini Missile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipMissileASM501 = ASM-501 missile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipMissileASM557 = ASM-557 Hybrid EMP Missile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipPinholeProjectile = ShipPinholeProjectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipRailgunProjectile = M381 CHARON 280mm 26.5 kg slug
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipRailgunProjectileSubnuclear = M381 CHARON 280mm 26.5 kg slug
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipRubiconProjectile = EMP projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipShardProjectile = ShipShardProjectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipTarnyxApProjectile = TARNYX 150mm AP projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-ShipTarnyxProjectile = TARNYX 150mm EMP projectile
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-WeaponLaserTurretApollo = L-20 Apollo Heavy Laser Cannon

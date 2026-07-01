@@ -1,75 +1,99 @@
 # _Lua ship gunnery
 
 ent-Bullet105mm = 105mm
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-Bullet105mmAP = 105mm
+    .desc = { ent-BaseBullet.desc }
     .suffix = Frontier
 
 ent-Bullet105mmPF = 105mm
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-Bullet120mm = 120mm
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-Bullet120mmAP = 120mm
+    .desc = { ent-BaseBullet.desc }
     .suffix = Frontier
 
 ent-Bullet120mmPF = 120mm
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-Bullet140mm = 140mm
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-Bullet140mmAP = 140mm
+    .desc = { ent-BaseBullet.desc }
     .suffix = Frontier
 
 ent-Bullet140mmPF = 140mm
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-Bullet20mm = 20mm
+    .desc = { ent-BaseBullet.desc }
     .suffix = Frontier
 
 ent-Bullet20mmAP = 20mm
+    .desc = { ent-BaseBullet.desc }
     .suffix = Frontier
 
 ent-Bullet20mmPF = 20mm
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-Bullet53mm = 53mm
+    .desc = { ent-BaseBullet.desc }
     .suffix = Frontier
 
 ent-Bullet53mmAP = 53mm
+    .desc = { ent-BaseBullet.desc }
     .suffix = Frontier
 
 ent-Bullet53mmPF = 53mm
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-Bullet80mm = 80mm
+    .desc = { ent-BaseBullet.desc }
     .suffix = Frontier
 
 ent-Bullet80mmAP = 80mm
+    .desc = { ent-BaseBullet.desc }
     .suffix = Frontier
 
 ent-Bullet80mmPF = 80mm
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-BulletGR = Анаконда
+    .desc = { ent-BaseBulletMissile.desc }
     .suffix = Frontier
 
 ent-BulletMachineGunImpulseTurret = импульсный лазер
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-BulletShuttleGrapplingHook = shuttle grappling hook
+    .desc = { ent-GrapplingHook.desc }
     .suffix = Frontier
 
 ent-BulletTND = Инферно
+    .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Frontier
 
 ent-BulletTomahawk = Томагавк
+    .desc = { ent-BaseBulletMissile.desc }
     .suffix = Frontier
 
 ent-BulletWolf = Копьё
+    .desc = { ent-BaseBulletMissile.desc }
     .suffix = Frontier
 
 ent-ImpulseLaserBase = Импульсный Лазер
@@ -81,18 +105,23 @@ ent-ImpulseLaserBaseFlatpack = упакованный импульсный ла�
     .suffix = Frontier
 
 ent-ImpulseLaserUnanchor = ImpulseLaserUnanchor
+    .desc = { "" }
     .suffix = Unanchorable, Shuttle Gun, Frontier
 
 ent-MissileTND = ядерная ракета класса "Инферно"
+    .desc = A missile designed to be fired by missile launchers.
     .suffix = Missile, Frontier
 
 ent-RedHeavyLaserSyndie = RedHeavyLaserSyndie
+    .desc = { ent-BasicHitscan.desc }
     .suffix = Frontier
 
 ent-SynLaserExplosion = SynLaserExplosion
+    .desc = { "" }
     .suffix = Frontier
 
 ent-TeslaGunTurretBullet = tesla gun lightning
+    .desc = { "" }
     .suffix = Frontier
 
 ent-TeslaTurretBase = Тесла
@@ -104,21 +133,27 @@ ent-TeslaTurretBaseFlatpack = упакованная тесла турель
     .suffix = Frontier
 
 ent-TeslaTurretUnanchor = TeslaTurretUnanchor
+    .desc = { "" }
     .suffix = Unanchorable for ships, Shuttle Gun, Frontier
 
 ent-VioletBigLaserExplosion = VioletBigLaserExplosion
+    .desc = { "" }
     .suffix = Frontier
 
 ent-VioletBigLaserShip = VioletBigLaserShip
+    .desc = { ent-BasicHitscan.desc }
     .suffix = Frontier
 
 ent-VioletLaserDefence = VioletLaserDefence
+    .desc = { ent-BasicHitscan.desc }
     .suffix = Frontier
 
 ent-VioletLaserExplosion = VioletLaserExplosion
+    .desc = { "" }
     .suffix = Frontier
 
 ent-VioletLaserShip = VioletLaserShip
+    .desc = { ent-BasicHitscan.desc }
     .suffix = Frontier
 
 ent-Weapon105mm = Миномёт "105мм"
@@ -190,6 +225,7 @@ ent-WeaponMissileLauncherStarColosus = Ядерная артиллерийска
     .suffix = DO NOT MAP!, Shuttle Gun, Frontier
 
 ent-WeaponMissileLauncherStarColosusEmpty = WeaponMissileLauncherStarColosusEmpty
+    .desc = Артиллерийская установка, рассчитанная на глобальные разрушения. Ядерный снаряд "Инферно" распространяет ударную волну, которая поглощает всё в радиусе действия, разрушая корабли и станции.
     .suffix = Empty, Shuttle Gun, Frontier
 
 ent-WeaponMissileLauncherStarColosusFlatpack = упакованная ядерная артиллерийская установка "Звездный Колосс"
@@ -201,13 +237,17 @@ ent-WeaponShuttleGrapplingTurret = Турель-гарпун
     .suffix = Shuttle Gun, Frontier
 
 ent-WeaponTurretBigLaserShuttleLuaTech = большая лазерная турель LuaTech
+    .desc = { "" }
     .suffix = LuaTech, Shuttle, Frontier
 
 ent-WeaponTurretLaserLuaTech = оборонная турель "LuaTech"
+    .desc = { ent-WeaponTurretBaseLaserLuaTech.desc }
     .suffix = LuaTech, HTN, Frontier
 
 ent-WeaponTurretLaserShuttleLuaTech = лазерная турель LuaTech
+    .desc = { "" }
     .suffix = LuaTech, Shuttle, Frontier
 
 ent-WeaponTurretLaserSyndie = WeaponTurretLaserSyndie
+    .desc = { ent-WeaponTurretBaseLaserSyndie.desc }
     .suffix = ICBM, Event, Shuttle Gun, Frontier
