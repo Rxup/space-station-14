@@ -10,38 +10,56 @@ namespace Content.Client.Backmen.Research.UI;
 /// </summary>
 public sealed partial class ResearchesContainerPanel : LayoutContainer
 {
+    private static readonly Color LineColor = Color.FromHex("#9EB8D8");
+
     public ResearchesContainerPanel()
     {
     }
 
     protected override void Draw(DrawingHandleScreen handle)
     {
-        foreach (var child in Children)
+        // start-backmen: rnd-auto-layout
+        var items = Children.OfType<FancyResearchConsoleItem>().ToDictionary(x => x.Prototype.ID);
+
+        foreach (var dependent in items.Values)
         {
-            if (child is not FancyResearchConsoleItem item)
+            if (dependent.Prototype.TechnologyPrerequisites.Count <= 0)
                 continue;
 
-            if (item.Prototype.TechnologyPrerequisites.Count <= 0)
-                continue;
-
-            var list = Children.Where(x => x is FancyResearchConsoleItem second && item.Prototype.TechnologyPrerequisites.Contains(second.Prototype.ID));
-            foreach (var second in list)
+            foreach (var prereqId in dependent.Prototype.TechnologyPrerequisites)
             {
+                if (!items.TryGetValue(prereqId, out var prerequisite))
+                    continue;
 
-                var startCoords = new Vector2(item.PixelPosition.X + item.PixelWidth / 2, item.PixelPosition.Y + item.PixelHeight / 2);
-                var endCoords = new Vector2(second.PixelPosition.X + second.PixelWidth / 2, second.PixelPosition.Y + second.PixelHeight / 2);
-
-                if (second.PixelPosition.Y != item.PixelPosition.Y)
-                {
-
-                    handle.DrawLine(startCoords, new(endCoords.X, startCoords.Y), Color.White);
-                    handle.DrawLine(new(endCoords.X, startCoords.Y), endCoords, Color.White);
-                }
-                else
-                {
-                    handle.DrawLine(startCoords, endCoords, Color.White);
-                }
+                DrawPrerequisiteLine(handle, prerequisite, dependent);
             }
         }
+        // end-backmen: rnd-auto-layout
     }
+
+    // start-backmen: rnd-auto-layout
+    private static void DrawPrerequisiteLine(
+        DrawingHandleScreen handle,
+        FancyResearchConsoleItem prerequisite,
+        FancyResearchConsoleItem dependent)
+    {
+        var start = new Vector2(
+            prerequisite.PixelPosition.X + prerequisite.PixelWidth / 2f,
+            prerequisite.PixelPosition.Y + prerequisite.PixelHeight);
+        var end = new Vector2(
+            dependent.PixelPosition.X + dependent.PixelWidth / 2f,
+            dependent.PixelPosition.Y);
+
+        if (Math.Abs(start.X - end.X) < 1f)
+        {
+            handle.DrawLine(start, end, LineColor);
+            return;
+        }
+
+        var midY = (start.Y + end.Y) / 2f;
+        handle.DrawLine(start, new Vector2(start.X, midY), LineColor);
+        handle.DrawLine(new Vector2(start.X, midY), new Vector2(end.X, midY), LineColor);
+        handle.DrawLine(new Vector2(end.X, midY), end, LineColor);
+    }
+    // end-backmen: rnd-auto-layout
 }

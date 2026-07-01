@@ -104,7 +104,7 @@
   icon:
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/glock22/big.rsi
     state: icon
-  tier: 1
+  tier: 2
   cost: 1000
   recipeUnlocks:
   - WeaponPistolG23
@@ -118,7 +118,7 @@
     sprite: Structures/Piping/Atmospherics/pipe.rsi
     state: pipeStraight
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 10000
   technologyPrerequisites:
   - LightAutoWeaponBase
@@ -131,7 +131,7 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Misc/rivet.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 5000
   recipeUnlocks:
   - WeaponPistolRivet
@@ -170,7 +170,7 @@
     sprite: Backmen/Objects/Weapons/Gunsx64/Pistols/service_pistol23/big.rsi
     state: icon
   discipline: Arsenal
-  tier: 1
+  tier: 2
   cost: 5000
   recipeUnlocks:
   - WeaponPistolG22

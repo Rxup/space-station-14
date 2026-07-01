@@ -2,7 +2,6 @@ using System.Linq;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using Content.Shared.Research.Systems;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Research;
@@ -13,6 +12,27 @@ namespace Content.Shared.Backmen.Research;
 public static class BkmResearchRequirements
 {
     // start-backmen: rnd-console-prereqs
+    public static bool IsEligibleForTier(TechnologyPrototype technology, int tier, IPrototypeManager prototypeManager)
+    {
+        foreach (var prereq in technology.TechnologyPrerequisites)
+        {
+            if (prototypeManager.Index(prereq).Tier > tier)
+                return false;
+        }
+
+        return true;
+    }
+
+    public static IEnumerable<TechnologyPrototype> GetEligibleTierTechnologies(
+        TechDisciplinePrototype discipline,
+        int tier,
+        IPrototypeManager prototypeManager)
+    {
+        return prototypeManager.EnumeratePrototypes<TechnologyPrototype>()
+            .Where(p => p.Discipline == discipline.ID && !p.Hidden && p.Tier == tier)
+            .Where(p => IsEligibleForTier(p, tier, prototypeManager));
+    }
+
     public static int GetTierCompletionPercentage(
         SharedResearchSystem research,
         TechnologyDatabaseComponent component,
@@ -25,7 +45,7 @@ public static class BkmResearchRequirements
         if (allTech.Count == 0)
             return 0;
 
-        var unlocked = allTech.Count(t => research.IsTechnologyUnlocked(EntityUid.Invalid, t.ID, component));
+        var unlocked = allTech.Count(t => research.IsTechnologyUnlocked(component, t.ID));
         return (int) Math.Clamp((float) unlocked / allTech.Count * 100f, 0, 100);
     }
 
@@ -62,19 +82,17 @@ public static class BkmResearchRequirements
         float requiredRatio,
         IPrototypeManager prototypeManager)
     {
-        var tierTech = prototypeManager.EnumeratePrototypes<TechnologyPrototype>()
-            .Where(p => p.Discipline == discipline.ID && !p.Hidden && p.Tier == tier)
-            .ToList();
+        var tierTech = GetEligibleTierTechnologies(discipline, tier, prototypeManager).ToList();
 
         if (tierTech.Count == 0)
         {
             return new TierProgressInfo(0, 0, 0, 0, 100, (int) (requiredRatio * 100f), 1f);
         }
 
-        var unlocked = tierTech.Count(t => research.IsTechnologyUnlocked(EntityUid.Invalid, t.ID, component));
+        var unlocked = tierTech.Count(t => research.IsTechnologyUnlocked(component, t.ID));
         var total = tierTech.Count;
         var requiredCount = (int) Math.Ceiling(total * requiredRatio);
-        var remaining = Math.Max(0, requiredCount - unlocked);
+        var remaining = unlocked < requiredCount ? requiredCount - unlocked : 0;
         var currentPercent = (int) Math.Clamp((float) unlocked / total * 100f, 0, 100);
         var requiredPercent = (int) (requiredRatio * 100f);
         var progress = (float) unlocked / total;
@@ -97,7 +115,7 @@ public static class BkmResearchRequirements
         IPrototypeManager prototypeManager)
     {
         if (technology.TechnologyPrerequisites.Any(prereq =>
-                component == null || !research.IsTechnologyUnlocked(EntityUid.Invalid, prereq, component)))
+                component == null || !research.IsTechnologyUnlocked(component, prereq)))
             return true;
 
         if (component == null)

@@ -52,7 +52,7 @@
     sprite: Objects/Weapons/Guns/Launchers/tether_gun.rsi
     state: base
   discipline: Scientific
-  tier: 1
+  tier: 2
   cost: 15000
   recipeUnlocks:
   - WeaponForceGun
@@ -96,7 +96,7 @@
     sprite: Clothing/Shoes/Boots/magboots-science.rsi
     state: icon
   discipline: Scientific
-  tier: 1
+  tier: 2
   cost: 5500
   recipeUnlocks:
   - ClothingShoesBootsMagSci

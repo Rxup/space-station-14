@@ -129,8 +129,6 @@ public sealed partial class FancyResearchConsoleMenu : FancyWindow
             if (tech.Key == CurrentTech)
                 SelectTech(proto, tech.Value);
         }
-
-        Recenter(); // backmen: rnd-auto-layout
     }
 
     public void UpdateInformationPanel(int points)

@@ -51,7 +51,7 @@
     sprite: Structures/Machines/tech_disk_printer.rsi
     state: display
   discipline: Scientific
-  tier: 1
+  tier: 2
   cost: 5000
   recipeUnlocks:
   - TechDiskComputerCircuitboard

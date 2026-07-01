@@ -86,7 +86,7 @@ public sealed partial class FancyTechnologyInfoPanel : Control
 
         foreach (var techId in proto.TechnologyPrerequisites)
         {
-            if (database != null && research.IsTechnologyUnlocked(EntityUid.Invalid, techId, database))
+            if (database != null && research.IsTechnologyUnlocked(database, techId))
                 continue;
 
             var tech = _proto.Index(techId);
@@ -116,17 +116,21 @@ public sealed partial class FancyTechnologyInfoPanel : Control
             var previousTier = proto.Tier - 1;
             var progress = BkmResearchRequirements.GetTierProgressInfo(
                 research, database, discipline, previousTier, requiredRatio, _proto);
-            var tierLabel = new RichTextLabel();
-            tierLabel.SetMarkup(Loc.GetString("research-console-tier-requirement",
-                ("percent", progress.RequiredPercent),
-                ("tier", previousTier),
-                ("discipline", Loc.GetString(discipline.Name)),
-                ("color", discipline.Color.ToHex()),
-                ("unlocked", progress.Unlocked),
-                ("total", progress.Total),
-                ("current", progress.CurrentPercent),
-                ("remaining", progress.Remaining)));
-            RequiredTechContainer.AddChild(tierLabel);
+
+            if (progress.Total > 0 && progress.Remaining > 0)
+            {
+                var tierLabel = new RichTextLabel();
+                tierLabel.SetMarkup(Loc.GetString("research-console-tier-requirement",
+                    ("percent", progress.RequiredPercent),
+                    ("tier", previousTier),
+                    ("discipline", Loc.GetString(discipline.Name)),
+                    ("color", discipline.Color.ToHex()),
+                    ("unlocked", progress.Unlocked),
+                    ("total", progress.Total),
+                    ("current", progress.CurrentPercent),
+                    ("remaining", progress.Remaining)));
+                RequiredTechContainer.AddChild(tierLabel);
+            }
         }
         // end-backmen: rnd-console-prereqs
     }

@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Backmen.Research;
 using Content.Shared.Lathe;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
@@ -126,8 +127,12 @@ public abstract partial class SharedResearchSystem : EntitySystem
         {
             // we need to get the tech for the tier 1 below because that's
             // what the percentage in TierPrerequisites is referring to.
-            var unlockedTierTech = allUnlocked.Where(p => p.Tier == tier - 1).ToList();
-            var allTierTech = allTech.Where(p => p.Discipline == techDiscipline.ID && p.Tier == tier - 1).ToList();
+            // start-backmen: rnd-console-prereqs
+            var unlockedTierTech = allUnlocked.Where(p => p.Tier == tier - 1
+                && BkmResearchRequirements.IsEligibleForTier(p, tier - 1, PrototypeManager)).ToList();
+            var allTierTech = allTech.Where(p => p.Discipline == techDiscipline.ID && p.Tier == tier - 1
+                && BkmResearchRequirements.IsEligibleForTier(p, tier - 1, PrototypeManager)).ToList();
+            // end-backmen: rnd-console-prereqs
 
             if (allTierTech.Count == 0)
                 break;

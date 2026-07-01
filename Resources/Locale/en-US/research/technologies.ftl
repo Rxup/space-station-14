@@ -3,6 +3,16 @@ research-discipline-industrial = Industrial
 research-discipline-arsenal = Arsenal
 research-discipline-experimental = Experimental
 research-discipline-civilian-services = Civilian Services
+# start-backmen: rnd-disciplines
+research-discipline-engineering = Engineering
+research-discipline-security = Security
+research-discipline-cargo = Cargo
+research-discipline-shaft = Shaft
+research-discipline-scientific = Scientific
+research-discipline-robotics = Robotics
+research-discipline-medical = Medical
+research-discipline-service = Service
+# end-backmen: rnd-disciplines
 
 research-technology-fulton = Fultons
 research-technology-salvage-equipment = Salvage Equipment

@@ -3,6 +3,16 @@ research-discipline-industrial = Промышленность
 research-discipline-arsenal = Арсенал
 research-discipline-experimental = Экспериментальное
 research-discipline-civilian-services = Обслуживание персонала
+# start-backmen: rnd-disciplines
+research-discipline-engineering = Инженерия
+research-discipline-security = Безопасность
+research-discipline-cargo = Карго
+research-discipline-shaft = Шахтёрство
+research-discipline-scientific = Наука
+research-discipline-robotics = Робототехника
+research-discipline-medical = Медицина
+research-discipline-service = Сервис
+# end-backmen: rnd-disciplines
 research-technology-fulton = Фултоны
 research-technology-salvage-equipment = Снаряжение для утилизации
 research-technology-advanced-powercells = Продвинутые батареи

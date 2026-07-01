@@ -456,4 +456,12 @@ public partial class ShuttleNavControl : BaseShuttleControl
     {
         return (value - MidPointVector) / MinimapScale;
     }
+
+    /// <summary>
+    /// Converts world map coordinates to minimap view coordinates, matching <see cref="ShuttleMapControl"/>.
+    /// </summary>
+    protected Vector2 WorldToViewPosition(Vector2 worldPosition, Matrix3x2 worldToShuttle, Matrix3x2 shuttleToView)
+    {
+        return Vector2.Transform(worldPosition, worldToShuttle * shuttleToView);
+    }
 }
