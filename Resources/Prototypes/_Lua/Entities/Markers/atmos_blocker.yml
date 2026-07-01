@@ -1,0 +1,35 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: Atmos Fix Door Marker
+  id: AtmosFixDoorMarker
+  description: "Для двойных и тройных дверей"
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - sprite: Markers/atmos.rsi # {
+          state: base
+          shader: unshaded
+        - sprite: Markers/atmos.rsi
+          shader: unshaded # }
+          state: door
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+              bounds: "-0.48,-0.48,0.48,-0.40"
+    - type: Airtight
+      noAirWhenFullyAirBlocked: false
+      airBlockedDirection:
+        - South
+    - type: Tag
+      tags:
+        - SpreaderIgnore
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static

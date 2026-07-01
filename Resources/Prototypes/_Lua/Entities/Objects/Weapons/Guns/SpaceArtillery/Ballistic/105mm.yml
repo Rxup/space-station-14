@@ -1,0 +1,82 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseWeaponNavalBallisctic
+  id: Weapon105mm
+  name: Миномёт "105мм"
+  description: Малый миномёт, использует снаряды 105мм.
+  suffix: ShuttleGun, Фронтир
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: RadarBlip
+      radarColor: "#229e51"
+      scale: 1
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets105mm.rsi
+      drawdepth: Mobs
+      layers:
+        - state: turrets105mm
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 1500
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Gun
+      fireRate: 2
+      projectileSpeed: 80
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    - type: Battery
+      maxCharge: 300
+      startingCharge: 300
+    - type: ExaminableBattery
+    - type: AutoShootGun
+    - type: GunSignalControl
+    - type: WirelessNetworkConnection
+      range: 700
+    - type: FireControllable
+    - type: SpaceArtillery
+      powerChargeRate: 150
+      powerUseActive: 1200
+      powerUsePassive: 2000
+    - type: ShipGunClass
+      shipClass: Medium
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 75
+    - type: ProjectileBatteryAmmoProvider
+      proto: Bullet105mm
+      fireCost: 150
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: Weapon105mmBaseFlatpack
+  suffix: Фронтир
+  name: упакованный малый миномёт
+  description: Упакованный Малый Миномёт (.105мм)
+  components:
+  - type: Flatpack
+    entity: Weapon105mm
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

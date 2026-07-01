@@ -1,0 +1,84 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseWeaponNavalBallisctic
+  id: Weapon80mm
+  name: Пулемёт "80мм"
+  description: Тяжёлый пулемёт, использует снаряды 80мм.
+  suffix: ShuttleGun, Фронтир
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: RadarBlip
+      radarColor: "#229e51"
+      scale: 0.8
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets80mm.rsi
+      drawdepth: Mobs
+      layers:
+        - state: turrets80mm
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: ExplosionResistance
+      damageCoefficient: 0.75 # Lua
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 2250
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Gun
+      fireRate: 1.5
+      projectileSpeed: 80 #60
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    - type: Battery
+      maxCharge: 500
+      startingCharge: 500
+    - type: ExaminableBattery
+    - type: AutoShootGun
+    - type: GunSignalControl
+    - type: WirelessNetworkConnection
+      range: 700
+    - type: FireControllable
+    - type: SpaceArtillery
+      powerChargeRate: 25
+      powerUseActive: 2500
+      powerUsePassive: 1100
+    - type: ShipGunClass
+      shipClass: Heavy
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 25
+    - type: ProjectileBatteryAmmoProvider
+      proto: Bullet80mm
+      fireCost: 50
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: Weapon80mmBaseFlatpack
+  suffix: Фронтир
+  name: упакованный тяжёлый пулемёт
+  description: Упакованный Средний Пулемёт (.80мм)
+  components:
+  - type: Flatpack
+    entity: Weapon80mm
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

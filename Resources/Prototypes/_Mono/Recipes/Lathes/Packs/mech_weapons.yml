@@ -1,0 +1,44 @@
+- type: latheRecipePack
+  id: WeaponMechCombatImmolationGun
+  recipes:
+  - WeaponMechCombatImmolationGun
+
+- type: latheRecipePack
+  id: WeaponMechCombatSolarisLaser
+  recipes:
+  - WeaponMechCombatSolarisLaser
+
+- type: latheRecipePack
+  id: WeaponMechCombatFiredartLaser
+  recipes:
+  - WeaponMechCombatFiredartLaser
+
+- type: latheRecipePack
+  id: WeaponMechCombatUltraRifle
+  recipes:
+  - WeaponMechCombatUltraRifle
+
+- type: latheRecipePack
+  id: WeaponMechCombatShotgun
+  recipes:
+  - WeaponMechCombatShotgun
+
+- type: latheRecipePack
+  id: WeaponMechCombatShotgunIncendiary
+  recipes:
+  - WeaponMechCombatShotgunIncendiary
+
+- type: latheRecipePack
+  id: WeaponMechCombatDisabler
+  recipes:
+  - WeaponMechCombatDisabler
+
+- type: latheRecipePack
+  id: WeaponMechCombatFlashbangLauncher
+  recipes:
+  - WeaponMechCombatFlashbangLauncher
+
+- type: latheRecipePack
+  id: WeaponMechCombatMissileRack8
+  recipes:
+  - WeaponMechCombatMissileRack8

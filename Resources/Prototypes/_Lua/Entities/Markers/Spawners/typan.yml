@@ -1,0 +1,102 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: атмосферный инженер Синдиката
+  id: SpawnPointLatejoinOutpostTypanAtmos
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: OutpostTypanAtmosTech
+    spawn_type: LateJoin
+  - type: Sprite
+    state: green
+
+- type: entity
+  name: ботаник Синдиката
+  id: SpawnPointLatejoinOutpostTypanBotanist
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: OutpostTypanBotanist
+    spawn_type: LateJoin
+  - type: Sprite
+    state: green
+
+- type: entity
+  name: грузчик Синдиката
+  id: SpawnPointLatejoinOutpostTypanCargotech
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: OutpostTypanCargotech
+    spawn_type: LateJoin
+  - type: Sprite
+    state: green
+
+- type: entity
+  name: повар Синдиката
+  id: SpawnPointLatejoinOutpostTypanChef
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: OutpostTypanChef
+    spawn_type: LateJoin
+  - type: Sprite
+    state: green
+
+- type: entity
+  name: медик Синдиката
+  id: SpawnPointLatejoinOutpostTypanMedic
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: OutpostTypanMedic
+    spawn_type: LateJoin
+  - type: Sprite
+    state: green
+
+- type: entity
+  name: директор исследований Синдиката
+  id: SpawnPointLatejoinOutpostTypanRD
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: OutpostTypanRD
+    spawn_type: LateJoin
+  - type: Sprite
+    state: green
+
+- type: entity
+  name: учёный Синдиката
+  id: SpawnPointLatejoinOutpostTypanScience
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: OutpostTypanScience
+    spawn_type: LateJoin
+  - type: Sprite
+    state: green
+
+- type: entity
+  name: офицер телекомуникаций Синдиката
+  id: SpawnPointLatejoinOutpostTypanOfficer
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: OutpostTypanTelecommunicationsOfficer
+    spawn_type: LateJoin
+  - type: Sprite
+    state: green
+
+- type: entity
+  name: исследователь Синдиката
+  id: SpawnPointLatejoinOutpostTypanResearcher
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: OutpostTypanResearcher
+    spawn_type: LateJoin
+  - type: Sprite
+    state: green

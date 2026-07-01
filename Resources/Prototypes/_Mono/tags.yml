@@ -1,0 +1,418 @@
+- type: Tag
+  id: CassetteTape
+
+- type: Tag
+  id: MREFood
+
+# Crafting for desert planet
+
+- type: Tag
+  id: RockMaterial
+
+- type: Tag
+  id: SandMaterial
+
+#AMMO START
+
+#127x99mm tags
+
+- type: Tag
+  id: Magazine127x99mm
+
+- type: Tag
+  id: Cartridge127x99mm
+
+#762x51mm tags
+
+- type: Tag
+  id: Cartridge762x51mmFMJ
+
+- type: Tag
+  id: Magazine762x51mmFMJ
+
+- type: Tag
+  id: Magazine762x51mmLowCapacityFMJ
+
+- type: Tag
+  id: Magazine762x51mmBoxSmall
+
+- type: Tag
+  id: Magazine762x51mmBoxBig
+
+#762x54mmR tags
+
+- type: Tag
+  id: Cartridge762x54mmRFMJ
+
+- type: Tag
+  id: Magazine762x54mmRFMJ
+
+- type: Tag
+  id: Magazine762x54mmRBox
+
+#6.8x52mm tags
+
+- type: Tag
+  id: Cartridge68x52mmCaseless
+
+- type: Tag
+  id: Magazine68x52mmCaseless
+
+- type: Tag
+  id: Magazine68x52mmCaselessBoxSmall
+
+- type: Tag
+  id: Magazine68x52mmCaselessBoxBig
+
+#556x45mm tags
+
+- type: Tag
+  id: Cartridge556x45mmFMJ
+
+- type: Tag
+  id: Magazine556x45mmFMJ
+
+- type: Tag
+  id: Magazine556x45mmBox
+
+- type: Tag
+  id: SpeedLoader556x45mmFMJ
+
+#762x39mm tags
+
+- type: Tag
+  id: Cartridge762x39mmFMJ
+
+- type: Tag
+  id: Magazine762x39mmFMJ
+
+- type: Tag
+  id: Magazine762x39mmLowCapacityFMJ
+
+- type: Tag
+  id: Magazine762x39mmBox
+
+- type: Tag
+  id: Magazine762x39mmPan
+
+- type: Tag
+  id: Magazine762x39mmSubsonic
+
+- type: Tag
+  id: Cartridge762x39mmSubsonic
+
+#45 ACP tags
+
+- type: Tag
+  id: Cartridge45_ACPFMJ
+
+- type: Tag
+  id: Magazine45_ACPPistolFMJ
+
+- type: Tag
+  id: Magazine45_ACPPistolHighCapacityFMJ
+
+- type: Tag
+  id: Magazine45_ACPSubMachineGunFMJ
+
+- type: Tag
+  id: Magazine45_ACPFMJBox
+
+#45 magnum tags
+
+- type: Tag
+  id: Cartridge45_magnumFMJ
+
+- type: Tag
+  id: Magazine45_magnumPistolHighCapacityFMJ
+
+- type: Tag
+  id: SpeedLoader45_magnumFMJ
+
+- type: Tag
+  id: Magazine45_magnumPistolFMJ
+
+- type: Tag
+  id: Magazine45_magnumSubMachineGunFMJ
+
+#9x19mm tags
+
+- type: Tag
+  id: Cartridge9x19mmFMJ
+
+- type: Tag
+  id: Magazine9x19mmPistolFMJ
+
+- type: Tag
+  id: Magazine9x19mmPistolHighCapacityFMJ
+
+- type: Tag
+  id: Magazine9x19mmSubMachineGunFMJ
+
+- type: Tag
+  id: Magazine9x19mmSubMachineGunTopMountedFMJ
+
+- type: Tag
+  id: Magazine9x19mmFMJBox
+
+- type: Tag
+  id: SpeedLoader9x19mmFMJ
+
+# Misc ammo shit
+
+- type: Tag
+  id: MilitaryPowerCellMG
+
+- type: Tag
+  id: PPLCell
+
+- type: Tag
+  id: MagazineDP29
+
+- type: Tag
+  id: MagazineNovaliteC1
+
+#8x65mm SKR tags
+
+- type: Tag
+  id: Cartridge8x65mmSKR
+
+- type: Tag
+  id: Magazine8x65mmSKR
+
+- type: Tag
+  id: MagazineBox8x65mmSKR
+
+#.55 SAM caliber tags
+
+- type: Tag
+  id: Cartridge55_SAM
+
+- type: Tag
+  id: Magazine55_SAMPistol
+
+- type: Tag
+  id: Magazine55_SAMPistolHighCapacity
+
+#12 gauge tags
+
+- type: Tag
+  id: WeaponShotgunHelopolis
+
+- type: Tag
+  id: Magazine12_gaugeBuckshot
+
+- type: Tag
+  id: ShellShotgun12_gaugeBuckshot
+
+- type: Tag
+  id: ShellShotgun12_gaugeLight
+
+#4 gauge tags
+
+- type: Tag
+  id: WeaponShotgunBigLeady
+
+- type: Tag
+  id: WeaponShotgunBigJohnny
+
+- type: Tag
+  id: WeaponShotgunBigBuddy
+
+- type: Tag
+  id: ShellShotgun23x75mmBuckshot
+
+# 635x40mm tags
+- type: Tag
+  id: Cartridge635x40mmCaseless
+
+- type: Tag
+  id: Magazine635x40mmCaseless
+
+- type: Tag
+  id: Magazine635x40mmCaselessPistol
+
+#40mm tags
+
+- type: Tag
+  id: Magazine40mm
+
+#AMMO END
+
+#Misc emote tags
+
+- type: Tag
+  id: ReptilianEmotes
+
+# Ship tags
+
+- type: Tag
+  id: CrewedShuttle
+
+# Mech Tags
+
+#Mech Weaponry Tags
+- type: Tag
+  id: LightMechMount
+
+- type: Tag
+  id: MediumMechMount
+
+- type: Tag
+  id: HeavyMechMount
+
+- type: Tag
+  id: EWARMechMount
+
+- type: Tag
+  id: IFFMechMount
+#Mech Tags
+
+- type: Tag
+  id: Broadsword
+
+- type: Tag
+  id: BroadswordHead
+
+- type: Tag
+  id: BroadswordLArm
+
+- type: Tag
+  id: BroadswordLLeg
+
+- type: Tag
+  id: BroadswordRArm
+
+- type: Tag
+  id: BroadswordRLeg
+
+- type: Tag
+  id: Halberd
+
+- type: Tag
+  id: Sabre
+
+- type: Tag
+  id: Flail
+
+- type: Tag
+  id: Spyglass
+
+- type: Tag
+  id: Mace
+
+- type: Tag
+  id: BroadswordCentralControlModule
+
+- type: Tag
+  id: BroadswordPeripheralsControlModule
+
+- type: Tag
+  id: BroadswordTargetingControlModule
+
+- type: Tag
+  id: FlailHead
+
+- type: Tag
+  id: FlailLArm
+
+- type: Tag
+  id: FlailLLeg
+
+- type: Tag
+  id: FlailRArm
+
+- type: Tag
+  id: FlailRLeg
+
+- type: Tag
+  id: FlailCentralControlModule
+
+- type: Tag
+  id: FlailPeripheralsControlModule
+
+- type: Tag
+  id: FlailTargetingControlModule
+
+# USSP Bounty
+
+- type: Tag
+  id: VodkaBounty
+
+- type: Tag
+  id: EnergySword
+
+- type: Tag
+  id: MilitaryMechBounty
+
+- type: Tag
+  id: CivilianMechBounty
+
+- type: Tag
+  id: BiomassBounty
+
+# Man portable rockets :trollface:
+
+- type: Tag
+  id: MPSSMMissile
+
+# Kudzu ignore tag
+
+- type: Tag
+  id: Chimera
+
+- type: Tag
+  id: ChimeraFloor
+
+# hhhh (Mono tech disk, whoever put it unsorted fuck you)
+
+- type: Tag
+  id: TechDiskMono
+
+# survival kit
+
+- type: Tag
+  id: SurvivalBox
+
+# for letoferol chimeras
+- type: Tag
+  id: Humanoid
+
+# stamps
+
+- type: Tag
+  id: PaycheckBratvaStamp
+
+# Multi-tile lathe board tags
+
+- type: Tag
+  id: MachineBoard2x1
+
+- type: Tag
+  id: MachineBoard2x2
+
+- type: Tag
+  id: MachineBoard3x2
+
+- type: Tag
+  id: MachineBoard3x3
+
+# Ship Ammo
+
+- type: Tag
+  id: Asm220Torpedo
+
+- type: Tag
+  id: CharonSlug
+
+- type: Tag
+  id: 150mmShell
+
+- type: Tag
+  id: LightFighterOrdinance
+
+# AI
+
+# makes shuttle AI not target this grid
+- type: Tag
+  id: ShuttleAIIgnore

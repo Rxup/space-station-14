@@ -1,0 +1,147 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: Bullet20mmAP
+  name: 20mm
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 20mmap
+    - type: Projectile
+      damage:
+        types:
+          Structural: 35
+        groups:
+          Brute: 15
+    - type: RadarBlip
+      scale: 0.35
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet53mmAP
+  name: 53mm
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 53mmap
+    - type: Projectile
+      damage:
+        types:
+          Structural: 45
+        groups:
+          Brute: 25
+    - type: RadarBlip
+      scale: 0.35
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet80mmAP
+  name: 80mm
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 80mmap
+    - type: Projectile
+      damage:
+        types:
+          Structural: 75
+        groups:
+          Brute: 45
+    - type: RadarBlip
+      scale: 0.55
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet105mmAP
+  name: 105mm
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 105mmap
+    - type: Projectile
+      damage:
+        types:
+          Structural: 2500
+        groups:
+          Brute: 800
+    - type: RadarBlip
+      scale: 0.55
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet120mmAP
+  name: 120mm
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 120mmap
+    - type: Projectile
+      damage:
+        types:
+          Structural: 3300
+        groups:
+          Brute: 900
+    - type: RadarBlip
+      scale: 0.75
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet140mmAP
+  name: 140mm
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 140mmap
+    - type: Projectile
+      damage:
+        types:
+          Structural: 5000
+        groups:
+          Brute: 1100
+    - type: RadarBlip
+      scale: 0.75
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile

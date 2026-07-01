@@ -1,0 +1,66 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseWeaponMissile
+  id: WeaponMissileLauncherCerber
+  name: Артиллерийская установка "Цербер-Х"
+  description: Мощное космическое орудие для уничтожения вражеских флотов. Снаряд "Анаконда" разворачивается при ударе, охватывая огромную площадь и вызывая разрушения на всей территории поражения.
+  suffix: ShuttleGun, Фронтир
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: RadarBlip
+    radarColor: "#ca2477"
+    scale: 1
+  - type: Sprite
+    sprite: _Lua/Objects/ShuttleWeapons/cheapmissile.rsi
+    drawdepth: Mobs
+    layers:
+      - state: rocket
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ExplosionResistance
+    damageCoefficient: 0.5 # Lua
+  - type: Destructible
+    thresholds:
+    - trigger:
+         !type:DamageTrigger
+         damage: 7500 #It have armor!
+      behaviors:
+       - !type:PlaySoundBehavior
+         sound:
+           collection: MetalBreak
+       - !type:ChangeConstructionNodeBehavior
+         node: machineFrame
+       - !type:DoActsBehavior
+         acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 120 #40
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: Battery
+    maxCharge: 50000
+    startingCharge: 50000
+  - type: ExaminableBattery
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: WirelessNetworkConnection
+    range: 700
+  - type: FireControllable
+  - type: SpaceArtillery
+    powerChargeRate: 100
+    powerUsePassive: 3000
+  - type: ShipGunClass
+    shipClass: Superheavy
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletGR
+    fireCost: 49500

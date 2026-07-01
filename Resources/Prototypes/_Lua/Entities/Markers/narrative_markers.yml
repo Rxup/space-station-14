@@ -1,0 +1,199 @@
+#region повествования
+
+
+
+
+#region Бархан-8
+#
+#
+#
+#
+#
+#region мастер 1
+#приветствие должно быть в первые 5 минут, поэтому первый разбит на два этапа
+- type: entity
+  name: стартовый нарратор Бархана-8
+  id: MarkerMasterNarrative
+  parent: MarkerBase
+  suffix: "НЕ МАППИТЬ, НЕ СПАВНИТЬ"
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/pens.rsi
+      state: pen_centcom
+  - type: TimedSpawner
+    prototypes:
+    - ActorNarrative1
+    chance: 1
+    intervalSeconds: 290
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 310
+  - type: SpawnOnDespawn
+    prototype: MarkerSlaveNarrative0_5
+
+#region актёр 1
+- type: entity
+  parent: BaseMobHuman
+  id: ActorNarrative1
+  name: Григорий Козловский
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    enabled: true
+    voice: Avallach
+  - type: Vocalizer
+    minVocalizeInterval: 20
+    maxVocalizeInterval: 40
+  - type: DatasetVocalizer
+    dataset: ActorChatter1
+  - type: TimedDespawn
+    lifetime: 45
+  - type: Loadout
+    prototypes:
+    - ActorGear1
+  - type: Godmode
+
+- type: startingGear
+  id: ActorGear1
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    id: CaptainPDA
+
+- type: localizedDataset
+  id: ActorChatter1
+  values:
+    prefix: ActorMarkerNarrative1-chat-
+    count: 10
+
+
+#region слейв 0_5
+#приветствие должно быть в первые 5 минут, поэтому первый разбит на два этапа
+- type: entity
+  name: MarkerSlaveNarrative0_5
+  id: MarkerSlaveNarrative0_5
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/pens.rsi
+      state: pen_centcom
+  - type: TimedSpawner
+    prototypes:
+    - ActorNarrative1
+    chance: 1
+    intervalSeconds: 550
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MarkerSlaveNarrative1
+
+
+#region слейв 1
+- type: entity
+  name: MarkerSlaveNarrative1
+  id: MarkerSlaveNarrative1
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/pens.rsi
+      state: pen_centcom
+  - type: TimedSpawner
+    prototypes:
+    - ActorNarrative2
+    chance: 1
+    intervalSeconds: 550
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MarkerSlaveNarrative2
+
+#region актёр 2
+- type: entity
+  parent: BaseMobHuman
+  id: ActorNarrative2
+  name: Григорий Козловский
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    enabled: true
+    voice: Avallach
+  - type: Vocalizer
+    minVocalizeInterval: 15
+    maxVocalizeInterval: 30
+  - type: DatasetVocalizer
+    dataset: ActorChatter2
+  - type: TimedDespawn
+    lifetime: 45
+  - type: Loadout
+    prototypes:
+    - ActorGear1
+  - type: Godmode
+
+- type: localizedDataset
+  id: ActorChatter2
+  values:
+    prefix: ActorMarkerNarrative2-chat-
+    count: 10
+
+
+#region слейв 2
+- type: entity
+  name: MarkerSlaveNarrative2
+  id: MarkerSlaveNarrative2
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - ActorNarrative3
+    chance: 1
+    intervalSeconds: 550
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 1200
+
+#region актёр 3
+- type: entity
+  parent: BaseMobHuman
+  id: ActorNarrative3
+  name: Григорий Козловский
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TTS
+    enabled: true
+    voice: Gman
+  - type: Vocalizer
+    minVocalizeInterval: 5
+    maxVocalizeInterval: 15
+  - type: DatasetVocalizer
+    dataset: ActorChatter3
+  - type: TimedDespawn
+    lifetime: 180
+  - type: Loadout
+    prototypes:
+    - ActorGear1
+  - type: Godmode
+  - type: GoblinAccent
+  - type: LizardAccent
+  - type: MothAccent
+  - type: ScrambledAccent
+
+- type: localizedDataset
+  id: ActorChatter3
+  values:
+    prefix: ActorMarkerNarrative3-chat-
+    count: 20

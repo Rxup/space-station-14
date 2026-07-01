@@ -1,0 +1,161 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+#Not use
+
+- type: entity
+  id: BaseBullet20mm
+  name: 20mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 20mm
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 50.0
+      intensitySlope: 8
+      maxIntensity: 100
+      maxTileBreak: 1
+    - type: RadarBlip
+      scale: 2.5
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20 
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: BaseBullet53mm
+  name: 53mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 53mm
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 50.0
+      intensitySlope: 4
+      maxIntensity: 100
+      maxTileBreak: 1
+    - type: RadarBlip
+      scale: 2.5
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: BaseBullet80mm
+  name: 80mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 53mm
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 250.0
+      intensitySlope: 17
+      maxIntensity: 250
+      maxTileBreak: 1
+    - type: RadarBlip
+      scale: 2.5
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: BaseBullet105mm
+  name: 105mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 105mm
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 500.0
+      intensitySlope: 15
+      maxIntensity: 100
+      maxTileBreak: 1
+    - type: RadarBlip
+      scale: 2.5
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: BaseBullet120mm
+  name: 105mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 105mm
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 600.0
+      intensitySlope: 15
+      maxIntensity: 250
+      maxTileBreak: 1
+    - type: RadarBlip
+      scale: 2.5
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: BaseBullet140mm
+  name: 140mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 140mm
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 700.0
+      intensitySlope: 15
+      maxIntensity: 500
+      maxTileBreak: 1
+    - type: RadarBlip
+      scale: 2.5
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile

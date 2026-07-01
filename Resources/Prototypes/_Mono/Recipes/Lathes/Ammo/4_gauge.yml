@@ -1,0 +1,67 @@
+#4 gauge boxes use Fully powered Box cost
+#Magazines
+#Boxes
+## Standart
+- type: latheRecipe
+  parent: BaseAmmoRubberFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmBeanbag
+  result: AmmoBox23x75mmBeanbag
+
+- type: latheRecipe
+  parent: BaseAmmoFMJFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmBuckshot
+  result: AmmoBox23x75mmBuckshot
+
+- type: latheRecipe
+  parent: BaseAmmoFMJFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmDozd
+  result: AmmoBox23x75mmDozd
+
+- type: latheRecipe
+  parent: BaseAmmoFMJFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmSlug
+  result: AmmoBox23x75mmSlug
+
+- type: latheRecipe
+  parent: BaseAmmoPracticeFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmPractice
+  result: AmmoBox23x75mmPractice
+
+## Mechanical
+- type: latheRecipe
+  parent: BaseAmmoFMJFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmOOBuckshot
+  result: AmmoBox23x75mmOOBuckshot
+
+## Physical
+- type: latheRecipe
+  parent: BaseAmmoIncendiaryFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmIncendiary
+  result: AmmoBox23x75mmIncendiary
+
+- type: latheRecipe
+  parent: BaseAmmoUraniumFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmUranium
+  result: AmmoBox23x75mmUranium
+
+## Special
+- type: latheRecipe
+  parent: BaseAmmoEMPFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmEMP
+  result: AmmoBox23x75mmEMP
+
+- type: latheRecipe
+  parent: BaseAmmoCausticFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmCaustic
+  result: AmmoBox23x75mmCaustic
+
+##
+- type: latheRecipe
+  parent: BaseAmmoIncendiaryFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmFlare
+  result: AmmoBox23x75mmFlare
+
+- type: latheRecipe
+  parent: BaseAmmoIncendiaryFullyPoweredAmmoBoxRecipe
+  id: AmmoBox23x75mmFlashbang
+  result: AmmoBox23x75mmFlashbang

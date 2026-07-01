@@ -1,0 +1,15 @@
+- type: entity
+  name: ID карта для ИИ шаттла
+  id: SpawnerIDShuttleDeed
+  parent: MarkerBase
+  suffix: "ShuttleDeed, Спавнер, ИИ шаттл"
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Misc/id_cards.rsi
+        state: default
+  - type: RandomSpawner
+    prototypes:
+    - ShuttleDeedIDCardAI
+    chance: 1

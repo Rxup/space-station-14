@@ -1,0 +1,72 @@
+#Magazines
+- type: latheRecipe
+  parent: BaseAmmoFMJFullyPoweredMagazineRecipe
+  id: Magazine8x65mmSKRBox
+  result: Magazine8x65mmSKRBox
+
+- type: latheRecipe
+  parent: BaseAmmoIncendiaryFullyPoweredMagazineRecipe
+  id: Magazine8x65mmSKRBoxIncendiary
+  result: Magazine8x65mmSKRBoxIncendiary
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyFullyPoweredMagazineRecipe
+  id: Magazine8x65mmEmptyBox
+  result: Magazine8x65mmEmptyBox
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoHPFullyPoweredMagazineRecipe
+  id: Magazine8x65mmSKRBoxHP
+  result: Magazine8x65mmSKRBoxHP
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoUraniumFullyPoweredMagazineRecipe
+  id: Magazine8x65mmSKRBoxUranium
+  result: Magazine8x65mmSKRBoxUranium
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoEMPFullyPoweredMagazineRecipe
+  id: Magazine8x65mmSKRBoxEMP
+  result: Magazine8x65mmSKRBoxEMP
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoCausticFullyPoweredMagazineRecipe
+  id: Magazine8x65mmSKRBoxCaustic
+  result: Magazine8x65mmSKRBoxCaustic
+
+#Boxes
+
+- type: latheRecipe
+  parent: BaseAmmoFMJFullyPoweredAmmoBoxRecipe
+  id: AmmoBox8x65mmSKR
+  result: AmmoBox8x65mmSKR
+
+- type: latheRecipe
+  parent: BaseAmmoIncendiaryFullyPoweredAmmoBoxRecipe
+  id: AmmoBox8x65mmSKRIncendiary
+  result: AmmoBox8x65mmSKRIncendiary
+
+- type: latheRecipe
+  parent: BaseAmmoPracticeFullyPoweredAmmoBoxRecipe
+  id: AmmoBox8x65mmSKRPractice
+  result: AmmoBox8x65mmSKRPractice
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoHPFullyPoweredAmmoBoxRecipe
+  id: AmmoBox8x65mmSKRHP
+  result: AmmoBox8x65mmSKRHP
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoUraniumFullyPoweredAmmoBoxRecipe
+  id: AmmoBox8x65mmSKRUranium
+  result: AmmoBox8x65mmSKRUranium
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoEMPFullyPoweredAmmoBoxRecipe
+  id: AmmoBox8x65mmSKREMP
+  result: AmmoBox8x65mmSKREMP
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoCausticFullyPoweredAmmoBoxRecipe
+  id: AmmoBox8x65mmSKRCaustic
+  result: AmmoBox8x65mmSKRCaustic

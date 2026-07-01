@@ -1,0 +1,149 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseWeaponMissile
+  id: WeaponMissileLauncherStarColosus
+  name: Ядерная артиллерийская установка "Звездный Колосс"
+  description: Артиллерийская установка, рассчитанная на глобальные разрушения. Ядерный снаряд "Инферно" распространяет ударную волну, которая поглощает всё в радиусе действия, разрушая корабли и станции.
+  suffix: НЕ МАППИТЬ!, ShuttleGun, Фронтир
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: RadarBlip
+    radarColor: "#850000"
+    scale: 1
+  - type: Sprite
+    sprite: _Lua/Objects/ShuttleWeapons/bigfuckinglaser.rsi
+    drawdepth: Mobs
+    layers:
+      - state: space_artillery
+  - type: Destructible
+    thresholds:
+    - trigger:
+         !type:DamageTrigger
+         damage: 3000 #Nuke inside, what you have thought?
+      behaviors:
+       - !type:PlaySoundBehavior
+         sound:
+           collection: MetalBreak
+       - !type:ChangeConstructionNodeBehavior
+         node: machineFrame
+       - !type:DoActsBehavior
+         acts: ["Destruction"]
+  - type: Gun
+    projectileSpeed: 100 #40
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: FireControllable
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: null
+        whitelist:
+          tags: []
+      gun_chamber:
+        startingItem: MissileTND
+        whitelist:
+          tags:
+          - MissileStarColosus
+
+- type: entity
+  parent: WeaponMissileLauncherStarColosus
+  id: WeaponMissileLauncherStarColosusEmpty
+  suffix: Пустой, ShuttleGun, Фронтир
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        startingItem: null
+        whitelist:
+          tags: []
+      gun_chamber:
+        startingItem: null
+        whitelist:
+          tags:
+          - MissileStarColosus
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: WeaponMissileLauncherStarColosusFlatpack
+  suffix: Фронтир
+  name: упакованная ядерная артиллерийская установка "Звездный Колосс"
+  description: Упакованная ядерная артиллерийская установка "Звездный Колосс", использует ядерный снаряд "Инферно".
+  components:
+  - type: Flatpack
+    entity: WeaponMissileLauncherStarColosusEmpty
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+
+- type: entity
+  id: BulletTND
+  name: Инферно
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+      - state: sam
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: PowerSink
+    totalIntensity: 900000.0 # 21 radius, wipes plastitanium
+    intensitySlope: 120
+    maxIntensity: 1000
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: RadarBlip
+    scale: 5
+    requireNoGrid: true
+    radarColor: "#e5ff00"
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 20
+
+- type: entity
+  id: MissileTND
+  name: ядерная ракета класса "Инферно"
+  suffix: Missile, Фронтир
+  parent: BaseMissile
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+      state: tnd
+    - type: Tag
+      tags:
+        - MissileStarColosus
+    - type: CartridgeAmmo
+      deleteOnSpawn: true
+      proto: BulletTND

@@ -1,0 +1,54 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseWeaponNavalBallisctic
+  id: WeaponShuttleGrapplingTurret
+  name: Турель-гарпун
+  description: Шаттл-гарпун для зацепа за другой шаттл. Крюк отображается на радаре.
+  suffix: ShuttleGun, Фронтир
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: RadarBlip
+      radarColor: "#229e51"
+      scale: 1
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets20mm.rsi
+      drawdepth: Mobs
+      layers:
+        - state: turrets20mm
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Battery
+      maxCharge: 5000
+      startingCharge: 5000
+    - type: ExaminableBattery
+    - type: AutoShootGun
+    - type: GunSignalControl
+    - type: WirelessNetworkConnection
+      range: 700
+    - type: FireControllable
+    - type: Gun
+      fireRate: 0.5
+      projectileSpeed: 75
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
+    - type: ProjectileBatteryAmmoProvider
+      proto: BulletShuttleGrapplingHook
+      fireCost: 200
+    - type: SpaceArtillery
+      powerChargeRate: 100
+      powerUseActive: 20
+      powerUsePassive: 1100
+    - type: ShipGunClass
+      shipClass: Light
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 100
+    - type: ShuttleGrappleTurret

@@ -1,0 +1,36 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: ServiceSpawnerGhostRole
+  name: Сервисный сотрудник
+  suffix: спавнер, гост роли, персонаж
+  parent: MarkerBase
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    allowMovement: false
+    allowSpeech: false
+    makeSentient: false
+    name: Сервисный сотрудник
+    description: Сервисный сотрудник
+    raffle:
+      settings: short
+  - type: CloningAppearance
+    gear: ServiceWorkerGearAdmin
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Mobs/Animals/regalrat.rsi
+      state: icon
+
+- type: startingGear
+  id: ServiceWorkerGearAdmin
+  equipment:
+    back: ClothingBackpackERTLeader
+    jumpsuit: ADTClothingUniformNewServiceSuit
+    shoes: ClothingShoesColorBlack
+    id: ServiceWorkerPDA
+    ears: ClothingHeadsetService

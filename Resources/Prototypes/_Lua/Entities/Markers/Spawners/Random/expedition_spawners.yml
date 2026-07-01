@@ -1,0 +1,511 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+
+
+#Dragon fauna region
+#Tables
+- type: entityTable
+  id: LuaExpTableMobCarp
+  table: !type:GroupSelector
+    children:
+    - id: NFMobCarp
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobCarpHolo
+  table: !type:GroupSelector
+    children:
+    - id: NFMobCarpHolo
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobCarpMagic
+  table: !type:GroupSelector
+    children:
+    - id: NFMobCarpMagic
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobCarpRainBow
+  table: !type:GroupSelector
+    children:
+    - id: NFMobCarpRainbow
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: LuaExpTableMobShark
+  table: !type:GroupSelector
+    children:
+    - id: NFMobShark
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: LuaExpTableMobSnake
+  table: !type:GroupSelector
+    children:
+    - id: NFMobPurpleSnake
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: LuaExpTableMobWywernFire
+  table: !type:GroupSelector
+    children:
+    - id: NFMobRainbowWyvernFire
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobWywernIce
+  table: !type:GroupSelector
+    children:
+    - id: NFMobRainbowWyvernIce
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobWywernCaustic
+  table: !type:GroupSelector
+    children:
+    - id: NFMobRainbowWyvernCaustic
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+#summary table
+- type: entityTable
+  id: LuaExpDragonFaunaTableSummary
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: LuaExpTableMobCarp
+      weight: 20
+    - !type:NestedSelector
+      tableId: LuaExpTableMobCarpHolo
+      weight: 7.5
+    - !type:NestedSelector
+      tableId: LuaExpTableMobCarpMagic
+      weight: 20
+    - !type:NestedSelector
+      tableId: LuaExpTableMobCarpRainBow
+      weight: 20
+    - !type:NestedSelector
+      tableId: LuaExpTableMobShark
+      weight: 7.5
+    - !type:NestedSelector
+      tableId: LuaExpTableMobSnake
+      weight: 7.5
+    - !type:NestedSelector
+      tableId: LuaExpTableMobWywernFire
+      weight: 7.5
+    - !type:NestedSelector
+      tableId: LuaExpTableMobWywernIce
+      weight: 5
+    - !type:NestedSelector
+      tableId: LuaExpTableMobWywernCaustic
+      weight: 5
+
+#Spawners
+- type: entity
+  parent: MarkerBase
+  id: LuaExpDragonFaunaSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: EntityTableSpawner
+    offset: 0.4
+    table: !type:NestedSelector
+      tableId: LuaExpDragonFaunaTableSummary
+
+
+
+#Xeno fauna region
+- type: entityTable
+  id: LuaExpTableMobXeno
+  table: !type:GroupSelector
+    children:
+    - id: NFMobXeno
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobXenoDrone
+  table: !type:GroupSelector
+    children:
+    - id: NFMobXenoDrone
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobXenoPraetorian
+  table: !type:GroupSelector
+    children:
+    - id: NFMobXenoPraetorian
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: LuaExpTableMobXenoRavager
+  table: !type:GroupSelector
+    children:
+    - id: NFMobXenoRavager
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: LuaExpTableMobXenoRunner
+  table: !type:GroupSelector
+    children:
+    - id: NFMobXenoRunner
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobXenoSpitter
+  table: !type:GroupSelector
+    children:
+    - id: NFMobXenoSpitter
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+#summary table
+- type: entityTable
+  id: LuaExpXenoFaunaTableSummary
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: LuaExpTableMobXeno
+      weight: 20
+    - !type:NestedSelector
+      tableId: LuaExpTableMobXenoDrone
+      weight: 20
+    - !type:NestedSelector
+      tableId: LuaExpTableMobXenoPraetorian
+      weight: 10
+    - !type:NestedSelector
+      tableId: LuaExpTableMobXenoRavager
+      weight: 10
+    - !type:NestedSelector
+      tableId: LuaExpTableMobXenoRunner
+      weight: 20
+    - !type:NestedSelector
+      tableId: LuaExpTableMobXenoSpitter
+      weight: 20
+
+#Spawners
+- type: entity
+  parent: MarkerBase
+  id: LuaExpXenoFaunaSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: EntityTableSpawner
+    offset: 0.4
+    table: !type:NestedSelector
+      tableId: LuaExpXenoFaunaTableSummary
+
+
+
+#Mercenary fauna region
+- type: entityTable
+  id: LuaExpTableMobMercKnife
+  table: !type:GroupSelector
+    children:
+    - id: MobMercenarySoldierKnife
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobMercPistol
+  table: !type:GroupSelector
+    children:
+    - id: MobMercenarySoldierPistol
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobMercNovalite
+  table: !type:GroupSelector
+    children:
+    - id: MobMercenarySoldierNovalite
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: LuaExpTableMobMercMachete
+  table: !type:GroupSelector
+    children:
+    - id: MobMercenaryBreacherMachete
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobMercRevolver
+  table: !type:GroupSelector
+    children:
+    - id: MobMercenarySoldierRevolver
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+
+- type: entityTable
+  id: LuaExpTableMobMercShotgun
+  table: !type:GroupSelector
+    children:
+    - id: MobMercenaryBreacherShotgun
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+
+- type: entityTable
+  id: LuaExpTableMobMercMedic
+  table: !type:GroupSelector
+    children:
+    - id: MobMercenarySpecialistMedic
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: LuaExpTableMobMercAssault
+  table: !type:GroupSelector
+    children:
+    - id: MobMercenarySpecialistAssault
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+
+#summary table
+- type: entityTable
+  id: LuaExpMercFaunaTableSummary
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: LuaExpTableMobMercKnife
+      weight: 7.5
+    - !type:NestedSelector
+      tableId: LuaExpTableMobMercPistol
+      weight: 15
+    - !type:NestedSelector
+      tableId: LuaExpTableMobMercNovalite
+      weight: 20
+    - !type:NestedSelector
+      tableId: LuaExpTableMobMercMachete
+      weight: 7.5
+    - !type:NestedSelector
+      tableId: LuaExpTableMobMercRevolver
+      weight: 15
+    - !type:NestedSelector
+      tableId: LuaExpTableMobMercShotgun
+      weight: 10
+    - !type:NestedSelector
+      tableId: LuaExpTableMobMercMedic
+      weight: 15
+    - !type:NestedSelector
+      tableId: LuaExpTableMobMercAssault
+      weight: 10
+
+#Spawners
+- type: entity
+  parent: MarkerBase
+  id: LuaExpMercFaunaSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: EntityTableSpawner
+    offset: 0.4
+    table: !type:NestedSelector
+      tableId: LuaExpMercFaunaTableSummary
+
+
+
+#Syndicate fauna region
+- type: entityTable
+  id: LuaExpTableMobSyndieDeckhand
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobSyndicateNavalDeckhand
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobSyndieEngineer
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobSyndicateNavalEngineer
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobSyndieSaboteur
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobSyndicateNavalSaboteur
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobSyndieMedic
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobSyndicateNavalMedic
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: LuaExpTableMobSyndieOperator
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobSyndicateNavalOperator
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: LuaExpTableMobSyndieCaptain
+  table: !type:GroupSelector
+    children:
+    - id: SpawnMobSyndicateNavalCaptain
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+
+#summary table
+- type: entityTable
+  id: LuaExpSyndieFaunaTableSummary
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: LuaExpTableMobSyndieDeckhand
+      weight: 25
+    - !type:NestedSelector
+      tableId: LuaExpTableMobSyndieEngineer
+      weight: 15
+    - !type:NestedSelector
+      tableId: LuaExpTableMobSyndieSaboteur
+      weight: 25
+    - !type:NestedSelector
+      tableId: LuaExpTableMobSyndieMedic
+      weight: 15
+    - !type:NestedSelector
+      tableId: LuaExpTableMobSyndieOperator
+      weight: 10
+    - !type:NestedSelector
+      tableId: LuaExpTableMobSyndieCaptain
+      weight: 10
+
+#Spawners
+- type: entity
+  parent: MarkerBase
+  id: LuaExpSyndieFaunaSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: EntityTableSpawner
+    offset: 0.4
+    table: !type:NestedSelector
+      tableId: LuaExpSyndieFaunaTableSummary
+
+
+
+#Explorers fauna region
+- type: entityTable
+  id: LuaExpTableMobExpMeleeT1
+  table: !type:GroupSelector
+    children:
+    - id: MobExplorerMeleeT1
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobExpMeleeT2
+  table: !type:GroupSelector
+    children:
+    - id: MobExplorerMeleeT2
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobExpMeleeT3
+  table: !type:GroupSelector
+    children:
+    - id: MobExplorerMeleeT3
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+
+- type: entityTable
+  id: LuaExpTableMobExpRangedT1
+  table: !type:GroupSelector
+    children:
+    - id: MobExplorerRangedT1
+      amount: !type:RangeNumberSelector
+        range: 2, 3
+
+- type: entityTable
+  id: LuaExpTableMobExpRangedT2
+  table: !type:GroupSelector
+    children:
+    - id: MobExplorerRangedT2
+      amount: !type:RangeNumberSelector
+        range: 1, 3
+
+- type: entityTable
+  id: LuaExpTableMobExpRangedT3
+  table: !type:GroupSelector
+    children:
+    - id: MobExplorerRangedT3
+      amount: !type:RangeNumberSelector
+        range: 1, 2
+
+#summary table
+- type: entityTable
+  id: LuaExpSalvFaunaTableSummary
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: LuaExpTableMobExpMeleeT1
+      weight: 25
+    - !type:NestedSelector
+      tableId: LuaExpTableMobExpMeleeT2
+      weight: 15
+    - !type:NestedSelector
+      tableId: LuaExpTableMobExpMeleeT3
+      weight: 10
+    - !type:NestedSelector
+      tableId: LuaExpTableMobExpRangedT1
+      weight: 25
+    - !type:NestedSelector
+      tableId: LuaExpTableMobExpRangedT2
+      weight: 15
+    - !type:NestedSelector
+      tableId: LuaExpTableMobExpRangedT3
+      weight: 10
+
+#Spawners
+- type: entity
+  parent: MarkerBase
+  id: LuaExpSalvFaunaSpawner
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: EntityTableSpawner
+    offset: 0.4
+    table: !type:NestedSelector
+      tableId: LuaExpSalvFaunaTableSummary
+
+

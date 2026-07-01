@@ -1,0 +1,66 @@
+- type: entity
+  name: моментальный эффект
+  suffix: "огненная бомба"
+  parent: MarkerBase
+  id: AdminInstantEffectFireBomb
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/torch.rsi
+      state: icon
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: FireBomb
+    totalIntensity: 40
+    intensitySlope: 5
+    maxIntensity: 3
+    canCreateVacuum: false
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  name: моментальный эффект
+  suffix: "разрывная граната"
+  parent: MarkerBase
+  id: AdminInstantEffectGrenade
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/torch.rsi
+      state: icon
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 3
+    totalIntensity: 120
+    canCreateVacuum: false
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 1
+
+
+- type: entity
+  name: моментальный эффект
+  suffix: "святая граната, БСА"
+  parent: MarkerBase
+  id: AdminInstantEffectHolyGrenade
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/torch.rsi
+      state: icon
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 3500
+    intensitySlope: 15
+    maxIntensity: 70
+    canCreateVacuum: true
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 1

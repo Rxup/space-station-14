@@ -1,0 +1,13 @@
+- type: latheRecipe
+  id: SyringeCase
+  result: SyringeCase
+  completetime: 2
+  materials:
+    Plastic: 100
+
+- type: latheRecipe
+  id: SyringeCaseAlt
+  result: SyringeCaseAlt
+  completetime: 2
+  materials:
+    Plastic: 100

@@ -1,0 +1,12 @@
+# Various things
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: CartridgeRocket
+  categories:
+  - MiscAmmo
+  - Ammo
+  result: CartridgeRocket
+  materials:
+    Steel: 250
+    Plastic: 250
+    Plasma: 1000

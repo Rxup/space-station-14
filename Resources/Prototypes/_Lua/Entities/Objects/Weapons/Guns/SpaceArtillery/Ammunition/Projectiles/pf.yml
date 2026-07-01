@@ -1,0 +1,165 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: Bullet20mmPF
+  name: 20mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 20mmpf
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 1.0
+      intensitySlope: 1
+      maxIntensity: 1
+      maxTileBreak: 1
+    - type: TriggerOnEnterGrid
+    - type: ShipWeaponProjectile
+    - type: RadarBlip
+      scale: 0.35
+      radarColor: "#a14900"
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+
+- type: entity
+  id: Bullet53mmPF
+  name: 53mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 53mmpf
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 50.0
+      intensitySlope: 4
+      maxIntensity: 100
+      maxTileBreak: 1
+    - type: TriggerOnEnterGrid
+    - type: RadarBlip
+      scale: 0.35
+      radarColor: "#a14900"
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet80mmPF
+  name: 80mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 80mmpf
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 250.0
+      intensitySlope: 17
+      maxIntensity: 250
+      maxTileBreak: 1
+    - type: TriggerOnEnterGrid
+    - type: RadarBlip
+      scale: 0.55
+      radarColor: "#a14900"
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet105mmPF
+  name: 105mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 105mmpf
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 500.0
+      intensitySlope: 15
+      maxIntensity: 100
+      maxTileBreak: 1
+    - type: TriggerOnEnterGrid
+    - type: RadarBlip
+      scale: 0.55
+      radarColor: "#a14900"
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet120mmPF
+  name: 120mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 120mmpf
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 600.0
+      intensitySlope: 15
+      maxIntensity: 250
+      maxTileBreak: 1
+    - type: TriggerOnEnterGrid
+    - type: RadarBlip
+      scale: 0.75
+      radarColor: "#a14900"
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile
+
+- type: entity
+  id: Bullet140mmPF
+  name: 140mm
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Projectiles/explosives.rsi
+      layers:
+        - state: 140mmpf
+    - type: ExplodeOnTrigger
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 700.0
+      intensitySlope: 15
+      maxIntensity: 500
+      maxTileBreak: 1
+    - type: TriggerOnEnterGrid
+    - type: RadarBlip
+      scale: 0.75
+      radarColor: "#a14900"
+      requireNoGrid: true
+      shape: triangle
+    - type: TimedDespawn
+      lifetime: 20
+    - type: ShipWeaponProjectile

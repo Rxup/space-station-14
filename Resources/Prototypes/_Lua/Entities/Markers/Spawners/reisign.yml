@@ -1,0 +1,23 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: Спавнер меха
+  id: SpawnReisingMech
+  parent: MarkerBase
+  suffix: Lua, Spawner
+  components:
+  - type: Sprite
+    scale: 0.8, 0.8
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Lua/Objects/Specific/Mech/mech.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: reising
+  - type: RandomSpawner
+    prototypes:
+    - MechReising
+    chance: 1
+    offset: 0.0

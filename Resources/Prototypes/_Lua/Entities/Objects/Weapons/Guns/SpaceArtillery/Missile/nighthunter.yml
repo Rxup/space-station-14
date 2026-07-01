@@ -1,0 +1,65 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseWeaponMissile
+  id: WeaponMissileLauncherNightHunter
+  name: Артиллерийская установка "Ночной Хищник"
+  description: Компактная установка, предназначенная для маневренных космических боев. Снаряд "Томагавк" с легкостью пробивает броню врага, оставляя лишь обломки.
+  suffix: ShuttleGun, Фронтир
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: RadarBlip
+    radarColor: "#ca2477"
+    scale: 1
+  - type: Sprite
+    sprite: _Lua/Objects/ShuttleWeapons/50cal.rsi
+    drawdepth: Mobs
+    layers:
+      - state: space_artillery
+  - type: Destructible
+    thresholds:
+    - trigger:
+       !type:DamageTrigger
+        damage: 3500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Gun
+    fireRate: 2
+    projectileSpeed: 40
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Battery
+    maxCharge: 20000
+    startingCharge: 20000
+  - type: ExaminableBattery
+  - type: AutoShootGun
+  - type: GunSignalControl
+  - type: WirelessNetworkConnection
+    range: 700
+  - type: FireControllable
+  - type: SpaceArtillery
+    powerChargeRate: 100
+    powerUsePassive: 2000
+  - type: ShipGunClass
+    shipClass: Light
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 125 #100
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletTomahawk
+    fireCost: 7000

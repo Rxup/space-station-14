@@ -1,0 +1,10 @@
+- type: entity
+  name: оперативник LuaTech
+  id: SpawnPointLatejoinOpsLuaTech
+  parent: SpawnPointJobBase
+  components:
+  - type: SpawnPoint
+    job_id: OpsLuaTech
+    spawn_type: LateJoin
+  - type: Sprite
+    state: green

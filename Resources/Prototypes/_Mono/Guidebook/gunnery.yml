@@ -1,0 +1,55 @@
+- type: guideEntry
+  id: WeaponsSystems
+  name: guide-entry-gunnery
+  text: "/ServerInfo/_Mono/Guidebook/ShipCombat.xml"
+  priority: 7
+  children:
+  - L85Guide
+  - AK570Guide
+  - MARAUDERGuide
+  - CHARONGuide
+  - ASM302Guide
+  - CYREXAGuide
+  - DYMEREGuide
+
+- type: guideEntry
+  id: L85Guide
+  name: guide-entry-l85
+  text: "/ServerInfo/_Mono/Guidebook/Specifications/L85.xml"
+  priority: 1
+
+- type: guideEntry
+  id: AK570Guide
+  name: guide-entry-ak570
+  text: "/ServerInfo/_Mono/Guidebook/Specifications/AK570.xml"
+  priority: 1
+
+- type: guideEntry
+  id: MARAUDERGuide
+  name: guide-entry-marauder
+  text: "/ServerInfo/_Mono/Guidebook/Specifications/MARAUDER.xml"
+  priority: 1
+
+- type: guideEntry
+  id: CHARONGuide
+  name: guide-entry-charon
+  text: "/ServerInfo/_Mono/Guidebook/Specifications/CHARON.xml"
+  priority: 1
+
+- type: guideEntry
+  id: CYREXAGuide
+  name: guide-entry-cyrexa
+  text: "/ServerInfo/_Mono/Guidebook/Specifications/CYREXA.xml"
+  priority: 1
+
+- type: guideEntry
+  id: ASM302Guide
+  name: guide-entry-asm302
+  text: "/ServerInfo/_Mono/Guidebook/Specifications/ASM302.xml"
+  priority: 1
+
+- type: guideEntry 
+  id: DYMEREGuide
+  name: guide-entry-dymere
+  text: "/ServerInfo/_Mono/Guidebook/Specifications/DYMERE.xml"
+  priority: 1

@@ -1,0 +1,36 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: Случайный мусорный предмет
+  id: RandomScrapSalvage
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    layers:
+    - state: pink
+  - type: RandomSpawner
+    prototypes:
+    - ScrapSteel
+    - ScrapGlass
+    - ScrapAirlock1
+    - ScrapAirlock2
+    - ScrapBucket
+    - ScrapCamera
+    - ScrapCanister1
+    - ScrapCanister2
+    - ScrapCloset
+    - ScrapFaxMachine
+    - ScrapFireExtinguisher
+    - ScrapFirelock1
+    - ScrapFirelock2
+    - ScrapFirelock3
+    - ScrapIntercom
+    - ScrapJetpack
+    - ScrapMedkit
+    - ScrapMopBucket
+    - ScrapPAI
+    - ScrapPAIGold
+    - ScrapTube

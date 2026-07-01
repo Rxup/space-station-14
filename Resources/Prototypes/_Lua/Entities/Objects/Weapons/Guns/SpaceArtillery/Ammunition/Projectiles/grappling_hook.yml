@@ -1,0 +1,22 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2026 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: BulletShuttleGrapplingHook
+  name: shuttle grappling hook
+  parent: GrapplingHook
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: TimedDespawn
+      lifetime: 4
+    - type: ShipWeaponProjectile
+    - type: RadarBlip
+      scale: 1.25
+      requireNoGrid: false
+      visibleFromOtherGrids: true
+      radarColor: "#53ff6a"
+      shape: triangle
+      maxDistance: 1024
+    - type: ShuttleGrapplingHookProjectile
+

@@ -1,0 +1,82 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseWeaponNavalBallisctic
+  id: Weapon140mm
+  name: Миномёт "140мм"
+  description: Тяжёлый миномёт, использует снаряды 140мм.
+  suffix: ShuttleGun, Фронтир
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: RadarBlip
+      radarColor: "#229e51"
+      scale: 1
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets140mm.rsi
+      drawdepth: Mobs
+      layers:
+        - state: turrets140mm
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 3500
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Gun
+      fireRate: 0.15 # Adjusted fire rate as battery capacity recharge
+      projectileSpeed: 80
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    - type: Battery
+      maxCharge: 151
+      startingCharge: 151
+    - type: ExaminableBattery
+    - type: AutoShootGun
+    - type: GunSignalControl
+    - type: WirelessNetworkConnection
+      range: 700
+    - type: FireControllable
+    - type: SpaceArtillery
+      powerChargeRate: 30
+      powerUseActive: 1200
+      powerUsePassive: 2500
+    - type: ShipGunClass
+      shipClass: Heavy
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 20
+    - type: ProjectileBatteryAmmoProvider
+      proto: Bullet140mm
+      fireCost: 150
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: Weapon140mmBaseFlatpack
+  suffix: Фронтир
+  name: упакованный тяжёлый миномёт
+  description: Упакованный Тяжёлый Миномёт (.140мм)
+  components:
+  - type: Flatpack
+    entity: Weapon140mm
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

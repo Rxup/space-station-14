@@ -1,0 +1,35 @@
+#  Does not currently support prototype hot-reloading. See comments in c# file.
+- type: explosion
+  id: DefaultShipGun
+  damagePerIntensity:
+    types:
+      Heat: 2
+      Blunt: 2
+      Piercing: 2
+      Structural: 2
+  tileBreakChance: [0, 0.5, 1]
+  tileBreakIntensity: [0, 15, 30]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3
+
+- type: explosion
+  id: HardBombShipGun
+  damagePerIntensity:
+    types:
+      Heat: 7.5
+      Blunt: 7.5
+      Piercing: 3
+      Structural: 20
+  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakIntensity: [ 0, 15, 30 ]
+  tileBreakRerollReduction: 10
+  intensityPerState: 20
+  lightColor: Orange
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 6
+
+# STOP
+# BEFORE YOU ADD MORE EXPLOSION TYPES CONSIDER IF AN EXISTING ONE IS SUITABLE
+# ADDING NEW ONES IS PROHIBITIVELY EXPENSIVE

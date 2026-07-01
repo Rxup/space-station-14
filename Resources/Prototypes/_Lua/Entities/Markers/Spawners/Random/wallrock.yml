@@ -1,0 +1,103 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: периодический спавнер камней
+  suffix: rockwall
+  id: RockWallTimedSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: blue
+        - sprite: Structures/Walls/rock.rsi
+          state: rock
+        - state: timed
+    - type: SingleSpawner
+      commonPrototypes:
+        - WallRock
+        - WallRockCoal
+        - WallRockTin
+        - WallRockQuartz
+        - WallRockSalt
+        - WallRockAndesite
+        - WallRockAndesiteCoal
+        - WallRockAndesiteTin
+        - WallRockAndesiteQuartz
+        - WallRockAndesiteSalt
+        - WallRockBasalt
+        - WallRockBasaltCoal
+        - WallRockBasaltTin
+        - WallRockBasaltQuartz
+        - WallRockBasaltSalt
+        - WallRockChromite
+        - WallRockChromiteCoal
+        - WallRockChromiteTin
+        - WallRockChromiteQuartz
+        - WallRockChromiteSalt
+        - WallRockSand
+        - WallRockSandCoal
+        - WallRockSandTin
+        - WallRockSandQuartz
+        - WallRockSandSalt
+        - WallRockSnow
+        - WallRockSnowCoal
+        - WallRockSnowTin
+        - WallRockSnowQuartz
+        - WallRockSnowSalt
+      commonChance: 1
+      rarePrototypes:
+        - WallRockGold
+        - WallRockSilver
+        - WallRockPlasma
+        - WallRockUranium
+        - WallRockBananium
+        - WallRockArtifactFragment
+        - WallRockAndesiteGold
+        - WallRockAndesiteSilver
+        - WallRockAndesitePlasma
+        - WallRockAndesiteUranium
+        - WallRockAndesiteBananium
+        - WallRockAndesiteArtifactFragment
+        - WallRockBasaltGold
+        - WallRockBasaltSilver
+        - WallRockBasaltPlasma
+        - WallRockBasaltUranium
+        - WallRockBasaltBananium
+        - WallRockBasaltArtifactFragment
+        - WallRockChromiteGold
+        - WallRockChromiteSilver
+        - WallRockChromitePlasma
+        - WallRockChromiteUranium
+        - WallRockChromiteBananium
+        - WallRockChromiteArtifactFragment
+        - WallRockSandGold
+        - WallRockSandSilver
+        - WallRockSandPlasma
+        - WallRockSandUranium
+        - WallRockSandBananium
+        - WallRockSandArtifactFragment
+        - WallRockSnowGold
+        - WallRockSnowSilver
+        - WallRockSnowPlasma
+        - WallRockSnowUranium
+        - WallRockSnowBananium
+        - WallRockSnowArtifactFragment
+      rareChance: 0.2
+      superRarePrototypes:
+        - WallRockDiamond
+        - WallRockGems
+        - WallRockMagmite
+        - WallRockAndesiteDiamond
+        - WallRockAndesiteGems
+        - WallRockAndesiteMagmite
+        - WallRockBasaltDiamond
+        - WallRockBasaltGems
+        - WallRockBasaltMagmite
+        - WallRockChromiteDiamond
+        - WallRockChromiteGems
+        - WallRockChromiteMagmite
+        - WallRockSandDiamond
+        - WallRockSnowDiamond
+      superRareChance: 0.1

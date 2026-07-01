@@ -1,0 +1,132 @@
+#region 20 минут
+#
+#
+#
+#
+#
+#region мастер 1
+- type: entity
+  name: стартовый триггер Бархана-8
+  id: MarkerMasterTrigger
+  parent: MarkerBase
+  suffix: "НЕ МАППИТЬ, НЕ СПАВНИТЬ"
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Objects/Misc/torch.rsi
+      state: icon
+  - type: TimedSpawner
+    prototypes:
+    - MarkerTriggerLvl1
+    chance: 0.1
+    intervalSeconds: 550
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MarkerSlaveTrigger1
+
+- type: entity
+  parent: MarkerBase
+  id: MarkerTriggerLvl1
+  name: MarkerTriggerLvl1
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - AdminInstantEffectFlash
+    - AdminInstantEffectSmoke3
+    - AdminInstantEffectTearGas
+    - AdminInstantEffectEMP
+    - RandomDiseaseRatsSpawn
+    chance: 1
+    offset: 0.2
+  - type: TimedDespawn
+    lifetime: 1
+
+
+#region 40 минут
+#
+#
+#
+#
+#
+#region слейв 2
+- type: entity
+  name: MarkerSlaveTrigger1
+  id: MarkerSlaveTrigger1
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MarkerTriggerLvl2
+    chance: 0.15
+    intervalSeconds: 550
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MarkerSlaveTrigger2
+
+- type: entity
+  parent: MarkerBase
+  id: MarkerTriggerLvl2
+  name: MarkerTriggerLvl2
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - BiohazardousMiniUnArmored
+    - AdminInstantEffectTearGas
+    - AdminInstantEffectEMP
+    - AdminInstantEffectFireBomb
+    - AdminInstantEffectGravityWell
+    - RandomDiseaseRatsSpawn
+    chance: 1
+    offset: 0.2
+  - type: TimedDespawn
+    lifetime: 1
+
+
+#region 60 минут
+#
+#
+#
+#
+#
+#region слейв 3
+- type: entity
+  name: MarkerSlaveTrigger2
+  id: MarkerSlaveTrigger2
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MarkerTriggerLvl3
+    chance: 0.1
+    intervalSeconds: 225
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  parent: MarkerBase
+  id: MarkerTriggerLvl3
+  name: MarkerTriggerLvl3
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - BiohazardousMiniUnArmored
+    - AdminInstantEffectEMP
+    - BiohazardousFungusSpawnGib
+    - BiohazardousFungusSpawn
+    - BiohazardousMotherFungus
+    chance: 1
+    offset: 0.2
+  - type: TimedDespawn
+    lifetime: 1

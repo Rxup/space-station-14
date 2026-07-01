@@ -1,0 +1,170 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: GameruleWeaponSpawnerT2
+  parent: MarkerBasePlaceFree
+  suffix: "Weapon, T2"
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Melee/katana.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 3
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    # T2 Civilian
+    - WeaponCaseLongVulcanExpedition
+    - WeaponCaseLongJackdaw
+    - WeaponCaseLongSniperCeremonialExpedition
+    - WeaponCaseShortFaithExpedition
+    - WeaponCaseLongC20r
+    - WeaponCaseShortLuckyExpedition
+    - WeaponCaseLongWT550Expedition
+    - WeaponCaseLongEnforcerExpedition
+    # T2 Blackmarket
+    - WeaponCaseLongN14AutoRifle
+    - WeaponCaseLongN14WeaponLMG
+    - WeaponCaseLongN14WeaponBrushGun
+    - WeaponCaseLongN14WeaponRifleR91
+    - WeaponCaseLongN14WeaponChineseRifle
+    - WeaponCaseLongN14WeaponService
+    - WeaponCaseLongN14WeaponLeverRifle
+    - WeaponCaseShortN14WeaponRevolverMagnun
+    - WeaponCaseLongN14weapon12mmpipe
+    - WeaponCaseLongN14weapon10mmpipe
+    - WeaponCaseLongN14weapon9mmSMG
+    - WeaponCaseShortN14WeaponPistol12mm
+    - WeaponCaseShortN14WeaponPistol9mm
+    - WeaponCaseShortN14WeaponPistolChinese
+    - WeaponCaseLongN14WeaponShotgun
+    - WeaponCaseLongN14WeaponDoubleBarrelShotgun
+    # T2 Civil Energy Weapons
+    - WeaponCaseLongGunTurboExpedition
+    - WeaponCaseLongWeaponLaserCannon
+    - WeaponCaseLongEnergyGunExpedition
+    - WeaponCaseLongWeaponXrayCannon
+    - WeaponCaseShortWeaponMakeshiftLaser
+    - WeaponCaseShortAdvancedLaserExpedition
+    # T2 BlackMarket Energy Weapons
+    - WeaponCaseShortN14WeaponLaserAutoRifle
+    - WeaponCaseShortN14WeaponPlasmaRifle
+    - WeaponCaseShortN14WeaponWattz2000
+    - WeaponCaseShortAsakim
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - MercenaryTechFabCircuitboardNF
+    - MedicalTechFabCircuitboard
+    - ComputerIFFCircuitboard
+    rareChance: 0.1
+
+- type: entity
+  id: GameruleWeaponSpawnerT3
+  parent: MarkerBasePlaceFree
+  suffix: "Weapon, T3"
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Melee/katana.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 3
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    # T3 BlackMarket
+    - WeaponCaseLongN14WeaponMinigun
+    - WeaponCaseLongN14WeaponAvengerMinigun
+    - WeaponCaseLongN14WeaponAntiMateriel
+    - WeaponCaseLongN14WeaponOldCarbine
+    - WeaponCaseLongN14WeaponMarksman
+    - WeaponCaseLongN14WeaponCarbine
+    - WeaponCaseLongN14WeaponScout
+    - WeaponCaseShortN14WeaponHunterRevolver
+    - WeaponCaseShortN14WeaponRevolverCaptainMagnun
+    - WeaponCaseLongN14WeaponAdvanceSubMachineGun12mm
+    - WeaponCaseLongN14WeaponSubMachineGun10mm
+    - WeaponCaseLongN14WeaponSubMachineGun12mm
+    - WeaponCaseShortN14WeaponRevolver10mm
+    - WeaponCaseShortN14WeaponPistol10mm
+    - WeaponCaseShortN14WeaponPistolSpy
+    - WeaponCaseLongN14WeaponAutoShotgun
+    - WeaponCaseLongN14WeaponCaravanShotgun
+    # T3 StormCreed
+    - WeaponCaseLongHammerBundle
+    - WeaponCaseHeavyRatelBundle
+    - WeaponCaseLongPrometheusBundle
+    - WeaponCaseLongAssaultSmBundle
+    - WeaponCaseLongAK502Bundle
+    - WeaponCaseLongAK410Bundle
+    - WeaponCaseShortRitlandBundle
+    - WeaponCaseLongKnallstockBundle
+    - WeaponCaseLongAK220Bundle
+    - WeaponCaseLongMla73Bundle
+    - WeaponCaseShortRMCWeaponPistolMK45
+    - WeaponCaseShortViper
+    - WeaponCaseShortRMCWeaponPistolHoldout
+    - WeaponCaseLongBigLeadyBundle
+    # T3 Energy Weapons
+    - WeaponCaseLongN14WeaponLaserGatling
+    - WeaponCaseShortN14WeaponLaserProtoRifle
+    - WeaponCaseShortN14WeaponPlasmaAutoRifle
+    - WeaponCaseShortN14WeaponWattz3000
+    - WeaponCaseShortN14WeaponLaserPistol
+    - WeaponCaseShortN14WeaponPlasmaDefender
+    - WeaponCaseLongEGFrostBundle
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - AmmoTechFabCircuitboard
+    - MercenaryTechFabCircuitboardNF
+    - MedicalTechFabCircuitboard
+    - ComputerIFFCircuitboard
+    rareChance: 0.1
+
+- type: entity
+  id: GameruleWeaponSpawnerT4
+  parent: MarkerBasePlaceFree
+  suffix: "Weapon, T4"
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Melee/katana.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 3
+      color: red
+  - type: RandomSpawner
+    prototypes:
+    # T4 for caches
+    - WeaponCaseLongL6Bundle
+    - WeaponCaseLongRMCWeaponLMGM60
+    - WeaponCaseLongN14Weapon50NcrRifle
+    - WeaponCaseLongWeaponRifleAR10
+    - WeaponCaseLongWSPRBundle
+    - WeaponCaseLongM90Bundle
+    - WeaponCaseLongBurnerBundle
+    - WeaponCaseShortWeaponRevolverMateba
+    - WeaponCaseLongVector45ACPBundle
+    - WeaponCaseLongVector9x19mmBundle
+    - WeaponCaseLongADTObjectsWeaponSubMachineGunPPCH45S
+    - WeaponCaseShortCMWeaponPistolM1984
+    - WeaponCaseShortRMCWeaponPistolB92FS
+    - WeaponCaseShortRMCWeaponPistolD18
+    - WeaponCaseLongBigJohnnyBundle
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - AmmoTechFabCircuitboard
+    - SecurityTechFabCircuitboard
+    rareChance: 0.1

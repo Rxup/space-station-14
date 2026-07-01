@@ -1,0 +1,73 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  id: Nakrutka1
+  name: Накрутка
+  description: Прибавляем к стоимости шаттла
+  suffix: 10000
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    layers:
+    - state: pink
+  - type: StaticPrice
+    price: 10000
+
+- type: entity
+  id: Nakrutka2
+  name: Накрутка
+  description: Прибавляем к стоимости шаттла
+  suffix: 20000
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    layers:
+    - state: pink
+  - type: StaticPrice
+    price: 20000
+
+- type: entity
+  id: Nakrutka3
+  name: Накрутка
+  description: Прибавляем к стоимости шаттла
+  suffix: 30000
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    layers:
+    - state: pink
+  - type: StaticPrice
+    price: 30000
+
+- type: entity
+  id: Nakrutka4
+  name: Накрутка
+  description: Прибавляем к стоимости шаттла
+  suffix: 40000
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    layers:
+    - state: pink
+  - type: StaticPrice
+    price: 40000
+
+- type: entity
+  id: Nakrutka5
+  name: Накрутка
+  description: Прибавляем к стоимости шаттла
+  suffix: 50000
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    layers:
+    - state: pink
+  - type: StaticPrice
+    price: 50000

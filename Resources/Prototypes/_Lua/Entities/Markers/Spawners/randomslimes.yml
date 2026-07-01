@@ -1,0 +1,22 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  name: Случайный спавн Слаймов
+  id: SpawnMobSlimeGate
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ai
+  - type: RandomSpawner
+    prototypes:
+      - MobAdultSlimesBlueSpace
+      - MobAdultSlimesGreenSpace
+      - MobAdultSlimesYellowSpace
+      - ReagentSlimeSpawnerSpace
+    rarePrototypes:
+      - MobAdultSlimesGalacticSpace
+    rareChance: 0.05

@@ -1,0 +1,250 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+# T3: rare
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootMeleeT3L
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Melee, T3"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Melee/katana.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 3
+      color: red
+  - type: RandomSpawner
+    prototypes:
+# Мили фоллыча
+    - N14Hatchet
+    - N14TribalHatchet
+    - N14FireAxe
+    - N14BaseAxe
+    - N14BaseBallBat
+    - N14PoliceBaton
+    - N14TribalClub
+    - N14BrokenPipe
+    - N14SledgeHammer
+    - N14SuperSledgeHammer
+    - N14TribalBigClub
+    - N14TribalBigClubDecorated
+    - N14KitchenKnife
+    - N14ButchersCleaver
+    - N14CombatKnife
+    - N14TribalKnife
+    - LegionBanner
+    - N14Machete
+    - N14TribalMachete
+    - N14ScrapMachete
+    - N14ripper
+    - N14InsectShield
+    - N14WastelandSpear
+    - N14WastelandFlagSpear
+    - N14WastelandTribalSpear
+    - N14WastelandTribalJavelin
+# Мили маринов
+    - RMCFireAxe
+    - CMM2132Machete
+    - RMCM5Bayonet
+    - CMM11Knife
+    - RMCPickaxe
+    - CMStunbaton
+# Посох хилера
+#    - WeaponStaffHealing
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootMeleeT4
+    rareChance: 0.05
+
+- type: entity
+  name: random weapon
+  id: SpawnDungeonLootGunT3L
+  parent: MarkerBasePlaceFree
+  suffix: "Dungeon, Gun, T3"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+      scale: 0.7, 0.7
+    - sprite: Objects/Weapons/Guns/Pistols/mk58.rsi
+      state: icon
+    - sprite: Effects/crayondecals.rsi
+      state: 3
+      color: red
+  - type: RandomSpawner
+    prototypes:
+#new
+    - WeaponCaseShortN14WeaponLaserPistol
+#    - WeaponCaseShortN14WeaponPlasmaPistol
+    - WeaponCaseShortN14WeaponPlasmaDefender
+#    - WeaponCaseLongN14WeaponRechargerRifle
+#    - WeaponCaseShortN14WeaponRechargerPistol
+    - WeaponCaseShortN14WeaponLaserAutoRifle
+    - WeaponCaseShortN14WeaponPlasmaAutoRifle
+    - WeaponCaseShortN14WeaponLaserProtoRifle
+#    - WeaponCaseShortN14WeaponLaserRifle
+    - WeaponCaseShortN14WeaponPlasmaRifle
+#    - WeaponCaseShortN14WeaponUrbanPlasmaRifle
+#    - WeaponCaseShortN14WeaponMultiplas
+    - WeaponCaseShortN14WeaponWattz3000
+    - WeaponCaseShortN14WeaponWattz2000
+#    - WeaponCaseShortWeaponFlamer
+    - WeaponCaseLongN14WeaponLMG
+    - WeaponCaseShortN14WeaponPistol9mm
+    - WeaponCaseShortN14WeaponPistol10mm
+#    - WeaponCaseShortN14WeaponPistolColt
+    - WeaponCaseShortN14WeaponPistol12mm
+#    - WeaponCaseShortN14WeaponPipe10mm
+    - WeaponCaseShortN14WeaponPistolChinese
+    - WeaponCaseShortN14WeaponPistolSpy
+#    - WeaponCaseShortN14WeaponPistol22lr
+#    - WeaponCaseShortN14WeaponRevolver9mm
+    - WeaponCaseShortN14WeaponRevolver10mm
+    - WeaponCaseShortN14WeaponRevolverMagnun
+    - WeaponCaseShortN14WeaponRevolverCaptainMagnun
+    - WeaponCaseShortN14WeaponHunterRevolver
+#    - WeaponCaseShortN14Weaponwildwhisper
+#    - WeaponCaseShortN14WeaponRangerSequoia
+    - WeaponCaseLongN14WeaponRifleR91
+    - WeaponCaseLongN14WeaponChineseRifle
+    - WeaponCaseLongN14WeaponCarbine
+    - WeaponCaseLongN14WeaponMarksman
+    - WeaponCaseLongN14WeaponService
+    - WeaponCaseLongN14WeaponScout
+#    - WeaponCaseLongN14WeaponBattleRifle
+    - WeaponCaseLongN14WeaponOldCarbine
+    - WeaponCaseLongN14WeaponDoubleBarrelShotgun
+    - WeaponCaseLongN14WeaponShotgun
+    - WeaponCaseLongN14WeaponAutoShotgun
+    - WeaponCaseLongN14WeaponCaravanShotgun
+#    - WeaponCaseLongN14WeaponLeverShotgun
+#    - WeaponCaseLongN14WeaponRiotShotgun
+    - WeaponCaseLongN14WeaponSubMachineGun10mm
+    - WeaponCaseLongN14WeaponSubMachineGun12mm
+    - WeaponCaseLongN14weapon12mmpipe
+    - WeaponCaseLongN14weapon10mmpipe
+    - WeaponCaseLongN14WeaponAdvanceSubMachineGun12mm
+    - WeaponCaseLongN14weapon9mmSMG
+#    - WeaponCaseLongN14Weapon45SMG
+#    - WeaponCaseLongN14WeaponSniperHunting
+    - WeaponCaseLongN14WeaponAntiMateriel
+#    - WeaponCaseLongN14Weapon50NcrRifle
+#    - WeaponCaseLongN14WeaponLeverCarbine
+    - WeaponCaseLongN14WeaponLeverRifle
+    - WeaponCaseLongN14WeaponBrushGun
+#    - WeaponCaseLongN14WeaponPipeRifle
+#    - WeaponCaseLongN14WeaponSniperVarmint
+#    - WeaponCaseLongN14WeaponPlasmaCaster
+    - WeaponCaseLongN14WeaponLaserGatling
+    - WeaponCaseLongN14WeaponMinigun
+    - WeaponCaseLongN14WeaponAvengerMinigun
+#    - WeaponCaseShortRMCWeaponTaser
+#    - WeaponCaseLongRMCWeaponLMGM60
+#    - WeaponCaseShortRMCWeaponPistolB92FS
+    - WeaponCaseShortRMCWeaponPistolHoldout
+#    - WeaponCaseShortRMCWeaponPistolD18
+#    - WeaponCaseShortCMWeaponPistolM1984
+#    - WeaponCaseShortCMWeaponPistolM77
+    - WeaponCaseShortRMCWeaponPistolMK45
+#    - WeaponCaseShortRMCWeaponPistolSU6
+#    - WeaponCaseShortRMCWeaponRevolverM44
+#    - WeaponCaseShortRMCWeaponRevolverMateba
+#    - WeaponCaseLongWeaponRifleAR10
+#    - WeaponCaseLongWeaponRifleM16
+#    - WeaponCaseLongWeaponRifleM4SPR
+#    - WeaponCaseLongWeaponRifleM4SPRCustom
+#    - WeaponCaseLongWeaponRifleM54CE2
+#    - WeaponCaseLongWeaponRifleM54C
+#    - WeaponCaseLongWeaponShotgunM357Sawn
+#    - WeaponCaseLongWeaponShotgunM357
+#    - WeaponCaseLongWeaponShotgunMOU53
+#    - WeaponCaseLongWeaponShotgunM42A2
+#    - WeaponCaseLongRMCSmartGun
+#    - WeaponCaseLongWeaponSMGM63
+#    - WeaponCaseLongWeaponSMGMP5
+#    - WeaponCaseShortWeaponNailgun
+#    - WeaponCaseLongCMM96SSniperRifle
+#    - WeaponCaseShortCMFlash
+#    - WeaponCaseLongADTObjectsWeaponSubMachineGunUmp
+#    - WeaponCaseShortADTWeaponPistolX01
+#    - WeaponCaseLongADTWeaponRifleXC67
+#    - WeaponCaseLongWeaponSubMachineGunVector
+#    - WeaponCaseLongADTAbakanRifleAEK
+#    - WeaponCaseShortWeaponRevolverInspector
+#    - WeaponCaseLongADTGunRifleAN
+#    - WeaponCaseLongADTObjectsWeaponSubMachineGunPPCH45S
+#    - WeaponCaseLongWeaponShotgunEnforcer
+#    - WeaponCaseShortPistolBlueShield
+#    - WeaponCaseLongWeaponEmpEmitter
+#    - WeaponCaseShortWeaponAntiqueLaser
+#    - WeaponCaseShortWeaponPistolFlintlock
+#    - WeaponCaseLongWeaponDisablerSMG
+#    - WeaponCaseShortWeaponEnergyGunMultiphase
+#    - WeaponCaseLongWeaponShotgunBlunderbuss
+#    - WeaponCaseShortWeaponPistolDesertEagle
+#    - WeaponCaseLongWeaponShotgunImprovised
+#    - WeaponCaseShortWeaponMakeshiftLaser
+#    - WeaponCaseLongWeaponLaserCannon
+#    - WeaponCaseLongWeaponXrayCannon
+#    - WeaponCaseShortWeaponRevolverUnica
+#    - WeaponCaseShortWeaponRevolverPirate
+#    - WeaponCaseShortWeaponRevolverMateba
+    chance: 1.0
+    offset: 0.0
+    rarePrototypes:
+    - SpawnDungeonLootGunT4
+    rareChance: 0.05
+
+#TreasureSpawner from Armories
+- type: entity
+  parent: MarkerBase
+  id: LuaArmorySpawnerTreasure
+  name: Armory Treasure Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+    - SpaceCash5000
+    - SpaceCash10000
+    - SpaceCash20000
+    - SpaceCash30000
+    chance: 0.7
+    offset: 0.0
+    rarePrototypes:
+    - MaterialDiamond
+    rareChance: 0.1
+
+#Circuitboard spawner for armories (to prevent ammotechfab from appearing in every armory)
+- type: entity
+  parent: MarkerBase
+  id: LuaArmorySpawnerCircuitBoard
+  name: Armory CirsuitBoard Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/materials.rsi
+      state: diamond
+  - type: RandomSpawner
+    prototypes:
+#    - AmmoTechFabCircuitboard
+    - MercenaryTechFabCircuitboardNF
+    - MedicalTechFabCircuitboard
+    - ComputerIFFCircuitboard
+    chance: 0.5
+    offset: 0.0
+#    rarePrototypes:
+#    - SecurityTechFabCircuitboard
+#    rareChance: 0.01

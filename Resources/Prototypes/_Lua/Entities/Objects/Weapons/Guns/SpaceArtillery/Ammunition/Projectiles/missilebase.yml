@@ -1,0 +1,37 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+# missiles
+- type: entity
+  id: BaseBulletMissile
+  abstract: true
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Lua/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: RadarBlip
+    scale: 1.5
+    requireNoGrid: true
+    shape: triangle
+  - type: TimedDespawn
+    lifetime: 20
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ShipWeaponProjectile

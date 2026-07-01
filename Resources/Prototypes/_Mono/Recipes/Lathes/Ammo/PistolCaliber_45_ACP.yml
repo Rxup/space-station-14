@@ -1,0 +1,144 @@
+#Pistol Magazines
+- type: latheRecipe
+  parent: BaseAmmoFMJPistolCaliberPistolMagazineRecipe
+  id: Magazine45_ACPPistolFMJ
+  result: Magazine45_ACPPistolFMJ
+
+- type: latheRecipe
+  parent: BaseAmmoRubberPistolCaliberPistolMagazineRecipe
+  id: Magazine45_ACPPistolRubber
+  result: Magazine45_ACPPistolRubber
+
+- type: latheRecipe
+  parent: BaseAmmoIncendiaryPistolCaliberPistolMagazineRecipe
+  id: Magazine45_ACPPistolIncendiary
+  result: Magazine45_ACPPistolIncendiary
+
+- type: latheRecipe
+  parent: BaseAmmoPracticePistolCaliberPistolMagazineRecipe
+  id: Magazine45_ACPPistolPractice
+  result: Magazine45_ACPPistolPractice
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyPistolCaliberPistolMagazineRecipe
+  id: Magazine45_ACPPistolEmpty
+  result: Magazine45_ACPPistolEmpty
+
+- type: latheRecipe
+  parent: BaseAmmoUraniumPistolCaliberPistolMagazineRecipe
+  id: Magazine45_ACPPistolUranium
+  result: Magazine45_ACPPistolUranium
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoEMPPistolCaliberPistolMagazineRecipe
+  id: Magazine45_ACPPistolEMP
+  result: Magazine45_ACPPistolEMP
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoCausticPistolCaliberPistolMagazineRecipe
+  id: Magazine45_ACPPistolCaustic
+  result: Magazine45_ACPPistolCaustic
+
+- type: latheRecipe
+  parent: BaseAmmoHPPistolCaliberPistolMagazineRecipe
+  id: Magazine45_ACPPistolHP
+  result: Magazine45_ACPPistolHP
+
+#SMG Magazines
+
+- type: latheRecipe
+  parent: BaseAmmoFMJPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine45_ACPSubMachineGunFMJ
+  result: Magazine45_ACPSubMachineGunFMJ
+
+#- type: latheRecipe
+#  parent: BaseAmmoPlasteelAPPistolCaliberSubMachineGunMagazineRecipe
+#  id: Magazine45_ACPSubMachineGunPlasteelAP
+#  result: Magazine45_ACPSubMachineGunPlasteelAP
+
+- type: latheRecipe
+  parent: BaseAmmoRubberPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine45_ACPSubMachineGunRubber
+  result: Magazine45_ACPSubMachineGunRubber
+
+- type: latheRecipe
+  parent: BaseAmmoIncendiaryPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine45_ACPSubMachineGunIncendiary
+  result: Magazine45_ACPSubMachineGunIncendiary
+
+- type: latheRecipe
+  parent: BaseAmmoPracticePistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine45_ACPSubMachineGunPractice
+  result: Magazine45_ACPSubMachineGunPractice
+
+- type: latheRecipe
+  parent: BaseAmmoEmptyPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine45_ACPSubMachineGunEmpty
+  result: Magazine45_ACPSubMachineGunEmpty
+
+- type: latheRecipe
+  parent: BaseAmmoUraniumPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine45_ACPSubMachineGunUranium
+  result: Magazine45_ACPSubMachineGunUranium
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoEMPPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine45_ACPSubMachineGunEMP
+  result: Magazine45_ACPSubMachineGunEMP
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoCausticPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine45_ACPSubMachineGunCaustic
+  result: Magazine45_ACPSubMachineGunCaustic
+
+- type: latheRecipe
+  parent: BaseAmmoHPPistolCaliberSubMachineGunMagazineRecipe
+  id: Magazine45_ACPSubMachineGunHP
+  result: Magazine45_ACPSubMachineGunHP
+
+#Boxes
+
+- type: latheRecipe
+  parent: BaseAmmoFMJPistolCaliberAmmoBoxRecipe
+  id: AmmoBox45_ACPFMJ
+  result: AmmoBox45_ACPFMJ
+
+#- type: latheRecipe
+#  parent: BaseAmmoPlasteelAPPistolCaliberAmmoBoxRecipe
+#  id: AmmoBox45_ACPPlasteelAP
+#  result: AmmoBox45_ACPPlasteelAP
+
+- type: latheRecipe
+  parent: BaseAmmoRubberPistolCaliberAmmoBoxRecipe
+  id: AmmoBox45_ACPRubber
+  result: AmmoBox45_ACPRubber
+
+- type: latheRecipe
+  parent: BaseAmmoIncendiaryPistolCaliberAmmoBoxRecipe
+  id: AmmoBox45_ACPIncendiary
+  result: AmmoBox45_ACPIncendiary
+
+- type: latheRecipe
+  parent: BaseAmmoPracticePistolCaliberAmmoBoxRecipe
+  id: AmmoBox45_ACPPractice
+  result: AmmoBox45_ACPPractice
+
+- type: latheRecipe
+  parent: BaseAmmoUraniumPistolCaliberAmmoBoxRecipe
+  id: AmmoBox45_ACPUranium
+  result: AmmoBox45_ACPUranium
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoEMPPistolCaliberAmmoBoxRecipe
+  id: AmmoBox45_ACPEMP
+  result: AmmoBox45_ACPEMP
+
+- type: latheRecipe #Lua
+  parent: BaseAmmoCausticPistolCaliberAmmoBoxRecipe
+  id: AmmoBox45_ACPCaustic
+  result: AmmoBox45_ACPCaustic
+
+- type: latheRecipe
+  parent: BaseAmmoHPPistolCaliberAmmoBoxRecipe
+  id: AmmoBox45_ACPHP
+  result: AmmoBox45_ACPHP

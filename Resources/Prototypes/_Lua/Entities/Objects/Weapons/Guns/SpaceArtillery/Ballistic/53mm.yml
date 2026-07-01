@@ -1,0 +1,84 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseWeaponNavalBallisctic
+  id: Weapon53mm
+  name: Пулемёт "53мм"
+  description: Средний пулемёт, использует снаряды 53мм.
+  suffix: ShuttleGun, Фронтир
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: RadarBlip
+      radarColor: "#229e51"
+      scale: 1
+    - type: Sprite
+      sprite: _Lua/Objects/Weapons/Guns/Turrets/turrets53mm.rsi
+      drawdepth: Mobs
+      layers:
+        - state: turrets53mm
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: ExplosionResistance
+      damageCoefficient: 0.75 # Lua
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 1500
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - type: Gun
+      fireRate: 6
+      projectileSpeed: 50 #60
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    - type: Battery
+      maxCharge: 5000
+      startingCharge: 5000
+    - type: ExaminableBattery
+    - type: AutoShootGun
+    - type: GunSignalControl
+    - type: WirelessNetworkConnection
+      range: 700
+    - type: FireControllable
+    - type: SpaceArtillery
+      powerChargeRate: 100
+      powerUseActive: 100
+      powerUsePassive: 2100
+    - type: ShipGunClass
+      shipClass: Medium
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 300
+    - type: ProjectileBatteryAmmoProvider
+      proto: Bullet53mm
+      fireCost: 50
+
+- type: entity
+  parent: BaseNFFlatpack
+  id: Weapon53mmBaseFlatpack
+  suffix: Фронтир
+  name: упакованный средний пулемёт
+  description: Упакованный Средний Пулемёт (.53мм)
+  components:
+  - type: Flatpack
+    entity: Weapon53mm
+  - type: StaticPrice
+    price: 250
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

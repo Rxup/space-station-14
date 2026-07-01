@@ -1,0 +1,181 @@
+- type: entity
+  id: MachineFTLDrive600Circuitboard
+  suffix: Фронтир
+  parent: BaseMachineCircuitboard
+  name: CTLA-600 bluespace drive board
+  description: A machine board for a bluespace drive.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: MachineFTLDrive600
+    requirements:
+      Capacitor: 4
+      Manipulator: 2
+    componentRequirements:
+      AmeFuelContainer:
+        amount: 3
+        defaultPrototype: AmeJar
+    stackRequirements:
+      Glass: 10
+      Steel: 10
+      Uranium: 30
+
+- type: entity
+  id: MachineDriveCTLA25Circuitboard
+  suffix: Фронтир
+  parent: BaseMachineCircuitboard
+  name: CTLA-25 bluespace drive board
+  description: A machine board for a bluespace drive.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: MachineFTLDrive
+    requirements:
+      Capacitor: 4
+      Manipulator: 2
+    componentRequirements:
+      AmeFuelContainer:
+        amount: 3
+        defaultPrototype: AmeJar
+    stackRequirements:
+      Glass: 10
+      Steel: 10
+      Uranium: 30
+
+- type: entity
+  id: MachineGCSLowCircuitboard
+  suffix: Фронтир
+  parent: BaseMachineCircuitboard
+  name: low-power gunnery control server board
+  description: A machine board for a GCS.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GunneryServerLow
+    requirements:
+      Capacitor: 2
+      Manipulator: 2
+    stackRequirements:
+      Glass: 10
+      Steel: 10
+
+- type: entity
+  id: MachineGCSMediumCircuitboard
+  suffix: Фронтир
+  parent: BaseMachineCircuitboard
+  name: medium-power gunnery control server board
+  description: A machine board for a GCS.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GunneryServerMedium
+    requirements:
+      Capacitor: 2
+      Manipulator: 2
+    stackRequirements:
+      Glass: 10
+      Steel: 10
+
+- type: entity
+  id: MachineGCSHighCircuitboard
+  suffix: Фронтир
+  parent: BaseMachineCircuitboard
+  name: high-power gunnery control server board
+  description: A machine board for a GCS.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GunneryServerHigh
+    requirements:
+      Capacitor: 2
+      Manipulator: 2
+    stackRequirements:
+      Glass: 10
+      Steel: 10
+
+- type: entity
+  id: MachineGCSUltraCircuitboard
+  suffix: Фронтир
+  parent: BaseMachineCircuitboard
+  name: ultra-high-power gunnery control server board
+  description: A machine board for a GCS.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GunneryServerUltra
+    requirements:
+      Capacitor: 2
+      Manipulator: 2
+    stackRequirements:
+      Glass: 10
+      Steel: 10
+
+- type: entity
+  id: MachineGCSStationCircuitboard
+  suffix: Фронтир
+  parent: BaseMachineCircuitboard
+  name: station gunnery control server board
+  description: A machine board for a GCS.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: GunneryServerStation
+    requirements:
+      Capacitor: 2
+      Manipulator: 2
+    stackRequirements:
+      Glass: 10
+      Steel: 10
+
+- type: entity
+  id: MachineDriveCTLA25sCircuitboard
+  suffix: Фронтир
+  parent: BaseMachineCircuitboard
+  name: CTLA-25s bluespace drive board
+  description: A machine board for an advanced bluespace drive.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: MachineFTLDrive25S
+    requirements:
+      Capacitor: 8
+      Manipulator: 4
+    componentRequirements:
+      AmeFuelContainer:
+        amount: 3
+        defaultPrototype: AmeJar
+    stackRequirements:
+      Glass: 20
+      Steel: 20
+      Uranium: 35
+
+- type: entity
+  id: MachineDriveCTLA50Circuitboard
+  suffix: Фронтир
+  parent: BaseMachineCircuitboard
+  name: CTLA-50 bluespace drive board
+  description: A machine board for an advanced bluespace drive.
+  components:
+  - type: Sprite
+    state: security
+  - type: MachineBoard
+    prototype: MachineFTLDrive50
+    requirements:
+      Capacitor: 8
+      Manipulator: 4
+    componentRequirements:
+      AmeFuelContainer:
+        amount: 3
+        defaultPrototype: AmeJar
+    stackRequirements:
+      Glass: 20
+      Steel: 20
+      Uranium: 40
