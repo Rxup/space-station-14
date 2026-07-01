@@ -4,6 +4,8 @@
 
 - type: entity
   id: BulletGR
+
+  suffix: Фронтир
   name: Анаконда
   parent: BaseBulletMissile
   categories: [ HideSpawnMenu ]
@@ -26,6 +28,8 @@
 
 - type: entity
   id: BulletWolf
+
+  suffix: Фронтир
   name: Копьё
   parent: BaseBulletMissile
   categories: [ HideSpawnMenu ]
@@ -54,6 +58,8 @@
 
 - type: entity
   id: BulletTomahawk
+
+  suffix: Фронтир
   name: Томагавк
   parent: BaseBulletMissile
   categories: [ HideSpawnMenu ]

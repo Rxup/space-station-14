@@ -4,6 +4,8 @@
 
 - type: entity
   id: Bullet20mmAP
+
+  suffix: Фронтир
   name: 20mm
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
@@ -27,6 +29,8 @@
 
 - type: entity
   id: Bullet53mmAP
+
+  suffix: Фронтир
   name: 53mm
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
@@ -50,6 +54,8 @@
 
 - type: entity
   id: Bullet80mmAP
+
+  suffix: Фронтир
   name: 80mm
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
@@ -73,6 +79,8 @@
 
 - type: entity
   id: Bullet105mmAP
+
+  suffix: Фронтир
   name: 105mm
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
@@ -96,6 +104,8 @@
 
 - type: entity
   id: Bullet120mmAP
+
+  suffix: Фронтир
   name: 120mm
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
@@ -119,6 +129,8 @@
 
 - type: entity
   id: Bullet140mmAP
+
+  suffix: Фронтир
   name: 140mm
   parent: BaseBullet
   categories: [ HideSpawnMenu ]

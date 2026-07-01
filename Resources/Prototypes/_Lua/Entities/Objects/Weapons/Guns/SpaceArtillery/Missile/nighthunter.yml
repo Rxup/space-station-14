@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponMissile
   id: WeaponMissileLauncherNightHunter
+  suffix: ShuttleGun, Фронтир
   name: Артиллерийская установка "Ночной Хищник"
   description: Компактная установка, предназначенная для маневренных космических боев. Снаряд "Томагавк" с легкостью пробивает броню врага, оставляя лишь обломки.
   placement:

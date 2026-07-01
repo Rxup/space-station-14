@@ -1,6 +1,8 @@
 # ASM
 - type: entity
   id: ShipMissileASM19
+
+  suffix: Фронтир
   name: MPSSM ASM-19 man-portable anti-ship missile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -51,6 +53,8 @@
 
 - type: entity
   id: RocketMk248
+
+  suffix: Фронтир
   name: MPSSM Mk.248 HEAT rocket
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]

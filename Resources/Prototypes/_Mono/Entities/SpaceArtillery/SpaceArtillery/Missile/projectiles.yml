@@ -1,6 +1,8 @@
 # VESPERA
 - type: entity
   id: ShipMissileASM417
+
+  suffix: Фронтир
   name: ASM-417 Mini Missile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -48,6 +50,8 @@
 
 - type: entity
   id: ShipMissileASM302
+
+  suffix: Фронтир
   name: ASM-302 missile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -95,6 +99,8 @@
 
 - type: entity
   id: ShipMissileASM501
+
+  suffix: Фронтир
   name: ASM-501 missile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -142,6 +148,8 @@
 
 - type: entity
   id: ShipMissileASM557
+
+  suffix: Фронтир
   name: ASM-557 Hybrid EMP Missile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]

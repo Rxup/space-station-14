@@ -5,6 +5,7 @@
 - type: entity
   parent: [BaseWeaponNavalEnergy, BaseStructure]
   id: ImpulseLaserBase
+  suffix: ShuttleGun, Фронтир
   name: Импульсный Лазер
   description: Лёгий лазер, использует для питания энергоячейки импульсного лазера.
   placement:
@@ -84,12 +85,14 @@
 - type: entity
   parent: [BaseStructureDisableToolUse, ImpulseLaserBase]
   id: ImpulseLaserUnanchor
+  suffix: Неоткрепляемый, ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
 
 - type: entity
   parent: BaseNFFlatpack
   id: ImpulseLaserBaseFlatpack
+  suffix: Фронтир
   name: упакованный импульсный лазер
   description: Упакованный лёгий лазер, использует для питания энергоячейки импульсного лазера.
   components:

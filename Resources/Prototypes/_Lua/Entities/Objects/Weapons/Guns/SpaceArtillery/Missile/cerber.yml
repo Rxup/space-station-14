@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponMissile
   id: WeaponMissileLauncherCerber
+  suffix: ShuttleGun, Фронтир
   name: Артиллерийская установка "Цербер-Х"
   description: Мощное космическое орудие для уничтожения вражеских флотов. Снаряд "Анаконда" разворачивается при ударе, охватывая огромную площадь и вызывая разрушения на всей территории поражения.
   placement:

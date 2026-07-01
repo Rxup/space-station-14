@@ -4,6 +4,8 @@
 
 - type: entity
   id: BulletShuttleGrapplingHook
+
+  suffix: Фронтир
   name: shuttle grappling hook
   parent: GrapplingHook
   categories: [ HideSpawnMenu ]

@@ -1,5 +1,7 @@
 - type: entity
   id: WeaponTurretShard
+
+  suffix: DRONE ONLY, Фронтир
   name: Light mass driver "Shard"
   parent: BallisticArtillery
   description: Ultralight mass driver weapon of unknown origin, designated "Shard" during initial reverse engineering attempts. Light damage, but long range and little upkeep to mount on ships.
@@ -62,6 +64,8 @@
 
 - type: entity
   id: WeaponTurretPinhole
+
+  suffix: DRONE ONLY, Фронтир
   name: Pinhole-class railgun
   parent: BallisticArtillery
   description: Mass driver weapon of unknown origin. Reverse engineering attempts have indicated extremely high projectile velocity and high-mass projectiles with unresolved ship-pushing payload.

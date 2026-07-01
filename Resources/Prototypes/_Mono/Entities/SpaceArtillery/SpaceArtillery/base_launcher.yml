@@ -1,6 +1,8 @@
 # Base
 - type: entity
   id: BallisticArtilleryBase
+
+  suffix: Фронтир
   abstract: true
   placement:
     mode: SnapgridCenter
@@ -71,11 +73,15 @@
 
 - type: entity
   id: BallisticArtilleryUnanchorable
+
+  suffix: Фронтир
   parent: BallisticArtillery
   abstract: true
 
 - type: entity
   id: BallisticArtillery
+
+  suffix: Фронтир
   parent: BallisticArtilleryBase
   abstract: true
   components:
@@ -84,6 +90,8 @@
 
 - type: entity
   id: BallisticArtilleryBaseCartridge
+
+  suffix: Фронтир
   abstract: true
   placement:
     mode: SnapgridCenter
@@ -155,6 +163,8 @@
 
 - type: entity
   id: BallisticArtilleryCartridge
+
+  suffix: Фронтир
   parent: BallisticArtilleryBaseCartridge
   abstract: true
   components:
@@ -163,11 +173,15 @@
 
 - type: entity
   id: BallisticArtilleryUnanchorableCartridge
+
+  suffix: Фронтир
   parent: BallisticArtilleryCartridge
   abstract: true
 
 - type: entity
   id: BallisticArtilleryBaseMagazine
+
+  suffix: Фронтир
   abstract: true
   placement:
     mode: SnapgridCenter
@@ -247,6 +261,8 @@
 
 - type: entity
   id: BallisticArtilleryMagazine
+
+  suffix: Фронтир
   parent: BallisticArtilleryBaseMagazine
   abstract: true
   components:
@@ -255,5 +271,7 @@
 
 - type: entity
   id: BallisticArtilleryUnanchorableMagazine
+
+  suffix: Фронтир
   parent: BallisticArtilleryMagazine
   abstract: true

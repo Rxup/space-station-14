@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponMissile
   id: WeaponMissileLauncherLancer
+  suffix: ShuttleGun, Фронтир
   name: Артиллерийская установка "Лансер-14"
   description: Точная артиллерийская установка, созданная для ведения боя на средней дистанции. Снаряд "Копьё" пробивает броню, оставляя после себя значительные разрушения.
   placement:

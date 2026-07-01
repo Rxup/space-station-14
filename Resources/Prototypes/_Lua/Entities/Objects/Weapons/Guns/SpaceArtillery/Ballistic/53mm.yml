@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponNavalBallisctic
   id: Weapon53mm
+  suffix: ShuttleGun, Фронтир
   name: Пулемёт "53мм"
   description: Средний пулемёт, использует снаряды 53мм.
   placement:
@@ -70,6 +71,7 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon53mmBaseFlatpack
+  suffix: Фронтир
   name: упакованный средний пулемёт
   description: Упакованный Средний Пулемёт (.53мм)
   components:

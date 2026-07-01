@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseStructure
   id: WeaponTurretBaseLaserLuaTech
+  suffix: Фронтир
   abstract: true
   components:
     - type: Clickable
@@ -91,6 +92,7 @@
 - type: entity
   parent: WeaponTurretBaseLaserLuaTech
   id: WeaponTurretLaserLuaTech
+  suffix: LuaTech, HTN, Фронтир
   name: оборонная турель "LuaTech"
   components:
   - type: Gun
@@ -121,6 +123,7 @@
 - type: entity
   parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaserLuaTech]
   id: WeaponTurretLaserShuttleLuaTech
+  suffix: LuaTech, Shuttle, Фронтир
   name: лазерная турель LuaTech
   components:
   - type: RadarBlip
@@ -139,6 +142,7 @@
 - type: entity
   parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaserLuaTech]
   id: WeaponTurretBigLaserShuttleLuaTech
+  suffix: LuaTech, Shuttle, Фронтир
   name: большая лазерная турель LuaTech
   components:
   - type: Gun

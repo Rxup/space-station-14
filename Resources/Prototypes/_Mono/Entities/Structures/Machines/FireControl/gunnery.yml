@@ -49,6 +49,8 @@
 
 - type: entity
   id: GunneryServerLow
+
+  suffix: 24, Фронтир
   parent: GunneryServerBase
   name: low-power gunnery control server
   components:
@@ -71,6 +73,8 @@
 
 - type: entity
   id: GunneryServerMedium
+
+  suffix: 42, Фронтир
   parent: GunneryServerBase
   name: medium-power gunnery control server
   components:
@@ -93,6 +97,8 @@
 
 - type: entity
   id: GunneryServerHigh
+
+  suffix: 60, Фронтир
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
   name: high-power gunnery control server
   components:
@@ -117,6 +123,8 @@
 
 - type: entity
   id: GunneryServerUltra
+
+  suffix: 96, Фронтир
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
   name: ultra-high-power gunnery control server
   components:
@@ -141,6 +149,8 @@
 
 - type: entity
   id: GunneryServerOmega
+
+  suffix: 500, Фронтир
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
   name: omega-high-power gunnery control server
   components:
@@ -165,6 +175,8 @@
 
 - type: entity
   id: GunneryServerStation
+
+  suffix: Фронтир
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
   name: station gunnery control server
   components:
@@ -188,6 +200,8 @@
 
 - type: entity
   id: GunneryServerStationConsolesEnforced
+
+  suffix: 3000 Enforced Max Consoles, Фронтир
   parent: [BaseStructureDisableToolUse, GunneryServerBase]
   name: station gunnery control server
   components:
@@ -213,6 +227,7 @@
 - type: entity
   parent: BaseComputerAiAccess
   id: ComputerGunneryConsole
+  suffix: Фронтир
   name: gunnery control console
   description: Interfaces with the gunnery control server to operate ship weapons.
   placement:
@@ -285,6 +300,7 @@
 - type: entity
   parent: [BaseStructureComputerTabletop, ComputerGunneryConsole]
   id: ComputerTabletopGunneryConsole
+  suffix: Фронтир
   components:
   - type: Sprite
     drawdepth: SmallObjects

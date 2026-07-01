@@ -6,6 +6,7 @@
 - type: entity
   parent: BaseStructure
   id: BaseWeaponShipsArtillery
+  suffix: Фронтир
   name: base weapon
   description: base weapon
   abstract: true
@@ -75,6 +76,7 @@
 - type: entity
   parent: BaseWeaponShipsArtillery
   id: BaseWeaponNavalEnergy
+  suffix: Фронтир
   name: base energy weapon
   description: base energy weapon
   abstract: true
@@ -86,6 +88,7 @@
 - type: entity
   parent: BaseWeaponShipsArtillery
   id: BaseWeaponNavalBallisctic
+  suffix: Фронтир
   name: base weapon ballistic
   description: base weapon ballistic
   abstract: true
@@ -97,6 +100,7 @@
 - type: entity
   parent: BaseWeaponShipsArtillery
   id: BaseWeaponMissile
+  suffix: Фронтир
   name: base weapon missile
   description: base weapon missile
   abstract: true
@@ -107,6 +111,8 @@
 #Ammo
 - type: entity
   id: BaseMissile
+
+  suffix: Фронтир
   name: missile
   parent: BaseItem
   abstract: true

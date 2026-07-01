@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponNavalBallisctic
   id: Weapon105mm
+  suffix: ShuttleGun, Фронтир
   name: Миномёт "105мм"
   description: Малый миномёт, использует снаряды 105мм.
   placement:
@@ -68,6 +69,7 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon105mmBaseFlatpack
+  suffix: Фронтир
   name: упакованный малый миномёт
   description: Упакованный Малый Миномёт (.105мм)
   components:

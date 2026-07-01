@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponNavalBallisctic
   id: Weapon120mm
+  suffix: ShuttleGun, Фронтир
   name: Миномёт "120мм"
   description: Средний миномёт, использует снаряды 120мм.
   placement:
@@ -68,6 +69,7 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon120mmBaseFlatpack
+  suffix: Фронтир
   name: упакованный средний миномёт
   description: Упакованный Средний Миномёт (.120мм)
   components:

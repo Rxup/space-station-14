@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponMissile
   id: WeaponMissileLauncherStarColosus
+  suffix: НЕ МАППИТЬ!, ShuttleGun, Фронтир
   name: Ядерная артиллерийская установка "Звездный Колосс"
   description: Артиллерийская установка, рассчитанная на глобальные разрушения. Ядерный снаряд "Инферно" распространяет ударную волну, которая поглощает всё в радиусе действия, разрушая корабли и станции.
   placement:
@@ -63,6 +64,7 @@
 - type: entity
   parent: WeaponMissileLauncherStarColosus
   id: WeaponMissileLauncherStarColosusEmpty
+  suffix: Пустой, ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -81,6 +83,7 @@
 - type: entity
   parent: BaseNFFlatpack
   id: WeaponMissileLauncherStarColosusFlatpack
+  suffix: Фронтир
   name: упакованная ядерная артиллерийская установка "Звездный Колосс"
   description: Упакованная ядерная артиллерийская установка "Звездный Колосс", использует ядерный снаряд "Инферно".
   components:
@@ -95,6 +98,8 @@
 
 - type: entity
   id: BulletTND
+
+  suffix: Фронтир
   name: Инферно
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -134,6 +139,8 @@
 
 - type: entity
   id: MissileTND
+
+  suffix: Missile, Фронтир
   name: ядерная ракета класса "Инферно"
   parent: BaseMissile
   components:

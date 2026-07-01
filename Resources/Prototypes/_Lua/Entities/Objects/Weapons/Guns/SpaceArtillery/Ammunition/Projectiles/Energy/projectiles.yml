@@ -4,6 +4,8 @@
 
 - type: entity
   id: BulletMachineGunImpulseTurret
+
+  suffix: Фронтир
   name: импульсный лазер
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -42,6 +44,7 @@
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
   id: RedHeavyLaserSyndie
+  suffix: Фронтир
   components:
   - type: HitscanRadarSignature
     radarColor: "#fd0d0d"
@@ -67,6 +70,8 @@
 
 - type: entity
   id: SynLaserExplosion
+
+  suffix: Фронтир
   categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: TriggerOnSpawn
@@ -81,6 +86,7 @@
 - type: entity
   name: tesla gun lightning
   id: TeslaGunTurretBullet
+  suffix: Фронтир
   parent: [TeslaGunBullet, BaseBullet]
   categories: [ HideSpawnMenu ]
   components:

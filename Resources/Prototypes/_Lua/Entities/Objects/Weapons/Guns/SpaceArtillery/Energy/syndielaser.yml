@@ -5,6 +5,7 @@
 - type: entity
   parent: [BaseWeaponNavalEnergy, BaseStructure]
   id: WeaponTurretBaseLaserSyndie
+  suffix: ShuttleGun, Фронтир
   name: Лазер S
   abstract: true
   components:
@@ -71,6 +72,7 @@
 - type: entity
   parent: WeaponTurretBaseLaserSyndie
   id: WeaponTurretLaserSyndie
+  suffix: ЯО, Ивентовая, ShuttleGun, Фронтир
   components:
   - type: NpcFactionMember
     factions:

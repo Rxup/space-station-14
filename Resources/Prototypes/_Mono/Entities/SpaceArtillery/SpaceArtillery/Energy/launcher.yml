@@ -1,6 +1,8 @@
 # MARAUDER
 - type: entity
   id: WeaponTurretType35
+
+  suffix: Фронтир
   name: Type-35 MARAUDER-type plasma cannon
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
@@ -66,6 +68,8 @@
 
 - type: entity
   id: WeaponTurretplasmaaccelerator
+
+  suffix: Фронтир
   name: Type-1008 Plasma Accelerator
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
@@ -136,6 +140,8 @@
 
 - type: entity
   id: WeaponTurretplasmaacceleratorHuge
+
+  suffix: TSF ONLY, ADS ONLY, Фронтир
   name: Type-1984 Plasma Accelerator
   parent: BallisticArtilleryUnanchorable
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
@@ -205,6 +211,8 @@
 
 - type: entity
   id: WeaponTurretType2048
+
+  suffix: Фронтир
   name: Type-2048 scattershot canon
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
@@ -270,6 +278,8 @@
 
 - type: entity
   id: WeaponTurretScylla
+
+  suffix: Фронтир
   name: PASM "Scylla" Plasma accelerator system of magnet
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
@@ -335,6 +345,8 @@
 
 - type: entity
   id: WeaponTurretType54
+
+  suffix: TSF ONLY, ADS ONLY, Фронтир
   name: Type-54C plasma autopulser
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A rapidly firing energy weapon, dealing a large amount of damage to its targets. Takes a long time to recharge.
@@ -400,6 +412,8 @@
 
 - type: entity
   id: WeaponTurretType241
+
+  suffix: TSF ONLY, ADS ONLY, Фронтир
   name: Type-241 plasma lance
   parent: BallisticArtilleryUnanchorable
   description: A devastating weapon, usually used for large scale fire support and strategic destruction.
@@ -476,6 +490,8 @@
 
 - type: entity
   id: WeaponTurretM25
+
+  suffix: Фронтир
   name: M25 mining pulser
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Uses mechanisms to launch... something. Destroys rock easily.
@@ -541,6 +557,8 @@
 
 - type: entity
   id: WeaponTurretM220
+
+  suffix: Фронтир
   name: M220 RUBICON EMP launcher
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches EMP projectiles at ships, disabling systems with powerful electromagnetic pulses. Ideal for non-lethal engagements and can be remotely activated or linked to a GCS.
@@ -600,6 +618,8 @@
 
 - type: entity
   id: WeaponTurretDymere
+
+  suffix: TSF ONLY, ADS ONLY, Фронтир
   name: ADEX-9 DYMERE Turbolaser
   parent: BallisticArtilleryUnanchorable
   description: Aetherion Dynamics' most iconic supercapital battery. Fires enormous ionized gas projectiles that melt through the toughest ship armor. Can be remotely activated or linked to a GCS.
@@ -671,6 +691,8 @@
 
 - type: entity
   id: WeaponLaserTurretL1Phalanx
+
+  suffix: Фронтир
   name: L-1 Phalanx
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A light laser emplactment designed by the Pantheon Collective, used to shred threats of all types
@@ -732,6 +754,8 @@
 
 - type: entity
   id: WeaponLaserTurretApollo
+
+  suffix: Фронтир
   parent: WeaponLaserTurretL1Phalanx
   name: L-20 Apollo Heavy Laser Cannon
   description: One of the Pantheon Collective's top weapons, the Apollo is aptly named for its beams heating surfaces to beyond the temperature of nearby stars.

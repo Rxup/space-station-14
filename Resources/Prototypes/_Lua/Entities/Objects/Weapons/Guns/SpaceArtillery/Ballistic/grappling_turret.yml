@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponNavalBallisctic
   id: WeaponShuttleGrapplingTurret
+  suffix: ShuttleGun, Фронтир
   name: Турель-гарпун
   description: Шаттл-гарпун для зацепа за другой шаттл. Крюк отображается на радаре.
   placement:

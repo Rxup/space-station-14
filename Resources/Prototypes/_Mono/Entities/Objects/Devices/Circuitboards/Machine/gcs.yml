@@ -1,8 +1,7 @@
 - type: entity
   id: MachineGCSLowCircuitboard
   parent: BaseMachineCircuitboard
-  name: low-power gunnery control server board
-  description: A machine board for a GCS.
+  suffix: Фронтир
   components:
   - type: Sprite
     state: security
@@ -16,8 +15,7 @@
 - type: entity
   id: MachineGCSMediumCircuitboard
   parent: BaseMachineCircuitboard
-  name: medium-power gunnery control server board
-  description: A machine board for a GCS.
+  suffix: Фронтир
   components:
   - type: Sprite
     state: security
@@ -31,8 +29,7 @@
 - type: entity
   id: MachineGCSHighCircuitboard
   parent: BaseMachineCircuitboard
-  name: high-power gunnery control server board
-  description: A machine board for a GCS.
+  suffix: Фронтир
   components:
   - type: Sprite
     state: security
@@ -46,8 +43,7 @@
 - type: entity
   id: MachineGCSUltraCircuitboard
   parent: BaseMachineCircuitboard
-  name: ultra-high-power gunnery control server board
-  description: A machine board for a GCS.
+  suffix: Фронтир
   components:
   - type: Sprite
     state: security
@@ -61,8 +57,7 @@
 - type: entity
   id: MachineGCSStationCircuitboard
   parent: BaseMachineCircuitboard
-  name: station gunnery control server board
-  description: A machine board for a GCS.
+  suffix: Фронтир
   components:
   - type: Sprite
     state: security

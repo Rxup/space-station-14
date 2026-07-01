@@ -1,8 +1,10 @@
-using Robust.Shared.GameStates;
+namespace Content.Shared.Backmen.Tools.Components;
 
-namespace Content.Server.Backmen.Tools.Components;
-
-[RegisterComponent, NetworkedComponent]
+/// <summary>
+/// Blocks tool interactions on structures (e.g. ship weapons that must stay anchored).
+/// Handled by <see cref="DisableToolUseSystem"/>.
+/// </summary>
+[RegisterComponent]
 public sealed partial class DisableToolUseComponent : Component
 {
     [DataField]

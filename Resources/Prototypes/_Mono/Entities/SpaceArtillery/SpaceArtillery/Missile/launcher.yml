@@ -1,6 +1,8 @@
 # ADMP-27 VESPERA
 - type: entity
   id: WeaponTurretVespera
+
+  suffix: Фронтир
   name: ADMP-27 VESPERA Rapid-Fire Pod
   parent: BallisticArtilleryUnanchorable
   description: A rapid-fire swarm missile pod manufactured by Aetherion Dynamics. Saturates targets with guided warheads to overwhelm defenses. Can be remotely activated or linked to a GCS.
@@ -49,6 +51,8 @@
 
 - type: entity
   id: WeaponTurretASM501
+
+  suffix: Фронтир
   name: ASM-501 pod
   parent: BallisticArtilleryUnanchorable
   description: A cruiser torpedo launcher. Fires heavy torpedoes for high-damage strikes against large ships and stations. Can be remotely activated or linked to a GCS.
@@ -95,6 +99,8 @@
 
 - type: entity
   id: WeaponTurretVanyk
+
+  suffix: Фронтир
   name: ASM-302 pod
   parent: BallisticArtillery
   description: An escort missile pod manufactured by Aetherion Dynamics. Launches guided missiles for basic ship-to-ship combat and area denial. Can be remotely activated or linked to a GCS.
@@ -153,6 +159,8 @@
 
 - type: entity
   id: WeaponTurretTovek
+
+  suffix: Фронтир
   name: ADMX-23 TOVEK Hybrid EMP Pod
   parent: BallisticArtillery
   description: A hybrid EMP missile pod by Aetherion Dynamics. Fires EMPHE warheads to disable and weaken enemy ships at long range. Can be remotely activated or linked to a GCS.

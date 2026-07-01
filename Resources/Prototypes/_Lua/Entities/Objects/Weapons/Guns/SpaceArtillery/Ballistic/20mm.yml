@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponNavalBallisctic
   id: Weapon20mm
+  suffix: ShuttleGun, Фронтир
   name: Пулемёт "20мм"
   description: Лёгий пулемёт, использует снаряды 20мм.
   placement:
@@ -70,6 +71,7 @@
 - type: entity
   parent: [BaseWeaponNavalBallisctic, Weapon20mm]
   id: Weapon20mmPD
+  suffix: ShuttleGun, Оборона, Фронтир
   name: Пулемёт Д "20мм"
   description: Это автоматическое оружие, предназначенное для защиты ключевых объектов или зон от близкорасположенных целей.
   components:
@@ -107,6 +109,7 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon20mmBaseFlatpack
+  suffix: Фронтир
   name: упакованный лёгкий пулемёт
   description: Упакованный Лёгкий Пулемёт (.20мм)
   components:

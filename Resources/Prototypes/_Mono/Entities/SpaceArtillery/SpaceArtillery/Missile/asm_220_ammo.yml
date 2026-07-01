@@ -1,5 +1,7 @@
 - type: entity
   id: BaseTorpedo
+
+  suffix: Фронтир
   name: BaseTorpedo
   description: If you can see this you're probably dead!
   abstract: true
@@ -36,6 +38,8 @@
 
 - type: entity
   id: ShipMissileASM220HE
+
+  suffix: Фронтир
   name: ASM-220 torpedo (HE)
   parent: BaseTorpedo
   categories: [ HideSpawnMenu ]
@@ -102,6 +106,8 @@
 
 - type: entity
   id: Asm220TorpedoHE
+
+  suffix: Фронтир
   name: ASM-220 high-explosive torpedo
   description: Contains a large explosive payload. High-Explosive is an understatement.
   parent: BaseGrenade
@@ -127,6 +133,8 @@
 
 - type: entity
   id: ShipMissileASM220LOSAT
+
+  suffix: Фронтир
   name: ASM-220 LOSAT hyper-penetrator
   parent: BaseTorpedo
   categories: [ HideSpawnMenu ]
@@ -205,6 +213,8 @@
 
 - type: entity
   id: Asm220TorpedoLOSAT
+
+  suffix: Фронтир
   name: ASM-220 LOSAT missile
   description: Effectively a large synthalloy hyper-penetrator. Tears through hull with ease.
   parent: BaseGrenade
@@ -230,6 +240,8 @@
 
 - type: entity
   id: ShipMissileASM220ECM
+
+  suffix: Фронтир
   name: ASM-220 torpedo (ECM)
   parent: BaseTorpedo
   categories: [ HideSpawnMenu ]
@@ -301,6 +313,8 @@
 
 - type: entity
   id: Asm220TorpedoECM
+
+  suffix: Фронтир
   name: ASM-220 ECM torpedo
   description: Compared to a standard HE torpedo, this one is much more destructive to electronics due to an EMP payload installed inside, though it's almost completely harmless to the hull.
   parent: BaseGrenade

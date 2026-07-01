@@ -1,6 +1,8 @@
 # MARAUDER
 - type: entity
   id: ShipMediumPlasmaProjectile
+
+  suffix: Фронтир
   name: plasma projectile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -42,6 +44,7 @@
   name: cerberus spread
   parent: ShipMediumPlasmaProjectile
   id: CerberusSpread
+  suffix: Фронтир
   components:
   - type: ProjectileSpread
     proto: ShipMediumPlasmaProjectile
@@ -54,6 +57,7 @@
   name: Scylla spread
   parent: ShipMediumPlasmaProjectile
   id: ScyllaSpread
+  suffix: Фронтир
   components:
   - type: ProjectileSpread
     proto: 20mmBulletArmorPiercing
@@ -64,6 +68,8 @@
 
 - type: entity
   id: ShipAutopulserPlasmaProjectile
+
+  suffix: Фронтир
   name: plasma projectile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -104,6 +110,8 @@
 
 - type: entity
   id: ShipGlassingBeamPlasmaProjectile
+
+  suffix: Фронтир
   name: plasma projectile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -144,6 +152,8 @@
 
 - type: entity
   id: ShipM25Projectile
+
+  suffix: Фронтир
   name: M25 projectile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -176,6 +186,8 @@
 
 - type: entity
   id: ShipRubiconProjectile
+
+  suffix: Фронтир
   name: EMP projectile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -212,6 +224,8 @@
 
 - type: entity
   id: ShipDymereProjectile
+
+  suffix: Фронтир
   name: Ionized Gas Projectile
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
@@ -253,6 +267,7 @@
 - type: entity
   parent: BasicHitscan
   id: PhalanxLaser
+  suffix: Фронтир
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicVisuals
@@ -280,6 +295,7 @@
 - type: entity
   parent: BasicHitscan
   id: ApolloLaser
+  suffix: Фронтир
   categories: [ HideSpawnMenu ]
   components:
   - type: HitscanBasicVisuals
@@ -308,6 +324,8 @@
 
 - type: entity
   id: ApolloExplosion
+
+  suffix: Фронтир
   categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: TriggerOnSpawn

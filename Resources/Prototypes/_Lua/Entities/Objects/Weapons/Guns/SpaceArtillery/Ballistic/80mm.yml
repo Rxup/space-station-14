@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponNavalBallisctic
   id: Weapon80mm
+  suffix: ShuttleGun, Фронтир
   name: Пулемёт "80мм"
   description: Тяжёлый пулемёт, использует снаряды 80мм.
   placement:
@@ -70,6 +71,7 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon80mmBaseFlatpack
+  suffix: Фронтир
   name: упакованный тяжёлый пулемёт
   description: Упакованный Средний Пулемёт (.80мм)
   components:

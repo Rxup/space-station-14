@@ -5,6 +5,8 @@
 # missiles
 - type: entity
   id: BaseBulletMissile
+
+  suffix: Фронтир
   abstract: true
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]

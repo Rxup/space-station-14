@@ -5,6 +5,7 @@
 - type: entity
   parent: [BaseWeaponNavalEnergy, BaseStructure]
   id: TeslaTurretBase
+  suffix: ShuttleGun, Фронтир
   name: Тесла
   description: Тесла турель, использует для питания энергоячейки тесла турели.
   placement:
@@ -73,12 +74,14 @@
 - type: entity
   parent: [BaseStructureDisableToolUse, TeslaTurretBase]
   id: TeslaTurretUnanchor
+  suffix: Неоткрепляемый для кораблей, ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
 
 - type: entity
   parent: BaseNFFlatpack
   id: TeslaTurretBaseFlatpack
+  suffix: Фронтир
   name: упакованная тесла турель
   description: Упакованная тесла турель, использует для питания энергоячейки тесла турели.
   components:

@@ -1,9 +1,12 @@
-using Content.Server.Backmen.Tools.Components;
+using Content.Shared.Backmen.Tools.Components;
 using Content.Shared.Construction.Components;
 using Content.Shared.Tools.Components;
 
-namespace Content.Server.Backmen.Tools;
+namespace Content.Shared.Backmen.Tools;
 
+/// <summary>
+/// Blocks tool and anchor interactions on structures that must not be modified in the field.
+/// </summary>
 public sealed class DisableToolUseSystem : EntitySystem
 {
     public override void Initialize()
@@ -14,21 +17,21 @@ public sealed class DisableToolUseSystem : EntitySystem
         SubscribeLocalEvent<DisableToolUseComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
     }
 
-    private void OnToolUseAttempt(EntityUid uid, DisableToolUseComponent component, ToolUseAttemptEvent args)
+    private void OnToolUseAttempt(Entity<DisableToolUseComponent> ent, ref ToolUseAttemptEvent args)
     {
-        if (HasAnyRestriction(component))
+        if (HasAnyRestriction(ent.Comp))
             args.Cancel();
     }
 
-    private void OnAnchorAttempt(EntityUid uid, DisableToolUseComponent component, AnchorAttemptEvent args)
+    private void OnAnchorAttempt(Entity<DisableToolUseComponent> ent, ref AnchorAttemptEvent args)
     {
-        if (component.Anchoring)
+        if (ent.Comp.Anchoring)
             args.Cancel();
     }
 
-    private void OnUnanchorAttempt(EntityUid uid, DisableToolUseComponent component, UnanchorAttemptEvent args)
+    private void OnUnanchorAttempt(Entity<DisableToolUseComponent> ent, ref UnanchorAttemptEvent args)
     {
-        if (component.Anchoring)
+        if (ent.Comp.Anchoring)
             args.Cancel();
     }
 

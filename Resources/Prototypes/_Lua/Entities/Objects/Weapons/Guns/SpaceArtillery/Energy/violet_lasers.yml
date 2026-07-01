@@ -4,6 +4,7 @@
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
   id: VioletLaserDefence
+  suffix: Фронтир
   components:
   - type: HitscanBasicDamage
     damage:
@@ -28,6 +29,7 @@
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
   id: VioletLaserShip
+  suffix: Фронтир
   components:
   - type: HitscanRadarSignature
     radarColor: "#c24bfa"
@@ -55,6 +57,7 @@
   parent: BasicHitscan
   categories: [ HideSpawnMenu ]
   id: VioletBigLaserShip
+  suffix: Фронтир
   components:
   - type: HitscanRadarSignature
     radarColor: "#c24bfa"
@@ -81,6 +84,8 @@
 
 - type: entity
   id: VioletLaserExplosion
+
+  suffix: Фронтир
   categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: TriggerOnSpawn
@@ -94,6 +99,8 @@
 
 - type: entity
   id: VioletBigLaserExplosion
+
+  suffix: Фронтир
   categories: [ HideSpawnMenu, Spawner ]
   components:
   - type: TriggerOnSpawn

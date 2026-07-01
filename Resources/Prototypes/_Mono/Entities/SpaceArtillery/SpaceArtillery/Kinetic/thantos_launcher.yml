@@ -1,6 +1,8 @@
 # Station one w/ infinite ammo
 - type: entity
   id: WeaponTurretThanatos
+
+  suffix: STATION ONLY, Recharging Ammo, Фронтир
   name: THANATOS twin mass driver
   parent: BallisticArtilleryUnanchorable
   description: The charon's mean older brother, the Thanatos is a force to be reckoned with. It can be remotely activated or linked up to a GCS. This one feeds from an autoloader somewhere, and doesn't need manual reloads.

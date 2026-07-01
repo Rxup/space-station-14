@@ -5,6 +5,7 @@
 - type: entity
   parent: BaseWeaponNavalBallisctic
   id: Weapon140mm
+  suffix: ShuttleGun, Фронтир
   name: Миномёт "140мм"
   description: Тяжёлый миномёт, использует снаряды 140мм.
   placement:
@@ -68,6 +69,7 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon140mmBaseFlatpack
+  suffix: Фронтир
   name: упакованный тяжёлый миномёт
   description: Упакованный Тяжёлый Миномёт (.140мм)
   components:
