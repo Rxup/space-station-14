@@ -60,6 +60,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 125 #100
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletTomahawk
     fireCost: 7000

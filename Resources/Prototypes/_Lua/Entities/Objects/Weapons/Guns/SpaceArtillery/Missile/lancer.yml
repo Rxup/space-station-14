@@ -59,6 +59,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletWolf
     fireCost: 20000

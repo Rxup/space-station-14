@@ -61,7 +61,7 @@
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 20
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: Bullet140mm
       fireCost: 150
 

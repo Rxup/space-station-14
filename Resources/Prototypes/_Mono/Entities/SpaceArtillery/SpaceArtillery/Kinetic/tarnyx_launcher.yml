@@ -37,7 +37,7 @@
     powerUsePassive: 3500
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipTarnyxProjectile
     fireCost: 15000 # low shot weapon moved back to the original spot
   - type: RadarBlip

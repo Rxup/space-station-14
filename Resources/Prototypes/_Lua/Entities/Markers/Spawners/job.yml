@@ -38,10 +38,10 @@
     job_id: SecurityGuard
     spawn_type: LateJoin
   - type: Sprite
-    sprite: _NF/Markers/jobs.rsi
+    sprite: Markers/jobs.rsi
     layers:
       - state: green
-      - state: securityguard
+      - state: security_officer
 
 # No LateJoin
 
@@ -82,10 +82,10 @@
   - type: SpawnPoint
     job_id: SecurityGuard
   - type: Sprite
-    sprite: _NF/Markers/jobs.rsi
+    sprite: Markers/jobs.rsi
     layers:
       - state: green
-      - state: securityguard
+      - state: security_officer
 
 - type: entity
   parent: SpawnPointJobBase
@@ -134,7 +134,7 @@
   - type: SpawnPoint
     job_id: FrontierEngineer
   - type: Sprite
-    sprite: _NF/Markers/jobs.rsi
+    sprite: Markers/jobs.rsi
     layers:
       - state: green
-      - state: planttechnician
+      - state: engineer

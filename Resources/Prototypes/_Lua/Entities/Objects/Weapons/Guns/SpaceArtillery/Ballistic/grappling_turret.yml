@@ -39,7 +39,7 @@
       availableModes:
         - SemiAuto
       soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: BulletShuttleGrapplingHook
       fireCost: 200
     - type: SpaceArtillery

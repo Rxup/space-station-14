@@ -37,7 +37,7 @@
     powerUseActive: 0
   - type: FireControlRotate
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipMediumPlasmaProjectile
     fireCost: 500
   - type: Destructible
@@ -109,7 +109,7 @@
     powerUseActive: 0
   - type: FireControlRotate
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipDymereProjectile
     fireCost: 2400
   - type: Destructible
@@ -188,7 +188,7 @@
     powerUsePassive: 25000
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipDymereProjectile
     fireCost: 2400
   - type: Destructible
@@ -251,7 +251,7 @@
     powerUseActive: 0
   - type: FireControlRotate
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: CerberusSpread
     fireCost: 500
   - type: Destructible
@@ -319,7 +319,7 @@
     powerUseActive: 0
   - type: FireControlRotate
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipAutopulserPlasmaProjectile
     fireCost: 500
   - type: Destructible
@@ -387,7 +387,7 @@
     powerUseActive: 0
   - type: FireControlRotate
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipAutopulserPlasmaProjectile
     fireCost: 450
   - type: Destructible
@@ -472,7 +472,7 @@
     powerUsePassive: 25000
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipGlassingBeamPlasmaProjectile
     fireCost: 300
   - type: Destructible
@@ -535,7 +535,7 @@
     powerUsePassive: 500
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipM25Projectile
     fireCost: 100
   - type: Destructible
@@ -603,7 +603,7 @@
     powerUsePassive: 1250
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipRubiconProjectile
     fireCost: 500
   - type: Destructible
@@ -675,7 +675,7 @@
     powerUsePassive: 25000
     powerUseActive: 0
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipDymereProjectile
     fireCost: 2400
   - type: Destructible
@@ -739,7 +739,7 @@
     powerUseActive: 0
   - type: FireControlRotate
   - type: Actions
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: PhalanxLaser
     fireCost: 25
   - type: Destructible
@@ -789,7 +789,7 @@
   - type: ShipGunClass
     shipClass: Heavy
     processingPowerCost: 42
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ApolloLaser
     fireCost: 500
   - type: Destructible

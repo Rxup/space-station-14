@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Made by LuaWorld/LuaTech tm. (discord)#hackslua",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "impulselaser",
+	  "directions": 8
+    },
+    {
+      "name": "impulselaser-unshaded",
+	  "directions": 8
+    },
+    {
+      "name": "mag-unshaded-0",
+	  "directions": 8,
+	  "delays": [
+	  [0.5, 0.5], 
+	  [0.5, 0.5], 
+	  [0.5, 0.5], 
+	  [0.5, 0.5], 
+	  [0.5, 0.5], 
+	  [0.5, 0.5], 
+	  [0.5, 0.5], 
+	  [0.5, 0.5]
+	  ]
+    },
+    {
+      "name": "syndie_broken"
+    }
+  ]
+}

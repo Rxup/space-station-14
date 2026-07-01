@@ -1,0 +1,15 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  parent: BaseFlatpack
+  id: BaseNFFlatpack
+  abstract: true
+  components:
+  - type: StaticPrice
+    price: 150
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon

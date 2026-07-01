@@ -41,7 +41,7 @@
     powerUsePassive: 1000
     powerUseActive: 7500
   - type: Actions
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: ShipRailgunProjectile
     fireCost: 1500
   - type: Fixtures

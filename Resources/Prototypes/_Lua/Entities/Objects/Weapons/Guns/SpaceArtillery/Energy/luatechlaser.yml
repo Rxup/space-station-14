@@ -105,7 +105,7 @@
       path: /Audio/_Lua/Weapons/Guns/Gunshots/laser_shot.ogg
       params:
         volume: -2
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: VioletLaserDefence
     fireCost: 10
   - type: HTN
@@ -131,7 +131,7 @@
     radarColor: "#1a4a88"
     scale: 1.5
   - type: FireControllable
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: VioletLaserShip
     fireCost: 300
   - type: LuaTech
@@ -177,7 +177,7 @@
     radarColor: "#1a4a88"
     scale: 2
   - type: FireControllable
-  - type: HitscanBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: VioletBigLaserShip
     fireCost: 50
   - type: LuaTech

@@ -40,7 +40,7 @@
         params:
           volume: -2
     - type: FireControllable
-    - type: HitscanBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: RedHeavyLaserSyndie
       fireCost: 200
     - type: Battery

@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "https://github.com/BeeStation/NSV13/blob/e486a252723a9b71546fe01836cae00d199cecdd/icons/obj/ammo.dmi and modified by Just-a-Unity-Dev, HacksLua",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+      {
+          "name": "20mmap"
+      },
+      {
+          "name": "20mmhe"
+      },
+      {
+          "name": "20mmpf"
+      },
+      {
+          "name": "53mmap"
+      },
+      {
+          "name": "53mmhe"
+      },
+      {
+          "name": "53mmpf"
+      },
+      {
+          "name": "80mmap"
+      },
+      {
+          "name": "80mmhe"
+      },
+      {
+          "name": "80mmpf"
+      },
+      {
+          "name": "105mmap"
+      },
+      {
+          "name": "105mmhe"
+      },
+      {
+          "name": "105mmpf"
+      },
+      {
+          "name": "120mmap"
+      },
+      {
+          "name": "120mmhe"
+      },
+      {
+          "name": "120mmpf"
+      },
+      {
+          "name": "140mmap"
+      },
+      {
+          "name": "140mmhe"
+      },
+      {
+          "name": "140mmpf"
+      },
+      {
+          "name": "sam"
+      },
+      {
+          "name": "sdm"
+      },
+      {
+          "name": "tad"
+      },
+      {
+          "name": "tnd"
+      }
+  ]
+}

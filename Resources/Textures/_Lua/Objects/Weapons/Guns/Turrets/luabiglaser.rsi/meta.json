@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by LuaWorld/LuaTech tm. (discord)#LoneWolf7008",
+  "size": {
+    "x": 96,
+    "y": 96
+  },
+  "states": [
+    {
+      "name": "railgun",
+	  "directions": 4
+    },
+    {
+      "name": "railgun-unshaded",
+	  "directions": 4
+    },
+    {
+      "name": "mag-unshaded-0",
+	  "directions": 4
+    },
+    {
+      "name": "syndie_broken"
+    }
+  ]
+}

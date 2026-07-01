@@ -1,0 +1,15 @@
+# LuaWorld - This file is licensed under AGPLv3
+# Copyright (c) 2025 LuaWorld Contributors
+# See AGPLv3.txt for details.
+
+- type: entity
+  abstract: true
+  parent: MarkerBase
+  id: MarkerBasePlaceFree
+  placement:
+    mode: PlaceFree
+  components:
+  - type: Transform
+    anchored: false
+  - type: Tag
+    tags: []

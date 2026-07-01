@@ -10,12 +10,9 @@
   components:
     - type: Sprite
       layers:
-        - sprite: Markers/atmos.rsi # {
+        - sprite: Markers/atmos.rsi
           state: base
           shader: unshaded
-        - sprite: Markers/atmos.rsi
-          shader: unshaded # }
-          state: door
     - type: Fixtures
       fixtures:
         fix1:

@@ -63,7 +63,7 @@
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 25
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: Bullet80mm
       fireCost: 50
 

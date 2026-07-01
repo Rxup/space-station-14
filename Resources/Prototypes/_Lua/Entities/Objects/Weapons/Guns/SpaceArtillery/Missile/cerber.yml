@@ -61,6 +61,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 100
-  - type: ProjectileBatteryAmmoProvider
+  - type: BatteryAmmoProvider
     proto: BulletGR
     fireCost: 49500

@@ -187,7 +187,6 @@
     prototypes:
     - ActorGear1
   - type: Godmode
-  - type: GoblinAccent
   - type: LizardAccent
   - type: MothAccent
   - type: ScrambledAccent

@@ -68,7 +68,7 @@
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 3
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: TeslaGunTurretBullet
       fireCost: 150
 

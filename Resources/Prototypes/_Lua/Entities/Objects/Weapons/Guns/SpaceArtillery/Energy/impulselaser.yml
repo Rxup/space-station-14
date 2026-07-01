@@ -77,7 +77,7 @@
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 50
-    - type: ProjectileBatteryAmmoProvider
+    - type: BatteryAmmoProvider
       proto: BulletMachineGunImpulseTurret
       fireCost: 150
 
