@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseStructure
-  id: WeaponTurretBaseLaser
+  id: WeaponTurretBaseLaserLuaTech
   abstract: true
   components:
     - type: Clickable
@@ -91,7 +91,7 @@
       price: 750
 
 - type: entity
-  parent: WeaponTurretBaseLaser
+  parent: WeaponTurretBaseLaserLuaTech
   id: WeaponTurretLaserLuaTech
   name: оборонная турель "LuaTech"
   suffix: LuaTech, HTN, Фронтир
@@ -122,7 +122,7 @@
     - LuaTech
 
 - type: entity
-  parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaser]
+  parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaserLuaTech]
   id: WeaponTurretLaserShuttleLuaTech
   name: лазерная турель LuaTech
   suffix: LuaTech, Shuttle, Фронтир
@@ -141,7 +141,7 @@
       machine_parts: !type:Container
 
 - type: entity
-  parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaser]
+  parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaserLuaTech]
   id: WeaponTurretBigLaserShuttleLuaTech
   name: большая лазерная турель LuaTech
   suffix: LuaTech, Shuttle, Фронтир
