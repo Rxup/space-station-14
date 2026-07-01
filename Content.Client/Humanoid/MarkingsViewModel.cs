@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Corvax.Interfaces.Shared; // backmen: sponsor-markings
 using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -407,6 +408,10 @@ public sealed partial class MarkingsViewModel
             _marking.EnsureValidGroupAndSex(actualMarkings, organData.Group, organProfileData.Sex);
             _marking.EnsureValidLayers(actualMarkings, organData.Layers);
             _marking.EnsureValidLimits(actualMarkings, organData.Group, organData.Layers, organProfileData.SkinColor, organProfileData.EyeColor);
+            // start-backmen: sponsor-markings
+            if (IoCManager.Instance?.TryResolveType<ISharedSponsorsManager>(out var sponsorsManager) == true)
+                _marking.EnsureValidSponsor(actualMarkings, sponsorsManager.GetClientPrototypes().ToHashSet());
+            // end-backmen: sponsor-markings
 
             _markings[organ] = actualMarkings;
         }

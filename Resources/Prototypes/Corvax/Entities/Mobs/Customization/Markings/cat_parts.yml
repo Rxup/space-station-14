@@ -1,6 +1,7 @@
 - type: marking
   id: CatEarsStubby
   bodyPart: HeadTop
+  sponsorOnly: true
   groupWhitelist: [Human]
   coloring:
     default:
@@ -23,6 +24,7 @@
 - type: marking
   id: CatEarsCurled
   bodyPart: HeadTop
+  sponsorOnly: true
   groupWhitelist: [Human]
   coloring:
     default:
@@ -45,6 +47,7 @@
 - type: marking
   id: CatEarsTorn
   bodyPart: HeadTop
+  sponsorOnly: true
   groupWhitelist: [Human]
   coloring:
     default:
@@ -67,6 +70,7 @@
 - type: marking
   id: CatTailStripes
   bodyPart: Tail
+  sponsorOnly: true
   groupWhitelist: [Human]
   coloring:
     default:

@@ -36,6 +36,11 @@ namespace Content.Shared.Humanoid.Markings
         [DataField("sprites", required: true)]
         public List<SpriteSpecifier> Sprites { get; private set; } = default!;
 
+        // start-backmen: sponsor-markings
+        [DataField]
+        public bool SponsorOnly { get; private set; }
+        // end-backmen: sponsor-markings
+
         public Marking AsMarking()
         {
             return new Marking(ID, Sprites.Count);

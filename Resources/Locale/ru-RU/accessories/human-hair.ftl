@@ -80,6 +80,7 @@ marking-HumanHairLowfade = Фэйд (Низкий)
 marking-HumanHairBaldfade = Фэйд (Лысый)
 marking-HumanHairFeather = Перья
 marking-HumanHairFather = Отец
+marking-HumanHairNiko = Нико
 marking-HumanHairSargeant = Флэттоп
 marking-HumanHairFlair = Флейр
 marking-HumanHairBigflattop = Флэттоп (Большой)

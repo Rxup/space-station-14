@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.UserInterface.ControlExtensions;
 using Content.Client.Guidebook.Controls;
+using Content.Corvax.Interfaces.Shared; // backmen: sponsor-markings
 using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -76,11 +77,24 @@ public sealed partial class LayerMarkingPicker : BoxContainer
     {
         foreach (var marking in _allMarkings.Values.OrderBy(marking => Loc.GetString($"marking-{marking.ID}")))
         {
-            var item = new LayerMarkingItem(_markingsModel, _organ, _layer, marking, true);
+            var item = new LayerMarkingItem(_markingsModel, _organ, _layer, marking, CanSelectMarking(marking));
             Items.AddChild(item);
         }
         _searchable = Items.GetSearchableControls();
     }
+
+    // start-backmen: sponsor-markings
+    private bool CanSelectMarking(MarkingPrototype marking)
+    {
+        if (!marking.SponsorOnly)
+            return true;
+
+        if (!IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out var sponsorsManager))
+            return false;
+
+        return sponsorsManager.GetClientPrototypes().Contains(marking.ID);
+    }
+    // end-backmen: sponsor-markings
 
     private void UpdateCount()
     {

@@ -241,6 +241,31 @@ public sealed partial class MarkingManager
         }
     }
 
+    // start-backmen: sponsor-markings
+    /// <summary>
+    /// Removes sponsor-only markings that the player is not allowed to use.
+    /// </summary>
+    public void EnsureValidSponsor(
+        Dictionary<HumanoidVisualLayers, List<Marking>> markingSets,
+        IReadOnlySet<string>? allowedSponsorMarkings)
+    {
+        if (allowedSponsorMarkings == null)
+            return;
+
+        foreach (var markings in markingSets.Values)
+        {
+            for (var i = markings.Count - 1; i >= 0; i--)
+            {
+                if (!TryGetMarking(markings[i], out var marking) || !marking.SponsorOnly)
+                    continue;
+
+                if (!allowedSponsorMarkings.Contains(marking.ID))
+                    markings.RemoveAt(i);
+            }
+        }
+    }
+    // end-backmen: sponsor-markings
+
     /// <summary>
     /// Returns the expected set of organs for a species to have.
     /// </summary>

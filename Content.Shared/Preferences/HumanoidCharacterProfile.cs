@@ -2,6 +2,7 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
+using Content.Corvax.Interfaces.Shared; // backmen: sponsor-markings
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
@@ -20,6 +21,7 @@ using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using Robust.Shared;
+using Robust.Shared.Network; // backmen: sponsor-markings
 using YamlDotNet.RepresentationModel;
 
 namespace Content.Shared.Preferences
@@ -594,7 +596,19 @@ namespace Content.Shared.Preferences
                 flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
             }
 
-            var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex);
+            // start-backmen: sponsor-markings
+            IReadOnlySet<string>? allowedSponsorMarkings = null;
+            if (collection.TryResolveType<ISharedSponsorsManager>(out var sponsorsManager))
+            {
+                var netManager = collection.Resolve<INetManager>();
+                if (netManager.IsClient)
+                    allowedSponsorMarkings = sponsorsManager.GetClientPrototypes().ToHashSet();
+                else if (sponsorsManager.TryGetServerPrototypes(session.UserId, out var sponsorProtos))
+                    allowedSponsorMarkings = sponsorProtos.ToHashSet();
+            }
+
+            var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex, allowedSponsorMarkings);
+            // end-backmen: sponsor-markings
 
             var prefsUnavailableMode = PreferenceUnavailable switch
             {
@@ -637,7 +651,9 @@ namespace Content.Shared.Preferences
                 .ToList();
 
             var traits = TraitPreferences
-                         .Where(prototypeManager.HasIndex)
+                         .Where(id => prototypeManager.TryIndex(id, out var trait)
+                                      && (!trait.SponsorOnly
+                                          || allowedSponsorMarkings?.Contains(id) == true)) // backmen: sponsor-traits
                          .ToList();
 
             Name = name;

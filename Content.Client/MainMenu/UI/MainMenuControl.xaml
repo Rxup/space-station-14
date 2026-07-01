@@ -48,6 +48,15 @@
                     StyleIdentifier="mainMenu"
                     StyleClasses="OpenBoth"
                     Access="Public" />
+                <!-- start-backmen: sponsor -->
+                <Button Name="SponsorButton"
+                        Access="Public"
+                        Text="{Loc 'character-setup-gui-character-setup-sponsor-button'}"
+                        Visible="False"
+                        TextAlign="Center"
+                        StyleClasses="OpenBoth"
+                        StyleIdentifier="mainMenu" />
+                <!-- end-backmen: sponsor -->
                 <Button Name="OptionsButton"
                         Access="Public"
                         Text="{Loc 'main-menu-options-button'}"

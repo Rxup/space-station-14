@@ -58,6 +58,7 @@ public sealed partial class LayerMarkingItem : BoxContainer, ISearchableControl
         if (!interactive)
         {
             SelectButton.MouseFilter = Control.MouseFilterMode.Ignore;
+            SelectButton.Disabled = true;
         }
     }
 

@@ -20,6 +20,12 @@
                                   Command="adminremarks"
                                   Text="{Loc 'character-setup-gui-character-setup-adminremarks-button'}"
                                   StyleClasses="ButtonBig" />
+                <!-- start-backmen: sponsor -->
+                <Button Name="SponsorButton"
+                        Text="{Loc 'character-setup-gui-character-setup-sponsor-button'}"
+                        Visible="False"
+                        StyleClasses="ButtonBig" />
+                <!-- end-backmen: sponsor -->
                 <Button Name="RulesButton"
                         Text="{Loc 'character-setup-gui-character-setup-rules-button'}"
                         StyleClasses="ButtonBig"/>

@@ -1,8 +1,10 @@
 using System.Linq;
 using Content.Client.Lobby.UI.Roles;
 using Content.Client.Stylesheets;
+using Content.Corvax.Interfaces.Shared; // backmen: sponsor-traits
 using Content.Shared.Traits;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 
 namespace Content.Client.Lobby.UI;
@@ -111,7 +113,18 @@ public sealed partial class HumanoidProfileEditor
                 if (selector == null)
                     continue;
 
-                if (category is { MaxTraitPoints: >= 0 } &&
+                // start-backmen: sponsor-traits
+                if (selector.Trait.SponsorOnly
+                    && (!IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out var sponsorsManager)
+                        || !sponsorsManager.GetClientPrototypes().Contains(selector.Trait.ID)))
+                {
+                    selector.Checkbox.Label.FontColorOverride = Color.Gray;
+                    selector.Checkbox.Disabled = true;
+                    selector.Checkbox.Pressed = false;
+                    selector.Checkbox.Label.Text += $" ({Loc.GetString("sponsor-only")})";
+                }
+                // end-backmen: sponsor-traits
+                else if (category is { MaxTraitPoints: >= 0 } &&
                     selector.Cost + selectionCount > category.MaxTraitPoints)
                 {
                     selector.Checkbox.Label.FontColorOverride = Color.Red;

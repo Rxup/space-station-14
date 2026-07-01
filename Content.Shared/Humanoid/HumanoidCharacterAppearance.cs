@@ -166,7 +166,7 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
         return new(color.RByte, color.GByte, color.BByte);
     }
 
-    public static HumanoidCharacterAppearance EnsureValid(HumanoidCharacterAppearance appearance, ProtoId<SpeciesPrototype> species, Sex sex)
+    public static HumanoidCharacterAppearance EnsureValid(HumanoidCharacterAppearance appearance, ProtoId<SpeciesPrototype> species, Sex sex, IReadOnlySet<string>? allowedSponsorMarkings = null)
     {
         var eyeColor = ClampColor(appearance.EyeColor);
 
@@ -202,6 +202,7 @@ public sealed partial class HumanoidCharacterAppearance : IEquatable<HumanoidCha
                 markingManager.EnsureValidGroupAndSex(actualMarkings, organData.Value.Group, sex);
                 markingManager.EnsureValidLayers(actualMarkings, organData.Value.Layers);
                 markingManager.EnsureValidLimits(actualMarkings, organData.Value.Group, organData.Value.Layers, skinColor, eyeColor);
+                markingManager.EnsureValidSponsor(actualMarkings, allowedSponsorMarkings); // backmen: sponsor-markings
 
                 validatedMarkings[organ] = actualMarkings;
             }
