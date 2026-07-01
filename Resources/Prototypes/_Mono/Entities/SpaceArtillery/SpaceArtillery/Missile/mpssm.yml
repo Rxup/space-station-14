@@ -16,7 +16,7 @@
     layers:
     - state: mini-rocket
   - type: Ammo
-    muzzleFlash: MuzzleFlashEffectSmall
+    muzzleFlash: MuzzleFlashEffect
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#FCBA03"
@@ -60,14 +60,14 @@
       types:
         Structural: 2500
         Blunt: 150
-        Pierce: 500
+        Piercing: 500
         Heat: 50
   - type: Sprite
     sprite: _Mono/Objects/SpaceArtillery/mini_rocket.rsi
     layers:
     - state: mini-rocket
   - type: Ammo
-    muzzleFlash: MuzzleFlashEffectSmall
+    muzzleFlash: MuzzleFlashEffect
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#FCBA03"

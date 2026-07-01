@@ -427,7 +427,6 @@
   name: peacekeeper spread
   parent: ShipDravonProjectile
   id: PeacekeeperSpread
-  suffix: Фронтир
   components:
   - type: ProjectileSpread
     proto: ShipDravonProjectile

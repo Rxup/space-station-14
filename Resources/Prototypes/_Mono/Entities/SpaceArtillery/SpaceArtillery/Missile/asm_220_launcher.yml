@@ -1,6 +1,5 @@
 - type: entity
   id: WeaponTurretASM220
-  suffix: Фронтир
   name: ASM-220 torpedo VLS
   parent: BallisticArtilleryUnanchorableCartridge
   description: A heavy torpedo VLS relying on manual loading to work, usually done at harbor. However, it has high-yield missiles for its size.
@@ -17,7 +16,6 @@
     range: 500
   - type: Gun
     fireRate: 0.1
-    shootThermalSignature: 16000000 # 4000m after firing
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:

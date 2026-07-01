@@ -42,7 +42,6 @@
   name: cerberus spread
   parent: ShipMediumPlasmaProjectile
   id: CerberusSpread
-  suffix: Фронтир
   components:
   - type: ProjectileSpread
     proto: ShipMediumPlasmaProjectile
@@ -55,7 +54,6 @@
   name: Scylla spread
   parent: ShipMediumPlasmaProjectile
   id: ScyllaSpread
-  suffix: Фронтир
   components:
   - type: ProjectileSpread
     proto: 20mmBulletArmorPiercing

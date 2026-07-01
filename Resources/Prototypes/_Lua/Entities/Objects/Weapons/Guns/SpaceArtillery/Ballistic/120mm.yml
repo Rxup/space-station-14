@@ -7,7 +7,6 @@
   id: Weapon120mm
   name: Миномёт "120мм"
   description: Средний миномёт, использует снаряды 120мм.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -42,7 +41,9 @@
       selectedMode: FullAuto
       availableModes:
         - FullAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+      soundGunshot:
+
+        path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
     - type: Battery
       maxCharge: 300
       startingCharge: 300
@@ -59,7 +60,6 @@
     - type: ShipGunClass
       shipClass: Medium
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 50
     - type: BatteryAmmoProvider
       proto: Bullet120mm
@@ -68,7 +68,6 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon120mmBaseFlatpack
-  suffix: Фронтир
   name: упакованный средний миномёт
   description: Упакованный Средний Миномёт (.120мм)
   components:
@@ -80,4 +79,3 @@
     sprite: _Lua/Flatpack/flatpack.rsi
     layers:
     - state: ship_weapon
-

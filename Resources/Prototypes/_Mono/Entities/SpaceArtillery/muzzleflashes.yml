@@ -1,0 +1,14 @@
+- type: entity
+  parent: MuzzleFlashEffect
+  id: MuzzleFlashEffectSmall
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: MuzzleFlashEffectHeavyLaser
+  id: MuzzleFlashEffectPlasmaPulser
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: MuzzleFlashEffectHeavyLaser
+  id: MuzzleFlashEffectTempCold
+  categories: [ HideSpawnMenu ]

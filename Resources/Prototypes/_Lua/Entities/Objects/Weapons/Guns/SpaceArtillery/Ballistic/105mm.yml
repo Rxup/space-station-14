@@ -7,7 +7,6 @@
   id: Weapon105mm
   name: Миномёт "105мм"
   description: Малый миномёт, использует снаряды 105мм.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -42,7 +41,9 @@
       selectedMode: FullAuto
       availableModes:
         - FullAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+      soundGunshot:
+
+        path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
     - type: Battery
       maxCharge: 300
       startingCharge: 300
@@ -59,7 +60,6 @@
     - type: ShipGunClass
       shipClass: Medium
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 75
     - type: BatteryAmmoProvider
       proto: Bullet105mm
@@ -68,7 +68,6 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon105mmBaseFlatpack
-  suffix: Фронтир
   name: упакованный малый миномёт
   description: Упакованный Малый Миномёт (.105мм)
   components:

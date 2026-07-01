@@ -7,7 +7,6 @@
   id: Weapon20mm
   name: Пулемёт "20мм"
   description: Лёгий пулемёт, использует снаряды 20мм.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -53,7 +52,9 @@
       selectedMode: FullAuto
       availableModes:
         - FullAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+      soundGunshot:
+
+        path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
     - type: BatteryAmmoProvider
       proto: Bullet20mm
       fireCost: 50
@@ -64,7 +65,6 @@
     - type: ShipGunClass
       shipClass: Light
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 100
 
 - type: entity
@@ -72,7 +72,6 @@
   id: Weapon20mmPD
   name: Пулемёт Д "20мм"
   description: Это автоматическое оружие, предназначенное для защиты ключевых объектов или зон от близкорасположенных целей.
-  suffix: ShuttleGun, Оборона, Фронтир
   components:
   - type: RadarBlip
     radarColor: "#229e51"
@@ -108,7 +107,6 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon20mmBaseFlatpack
-  suffix: Фронтир
   name: упакованный лёгкий пулемёт
   description: Упакованный Лёгкий Пулемёт (.20мм)
   components:

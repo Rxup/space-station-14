@@ -7,7 +7,6 @@
   id: Weapon53mm
   name: Пулемёт "53мм"
   description: Средний пулемёт, использует снаряды 53мм.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -44,7 +43,9 @@
       selectedMode: FullAuto
       availableModes:
         - FullAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+      soundGunshot:
+
+        path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
     - type: Battery
       maxCharge: 5000
       startingCharge: 5000
@@ -61,7 +62,6 @@
     - type: ShipGunClass
       shipClass: Medium
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 300
     - type: BatteryAmmoProvider
       proto: Bullet53mm
@@ -70,7 +70,6 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon53mmBaseFlatpack
-  suffix: Фронтир
   name: упакованный средний пулемёт
   description: Упакованный Средний Пулемёт (.53мм)
   components:

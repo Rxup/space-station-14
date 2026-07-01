@@ -7,7 +7,6 @@
   id: TeslaTurretBase
   name: Тесла
   description: Тесла турель, использует для питания энергоячейки тесла турели.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -66,7 +65,6 @@
     - type: ShipGunClass
       shipClass: Superlight
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 3
     - type: BatteryAmmoProvider
       proto: TeslaGunTurretBullet
@@ -75,14 +73,12 @@
 - type: entity
   parent: [BaseStructureDisableToolUse, TeslaTurretBase]
   id: TeslaTurretUnanchor
-  suffix: Неоткрепляемый для кораблей, ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
 
 - type: entity
   parent: BaseNFFlatpack
   id: TeslaTurretBaseFlatpack
-  suffix: Фронтир
   name: упакованная тесла турель
   description: Упакованная тесла турель, использует для питания энергоячейки тесла турели.
   components:

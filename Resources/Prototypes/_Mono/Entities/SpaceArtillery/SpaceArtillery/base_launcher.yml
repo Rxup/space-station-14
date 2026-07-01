@@ -9,8 +9,9 @@
   - type: ApcPowerReceiver
     powerLoad: 250
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -51,7 +52,6 @@
     increment: 45
   - type: SpaceArtillery
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 100
   - type: ContainerContainer
     containers:
@@ -89,8 +89,9 @@
     mode: SnapgridCenter
   components:
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -172,8 +173,9 @@
     mode: SnapgridCenter
   components:
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:

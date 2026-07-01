@@ -6,7 +6,6 @@
   parent: [BaseWeaponNavalEnergy, BaseStructure]
   id: WeaponTurretBaseLaserSyndie
   name: Лазер S
-  suffix: ShuttleGun
   abstract: true
   components:
     - type: RadarBlip
@@ -26,9 +25,9 @@
     - type: CombatMode
       toggleMouseRotator: false
     - type: Damageable
+    - type: Injurable
       damageContainer: Inorganic
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 80
     - type: Gun
       fireRate: 1
@@ -36,7 +35,7 @@
       availableModes:
         - FullAuto
       soundGunshot:
-        path: /Audio/_Lua/Weapons/Guns/Gunshots/laser_shot.ogg
+        path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
         params:
           volume: -2
     - type: FireControllable
@@ -72,7 +71,6 @@
 - type: entity
   parent: WeaponTurretBaseLaserSyndie
   id: WeaponTurretLaserSyndie
-  suffix: ЯО, Ивентовая, ShuttleGun, Фронтир
   components:
   - type: NpcFactionMember
     factions:

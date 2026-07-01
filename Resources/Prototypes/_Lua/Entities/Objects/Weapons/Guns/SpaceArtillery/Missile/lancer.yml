@@ -7,7 +7,6 @@
   id: WeaponMissileLauncherLancer
   name: Артиллерийская установка "Лансер-14"
   description: Точная артиллерийская установка, созданная для ведения боя на средней дистанции. Снаряд "Копьё" пробивает броню, оставляя после себя значительные разрушения.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -41,7 +40,9 @@
     selectedMode: FullAuto
     availableModes:
       - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    soundGunshot:
+
+      path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
   - type: Battery
     maxCharge: 20000
     startingCharge: 20000
@@ -57,7 +58,6 @@
   - type: ShipGunClass
     shipClass: Medium
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 100
   - type: BatteryAmmoProvider
     proto: BulletWolf

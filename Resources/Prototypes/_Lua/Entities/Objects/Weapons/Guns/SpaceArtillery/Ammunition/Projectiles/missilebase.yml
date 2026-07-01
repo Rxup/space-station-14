@@ -19,6 +19,7 @@
     color: orange
     energy: 0.5
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: RadarBlip
     scale: 1.5

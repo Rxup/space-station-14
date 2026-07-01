@@ -7,7 +7,6 @@
   id: WeaponMissileLauncherNightHunter
   name: Артиллерийская установка "Ночной Хищник"
   description: Компактная установка, предназначенная для маневренных космических боев. Снаряд "Томагавк" с легкостью пробивает броню врага, оставляя лишь обломки.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -38,7 +37,9 @@
     selectedMode: FullAuto
     availableModes:
       - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    soundGunshot:
+
+      path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -58,7 +59,6 @@
   - type: ShipGunClass
     shipClass: Light
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 125 #100
   - type: BatteryAmmoProvider
     proto: BulletTomahawk

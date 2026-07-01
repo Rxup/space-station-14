@@ -16,8 +16,7 @@
       damage:
         types:
           Structural: 35
-        groups:
-          Brute: 15
+          Blunt: 15
     - type: RadarBlip
       scale: 0.35
       requireNoGrid: true
@@ -40,8 +39,7 @@
       damage:
         types:
           Structural: 45
-        groups:
-          Brute: 25
+          Blunt: 25
     - type: RadarBlip
       scale: 0.35
       requireNoGrid: true
@@ -64,8 +62,7 @@
       damage:
         types:
           Structural: 75
-        groups:
-          Brute: 45
+          Blunt: 45
     - type: RadarBlip
       scale: 0.55
       requireNoGrid: true
@@ -88,8 +85,7 @@
       damage:
         types:
           Structural: 2500
-        groups:
-          Brute: 800
+          Blunt: 800
     - type: RadarBlip
       scale: 0.55
       requireNoGrid: true
@@ -112,8 +108,7 @@
       damage:
         types:
           Structural: 3300
-        groups:
-          Brute: 900
+          Blunt: 900
     - type: RadarBlip
       scale: 0.75
       requireNoGrid: true
@@ -136,8 +131,7 @@
       damage:
         types:
           Structural: 5000
-        groups:
-          Brute: 1100
+          Blunt: 1100
     - type: RadarBlip
       scale: 0.75
       requireNoGrid: true

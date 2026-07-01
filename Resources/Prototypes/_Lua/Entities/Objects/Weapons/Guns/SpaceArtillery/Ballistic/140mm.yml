@@ -7,7 +7,6 @@
   id: Weapon140mm
   name: Миномёт "140мм"
   description: Тяжёлый миномёт, использует снаряды 140мм.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -42,7 +41,9 @@
       selectedMode: FullAuto
       availableModes:
         - FullAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+      soundGunshot:
+
+        path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
     - type: Battery
       maxCharge: 151
       startingCharge: 151
@@ -59,7 +60,6 @@
     - type: ShipGunClass
       shipClass: Heavy
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 20
     - type: BatteryAmmoProvider
       proto: Bullet140mm
@@ -68,7 +68,6 @@
 - type: entity
   parent: BaseNFFlatpack
   id: Weapon140mmBaseFlatpack
-  suffix: Фронтир
   name: упакованный тяжёлый миномёт
   description: Упакованный Тяжёлый Миномёт (.140мм)
   components:

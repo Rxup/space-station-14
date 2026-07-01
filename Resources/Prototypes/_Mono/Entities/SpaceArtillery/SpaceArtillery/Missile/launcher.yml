@@ -1,7 +1,6 @@
 # ADMP-27 VESPERA
 - type: entity
   id: WeaponTurretVespera
-  suffix: Фронтир
   name: ADMP-27 VESPERA Rapid-Fire Pod
   parent: BallisticArtilleryUnanchorable
   description: A rapid-fire swarm missile pod manufactured by Aetherion Dynamics. Saturates targets with guided warheads to overwhelm defenses. Can be remotely activated or linked to a GCS.
@@ -23,13 +22,11 @@
     range: 500
   - type: Gun
     fireRate: 3
-    shootThermalSignature: 2000000 # ~4.9km if firing continuously
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/click.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 200
   - type: SpaceArtillery
     powerChargeRate: 200
@@ -52,7 +49,6 @@
 
 - type: entity
   id: WeaponTurretASM501
-  suffix: Фронтир
   name: ASM-501 pod
   parent: BallisticArtilleryUnanchorable
   description: A cruiser torpedo launcher. Fires heavy torpedoes for high-damage strikes against large ships and stations. Can be remotely activated or linked to a GCS.
@@ -74,7 +70,6 @@
     range: 500
   - type: Gun
     fireRate: 0.1
-    shootThermalSignature: 32000000 # ~5.6km
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
@@ -83,7 +78,6 @@
     powerChargeRate: 250
     powerUsePassive: 200
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 60
   - type: Actions
   - type: BatteryAmmoProvider
@@ -101,7 +95,6 @@
 
 - type: entity
   id: WeaponTurretVanyk
-  suffix: Фронтир
   name: ASM-302 pod
   parent: BallisticArtillery
   description: An escort missile pod manufactured by Aetherion Dynamics. Launches guided missiles for basic ship-to-ship combat and area denial. Can be remotely activated or linked to a GCS.
@@ -123,13 +116,11 @@
     range: 500
   - type: Gun
     fireRate: 0.8
-    shootThermalSignature: 8000000 # ~5km if firing continuously
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 60
   - type: Actions
   - type: BatteryAmmoProvider
@@ -162,7 +153,6 @@
 
 - type: entity
   id: WeaponTurretTovek
-  suffix: Фронтир
   name: ADMX-23 TOVEK Hybrid EMP Pod
   parent: BallisticArtillery
   description: A hybrid EMP missile pod by Aetherion Dynamics. Fires EMPHE warheads to disable and weaken enemy ships at long range. Can be remotely activated or linked to a GCS.
@@ -184,13 +174,11 @@
     range: 500
   - type: Gun
     fireRate: 0.2
-    shootThermalSignature: 8000000 # ~2828m
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 500
   - type: SpaceArtillery
     powerChargeRate: 500

@@ -3,7 +3,6 @@
   id: WeaponTurretCharon
   name: M381 CHARON mass driver
   parent: BallisticArtilleryUnanchorable
-  suffix: Station, Recharging Ammo, Фронтир
   description: A capital-class railgun that fires a massive slug at extreme velocity, capable of catastrophic damage to enemy ships. Heavy linear accelerator, can be remotely activated or linked up to a GCS. This one feeds from an autoloader somewhere, and doesn't need manual reloads.
   components:
   - type: StaticPrice
@@ -24,13 +23,11 @@
   - type: Gun
     fireRate: 0.05
     projectileSpeed: 900
-    shootThermalSignature: 18000000 # ~8.5km after firing
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/leviathan_fire.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 350
   - type: SpaceArtillery
     powerChargeRate: 350
@@ -76,7 +73,6 @@
   id: WeaponTurretCharonReload
   name: M381 CHARON mass driver
   parent: BallisticArtilleryUnanchorableCartridge
-  suffix: Ship, Manual Reload, No Rotate, Фронтир
   description: A capital-class railgun that fires a massive slug at extreme velocity, capable of catastrophic damage to enemy ships. Heavy linear accelerator, can be remotely activated or linked up to a GCS.
   components:
   - type: StaticPrice
@@ -92,9 +88,8 @@
   - type: Gun
     fireRate: 0.05
     projectileSpeed: 1250
-    shootThermalSignature: 18000000 # ~8.5m after firing
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/leviathan_fire.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: SpaceArtillery

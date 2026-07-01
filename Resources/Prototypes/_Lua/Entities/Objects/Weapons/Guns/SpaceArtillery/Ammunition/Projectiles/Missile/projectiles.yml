@@ -68,6 +68,7 @@
     maxIntensity: 1500
     maxTileBreak: 1
   - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
   - type: RadarBlip
     scale: 1.5

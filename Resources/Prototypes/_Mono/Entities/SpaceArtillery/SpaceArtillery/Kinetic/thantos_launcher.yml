@@ -3,7 +3,6 @@
   id: WeaponTurretThanatos
   name: THANATOS twin mass driver
   parent: BallisticArtilleryUnanchorable
-  suffix: STATION ONLY, Recharging Ammo, Фронтир
   description: The charon's mean older brother, the Thanatos is a force to be reckoned with. It can be remotely activated or linked up to a GCS. This one feeds from an autoloader somewhere, and doesn't need manual reloads.
   components:
   - type: StaticPrice
@@ -30,11 +29,10 @@
     availableModes: Burst
     projectileSpeed: 900
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/leviathan_fire.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 350
   - type: SpaceArtillery
     powerChargeRate: 350

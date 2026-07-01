@@ -32,7 +32,6 @@
 
 - type: entity
   id: 150mmEmpShell
-  suffix: Фронтир
   name: 150mm EMP shell
   description: A chemically-propelled EMP shell, used in 150mm cannons such as the TARNYX. Nothing fancy.
   parent: BaseGrenade
@@ -86,7 +85,6 @@
 
 - type: entity
   id: 150mmApShell
-  suffix: Фронтир
   name: 150mm AP shell
   description: A chemically-propelled AP shell for 150mm cannons. Its not very good, as most 150mm cannons are optimized for EMP shells. Its a crude method, and it certainly wouldn't pass a TSFN inspection.
   parent: BaseGrenade

@@ -47,8 +47,9 @@
         mask:
         - MachineMask
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Meteor
     damageTypes:
       types:
@@ -68,7 +69,6 @@
 
 - type: entity
   id: LightFighterOrdinanceGPOItem
-  suffix: Фронтир
   name: GPO-L 50kg Unguided Bomb
   description: A fairly durable and relatively high yield explosive payload. Rarely seen in conventional space combat and a remnant of ground-based warfare, bombs can deal devastating damage... if they manage to hit their target. It can fit in a light GPOL housing.
   parent: BaseGrenade
@@ -110,7 +110,7 @@
     - state: zenith
     scale: 1, 1
   - type: Ammo
-    muzzleFlash: MuzzleFlashEffectSmall
+    muzzleFlash: MuzzleFlashEffect
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#ffff00"
@@ -151,8 +151,9 @@
         mask:
         - MachineMask
   - type: Damageable
-    damageContainer: Inorganic
     damageModifierSet: Metallic
+  - type: Injurable
+    damageContainer: Inorganic
   - type: Meteor
     damageTypes:
       types:
@@ -172,7 +173,6 @@
 
 - type: entity
   id: LightFighterOrdinanceZenithItem
-  suffix: Фронтир
   name: ASM(LF)5 "Zenith" Anti-Ship Warhead
   description: A military-grade guided missile usually deployed by light spacecraft. Capable of significant damage and more easy to hit targets with than a bomb, the Zenith is accurate and fast, but not durable. It can fit in a light GPOL housing.
   parent: BaseGrenade
@@ -206,14 +206,14 @@
     damage:
       types:
         Structural: 15000
-        Pierce: 1500
+        Piercing: 1500
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/quasar.rsi
     layers:
     - state: quasarshot
     scale: 0.7, 0.7
   - type: Ammo
-    muzzleFlash: MuzzleFlashEffectSmall
+    muzzleFlash: MuzzleFlashEffect
   - type: ShipWeaponProjectile
   - type: RadarBlip
     radarColor: "#CF0E0E"
@@ -242,7 +242,6 @@
 
 - type: entity
   id: LightFighterOrdinanceQuasarItem
-  suffix: Фронтир
   name: AD-901 "QUASAR" disposable hyperpenetrator
   description: A costly and experimental foray into the minification of hyperaccelerator technologies for use on smaller spaceframes, the QUASAR hyperpenetrator is a relatively weak, but fast-moving munition impervious to most anti-munition weapons. It can fit in a light GPOL housing.
   parent: BaseGrenade

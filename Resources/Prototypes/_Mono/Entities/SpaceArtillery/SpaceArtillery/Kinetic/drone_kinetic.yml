@@ -3,7 +3,6 @@
   name: Light mass driver "Shard"
   parent: BallisticArtillery
   description: Ultralight mass driver weapon of unknown origin, designated "Shard" during initial reverse engineering attempts. Light damage, but long range and little upkeep to mount on ships.
-  suffix: DRONE ONLY, Фронтир
   components:
   - type: StaticPrice
     price: 10000
@@ -18,13 +17,11 @@
     range: 500
   - type: Gun
     fireRate: 0.4
-    recoil: 10 # 2/5x
     projectileSpeed: 350
     minAngle: 0
     maxAngle: 0
-    shootThermalSignature: 300000
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/autopulse_laser_fire_01.ogg
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
     soundEmpty:
       path: /Audio/Weapons/click.ogg
   - type: SpaceArtillery
@@ -38,7 +35,6 @@
     proto: ShipShardProjectile
     fireCost: 1500
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 3000
   - type: ExtensionCableReceiver
   - type: ApcPowerReceiver
@@ -69,7 +65,6 @@
   name: Pinhole-class railgun
   parent: BallisticArtillery
   description: Mass driver weapon of unknown origin. Reverse engineering attempts have indicated extremely high projectile velocity and high-mass projectiles with unresolved ship-pushing payload.
-  suffix: DRONE ONLY, Фронтир
   components:
   - type: StaticPrice
     price: 30000
@@ -84,11 +79,9 @@
     range: 500
   - type: Gun
     fireRate: 0.1
-    recoil: 25 # 1x
     projectileSpeed: 600
     minAngle: 0
     maxAngle: 0
-    shootThermalSignature: 1200000
     burstCooldown: 10
     burstFireRate: 2
     shotsPerBurst: 3
@@ -108,7 +101,6 @@
     proto: ShipPinholeProjectile
     fireCost: 5000
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 8000
   - type: Actions
   - type: Destructible

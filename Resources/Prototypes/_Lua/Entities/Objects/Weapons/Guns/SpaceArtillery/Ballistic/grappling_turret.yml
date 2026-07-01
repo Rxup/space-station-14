@@ -7,7 +7,6 @@
   id: WeaponShuttleGrapplingTurret
   name: Турель-гарпун
   description: Шаттл-гарпун для зацепа за другой шаттл. Крюк отображается на радаре.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -38,7 +37,9 @@
       selectedMode: SemiAuto
       availableModes:
         - SemiAuto
-      soundGunshot: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
+      soundGunshot:
+
+        path: /Audio/Weapons/Guns/Gunshots/harpoon.ogg
     - type: BatteryAmmoProvider
       proto: BulletShuttleGrapplingHook
       fireCost: 200
@@ -49,6 +50,5 @@
     - type: ShipGunClass
       shipClass: Light
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 100
     - type: ShuttleGrappleTurret

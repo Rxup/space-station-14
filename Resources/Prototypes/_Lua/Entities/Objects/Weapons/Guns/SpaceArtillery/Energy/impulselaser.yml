@@ -7,7 +7,6 @@
   id: ImpulseLaserBase
   name: Импульсный Лазер
   description: Лёгий лазер, использует для питания энергоячейки импульсного лазера.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -58,7 +57,9 @@
       selectedMode: FullAuto
       availableModes:
         - FullAuto
-      soundGunshot: /Audio/_Lua/Weapons/Guns/Gunshots/lasergatling.ogg
+      soundGunshot:
+
+        path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
     - type: Battery
       maxCharge: 4500
       startingCharge: 4500
@@ -75,7 +76,6 @@
     - type: ShipGunClass
       shipClass: Light
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 50
     - type: BatteryAmmoProvider
       proto: BulletMachineGunImpulseTurret
@@ -84,14 +84,12 @@
 - type: entity
   parent: [BaseStructureDisableToolUse, ImpulseLaserBase]
   id: ImpulseLaserUnanchor
-  suffix: Неоткрепляемый, ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
 
 - type: entity
   parent: BaseNFFlatpack
   id: ImpulseLaserBaseFlatpack
-  suffix: Фронтир
   name: упакованный импульсный лазер
   description: Упакованный лёгий лазер, использует для питания энергоячейки импульсного лазера.
   components:

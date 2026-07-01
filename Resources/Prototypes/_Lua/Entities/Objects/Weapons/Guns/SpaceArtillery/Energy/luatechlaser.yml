@@ -39,6 +39,7 @@
     - type: CombatMode
       toggleMouseRotator: false
     - type: Damageable
+    - type: Injurable
       damageContainer: Inorganic
     - type: Destructible
       thresholds:
@@ -63,17 +64,14 @@
                   min: 3
                   max: 5
     - type: BatterySelfRecharger
-      autoRecharge: true
       autoRechargeRate: 80
     - type: Gun
       fireRate: 1
-      recoil: 0
-      recoilRotation: 0
       selectedMode: FullAuto
       availableModes:
         - FullAuto
       soundGunshot:
-        path: /Audio/_Lua/Weapons/Guns/Gunshots/laser_shot.ogg
+        path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
         params:
           volume: -2
     - type: Battery
@@ -94,7 +92,6 @@
   parent: WeaponTurretBaseLaserLuaTech
   id: WeaponTurretLaserLuaTech
   name: оборонная турель "LuaTech"
-  suffix: LuaTech, HTN, Фронтир
   components:
   - type: Gun
     fireRate: 10
@@ -102,7 +99,7 @@
     availableModes:
       - FullAuto
     soundGunshot:
-      path: /Audio/_Lua/Weapons/Guns/Gunshots/laser_shot.ogg
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
       params:
         volume: -2
   - type: BatteryAmmoProvider
@@ -125,7 +122,6 @@
   parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaserLuaTech]
   id: WeaponTurretLaserShuttleLuaTech
   name: лазерная турель LuaTech
-  suffix: LuaTech, Shuttle, Фронтир
   components:
   - type: RadarBlip
     radarColor: "#1a4a88"
@@ -144,7 +140,6 @@
   parent: [BaseWeaponNavalEnergy, WeaponTurretBaseLaserLuaTech]
   id: WeaponTurretBigLaserShuttleLuaTech
   name: большая лазерная турель LuaTech
-  suffix: LuaTech, Shuttle, Фронтир
   components:
   - type: Gun
     fireRate: 13
@@ -155,13 +150,10 @@
     shotsPerBurst: 40
     selectedMode: Burst
     availableModes: Burst
-    shootThermalSignature: 1500
-    soundBurstCooldown:
-      path: /Audio/_Lua/Weapons/Guns/Laserturret/charge.ogg
     soundEmpty:
-      path: /Audio/_Lua/Weapons/Guns/Laserturret/noammo.ogg
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/glassing.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
   - type: Sprite
     sprite: _Lua/Objects/Weapons/Guns/Turrets/luabiglaser.rsi
     drawdepth: Mobs

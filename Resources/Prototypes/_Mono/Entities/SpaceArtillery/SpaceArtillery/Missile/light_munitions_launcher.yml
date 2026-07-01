@@ -1,6 +1,5 @@
 - type: entity
   id: WeaponTurretLightMunitionsBay
-  suffix: Фронтир
   name: GPOB-L Light Munitions Bay
   parent: BallisticArtilleryUnanchorableCartridge
   description: A relatively small, armored munitions bay capable of holding up to two lightweight ordinance packages. Typically found on light spacecraft, particularly bombers, and provide a limited use method of damaging targets far above the user's weight class.
@@ -19,7 +18,6 @@
   - type: Gun
     projectileSpeed: 10
     fireRate: 0.8
-    shootThermalSignature: 8000000 # ~2.8km
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:

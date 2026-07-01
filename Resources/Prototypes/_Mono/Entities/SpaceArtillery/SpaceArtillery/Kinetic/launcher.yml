@@ -1,7 +1,6 @@
 # L85 20mm
 - type: entity
   id: WeaponTurretL85Autocannon
-  suffix: Фронтир
   name: L85 20mm autocannon
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A light 20mm ballistic autocannon designed for rapid fire and suppressing smaller targets at close range. Cheap, light, and can be remotely activated or linked up to a GCS.
@@ -25,13 +24,11 @@
   - type: Gun
     fireRate: 12
     projectileSpeed: 90
-    shootThermalSignature: 10000 # relatively low for a shipgun, ~693m signature if firing continuously
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/slammer.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 550
   - type: SpaceArtillery
     powerChargeRate: 100
@@ -68,7 +65,6 @@
 
 - type: entity
   id: WeaponTurretRAC30
-  suffix: Фронтир
   name: RAC-30 Draupnir Autocannon
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A more heavy duty rapid rife autocannon, firing a hail of rounds much like its namesake became a hail of spears.
@@ -92,13 +88,11 @@
   - type: Gun
     fireRate: 50
     projectileSpeed: 120
-    shootThermalSignature: 100000 # ~4.5km if firing continuously
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/slammer.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 600
   - type: SpaceArtillery
     powerChargeRate: 100
@@ -135,7 +129,6 @@
 
 - type: entity
   id: WeaponTurretDravon
-  suffix: Фронтир
   name: ADBP-7 DRAVON 57mm Autocannon
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A single-barrel autocannon made by Aetherion Dynamics. Medium artillery piece with high fire rate but relatively low impact, firing HEAT shells to damage ship armor and systems. Can be remotely activated or linked up to a GCS.
@@ -158,13 +151,11 @@
   - type: Gun
     fireRate: 1.5
     projectileSpeed: 180
-    shootThermalSignature: 2000000 # ~3.5km signature if firing continuously
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/mortar.ogg
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 220
   - type: SpaceArtillery
     powerChargeRate: 220
@@ -197,7 +188,6 @@
 
 - type: entity
   id: WeaponTurretAK570
-  suffix: Фронтир
   name: AK570 90mm heavy autocannon
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: A dual-barrel, heavy 90mm autocannon firing general-purpose APHE rounds, effective for sustained fire against medium targets. Can be remotely activated or linked up to a GCS.
@@ -225,13 +215,11 @@
     shotsPerBurst: 2
     selectedMode: Burst
     availableModes: Burst
-    shootThermalSignature: 2000000 # ~4.5km signature if firing continuously
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/120mm_mortar.ogg
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 125
   - type: SpaceArtillery
     powerChargeRate: 125
@@ -264,7 +252,6 @@
 
 - type: entity
   id: WeaponTurretPeacekeeper
-  suffix: Фронтир
   name: Peacekeeper class salvo gun 
   parent: BallisticArtilleryUnanchorable #Lua BallisticArtillery<BallisticArtilleryUnanchorable
   description: Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
@@ -286,13 +273,11 @@
   - type: Gun
     fireRate: 0.38
     projectileSpeed: 90
-    shootThermalSignature: 4000000 # ~2.8km with continuous fire
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/mortar.ogg
+      path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 350
   - type: SpaceArtillery
     powerChargeRate: 350
@@ -332,7 +317,6 @@
 
 - type: entity
   id: WeaponTurretCyrexa
-  suffix: Фронтир
   name: CYREXA 220mm cannon
   parent: BallisticArtilleryUnanchorable
   description: A main battery with dual barrels, delivering rapid, punishing salvos at extreme range. Fires 220mm auto shells with slightly reduced brute strength. Can be remotely activated or linked up to a GCS.
@@ -372,13 +356,11 @@
     shotsPerBurst: 2
     selectedMode: Burst
     availableModes: Burst
-    shootThermalSignature: 48000000 # ~7km after firing
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 12000
   - type: SpaceArtillery
     powerChargeRate: 12000
@@ -411,7 +393,6 @@
 
 - type: entity
   id: WeaponTurretHydra
-  suffix: Фронтир
   name: Hydra 220mm cannon
   parent: BallisticArtilleryUnanchorable
   description: A main battery with trial barrels, delivering rapid, punishing salvos at extreme range. Fires 220mm auto shells with slightly reduced brute strength. Can be remotely activated or linked up to a GCS.
@@ -451,13 +432,11 @@
     shotsPerBurst: 3
     selectedMode: Burst
     availableModes: Burst
-    shootThermalSignature: 48000000 # ~7km after firing
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 12000
   - type: SpaceArtillery
     powerChargeRate: 12000
@@ -491,7 +470,6 @@
 
 - type: entity
   id: WeaponTurretHades
-  suffix: Фронтир
   name: HADES 305mm cannon
   parent: BallisticArtilleryUnanchorable
   description: One of the largest chemical-based kinetic weapons in the sector. Its power is only rivaled by mass drivers such as the M381.
@@ -531,13 +509,11 @@
     shotsPerBurst: 2
     selectedMode: Burst
     availableModes: Burst
-    shootThermalSignature: 160000000 # now all of china knows you're here (12.6km)
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 12000
   - type: SpaceArtillery
     powerChargeRate: 12000
@@ -570,7 +546,6 @@
 
 - type: entity
   id: WeaponTurretCharonette
-  suffix: Фронтир
   name: M194 CHARONETTE mass driver
   parent: BallisticArtilleryUnanchorable
   description: A smaller, more compact railgun that fires a large slug at rapid velocity, capable of big damage to enemy ships. Medium linear accelerator, can be remotely activated or linked up to a GCS.
@@ -593,13 +568,11 @@
   - type: Gun
     fireRate: 0.05
     projectileSpeed: 400
-    shootThermalSignature: 20000000 # ~4.5km after firing
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/leviathan_fire.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 150
   - type: SpaceArtillery
     powerChargeRate: 150
@@ -643,7 +616,6 @@
 
 - type: entity
   id: WeaponTurretBofors
-  suffix: Фронтир
   name: Bofors 255mm cannon
   parent: BallisticArtilleryUnanchorable
   description: A single-barrel, heavy artillery cannon designed for cruisers, delivering massive impact with each long-range shot. Can be remotely activated or linked up to a GCS.
@@ -678,15 +650,12 @@
   - type: Gun
     projectileSpeed: 155
     fireRate: 0.1
-    shootThermalSignature: 80000000 # ~9km after firing
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 12000
-    autoRechargePause: true
   - type: SpaceArtillery
     powerChargeRate: 12000
     powerUsePassive: 2000
@@ -718,7 +687,6 @@
 
 - type: entity
   id: WeaponTurretKargil
-  suffix: Фронтир
   name: Kargil 203mm cannon
   parent: BallisticArtilleryUnanchorable
   description: A cruiser artillery cannon that launches devastating 203mm shells for long-range ship-to-ship combat. Can be remotely activated or linked up to a GCS.
@@ -753,15 +721,12 @@
   - type: Gun
     projectileSpeed: 155
     fireRate: 0.2
-    shootThermalSignature: 40000000 # ~6.3km after firing
     soundGunshot:
-      path: /Audio/_Mono/Weapons/Guns/Gunshots/cannon.ogg
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 10000
-    autoRechargePause: true
   - type: SpaceArtillery
     powerChargeRate: 10000
     powerUsePassive: 1500

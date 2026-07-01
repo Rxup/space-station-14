@@ -7,7 +7,6 @@
   id: WeaponMissileLauncherCerber
   name: Артиллерийская установка "Цербер-Х"
   description: Мощное космическое орудие для уничтожения вражеских флотов. Снаряд "Анаконда" разворачивается при ударе, охватывая огромную площадь и вызывая разрушения на всей территории поражения.
-  suffix: ShuttleGun, Фронтир
   placement:
     mode: SnapgridCenter
   components:
@@ -43,7 +42,9 @@
     selectedMode: FullAuto
     availableModes:
       - FullAuto
-    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+    soundGunshot:
+
+      path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
   - type: Battery
     maxCharge: 50000
     startingCharge: 50000
@@ -59,7 +60,6 @@
   - type: ShipGunClass
     shipClass: Superheavy
   - type: BatterySelfRecharger
-    autoRecharge: true
     autoRechargeRate: 100
   - type: BatteryAmmoProvider
     proto: BulletGR
