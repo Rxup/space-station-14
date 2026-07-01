@@ -16,9 +16,9 @@ using System.Numerics; // Lua
 
 namespace Content.Client._Mono.FireControl.UI;
 
-public sealed class FireControlNavControl : ShuttleNavControl
+public sealed partial class FireControlNavControl : ShuttleNavControl
 {
-    [Dependency] private readonly IInputManager _input = default!;
+    [Dependency] private IInputManager _input = default!;
     private readonly SharedTransformSystem _transform;
     private readonly SharedPhysicsSystem _physics;
     private readonly RadarBlipsSystem _blips;
