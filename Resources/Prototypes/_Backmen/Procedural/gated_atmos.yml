@@ -9,8 +9,6 @@
     tags:
     - SupermatterChamberSetup
   - type: RoomSetupGated
-  - type: GasVentPump
-    enabled: false
 
 - type: entity
   parent: GasVentScrubberSupermatter

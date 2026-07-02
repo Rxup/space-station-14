@@ -169,6 +169,12 @@ public sealed partial class RoomSetupSystem : EntitySystem
 
     private void DisableGatedEntity(EntityUid uid)
     {
+        if (TryComp(uid, out GasVentPumpComponent? ventPump))
+        {
+            ventPump.Enabled = false;
+            Dirty(uid, ventPump);
+        }
+
         if (TryComp(uid, out AtmosDeviceComponent? device))
             _atmosDevice.LeaveAtmosphere((uid, device));
     }
