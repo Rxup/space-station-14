@@ -31,7 +31,8 @@ public sealed class MorphinePainTest : GameTest
 
     public override PoolSettings PoolSettings => new()
     {
-        Connected = true,
+        // Chemistry/pain metabolism is server-authoritative; avoid client teardown flakes from sleeping/snore comps.
+        Connected = false,
         Dirty = true,
     };
 
@@ -64,7 +65,8 @@ public sealed class MorphinePainTest : GameTest
 
             Assert.That(Server.EntMan.TryGetComponent(human, out BloodstreamComponent? stream), Is.True);
             var morphine = new Solution();
-            morphine.AddReagent(MorphineReagent, FixedPoint2.New(20));
+            // 10u: SuppressPain + IgnoreSlowOnDamage, but below drowsiness threshold (12u).
+            morphine.AddReagent(MorphineReagent, FixedPoint2.New(10));
             Assert.That(
                 bloodstreamSys.TryAddToBloodstream((human, stream), morphine),
                 Is.True,
@@ -111,7 +113,7 @@ public sealed class MorphinePainTest : GameTest
 
             Assert.That(Server.EntMan.TryGetComponent(human, out BloodstreamComponent? stream), Is.True);
             var morphine = new Solution();
-            morphine.AddReagent(MorphineReagent, FixedPoint2.New(15));
+            morphine.AddReagent(MorphineReagent, FixedPoint2.New(10));
             Assert.That(bloodstreamSys.TryAddToBloodstream((human, stream), morphine), Is.True);
         });
 
