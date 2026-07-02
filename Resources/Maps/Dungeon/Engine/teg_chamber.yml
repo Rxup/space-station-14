@@ -16,7 +16,6 @@ tilemap:
   0: Space
   1: FloorSteel
   2: Plating
-  3: WallSolid
 entities:
 - proto: ""
   entities:
@@ -34,7 +33,7 @@ entities:
       chunks:
         0,0:
           ind: 0,0
-          tiles: AwAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAADAAAAAAAAAAAAAAAAAAMAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAwAAAAAAAAAAAAAAAAADAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAMAAAAAAAAAAAAAAAAAAwAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAADAAAAAAAAAAAAAAAAAAMAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAwAAAAAAAAAAAAAAAAADAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAMAAAAAAAAAAAAAAAAAAwAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAADAAAAAAAAAAAAAAAAAAMAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAwAAAAAAAAAAAAAAAAADAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAIAAAAAAAACAAAAAAAAAgAAAAAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+          tiles: AQEBAQEBAQEBAQEBAQEBAAEBAQEBAQEBAQEBAQEBAQABAQEBAQEBAQEBAQEBAQEAAQEBAQEBAQEBAQEBAQEBAAEBAQEBAQEBAQEBAQEBAQABAQEBAQEBAQEBAQEBAQEAAQEBAQEBAQEBAQEBAQEBAAEBAQEBAQEBAQEBAQEBAQABAQEBAQEBAQEBAQEBAQEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
           version: 7
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier
@@ -219,3 +218,240 @@ entities:
     - type: AtmosPipeColor
       color: '#03FDCFFF'
 
+- proto: WallSolid
+  entities:
+  - uid: 51
+    components:
+    - type: Transform
+      pos: -0.5,0.5
+      parent: 1
+  - uid: 52
+    components:
+    - type: Transform
+      pos: -0.5,1.5
+      parent: 1
+  - uid: 53
+    components:
+    - type: Transform
+      pos: -0.5,2.5
+      parent: 1
+  - uid: 54
+    components:
+    - type: Transform
+      pos: -0.5,3.5
+      parent: 1
+  - uid: 55
+    components:
+    - type: Transform
+      pos: -0.5,4.5
+      parent: 1
+  - uid: 56
+    components:
+    - type: Transform
+      pos: -0.5,5.5
+      parent: 1
+  - uid: 57
+    components:
+    - type: Transform
+      pos: -0.5,6.5
+      parent: 1
+  - uid: 58
+    components:
+    - type: Transform
+      pos: -0.5,7.5
+      parent: 1
+  - uid: 59
+    components:
+    - type: Transform
+      pos: -0.5,8.5
+      parent: 1
+  - uid: 60
+    components:
+    - type: Transform
+      pos: 0.5,-0.5
+      parent: 1
+  - uid: 61
+    components:
+    - type: Transform
+      pos: 0.5,8.5
+      parent: 1
+  - uid: 62
+    components:
+    - type: Transform
+      pos: 1.5,-0.5
+      parent: 1
+  - uid: 63
+    components:
+    - type: Transform
+      pos: 1.5,8.5
+      parent: 1
+  - uid: 64
+    components:
+    - type: Transform
+      pos: 2.5,-0.5
+      parent: 1
+  - uid: 65
+    components:
+    - type: Transform
+      pos: 2.5,8.5
+      parent: 1
+  - uid: 66
+    components:
+    - type: Transform
+      pos: 3.5,-0.5
+      parent: 1
+  - uid: 67
+    components:
+    - type: Transform
+      pos: 3.5,8.5
+      parent: 1
+  - uid: 68
+    components:
+    - type: Transform
+      pos: 4.5,-0.5
+      parent: 1
+  - uid: 69
+    components:
+    - type: Transform
+      pos: 4.5,8.5
+      parent: 1
+  - uid: 70
+    components:
+    - type: Transform
+      pos: 5.5,-0.5
+      parent: 1
+  - uid: 71
+    components:
+    - type: Transform
+      pos: 5.5,8.5
+      parent: 1
+  - uid: 72
+    components:
+    - type: Transform
+      pos: 6.5,-0.5
+      parent: 1
+  - uid: 73
+    components:
+    - type: Transform
+      pos: 6.5,8.5
+      parent: 1
+  - uid: 74
+    components:
+    - type: Transform
+      pos: 7.5,-0.5
+      parent: 1
+  - uid: 75
+    components:
+    - type: Transform
+      pos: 7.5,8.5
+      parent: 1
+  - uid: 76
+    components:
+    - type: Transform
+      pos: 8.5,-0.5
+      parent: 1
+  - uid: 77
+    components:
+    - type: Transform
+      pos: 8.5,8.5
+      parent: 1
+  - uid: 78
+    components:
+    - type: Transform
+      pos: 9.5,-0.5
+      parent: 1
+  - uid: 79
+    components:
+    - type: Transform
+      pos: 9.5,8.5
+      parent: 1
+  - uid: 80
+    components:
+    - type: Transform
+      pos: 10.5,-0.5
+      parent: 1
+  - uid: 81
+    components:
+    - type: Transform
+      pos: 10.5,8.5
+      parent: 1
+  - uid: 82
+    components:
+    - type: Transform
+      pos: 11.5,-0.5
+      parent: 1
+  - uid: 83
+    components:
+    - type: Transform
+      pos: 11.5,8.5
+      parent: 1
+  - uid: 84
+    components:
+    - type: Transform
+      pos: 12.5,-0.5
+      parent: 1
+  - uid: 85
+    components:
+    - type: Transform
+      pos: 12.5,8.5
+      parent: 1
+  - uid: 86
+    components:
+    - type: Transform
+      pos: 13.5,-0.5
+      parent: 1
+  - uid: 87
+    components:
+    - type: Transform
+      pos: 13.5,8.5
+      parent: 1
+  - uid: 88
+    components:
+    - type: Transform
+      pos: 14.5,-0.5
+      parent: 1
+  - uid: 89
+    components:
+    - type: Transform
+      pos: 14.5,0.5
+      parent: 1
+  - uid: 90
+    components:
+    - type: Transform
+      pos: 14.5,1.5
+      parent: 1
+  - uid: 91
+    components:
+    - type: Transform
+      pos: 14.5,2.5
+      parent: 1
+  - uid: 92
+    components:
+    - type: Transform
+      pos: 14.5,3.5
+      parent: 1
+  - uid: 93
+    components:
+    - type: Transform
+      pos: 14.5,4.5
+      parent: 1
+  - uid: 94
+    components:
+    - type: Transform
+      pos: 14.5,5.5
+      parent: 1
+  - uid: 95
+    components:
+    - type: Transform
+      pos: 14.5,6.5
+      parent: 1
+  - uid: 96
+    components:
+    - type: Transform
+      pos: 14.5,7.5
+      parent: 1
+  - uid: 97
+    components:
+    - type: Transform
+      pos: 14.5,8.5
+      parent: 1
