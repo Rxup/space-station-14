@@ -102,6 +102,21 @@ public sealed partial class ThirstSystem : EntitySystem
         return result;
     }
 
+    // start-backmen: analyzer-satiation
+    /// <summary>
+    /// Normalized thirst level from 0 (dead) to 1 (okay), for health analyzer display.
+    /// </summary>
+    public float GetThirstLevel(ThirstComponent component)
+    {
+        var okay = component.ThirstThresholds[ThirstThreshold.Okay];
+        var dead = component.ThirstThresholds[ThirstThreshold.Dead];
+        if (okay <= dead)
+            return float.NaN;
+
+        return Math.Clamp((component.CurrentThirst - dead) / (okay - dead), 0f, 1f);
+    }
+    // end-backmen: analyzer-satiation
+
     public void ModifyThirst(EntityUid uid, ThirstComponent component, float amount)
     {
         SetThirst(uid, component, component.CurrentThirst + amount);

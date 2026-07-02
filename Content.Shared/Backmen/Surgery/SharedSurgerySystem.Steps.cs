@@ -1354,6 +1354,15 @@ public abstract partial class SharedSurgerySystem
     {
         foreach (var held in _hands.EnumerateHeld(user))
         {
+            // start-backmen: implanter slot before small-item (implanter is Small size)
+            if (_itemSlotsSystem.TryGetSlot(held, ImplanterComponent.ImplanterSlotId, out var implanterSlot)
+                && implanterSlot.HasItem)
+            {
+                insertEntity = implanterSlot.Item!.Value;
+                return true;
+            }
+            // end-backmen: implanter slot before small-item
+
             if (TryComp<ItemComponent>(held, out var item)
                 && (item.Size.Id == "Tiny" || item.Size.Id == "Small"))
             {
@@ -1364,13 +1373,6 @@ public abstract partial class SharedSurgerySystem
             if (HasComp<SubdermalImplantComponent>(held))
             {
                 insertEntity = held;
-                return true;
-            }
-
-            if (_itemSlotsSystem.TryGetSlot(held, ImplanterComponent.ImplanterSlotId, out var implanterSlot)
-                && implanterSlot.HasItem)
-            {
-                insertEntity = implanterSlot.Item!.Value;
                 return true;
             }
         }
@@ -1389,13 +1391,23 @@ public abstract partial class SharedSurgerySystem
         if (!SurgeryBodyPartMapping.TryGetCategory(removedComp.Part, removedComp.Symmetry, out var category))
             return false;
 
-        if (!HasComp<OrganComponent>(tool))
+        var hadOrgan = TryComp<OrganComponent>(tool, out var priorOrgan);
+        var priorCategory = hadOrgan ? priorOrgan!.Category : null;
+
+        if (!hadOrgan)
             EnsureComp<OrganComponent>(tool);
 
         _organBody.SetOrganCategory(tool, category);
 
         if (!_body.InsertOrganIntoBody(body, tool))
+        {
+            if (hadOrgan)
+                _organBody.SetOrganCategory(tool, priorCategory);
+            else
+                RemComp<OrganComponent>(tool);
+
             return false;
+        }
 
         TryAttachCyberneticChildPart(body, tool);
 

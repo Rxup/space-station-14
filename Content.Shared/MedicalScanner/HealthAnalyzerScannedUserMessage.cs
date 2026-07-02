@@ -25,6 +25,8 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     public float? TotalPain => State.TotalPain;
     public bool? PainImmune => State.PainImmune;
     // start-backmen: analyzer-satiation
+    public float HungerLevel => State.HungerLevel;
+    public float ThirstLevel => State.ThirstLevel;
     public HungerThreshold? HungerAlert => State.HungerAlert;
     public ThirstThreshold? ThirstAlert => State.ThirstAlert;
     // end-backmen: analyzer-satiation
@@ -53,11 +55,13 @@ public struct HealthAnalyzerUiState
     public float? TotalPain; // backmen: pain
     public bool? PainImmune; // backmen: pain
     // start-backmen: analyzer-satiation
+    public float HungerLevel;
+    public float ThirstLevel;
     public HungerThreshold? HungerAlert;
     public ThirstThreshold? ThirstAlert;
     // end-backmen: analyzer-satiation
 
-    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null, HungerThreshold? hungerAlert = null, ThirstThreshold? thirstAlert = null)
+    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null, float hungerLevel = float.NaN, float thirstLevel = float.NaN, HungerThreshold? hungerAlert = null, ThirstThreshold? thirstAlert = null)
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -71,6 +75,8 @@ public struct HealthAnalyzerUiState
         TotalPain = totalPain; // backmen: pain
         PainImmune = painImmune; // backmen: pain
         // start-backmen: analyzer-satiation
+        HungerLevel = hungerLevel;
+        ThirstLevel = thirstLevel;
         HungerAlert = hungerAlert;
         ThirstAlert = thirstAlert;
         // end-backmen: analyzer-satiation

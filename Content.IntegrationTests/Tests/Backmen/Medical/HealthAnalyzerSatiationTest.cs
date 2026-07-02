@@ -41,9 +41,13 @@ public sealed class HealthAnalyzerSatiationTest : GameTest
 
         await Server.WaitAssertion(() =>
         {
+            var hunger = Server.EntMan.GetComponent<HungerComponent>(human);
+            var thirst = Server.EntMan.GetComponent<ThirstComponent>(human);
             var state = analyzerSys.GetHealthAnalyzerUiState(human);
             Assert.That(state.HungerAlert, Is.EqualTo(HungerThreshold.Starving));
             Assert.That(state.ThirstAlert, Is.EqualTo(ThirstThreshold.Parched));
+            Assert.That(state.HungerLevel, Is.EqualTo(hungerSys.GetHungerLevel(hunger)).Within(0.01f));
+            Assert.That(state.ThirstLevel, Is.EqualTo(thirstSys.GetThirstLevel(thirst)).Within(0.01f));
         });
 
         await Server.WaitPost(() =>
@@ -57,9 +61,15 @@ public sealed class HealthAnalyzerSatiationTest : GameTest
 
         await Server.WaitAssertion(() =>
         {
+            var hunger = Server.EntMan.GetComponent<HungerComponent>(human);
+            var thirst = Server.EntMan.GetComponent<ThirstComponent>(human);
             var state = analyzerSys.GetHealthAnalyzerUiState(human);
             Assert.That(state.HungerAlert, Is.Null);
             Assert.That(state.ThirstAlert, Is.Null);
+            Assert.That(state.HungerLevel, Is.EqualTo(hungerSys.GetHungerLevel(hunger)).Within(0.01f));
+            Assert.That(state.ThirstLevel, Is.EqualTo(thirstSys.GetThirstLevel(thirst)).Within(0.01f));
+            Assert.That(state.HungerLevel, Is.GreaterThanOrEqualTo(0.99f));
+            Assert.That(state.ThirstLevel, Is.GreaterThanOrEqualTo(0.99f));
         });
     }
 }

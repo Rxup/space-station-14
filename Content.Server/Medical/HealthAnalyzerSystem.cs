@@ -28,6 +28,7 @@ using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Server.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
 
 namespace Content.Server.Medical;
 
@@ -46,6 +47,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private ServerConsciousnessSystem _consciousnessSystem = default!; // backmen: pain
+    [Dependency] private HungerSystem _hungerSystem = default!; // backmen: analyzer-satiation
+    [Dependency] private ThirstSystem _thirstSystem = default!; // backmen: analyzer-satiation
 
     [Dependency] private EntityQuery<PainImmuneComponent> _painImmuneQuery = default!;
 
@@ -274,18 +277,22 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         var painImmune = _painImmuneQuery.HasComp(entity);
 
         // start-backmen: analyzer-satiation
+        var hungerLevel = float.NaN;
         HungerThreshold? hungerAlert = null;
-        if (TryComp<HungerComponent>(entity, out var hunger)
-            && hunger.CurrentThreshold is HungerThreshold.Peckish or HungerThreshold.Starving)
+        if (TryComp<HungerComponent>(entity, out var hunger))
         {
-            hungerAlert = hunger.CurrentThreshold;
+            hungerLevel = _hungerSystem.GetHungerLevel(hunger);
+            if (hunger.CurrentThreshold is HungerThreshold.Peckish or HungerThreshold.Starving)
+                hungerAlert = hunger.CurrentThreshold;
         }
 
+        var thirstLevel = float.NaN;
         ThirstThreshold? thirstAlert = null;
-        if (TryComp<ThirstComponent>(entity, out var thirst)
-            && thirst.CurrentThirstThreshold is ThirstThreshold.Thirsty or ThirstThreshold.Parched)
+        if (TryComp<ThirstComponent>(entity, out var thirst))
         {
-            thirstAlert = thirst.CurrentThirstThreshold;
+            thirstLevel = _thirstSystem.GetThirstLevel(thirst);
+            if (thirst.CurrentThirstThreshold is ThirstThreshold.Thirsty or ThirstThreshold.Parched)
+                thirstAlert = thirst.CurrentThirstThreshold;
         }
         // end-backmen: analyzer-satiation
 
@@ -301,6 +308,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             painCauses,
             totalPain,
             painImmune,
+            hungerLevel,
+            thirstLevel,
             hungerAlert,
             thirstAlert);
     }

@@ -1,0 +1,47 @@
+- type: dungeonRoom
+  id: SupermatterChamber1
+  size: 13, 9
+  atlas: /Maps/Dungeon/Engine/supermatter_chamber.yml
+  offset: 0, 0
+  tags:
+  - SupermatterChamber
+
+- type: dungeonRoom
+  id: SmesSubstation1
+  size: 7, 5
+  atlas: /Maps/Dungeon/Engine/smes_substation.yml
+  offset: 0, 0
+  tags:
+  - SmesSubstation
+
+- type: entity
+  id: SupermatterChamberRoomMarker
+  parent: BaseRoomMarker
+  name: supermatter chamber marker
+  components:
+  - type: RoomFill
+    rotation: false
+    minSize: 13, 9
+    maxSize: 13, 9
+    clearExisting: true
+    roomWhitelist:
+      tags:
+      - SupermatterChamber
+  - type: RoomSetupZone
+    activationTag: SupermatterChamberSetup
+    requirements: Canisters, Supermatter
+    requiredCanisterPorts: 2
+
+- type: entity
+  id: SmesSubstationRoomMarker
+  parent: BaseRoomMarker
+  name: SMES substation marker
+  components:
+  - type: RoomFill
+    rotation: false
+    minSize: 7, 5
+    maxSize: 7, 5
+    clearExisting: true
+    roomWhitelist:
+      tags:
+      - SmesSubstation

@@ -1413,6 +1413,15 @@
   id: TheaterBagel # used for Bagel Station's randomized theater
 
 - type: Tag
+  id: SupermatterChamber # RoomFill whitelist for SupermatterChamberRoomMarker
+
+- type: Tag
+  id: SupermatterChamberSetup # Gated atmos devices in supermatter chamber rooms
+
+- type: Tag
+  id: SmesSubstation # RoomFill whitelist for SmesSubstationRoomMarker
+
+- type: Tag
   id: TimerBrigElectronics # ConstructionGraph: Timer
 
 - type: Tag

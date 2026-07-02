@@ -1,0 +1,35 @@
+- type: entity
+  parent: GasVentPumpSupermatter
+  id: GasVentPumpSupermatterGated
+  suffix: Setup Gated
+  components:
+  - type: Tag
+    tags:
+    - SupermatterChamberSetup
+  - type: RoomSetupGated
+  - type: GasVentPump
+    enabled: false
+
+- type: entity
+  parent: GasVentScrubberSupermatter
+  id: GasVentScrubberSupermatterGated
+  suffix: Setup Gated
+  components:
+  - type: Tag
+    tags:
+    - SupermatterChamberSetup
+  - type: RoomSetupGated
+  - type: GasVentScrubber
+    enabled: false
+
+- type: entity
+  parent: AirAlarmSupermatter
+  id: AirAlarmSupermatterGated
+  suffix: Setup Gated
+  components:
+  - type: Tag
+    tags:
+    - SupermatterChamberSetup
+  - type: RoomSetupGated
+  - type: AirAlarm
+    autoMode: false
