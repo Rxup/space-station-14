@@ -199,7 +199,7 @@ public sealed partial class RoomSetupSystem : EntitySystem
             Dirty(uid, volumePump);
         }
 
-        if (TryComp(uid, out ApcPowerReceiverComponent? receiver))
+        if (TryComp(uid, out SharedApcPowerReceiverComponent? receiver))
             _powerReceiver.SetPowerDisabled(uid, false, receiver);
 
         if (TryComp(uid, out AtmosDeviceComponent? device))
