@@ -155,6 +155,7 @@
               Blunt: 0
         - type: Item
     - !type:RemoveAnchoredFilter
+    - !type:RemoveStrapEnabledFilter
   considerations:
     - !type:TargetMeleeCon
       curve: !type:QuadraticCurve

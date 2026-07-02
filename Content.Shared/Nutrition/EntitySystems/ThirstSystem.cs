@@ -215,6 +215,9 @@ public sealed partial class ThirstSystem : EntitySystem
                 return;
 
             case ThirstThreshold.Dead:
+                // Thirst only slows movement at Parched/Dead — never lethal.
+                component.LastThirstThreshold = component.CurrentThirstThreshold;
+                component.ActualDecayRate = component.BaseDecayRate * 0.6f;
                 return;
 
             default:

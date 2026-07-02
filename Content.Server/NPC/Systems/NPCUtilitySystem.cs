@@ -27,6 +27,7 @@ using Microsoft.Extensions.ObjectPool;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Atmos.Components;
 using System.Linq;
 using Content.Server.Backmen.Cocoon;
@@ -669,6 +670,23 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                     {
                         _entityList.Add(ent);
                     }
+                }
+
+                foreach (var ent in _entityList)
+                {
+                    entities.Remove(ent);
+                }
+
+                break;
+            }
+            case RemoveStrapEnabledFilter:
+            {
+                _entityList.Clear();
+
+                foreach (var ent in entities)
+                {
+                    if (TryComp<StrapComponent>(ent, out var strap) && strap.Enabled)
+                        _entityList.Add(ent);
                 }
 
                 foreach (var ent in _entityList)

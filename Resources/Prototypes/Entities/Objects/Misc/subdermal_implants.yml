@@ -5,6 +5,8 @@
   abstract: true
   components:
   - type: SubdermalImplant
+  - type: Item # backmen: cavity-implant
+    size: Tiny
   - type: Tag
     tags:
     - SubdermalImplant

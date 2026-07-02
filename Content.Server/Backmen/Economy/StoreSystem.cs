@@ -5,9 +5,11 @@ using Content.Server.Backmen.Economy;
 using Content.Server.Popups;
 using Content.Server.VendingMachines;
 using Content.Shared.Backmen.Store;
+using Content.Shared.FixedPoint; // backmen: vending-payment
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Content.Shared.VendingMachines;
+using Robust.Shared.Prototypes; // backmen: vending-payment
 
 namespace Content.Server.Store.Systems;
 
@@ -45,34 +47,46 @@ public sealed partial class StoreSystem
         if (msg.Actor is not { Valid: true } buyer)
             return false;
 
-        //check that we have enough money
+        // start-backmen: vending-payment
         foreach (var currency in listing.Cost)
         {
-            if (!component.Balance.TryGetValue(currency.Key, out var balance)) // || balance < currency.Value
-            {
+            if (!component.Balance.TryGetValue(currency.Key, out var balance))
                 return false;
-            }
 
-            if (balance >= currency.Value)
-            {
-                return false; // если уже достаточно валюты в автомате то нечего не делаем -_- (например рация ЯО, да-да-да, рация ЯО с покупкой с баланса банка, или баланс банка в ТК :))
-            }
+            var fromMachine = FixedPoint2.Min(balance, currency.Value);
+            var fromBank = currency.Value - fromMachine;
+
+            if (fromMachine > FixedPoint2.Zero)
+                component.Balance[currency.Key] -= fromMachine;
+
+            if (fromBank <= FixedPoint2.Zero)
+                continue;
 
             if (!_idCardSystem.TryFindIdCard(buyer, out var idCardComponent))
             {
+                if (fromMachine > FixedPoint2.Zero)
+                    component.Balance[currency.Key] += fromMachine;
+
                 _PlayDeny(uid);
-                _popup.PopupEntity(Loc.GetString("store-no-idcard"),uid);
+                _popup.PopupEntity(Loc.GetString("store-no-idcard"), uid);
                 return false;
             }
 
-            if (!_bankManagerSystem.TryWithdrawFromBankAccount(idCardComponent.Owner, currency, null))
+            if (!_bankManagerSystem.TryWithdrawFromBankAccount(
+                    idCardComponent.Owner,
+                    new KeyValuePair<ProtoId<CurrencyPrototype>, FixedPoint2>(currency.Key, fromBank),
+                    null))
             {
+                if (fromMachine > FixedPoint2.Zero)
+                    component.Balance[currency.Key] += fromMachine;
+
                 _PlayDeny(uid);
-                _popup.PopupEntity(Loc.GetString("store-no-money"),uid);
+                _popup.PopupEntity(Loc.GetString("store-no-money"), uid);
                 return false;
             }
         }
+        // end-backmen: vending-payment
 
-        return true; // успешно списано?
+        return true;
     }
 }

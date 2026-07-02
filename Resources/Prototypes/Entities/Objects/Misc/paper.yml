@@ -24,6 +24,7 @@
     tags:
     - Document
     - Paper
+  - type: PaperVisualizer # backmen: paper-visualizer
   - type: Appearance
   - type: Flammable
     fireSpread: true

@@ -5,6 +5,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Part;
 using Content.Shared.Body;
+using Content.Shared.Body.Organ;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -17,7 +18,10 @@ using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Backmen.Mood;
 using Content.Shared.Backmen.Body.OrganRelations;
+using Content.Shared.Backmen.Surgery.Body;
+using Content.Shared.Backmen.Surgery.Body.Subsystems;
 using Content.Shared.Backmen.Surgery.Body.Organs;
+using Content.Shared.Backmen.Surgery.Conditions;
 using Content.Shared.Backmen.Surgery.Effects.Step;
 using Content.Shared.Backmen.Surgery.Steps;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
@@ -28,7 +32,9 @@ using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.FixedPoint;
+using Content.Shared.Implants.Components;
 using Content.Shared.Nutrition.Components;
+using Robust.Shared.Map;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Surgery;
@@ -357,14 +363,13 @@ public abstract partial class SharedSurgerySystem
             || !_itemSlotsSystem.TryGetSlot(cavityEntity, SurgeryStepCavityEffectComponent.SlotId, out var slot))
             return;
 
-        var activeHandEntity = _hands.EnumerateHeld(args.User).FirstOrDefault();
+        // start-backmen: cavity-implant
         if (ent.Comp.Action == "Insert"
-            && activeHandEntity != default
-            && TryComp(activeHandEntity, out ItemComponent? itemComp)
-            && (itemComp.Size.Id == "Tiny" || itemComp.Size.Id == "Small"))
+            && TryGetCavityInsertEntity(args.User, out var insertEntity))
         {
-            _itemSlotsSystem.TryInsert(cavityEntity, slot, activeHandEntity, args.User);
+            _itemSlotsSystem.TryInsert(cavityEntity, slot, insertEntity, args.User);
         }
+        // end-backmen: cavity-implant
         else if (ent.Comp.Action == "Remove")
         {
             _itemSlotsSystem.TryEjectToHands(cavityEntity, slot, args.User);
@@ -464,6 +469,11 @@ public abstract partial class SharedSurgerySystem
                     && SurgeryBodyPartMapping.TryGetCategory(removedComp.Part, removedComp.Symmetry, out var blockedCategory)
                     && SurgeryBodyPartMapping.IsHumanLegOrFootCategory(blockedCategory)))
             {
+                // start-backmen: cybernetic-limb-attach
+                if (HasComp<CyberneticsComponent>(tool) && TryAttachCyberneticBodyPart(args.Body, tool, removedComp))
+                    return;
+                // end-backmen: cybernetic-limb-attach
+
                 var slotName = removedComp.Symmetry != null
                     ? $"{removedComp.Symmetry?.ToString().ToLower()} {removedComp.Part.ToString().ToLower()}"
                     : removedComp.Part.ToString().ToLower();
@@ -1206,7 +1216,7 @@ public abstract partial class SharedSurgerySystem
 
         if (TryComp<SurgeryStepCavityEffectComponent>(step, out var cavityStep)
             && cavityStep.Action == "Insert"
-            && !HasTinyOrSmallItemInHands(user))
+            && !TryGetCavityInsertEntity(user, out _))
         {
             _popup.PopupEntity(Loc.GetString("surgery-error-cavity-no-item"), user, user);
             return;
@@ -1338,6 +1348,97 @@ public abstract partial class SharedSurgerySystem
 
         return slots.Contains(category);
     }
+
+    // start-backmen: cavity-implant
+    private bool TryGetCavityInsertEntity(EntityUid user, out EntityUid insertEntity)
+    {
+        foreach (var held in _hands.EnumerateHeld(user))
+        {
+            if (TryComp<ItemComponent>(held, out var item)
+                && (item.Size.Id == "Tiny" || item.Size.Id == "Small"))
+            {
+                insertEntity = held;
+                return true;
+            }
+
+            if (HasComp<SubdermalImplantComponent>(held))
+            {
+                insertEntity = held;
+                return true;
+            }
+
+            if (_itemSlotsSystem.TryGetSlot(held, ImplanterComponent.ImplanterSlotId, out var implanterSlot)
+                && implanterSlot.HasItem)
+            {
+                insertEntity = implanterSlot.Item!.Value;
+                return true;
+            }
+        }
+
+        insertEntity = default;
+        return false;
+    }
+    // end-backmen: cavity-implant
+
+    // start-backmen: cybernetic-limb-attach
+    private bool TryAttachCyberneticBodyPart(
+        EntityUid body,
+        EntityUid tool,
+        SurgeryPartRemovedConditionComponent removedComp)
+    {
+        if (!SurgeryBodyPartMapping.TryGetCategory(removedComp.Part, removedComp.Symmetry, out var category))
+            return false;
+
+        if (!HasComp<OrganComponent>(tool))
+            EnsureComp<OrganComponent>(tool);
+
+        _organBody.SetOrganCategory(tool, category);
+
+        if (!_body.InsertOrganIntoBody(body, tool))
+            return false;
+
+        TryAttachCyberneticChildPart(body, tool);
+
+        _wounds.RestoreWoundableAfterReattachment(tool);
+        EnsureComp<OrganReattachedComponent>(tool);
+        if (TryComp<BodyComponent>(body, out var bodyComp))
+            _organRelations.WireRelationships((body, bodyComp));
+        RefreshBodyAppearance(body, tool);
+        _wounds.RefreshBodyTargetingStatus(body);
+        return true;
+    }
+
+    private void TryAttachCyberneticChildPart(EntityUid body, EntityUid parentPart)
+    {
+        if (!_net.IsServer
+            || !TryComp<GenerateChildPartComponent>(parentPart, out var gen)
+            || string.IsNullOrEmpty(gen.Id)
+            || !TryComp<OrganComponent>(parentPart, out var parentOrgan)
+            || parentOrgan.Category is not { } parentCategory
+            || !SurgeryBodyPartMapping.TryGetDependentCategory(parentCategory, out var childCategory)
+            || _organBody.TryGetOrganByCategory(body, childCategory, out _))
+        {
+            return;
+        }
+
+        var child = Spawn(gen.Id, MapCoordinates.Nullspace);
+        if (!HasComp<OrganComponent>(child))
+            EnsureComp<OrganComponent>(child);
+
+        _organBody.SetOrganCategory(child, childCategory);
+
+        if (!_body.InsertOrganIntoBody(body, child))
+        {
+            Del(child);
+            return;
+        }
+
+        EnsureComp<OrganReattachedComponent>(child);
+        gen.ChildPart = child;
+        gen.Active = true;
+        Dirty(parentPart, gen);
+    }
+    // end-backmen: cybernetic-limb-attach
 
     private bool HasTinyOrSmallItemInHands(EntityUid user)
     {
