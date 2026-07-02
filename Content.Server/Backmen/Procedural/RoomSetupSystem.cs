@@ -5,7 +5,9 @@ using Content.Server.Atmos.Piping.EntitySystems;
 using Content.Server.Atmos.Piping.Unary.Components;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Monitor;
-using Content.Shared.Backmen.Supermatter.Components;
+using Content.Shared.Atmos.Piping.Binary.Components;
+using Content.Shared.Power.Components;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Procedural;
 using Content.Shared.Tag;
 using Robust.Shared.Map;
@@ -20,6 +22,7 @@ public sealed partial class RoomSetupSystem : EntitySystem
     [Dependency] private AtmosDeviceSystem _atmosDevice = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private TagSystem _tag = default!;
 
     private EntityQuery<GasPortableComponent> _portableQuery;
@@ -32,27 +35,14 @@ public sealed partial class RoomSetupSystem : EntitySystem
         _portableQuery = GetEntityQuery<GasPortableComponent>();
         _gatedQuery = GetEntityQuery<RoomSetupGatedComponent>();
 
-        SubscribeLocalEvent<RoomSetupZoneComponent, MapInitEvent>(OnZoneMapInit);
-        SubscribeLocalEvent<GasPortableComponent, AnchorStateChangedEvent>(OnPortableAnchorChanged);
-        SubscribeLocalEvent<BkmSupermatterComponent, MapInitEvent>(OnSupermatterSpawned);
+        SubscribeLocalEvent<AnchorStateChangedEvent>(OnAnchorChanged);
     }
 
-    private void OnZoneMapInit(Entity<RoomSetupZoneComponent> ent, ref MapInitEvent args)
+    private void OnAnchorChanged(ref AnchorStateChangedEvent args)
     {
-        if (ent.Comp.Activated || ent.Comp.GridUid == null)
+        if (!_portableQuery.HasComponent(args.Entity))
             return;
 
-        GateEntitiesInZone(ent);
-        TryActivateZone(ent);
-    }
-
-    private void OnPortableAnchorChanged(EntityUid uid, GasPortableComponent component, ref AnchorStateChangedEvent args)
-    {
-        CheckAllZones();
-    }
-
-    private void OnSupermatterSpawned(Entity<BkmSupermatterComponent> ent, ref MapInitEvent args)
-    {
         CheckAllZones();
     }
 
@@ -116,9 +106,6 @@ public sealed partial class RoomSetupSystem : EntitySystem
         if (zone.Comp.Requirements.HasFlag(RoomSetupRequirements.Canisters) && !AreCanistersConnected(zone))
             return;
 
-        if (zone.Comp.Requirements.HasFlag(RoomSetupRequirements.Supermatter) && !HasSupermatterInZone(zone))
-            return;
-
         ActivateZone(zone);
     }
 
@@ -148,21 +135,6 @@ public sealed partial class RoomSetupSystem : EntitySystem
         }
 
         return connected >= zone.Comp.RequiredCanisterPorts;
-    }
-
-    private bool HasSupermatterInZone(Entity<RoomSetupZoneComponent> zone)
-    {
-        if (zone.Comp.GridUid == null)
-            return false;
-
-        var bounds = new Box2(zone.Comp.Bounds.BottomLeft, zone.Comp.Bounds.TopRight + Vector2i.One);
-        foreach (var entity in _lookup.GetEntitiesIntersecting(zone.Comp.GridUid.Value, bounds))
-        {
-            if (HasComp<BkmSupermatterComponent>(entity))
-                return true;
-        }
-
-        return false;
     }
 
     private IEnumerable<EntityUid> GetGatedEntities(Entity<RoomSetupZoneComponent> zone)
@@ -220,6 +192,15 @@ public sealed partial class RoomSetupSystem : EntitySystem
             pump.Enabled = true;
             Dirty(uid, pump);
         }
+
+        if (TryComp(uid, out GasVolumePumpComponent? volumePump))
+        {
+            volumePump.Enabled = true;
+            Dirty(uid, volumePump);
+        }
+
+        if (TryComp(uid, out ApcPowerReceiverComponent? receiver))
+            _powerReceiver.SetPowerDisabled(uid, false, receiver);
 
         if (TryComp(uid, out AtmosDeviceComponent? device))
             _atmosDevice.JoinAtmosphere((uid, device));

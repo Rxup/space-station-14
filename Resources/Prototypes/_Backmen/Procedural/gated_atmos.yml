@@ -1,3 +1,5 @@
+# Supermatter chamber
+
 - type: entity
   parent: GasVentPumpSupermatter
   id: GasVentPumpSupermatterGated
@@ -33,3 +35,47 @@
   - type: RoomSetupGated
   - type: AirAlarm
     autoMode: false
+
+# TEG chamber
+
+- type: entity
+  parent: TegCenter
+  id: TegCenterGated
+  suffix: Setup Gated
+  components:
+  - type: Tag
+    tags:
+    - TegChamberSetup
+  - type: RoomSetupGated
+
+- type: entity
+  parent: GasVolumePump
+  id: GasVolumePumpGated
+  suffix: Setup Gated
+  components:
+  - type: Tag
+    tags:
+    - TegChamberSetup
+  - type: RoomSetupGated
+  - type: GasVolumePump
+    enabled: false
+
+- type: entity
+  parent: GasThermoMachineHeater
+  id: GasThermoMachineHeaterGated
+  suffix: Setup Gated
+  components:
+  - type: Tag
+    tags:
+    - TegChamberSetup
+  - type: RoomSetupGated
+
+- type: entity
+  parent: GasThermoMachineFreezer
+  id: GasThermoMachineFreezerGated
+  suffix: Setup Gated
+  components:
+  - type: Tag
+    tags:
+    - TegChamberSetup
+  - type: RoomSetupGated

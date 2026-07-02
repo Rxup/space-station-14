@@ -7,6 +7,14 @@
   - SupermatterChamber
 
 - type: dungeonRoom
+  id: TegChamber1
+  size: 15, 9
+  atlas: /Maps/Dungeon/Engine/teg_chamber.yml
+  offset: 0, 0
+  tags:
+  - TegChamber
+
+- type: dungeonRoom
   id: SmesSubstation1
   size: 7, 5
   atlas: /Maps/Dungeon/Engine/smes_substation.yml
@@ -29,7 +37,25 @@
       - SupermatterChamber
   - type: RoomSetupZone
     activationTag: SupermatterChamberSetup
-    requirements: Canisters, Supermatter
+    requirements: Canisters
+    requiredCanisterPorts: 2
+
+- type: entity
+  id: TegChamberRoomMarker
+  parent: BaseRoomMarker
+  name: TEG chamber marker
+  components:
+  - type: RoomFill
+    rotation: false
+    minSize: 15, 9
+    maxSize: 15, 9
+    clearExisting: true
+    roomWhitelist:
+      tags:
+      - TegChamber
+  - type: RoomSetupZone
+    activationTag: TegChamberSetup
+    requirements: Canisters
     requiredCanisterPorts: 2
 
 - type: entity
