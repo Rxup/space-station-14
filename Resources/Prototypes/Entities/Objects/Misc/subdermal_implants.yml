@@ -5,8 +5,12 @@
   abstract: true
   components:
   - type: SubdermalImplant
+  - type: Sprite # backmen: cavity-implant
+    sprite: Objects/Storage/boxicons.rsi
+    state: implant
   - type: Item # backmen: cavity-implant
     size: Tiny
+    sprite: Objects/Storage/boxicons.rsi
   - type: Tag
     tags:
     - SubdermalImplant
