@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 
 namespace Content.Server.Administration.Commands;
 
-[AdminCommand(AdminFlags.Moderator)]
+[AdminCommand(AdminFlags.WhiteList)] // Backmen:perms-upd
 public sealed partial class PlayTimeAddOverallCommand : IConsoleCommand
 {
     [Dependency] private IPlayerManager _playerManager = default!;
@@ -58,7 +58,7 @@ public sealed partial class PlayTimeAddOverallCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.Moderator)]
+[AdminCommand(AdminFlags.WhiteList)] // Backmen:perms-upd
 public sealed partial class PlayTimeAddRoleCommand : IConsoleCommand
 {
     [Dependency] private IPlayerManager _playerManager = default!;
@@ -123,7 +123,7 @@ public sealed partial class PlayTimeAddRoleCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.Moderator)]
+[AdminCommand(AdminFlags.WhiteList)] // Backmen:perms-upd
 public sealed partial class PlayTimeGetOverallCommand : IConsoleCommand
 {
     [Dependency] private IPlayerManager _playerManager = default!;
@@ -168,7 +168,7 @@ public sealed partial class PlayTimeGetOverallCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.Moderator)]
+[AdminCommand(AdminFlags.WhiteList)] // Backmen:perms-upd
 public sealed partial class PlayTimeGetRoleCommand : IConsoleCommand
 {
     [Dependency] private IPlayerManager _playerManager = default!;
@@ -247,7 +247,7 @@ public sealed partial class PlayTimeGetRoleCommand : IConsoleCommand
 /// <summary>
 /// Saves the timers for a particular player immediately
 /// </summary>
-[AdminCommand(AdminFlags.Moderator)]
+[AdminCommand(AdminFlags.WhiteList)] // Backmen:perms-upd
 public sealed partial class PlayTimeSaveCommand : IConsoleCommand
 {
     [Dependency] private IPlayerManager _playerManager = default!;
@@ -289,7 +289,7 @@ public sealed partial class PlayTimeSaveCommand : IConsoleCommand
     }
 }
 
-[AdminCommand(AdminFlags.Debug)]
+[AdminCommand(AdminFlags.WhiteList)] // Backmen:perms-upd
 public sealed partial class PlayTimeFlushCommand : IConsoleCommand
 {
     [Dependency] private IPlayerManager _playerManager = default!;
