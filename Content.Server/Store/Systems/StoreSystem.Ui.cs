@@ -100,31 +100,23 @@ public sealed partial class StoreSystem
                 return;
         }
 
-        //check that we have enough money
+        // start-backmen: vending-payment
         var cost = listing.Cost;
+        var hasEnoughBalance = true;
         foreach (var (currency, amount) in cost)
         {
             if (!component.Balance.TryGetValue(currency, out var balance) || balance < amount)
             {
-                return;
+                hasEnoughBalance = false;
+                break;
             }
         }
 
         if (!IsOnStartingMap(uid, component))
             DisableRefund(uid, component);
 
-        if (!HandleBankTransaction(uid, component, msg, listing)) // backmen: currency
+        if (hasEnoughBalance)
         {
-            //check that we have enough money
-            foreach (var (currency, amount) in cost)
-            {
-                if (!component.Balance.TryGetValue(currency, out var balance) || balance < amount)
-                {
-                    return;
-                }
-            }
-
-            //subtract the cash
             foreach (var (currency, amount) in cost)
             {
                 component.Balance[currency] -= amount;
@@ -134,7 +126,10 @@ public sealed partial class StoreSystem
                 component.BalanceSpent[currency] += amount;
             }
         }
-        // start-backmen: currency
+        else if (!HandleBankTransaction(uid, component, msg, listing))
+        {
+            return;
+        }
         else
         {
             foreach (var (currency, value) in listing.Cost)
@@ -143,7 +138,7 @@ public sealed partial class StoreSystem
                 component.BalanceSpent[currency] += value;
             }
         }
-        // end-backmen: currency
+        // end-backmen: vending-payment
 
         //apply components
         if (listing.ProductComponents != null)

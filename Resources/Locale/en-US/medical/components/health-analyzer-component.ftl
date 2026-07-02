@@ -45,6 +45,8 @@ health-analyzer-window-pain-cause-organ-damage = Organ Damage
 health-analyzer-window-pain-cause-starving = Starvation
 
 # start-backmen: analyzer-satiation
+health-analyzer-window-entity-hunger-level-text = Hunger Level:
+health-analyzer-window-entity-thirst-level-text = Thirst Level:
 health-analyzer-window-patient-starving = Patient is starving!
 health-analyzer-window-patient-peckish = Patient is hungry
 health-analyzer-window-patient-parched = Patient is parched!

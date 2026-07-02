@@ -64,6 +64,11 @@
   parent: [ PlayerSiliconBase, BaseMobDroneBody, ShowMedicalIcons ]
   components:
   - type: Targeting
+  # start-backmen: med-drone-surgery
+  - type: SurgeryTarget
+    canOperate: true
+    canBeOperatedOn: false
+  # end-backmen: med-drone-surgery
   - type: BatteryDrainer
   - type: AntagImmune
   - type: BSSDrone
@@ -114,6 +119,8 @@
         requireInputValidation: false
       enum.BorgUiKey.Key:
         type: BorgBoundUserInterface
+      enum.SurgeryUIKey.Key: # backmen: med-drone-surgery
+        type: SurgeryBui
   - type: PowerCellSlot
     cellSlotId: cell_slot
   - type: ItemSlots

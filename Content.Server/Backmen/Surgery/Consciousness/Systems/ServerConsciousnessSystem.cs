@@ -31,6 +31,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
+using Content.Shared.Repairable;
 using Content.Shared.Standing;
 using Content.Shared.Zombies;
 using JetBrains.Annotations;
@@ -72,6 +73,9 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
         // To prevent people immediately falling down as rejuvenated
         SubscribeLocalEvent<ConsciousnessComponent, RejuvenateEvent>(OnRejuvenate, after: [typeof(BkmBodySharedSystem)]);
+        // start-backmen: repairable-consciousness
+        SubscribeLocalEvent<ConsciousnessComponent, RepairedEvent>(OnRepaired, after: [typeof(RepairableSystem)]);
+        // end-backmen: repairable-consciousness
         SubscribeLocalEvent<ConsciousnessComponent, HandleUnhandledWoundsEvent>(OnHandleUnhandledDamage);
         SubscribeLocalEvent<ConsciousnessComponent, DamageableGetHealableDamageEvent>(OnGetHealableDamage);
 
@@ -446,6 +450,26 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
     private void OnRejuvenate(Entity<ConsciousnessComponent> consciousness, ref RejuvenateEvent args)
     {
+        ClearPainEffects(consciousness);
+        CheckRequiredParts(consciousness);
+        ForceConscious(consciousness.AsNullable(), TimeSpan.FromSeconds(5f));
+    }
+
+    // start-backmen: repairable-consciousness
+    private void OnRepaired(Entity<ConsciousnessComponent> consciousness, ref RepairedEvent args)
+    {
+        if (!HasComp<RepairableComponent>(consciousness))
+            return;
+
+        Body.ForceRestoreBody(consciousness.Owner);
+        ClearPainEffects(consciousness);
+        CheckRequiredParts(consciousness);
+        ForceConscious(consciousness.AsNullable(), TimeSpan.FromSeconds(5f));
+    }
+    // end-backmen: repairable-consciousness
+
+    private void ClearPainEffects(Entity<ConsciousnessComponent> consciousness)
+    {
         var (uid, component) = consciousness;
 
         if (component.NerveSystem.HasValue)
@@ -491,9 +515,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         {
             RemoveConsciousnessModifier(uid, key.Item1, key.Item2);
         }
-
-        CheckRequiredParts(consciousness);
-        ForceConscious(consciousness.AsNullable(), TimeSpan.FromSeconds(5f));
     }
 
     private void OnGetHealableDamage(

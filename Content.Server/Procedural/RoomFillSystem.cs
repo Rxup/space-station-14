@@ -1,3 +1,4 @@
+using Content.Server.Backmen.Procedural; // backmen: engine-room-markers
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 
@@ -8,6 +9,7 @@ public sealed partial class RoomFillSystem : EntitySystem
     [Dependency] private DungeonSystem _dungeon = default!;
     [Dependency] private SharedMapSystem _maps = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private RoomSetupSystem _roomSetup = default!; // backmen: engine-room-markers
 
     public override void Initialize()
     {
@@ -26,15 +28,24 @@ public sealed partial class RoomFillSystem : EntitySystem
             if (room != null)
             {
                 var mapGrid = Comp<MapGridComponent>(xform.GridUid.Value);
+                var origin = _maps.LocalToTile(xform.GridUid.Value, mapGrid, xform.Coordinates) - new Vector2i(room.Size.X / 2, room.Size.Y / 2);
                 _dungeon.SpawnRoom(
                     xform.GridUid.Value,
                     mapGrid,
-                    _maps.LocalToTile(xform.GridUid.Value, mapGrid, xform.Coordinates) - new Vector2i(room.Size.X/2,room.Size.Y/2),
+                    origin,
                     room,
                     _random,
                     null,
                     clearExisting: component.ClearExisting,
                     rotation: component.Rotation);
+
+                // start-backmen: engine-room-markers
+                if (TryComp<RoomSetupZoneComponent>(uid, out var setupZone))
+                {
+                    _roomSetup.InitializeZone(uid, setupZone, xform.GridUid.Value, mapGrid, origin, room);
+                    return;
+                }
+                // end-backmen: engine-room-markers
             }
             else
             {

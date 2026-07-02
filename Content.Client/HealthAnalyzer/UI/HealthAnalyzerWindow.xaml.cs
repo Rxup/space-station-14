@@ -183,6 +183,14 @@ namespace Content.Client.HealthAnalyzer.UI
                 ? $"{msg.BloodLevel * 100:F1} %"
                 : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
 
+            HungerLabel.Text = !float.IsNaN(msg.HungerLevel)
+                ? $"{msg.HungerLevel * 100:F1} %"
+                : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
+
+            ThirstLabel.Text = !float.IsNaN(msg.ThirstLevel)
+                ? $"{msg.ThirstLevel * 100:F1} %"
+                : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
+
             StatusLabel.Text =
                 _entityManager.TryGetComponent<MobStateComponent>(_target.Value, out var mobStateComponent)
                     ? GetStatus(mobStateComponent.CurrentState)

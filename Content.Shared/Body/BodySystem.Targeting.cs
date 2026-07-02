@@ -58,7 +58,7 @@ public sealed partial class BodySystem
     /// <summary>
     /// Assigns an organ category (used when grafting generic spider legs into a specific slot).
     /// </summary>
-    public void SetOrganCategory(EntityUid organ, ProtoId<OrganCategoryPrototype> category)
+    public void SetOrganCategory(EntityUid organ, ProtoId<OrganCategoryPrototype>? category)
     {
         if (!_organQuery.TryComp(organ, out var organComp))
             return;

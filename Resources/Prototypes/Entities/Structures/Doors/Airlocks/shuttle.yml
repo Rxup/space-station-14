@@ -79,6 +79,7 @@
   - type: Tag
     tags:
       - ForceNoFixRotations
+      - DoorRemoteWhitelist # backmen: door-remote
   - type: Construction
     graph: AirlockShuttle
     node: airlock

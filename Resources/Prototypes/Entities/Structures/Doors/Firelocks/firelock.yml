@@ -31,6 +31,7 @@
     - type: Tag
       tags:
       - ForceFixRotations # Allow fixrotations to target these
+      - DoorRemoteWhitelist # backmen: door-remote
     - type: Destructible
       thresholds:
       - trigger:
@@ -223,6 +224,7 @@
     - type: Tag
       tags:
       - ForceNoFixRotations # Prevent fixrotations from targeting these, since the base Firelock is targeted
+      - DoorRemoteWhitelist # backmen: door-remote
     - type: Door
       occludes: false
     - type: Physics

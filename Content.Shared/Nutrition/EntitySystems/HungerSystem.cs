@@ -98,6 +98,21 @@ public sealed partial class HungerSystem : EntitySystem
         return ClampHungerWithinThresholds(component, value);
     }
 
+    // start-backmen: analyzer-satiation
+    /// <summary>
+    /// Normalized hunger level from 0 (dead) to 1 (okay), for health analyzer display.
+    /// </summary>
+    public float GetHungerLevel(HungerComponent component)
+    {
+        var okay = component.Thresholds[HungerThreshold.Okay];
+        var dead = component.Thresholds[HungerThreshold.Dead];
+        if (okay <= dead)
+            return float.NaN;
+
+        return Math.Clamp((GetHunger(component) - dead) / (okay - dead), 0f, 1f);
+    }
+    // end-backmen: analyzer-satiation
+
     /// <summary>
     /// Adds to the current hunger of an entity by the specified value
     /// </summary>

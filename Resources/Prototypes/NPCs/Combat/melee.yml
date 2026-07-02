@@ -102,8 +102,8 @@
             - !type:TargetInRangePrecondition
               targetKey: Target
               rangeKey: InteractRange
-          operator: !type:InteractWithOperator
-            targetKey: Target
+          operator: !type:EquipOperator
+            target: Target
 
 # Tries to melee attack our target.
 - type: htnCompound
