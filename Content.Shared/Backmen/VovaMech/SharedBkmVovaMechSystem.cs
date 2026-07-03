@@ -1,8 +1,6 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
-using Content.Shared.Interaction;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
@@ -11,12 +9,12 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Backmen.VovaMech;
 
-public abstract class SharedBkmVovaMechSystem : EntitySystem
+public abstract partial class SharedBkmVovaMechSystem : EntitySystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] protected readonly VehicleSystem Vehicle = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] protected VehicleSystem Vehicle = default!;
 
     public override void Initialize()
     {

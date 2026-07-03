@@ -9,7 +9,7 @@ using Content.Shared.Vehicle.Components;
 
 namespace Content.Server.Backmen.VovaMech;
 
-public sealed class BkmVovaMechSystem : SharedBkmVovaMechSystem
+public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
 {
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private PopupSystem _popup = default!;
