@@ -1,7 +1,7 @@
 using System.Linq;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
-using Content.Shared.Backmen.VovaMech;
+using Content.Shared.Backmen.VovaMech; // backmen: vova-mech-melee
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
@@ -43,12 +43,16 @@ public abstract partial class SharedMechSystem : EntitySystem
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
 
+    // start-backmen: vova-mech-melee
     private EntityQuery<BkmPilotableMechComponent> _pilotableMechQuery;
+    // end-backmen: vova-mech-melee
 
     /// <inheritdoc/>
     public override void Initialize()
     {
+        // start-backmen: vova-mech-melee
         _pilotableMechQuery = GetEntityQuery<BkmPilotableMechComponent>();
+        // end-backmen: vova-mech-melee
 
         SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction);
         SubscribeLocalEvent<MechComponent, MechEjectPilotEvent>(OnEjectPilotEvent);
@@ -398,6 +402,7 @@ public abstract partial class SharedMechSystem : EntitySystem
             return;
         }
 
+        // start-backmen: vova-mech-melee
         if (!_pilotableMechQuery.HasComp(vehicle))
             return;
 
@@ -406,6 +411,7 @@ public abstract partial class SharedMechSystem : EntitySystem
             args.Weapon = held;
             args.Handled = true;
         }
+        // end-backmen: vova-mech-melee
     }
 
     private void OnCanAttackFromContainer(EntityUid uid, VehicleOperatorComponent component, CanAttackFromContainerEvent args)
@@ -413,7 +419,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (component.Vehicle is not { } vehicle)
             return;
 
-        if (HasComp<MechComponent>(vehicle) || _pilotableMechQuery.HasComp(vehicle))
+        if (HasComp<MechComponent>(vehicle) || _pilotableMechQuery.HasComp(vehicle)) // backmen: vova-mech-melee
             args.CanAttack = true;
     }
 

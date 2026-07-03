@@ -96,8 +96,10 @@ public sealed partial class VehicleSystem : EntitySystem
 
     private void OnOperatorShutdown(Entity<VehicleOperatorComponent> ent, ref ComponentShutdown args)
     {
+        // start-backmen: vova-mech-operator-shutdown
         var ev = new VehicleOperatorShutdownEvent(ent.Owner, ent.Comp.Vehicle);
         RaiseLocalEvent(ent, ref ev, broadcast: true);
+        // end-backmen: vova-mech-operator-shutdown
         TryRemoveOperator((ent, ent));
     }
 

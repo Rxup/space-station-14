@@ -2,6 +2,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
 using Robust.Shared.Containers;
@@ -14,6 +15,7 @@ public abstract partial class SharedBkmVovaMechSystem : EntitySystem
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] protected VehicleSystem Vehicle = default!;
 
     private EntityQuery<BkmPilotableMechComponent> _pilotableMechQuery;
@@ -29,22 +31,58 @@ public abstract partial class SharedBkmVovaMechSystem : EntitySystem
         SubscribeLocalEvent<BkmPilotableMechComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BkmPilotableMechComponent, DragDropTargetEvent>(OnDragDrop);
         SubscribeLocalEvent<BkmPilotableMechComponent, CanDropTargetEvent>(OnCanDragDrop);
+
+        SubscribeAllEvent<BkmVovaMechSetHandEvent>(OnSetHand);
+
+        // start-backmen: vova-mech-gun-holder
+        SubscribeLocalEvent<GetGunHandsHolderEvent>(OnGetGunHandsHolder);
+        // end-backmen: vova-mech-gun-holder
     }
 
-    /// <summary>
-    /// When piloting a OneStar mech, hand input and weapons resolve to the mech entity.
-    /// </summary>
-    public EntityUid GetHandsHolder(EntityUid entity)
+    private bool TryGetPilotableMechHandsHolder(EntityUid entity, out EntityUid holder)
     {
-        if (_vehicleOperatorQuery.TryComp(entity, out var vehicleOperator) &&
-            vehicleOperator.Vehicle is { } vehicle &&
-            _pilotableMechQuery.HasComp(vehicle) &&
-            HasComp<HandsComponent>(vehicle))
+        holder = entity;
+
+        if (!_vehicleOperatorQuery.TryComp(entity, out var vehicleOperator) ||
+            vehicleOperator.Vehicle is not { } vehicle ||
+            !_pilotableMechQuery.HasComp(vehicle) ||
+            !HasComp<HandsComponent>(vehicle))
         {
-            return vehicle;
+            return false;
         }
 
-        return entity;
+        holder = vehicle;
+        return true;
+    }
+
+    // start-backmen: vova-mech-gun-holder
+    private void OnGetGunHandsHolder(ref GetGunHandsHolderEvent args)
+    {
+        if (TryGetPilotableMechHandsHolder(args.Entity, out var holder))
+            args.Holder = holder;
+    }
+    // end-backmen: vova-mech-gun-holder
+
+    private void OnSetHand(BkmVovaMechSetHandEvent msg, EntitySessionEventArgs args)
+    {
+        if (args.SenderSession.AttachedEntity is not { } user)
+            return;
+
+        if (!TryGetPilotableMechHandsHolder(user, out var holder) || !TryComp<HandsComponent>(holder, out var hands))
+            return;
+
+        _hands.TrySetActiveHand((holder, hands), msg.HandName);
+    }
+
+    protected void EnsureActiveMechHand(EntityUid mech)
+    {
+        if (!TryComp<HandsComponent>(mech, out var hands) || hands.ActiveHandId != null)
+            return;
+
+        if (hands.SortedHands.Count == 0)
+            return;
+
+        _hands.SetActiveHand((mech, hands), hands.SortedHands[0]);
     }
 
     private void OnStartup(EntityUid uid, BkmPilotableMechComponent component, ComponentStartup args)
@@ -117,3 +155,14 @@ public sealed partial class BkmVovaMechEntryEvent : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
 public sealed partial class BkmVovaMechExitEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed class BkmVovaMechSetHandEvent : EntityEventArgs
+{
+    public string HandName { get; }
+
+    public BkmVovaMechSetHandEvent(string handName)
+    {
+        HandName = handName;
+    }
+}

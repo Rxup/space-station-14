@@ -23,6 +23,7 @@ public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStat
 {
     [Dependency] private IEntityManager _entities = default!;
 
+    [UISystemDependency] private readonly BkmVovaMechSystem _mechSystem = default!;
     [UISystemDependency] private readonly HandsSystem _handsSystem = default!;
     [UISystemDependency] private readonly UseDelaySystem _useDelay = default!;
 
@@ -142,6 +143,9 @@ public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStat
         }
 
         SetActiveHand(hands.ActiveHandId);
+
+        if (hands.ActiveHandId == null && hands.SortedHands.Count > 0)
+            _mechSystem.RequestSetMechHand(hands.SortedHands[0]);
     }
 
     private void UnloadMechHands()
@@ -222,34 +226,15 @@ public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStat
     private void MechHandClick(Entity<HandsComponent> ent, string handName)
     {
         var hands = ent.Comp;
-        if (hands.ActiveHandId == null)
-            return;
 
-        var pressedEntity = _handsSystem.GetHeldItem(ent.AsNullable(), handName);
-        var activeEntity = _handsSystem.GetActiveItem(ent.AsNullable());
-
-        if (handName == hands.ActiveHandId && activeEntity != null)
+        if (handName != hands.ActiveHandId)
         {
+            _mechSystem.RequestSetMechHand(handName);
+            return;
+        }
+
+        if (_handsSystem.GetActiveItem(ent.AsNullable()) != null)
             _handsSystem.TryUseItemInHand(ent.Owner);
-            return;
-        }
-
-        if (handName != hands.ActiveHandId && pressedEntity == null)
-        {
-            _handsSystem.SetActiveHand(ent.AsNullable(), handName);
-            return;
-        }
-
-        if (handName != hands.ActiveHandId && pressedEntity != null && activeEntity != null)
-        {
-            _handsSystem.TryInteractHandWithActiveHand(ent.Owner, handName, hands);
-            return;
-        }
-
-        if (handName != hands.ActiveHandId && pressedEntity != null && activeEntity == null)
-        {
-            _handsSystem.TryMoveHeldEntityToActiveHand(ent.Owner, handName, handsComp: hands);
-        }
     }
 
     private void SetActiveHand(string? handName)

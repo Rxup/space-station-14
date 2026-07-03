@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
@@ -45,7 +44,6 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private ItemSlotsSystem _slots = default!;
     [Dependency] private RechargeBasicEntityAmmoSystem _recharge = default!;
-    [Dependency] private SharedBkmVovaMechSystem _bkmVovaMech = default!;
     [Dependency] private SharedCombatModeSystem _combatMode = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
@@ -197,7 +195,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     public bool TryGetGun(EntityUid entity, out Entity<GunComponent> gun)
     {
         gun = default;
-        entity = _bkmVovaMech.GetHandsHolder(entity);
+        entity = GetGunHandsHolder(entity); // backmen: vova-mech-gun-holder
 
         if (_hands.GetActiveItem(entity) is { } held &&
             TryComp(held, out GunComponent? gunComp))
@@ -215,6 +213,20 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         return false;
     }
+
+    // start-backmen: vova-mech-gun-holder
+    /// <summary>
+    /// Entity to use for ranged weapon origin when the user is piloting a vehicle.
+    /// </summary>
+    protected EntityUid GetShootOrigin(EntityUid user) => GetGunHandsHolder(user);
+
+    private EntityUid GetGunHandsHolder(EntityUid entity)
+    {
+        var ev = new GetGunHandsHolderEvent(entity);
+        RaiseLocalEvent(entity, ref ev, broadcast: true);
+        return ev.Holder;
+    }
+    // end-backmen: vova-mech-gun-holder
 
     private void StopShooting(Entity<GunComponent> ent)
     {
@@ -347,9 +359,12 @@ public abstract partial class SharedGunSystem : EntitySystem
             return false;
         }
 
-        var fromCoordinates = Transform(user).Coordinates;
+        // start-backmen: vova-mech-gun-holder
+        var fromEntity = GetGunHandsHolder(user);
+        var fromCoordinates = Transform(fromEntity).Coordinates;
         // Remove ammo
-        var ev = new TakeAmmoEvent(shots, [], fromCoordinates, user);
+        var ev = new TakeAmmoEvent(shots, [], fromCoordinates, fromEntity);
+        // end-backmen: vova-mech-gun-holder
 
         // Listen it just makes the other code around it easier if shots == 0 to do this.
         if (shots > 0)
@@ -407,7 +422,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         // Shoot confirmed - sounds also played here in case it's invalid (e.g. cartridge already spent).
-        Shoot(gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, user, throwItems: attemptEv.ThrowItems);
+        Shoot(gun, ev.Ammo, fromCoordinates, toCoordinates.Value, out var userImpulse, fromEntity, throwItems: attemptEv.ThrowItems); // backmen: vova-mech-gun-holder
         var shotEv = new GunShotEvent(user, ev.Ammo);
         RaiseLocalEvent(gun, ref shotEv);
 

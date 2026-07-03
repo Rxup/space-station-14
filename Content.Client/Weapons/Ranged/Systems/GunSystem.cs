@@ -172,6 +172,7 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         var entity = entityNull.Value;
+        var shootEntity = GetShootOrigin(entity); // backmen: vova-mech-gun-holder
 
         if (!TryGetGun(entity, out var gun))
         {
@@ -201,7 +202,7 @@ public sealed partial class GunSystem : SharedGunSystem
         }
 
         // Define target coordinates relative to gun entity, so that network latency on moving grids doesn't fuck up the target location.
-        var coordinates = TransformSystem.ToCoordinates(entity, mousePos);
+        var coordinates = TransformSystem.ToCoordinates(shootEntity, mousePos);
 
         NetEntity? target = null;
         if (_state.CurrentState is GameplayStateBase screen)

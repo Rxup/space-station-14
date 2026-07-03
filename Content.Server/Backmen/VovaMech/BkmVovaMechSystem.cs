@@ -183,6 +183,8 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
             var relay = EnsureComp<InteractionRelayComponent>(newOperator);
             _interaction.SetRelay(newOperator, ent, relay);
 
+            EnsureActiveMechHand(ent.Owner); // backmen: vova-mech-hands-ui
+
             _actionBlocker.UpdateCanMove(ent);
         }
     }

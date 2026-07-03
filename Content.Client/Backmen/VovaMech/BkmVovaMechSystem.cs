@@ -80,4 +80,9 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
         _localPilotedMech = mech;
         LocalPilotedMechChanged?.Invoke(mech);
     }
+
+    public void RequestSetMechHand(string handName)
+    {
+        RaisePredictiveEvent(new BkmVovaMechSetHandEvent(handName));
+    }
 }

@@ -79,8 +79,10 @@ public record struct VehicleOperatorSetEvent(EntityUid? NewOperator, EntityUid? 
 /// Event raised on the operator when <see cref="VehicleOperatorComponent"/> is shutting down.
 /// Broadcast so multiple systems can react without conflicting with the ComponentShutdown handler.
 /// </summary>
+// start-backmen: vova-mech-operator-shutdown
 [ByRefEvent, UsedImplicitly]
 public readonly record struct VehicleOperatorShutdownEvent(EntityUid Operator, EntityUid? Vehicle);
+// end-backmen: vova-mech-operator-shutdown
 
 /// <summary>
 /// Event raised on a vehicle to check if it can run/move around.
