@@ -1,10 +1,12 @@
 using System.Linq;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
+using Content.Shared.Backmen.VovaMech;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.FixedPoint;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Interaction.Events;
@@ -39,10 +41,15 @@ public abstract partial class SharedMechSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] protected VehicleSystem Vehicle = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+
+    private EntityQuery<BkmPilotableMechComponent> _pilotableMechQuery;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
+        _pilotableMechQuery = GetEntityQuery<BkmPilotableMechComponent>();
+
         SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction);
         SubscribeLocalEvent<MechComponent, MechEjectPilotEvent>(OnEjectPilotEvent);
         SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
@@ -381,18 +388,31 @@ public abstract partial class SharedMechSystem : EntitySystem
 
     private void OnGetMeleeWeapon(EntityUid uid, VehicleOperatorComponent component, GetMeleeWeaponEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || component.Vehicle is not { } vehicle)
             return;
 
-        if (component.Vehicle is not { } vehicle)
+        if (TryComp<MechComponent>(vehicle, out var mech))
+        {
+            args.Weapon = mech.CurrentSelectedEquipment ?? vehicle;
+            args.Handled = true;
+            return;
+        }
+
+        if (!_pilotableMechQuery.HasComp(vehicle))
             return;
 
-        if (!TryComp<MechComponent>(vehicle, out var mech))
+        if (_hands.TryGetActiveItem(vehicle, out var held) && TryComp<MeleeWeaponComponent>(held, out _))
+        {
+            args.Weapon = held;
+            args.Handled = true;
             return;
+        }
 
-        var weapon = mech.CurrentSelectedEquipment ?? vehicle;
-        args.Weapon = weapon;
-        args.Handled = true;
+        if (HasComp<MeleeWeaponComponent>(vehicle))
+        {
+            args.Weapon = vehicle;
+            args.Handled = true;
+        }
     }
 
     private void OnCanAttackFromContainer(EntityUid uid, VehicleOperatorComponent component, CanAttackFromContainerEvent args)
@@ -400,7 +420,7 @@ public abstract partial class SharedMechSystem : EntitySystem
         if (component.Vehicle is not { } vehicle)
             return;
 
-        if (HasComp<MechComponent>(vehicle))
+        if (HasComp<MechComponent>(vehicle) || _pilotableMechQuery.HasComp(vehicle))
             args.CanAttack = true;
     }
 
