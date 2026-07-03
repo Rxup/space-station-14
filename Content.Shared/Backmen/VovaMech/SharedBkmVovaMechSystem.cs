@@ -3,10 +3,12 @@ using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction;
 using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Backmen.VovaMech;
 
@@ -37,6 +39,12 @@ public abstract partial class SharedBkmVovaMechSystem : EntitySystem
         // start-backmen: vova-mech-gun-holder
         SubscribeLocalEvent<GetGunHandsHolderEvent>(OnGetGunHandsHolder);
         // end-backmen: vova-mech-gun-holder
+
+        // start-backmen: vova-mech-interaction
+        SubscribeLocalEvent<VehicleOperatorComponent, GetUsedEntityEvent>(OnGetUsedEntity);
+        SubscribeLocalEvent<VehicleOperatorComponent, AccessibleOverrideEvent>(OnAccessibleOverride);
+        SubscribeLocalEvent<VehicleOperatorComponent, InRangeOverrideEvent>(OnInRangeOverride);
+        // end-backmen: vova-mech-interaction
     }
 
     private bool TryGetPilotableMechHandsHolder(EntityUid entity, out EntityUid holder)
@@ -62,6 +70,59 @@ public abstract partial class SharedBkmVovaMechSystem : EntitySystem
             args.Holder = holder;
     }
     // end-backmen: vova-mech-gun-holder
+
+    // start-backmen: vova-mech-interaction
+    private bool TryGetPilotableMech(Entity<VehicleOperatorComponent> ent, [NotNullWhen(true)] out EntityUid? mech)
+    {
+        mech = ent.Comp.Vehicle;
+
+        return mech is { } vehicle && _pilotableMechQuery.HasComp(vehicle);
+    }
+
+    private bool IsMechAccessibleTarget(EntityUid mech, EntityUid target)
+    {
+        if (target == mech)
+            return true;
+
+        if (!TryComp<HandsComponent>(mech, out var hands))
+            return false;
+
+        return _hands.IsHolding((mech, hands), target);
+    }
+
+    private void OnGetUsedEntity(Entity<VehicleOperatorComponent> ent, ref GetUsedEntityEvent args)
+    {
+        if (args.Handled || args.User != ent.Owner || !TryGetPilotableMech(ent, out var mech))
+            return;
+
+        if (_hands.TryGetActiveItem(mech.Value, out var held))
+            args.Used = held;
+    }
+
+    private void OnAccessibleOverride(Entity<VehicleOperatorComponent> ent, ref AccessibleOverrideEvent args)
+    {
+        if (args.Handled || args.Accessible || args.User != ent.Owner || !TryGetPilotableMech(ent, out var mech))
+            return;
+
+        if (!IsMechAccessibleTarget(mech.Value, args.Target))
+            return;
+
+        args.Handled = true;
+        args.Accessible = true;
+    }
+
+    private void OnInRangeOverride(Entity<VehicleOperatorComponent> ent, ref InRangeOverrideEvent args)
+    {
+        if (args.Handled || args.User != ent.Owner || !TryGetPilotableMech(ent, out var mech))
+            return;
+
+        if (!IsMechAccessibleTarget(mech.Value, args.Target))
+            return;
+
+        args.Handled = true;
+        args.InRange = true;
+    }
+    // end-backmen: vova-mech-interaction
 
     private void OnSetHand(BkmVovaMechSetHandEvent msg, EntitySessionEventArgs args)
     {

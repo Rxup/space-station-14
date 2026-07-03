@@ -138,12 +138,16 @@ public sealed partial class GunSystem : SharedGunSystem
                     if (ent == null)
                         break;
 
+                    // start-backmen: vova-mech-gun-holder
+                    var hitscanShooter = user is { } shooterUid ? GetShootOrigin(shooterUid) : user;
+                    // end-backmen: vova-mech-gun-holder
+
                     var hitscanEv = new HitscanTraceEvent
                     {
                         FromCoordinates = fromCoordinates,
                         ShotDirection = mapDirection.Normalized(),
                         Gun = gun,
-                        Shooter = user,
+                        Shooter = hitscanShooter,
                         Target = gun.Comp.Target,
                     };
                     RaiseLocalEvent(ent.Value, ref hitscanEv);

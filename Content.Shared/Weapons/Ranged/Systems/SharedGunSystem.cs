@@ -362,7 +362,7 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         // start-backmen: vova-mech-gun-holder
         var fromEntity = GetGunHandsHolder(user);
-        var fromCoordinates = Transform(fromEntity).Coordinates;
+        var fromCoordinates = Transform(gun).Coordinates;
         // Remove ammo
         var ev = new TakeAmmoEvent(shots, [], fromCoordinates, fromEntity);
         // end-backmen: vova-mech-gun-holder
@@ -472,7 +472,15 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         var projectile = EnsureComp<ProjectileComponent>(uid);
         projectile.Weapon = gunUid;
+        // start-backmen: vova-mech-gun-holder
         var shooter = user ?? gunUid;
+        if (user != null)
+        {
+            var shootOrigin = GetShootOrigin(user.Value);
+            if (shootOrigin != user)
+                shooter = shootOrigin;
+        }
+        // end-backmen: vova-mech-gun-holder
         if (shooter != null)
             Projectiles.SetShooter(uid, projectile, shooter.Value);
 
