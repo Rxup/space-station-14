@@ -653,7 +653,7 @@
       effects:
       - !type:HealthChange
         damage:
-          groups:
+          types:
             Brute: -3.5
           types:
             Asphyxiation: -2.5
