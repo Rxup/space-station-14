@@ -133,7 +133,6 @@
         damage:
           types:
             Radiation: -3
-          types:
             Brute: 1.5
 
 - type: reagent
@@ -271,7 +270,6 @@
           types:
             Asphyxiation: 1
             Cold: 2
-          types:
             Brute: 0.5
       - !type:Jitter
         conditions:
@@ -369,7 +367,6 @@
           types:
             Asphyxiation: -3
             Poison: -0.5
-          groups:
             Brute: -1
             Burn: -1
       - !type:HealthChange
@@ -655,7 +652,6 @@
         damage:
           types:
             Brute: -3.5
-          types:
             Asphyxiation: -2.5
       - !type:HealthChange
         conditions:
@@ -848,7 +844,6 @@
         damage:
           types:
             Brute: -1
-          types:
             Poison: -0.5 ##Should be about what it was when it healed the toxin group
             Heat: -0.33
             Shock: -0.33
@@ -925,7 +920,7 @@
           min: 0
           max: 20
         damage:
-          groups: ТУТ
+          types:
             Brute: 1.5
       - !type:EvenHealthChange
         conditions:
