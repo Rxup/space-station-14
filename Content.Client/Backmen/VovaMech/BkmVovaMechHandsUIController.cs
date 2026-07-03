@@ -19,7 +19,7 @@ namespace Content.Client.Backmen.VovaMech;
 /// <summary>
 /// Separate hand bar for OneStar mech innate tools, shown above the player hotbar while piloting.
 /// </summary>
-public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStateEntered<GameplayState>, IOnSystemChanged<BkmVovaMechSystem>
+public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStateEntered<GameplayState>, IOnSystemChanged<BkmVovaMechSystem>, IOnSystemChanged<HandsSystem>
 {
     [Dependency] private IEntityManager _entities = default!;
 
@@ -36,17 +36,23 @@ public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStat
     public void OnSystemLoaded(BkmVovaMechSystem system)
     {
         system.LocalPilotedMechChanged += OnLocalPilotedMechChanged;
-
-        _handsSystem.OnPlayerAddHand += OnMechHandAdded;
-        _handsSystem.OnPlayerRemoveHand += OnMechHandRemoved;
     }
 
     public void OnSystemUnloaded(BkmVovaMechSystem system)
     {
         system.LocalPilotedMechChanged -= OnLocalPilotedMechChanged;
+    }
 
-        _handsSystem.OnPlayerAddHand -= OnMechHandAdded;
-        _handsSystem.OnPlayerRemoveHand -= OnMechHandRemoved;
+    public void OnSystemLoaded(HandsSystem system)
+    {
+        system.OnPlayerAddHand += OnMechHandAdded;
+        system.OnPlayerRemoveHand += OnMechHandRemoved;
+    }
+
+    public void OnSystemUnloaded(HandsSystem system)
+    {
+        system.OnPlayerAddHand -= OnMechHandAdded;
+        system.OnPlayerRemoveHand -= OnMechHandRemoved;
     }
 
     public void OnStateEntered(GameplayState state)
