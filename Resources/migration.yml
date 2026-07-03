@@ -836,3 +836,51 @@ FoodMeatSnail: MobSnail
 CratePartsT3: null
 CratePartsT3T4: null
 CratePartsT4: null
+
+# backmen: paid vending machines
+VendingMachineCigs: BackmenVendingMachineCigs
+VendingMachineCoffee: BackmenVendingMachineCoffee
+VendingMachineCola: BackmenVendingMachineCola
+VendingMachineColaBlack: BackmenVendingMachineColaBlack
+VendingMachineDiscount: BackmenVendingMachineDiscount
+VendingMachineSnack: BackmenVendingMachineSnack
+VendingMachineSnackBlue: BackmenVendingMachineSnackBlue
+VendingMachineSnackGreen: BackmenVendingMachineSnackGreen
+VendingMachineSnackOrange: BackmenVendingMachineSnackOrange
+VendingMachineSnackTeal: BackmenVendingMachineSnackTeal
+VendingMachineSovietSoda: BackmenVendingMachineSovietSoda
+VendingMachineChang: BackmenVendingMachineChang
+VendingMachineDonut: BackmenVendingMachineDonut
+VendingMachineSoda: BackmenVendingMachineSoda
+VendingMachineStarkist: BackmenVendingMachineStarkist
+VendingMachineDrGibb: BackmenVendingMachineDrGibb
+VendingMachinePwrGame: BackmenVendingMachinePwrGame
+VendingMachineShamblersJuice: BackmenVendingMachineShamblersJuice
+VendingMachineColaRed: BackmenVendingMachineColaRed
+VendingMachineSpaceUp: BackmenVendingMachineSpaceUp
+VendingMachineHappyHonk: BackmenVendingMachineHappyHonk
+
+# backmen: no pride
+LGBTQHandyFlag: null
+LGBTQFlag: null
+VendingMachinePride: null
+ClothingNeckCloakAce: null
+ClothingNeckCloakAro: null
+ClothingNeckCloakBi: null
+ClothingNeckCloakGay: null
+ClothingNeckCloakIntersex: null
+ClothingNeckCloakLesbian: null
+ClothingNeckCloakPan: null
+ClothingNeckCloakEnby: null
+ClothingNeckScarfStripedAce: null
+ClothingNeckScarfStripedAro: null
+ClothingNeckScarfStripedAroace: null
+ClothingNeckScarfStripedBiSexual: null
+ClothingNeckScarfStripedGay: null
+ClothingNeckScarfStripedInter: null
+ClothingNeckScarfStripedLesbian: null
+ClothingNeckScarfStripedLesbianLong: null
+ClothingNeckScarfStripedPan: null
+ClothingNeckScarfStripedNonBinary: null
+ClothingNeckScarfStripedRainbow: null
+ClothingNeckScarfStripedTrans: null
