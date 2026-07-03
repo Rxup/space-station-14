@@ -242,7 +242,7 @@ namespace Content.Client.HealthAnalyzer.UI
                     }
                 }
 
-                AddConsciousnessAsphyxiationDamage(_target.Value, damageGroups, damageTypes);
+                AddNonWoundDamageFromPainCauses(msg.PainCauses, damageGroups, damageTypes);
 
                 var damageSortedGroups =
                     damageGroups.OrderByDescending(damage => damage.Value)
@@ -584,28 +584,42 @@ namespace Content.Client.HealthAnalyzer.UI
             return layer + 1;
         }
 
-        private void AddConsciousnessAsphyxiationDamage(
-            EntityUid target,
+        /// <summary>
+        /// Asphyxiation and bloodloss are tracked as consciousness modifiers on the server and are not
+        /// stored as wounds. Pain cause values are replicated via the analyzer UI state.
+        /// </summary>
+        private static void AddNonWoundDamageFromPainCauses(
+            Dictionary<string, float>? painCauses,
             Dictionary<string, FixedPoint2> damageGroups,
             Dictionary<string, FixedPoint2> damageTypes)
         {
-            if (!_entityManager.TryGetComponent<ConsciousnessComponent>(target, out var consciousness)
-                || consciousness.NerveSystem is not { } nerveSys
-                || !consciousness.Modifiers.TryGetValue((nerveSys, ConsciousnessModifierIds.Asphyxiation), out var mod)
-                || mod.Change >= FixedPoint2.Zero)
-            {
+            if (painCauses == null)
                 return;
+
+            const string airlossGroup = "Airloss";
+
+            if (painCauses.TryGetValue(ConsciousnessModifierIds.Asphyxiation, out var asphyxiation)
+                && asphyxiation > 0)
+            {
+                var amount = FixedPoint2.New(asphyxiation);
+
+                if (!damageGroups.TryAdd(airlossGroup, amount))
+                    damageGroups[airlossGroup] += amount;
+
+                if (!damageTypes.TryAdd(ConsciousnessModifierIds.Asphyxiation, amount))
+                    damageTypes[ConsciousnessModifierIds.Asphyxiation] += amount;
             }
 
-            var asphyxiation = -mod.Change;
-            const string group = "Airloss";
-            var type = ConsciousnessModifierIds.Asphyxiation;
+            if (painCauses.TryGetValue("Bloodloss", out var bloodloss) && bloodloss > 0)
+            {
+                var amount = FixedPoint2.New(bloodloss);
 
-            if (!damageGroups.TryAdd(group, asphyxiation))
-                damageGroups[group] += asphyxiation;
+                if (!damageGroups.TryAdd(airlossGroup, amount))
+                    damageGroups[airlossGroup] += amount;
 
-            if (!damageTypes.TryAdd(type, asphyxiation))
-                damageTypes[type] += asphyxiation;
+                if (!damageTypes.TryAdd("Bloodloss", amount))
+                    damageTypes["Bloodloss"] += amount;
+            }
         }
         // End-backmen: surgery
     }

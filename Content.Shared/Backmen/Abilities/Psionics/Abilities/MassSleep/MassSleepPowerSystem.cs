@@ -1,5 +1,5 @@
 using Content.Shared.Actions;
-using Content.Shared.Damage.Components;
+using Content.Shared.Backmen.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Prototypes;
@@ -9,6 +9,7 @@ namespace Content.Shared.Backmen.Abilities.Psionics;
 public sealed partial class MassSleepPowerSystem : StatusEffectGrantedPowerSystem<MassSleepPowerComponent, MassSleepPowerActionEvent>
 {
     [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private BackmenDamageModelSystem _damageModel = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private StatusEffectNew.StatusEffectsSystem _effectsSystem = default!;
@@ -55,7 +56,7 @@ public sealed partial class MassSleepPowerSystem : StatusEffectGrantedPowerSyste
                 _effectsSystem.HasEffectComp<PsionicInsulationComponent>(entity))
                 continue;
 
-            if (!TryComp<InjurableComponent>(entity, out var injurable) || injurable.DamageContainer != Biological)
+            if (!_damageModel.MatchesDamageContainerFilter(entity, [Biological.Id]))
                 continue;
 
             var result = _effectsSystem.TryUpdateStatusEffectDuration(entity, StatusEffectForcedSleeping, TimeSpan.FromSeconds(10));

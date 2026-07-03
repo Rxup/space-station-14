@@ -43,6 +43,7 @@ health-analyzer-window-pain-cause-suicide = Self-Inflicted Harm
 # backmen: organ-damage
 health-analyzer-window-pain-cause-organ-damage = Organ Damage
 health-analyzer-window-pain-cause-starving = Starvation
+health-analyzer-window-pain-cause-traumatic-pain = Traumatic Pain
 
 # start-backmen: analyzer-satiation
 health-analyzer-window-entity-hunger-level-text = Hunger Level:

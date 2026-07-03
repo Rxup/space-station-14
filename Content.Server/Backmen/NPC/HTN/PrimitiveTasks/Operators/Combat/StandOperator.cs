@@ -16,7 +16,7 @@ public sealed partial class StandOperator : HTNOperator
     {
         base.Startup(blackboard);
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        _stand.Stand(owner);
+        _stand.Stand(owner, force: true); // backmen: npc-instant-stand
     }
 
     public override void Initialize(IEntitySystemManager sysManager)

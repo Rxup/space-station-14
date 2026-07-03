@@ -1,6 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
+// start-backmen: npc-wake-stand
+using Content.Shared.Backmen.Standing;
+using Content.Shared.Bed.Sleep;
+using Content.Shared.Standing;
+using Content.Shared.Stunnable;
+// end-backmen: npc-wake-stand
 using Content.Shared.CCVar;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -25,6 +31,11 @@ namespace Content.Server.NPC.Systems
         [Dependency] private IConfigurationManager _configurationManager = default!;
         [Dependency] private HTNSystem _htn = default!;
         [Dependency] private MobStateSystem _mobState = default!;
+        // start-backmen: npc-wake-stand
+        [Dependency] private SharedStunSystem _stun = default!;
+        [Dependency] private StandingStateSystem _standing = default!;
+        [Dependency] private SharedLayingDownSystem _layingDown = default!;
+        // end-backmen: npc-wake-stand
 
         /// <summary>
         /// Whether any NPCs are allowed to run at all.
@@ -115,7 +126,32 @@ namespace Content.Server.NPC.Systems
 
             Log.Debug($"Waking {ToPrettyString(uid)}");
             EnsureComp<ActiveNPCComponent>(uid);
+            WakeFromSleepAndStand(uid); // backmen: npc-wake-stand
         }
+
+        // start-backmen: npc-wake-stand
+        private void WakeFromSleepAndStand(EntityUid uid)
+        {
+            if (HasComp<SleepingComponent>(uid))
+                RemComp<SleepingComponent>(uid);
+
+            _stun.TryUnstun(uid);
+
+            if (TryComp<KnockedDownComponent>(uid, out var knocked))
+            {
+                _stun.CancelKnockdownDoAfter((uid, knocked));
+                RemComp<KnockedDownComponent>(uid);
+            }
+
+            if (!TryComp<StandingStateComponent>(uid, out var standing) || !_standing.IsDown((uid, standing)))
+                return;
+
+            if (TryComp<LayingDownComponent>(uid, out var laying))
+                _layingDown.TryStandUp(uid, laying, standing);
+            else
+                _standing.Stand(uid, standing, force: true);
+        }
+        // end-backmen: npc-wake-stand
 
         public void SleepNPC(EntityUid uid, HTNComponent? component = null)
         {

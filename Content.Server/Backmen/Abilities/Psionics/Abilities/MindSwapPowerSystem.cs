@@ -9,9 +9,10 @@ using Content.Server.Popups;
 using Content.Server.Ghost;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Blob.Components;
+using Content.Shared.Backmen.Damage;
 using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
-using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.SSDIndicator;
@@ -24,6 +25,7 @@ namespace Content.Server.Backmen.Abilities.Psionics;
 public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private BackmenDamageModelSystem _damageModel = default!;
     [Dependency] private MobStateSystem _mobStateSystem = default!;
     [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
@@ -63,12 +65,14 @@ public sealed partial class MindSwapPowerSystem : SharedMindSwapPowerSystem
         _actions.RemoveAction(uid, component.MindSwapPowerAction);
     }
 
+    private static readonly ProtoId<DamageContainerPrototype> Biological = "Biological";
+
     protected override void HandlePowerUse(EntityUid uid, MindSwapPowerComponent component, MindSwapPowerActionEvent args)
     {
         if(args.Handled)
             return;
 
-        if (!(TryComp<InjurableComponent>(args.Target, out var injurable) && injurable.DamageContainer == "Biological"))
+        if (!_damageModel.MatchesDamageContainerFilter(args.Target, [Biological.Id]))
             return;
 
         _psionics.LogPowerUsed(args.Performer, "mind swap");

@@ -19,6 +19,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Events;
 using Content.Shared.Backmen.Standing;
+using Content.Shared.Rejuvenate; // backmen: rejuvenate-stun
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
@@ -51,6 +52,7 @@ public abstract partial class SharedStunSystem : EntitySystem
     {
         SubscribeLocalEvent<StunnedComponent, ComponentStartup>(UpdateCanMove);
         SubscribeLocalEvent<StunnedComponent, ComponentShutdown>(OnStunShutdown);
+        SubscribeLocalEvent<StunnedComponent, RejuvenateEvent>(OnStunRejuvenate); // backmen: rejuvenate-stun
 
         SubscribeLocalEvent<StunOnContactComponent, StartCollideEvent>(OnStunOnContactCollide);
 
@@ -117,6 +119,13 @@ public abstract partial class SharedStunSystem : EntitySystem
         UpdateCanMove(ent, ent.Comp, args);
         Appearance.RemoveData(ent, StunVisuals.SeeingStars);
     }
+
+    // start-backmen: rejuvenate-stun
+    private void OnStunRejuvenate(Entity<StunnedComponent> ent, ref RejuvenateEvent args)
+    {
+        RemComp<StunnedComponent>(ent);
+    }
+    // end-backmen: rejuvenate-stun
 
     private void UpdateCanMove(EntityUid uid, StunnedComponent component, EntityEventArgs args)
     {
