@@ -883,10 +883,6 @@
   metabolisms:
     Bloodstream:
       effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Mangleness: -1
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -1
