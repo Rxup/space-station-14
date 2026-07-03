@@ -4,6 +4,7 @@ using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Hands.Controls;
 using Content.Client.UserInterface.Systems.Hotbar.Widgets;
 using Content.Client.Verbs.UI;
+using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Input;
 using Content.Shared.Inventory.VirtualItem;
@@ -34,17 +35,29 @@ public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStat
     public void OnSystemLoaded(BkmVovaMechSystem system)
     {
         system.LocalPilotedMechChanged += OnLocalPilotedMechChanged;
+
+        _handsSystem.OnPlayerAddHand += OnMechHandAdded;
+        _handsSystem.OnPlayerRemoveHand += OnMechHandRemoved;
+        _handsSystem.OnPlayerItemAdded += OnMechItemAdded;
+        _handsSystem.OnPlayerItemRemoved += OnMechItemRemoved;
+        _handsSystem.OnPlayerSetActiveHand += OnMechSetActiveHand;
     }
 
     public void OnSystemUnloaded(BkmVovaMechSystem system)
     {
         system.LocalPilotedMechChanged -= OnLocalPilotedMechChanged;
+
+        _handsSystem.OnPlayerAddHand -= OnMechHandAdded;
+        _handsSystem.OnPlayerRemoveHand -= OnMechHandRemoved;
+        _handsSystem.OnPlayerItemAdded -= OnMechItemAdded;
+        _handsSystem.OnPlayerItemRemoved -= OnMechItemRemoved;
+        _handsSystem.OnPlayerSetActiveHand -= OnMechSetActiveHand;
     }
 
     public void OnStateEntered(GameplayState state)
     {
-        if (_mechUid != null && Hotbar != null)
-            Hotbar.MechHandsRow.Visible = true;
+        if (_mechUid is { } mech && _mechHands is { } hands)
+            LoadMechHands(mech, hands);
     }
 
     public override void FrameUpdate(FrameEventArgs args)
@@ -80,9 +93,58 @@ public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStat
         }
 
         if (!_entities.TryGetComponent(mech, out HandsComponent? hands))
+        {
+            _mechUid = mech;
+            _mechHands = null;
             return;
+        }
 
         LoadMechHands(mech.Value, hands);
+    }
+
+    private void OnMechHandAdded(Entity<HandsComponent> entity, string name, HandLocation location)
+    {
+        if (entity.Owner != _mechUid || _mechHands == null)
+            return;
+
+        if (!_handsSystem.TryGetHand((entity.Owner, entity.Comp), name, out var hand))
+            return;
+
+        AddHandButton(name, hand.Value);
+        SetActiveHand(_mechHands.ActiveHandId);
+    }
+
+    private void OnMechHandRemoved(Entity<HandsComponent> entity, string name)
+    {
+        if (entity.Owner != _mechUid || Hotbar?.MechHandContainer is not { } container)
+            return;
+
+        container.TryRemoveButton(name, out _);
+        SetActiveHand(_mechHands?.ActiveHandId);
+    }
+
+    private void OnMechItemAdded(Entity<HandsComponent> entity, string handId, EntityUid item)
+    {
+        if (entity.Owner != _mechUid || Hotbar?.MechHandContainer.TryGetButton(handId, out var button) != true)
+            return;
+
+        RefreshHandButton(entity.Owner, handId, button!);
+    }
+
+    private void OnMechItemRemoved(Entity<HandsComponent> entity, string handId, EntityUid item)
+    {
+        if (entity.Owner != _mechUid || Hotbar?.MechHandContainer.TryGetButton(handId, out var button) != true)
+            return;
+
+        RefreshHandButton(entity.Owner, handId, button!);
+    }
+
+    private void OnMechSetActiveHand(Entity<HandsComponent>? entity)
+    {
+        if (entity?.Owner != _mechUid)
+            return;
+
+        SetActiveHand(entity.Value.Comp.ActiveHandId);
     }
 
     private void LoadMechHands(EntityUid mech, HandsComponent hands)

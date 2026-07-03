@@ -405,13 +405,6 @@ public abstract partial class SharedMechSystem : EntitySystem
         {
             args.Weapon = held;
             args.Handled = true;
-            return;
-        }
-
-        if (HasComp<MeleeWeaponComponent>(vehicle))
-        {
-            args.Weapon = vehicle;
-            args.Handled = true;
         }
     }
 
