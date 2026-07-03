@@ -28,11 +28,10 @@ public sealed class LavalandGenerationTest : GameTest
         var pair = Pair;
         var entMan = Server.EntMan;
         var protoMan = Server.ProtoMan;
-        var mapMan = Server.MapMan;
+        var mapSystem = entMan.System<SharedMapSystem>();
 
         var ticker = Server.System<GameTicker>();
         var lavaSystem = entMan.System<LavalandPlanetSystem>();
-        var mapSystem = entMan.System<SharedMapSystem>();
 
         // Setup
         Server.CfgMan.SetCVar(CCVars.LavalandEnabled, true);
@@ -66,10 +65,10 @@ public sealed class LavalandGenerationTest : GameTest
             var mapId = entMan.GetComponent<TransformComponent>(lavaland.Value).MapID;
 
             // Now check the basics
-            Assert.That(mapMan.MapExists(mapId));
+            Assert.That(mapSystem.MapExists(mapId));
             Assert.That(entMan.EntityExists(lavaland.Value.Owner));
             Assert.That(entMan.EntityExists(lavaland.Value.Comp.Outpost));
-            Assert.That(mapMan.GetAllGrids(mapId).ToList(), Is.Not.Empty);
+            Assert.That(mapSystem.GetAllGrids(mapId).ToList(), Is.Not.Empty);
             Assert.That(mapSystem.IsInitialized(mapId));
             Assert.That(mapSystem.IsPaused(mapId), Is.False);
 
