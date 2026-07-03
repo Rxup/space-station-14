@@ -38,9 +38,6 @@ public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStat
 
         _handsSystem.OnPlayerAddHand += OnMechHandAdded;
         _handsSystem.OnPlayerRemoveHand += OnMechHandRemoved;
-        _handsSystem.OnPlayerItemAdded += OnMechItemAdded;
-        _handsSystem.OnPlayerItemRemoved += OnMechItemRemoved;
-        _handsSystem.OnPlayerSetActiveHand += OnMechSetActiveHand;
     }
 
     public void OnSystemUnloaded(BkmVovaMechSystem system)
@@ -49,9 +46,6 @@ public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStat
 
         _handsSystem.OnPlayerAddHand -= OnMechHandAdded;
         _handsSystem.OnPlayerRemoveHand -= OnMechHandRemoved;
-        _handsSystem.OnPlayerItemAdded -= OnMechItemAdded;
-        _handsSystem.OnPlayerItemRemoved -= OnMechItemRemoved;
-        _handsSystem.OnPlayerSetActiveHand -= OnMechSetActiveHand;
     }
 
     public void OnStateEntered(GameplayState state)
@@ -66,6 +60,8 @@ public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStat
 
         if (_mechUid is not { } mech || _mechHands == null || Hotbar?.MechHandContainer is not { } container)
             return;
+
+        SetActiveHand(_mechHands.ActiveHandId);
 
         foreach (var hand in container.GetButtons())
             RefreshHandButton(mech, hand.SlotName, hand);
@@ -121,30 +117,6 @@ public sealed partial class BkmVovaMechHandsUIController : UIController, IOnStat
 
         container.TryRemoveButton(name, out _);
         SetActiveHand(_mechHands?.ActiveHandId);
-    }
-
-    private void OnMechItemAdded(Entity<HandsComponent> entity, string handId, EntityUid item)
-    {
-        if (entity.Owner != _mechUid || Hotbar?.MechHandContainer.TryGetButton(handId, out var button) != true)
-            return;
-
-        RefreshHandButton(entity.Owner, handId, button!);
-    }
-
-    private void OnMechItemRemoved(Entity<HandsComponent> entity, string handId, EntityUid item)
-    {
-        if (entity.Owner != _mechUid || Hotbar?.MechHandContainer.TryGetButton(handId, out var button) != true)
-            return;
-
-        RefreshHandButton(entity.Owner, handId, button!);
-    }
-
-    private void OnMechSetActiveHand(Entity<HandsComponent>? entity)
-    {
-        if (entity?.Owner != _mechUid)
-            return;
-
-        SetActiveHand(entity.Value.Comp.ActiveHandId);
     }
 
     private void LoadMechHands(EntityUid mech, HandsComponent hands)
