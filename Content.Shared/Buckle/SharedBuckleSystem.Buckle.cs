@@ -15,6 +15,7 @@ using Content.Shared.Standing;
 using Content.Shared.Storage.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
+using Content.Shared.Vehicle.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -175,6 +176,10 @@ public abstract partial class SharedBuckleSystem
 
     private void OnBuckleUpdateCanMove(EntityUid uid, BuckleComponent component, UpdateCanMoveEvent args)
     {
+        // If we're an operator of a vehicle then don't cancel.
+        if (HasComp<VehicleOperatorComponent>(uid))
+            return;
+
         if (component.Buckled)
             args.Cancel();
     }
@@ -475,7 +480,7 @@ public abstract partial class SharedBuckleSystem
         Appearance.SetData(strap, StrapVisuals.State, strap.Comp.BuckledEntities.Count != 0);
         Appearance.SetData(buckle, BuckleVisuals.Buckled, false);
 
-        if (HasComp<KnockedDownComponent>(buckle) || _mobState.IsCritical(buckle) || _mobState.IsDead(buckle))
+        if (HasComp<KnockedDownComponent>(buckle) || _mobState.IsIncapacitated(buckle))
             _standing.Down(buckle, playSound: false);
         else
             _standing.Stand(buckle);
@@ -561,7 +566,7 @@ public abstract partial class SharedBuckleSystem
             return;
 
         if (TryComp<CuffableComponent>(args.Target, out var targetCuffableComp) && targetCuffableComp.CuffedHandCount > 0
-            || _mobState.IsCritical(args.Target.Value) || _mobState.IsDead(args.Target.Value))
+            || _mobState.IsIncapacitated(args.Target.Value))
         {
             ev.Cancel();
             TryBuckle(args.Target.Value, args.User, args.Used.Value, popup: false);

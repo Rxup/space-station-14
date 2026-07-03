@@ -1,5 +1,6 @@
 ﻿using Content.Client.FeedbackPopup;
 using Content.Client.Gameplay;
+using Content.Corvax.Interfaces.Client; // backmen: sponsor
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client.UserInterface.Systems.Info;
@@ -76,6 +77,18 @@ public sealed partial class EscapeUIController : UIController, IOnStateEntered<G
             CloseEscapeWindow();
             _changelog.ToggleWindow();
         };
+
+        // start-backmen: sponsor
+        if (IoCManager.Instance!.TryResolveType<ISponsorWindowCreator>(out var sponsorCreator))
+        {
+            _escapeWindow.SponsorButton.Visible = true;
+            _escapeWindow.SponsorButton.OnPressed += _ =>
+            {
+                CloseEscapeWindow();
+                sponsorCreator.OpenWindow();
+            };
+        }
+        // end-backmen: sponsor
 
         _escapeWindow.RulesButton.OnPressed += _ =>
         {

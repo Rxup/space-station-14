@@ -178,12 +178,12 @@ SpyCrewMonitorEmpty: null
 SyndiCrewMonitor: null
 SyndiCrewMonitorEmpty: null
 
-SpawnVehicleWheelchair: null
+#SpawnVehicleWheelchair: null
 SpawnVehicleWheelchairFolded: null
-VehicleWheelchair: null
+#VehicleWheelchair: null
 VehicleWheelchairFolded: null
 VehicleSecwayStealObjective: null
-VehicleKeyJanicart: null
+#VehicleKeyJanicart: null
 VehicleKeySecway: null
 VehicleKeyATV: null
 VehicleKeySkeleton: null
@@ -203,8 +203,8 @@ MobTaxiBot: null
 SpawnVehicleMotobike: null
 SpawnVehicleATV: null
 SpawnVehicleSecway: null
-SpawnVehicleJanicart: null
-VehicleJanicart: null
+#SpawnVehicleJanicart: null
+#VehicleJanicart: null
 VehicleJanicartDestroyed: null
 
 # 2024-02-01
@@ -723,7 +723,6 @@ ClothingUniformJumpsuitParamedicNT: ClothingUniformJumpsuitParamedic
 PrefilledSyringe: Syringe
 
 # 2025-09-12
-# BaseChemistryEmptyVial: ChemistryEmptyVial # ChemistryEmptyVial prototype not defined in fork
 BaseChemistryEmptyVial: ChemistryEmptyVial
 
 # 2025-10-6
@@ -785,29 +784,6 @@ RightLegHuman: OrganHumanLegRight
 TorsoSkeleton: OrganSkeletonPersonTorso
 RightArmSkeleton: OrganSkeletonPersonArmRight
 
-# 2026-06-21 nubody: arachnid body parts -> organs
-ChestArachnid: OrganArachnidTorso
-HeadArachnid: OrganArachnidHead
-LeftArmArachnid: OrganArachnidArmLeft
-RightArmArachnid: OrganArachnidArmRight
-LeftHandArachnid: OrganArachnidHandLeft
-RightHandArachnid: OrganArachnidHandRight
-LeftLegArachnid: OrganArachnidLegLeft
-RightLegArachnid: OrganArachnidLegRight
-LeftFootArachnid: OrganArachnidFootLeft
-RightFootArachnid: OrganArachnidFootRight
-
-# 2026-06-21 nubody: vox body parts -> organs
-ChestVox: OrganVoxTorso
-HeadVox: OrganVoxHead
-LeftArmVox: OrganVoxArmLeft
-RightArmVox: OrganVoxArmRight
-LeftHandVox: OrganVoxHandLeft
-RightHandVox: OrganVoxHandRight
-LeftLegVox: OrganVoxLegLeft
-RightLegVox: OrganVoxLegRight
-LeftFootVox: OrganVoxFootLeft
-RightFootVox: OrganVoxFootRight
 # 2026-01-19
 TowelColorPurple: null
 TowelColorRed: null
@@ -840,7 +816,6 @@ CrateVendingMachineRestockDinnerwareFilled: VendingMachineRestockDinnerware
 CrateVendingMachineRestockGamesFilled: VendingMachineRestockGames
 CrateVendingMachineRestockPTechFilled: VendingMachineRestockPTech
 CrateVendingMachineRestockSalvageEquipmentFilled: null
-VendingMachineRestockSalvageEquipment: null
 CrateVendingMachineRestockVendomatFilled: VendingMachineRestockVendomat
 CrateVendingMachineRestockTankDispenserFilled: VendingMachineRestockTankDispenser
 # The crates below contained _two_ of the restock items, so these are technically not direct migrations. But eh.

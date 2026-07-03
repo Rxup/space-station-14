@@ -100,28 +100,6 @@
   parent: PlayerSiliconBase
   suffix: VovaMech
   components:
-  - type: Hands
-    showInHands: false
-    hands:
-      mech-1:
-        location: Left
-      mech-2:
-        location: Right
-      mech-3:
-        location: Middle
-      mech-4:
-        location: Left
-      mech-5:
-        location: Right
-      mech-6:
-        location: Middle
-    sortedHands:
-    - mech-1
-    - mech-2
-    - mech-3
-    - mech-4
-    - mech-5
-    - mech-6
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.75
@@ -130,8 +108,29 @@
         Blunt: 25 #thwack
         Structural: 20
   - type: Actions
+  - type: DoAfter
   - type: MobMover
   - type: InputMover
+  - type: ContainerContainer
+    containers:
+      mech-pilot-slot: !type:ContainerSlot
+  - type: Vehicle
+    requiresHands: true
+    transferDamage: true
+    transferDamageModifier:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Cold: 0.5
+        Heat: 0.5
+        Shock: 0.5
+    operatorWhitelist:
+      components:
+      - HumanoidProfile
+  - type: ContainerVehicle
+    containerId: mech-pilot-slot
+  - type: BkmPilotableMech
   - type: UnpoweredFlashlight
   - type: PointLight
     color: red
