@@ -162,8 +162,7 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
     {
         if (args.OldOperator is { } oldOperator)
         {
-            RemComp<InteractionRelayComponent>(oldOperator);
-            _interaction.SetRelay(oldOperator, null);
+            // InteractionRelayComponent is already removed by VehicleSystem.TrySetOperator (RemCompDeferred).
 
             if (ent.Comp.HadGhostTakeover)
             {
