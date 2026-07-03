@@ -1,7 +1,6 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
-using Content.Shared.Mind.Components;
 using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
 using Robust.Shared.Containers;
@@ -62,14 +61,7 @@ public abstract partial class SharedBkmVovaMechSystem : EntitySystem
         if (Vehicle.GetOperatorOrNull(uid) == toInsert)
             return false;
 
-        if (Vehicle.HasOperator(uid))
-            return false;
-
-        if (TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind)
-            return false;
-
-        if (!Vehicle.CanOperate(uid, toInsert))
-            return false;
+        component.PilotSlot ??= _container.EnsureContainer<ContainerSlot>(uid, component.PilotSlotId);
 
         return _container.CanInsert(toInsert, component.PilotSlot);
     }

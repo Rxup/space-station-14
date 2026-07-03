@@ -6,6 +6,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Mind.Components;
 using Content.Shared.Popups;
 using Content.Shared.Vehicle;
 using Content.Shared.Vehicle.Components;
@@ -37,7 +38,7 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
-        if (CanInsert(uid, args.User, component))
+        if (CanAttemptEntry(uid, args.User, component))
         {
             args.Verbs.Add(new AlternativeVerb
             {
@@ -57,7 +58,7 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
-        if (CanInsert(uid, args.User, component))
+        if (CanAttemptEntry(uid, args.User, component))
         {
             args.Verbs.Add(new InteractionVerb
             {
@@ -112,10 +113,27 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
         _doAfter.TryStartDoAfter(doAfterEventArgs);
     }
 
+    private bool CanAttemptEntry(EntityUid uid, EntityUid user, BkmPilotableMechComponent component)
+    {
+        if (!CanInsert(uid, user, component))
+            return false;
+
+        if (TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind)
+            return false;
+
+        return _vehicle.CanOperate(uid, user);
+    }
+
     private void OnEntry(EntityUid uid, BkmPilotableMechComponent component, BkmVovaMechEntryEvent args)
     {
         if (args.Cancelled || args.Handled)
             return;
+
+        if (TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind)
+        {
+            _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), args.User);
+            return;
+        }
 
         if (!_vehicle.CanOperate(uid, args.User))
         {
