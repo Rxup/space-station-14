@@ -130,8 +130,29 @@
         Blunt: 25 #thwack
         Structural: 20
   - type: Actions
+  - type: DoAfter
   - type: MobMover
   - type: InputMover
+  - type: ContainerContainer
+    containers:
+      mech-pilot-slot: !type:ContainerSlot
+  - type: Vehicle
+    requiresHands: true
+    transferDamage: true
+    transferDamageModifier:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Cold: 0.5
+        Heat: 0.5
+        Shock: 0.5
+    operatorWhitelist:
+      components:
+      - HumanoidProfile
+  - type: ContainerVehicle
+    containerId: mech-pilot-slot
+  - type: BkmPilotableMech
   - type: UnpoweredFlashlight
   - type: PointLight
     color: red
