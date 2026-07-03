@@ -13,7 +13,6 @@ namespace Content.Server.Administration.Commands
     {
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private GameTicker _gameTicker = default!;
-        [Dependency] private SharedMapSystem _mapSystem = default!;
 
         public override string Command => "loadgamemap";
 
@@ -41,8 +40,9 @@ namespace Content.Server.Administration.Commands
                 offset = new Vector2(int.Parse(args[2]), int.Parse(args[3]));
 
             var id = new MapId(mapId);
+            var mapSystem = EntityManager.System<SharedMapSystem>();
 
-            var grids = _mapSystem.MapExists(id)
+            var grids = mapSystem.MapExists(id)
                 ? _gameTicker.MergeGameMap(gameMap, id, stationName: stationName, offset: offset)
                 : _gameTicker.LoadGameMapWithId(gameMap, id, stationName: stationName, offset: offset);
 

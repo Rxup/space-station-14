@@ -166,32 +166,38 @@ public sealed partial class BodyPartComponent : Component, ISurgeryToolComponent
 /// Contains metadata about a body part in relation to its slot.
 /// </summary>
 [NetSerializable, Serializable]
-[DataRecord]
+[DataDefinition]
 public partial struct BodyPartSlot
 {
+    [DataField]
     public string Id;
-    public BodyPartType Type;
-    public BodyPartSymmetry Symmetry; // backmen edit: symmetry
 
-    public BodyPartSlot(string id, BodyPartType type, BodyPartSymmetry symmetry) // backmen edit: symmetry
+    [DataField]
+    public BodyPartType Type;
+
+    [DataField]
+    public BodyPartSymmetry Symmetry;
+
+    public BodyPartSlot(string id, BodyPartType type, BodyPartSymmetry symmetry)
     {
         Id = id;
         Type = type;
-        Symmetry = symmetry; // backmen edit: symmetry
+        Symmetry = symmetry;
     }
-};
+}
 
 /// <summary>
 /// Contains metadata about an organ part in relation to its slot.
 /// </summary>
 [NetSerializable, Serializable]
-[DataRecord]
+[DataDefinition]
 public partial struct OrganSlot
 {
+    [DataField]
     public string Id;
 
     public OrganSlot(string id)
     {
         Id = id;
     }
-};
+}

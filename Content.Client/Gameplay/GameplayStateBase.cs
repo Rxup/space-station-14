@@ -43,7 +43,6 @@ namespace Content.Client.Gameplay
         [Dependency] private IViewVariablesManager _vvm = default!;
         [Dependency] private IConsoleHost _conHost = default!;
         [Dependency] private IConfigurationManager _configurationManager = default!;
-        [Dependency] private SharedMapSystem _map = default!;
 
         private ClickableEntityComparer _comparer = default!;
 
@@ -243,7 +242,7 @@ namespace Content.Client.Gameplay
                 var transformSystem = _entitySystemManager.GetEntitySystem<SharedTransformSystem>();
                 var mapSystem = _entitySystemManager.GetEntitySystem<MapSystem>();
 
-                coordinates = _map.TryFindGridAt(mousePosWorld, out var uid, out _) ?
+                coordinates = _entityManager.System<SharedMapSystem>().TryFindGridAt(mousePosWorld, out var uid, out _) ?
                     mapSystem.MapToGrid(uid, mousePosWorld) :
                     transformSystem.ToCoordinates(mousePosWorld);
             }

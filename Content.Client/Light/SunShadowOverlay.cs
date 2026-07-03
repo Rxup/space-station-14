@@ -19,7 +19,6 @@ public sealed partial class SunShadowOverlay : Overlay
 
     [Dependency] private IClyde _clyde = default!;
     [Dependency] private IEntityManager _entManager = default!;
-    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
     private readonly EntityLookupSystem _lookup;
     private readonly SharedTransformSystem _xformSys;
@@ -47,7 +46,7 @@ public sealed partial class SunShadowOverlay : Overlay
             return;
 
         _grids.Clear();
-        _map.FindGridsIntersecting(args.MapId,
+        _entManager.System<SharedMapSystem>().FindGridsIntersecting(args.MapId,
             args.WorldBounds.Enlarged(SunShadowComponent.MaxLength),
             ref _grids);
 

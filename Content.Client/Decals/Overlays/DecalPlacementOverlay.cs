@@ -13,7 +13,7 @@ public sealed partial class DecalPlacementOverlay : Overlay
 {
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IInputManager _inputManager = default!;
-    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private IEntityManager _entManager = default!;
     private readonly DecalPlacementSystem _placement;
     private readonly SharedTransformSystem _transform;
     private readonly SpriteSystem _sprite;
@@ -43,7 +43,7 @@ public sealed partial class DecalPlacementOverlay : Overlay
             return;
 
         // No map support for decals
-        if (!_map.TryFindGridAt(mousePos, out var gridUid, out var grid))
+        if (!_entManager.System<SharedMapSystem>().TryFindGridAt(mousePos, out var gridUid, out var grid))
         {
             return;
         }

@@ -52,7 +52,6 @@ public sealed partial class MappingState : GameplayStateBase
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IResourceCache _resources = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private SharedMapSystem _map = default!;
 
     private EntityMenuUIController _entityMenuController = default!;
 
@@ -796,7 +795,7 @@ public sealed partial class MappingState : GameplayStateBase
         {
             var mapPos = _transform.ToMapCoordinates(coords);
 
-            if (_map.TryFindGridAt(mapPos, out var gridUid, out var grid) &&
+            if (_entityManager.System<SharedMapSystem>().TryFindGridAt(mapPos, out var gridUid, out var grid) &&
                 _entityManager.System<SharedMapSystem>().TryGetTileRef(gridUid, grid, coords, out var tileRef) &&
                 _allPrototypesDict.TryGetValue(_entityManager.System<TurfSystem>().GetContentTileDefinition(tileRef), out button))
             {

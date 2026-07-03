@@ -33,7 +33,6 @@ public sealed partial class GasTileHeatBlurOverlay : Overlay
     [Dependency] private IClyde _clyde = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
     [Dependency] private IResourceCache _resourceCache = default!;
-    [Dependency] private SharedMapSystem _map = default!;
 
     private readonly SharedTransformSystem _xformSys;
     private readonly ShaderInstance _shader;
@@ -127,7 +126,7 @@ public sealed partial class GasTileHeatBlurOverlay : Overlay
             () =>
             {
                 _intersectingGrids.Clear();
-                _map.FindGridsIntersecting(mapId, worldAABB, ref _intersectingGrids);
+                _entManager.System<SharedMapSystem>().FindGridsIntersecting(mapId, worldAABB, ref _intersectingGrids);
                 foreach (var grid in _intersectingGrids)
                 {
                     if (!overlayQuery.TryGetComponent(grid.Owner, out var comp))

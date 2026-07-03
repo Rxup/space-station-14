@@ -21,7 +21,6 @@ public sealed partial class GasTileDangerousTemperatureOverlay : Overlay
 
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IClyde _clyde = default!;
-    [Dependency] private SharedMapSystem _map = default!;
 
     private GasTileOverlaySystem? _gasTileOverlay;
     private readonly SharedTransformSystem _xformSys;
@@ -175,7 +174,7 @@ public sealed partial class GasTileDangerousTemperatureOverlay : Overlay
             () =>
             {
                 _grids.Clear();
-                _map.FindGridsIntersecting(mapId, worldAABB, ref _grids);
+                _entManager.System<SharedMapSystem>().FindGridsIntersecting(mapId, worldAABB, ref _grids);
 
                 foreach (var grid in _grids)
                 {

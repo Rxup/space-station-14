@@ -16,7 +16,6 @@ namespace Content.Server.Mapping
     public sealed partial class MappingCommand : LocalizedEntityCommands
     {
         [Dependency] private IResourceManager _resourceMgr = default!;
-        [Dependency] private SharedMapSystem _mapSystem = default!;
         [Dependency] private MappingSystem _mappingSystem = default!;
         [Dependency] private MapLoaderSystem _mapLoader = default!;
 
@@ -63,6 +62,7 @@ namespace Content.Server.Mapping
             // yipeeee
             bool? isGrid = args.Length < 3 ? null : bool.Parse(args[2]);
 
+            var mapSystem = EntityManager.System<SharedMapSystem>();
             MapId mapId;
             string? toLoad = null;
 
@@ -86,7 +86,7 @@ namespace Content.Server.Mapping
                     return;
                 }
 
-                if (_mapSystem.MapExists(mapId))
+                if (mapSystem.MapExists(mapId))
                 {
                     shell.WriteError(Loc.GetString("cmd-mapping-exists", ("mapId", mapId)));
                     return;
@@ -95,7 +95,7 @@ namespace Content.Server.Mapping
                 // either load a map or create a new one.
                 if (args.Length <= 1)
                 {
-                    _mapSystem.CreateMap(mapId, runMapInit: false);
+                    mapSystem.CreateMap(mapId, runMapInit: false);
                 }
                 else
                 {
@@ -105,11 +105,11 @@ namespace Content.Server.Mapping
 
                     if (isGrid == true)
                     {
-                        _mapSystem.CreateMap(mapId, runMapInit: false);
+                        mapSystem.CreateMap(mapId, runMapInit: false);
                         if (!_mapLoader.TryLoadGrid(mapId, path, out grid, opts))
                         {
                             shell.WriteError(Loc.GetString("cmd-mapping-error"));
-                            _mapSystem.DeleteMap(mapId);
+                            mapSystem.DeleteMap(mapId);
                             return;
                         }
                     }
@@ -124,25 +124,25 @@ namespace Content.Server.Mapping
                         // isGrid was not specified and loading it as a map failed, so we fall back to trying to load
                         // the file as a grid
                         shell.WriteLine(Loc.GetString("cmd-mapping-try-grid"));
-                        _mapSystem.CreateMap(mapId, runMapInit: false);
+                        mapSystem.CreateMap(mapId, runMapInit: false);
                         if (!_mapLoader.TryLoadGrid(mapId, path, out grid, opts))
                         {
                             shell.WriteError(Loc.GetString("cmd-mapping-error"));
-                            _mapSystem.DeleteMap(mapId);
+                            mapSystem.DeleteMap(mapId);
                             return;
                         }
                     }
                 }
 
                 // was the map actually created or did it fail somehow?
-                if (!_mapSystem.MapExists(mapId))
+                if (!mapSystem.MapExists(mapId))
                 {
                     shell.WriteError(Loc.GetString("cmd-mapping-error"));
                     return;
                 }
             }
             else
-                _mapSystem.CreateMap(out mapId, runMapInit: false);
+                mapSystem.CreateMap(out mapId, runMapInit: false);
 
             // map successfully created. run misc helpful mapping commands
             if (player.AttachedEntity is { Valid: true } playerEntity &&
@@ -162,7 +162,7 @@ namespace Content.Server.Mapping
 
             shell.ExecuteCommand($"tp 0 0 {mapId}");
             shell.RemoteExecuteCommand("mappingclientsidesetup");
-            DebugTools.Assert(_mapSystem.IsPaused(mapId));
+            DebugTools.Assert(mapSystem.IsPaused(mapId));
 
             if (args.Length != 2)
                 shell.WriteLine(Loc.GetString("cmd-mapping-success", ("mapId", mapId)));
