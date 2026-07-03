@@ -17,6 +17,8 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
     /// </summary>
     public event Action<EntityUid?>? LocalPilotedMechChanged;
 
+    private EntityUid? _localPilotedMech;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -26,7 +28,7 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
         SubscribeLocalEvent<BkmPilotableMechComponent, VehicleOperatorSetEvent>(OnOperatorSet);
         SubscribeLocalEvent<VehicleOperatorComponent, ComponentStartup>(OnOperatorStartup);
         SubscribeLocalEvent<VehicleOperatorComponent, AfterAutoHandleStateEvent>(OnOperatorHandleState);
-        SubscribeLocalEvent<VehicleOperatorComponent, ComponentShutdown>(OnOperatorShutdown);
+        SubscribeLocalEvent<VehicleOperatorShutdownEvent>(OnOperatorShutdown);
     }
 
     private void OnOperatorSet(Entity<BkmPilotableMechComponent> ent, ref VehicleOperatorSetEvent args)
@@ -36,9 +38,9 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
             return;
 
         if (args.NewOperator == local)
-            LocalPilotedMechChanged?.Invoke(ent.Owner);
+            SetLocalPilotedMech(ent.Owner);
         else if (args.OldOperator == local)
-            LocalPilotedMechChanged?.Invoke(null);
+            SetLocalPilotedMech(null);
     }
 
     private void OnOperatorStartup(Entity<VehicleOperatorComponent> ent, ref ComponentStartup args)
@@ -51,12 +53,12 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
         UpdateLocalPilotedMech(ent);
     }
 
-    private void OnOperatorShutdown(Entity<VehicleOperatorComponent> ent, ref ComponentShutdown args)
+    private void OnOperatorShutdown(ref VehicleOperatorShutdownEvent args)
     {
-        if (ent.Owner != _playerManager.LocalEntity)
+        if (args.Operator != _playerManager.LocalEntity)
             return;
 
-        LocalPilotedMechChanged?.Invoke(null);
+        SetLocalPilotedMech(null);
     }
 
     private void UpdateLocalPilotedMech(Entity<VehicleOperatorComponent> ent)
@@ -65,8 +67,17 @@ public sealed partial class BkmVovaMechSystem : SharedBkmVovaMechSystem
             return;
 
         if (ent.Comp.Vehicle is { } vehicle && _pilotableMechQuery.HasComp(vehicle))
-            LocalPilotedMechChanged?.Invoke(vehicle);
+            SetLocalPilotedMech(vehicle);
         else
-            LocalPilotedMechChanged?.Invoke(null);
+            SetLocalPilotedMech(null);
+    }
+
+    private void SetLocalPilotedMech(EntityUid? mech)
+    {
+        if (_localPilotedMech == mech)
+            return;
+
+        _localPilotedMech = mech;
+        LocalPilotedMechChanged?.Invoke(mech);
     }
 }

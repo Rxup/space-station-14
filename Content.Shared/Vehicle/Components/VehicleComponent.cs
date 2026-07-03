@@ -76,6 +76,13 @@ public record struct OnVehicleExitedEvent(Entity<VehicleComponent> Vehicle, Enti
 public record struct VehicleOperatorSetEvent(EntityUid? NewOperator, EntityUid? OldOperator);
 
 /// <summary>
+/// Event raised on the operator when <see cref="VehicleOperatorComponent"/> is shutting down.
+/// Broadcast so multiple systems can react without conflicting with the ComponentShutdown handler.
+/// </summary>
+[ByRefEvent, UsedImplicitly]
+public readonly record struct VehicleOperatorShutdownEvent(EntityUid Operator, EntityUid? Vehicle);
+
+/// <summary>
 /// Event raised on a vehicle to check if it can run/move around.
 /// </summary>
 [ByRefEvent, UsedImplicitly]

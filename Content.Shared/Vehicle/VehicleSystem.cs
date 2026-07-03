@@ -96,6 +96,8 @@ public sealed partial class VehicleSystem : EntitySystem
 
     private void OnOperatorShutdown(Entity<VehicleOperatorComponent> ent, ref ComponentShutdown args)
     {
+        var ev = new VehicleOperatorShutdownEvent(ent.Owner, ent.Comp.Vehicle);
+        RaiseLocalEvent(ent, ref ev, broadcast: true);
         TryRemoveOperator((ent, ent));
     }
 
