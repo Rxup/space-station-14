@@ -189,7 +189,6 @@
   metabolisms:
     Bloodstream:
       effects:
-      
         - !type:EvenHealthChange
           conditions:
           - !type:TemperatureCondition
@@ -210,7 +209,12 @@
           amount: -2
           identifier: "Cryoxadone"
           targetBodyParts: true
-          targetOrgans: false
+          targetOrgans: false 
+        - !type:AdjustTraumas # backmen
+          conditions:
+          - !type:TemperatureCondition
+            # this is a little arbitrary but they gotta be pretty cold
+            max: 213.0
           traumaType: OrganDamage
           amount: -1
           identifier: "Cryoxadone"
