@@ -84,7 +84,21 @@ public abstract partial class SharedBkmVovaMechSystem : EntitySystem
 
         return _container.Insert(toInsert, component.PilotSlot);
     }
+
+    public bool TryEject(EntityUid uid, BkmPilotableMechComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return false;
+
+        if (!Vehicle.TryGetOperator(uid, out var operatorEnt))
+            return false;
+
+        return _container.RemoveEntity(uid, operatorEnt.Value);
+    }
 }
 
 [Serializable, NetSerializable]
 public sealed partial class BkmVovaMechEntryEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class BkmVovaMechExitEvent : SimpleDoAfterEvent;

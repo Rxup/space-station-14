@@ -12,6 +12,9 @@ public sealed partial class BkmPilotableMechComponent : Component
     [DataField]
     public float EntryDelay = 3f;
 
+    [DataField]
+    public float ExitDelay = 3f;
+
     [ViewVariables]
     public readonly string PilotSlotId = "mech-pilot-slot";
 
