@@ -133,7 +133,7 @@
         damage:
           types:
             Radiation: -3
-          groups:
+          types:
             Brute: 1.5
 
 - type: reagent
@@ -271,7 +271,7 @@
           types:
             Asphyxiation: 1
             Cold: 2
-          groups:
+          types:
             Brute: 0.5
       - !type:Jitter
         conditions:
@@ -846,7 +846,7 @@
         - !type:TotalDamageCondition
           max: 50
         damage:
-          groups:
+          types:
             Brute: -1
           types:
             Poison: -0.5 ##Should be about what it was when it healed the toxin group
@@ -925,7 +925,7 @@
           min: 0
           max: 20
         damage:
-          groups:
+          groups: ТУТ
             Brute: 1.5
       - !type:EvenHealthChange
         conditions:
@@ -940,7 +940,7 @@
           reagent: Ultravasculine
           min: 20
         damage:
-          groups:
+          types:
             Brute: 6
       - !type:AdjustReagent
         conditions:
