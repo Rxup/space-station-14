@@ -1,5 +1,6 @@
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
+using Content.Shared.Turrets; // backmen: deployable-turret-targeting
 using Robust.Shared.Prototypes;
 using System.Collections.Frozen;
 using System.Linq;
@@ -185,14 +186,27 @@ public sealed partial class NpcFactionSystem : EntitySystem
             // otherwise having multiple factions is strictly negative
             .Where(target => !IsEntityFriendly((ent, ent.Comp1), target));
         if (!Resolve(ent, ref ent.Comp2, false))
-            return hostiles;
+            return FilterNpcHostileTargets(hostiles);
 
         // ignore anything from enemy faction that we are explicitly friendly towards
         var faction = (ent.Owner, ent.Comp2);
-        return hostiles
+        return FilterNpcHostileTargets(hostiles
             .Union(GetHostiles(faction))
-            .Where(target => !IsIgnored(faction, target));
+            .Where(target => !IsIgnored(faction, target)));
     }
+
+    // start-backmen: deployable-turret-targeting
+    private IEnumerable<EntityUid> FilterNpcHostileTargets(IEnumerable<EntityUid> targets)
+    {
+        foreach (var target in targets)
+        {
+            if (TryComp<DeployableTurretComponent>(target, out var turret) && !turret.Enabled)
+                continue;
+
+            yield return target;
+        }
+    }
+    // end-backmen: deployable-turret-targeting
 
     public IEnumerable<EntityUid> GetNearbyFriendlies(Entity<NpcFactionMemberComponent?> ent, float range)
     {

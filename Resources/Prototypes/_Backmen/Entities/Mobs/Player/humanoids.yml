@@ -177,6 +177,7 @@
       removable: false
     - type: RandomHumanoidProfile # Removes random names :(
       randomizeName: false
+      randomizeHair: true
     - type: DispelPower
     - type: MassSleepPower
     - type: MetapsionicPower

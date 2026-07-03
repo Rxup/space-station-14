@@ -111,6 +111,15 @@ public sealed partial class SleepingSystem : EntitySystem
     {
         // WAKE UP!!!
         RemComp<SleepingComponent>(ent);
+        // start-backmen: rejuvenate-sleep-stun
+        _stun.TryUnstun(ent.Owner);
+
+        if (TryComp<KnockedDownComponent>(ent.Owner, out var knocked))
+        {
+            _stun.CancelKnockdownDoAfter((ent.Owner, knocked));
+            RemComp<KnockedDownComponent>(ent.Owner);
+        }
+        // end-backmen: rejuvenate-sleep-stun
     }
 
     /// <summary>

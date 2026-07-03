@@ -79,4 +79,5 @@
       - StunImmune
   - type: StatusEffectAlert
     alert: Stun
+  - type: RejuvenateRemovedStatusEffect # backmen: rejuvenate-stun
   - type: StunnedStatusEffect

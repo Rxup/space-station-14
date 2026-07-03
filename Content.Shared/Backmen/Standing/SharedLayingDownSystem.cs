@@ -346,6 +346,14 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
             return false;
         }
 
+        // start-backmen: npc-instant-stand
+        if (HasComp<ActiveNPCComponent>(uid))
+        {
+            CancelStandingUpDoAfters(uid);
+            return _standing.Stand(uid, standingState, force: true);
+        }
+        // end-backmen: npc-instant-stand
+
         var args = new DoAfterArgs(EntityManager, uid, layingDown.StandingUpTime, new StandingUpDoAfterEvent(), uid)
         {
             BreakOnHandChange = false,
@@ -390,6 +398,20 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
             TryLieDown(ent, behavior: DropHeldItemsBehavior.DropIfStanding);
         }
     }
+
+    // start-backmen: npc-instant-stand
+    private void CancelStandingUpDoAfters(EntityUid uid)
+    {
+        if (!TryComp<DoAfterComponent>(uid, out var comp))
+            return;
+
+        foreach (var (id, doAfter) in comp.DoAfters)
+        {
+            if (doAfter.Args.Event is StandingUpDoAfterEvent)
+                _doAfter.Cancel(uid, id, comp);
+        }
+    }
+    // end-backmen: npc-instant-stand
 }
 
 [Serializable, NetSerializable]

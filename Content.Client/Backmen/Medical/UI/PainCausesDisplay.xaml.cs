@@ -274,6 +274,7 @@ public sealed partial class PainCausesDisplay : Control
             "Suicide" => Loc.GetString("health-analyzer-window-pain-cause-suicide"),
             "OrganDamage" => Loc.GetString("health-analyzer-window-pain-cause-organ-damage"),
             "Starving" => Loc.GetString("health-analyzer-window-pain-cause-starving"),
+            "TraumaticPain" => Loc.GetString("health-analyzer-window-pain-cause-traumatic-pain"),
             _ => identifier,
         };
     }

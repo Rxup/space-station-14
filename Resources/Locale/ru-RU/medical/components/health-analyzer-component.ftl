@@ -40,6 +40,7 @@ health-analyzer-window-pain-cause-suicide = Самоповреждение
 # backmen: organ-damage
 health-analyzer-window-pain-cause-organ-damage = Повреждение органов
 health-analyzer-window-pain-cause-starving = Голодание
+health-analyzer-window-pain-cause-traumatic-pain = Травматическая боль
 # start-backmen: analyzer-satiation
 health-analyzer-window-entity-hunger-level-text = Уровень голода:
 health-analyzer-window-entity-thirst-level-text = Уровень жажды:
