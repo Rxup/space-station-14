@@ -44,7 +44,7 @@
           reagent: Dylovene
           min: 20.5
         damage:
-          groups:
+          types:
             Brute: 2
       - !type:Jitter
         conditions:
