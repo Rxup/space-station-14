@@ -8,3 +8,4 @@ ui-escape-wiki = Wiki
 ui-escape-disconnect = Отключиться
 ui-escape-quit = Выйти
 ui-escape-feedback = Обратная связь
+ui-escape-sponsor = Спонсор

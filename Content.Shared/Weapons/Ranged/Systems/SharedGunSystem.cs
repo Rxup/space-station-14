@@ -3,6 +3,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
+using Content.Shared.Backmen.VovaMech;
 using Content.Shared.CombatMode;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage;
@@ -44,6 +45,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private ItemSlotsSystem _slots = default!;
     [Dependency] private RechargeBasicEntityAmmoSystem _recharge = default!;
+    [Dependency] private SharedBkmVovaMechSystem _bkmVovaMech = default!;
     [Dependency] private SharedCombatModeSystem _combatMode = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private UseDelaySystem _useDelay = default!;
@@ -195,6 +197,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     public bool TryGetGun(EntityUid entity, out Entity<GunComponent> gun)
     {
         gun = default;
+        entity = _bkmVovaMech.GetHandsHolder(entity);
 
         if (_hands.GetActiveItem(entity) is { } held &&
             TryComp(held, out GunComponent? gunComp))
