@@ -8,6 +8,7 @@ using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
 using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -25,7 +26,6 @@ public sealed partial class GasTileVisibleGasOverlay : Overlay
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IResourceCache _resourceCache = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
 
     private static readonly ProtoId<ShaderPrototype> UnshadedShader = "unshaded";
 
@@ -142,7 +142,7 @@ public sealed partial class GasTileVisibleGasOverlay : Overlay
             return;
 
         // TODO: WorldBounds callback.
-        _mapManager.FindGridsIntersecting(args.MapId,
+        _mapSystem.FindGridsIntersecting(args.MapId,
             args.WorldAABB,
             ref gridState,
             static (EntityUid uid,

@@ -13,6 +13,7 @@ using Content.Shared.Popups;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -28,7 +29,6 @@ public sealed partial class LavalandWeatherSystem : EntitySystem
     [Dependency] private TemperatureSystem _temperature = default!;
     [Dependency] private DamageableSystem _damage = default!;
     [Dependency] private RoofSystem _roof = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
 

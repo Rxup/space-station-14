@@ -9,6 +9,7 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
@@ -28,11 +29,11 @@ public sealed partial class GasTileHeatBlurOverlay : Overlay
     private static readonly ProtoId<ShaderPrototype> HeatOverlayShader = "HeatBlur";
 
     [Dependency] private IEntityManager _entManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IClyde _clyde = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
     [Dependency] private IResourceCache _resourceCache = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
     private readonly SharedTransformSystem _xformSys;
     private readonly ShaderInstance _shader;
@@ -126,7 +127,7 @@ public sealed partial class GasTileHeatBlurOverlay : Overlay
             () =>
             {
                 _intersectingGrids.Clear();
-                _mapManager.FindGridsIntersecting(mapId, worldAABB, ref _intersectingGrids);
+                _map.FindGridsIntersecting(mapId, worldAABB, ref _intersectingGrids);
                 foreach (var grid in _intersectingGrids)
                 {
                     if (!overlayQuery.TryGetComponent(grid.Owner, out var comp))

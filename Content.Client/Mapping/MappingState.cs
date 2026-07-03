@@ -21,6 +21,7 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Enums;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Markdown.Sequence;
@@ -45,13 +46,13 @@ public sealed partial class MappingState : GameplayStateBase
     [Dependency] private IEntityNetworkManager _entityNetwork = default!;
     [Dependency] private IInputManager _input = default!;
     [Dependency] private ILogManager _log = default!;
-    [Dependency] private IMapManager _mapMan = default!;
     [Dependency] private MappingManager _mapping = default!;
     [Dependency] private IOverlayManager _overlays = default!;
     [Dependency] private IPlacementManager _placement = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IResourceCache _resources = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
     private EntityMenuUIController _entityMenuController = default!;
 
@@ -795,7 +796,7 @@ public sealed partial class MappingState : GameplayStateBase
         {
             var mapPos = _transform.ToMapCoordinates(coords);
 
-            if (_mapMan.TryFindGridAt(mapPos, out var gridUid, out var grid) &&
+            if (_map.TryFindGridAt(mapPos, out var gridUid, out var grid) &&
                 _entityManager.System<SharedMapSystem>().TryGetTileRef(gridUid, grid, coords, out var tileRef) &&
                 _allPrototypesDict.TryGetValue(_entityManager.System<TurfSystem>().GetContentTileDefinition(tileRef), out button))
             {

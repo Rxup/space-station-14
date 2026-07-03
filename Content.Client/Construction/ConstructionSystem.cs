@@ -78,9 +78,9 @@ namespace Content.Client.Construction
 
         private void WarmupRecipesCache()
         {
-            foreach (var constructionProto in PrototypeManager.EnumeratePrototypes<ConstructionPrototype>())
+            foreach (var constructionProto in ProtoMan.EnumeratePrototypes<ConstructionPrototype>())
             {
-                if (!PrototypeManager.Resolve(constructionProto.Graph, out var graphProto))
+                if (!ProtoMan.Resolve(constructionProto.Graph, out var graphProto))
                     continue;
 
                 if (constructionProto.TargetNode is not { } targetNodeId)
@@ -121,7 +121,7 @@ namespace Content.Client.Construction
                     // If we got the id of the prototype, we exit the “recursion” by clearing the stack.
                     stack.Clear();
 
-                    if (!PrototypeManager.Resolve(entityId, out var proto))
+                    if (!ProtoMan.Resolve(entityId, out var proto))
                         continue;
 
                     var name = constructionProto.SetName.HasValue ? Loc.GetString(constructionProto.SetName) : proto.Name;
@@ -169,7 +169,7 @@ namespace Content.Client.Construction
                     "construction-ghost-examine-message",
                     ("name", component.Prototype.Name)));
 
-                if (!PrototypeManager.Resolve(component.Prototype.Graph, out var graph))
+                if (!ProtoMan.Resolve(component.Prototype.Graph, out var graph))
                     return;
 
                 var startNode = graph.Nodes[component.Prototype.StartNode];
@@ -270,7 +270,7 @@ namespace Content.Client.Construction
                 return false;
             }
 
-            if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !PrototypeManager.TryIndex(targetProtoId, out EntityPrototype? targetProto))
+            if (!TryGetRecipePrototype(prototype.ID, out var targetProtoId) || !ProtoMan.TryIndex(targetProtoId, out EntityPrototype? targetProto))
                 return false;
 
             if (GhostPresent(loc))

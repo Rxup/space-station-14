@@ -20,6 +20,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Console;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -40,7 +41,6 @@ namespace Content.Server.GameTicking
         [Dependency] private IGameMapManager _gameMapManager = default!;
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private ILogManager _logManager = default!;
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] private IPrototypeManager _prototypeManager = default!;
         [Dependency] private IRobustRandom _robustRandom = default!;
 #if EXCEPTION_TOLERANCE

@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -11,7 +12,6 @@ namespace Content.Server.Fluids.EntitySystems;
 public sealed partial class PuddleDebugDebugOverlaySystem : SharedPuddleDebugOverlaySystem
 {
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private PuddleSystem _puddle = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMapSystem _map = default!;
@@ -62,7 +62,7 @@ public sealed partial class PuddleDebugDebugOverlaySystem : SharedPuddleDebugOve
                 new Vector2(LocalViewRange, LocalViewRange));
 
             _grids.Clear();
-            _mapManager.FindGridsIntersecting(transform.MapID, worldBounds, ref _grids);
+            _map.FindGridsIntersecting(transform.MapID, worldBounds, ref _grids);
 
             foreach (var grid in _grids)
             {
@@ -79,7 +79,7 @@ public sealed partial class PuddleDebugDebugOverlaySystem : SharedPuddleDebugOve
                     if (!Resolve(uid, ref puddle, ref xform, false))
                         continue;
 
-                    var pos = xform.Coordinates.ToVector2i(EntityManager, _mapManager, _transform);
+                    var pos = xform.Coordinates.ToVector2i(EntityManager, _transform);
                     var vol = _puddle.CurrentVolume(uid, puddle);
                     data.Add(new PuddleDebugOverlayData(pos, vol));
                 }

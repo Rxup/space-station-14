@@ -117,7 +117,6 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private IConfigurationManager _configurationManager = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private MapSystem _mapSystem = default!;
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
@@ -391,8 +390,8 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
 
         var planetMapUid = _mapSystem.CreateMap(out var planetMapId,false);
-        //var planetMapUid = _mapManager.GetMapEntityId(planetMapId);
-        //_mapManager.AddUninitializedMap(planetMapId);
+        //var planetMapUid = _mapSystem.GetMapOrInvalid(planetMapId);
+        //_mapSystem.AddUninitializedMap(planetMapId);
 
         if (!_shuttleSystem.TryAddFTLDestination(planetMapId, true, out var ftl))
         {
@@ -641,7 +640,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
     private bool AttachMap(EntityUid gridId, ShipwreckedRuleComponent component, bool force = false)
     {
         var mapId = component.SpaceMapId ?? _gameTicker.DefaultMap;
-        //var spaceMapUid = _mapManager.GetMapEntityId(_gameTicker.DefaultMap);
+        //var spaceMapUid = _mapSystem.GetMapOrInvalid(_gameTicker.DefaultMap);
 
         var isValidMap = false;
 
@@ -661,19 +660,19 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
         if (!isValidMap)
         {
-            if (_mapManager.MapExists(_gameTicker.DefaultMap))
+            if (_mapSystem.MapExists(_gameTicker.DefaultMap))
             {
                 var qp = EntityQueryEnumerator<ActorComponent, MetaDataComponent, TransformComponent>();
                 while (qp.MoveNext(out var actor, out _, out _))
                 {
                     _gameTicker.Respawn(actor.PlayerSession);
                 }
-                _mapManager.DeleteMap(_gameTicker.DefaultMap);
+                _mapSystem.DeleteMap(_gameTicker.DefaultMap);
 
 
-                foreach (var map in _mapManager.GetAllMapIds().ToArray())
+                foreach (var map in _mapSystem.GetAllMapIds().ToArray())
                 {
-                    _mapManager.DeleteMap(map);
+                    _mapSystem.DeleteMap(map);
                 }
 
                 _mapSystem.CreateMap(_gameTicker.DefaultMap, _gameTicker.RunLevel == GameRunLevel.InRound);
@@ -1410,7 +1409,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
                 {
                     var spaceMapId = Transform(component.Shuttle!.Value).MapID;
 
-                    var spaceMap = _mapManager.GetMapEntityId(spaceMapId);
+                    var spaceMap = _mapSystem.GetMapOrInvalid(spaceMapId);
                     var parallax = EnsureComp<ParallaxComponent>(spaceMap);
                     parallax.Parallax = "ShipwreckedTurbulence1";
                     Dirty(spaceMap, parallax);
@@ -1504,7 +1503,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
                         break;
 
                     var shuttle = component.Shuttle.Value;
-                    var spaceMap = _mapManager.GetMapEntityId(component.SpaceMapId.Value);
+                    var spaceMap = _mapSystem.GetMapOrInvalid(component.SpaceMapId.Value);
 
                     var query = EntityQueryEnumerator<TransformComponent, ActorComponent>();
                     while (query.MoveNext(out var actorUid, out var xform, out _))
@@ -1583,7 +1582,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         /*
         if (_gameTicker.RunLevel == GameRunLevel.InRound)
         {
-            foreach (var map in _mapManager.GetAllMapIds().ToArray())
+            foreach (var map in _mapSystem.GetAllMapIds().ToArray())
             {
                 if (component.PlanetMapId.HasValue && component.PlanetMapId.Value == map)
                 {
@@ -1596,7 +1595,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
                 }
 
                 //cleanup
-                _mapManager.DeleteMap(map);
+                _mapSystem.DeleteMap(map);
             }
 
             if (component.Shuttle == null)
@@ -1693,9 +1692,9 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
     private void EnsureMapUnpaused(ShipwreckedRuleComponent shipwrecked)
     {
-        if (shipwrecked.PlanetMapId != null && _mapManager.MapExists(shipwrecked.PlanetMapId.Value) && _mapManager.IsMapPaused(shipwrecked.PlanetMapId.Value))
+        if (shipwrecked.PlanetMapId != null && _mapSystem.MapExists(shipwrecked.PlanetMapId.Value) && _mapSystem.IsPaused(shipwrecked.PlanetMapId.Value))
         {
-            _mapManager.SetMapPaused(shipwrecked.PlanetMapId!.Value, false);
+            _mapSystem.SetPaused(shipwrecked.PlanetMapId!.Value, false);
         }
     }
 

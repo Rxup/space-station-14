@@ -19,6 +19,7 @@ using Robust.Shared.Console;
 using Robust.Shared.Graphics;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -37,12 +38,12 @@ namespace Content.Client.Gameplay
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private IGameTiming _timing = default!;
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] protected IUserInterfaceManager UserInterfaceManager = default!;
         [Dependency] private IEntityManager _entityManager = default!;
         [Dependency] private IViewVariablesManager _vvm = default!;
         [Dependency] private IConsoleHost _conHost = default!;
         [Dependency] private IConfigurationManager _configurationManager = default!;
+        [Dependency] private SharedMapSystem _map = default!;
 
         private ClickableEntityComparer _comparer = default!;
 
@@ -242,7 +243,7 @@ namespace Content.Client.Gameplay
                 var transformSystem = _entitySystemManager.GetEntitySystem<SharedTransformSystem>();
                 var mapSystem = _entitySystemManager.GetEntitySystem<MapSystem>();
 
-                coordinates = _mapManager.TryFindGridAt(mousePosWorld, out var uid, out _) ?
+                coordinates = _map.TryFindGridAt(mousePosWorld, out var uid, out _) ?
                     mapSystem.MapToGrid(uid, mousePosWorld) :
                     transformSystem.ToCoordinates(mousePosWorld);
             }

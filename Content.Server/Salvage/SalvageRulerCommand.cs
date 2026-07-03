@@ -8,8 +8,8 @@ namespace Content.Server.Salvage;
 [AdminCommand(AdminFlags.Admin)]
 sealed partial class SalvageRulerCommand : IConsoleCommand
 {
-    [Dependency] private IEntityManager _entities = default!;
-    [Dependency] private IMapManager _maps = default!;
+
+    [Dependency] private SharedMapSystem _maps = default!;    [Dependency] private IEntityManager _entities = default!;
 
     public string Command => "salvageruler";
 

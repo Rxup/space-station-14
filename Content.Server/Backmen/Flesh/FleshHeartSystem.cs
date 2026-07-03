@@ -49,7 +49,6 @@ public sealed partial class FleshHeartSystem : EntitySystem
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private ContainerSystem _containerSystem = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
-    [Dependency] private IMapManager _map = default!;
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private TagSystem _tagSystem = default!;

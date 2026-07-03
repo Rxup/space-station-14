@@ -5,6 +5,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Backmen.Shipyard;
 using Content.Shared.GameTicking;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Content.Shared.Backmen.CCVar;
 using Robust.Shared.Configuration;
 using System.Diagnostics.CodeAnalysis;
@@ -20,8 +21,9 @@ namespace Content.Server.Backmen.Shipyard.Systems;
 
 public sealed partial class ShipyardSystem : SharedShipyardSystem
 {
+
+    [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private IConfigurationManager _configManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private PricingSystem _pricing = default!;
     [Dependency] private ShuttleSystem _shuttle = default!;
     [Dependency] private StationSystem _station = default!;
@@ -136,22 +138,23 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
 
     private void CleanupShipyard()
     {
-        if (ShipyardMap == null || !_mapManager.MapExists(ShipyardMap.Value))
+        if (ShipyardMap == null || !_mapSystem.MapExists(ShipyardMap.Value))
         {
             ShipyardMap = null;
             return;
         }
 
-        _mapManager.DeleteMap(ShipyardMap.Value);
+        _mapSystem.DeleteMap(ShipyardMap.Value);
     }
 
     private void SetupShipyard()
     {
-        if (ShipyardMap != null && _mapManager.MapExists(ShipyardMap.Value))
+        if (ShipyardMap != null && _mapSystem.MapExists(ShipyardMap.Value))
             return;
 
-        ShipyardMap = _mapManager.CreateMap();
+        _mapSystem.CreateMap(out MapId mapId);
+        ShipyardMap = mapId;
 
-        _mapManager.SetMapPaused(ShipyardMap.Value, false);
+        _mapSystem.SetPaused(ShipyardMap.Value, false);
     }
 }

@@ -45,7 +45,6 @@ public sealed partial class BlobCoreActionSystem : SharedBlobCoreActionSystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private MapSystem _mapSystem = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private BlobTileSystem _blobTileSystem = default!;
     //[Dependency] private GridFixtureSystem _gridFixture = default!;
@@ -97,7 +96,7 @@ public sealed partial class BlobCoreActionSystem : SharedBlobCoreActionSystem
             return;
 
         var target = args.Target;
-        var location = args.ClickLocation.AlignWithClosestGridTile(entityManager: EntityManager, mapManager: _mapManager);
+        var location = args.ClickLocation.AlignWithClosestGridTile();
 
         if (!location.IsValid(EntityManager))
             return;

@@ -22,9 +22,9 @@ namespace Content.Server.Backmen.FootPrint;
 
 public sealed partial class FootPrintsSystem : EntitySystem
 {
-    [Dependency] private IRobustRandom _random = default!;
+
+    [Dependency] private SharedMapSystem _map = default!;    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
-    [Dependency] private IMapManager _map = default!;
 
     [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
