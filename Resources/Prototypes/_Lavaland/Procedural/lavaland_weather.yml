@@ -1,13 +1,13 @@
 - type: lavalandWeather
   id: AshfallLight
-  weatherType: AshfallLight
+  weatherType: WeatherAshfallLight
   damage:
     types:
       Heat: 4
 
 - type: lavalandWeather
   id: AshfallHeavy
-  weatherType: Ashfall
+  weatherType: WeatherAshfallHeavy
   damage:
     types:
       Heat: 6

@@ -159,6 +159,7 @@
       enabled: true
       requiresAnchored: false
       repeating: false
+      triggerSpeed: 0
       shape:
         !type:PhysShapeCircle
         radius: 2.2

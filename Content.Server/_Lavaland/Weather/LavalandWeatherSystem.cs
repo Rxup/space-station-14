@@ -118,7 +118,7 @@ public sealed partial class LavalandWeatherSystem : EntitySystem
 
         var proto = _proto.Index(weather);
 
-        _weather.TrySetWeather(Transform(map).MapID, new EntProtoId(proto.WeatherType), out _, null);
+        _weather.TrySetWeather(Transform(map).MapID, proto.WeatherType, out _, null);
 
         Log.Debug($"Starting dealing weather damage on lavaland map {ToPrettyString(map)}");
         var comp = EnsureComp<LavalandStormedMapComponent>(map);

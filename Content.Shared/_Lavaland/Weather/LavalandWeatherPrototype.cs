@@ -1,8 +1,8 @@
 ﻿using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
-using Content.Shared.Weather;
 using Robust.Shared.Prototypes;
+using Content.Shared.Weather;
 
 namespace Content.Shared._Lavaland.Weather;
 
@@ -18,7 +18,7 @@ public sealed partial class LavalandWeatherPrototype : IPrototype
     public float Variety = 20;
 
     [DataField]
-    public ProtoId<WeatherPrototype> WeatherType;
+    public EntProtoId<WeatherStatusEffectComponent> WeatherType;
 
     [DataField]
     public LocId PopupStartMessage = "lavaland-weather-start-message";
