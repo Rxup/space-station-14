@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [SolutionWelder, BaseItem]
+  parent: BaseItem
   id: BaseWelder
   components:
   - type: Sprite
@@ -98,13 +98,26 @@
     temperature: 700
 
 - type: entity
-  parent: [SolutionToolWelder, BaseWelder]
+  parent: [BaseWelder, SolutionToolWelder]
   id: Welder
   name: welding tool
   description: "Melts anything as long as it's fueled, don't forget your eye protection!"
   components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/Backmen/Items/handling/weldingtool_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/welder_drop.ogg
   - type: Sprite
     sprite: Objects/Tools/welder.rsi
+  - type: Cautery # Shitmed
+    speed: 0.7
+  - type: SurgeryTool # Shitmed
+    startSound:
+      collection: Welder
+    endSound:
+      collection: WelderOff
 
 - type: entity
   parent: [SolutionWelder, SolutionSmall]
@@ -120,7 +133,7 @@
 
 - type: entity
   name: industrial welding tool
-  parent: [SolutionToolWelderIndsutrial, BaseWelder]
+  parent: [BaseWelder, SolutionToolWelderIndsutrial]
   id: WelderIndustrial
   description: "An industrial welder with over double the fuel capacity."
   components:
@@ -156,7 +169,7 @@
 
 - type: entity
   name: experimental welding tool
-  parent: [SolutionToolWelderExperimental, BaseWelder]
+  parent: [BaseWelder, SolutionToolWelderExperimental]
   id: WelderExperimental
   description: "An experimental welder capable of self-fuel generation and less harmful to the eyes."
   components:
@@ -191,7 +204,7 @@
 
 - type: entity
   name: emergency welding tool
-  parent: [SolutionToolWelderMiniEmergency, BaseWelder]
+  parent: [BaseWelder, SolutionToolWelderMiniEmergency]
   id: WelderMini
   description: "A miniature welder used during emergencies."
   components:

@@ -1,6 +1,18 @@
 - type: entity
+  parent: [SolutionWelder, SolutionToolNormal]
+  id: SolutionToolChainsaw
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 300
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 300
+
+- type: entity
   name: chainsaw
-  parent: BaseItem
+  parent: [BaseItem, SolutionToolChainsaw]
   id: Chainsaw
   description: A very large chainsaw. Usually you use this for cutting down trees... usually.
   components:
@@ -35,14 +47,7 @@
     sprite: Objects/Weapons/Melee/chainsaw.rsi
   - type: DisarmMalus
   - type: RefillableSolution
-    solution: Welder
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 300
-        maxVol: 300
+    solution: welder
   - type: UseDelay
     delay: 1
   - type: BoneSaw # Shitmed
