@@ -29,6 +29,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -41,7 +42,6 @@ namespace Content.Server.Backmen.Arrivals;
 public sealed partial class CentcommSystem : EntitySystem
 {
     [Dependency] private StationSystem _stationSystem = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private ShuttleSystem _shuttle = default!;
@@ -179,7 +179,7 @@ public sealed partial class CentcommSystem : EntitySystem
             return; // not loaded centcom
         }
 
-        if (ev.MapUid != _mapManager.GetMapEntityId(CentComMap))
+        if (ev.MapUid != _mapSystem.GetMapOrInvalid(CentComMap))
         {
             return; // not centcom
         }
@@ -237,8 +237,8 @@ public sealed partial class CentcommSystem : EntitySystem
         QueueDel(CentComGrid);
         CentComGrid = EntityUid.Invalid;
 
-        if (_mapManager.MapExists(CentComMap))
-            _mapManager.DeleteMap(CentComMap);
+        if (_mapSystem.MapExists(CentComMap))
+            _mapSystem.DeleteMap(CentComMap);
 
         CentComMap = MapId.Nullspace;
         CentComMapUid = null;

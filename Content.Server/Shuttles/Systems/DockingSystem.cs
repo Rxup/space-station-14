@@ -8,6 +8,7 @@ using Content.Shared.Popups;
 using Content.Shared.Shuttles.Events;
 using Content.Shared.Shuttles.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics.Joints;
@@ -18,7 +19,6 @@ namespace Content.Server.Shuttles.Systems
 {
     public sealed partial class DockingSystem : SharedDockingSystem
     {
-        [Dependency] private IMapManager _mapManager = default!;
         [Dependency] private SharedMapSystem _mapSystem = default!;
         [Dependency] private DoorSystem _doorSystem = default!;
         [Dependency] private EntityLookupSystem _lookup = default!;

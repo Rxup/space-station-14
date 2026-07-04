@@ -5,6 +5,7 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using System.Numerics;
@@ -19,7 +20,6 @@ public sealed partial class GasTileDangerousTemperatureOverlay : Overlay
     public override bool RequestScreenTexture { get; set; } = false;
 
     [Dependency] private IEntityManager _entManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IClyde _clyde = default!;
 
     private GasTileOverlaySystem? _gasTileOverlay;
@@ -174,7 +174,7 @@ public sealed partial class GasTileDangerousTemperatureOverlay : Overlay
             () =>
             {
                 _grids.Clear();
-                _mapManager.FindGridsIntersecting(mapId, worldAABB, ref _grids);
+                _entManager.System<SharedMapSystem>().FindGridsIntersecting(mapId, worldAABB, ref _grids);
 
                 foreach (var grid in _grids)
                 {

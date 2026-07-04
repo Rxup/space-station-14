@@ -11,6 +11,7 @@ using Robust.Server.Player;
 using Robust.Shared;
 using Robust.Shared.Enums;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Threading;
@@ -25,9 +26,9 @@ namespace Content.Server.Atmos.EntitySystems
     [UsedImplicitly]
     public sealed partial class GasTileOverlaySystem : SharedGasTileOverlaySystem
     {
+        [Robust.Shared.IoC.Dependency] private SharedMapSystem _map = default!;
         [Robust.Shared.IoC.Dependency] private IGameTiming _gameTiming = default!;
         [Robust.Shared.IoC.Dependency] private IPlayerManager _playerManager = default!;
-        [Robust.Shared.IoC.Dependency] private IMapManager _mapManager = default!;
         [Robust.Shared.IoC.Dependency] private IParallelManager _parMan = default!;
         [Robust.Shared.IoC.Dependency] private AtmosphereSystem _atmosphereSystem = default!;
         [Robust.Shared.IoC.Dependency] private ChunkingSystem _chunkingSys = default!;
@@ -71,7 +72,7 @@ namespace Content.Server.Atmos.EntitySystems
                 ChunkIndexPool = _chunkIndexPool,
                 Sessions = _sessions,
                 ChunkingSys = _chunkingSys,
-                MapManager = _mapManager,
+                MapManager = _map,
                 ChunkViewerPool = _chunkViewerPool,
                 LastSentChunks = _lastSentChunks,
                 GridQuery = _mapGridQuery,
@@ -383,7 +384,7 @@ namespace Content.Server.Atmos.EntitySystems
             public int BatchSize => 2;
 
             public IEntityManager EntManager;
-            public IMapManager MapManager;
+            public SharedMapSystem MapManager;
             public ChunkingSystem ChunkingSys;
             public GasTileOverlaySystem System;
             public ObjectPool<HashSet<Vector2i>> ChunkIndexPool;

@@ -12,7 +12,6 @@ namespace Content.Server.Interaction;
 public sealed partial class TilePryCommand : LocalizedEntityCommands
 {
     [Dependency] private ITileDefinitionManager _tileDefinitionManager = default!;
-    [Dependency] private SharedMapSystem _mapSystem = default!;
 
     private readonly string _platingId = "Plating";
 
@@ -20,6 +19,7 @@ public sealed partial class TilePryCommand : LocalizedEntityCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        var mapSystem = EntityManager.System<SharedMapSystem>();
         var player = shell.Player;
         if (player?.AttachedEntity is not { } attached)
         {
@@ -57,15 +57,15 @@ public sealed partial class TilePryCommand : LocalizedEntityCommands
         {
             for (var j = -radius; j <= radius; j++)
             {
-                var tile = _mapSystem.GetTileRef(playerGrid.Value, mapGrid, playerPosition.Offset(new Vector2(i, j)));
-                var coordinates = _mapSystem.GridTileToLocal(playerGrid.Value, mapGrid, tile.GridIndices);
+                var tile = mapSystem.GetTileRef(playerGrid.Value, mapGrid, playerPosition.Offset(new Vector2(i, j)));
+                var coordinates = mapSystem.GridTileToLocal(playerGrid.Value, mapGrid, tile.GridIndices);
                 var tileDef = (ContentTileDefinition)_tileDefinitionManager[tile.Tile.TypeId];
 
                 if (!tileDef.CanCrowbar)
                     continue;
 
                 var plating = _tileDefinitionManager[_platingId];
-                _mapSystem.SetTile(playerGrid.Value, mapGrid, coordinates, new Tile(plating.TileId));
+                mapSystem.SetTile(playerGrid.Value, mapGrid, coordinates, new Tile(plating.TileId));
             }
         }
     }

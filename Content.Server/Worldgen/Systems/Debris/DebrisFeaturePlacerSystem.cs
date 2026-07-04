@@ -17,11 +17,11 @@ namespace Content.Server.Worldgen.Systems.Debris;
 /// </summary>
 public sealed partial class DebrisFeaturePlacerSystem : BaseWorldSystem
 {
-    [Dependency] private NoiseIndexSystem _noiseIndex = default!;
+
+    [Dependency] private SharedMapSystem _map = default!;    [Dependency] private NoiseIndexSystem _noiseIndex = default!;
     [Dependency] private PoissonDiskSampler _sampler = default!;
     [Dependency] private TransformSystem _xformSys = default!;
     [Dependency] private ILogManager _logManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
     [Dependency] private IRobustRandom _random = default!;
 
     private ISawmill _sawmill = default!;
@@ -235,7 +235,7 @@ public sealed partial class DebrisFeaturePlacerSystem : BaseWorldSystem
     private bool HasCollisions(MapId mapId, Box2 point)
     {
         _mapGrids.Clear();
-        _mapManager.FindGridsIntersecting(mapId, point, ref _mapGrids);
+        _map.FindGridsIntersecting(mapId, point, ref _mapGrids);
         return _mapGrids.Count > 0;
     }
 

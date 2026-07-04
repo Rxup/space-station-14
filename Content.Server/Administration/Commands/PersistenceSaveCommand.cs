@@ -12,7 +12,6 @@ namespace Content.Server.Administration.Commands;
 public sealed partial class PersistenceSave : LocalizedEntityCommands
 {
     [Dependency] private IConfigurationManager _config = default!;
-    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private MapLoaderSystem _mapLoader = default!;
 
     public override string Command => "persistencesave";
@@ -32,7 +31,8 @@ public sealed partial class PersistenceSave : LocalizedEntityCommands
         }
 
         var mapId = new MapId(intMapId);
-        if (!_map.MapExists(mapId))
+        var map = EntityManager.System<SharedMapSystem>();
+        if (!map.MapExists(mapId))
         {
             shell.WriteError(Loc.GetString("cmd-savemap-not-exist"));
             return;

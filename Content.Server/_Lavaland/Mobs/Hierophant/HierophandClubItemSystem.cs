@@ -15,12 +15,13 @@ namespace Content.Server._Lavaland.Mobs.Hierophant;
 
 public sealed partial class HierophandClubItemSystem : EntitySystem
 {
+
+    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private HandsSystem _hands = default!;
     [Dependency] private HierophantSystem _hierophant = default!;
-    [Dependency] private IMapManager _mapMan = default!;
     [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
@@ -63,7 +64,7 @@ public sealed partial class HierophandClubItemSystem : EntitySystem
             return;
         }
 
-        var targetCoords = args.Target.SnapToGrid(EntityManager, _mapMan);
+        var targetCoords = args.Target.SnapToGrid(EntityManager);
 
         SpawnHierophantCross(user, targetCoords, ent.Comp);
 
@@ -81,7 +82,7 @@ public sealed partial class HierophandClubItemSystem : EntitySystem
 
         var position = Transform(args.Performer)
             .Coordinates
-            .AlignWithClosestGridTile(entityManager: EntityManager, mapManager: _mapMan);
+            .AlignWithClosestGridTile();
         var dummy = Spawn(null, position);
 
         ent.Comp.TeleportMarker = dummy;

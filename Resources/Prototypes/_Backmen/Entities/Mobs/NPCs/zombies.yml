@@ -159,6 +159,7 @@
       enabled: true
       requiresAnchored: false
       repeating: false
+      # Zero allows motionless mobs to trigger; NPCZombieSystem ignores posed corpses and other zombies.
       triggerSpeed: 0
       shape:
         !type:PhysShapeCircle

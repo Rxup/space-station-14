@@ -17,6 +17,7 @@ using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 
@@ -28,6 +29,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private IInputManager _inputManager = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private IStateManager _stateManager = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
     [Dependency] private AnimationPlayerSystem _animation = default!;
     [Dependency] private InputSystem _inputSystem = default!;
     [Dependency] private SharedColorFlashEffectSystem _color = default!;
@@ -101,13 +103,13 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         EntityCoordinates coordinates;
 
-        if (MapManager.TryFindGridAt(mousePos, out var gridUid, out _))
+        if (_maps.TryFindGridAt(mousePos, out var gridUid, out _))
         {
             coordinates = TransformSystem.ToCoordinates(gridUid, mousePos);
         }
         else
         {
-            coordinates = TransformSystem.ToCoordinates(_map.GetMap(mousePos.MapId), mousePos);
+            coordinates = TransformSystem.ToCoordinates(_maps.GetMap(mousePos.MapId), mousePos);
         }
 
         // If the gun has AltFireComponent, it can be used to attack.

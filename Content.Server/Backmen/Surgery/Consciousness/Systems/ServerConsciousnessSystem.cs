@@ -758,6 +758,27 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         _mobThresholds.VerifyThresholds(uid, damageable: damageable);
     }
 
+    /// <summary>
+    /// Applies prototype damage after the body is initialized, then forces a dead mob state.
+    /// Used by entities that spawn with preset damage but must pose as corpses (e.g. salvage loot, zombie surprise).
+    /// </summary>
+    public void ApplyForcedCorpseState(EntityUid uid)
+    {
+        ApplyInitialPrototypeDamage(uid);
+
+        if (ConsciousnessQuery.TryComp(uid, out var consciousness)
+            && MobStateQuery.TryComp(uid, out var mobState))
+        {
+            consciousness.ForceDead = true;
+            Dirty(uid, consciousness);
+            CheckConscious((uid, consciousness, mobState));
+            return;
+        }
+
+        if (MobStateQuery.TryComp(uid, out mobState))
+            MobStateSys.ChangeMobState(uid, MobState.Dead, mobState);
+    }
+
     // start-backmen: sync mob thresholds
     private void SyncConsciousnessFromMobThresholds(EntityUid uid, ConsciousnessComponent consciousness)
     {

@@ -298,7 +298,7 @@ namespace Content.Server.Decals
         {
             decalId = 0;
 
-            if (!PrototypeManager.HasIndex<DecalPrototype>(decal.Id))
+            if (!ProtoMan.HasIndex<DecalPrototype>(decal.Id))
                 return false;
 
             var gridId = _transform.GetGrid(coordinates);
@@ -419,7 +419,7 @@ namespace Content.Server.Decals
 
         public bool SetDecalId(EntityUid gridId, uint decalId, string id, DecalGridComponent? comp = null)
         {
-            if (!PrototypeManager.HasIndex<DecalPrototype>(id))
+            if (!ProtoMan.HasIndex<DecalPrototype>(id))
                 throw new ArgumentOutOfRangeException($"Tried to set decal id to invalid prototypeid: {id}");
 
             return ModifyDecal(gridId, decalId, x => x.WithId(id), comp);

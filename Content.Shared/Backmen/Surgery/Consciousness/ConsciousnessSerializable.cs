@@ -24,8 +24,42 @@ public record struct ConsciousnessChangedEvent(
     FixedPoint2 NewConsciousness,
     FixedPoint2 OldConsciousness);
 
-[Serializable, DataRecord]
-public partial record struct ConsciousnessModifier(FixedPoint2 Change, TimeSpan? Time, ConsciousnessModType Type = ConsciousnessModType.Generic);
+[Serializable, DataDefinition]
+public partial struct ConsciousnessModifier
+{
+    [DataField]
+    public FixedPoint2 Change;
 
-[Serializable, DataRecord]
-public partial record struct ConsciousnessMultiplier(FixedPoint2 Change, TimeSpan? Time, ConsciousnessModType Type = ConsciousnessModType.Generic);
+    [DataField]
+    public TimeSpan? Time;
+
+    [DataField]
+    public ConsciousnessModType Type = ConsciousnessModType.Generic;
+
+    public ConsciousnessModifier(FixedPoint2 Change, TimeSpan? Time, ConsciousnessModType Type = ConsciousnessModType.Generic)
+    {
+        this.Change = Change;
+        this.Time = Time;
+        this.Type = Type;
+    }
+}
+
+[Serializable, DataDefinition]
+public partial struct ConsciousnessMultiplier
+{
+    [DataField]
+    public FixedPoint2 Change;
+
+    [DataField]
+    public TimeSpan? Time;
+
+    [DataField]
+    public ConsciousnessModType Type = ConsciousnessModType.Generic;
+
+    public ConsciousnessMultiplier(FixedPoint2 Change, TimeSpan? Time, ConsciousnessModType Type = ConsciousnessModType.Generic)
+    {
+        this.Change = Change;
+        this.Time = Time;
+        this.Type = Type;
+    }
+}

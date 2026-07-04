@@ -3,6 +3,7 @@ using Content.Shared.Examine;
 using Content.Shared.Maps;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 
@@ -48,7 +49,7 @@ namespace Content.Server.Construction.Conditions
                 return false;
 
             var transformSys = entityManager.System<SharedTransformSystem>();
-            var indices = transform.Coordinates.ToVector2i(entityManager, IoCManager.Resolve<IMapManager>(), transformSys);
+            var indices = transform.Coordinates.ToVector2i(entityManager, transformSys);
             var lookup = entityManager.EntitySysManager.GetEntitySystem<EntityLookupSystem>();
 
 

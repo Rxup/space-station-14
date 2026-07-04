@@ -15,7 +15,6 @@ namespace Content.Server.Weather.Commands;
 public sealed partial class WeatherRemoveCommand : LocalizedEntityCommands
 {
     [Dependency] private IPrototypeManager _proto = default!;
-    [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private WeatherSystem _weather = default!;
     [Dependency] private IComponentFactory _compFactory = default!;
 
@@ -34,8 +33,9 @@ public sealed partial class WeatherRemoveCommand : LocalizedEntityCommands
             return;
 
         var mapId = new MapId(mapInt);
+        var map = EntityManager.System<SharedMapSystem>();
 
-        if (!_map.MapExists(mapId))
+        if (!map.MapExists(mapId))
         {
             shell.WriteError(Loc.GetString("cmd-weather-error-wrong-map", ("id", mapId.ToString())));
             return;

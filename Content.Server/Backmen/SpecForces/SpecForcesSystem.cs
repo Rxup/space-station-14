@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
 using Robust.Shared.Map;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Server.Spawners.Components;
 using Robust.Shared.Random;
@@ -28,7 +29,8 @@ namespace Content.Server.Backmen.SpecForces;
 
 public sealed partial class SpecForcesSystem : EntitySystem
 {
-    [Dependency] private IMapManager _mapManager = default!;
+
+    [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private MapLoaderSystem _map = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -64,24 +66,25 @@ public sealed partial class SpecForcesSystem : EntitySystem
 
     private void SetupShipyard()
     {
-        if (ShipyardMap != null && _mapManager.MapExists(ShipyardMap.Value))
+        if (ShipyardMap != null && _mapSystem.MapExists(ShipyardMap.Value))
             return;
 
-        ShipyardMap = _mapManager.CreateMap();
+        _mapSystem.CreateMap(out MapId mapId);
+        ShipyardMap = mapId;
 
-        _mapManager.SetMapPaused(ShipyardMap.Value, false);
+        _mapSystem.SetPaused(ShipyardMap.Value, false);
         _shuttleIndex = 0;
     }
     private void CleanupShipyard()
     {
-        if (ShipyardMap == null || !_mapManager.MapExists(ShipyardMap.Value))
+        if (ShipyardMap == null || !_mapSystem.MapExists(ShipyardMap.Value))
         {
             ShipyardMap = null;
             _shuttleIndex = 0;
             return;
         }
 
-        _mapManager.DeleteMap(ShipyardMap.Value);
+        _mapSystem.DeleteMap(ShipyardMap.Value);
         ShipyardMap = null;
         _shuttleIndex = 0;
     }

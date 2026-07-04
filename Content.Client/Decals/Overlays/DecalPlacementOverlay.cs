@@ -3,6 +3,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Shared.Enums;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
@@ -12,7 +13,7 @@ public sealed partial class DecalPlacementOverlay : Overlay
 {
     [Dependency] private IEyeManager _eyeManager = default!;
     [Dependency] private IInputManager _inputManager = default!;
-    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
     private readonly DecalPlacementSystem _placement;
     private readonly SharedTransformSystem _transform;
     private readonly SpriteSystem _sprite;
@@ -42,7 +43,7 @@ public sealed partial class DecalPlacementOverlay : Overlay
             return;
 
         // No map support for decals
-        if (!_mapManager.TryFindGridAt(mousePos, out var gridUid, out var grid))
+        if (!_entManager.System<SharedMapSystem>().TryFindGridAt(mousePos, out var gridUid, out var grid))
         {
             return;
         }

@@ -1,6 +1,7 @@
 using Content.IntegrationTests.Fixtures;
 using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Humanoid.Systems;
+using Content.Shared.Backmen.Shipwrecked;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;

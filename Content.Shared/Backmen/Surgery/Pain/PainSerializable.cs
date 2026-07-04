@@ -53,14 +53,69 @@ public sealed class PlayLoggedPainSoundEvent(NetEntity nerveSystem, SoundSpecifi
     public AudioParams? AudioParams { get; } = audioParams;
 }
 
-[Serializable, DataRecord]
-public partial record struct PainMultiplier(FixedPoint2 Change, string Identifier = "Unspecified", PainType PainType = PainType.WoundPain, TimeSpan? Time = null);
+[Serializable, DataDefinition]
+public partial struct PainMultiplier
+{
+    [DataField]
+    public FixedPoint2 Change;
 
-[Serializable, DataRecord]
-public partial record struct PainFeelingModifier(FixedPoint2 Change, TimeSpan? Time = null);
+    [DataField]
+    public string Identifier = "Unspecified";
 
-[Serializable, DataRecord]
-public partial record struct PainModifier(FixedPoint2 Change, string Identifier = "Unspecified", PainType PainType = PainType.WoundPain, TimeSpan? Time = null); // Easier to manage pain with modifiers.
+    [DataField]
+    public PainType PainType = PainType.WoundPain;
+
+    [DataField]
+    public TimeSpan? Time;
+
+    public PainMultiplier(FixedPoint2 Change, string Identifier = "Unspecified", PainType PainType = PainType.WoundPain, TimeSpan? Time = null)
+    {
+        this.Change = Change;
+        this.Identifier = Identifier;
+        this.PainType = PainType;
+        this.Time = Time;
+    }
+}
+
+[Serializable, DataDefinition]
+public partial struct PainFeelingModifier
+{
+    [DataField]
+    public FixedPoint2 Change;
+
+    [DataField]
+    public TimeSpan? Time;
+
+    public PainFeelingModifier(FixedPoint2 Change, TimeSpan? Time = null)
+    {
+        this.Change = Change;
+        this.Time = Time;
+    }
+}
+
+[Serializable, DataDefinition]
+public partial struct PainModifier
+{
+    [DataField]
+    public FixedPoint2 Change;
+
+    [DataField]
+    public string Identifier = "Unspecified";
+
+    [DataField]
+    public PainType PainType = PainType.WoundPain;
+
+    [DataField]
+    public TimeSpan? Time;
+
+    public PainModifier(FixedPoint2 Change, string Identifier = "Unspecified", PainType PainType = PainType.WoundPain, TimeSpan? Time = null)
+    {
+        this.Change = Change;
+        this.Identifier = Identifier;
+        this.PainType = PainType;
+        this.Time = Time;
+    }
+}
 
 [ByRefEvent]
 public record struct PainThresholdTriggered(Entity<NerveSystemComponent> NerveSystem, PainReflexType ReflexType, FixedPoint2 PainInput, bool Cancelled = false);
