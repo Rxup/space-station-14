@@ -173,10 +173,9 @@ public sealed partial class NPCZombieSystem : EntitySystem
 
     public void SetupZombieSurprise(EntityUid uid)
     {
-        if (TerminatingOrDeleted(uid))
+        if (TerminatingOrDeleted(uid) || !HasComp<MobStateComponent>(uid))
             return;
 
-        EnsureComp<ZombieSurpriseComponent>(uid);
         EnsureDetector(uid);
         EnsureCorpsePose(uid);
     }
@@ -205,13 +204,13 @@ public sealed partial class NPCZombieSystem : EntitySystem
 
     public void EnsureCorpsePose(EntityUid uid)
     {
-        if (TerminatingOrDeleted(uid))
+        if (TerminatingOrDeleted(uid) || !TryComp<MobStateComponent>(uid, out var mobState))
             return;
 
         _consciousness.ApplyForcedCorpseState(uid);
         _mobThresholds.VerifyThresholds(uid);
         _mobThresholds.SetAllowRevives(uid, false);
-        _mobState.ChangeMobState(uid, MobState.Dead);
+        _mobState.ChangeMobState(uid, MobState.Dead, mobState);
         _stateSystem.Down(uid, playSound: false, force: true);
     }
 
