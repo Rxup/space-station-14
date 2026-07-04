@@ -9,13 +9,6 @@ public sealed partial class ZombieWakeupOnTriggerComponent : Component
 
 [RegisterComponent]
 [Access(typeof(NPCZombieSystem))]
-public sealed partial class ZombieSurpriseComponent : Component
-{
-
-}
-
-[RegisterComponent]
-[Access(typeof(NPCZombieSystem))]
 public sealed partial class ZombifiedOnSpawnComponent : Component
 {
     [DataField("isBoss")]

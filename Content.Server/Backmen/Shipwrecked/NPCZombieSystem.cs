@@ -1,5 +1,7 @@
 using Content.Server.Backmen.Language;
 using Content.Server.Backmen.Shipwrecked.Components;
+using Content.Shared.Backmen.Shipwrecked;
+using Content.Server.Backmen.Surgery.Consciousness.Systems;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Humanoid.Systems;
 using Content.Server.RandomMetadata;
@@ -7,13 +9,21 @@ using Content.Server.Zombies;
 using Content.Shared.Backmen.Language.Components;
 using Content.Shared.Backmen.Language.Systems;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Body;
+using Content.Shared.Body.Events;
 using Content.Shared.Damage;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Trigger;
+using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
+using System.Linq;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Backmen.Shipwrecked;
 
@@ -29,21 +39,61 @@ public sealed partial class NPCZombieSystem : EntitySystem
     [Dependency] private ZombieSystem _zombieSystem = default!;
     [Dependency] private StandingStateSystem _stateSystem = default!;
     [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MobThresholdSystem _mobThresholds = default!;
+    [Dependency] private ServerConsciousnessSystem _consciousness = default!;
+    [Dependency] private EntityQuery<ZombieSurpriseComponent> _zombieSurpriseQuery = default!;
+    [Dependency] private EntityQuery<ZombieComponent> _zombieQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<ZombifiedOnSpawnComponent, MapInitEvent>(OnSpawnZombifiedStartup, after: new []{ typeof(RandomMetadataSystem), typeof(RandomHumanoidSystem) });
-        SubscribeLocalEvent<ZombieSurpriseComponent, MapInitEvent>(OnZombieSurpriseInit, after: new []{ typeof(RandomMetadataSystem), typeof(RandomHumanoidSystem) });
+        SubscribeLocalEvent<ZombieSurpriseComponent, InitialBodySpawnedEvent>(OnZombieSurpriseBodyReady, after: [typeof(ServerConsciousnessSystem)]);
+        SubscribeLocalEvent<ZombieSurpriseComponent, MapInitEvent>(OnZombieSurpriseMapInit, after: new []{ typeof(RandomMetadataSystem), typeof(RandomHumanoidSystem) });
         SubscribeLocalEvent<ZombieWakeupOnTriggerComponent, TriggerEvent>(OnZombieWakeupTrigger);
         SubscribeLocalEvent<NpcZombieMakeEvent>(OnZombifyEntity);
+        // triggerSpeed: 0 treats motionless mobs as valid; NPCZombieSystem ignores posed corpses and other zombies.
+        SubscribeLocalEvent<ZombieWakeupOnTriggerComponent, AttemptTriggerEvent>(OnZombieWakeupAttemptTrigger);
+    }
+
+    private void OnZombieSurpriseMapInit(EntityUid uid, ZombieSurpriseComponent _, MapInitEvent args)
+    {
+        if (HasComp<InitialBodyComponent>(uid))
+            return;
+
+        SetupZombieSurprise(uid);
+    }
+
+    private void OnZombieSurpriseBodyReady(EntityUid uid, ZombieSurpriseComponent _, InitialBodySpawnedEvent args)
+    {
+        SetupZombieSurprise(uid);
+    }
+
+    private void OnZombieWakeupAttemptTrigger(EntityUid uid, ZombieWakeupOnTriggerComponent component, ref AttemptTriggerEvent args)
+    {
+        if (args.User == null || !ShouldIgnoreProximityUser(args.User.Value))
+            return;
+
+        args.Cancelled = true;
+    }
+
+    /// <summary>
+    /// Posed surprise corpses and existing zombies must not trigger each other's proximity detectors.
+    /// </summary>
+    private bool ShouldIgnoreProximityUser(EntityUid user)
+    {
+        return _zombieSurpriseQuery.HasComp(user) || _zombieQuery.HasComp(user);
     }
 
     private void OnZombifyEntity(NpcZombieMakeEvent ev)
     {
         if (TerminatingOrDeleted(ev.Target))
             return;
+
+        RemComp<ZombieSurpriseComponent>(ev.Target);
+        _mobThresholds.SetAllowRevives(ev.Target, true);
 
         _stateSystem.Stand(ev.Target);
         _zombieSystem.ZombifyEntity(ev.Target);
@@ -121,16 +171,51 @@ public sealed partial class NPCZombieSystem : EntitySystem
         });
     }
 
-    private static readonly EntProtoId ZombieSurpriseDetector = "ZombieSurpriseDetector";
-    private void OnZombieSurpriseInit(EntityUid uid, ZombieSurpriseComponent component, MapInitEvent args)
+    public void SetupZombieSurprise(EntityUid uid)
     {
         if (TerminatingOrDeleted(uid))
             return;
 
-        // Spawn a separate collider attached to the entity.
+        EnsureComp<ZombieSurpriseComponent>(uid);
+        EnsureDetector(uid);
+        EnsureCorpsePose(uid);
+    }
+
+    private void EnsureDetector(EntityUid uid)
+    {
+        var existingDetector = AllEntityQuery<ZombieWakeupOnTriggerComponent>();
+        while (existingDetector.MoveNext(out _, out var wakeup))
+        {
+            if (wakeup.ToZombify == uid)
+                return;
+        }
+
         var trigger = Spawn(ZombieSurpriseDetector, Transform(uid).Coordinates);
         Comp<ZombieWakeupOnTriggerComponent>(trigger).ToZombify = uid;
+
+        if (TryComp<TriggerOnProximityComponent>(trigger, out var proximity))
+        {
+            foreach (var entity in proximity.Colliding.Keys.ToArray())
+            {
+                if (ShouldIgnoreProximityUser(entity))
+                    proximity.Colliding.Remove(entity);
+            }
+        }
     }
+
+    public void EnsureCorpsePose(EntityUid uid)
+    {
+        if (TerminatingOrDeleted(uid))
+            return;
+
+        _consciousness.ApplyForcedCorpseState(uid);
+        _mobThresholds.VerifyThresholds(uid);
+        _mobThresholds.SetAllowRevives(uid, false);
+        _mobState.ChangeMobState(uid, MobState.Dead);
+        _stateSystem.Down(uid, playSound: false, force: true);
+    }
+
+    private static readonly EntProtoId ZombieSurpriseDetector = "ZombieSurpriseDetector";
 
     private void OnZombieWakeupTrigger(EntityUid uid, ZombieWakeupOnTriggerComponent component, TriggerEvent args)
     {
