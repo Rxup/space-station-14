@@ -28,6 +28,19 @@
 # Warm ones contain a small amount of Omnizine.
 
 - type: entity
+  parent: [SolutionFood, SolutionTiny]
+  id: SolutionFoodDonkpocketWarm
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 12
+      - ReagentId: Omnizine
+        Quantity: 3
+
+- type: entity
   name: donk-pocket
   parent: FoodDonkpocketBase
   id: FoodDonkpocket

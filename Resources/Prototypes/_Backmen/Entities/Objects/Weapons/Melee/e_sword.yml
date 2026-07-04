@@ -1,4 +1,36 @@
 - type: entity
+  parent: Solution
+  id: SolutionPlasma
+  abstract: true
+  components:
+  - type: Solution
+    id: plasma
+
+- type: entity
+  parent: [SolutionPlasma, SolutionToolNormal]
+  id: SolutionToolPlasmaSword
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 250
+      reagents:
+      - ReagentId: Plasma
+        Quantity: 250
+
+- type: entity
+  parent: [SolutionPlasma, SolutionToolNormal]
+  id: SolutionToolPlasmaScythe
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 300
+      reagents:
+      - ReagentId: Plasma
+        Quantity: 300
+
+- type: entity
   parent: BaseMeleeWeaponEnergy
   id: BaseMeleeWeaponPlasma
   abstract: true
@@ -32,13 +64,6 @@
     fuelLitCost: 2
   - type: RefillableSolution
     solution: plasma
-  - type: SolutionContainerManager
-    solutions:
-      plasma:
-        reagents:
-        - ReagentId: Plasma
-          Quantity: 250
-        maxVol: 250
   - type: SolutionRegeneration
     generated:
       reagents:
@@ -57,7 +82,7 @@
       doAfterDuration: 4.0
 
 - type: entity
-  parent: BaseMeleeWeaponPlasma
+  parent: [BaseMeleeWeaponPlasma, SolutionToolPlasmaSword]
   id: PlasmaSword
   name: plasma sword
   description: Blade is made of pure plasma heated from two to nine thousand degrees at the request of the owner. Power module made in the form of a handle heats up the gas and maintains its shape with a strong magnetic field. It seems that such blades have not been produced since the discovery of lightsabers.
@@ -86,7 +111,7 @@
     sprite: Backmen/Objects/Weapons/Melee/plasma_sword_alt-inhands.rsi
 
 - type: entity
-  parent: [BaseMeleeWeaponPlasma, EnergySwordDouble]
+  parent: [BaseMeleeWeaponPlasma, EnergySwordDouble, SolutionToolPlasmaScythe]
   id: PlasmaScythe
   name: plasma scythe
   description: This can be stored in pockets.
@@ -95,10 +120,3 @@
     sprite: Backmen/Objects/Weapons/Melee/e_sword_double.rsi
   - type: Item
     sprite: Backmen/Objects/Weapons/Melee/e_sword_double-inhands.rsi
-  - type: SolutionContainerManager
-    solutions:
-      plasma:
-        reagents:
-        - ReagentId: Plasma
-          Quantity: 300
-        maxVol: 300

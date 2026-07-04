@@ -22,8 +22,20 @@
   - type: DisarmMalus
 
 - type: entity
+  parent: [SolutionWelder, SolutionToolNormal]
+  id: SolutionToolBackmenChainsword
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 200
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 200
+
+- type: entity
   name: chainsword
-  parent: BaseItem
+  parent: [BaseItem, SolutionToolBackmenChainsword]
   id: Chainsword
   description: The chainsword is the preferred close combat melee weapon of many of the military forces of the Imperium of Man.
   components:
@@ -88,14 +100,7 @@
   - type: Welder
     fuelLitCost: 2
   - type: RefillableSolution
-    solution: Welder
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 200
-        maxVol: 200
+    solution: welder
   - type: MeleeWeapon
     wideAnimationRotation: -120
     soundHit:

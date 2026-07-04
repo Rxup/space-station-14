@@ -1,8 +1,8 @@
 - type: entity
-  name: basic lighter
+  abstract: true
   parent: BaseItem
-  id: Lighter
-  description: "A simple plastic cigarette lighter."
+  id: BaseLighter
+  name: basic lighter
   components:
   - type: IgnitionSource
     ignited: false
@@ -14,11 +14,85 @@
       collection: lighterOffSounds
   - type: ItemToggleMeleeWeapon
     activatedDamage:
-        types:
-            Heat: 1
+      types:
+        Heat: 1
   - type: ItemToggleSize
     activatedSize: Small
   - type: ItemToggleHot
+  - type: Appearance
+  - type: Item
+    size: Tiny
+  - type: UseDelay
+  - type: RefillableSolution
+    solution: welder
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    damage:
+      types:
+        Blunt: 0
+  - type: Welder
+    fuelConsumption: 0.01
+    fuelLitCost: 0.1
+    tankSafe: true
+  - type: PointLight
+    enabled: false
+    netsync: false
+    radius: 1.1 #smallest possible
+    color: orange
+  - type: ItemTogglePointLight
+  - type: PhysicalComposition
+  #start-Shitmed
+  - type: Cautery
+    speed: 0.45
+  - type: SurgeryTool
+    startSound:
+      collection: lighterOnSounds
+    endSound:
+      collection: lighterOffSounds
+  #end-Shitmed
+
+- type: entity
+  abstract: true
+  parent: [SolutionWelder, SolutionToolVeryTiny]
+  id: SolutionLighter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 7.5
+
+- type: entity
+  parent: [SolutionWelder, SolutionVeryTiny]
+  id: SolutionToolCheapLighter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 4
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 4
+
+- type: entity
+  parent: [SolutionWelder, SolutionVeryTiny]
+  id: SolutionToolDiscountDanLighter
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 3
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 3
+
+- type: entity
+  name: basic lighter
+  parent: [BaseLighter, SolutionLighter]
+  id: Lighter
+  description: "A simple plastic cigarette lighter."
+  components:
   - type: Sprite
     sprite: Objects/Tools/Lighters/lighters.rsi
     layers:
@@ -30,7 +104,6 @@
       visible: false
       shader: unshaded
       map: [ "flame" ]
-  - type: Appearance
   - type: RandomSprite
     available:
       - skin:
@@ -61,47 +134,11 @@
       - state: inhand-right-flame
         shader: unshaded
   - type: Item
-    size: Tiny
     sprite: Objects/Tools/Lighters/lighters.rsi
-  - type: UseDelay
-  - type: RefillableSolution
-    solution: Welder
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 8
-        maxVol: 8 #uses less fuel than a welder, so this isnt as bad as it looks
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    damage:
-      types:
-        Blunt: 0
-  - type: Welder
-    fuelConsumption: 0.01
-    fuelLitCost: 0.1
-    tankSafe: true
-  - type: PointLight
-    enabled: false
-    netsync: false
-    radius: 1.1 #smallest possible
-    color: orange
-  - type: ItemTogglePointLight
-  #start-Shitmed
-  - type: Cautery
-    speed: 0.45
-  - type: SurgeryTool
-    startSound:
-      collection: lighterOnSounds
-    endSound:
-      collection: lighterOffSounds
-   #end-Shitmed
-  - type: PhysicalComposition
 
 - type: entity
   name: cheap lighter
-  parent: Lighter
+  parent: [BaseLighter, SolutionToolCheapLighter]
   id: CheapLighter
   description: "A dangerously inexpensive plastic lighter, don't burn your thumb!"
   components:
@@ -120,134 +157,30 @@
     available:
       - skin:
           cheap_icon_base: Rainbow
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 4
-        maxVol: 4 #uses less fuel than a welder, so this isnt as bad as it looks
-
-- type: entity
-  name: flippo lighter
-  parent: BaseItem
-  id: FlippoLighter
-  description: "A rugged metal lighter, lasts quite a while."
-  components:
-  - type: Sprite
-    sprite: Objects/Tools/Lighters/lighters.rsi
-    layers:
-    - state: zippo_icon_base
-      map: ["base"]
-    - state: zippo_top
-      map: ["top"]
-      visible: false
-    - state: zippo_open
-      map: ["open"]
-      visible: false
-    - state: lighter_flame
-      map: ["flame"]
-      visible: false
-      shader: unshaded
-  - type: ItemToggle
-    predictable: false
-    soundActivate:
-      path: /Audio/Items/Lighters/zippo_open.ogg
-      params:
-        volume: -5
-    soundDeactivate:
-      path: /Audio/Items/Lighters/zippo_close.ogg
-      params:
-        volume: -5
-  - type: ItemToggleMeleeWeapon
-    activatedDamage:
-        types:
-            Heat: 1
-  - type: ItemToggleSize
-    activatedSize: Small
-  - type: ItemToggleHot
-  - type: Item
-    size: Tiny
-    sprite: Objects/Tools/Lighters/lighters.rsi
-    heldPrefix: zippo
-  - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.ToggleableVisuals.Enabled:
         flame:
           True: { visible: true }
           False: { visible: false }
-        open:
-          True: { visible: true }
-          False: { visible: false }
-        top:
-          True: { visible: true }
-          False: { visible: false }
-        base:
-          True: { visible: false }
-          False: { visible: true }
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 12
-        maxVol: 12 #uses less fuel than a welder, so this isnt as bad as it looks
-  - type: Welder
-    fuelConsumption: 0.01
-    fuelLitCost: 0.1
-    tankSafe: true
   - type: ToggleableVisuals
     spriteLayer: lighter_flame
     inhandVisuals:
       left:
-      - state: zippo-inhand-left-flame
+      - state: inhand-left-flame
         shader: unshaded
       right:
-      - state: zippo-inhand-right-flame
+      - state: inhand-right-flame
         shader: unshaded
-  - type: MeleeWeapon
-    wideAnimationRotation: 180
-    damage:
-      types:
-        Blunt: 1 # does a little bit of damage on hit when off
-  - type: PointLight
-    enabled: false
-    netsync: false
-    radius: 1.2 #slightly stronger than the other lighters
-    color: orange
-  - type: ItemTogglePointLight
-  - type: UseDelay
-  - type: IgnitionSource
-    ignited: false
-
-- type: entity
-  name: flippo engraved lighter
-  parent: FlippoLighter
-  id: FlippoEngravedLighter
-  description: "A rugged golden lighter, lasts quite a while. Engravings serve no tactical advantage whatsoever."
-  components:
-  - type: Sprite
+  - type: Item
     sprite: Objects/Tools/Lighters/lighters.rsi
-    layers:
-    - state: zippo_engraved_icon_base
-      map: ["base"]
-    - state: zippo_top
-      map: ["top"]
-      visible: false
-    - state: zippo_engraved_open
-      map: ["open"]
-      visible: false
-    - state: lighter_flame
-      map: ["flame"]
-      visible: false
-      shader: unshaded
-  - type: StealTarget
-    stealGroup: FlippoEngravedLighter
+  - type: Welder
+    fuelConsumption: 0.02
+    fuelLitCost: 0.2
 
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [BaseLighter, SolutionToolWelderMini]
   id: BaseBrandedLighter
   components:
   - type: ItemToggle
@@ -260,23 +193,6 @@
       path: /Audio/Items/Lighters/zippo_close.ogg
       params:
         volume: -5
-  - type: ItemToggleMeleeWeapon
-    activatedDamage:
-        types:
-            Heat: 1
-  - type: ItemToggleSize
-    activatedSize: Small
-  - type: ItemToggleHot
-  - type: Item
-    size: Tiny
-  - type: Appearance
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 12
-        maxVol: 12
   - type: Sprite
     layers:
     - state: icon
@@ -315,10 +231,71 @@
       right:
       - state: inhand-right-lit
         shader: unshaded
-  - type: ItemTogglePointLight
-  - type: UseDelay
-  - type: IgnitionSource
-    ignited: false
+
+- type: entity
+  name: flippo lighter
+  parent: BaseBrandedLighter
+  id: FlippoLighter
+  description: "A rugged metal lighter, lasts quite a while."
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Lighters/lighters.rsi
+    layers:
+    - state: zippo_icon_base
+      map: ["base"]
+    - state: zippo_top
+      map: ["top"]
+      visible: false
+    - state: zippo_open
+      map: ["open"]
+      visible: false
+    - state: lighter_flame
+      map: ["flame"]
+      visible: false
+      shader: unshaded
+  - type: Item
+    sprite: Objects/Tools/Lighters/lighters.rsi
+    heldPrefix: zippo
+  - type: ToggleableVisuals
+    spriteLayer: lighter_flame
+    inhandVisuals:
+      left:
+      - state: zippo-inhand-left-flame
+        shader: unshaded
+      right:
+      - state: zippo-inhand-right-flame
+        shader: unshaded
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    damage:
+      types:
+        Blunt: 1
+  - type: PointLight
+    radius: 1.2 #slightly stronger than the other lighters
+
+- type: entity
+  name: flippo engraved lighter
+  parent: FlippoLighter
+  id: FlippoEngravedLighter
+  description: "A rugged golden lighter, lasts quite a while. Engravings serve no tactical advantage whatsoever."
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Lighters/lighters.rsi
+    layers:
+    - state: zippo_engraved_icon_base
+      map: ["base"]
+    - state: zippo_top
+      map: ["top"]
+      visible: false
+    - state: zippo_engraved_open
+      map: ["open"]
+      visible: false
+    - state: lighter_flame
+      map: ["flame"]
+      visible: false
+      shader: unshaded
+  - type: StealTarget
+    stealGroup: FlippoEngravedLighter
 
 - type: entity
   parent: [BaseBrandedLighter, BaseSyndicateContraband]
@@ -341,7 +318,7 @@
     color: green
 
 - type: entity
-  parent: Lighter
+  parent: [BaseLighter, SolutionToolDiscountDanLighter]
   id: DiscountDanLighter
   name: Discount Dan's lighter
   description: "The worst lighter ever produced, lighterburn is inevitable, do not refuel while lit."
@@ -363,6 +340,12 @@
     tankSafe: false
   - type: Item
     sprite: Objects/Tools/Lighters/lighters.rsi
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        flame:
+          True: { visible: true }
+          False: { visible: false }
   - type: ToggleableVisuals
     spriteLayer: lighter_flame
     inhandVisuals:
@@ -387,13 +370,6 @@
       damage:
         types:
           Heat: 2
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 3
-        maxVol: 3
 
 - type: entity
   parent: [BaseBrandedLighter, BaseSyndicateContraband]
@@ -405,7 +381,7 @@
     sprite: Objects/Tools/Lighters/cybersun.rsi
   - type: Item
     sprite: Objects/Tools/Lighters/cybersun.rsi
-  - type: Welder #
+  - type: Welder
     fuelConsumption: 0.005
     fuelLitCost: 0.01
     tankSafe: true
@@ -425,14 +401,14 @@
     sprite: Objects/Tools/Lighters/interdyne.rsi
   - type: Item
     sprite: Objects/Tools/Lighters/interdyne.rsi
-  - type: Welder #
+  - type: Welder
     fuelConsumption: 0.005
     fuelLitCost: 0.01
     tankSafe: true
   - type: ItemToggleMeleeWeapon
     activatedDamage:
-        types:
-          Radiation: 1
+      types:
+        Radiation: 1
   - type: PointLight
     enabled: false
     netsync: false
@@ -449,7 +425,7 @@
     sprite: Objects/Tools/Lighters/nanotrasen.rsi
   - type: Item
     sprite: Objects/Tools/Lighters/nanotrasen.rsi
-  - type: Welder #
+  - type: Welder
     fuelConsumption: 0.005
     fuelLitCost: 1
     fuelReagent: Plasma
@@ -459,18 +435,14 @@
     netsync: false
     radius: 2
     color: blue
-  - type: RefillableSolution
-    solution: Welder
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: Plasma
-          Quantity: 10
-        maxVol: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Plasma
+        Quantity: 15
 
 - type: entity
-  parent: [BaseBrandedLighter, BaseCentcommContraband]
+  parent: [SolutionGinormous, BaseBrandedLighter, BaseCentcommContraband]
   id: CentCommFlippo
   name: Gilded CentComm Flippo
   description: "An Ornate, jade embossed and gilded flippo frame containing a bluespace powered jet. The latch is secured by a miniature access reader that only responds to CentComm officials. The nicest lighter known to man."
@@ -482,7 +454,7 @@
     sprite: Objects/Tools/Lighters/centcomm.rsi
   - type: ItemToggleRequiresLock
     requireLocked: false
-  - type: Welder #
+  - type: Welder
     fuelConsumption: 0.0
     fuelLitCost: 10
     fuelReagent: Plasma
@@ -492,15 +464,11 @@
     netsync: false
     radius: 4 #Excessively powerful
     color: Gold
-  - type: RefillableSolution
-    solution: Welder
-  - type: SolutionContainerManager
-    solutions:
-      Welder:
-        reagents:
-        - ReagentId: Plasma
-          Quantity: 999
-        maxVol: 999
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Plasma
+        Quantity: 480
   - type: Tool
     useSound:
       collection: Welder
@@ -524,7 +492,7 @@
     sprite: Objects/Tools/Lighters/spiderclan.rsi
   - type: Item
     sprite: Objects/Tools/Lighters/spiderclan.rsi
-  - type: Welder #
+  - type: Welder
     fuelConsumption: 0
     fuelLitCost: 0
     tankSafe: true
@@ -544,7 +512,7 @@
     sprite: Objects/Tools/Lighters/waffleco.rsi
   - type: Item
     sprite: Objects/Tools/Lighters/waffleco.rsi
-  - type: Welder #
+  - type: Welder
     fuelConsumption: 0.005
     fuelLitCost: 0.05
     tankSafe: true
@@ -589,7 +557,7 @@
           density: 10
           mask:
           - ItemMask
-  - type: Welder #
+  - type: Welder
     fuelConsumption: 0.1
     fuelLitCost: 1
     tankSafe: true
@@ -609,7 +577,7 @@
     sprite: Objects/Tools/Lighters/donkco.rsi
   - type: Item
     sprite: Objects/Tools/Lighters/donkco.rsi
-  - type: Welder #
+  - type: Welder
     fuelConsumption: 0.02
     fuelLitCost: 0.1
     tankSafe: true
@@ -617,20 +585,9 @@
     tags:
     - DonkPocket
     - Meat
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      Welder:
-        reagents:
-        - ReagentId: WeldingFuel
-          Quantity: 12
-        maxVol: 12
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Omnizine
-          Quantity: 10
+    - SolutionFoodDonkpocketWarm
   - type: FlavorProfile
     flavors:
       - bread
@@ -638,7 +595,7 @@
       - cheap
   - type: ComponentToggler
     components:
-    - type: Edible # This shouldn't be component toggler, but doesn't work when it's not
+    - type: Edible
   - type: PointLight
     enabled: false
     netsync: false
