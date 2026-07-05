@@ -12,6 +12,8 @@ DOORS_ROOT = Path("Resources/Textures/Structures/Doors")
 
 DEFAULT_RSIS = [
     DOORS_ROOT / "Airlocks/Standard/xenoborg.rsi",
+    DOORS_ROOT / "Airlocks/Standard/xeno.rsi",
+    DOORS_ROOT / "Airlocks/Glass/xeno.rsi",
     DOORS_ROOT / "Airlocks/Standard/shuttle_xenoborg.rsi",
     DOORS_ROOT / "Airlocks/Standard/firelock.rsi",
     DOORS_ROOT / "Airlocks/Glass/firelock.rsi",

@@ -1,0 +1,30 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Generated from species leg parts",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "load": {
+        "srgb": false
+    },
+    "states": [
+        {
+            "name": "socks-human",
+            "directions": 4
+        },
+        {
+            "name": "socks-moth",
+            "directions": 4
+        },
+        {
+            "name": "socks-vulpkanin",
+            "directions": 4
+        },
+        {
+            "name": "socks-vox",
+            "directions": 4
+        }
+    ]
+}
