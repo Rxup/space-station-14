@@ -794,7 +794,7 @@
     # Lavaland Change start
     - trigger:
         !type:DamageTrigger
-        damage: 150 # backmen: energy-pickaxe
+        damage: 120
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
