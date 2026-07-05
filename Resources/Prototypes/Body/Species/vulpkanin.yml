@@ -118,6 +118,11 @@
           32:
             sprite: Mobs/Species/Vulpkanin/displacement.rsi
             state: shoes
+      socks: # backmen: underclothing
+        sizeMaps:
+          32:
+            sprite: Backmen/Mobs/Species/displacement.rsi
+            state: socks-vulpkanin
       head:
         sizeMaps:
           32:

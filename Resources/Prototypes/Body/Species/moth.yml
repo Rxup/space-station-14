@@ -81,6 +81,11 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      socks: # backmen: underclothing
+        sizeMaps:
+          32:
+            sprite: Backmen/Mobs/Species/displacement.rsi
+            state: socks-moth
     displacements:
       jumpsuit:
         sizeMaps:
@@ -107,6 +112,11 @@
           32:
             sprite: Mobs/Species/Moth/displacement.rsi
             state: shoes
+      socks: # backmen: underclothing
+        sizeMaps:
+          32:
+            sprite: Backmen/Mobs/Species/displacement.rsi
+            state: socks-moth
   - type: InitialBody
     organs:
       Torso: OrganMothTorso

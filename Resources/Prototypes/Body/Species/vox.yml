@@ -111,6 +111,11 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+      socks: # backmen: underclothing
+        sizeMaps:
+          32:
+            sprite: Backmen/Mobs/Species/displacement.rsi
+            state: socks-vox
   - type: Hands
     leftHandDisplacement:
       sizeMaps:

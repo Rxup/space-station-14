@@ -125,6 +125,10 @@
           - state: equipped-HELMET
       slots:
         - MASK
+    # start-backmen: flesh-worm
+    - type: SlotBlock
+      slots: [head]
+    # end-backmen: flesh-worm
     - type: FleshWorm
       paralyzeTime: 3
       soundWormJump:

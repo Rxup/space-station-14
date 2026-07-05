@@ -77,6 +77,11 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+      socks: # backmen: underclothing
+        sizeMaps:
+          32:
+            sprite: Backmen/Mobs/Species/displacement.rsi
+            state: socks-human
     displacements:
       head:
         sizeMaps:
@@ -88,6 +93,11 @@
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
             state: mask
+      socks: # backmen: underclothing
+        sizeMaps:
+          32:
+            sprite: Backmen/Mobs/Species/displacement.rsi
+            state: socks-human
   - type: InitialBody
     organs:
       Torso: OrganReptilianTorso

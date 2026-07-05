@@ -545,6 +545,10 @@
       stripDelay: 3
       slots:
         - MASK
+    # start-backmen: flesh-worm
+    - type: SlotBlock
+      slots: [head]
+    # end-backmen: flesh-worm
     - type: Physics
       bodyType: KinematicController
     - type: Fixtures

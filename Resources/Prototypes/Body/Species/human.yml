@@ -60,6 +60,17 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+      socks: # backmen: underclothing
+        sizeMaps:
+          32:
+            sprite: Backmen/Mobs/Species/displacement.rsi
+            state: socks-human
+    displacements:
+      socks: # backmen: underclothing
+        sizeMaps:
+          32:
+            sprite: Backmen/Mobs/Species/displacement.rsi
+            state: socks-human
   - type: InitialBody
     organs:
       Torso: OrganHumanTorso
