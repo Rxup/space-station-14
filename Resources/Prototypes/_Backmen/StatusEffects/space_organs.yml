@@ -1,0 +1,19 @@
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectSpaceHeartImmunity
+  name: space heart immunity
+  components:
+  - type: PressureImmunityStatusEffect
+  - type: StatusEffectAlert
+    alert: SpaceHeartImmunity
+    showDuration: false
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectSpaceLungsImmunity
+  name: space lungs immunity
+  components:
+  - type: RespiratorImmunityStatusEffect
+  - type: StatusEffectAlert
+    alert: SpaceLungsImmunity
+    showDuration: false

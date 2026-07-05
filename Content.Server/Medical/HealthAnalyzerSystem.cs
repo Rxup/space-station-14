@@ -14,6 +14,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Backmen.Medical;
+using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
@@ -23,6 +25,7 @@ using Content.Shared.Traits.Assorted;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
@@ -296,6 +299,33 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         }
         // end-backmen: analyzer-satiation
 
+        // start-backmen: organ-damage-alerts
+        List<HealthAnalyzerOrganAlert>? organAlerts = null;
+        if (HasComp<BodyComponent>(entity))
+        {
+            var seen = new HashSet<ProtoId<OrganCategoryPrototype>>();
+            organAlerts = new List<HealthAnalyzerOrganAlert>();
+
+            foreach (var (organId, organ) in _bodySystem.GetBodyOrgans(entity))
+            {
+                if (organ.OrganSeverity != OrganSeverity.Destroyed || organ.Category is not { } category)
+                    continue;
+
+                if (!seen.Add(category))
+                    continue;
+
+                organAlerts.Add(new HealthAnalyzerOrganAlert
+                {
+                    Category = category,
+                    Severity = organ.OrganSeverity,
+                });
+            }
+
+            if (organAlerts.Count == 0)
+                organAlerts = null;
+        }
+        // end-backmen: organ-damage-alerts
+
         return new HealthAnalyzerUiState(
             GetNetEntity(entity),
             bodyTemperature,
@@ -311,7 +341,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             hungerLevel,
             thirstLevel,
             hungerAlert,
-            thirstAlert);
+            thirstAlert,
+            organAlerts);
     }
 
     /// <summary>

@@ -1,3 +1,5 @@
+using Content.Shared.Backmen.Medical;
+using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Nutrition.Components;
@@ -30,6 +32,9 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     public HungerThreshold? HungerAlert => State.HungerAlert;
     public ThirstThreshold? ThirstAlert => State.ThirstAlert;
     // end-backmen: analyzer-satiation
+    // start-backmen: organ-damage-alerts
+    public List<HealthAnalyzerOrganAlert>? OrganAlerts => State.OrganAlerts;
+    // end-backmen: organ-damage-alerts
 
     public HealthAnalyzerScannedUserMessage(HealthAnalyzerUiState state)
     {
@@ -60,8 +65,11 @@ public struct HealthAnalyzerUiState
     public HungerThreshold? HungerAlert;
     public ThirstThreshold? ThirstAlert;
     // end-backmen: analyzer-satiation
+    // start-backmen: organ-damage-alerts
+    public List<HealthAnalyzerOrganAlert>? OrganAlerts;
+    // end-backmen: organ-damage-alerts
 
-    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null, float hungerLevel = float.NaN, float thirstLevel = float.NaN, HungerThreshold? hungerAlert = null, ThirstThreshold? thirstAlert = null)
+    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null, float hungerLevel = float.NaN, float thirstLevel = float.NaN, HungerThreshold? hungerAlert = null, ThirstThreshold? thirstAlert = null, List<HealthAnalyzerOrganAlert>? organAlerts = null)
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -80,6 +88,9 @@ public struct HealthAnalyzerUiState
         HungerAlert = hungerAlert;
         ThirstAlert = thirstAlert;
         // end-backmen: analyzer-satiation
+        // start-backmen: organ-damage-alerts
+        OrganAlerts = organAlerts;
+        // end-backmen: organ-damage-alerts
     }
 }
 

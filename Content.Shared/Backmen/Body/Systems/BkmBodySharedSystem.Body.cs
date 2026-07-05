@@ -1,6 +1,8 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Backmen.Arachne;
+using Content.Shared.Backmen.Body;
+using Content.Shared.Backmen.Body.Components;
 using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Backmen.Surgery;
@@ -387,10 +389,24 @@ public partial class BkmBodySharedSystem
                     && SurgeryBodyPartMapping.IsExternalCategory(category))
                     continue;
 
+                // start-backmen: space-animal-organs
+                if (TryComp<SpaceAnimalOrganComponent>(organ.Id, out var spaceOrgan)
+                    && _random.NextFloat() > spaceOrgan.DropChance)
+                    continue;
+                // end-backmen: space-animal-organs
+
                 _gibbingSystem.TryGibEntityWithRef(bodyId, organ.Id, GibType.Drop, GibContentsOption.Skip,
                     ref gibs, playAudio: false, launchImpulse: GibletLaunchImpulse * splatModifier,
                     launchImpulseVariance: GibletLaunchImpulseVariance, launchCone: splatCone,
                     allowedContainers: allowedContainers, excludedContainers: excludedContainers);
+
+                // start-backmen: space-animal-organs
+                if (TryComp<SpaceAnimalOrganComponent>(organ.Id, out spaceOrgan))
+                {
+                    var harvestEv = new OrganHarvestDamageEvent(spaceOrgan.HarvestDamageFraction);
+                    RaiseLocalEvent(organ.Id, ref harvestEv);
+                }
+                // end-backmen: space-animal-organs
             }
         }
 
