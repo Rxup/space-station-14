@@ -13,7 +13,7 @@
       path: /Audio/Ambience/Objects/vending_machine_hum.ogg
   - type: LitOnPowered
   - type: ApcPowerReceiver
-    powerLoad: 200
+    powerLoad: 150
     priority: Low
   # - type: DatasetVocalizer
   #   dataset: CuddlyCritterAds # TODO Change this

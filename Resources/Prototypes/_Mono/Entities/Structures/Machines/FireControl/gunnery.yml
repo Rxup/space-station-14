@@ -243,6 +243,9 @@
   components:
   - type: ApcPowerReceiver
     powerLoad: 200
+  - type: PowerState
+    idlePowerDraw: 200
+    workingPowerDraw: 1000
   - type: ExtensionCableReceiver
   - type: ActivatableUIRequiresPower
   - type: Sprite
