@@ -32,6 +32,11 @@ public sealed partial class GatherableSystem : EntitySystem
 
     private void OnAttacked(Entity<GatherableComponent> gatherable, ref AttackedEvent args)
     {
+        // start-backmen: energy-pickaxe
+        if (TryBackmenEnergyPickaxeGather(gatherable, ref args))
+            return;
+        // end-backmen: energy-pickaxe
+
         if (_whitelistSystem.IsWhitelistFailOrNull(gatherable.Comp.ToolWhitelist, args.Used))
             return;
 
