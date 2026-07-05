@@ -39,6 +39,8 @@
     cost: 550
   - id: MineralScanner
     cost: 550
+  - id: NFEnergyPickaxe
+    cost: 550 # backmen: nf-energy-pickaxe
   - id: MedkitBruteFilled
     cost: 600
   - id: MedkitBurnFilled

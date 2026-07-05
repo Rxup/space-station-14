@@ -1,0 +1,35 @@
+- type: entity
+  parent: Pickaxe
+  id: NFEnergyPickaxe
+  name: energy pickaxe
+  description: A holographic mining pickaxe designed for lavaland. When wielded on lavaland, it shatters ore-bearing rock in one swing. Elsewhere it performs like a standard pickaxe.
+  components:
+  - type: Tag
+    tags:
+    - Pickaxe
+    - NFEnergyPickaxe
+  - type: Sprite
+    sprite: Backmen/Objects/Weapons/Melee/energy_pickaxe.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: e-pickaxe-blade
+      shader: unshaded
+      color: "#e95151"
+  - type: Item
+    sprite: Backmen/Objects/Weapons/Melee/energy_pickaxe.rsi
+    storedRotation: -45
+  - type: MeleeWeapon
+    attackRate: 0.85
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
+  - type: MeleeRequiresWield
+    fumbleOnAttempt: true
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Structural: 30
+        Blunt: 2.5
+        Slash: 2.5
+        Piercing: 2.5
+        ArmorPiercing: 2.5

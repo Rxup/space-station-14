@@ -26,6 +26,9 @@
   id: CoreSilver
 
 - type: Tag
+  id: NFEnergyPickaxe
+
+- type: Tag
   id: NormalityCrystal
 
 - type: Tag
