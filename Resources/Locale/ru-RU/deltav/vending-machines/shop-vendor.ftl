@@ -1,3 +1,4 @@
+shop-vendor-busy = Подождите, автомат выдаёт предмет...
 shop-vendor-balance = Баланс: { $points }
 shop-vendor-stack-suffix = x{ $count }
 shop-vendor-flavor-left = Все платежи защищены

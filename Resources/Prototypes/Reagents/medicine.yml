@@ -1,24 +1,4 @@
 - type: reagent
-  id: Cryptobiolin
-  name: reagent-name-cryptobiolin
-  group: Medicine
-  desc: reagent-desc-cryptobiolin
-  physicalDesc: reagent-physical-desc-fizzy
-  allowedDepartments:
-  - Medical
-  flavor: medicine
-  color: "#081a80"
-  metabolisms:
-    Bloodstream:
-      effects:
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectScrambled
-        type: Update
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectWoozy
-        time: 20.0
-
-- type: reagent
   id: Dylovene
   name: reagent-name-dylovene
   group: Medicine

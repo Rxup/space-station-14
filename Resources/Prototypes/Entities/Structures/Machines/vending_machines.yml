@@ -1464,12 +1464,6 @@
   name: Salvage Vendor
   description: A dwarf's best friend!
   components:
-  - type: VendingMachine
-    pack: SalvageEquipmentInventory
-    offState: off
-    brokenState: broken
-    normalState: normal-unshaded
-    denyState: deny-unshaded
   - type: Sprite
     sprite: Structures/Machines/VendingMachines/mining.rsi
     layers:

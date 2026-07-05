@@ -33,3 +33,22 @@
       amount: 1
   products:
     Morphine: 5
+
+# start-backmen: medicine
+- type: reaction
+  id: DryHands
+  impact: Medium
+  minTemp: 350
+  reactants:
+    TableSalt:
+      amount: 2
+    Silicon:
+      amount: 1
+    Hemorrhinol:
+      amount: 1
+    Plasma:
+      amount: 1
+      catalyst: true
+  products:
+    DryHands: 4
+# end-backmen: medicine

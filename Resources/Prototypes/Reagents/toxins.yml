@@ -331,26 +331,6 @@
             Asphyxiation: 5
             Bloodloss: 5
 - type: reagent
-  id: MindbreakerToxin
-  name: reagent-name-mindbreaker-toxin
-  group: Toxins
-  desc: reagent-desc-mindbreaker-toxin
-  physicalDesc: reagent-physical-desc-opaque
-  flavor: bitter
-  color: "#77b58e"
-  plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
-  metabolisms:
-    Bloodstream:
-      effects:
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectSeeingRainbow
-        type: Add
-        time: 10
-  # TODO: PROPER hallucinations
-
-- type: reagent
   id: Histamine
   name: reagent-name-histamine
   group: Toxins

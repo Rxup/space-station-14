@@ -20,7 +20,7 @@ public sealed partial class ShopVendorSystem : SharedShopVendorSystem
             var dirty = false;
             if (comp.Ejecting is {} ejecting && now > comp.NextEject)
             {
-                Spawn(ejecting, xform.Coordinates);
+                SpawnNextToOrDrop(ejecting, uid, xform);
                 comp.Ejecting = null;
                 dirty = true;
             }

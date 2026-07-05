@@ -134,3 +134,28 @@
       - !type:ModifyKnockdown
         time: 0.75
         type: Remove
+
+# start-backmen: psionic
+- type: reagent
+  id: Cryptobiolin
+  name: reagent-name-cryptobiolin
+  group: Medicine
+  desc: reagent-desc-cryptobiolin
+  physicalDesc: reagent-physical-desc-fizzy
+  allowedDepartments:
+  - Medical
+  flavor: medicine
+  color: "#081a80"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectScrambled
+        type: Update
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectWoozy
+        time: 20.0
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectPsionicallyInsulated
+        type: Update # backmen: psionic
+# end-backmen: psionic

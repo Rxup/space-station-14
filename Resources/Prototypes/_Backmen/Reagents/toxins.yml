@@ -121,3 +121,30 @@
   - type: Icon
     sprite: Objects/Consumable/Drinks/gsodaglass.rsi
     state: icon
+
+# start-backmen: psionic
+- type: reagent
+  id: MindbreakerToxin
+  name: reagent-name-mindbreaker-toxin
+  group: Toxins
+  desc: reagent-desc-mindbreaker-toxin
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: bitter
+  color: "#77b58e"
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: 10
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
+        type: Update # backmen: psionic
+        time: 10
+      - !type:ChemRemovePsionic
+        conditions:
+        - !type:ReagentCondition
+          reagent: MindbreakerToxin
+          min: 20
+  # TODO: PROPER hallucinations
+# end-backmen: psionic

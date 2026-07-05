@@ -85,7 +85,13 @@ public abstract partial class SharedShopVendorSystem : EntitySystem
 
     private void OnPurchase(Entity<ShopVendorComponent> ent, ref ShopVendorPurchaseMessage args)
     {
-        if (ent.Comp.Ejecting != null || ent.Comp.Broken || !_power.IsPowered(ent.Owner))
+        if (ent.Comp.Ejecting != null)
+        {
+            _popup.PopupClient(Loc.GetString("shop-vendor-busy"), ent, args.Actor);
+            return;
+        }
+
+        if (ent.Comp.Broken || !_power.IsPowered(ent.Owner))
             return;
 
         var pack = _proto.Index(ent.Comp.Pack);

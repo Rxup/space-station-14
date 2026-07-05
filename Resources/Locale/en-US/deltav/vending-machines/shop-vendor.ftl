@@ -1,3 +1,4 @@
+shop-vendor-busy = Please wait, dispensing an item...
 shop-vendor-balance = Balance: {$points}
 shop-vendor-stack-suffix = x{$count}
 shop-vendor-flavor-left = All payments are secure
