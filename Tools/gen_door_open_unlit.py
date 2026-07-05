@@ -104,6 +104,42 @@ def extract_last_opening_frame(meta_path: Path, opening_path: Path, frame_size: 
     return assemble_directional(frames, directions, frame_size)
 
 
+def is_blue_glow(r: int, g: int, b: int) -> bool:
+    return b > r + 15 and b >= g - 10
+
+
+def open_glow_color(r: int, g: int, b: int, *, force_open_blue: bool) -> tuple[int, int, int]:
+    """Xeno airlocks: open overlay lights are blue; remap legacy orange/green opening art."""
+    if not force_open_blue:
+        return (r, g, b)
+
+    if is_blue_glow(r, g, b):
+        return (r, g, b)
+
+    level = max(r, g, b) / 255.0
+    if level > 0.92 and min(r, g, b) > 180:
+        return (255, 255, 255)
+
+    return (
+        min(255, int(9 + 40 * level)),
+        min(255, int(40 + 40 * level)),
+        min(255, int(180 + 75 * level)),
+    )
+
+
+def extract_glow_overlay(frame: Image.Image, *, force_open_blue: bool = False) -> Image.Image:
+    """Keep glow pixels from the last opening frame; optionally force xenoborg-style blue."""
+    src = frame.convert("RGBA")
+    out = Image.new("RGBA", src.size, (0, 0, 0, 0))
+    for y in range(src.height):
+        for x in range(src.width):
+            r, g, b, a = src.getpixel((x, y))
+            if is_glow_pixel(r, g, b, a):
+                nr, ng, nb = open_glow_color(r, g, b, force_open_blue=force_open_blue)
+                out.putpixel((x, y), (nr, ng, nb, a))
+    return out
+
+
 def recolor_glows(
     source: Image.Image,
     palette_from: Image.Image,
@@ -232,11 +268,11 @@ def process_rsi(rsi_dir: Path) -> list[str]:
 
     open_frames, _ = extract_last_opening_frames(meta, opening, frame_size)
     closed_frames = split_directional_sheet(closed_unlit, directions, frame_size)
-    recolored_open = [
-        recolor_glows(open_frame, closed_frame, closed_frame)
-        for open_frame, closed_frame in zip(open_frames, closed_frames)
+    force_open_blue = "xeno" in rsi_dir.name.lower()
+    open_overlays = [
+        extract_glow_overlay(f, force_open_blue=force_open_blue) for f in open_frames
     ]
-    open_unlit = assemble_directional(recolored_open, directions, frame_size)
+    open_unlit = assemble_directional(open_overlays, directions, frame_size)
     open_unlit.save(rsi_dir / "open_unlit.png")
     actions.append("open_unlit")
 
@@ -246,7 +282,7 @@ def process_rsi(rsi_dir: Path) -> list[str]:
         bolted_open = assemble_directional(
             [
                 recolor_glows(open_frame, closed_frame, bolted_frame)
-                for open_frame, closed_frame, bolted_frame in zip(recolored_open, closed_frames, bolted_frames)
+                for open_frame, closed_frame, bolted_frame in zip(open_frames, closed_frames, bolted_frames)
             ],
             directions,
             frame_size,
@@ -261,7 +297,7 @@ def process_rsi(rsi_dir: Path) -> list[str]:
             [
                 recolor_glows(open_frame, closed_frame, emergency_frame)
                 for open_frame, closed_frame, emergency_frame in zip(
-                    recolored_open, closed_frames, emergency_frames
+                    open_frames, closed_frames, emergency_frames
                 )
             ],
             directions,
