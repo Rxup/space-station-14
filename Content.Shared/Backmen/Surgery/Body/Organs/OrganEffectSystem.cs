@@ -20,10 +20,6 @@ public sealed partial class OrganEffectSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<OrganComponent, OrganComponentsModifyEvent>(OnOrganComponentsModify);
-
-        // start-backmen: space-animal-organs
-        InitializeSpaceAnimal();
-        // end-backmen: space-animal-organs
     }
 
     // While I would love to kill this function, problem is that if we happen to have two parts that add the same
@@ -114,5 +110,4 @@ public sealed partial class OrganEffectSystem : EntitySystem
     }
 
     partial void OnOrganComponentsModifySpaceAnimal(Entity<OrganComponent> organEnt, ref OrganComponentsModifyEvent ev);
-    partial void InitializeSpaceAnimal();
 }
