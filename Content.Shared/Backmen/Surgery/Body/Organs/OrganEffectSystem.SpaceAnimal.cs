@@ -13,6 +13,11 @@ public sealed partial class OrganEffectSystem
 {
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
+    partial void InitializeSpaceAnimal()
+    {
+        SubscribeLocalEvent<OrganComponent, OrganDamageSeverityChanged>(OnSpaceAnimalOrganSeverityChanged);
+    }
+
     partial void OnOrganComponentsModifySpaceAnimal(
         Entity<OrganComponent> organEnt,
         ref OrganComponentsModifyEvent ev)
@@ -37,21 +42,48 @@ public sealed partial class OrganEffectSystem
             Dirty(organEnt, organEnt.Comp);
         }
 
+        SyncSpaceAnimalOrganStatusEffect(organEnt, ev.Body, space);
+        // end-backmen: space-animal-organs
+    }
+
+    private void OnSpaceAnimalOrganSeverityChanged(Entity<OrganComponent> ent, ref OrganDamageSeverityChanged args)
+    {
+        if (!_net.IsServer)
+            return;
+
+        if (!TryComp<SpaceAnimalOrganComponent>(ent, out var space) || ent.Comp.Body is not { } body)
+            return;
+
+        var effectProto = GetSpaceOrganStatusEffect(ent.Comp, space);
+        if (effectProto == null)
+            return;
+
+        // start-backmen: space-animal-organs
+        if (args.NewSeverity != OrganSeverity.Destroyed && ent.Comp.Enabled)
+            _statusEffects.TrySetStatusEffectDuration(body, effectProto.Value);
+        else
+            _statusEffects.TryRemoveStatusEffect(body, effectProto.Value);
+        // end-backmen: space-animal-organs
+    }
+
+    private void SyncSpaceAnimalOrganStatusEffect(
+        Entity<OrganComponent> organEnt,
+        EntityUid body,
+        SpaceAnimalOrganComponent space)
+    {
         var effectProto = GetSpaceOrganStatusEffect(organEnt.Comp, space);
         if (effectProto == null)
             return;
 
-        if (ev.Add
-            && organEnt.Comp.Enabled
+        if (organEnt.Comp.Enabled
             && organEnt.Comp.OrganSeverity != OrganSeverity.Destroyed)
         {
-            _statusEffects.TrySetStatusEffectDuration(ev.Body, effectProto.Value);
+            _statusEffects.TrySetStatusEffectDuration(body, effectProto.Value);
         }
         else
         {
-            _statusEffects.TryRemoveStatusEffect(ev.Body, effectProto.Value);
+            _statusEffects.TryRemoveStatusEffect(body, effectProto.Value);
         }
-        // end-backmen: space-animal-organs
     }
 
     private static EntProtoId? GetSpaceOrganStatusEffect(OrganComponent organ, SpaceAnimalOrganComponent space)

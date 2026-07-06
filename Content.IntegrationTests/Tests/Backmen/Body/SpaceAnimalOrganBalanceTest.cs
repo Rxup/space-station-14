@@ -68,13 +68,18 @@ public sealed class SpaceAnimalOrganBalanceTest : GameTest
 
             Assert.That(bodySys.InsertOrganIntoBody(human, lungs), Is.True);
 
+            var statusSys = entMan.System<StatusEffectsSystem>();
+            Assert.That(statusSys.TryGetStatusEffect(human, LungsImmunity, out _), Is.True,
+                "Space lungs should grant immunity status effect when inserted.");
+
             trauma.SetOrganSeverity(lungs, OrganSeverity.Destroyed);
 
             var organ = entMan.GetComponent<OrganComponent>(lungs);
+            Assert.That(organ.OrganSeverity, Is.EqualTo(OrganSeverity.Destroyed));
             Assert.That(organ.Enabled, Is.False);
 
-            var statusSys = entMan.System<StatusEffectsSystem>();
-            Assert.That(statusSys.TryGetStatusEffect(human, LungsImmunity, out _), Is.False);
+            Assert.That(statusSys.TryGetStatusEffect(human, LungsImmunity, out _), Is.False,
+                "Immunity status effect should be removed when lungs are destroyed.");
 
             var analyzer = entMan.System<HealthAnalyzerSystem>();
             var state = analyzer.GetHealthAnalyzerUiState(human);

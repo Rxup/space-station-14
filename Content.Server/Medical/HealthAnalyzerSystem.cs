@@ -306,19 +306,28 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             var seen = new HashSet<ProtoId<OrganCategoryPrototype>>();
             organAlerts = new List<HealthAnalyzerOrganAlert>();
 
-            foreach (var (organId, organ) in _bodySystem.GetBodyOrgans(entity))
+            void TryAddOrganAlert(EntityUid organId, OrganComponent organ)
             {
                 if (organ.OrganSeverity != OrganSeverity.Destroyed || organ.Category is not { } category)
-                    continue;
+                    return;
 
                 if (!seen.Add(category))
-                    continue;
+                    return;
 
                 organAlerts.Add(new HealthAnalyzerOrganAlert
                 {
                     Category = category,
                     Severity = organ.OrganSeverity,
                 });
+            }
+
+            foreach (var (organId, organ) in _bodySystem.GetBodyOrgans(entity))
+                TryAddOrganAlert(organId, organ);
+
+            foreach (var woundable in _bodySystem.GetWoundableTargets(entity))
+            {
+                foreach (var (organId, organ) in _bodySystem.GetOrgansForWoundable(woundable))
+                    TryAddOrganAlert(organId, organ);
             }
 
             if (organAlerts.Count == 0)

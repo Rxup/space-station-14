@@ -519,10 +519,11 @@ public sealed class ServerTraumaSystem : TraumaSystem
         if (old == severity)
             return;
 
-        var ev = new OrganDamageSeverityChanged(old, severity);
-        RaiseLocalEvent(uid, ref ev);
         organ.OrganSeverity = severity;
         Dirty(uid, organ);
+
+        var ev = new OrganDamageSeverityChanged(old, severity);
+        RaiseLocalEvent(uid, ref ev);
     }
 
     #endregion
