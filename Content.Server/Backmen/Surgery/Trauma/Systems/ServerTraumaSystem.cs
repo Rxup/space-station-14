@@ -506,6 +506,25 @@ public sealed class ServerTraumaSystem : TraumaSystem
         return true;
     }
 
+    /// <summary>
+    /// Sets organ severity and raises <see cref="OrganDamageSeverityChanged"/>.
+    /// </summary>
+    [PublicAPI]
+    public void SetOrganSeverity(EntityUid uid, OrganSeverity severity, OrganComponent? organ = null)
+    {
+        if (!OrganQuery.Resolve(uid, ref organ))
+            return;
+
+        var old = organ.OrganSeverity;
+        if (old == severity)
+            return;
+
+        var ev = new OrganDamageSeverityChanged(old, severity);
+        RaiseLocalEvent(uid, ref ev);
+        organ.OrganSeverity = severity;
+        Dirty(uid, organ);
+    }
+
     #endregion
 
     #region Bones

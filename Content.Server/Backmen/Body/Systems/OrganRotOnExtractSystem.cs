@@ -5,6 +5,7 @@ using Content.Shared.Backmen.Body.Components;
 using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
+using Content.Shared.Body.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -36,6 +37,9 @@ public sealed partial class OrganRotOnExtractSystem : EntitySystem
             return;
 
         if (ent.Comp.Category is { } category && SurgeryBodyPartMapping.IsExternalCategory(category))
+            return;
+
+        if (HasComp<BrainComponent>(ent) || HasComp<BkmDetachedBodyComponent>(body))
             return;
 
         if (HasComp<BkmDetachedBrainProtectionComponent>(ent))

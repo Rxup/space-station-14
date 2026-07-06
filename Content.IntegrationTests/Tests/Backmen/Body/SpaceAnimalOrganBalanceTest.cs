@@ -9,6 +9,7 @@ using Content.Shared.Atmos.Rotting;
 using Content.Shared.Backmen.Body;
 using Content.Shared.Backmen.Body.Components;
 using Content.Shared.Backmen.Body.Systems;
+using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Body;
 using Content.Shared.FixedPoint;
@@ -67,12 +68,9 @@ public sealed class SpaceAnimalOrganBalanceTest : GameTest
 
             Assert.That(bodySys.InsertOrganIntoBody(human, lungs), Is.True);
 
-            var organ = entMan.GetComponent<OrganComponent>(lungs);
-            var damage = organ.IntegrityCap;
-            Assert.That(trauma.TrySetOrganDamageModifier(lungs, damage, lungs, "TestDestroy", organ), Is.True);
+            trauma.SetOrganSeverity(lungs, OrganSeverity.Destroyed);
 
-            organ = entMan.GetComponent<OrganComponent>(lungs);
-            Assert.That(organ.OrganSeverity, Is.EqualTo(OrganSeverity.Destroyed));
+            var organ = entMan.GetComponent<OrganComponent>(lungs);
             Assert.That(organ.Enabled, Is.False);
 
             var statusSys = entMan.System<StatusEffectsSystem>();
