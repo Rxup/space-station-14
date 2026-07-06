@@ -7,7 +7,7 @@ namespace Content.Server.Backmen.Body.Systems;
 /// <summary>
 /// Disables organ effects when integrity reaches Destroyed; re-enables on recovery.
 /// </summary>
-public sealed class OrganSeveritySystem : EntitySystem
+public sealed partial class OrganSeveritySystem : EntitySystem
 {
     public override void Initialize()
     {

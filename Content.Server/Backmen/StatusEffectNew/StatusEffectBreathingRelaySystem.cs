@@ -10,7 +10,7 @@ namespace Content.Server.Backmen.Body.Systems;
 /// <summary>
 /// Sole relay for inhale/exhale events into active status effects on a body.
 /// </summary>
-public sealed class StatusEffectBreathingRelaySystem : EntitySystem
+public sealed partial class StatusEffectBreathingRelaySystem : EntitySystem
 {
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
 

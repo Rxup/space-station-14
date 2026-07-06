@@ -14,7 +14,7 @@ namespace Content.Server.Backmen.Body.Systems;
 /// <summary>
 /// Drop chance, harvest damage, and perish setup for cosmic carp organs on gib.
 /// </summary>
-public sealed class SpaceAnimalOrganSystem : EntitySystem
+public sealed partial class SpaceAnimalOrganSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ServerTraumaSystem _trauma = default!;
@@ -61,7 +61,8 @@ public sealed class SpaceAnimalOrganSystem : EntitySystem
         }
 
         var perishable = _rotting.StartOrganHarvestPerish(ent, ent.Comp.OrganRotAfter);
-        Dirty(ent, perishable);
+        if (perishable != null)
+            Dirty(ent, perishable);
         // end-backmen: space-animal-organs
     }
 }

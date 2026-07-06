@@ -5,7 +5,7 @@ using Content.Shared.StatusEffectNew.Components;
 
 namespace Content.Server.Backmen.Body.Systems;
 
-public sealed class PressureImmunityStatusEffectSystem : EntitySystem
+public sealed partial class PressureImmunityStatusEffectSystem : EntitySystem
 {
     public override void Initialize()
     {

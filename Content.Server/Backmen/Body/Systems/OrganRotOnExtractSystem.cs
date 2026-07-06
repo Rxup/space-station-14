@@ -3,6 +3,7 @@ using Content.Server.Backmen.Surgery.Trauma.Systems;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Backmen.Body.Components;
 using Content.Shared.Backmen.Body.OrganRelations;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
@@ -13,7 +14,7 @@ namespace Content.Server.Backmen.Body.Systems;
 /// <summary>
 /// When any organ is surgically removed from a dead/rotting body, transfer rot and apply integrity damage.
 /// </summary>
-public sealed class OrganRotOnExtractSystem : EntitySystem
+public sealed partial class OrganRotOnExtractSystem : EntitySystem
 {
     public const float DefaultExtractRotDamageFraction = 0.2f;
 
@@ -30,6 +31,12 @@ public sealed class OrganRotOnExtractSystem : EntitySystem
     private void OnOrganGotRemoved(Entity<OrganComponent> ent, ref OrganGotRemovedEvent args)
     {
         var body = args.Target;
+
+        if (TerminatingOrDeleted(ent) || TerminatingOrDeleted(body))
+            return;
+
+        if (ent.Comp.Category is { } category && SurgeryBodyPartMapping.IsExternalCategory(category))
+            return;
 
         if (HasComp<BkmDetachedBrainProtectionComponent>(ent))
             return;

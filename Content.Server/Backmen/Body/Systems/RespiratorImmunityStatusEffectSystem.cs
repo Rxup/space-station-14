@@ -5,7 +5,7 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Server.Backmen.Body.Systems;
 
-public sealed class RespiratorImmunityStatusEffectSystem : EntitySystem
+public sealed partial class RespiratorImmunityStatusEffectSystem : EntitySystem
 {
     private readonly GasMixture _spaceBreathAtmos;
 

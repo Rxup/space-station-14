@@ -10,6 +10,9 @@ public partial class RottingSystem
     /// </summary>
     public void TransferRotToOrgan(EntityUid source, EntityUid organ, TimeSpan? rotAfterOverride = null)
     {
+        if (TerminatingOrDeleted(organ) || TerminatingOrDeleted(source))
+            return;
+
         var perishable = EnsureComp<PerishableComponent>(organ);
         perishable.ForceRotProgression = true;
         perishable.RotNextUpdate = _timing.CurTime + perishable.PerishUpdateRate;
@@ -34,8 +37,11 @@ public partial class RottingSystem
         Dirty(organ, rotting);
     }
 
-    public PerishableComponent StartOrganHarvestPerish(EntityUid organ, TimeSpan rotAfter)
+    public PerishableComponent? StartOrganHarvestPerish(EntityUid organ, TimeSpan rotAfter)
     {
+        if (TerminatingOrDeleted(organ))
+            return null;
+
         var perishable = EnsureComp<PerishableComponent>(organ);
         perishable.ForceRotProgression = true;
         perishable.RotAfter = rotAfter;
