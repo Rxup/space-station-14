@@ -105,6 +105,7 @@
   name: ash
   description: This used to be something, but now it's not.
   components:
+  - type: BkmSupermatterImmune # backmen: supermatter immune for the sake of backmen not being able to burn ash
   - type: Item
     size: Tiny
   - type: Sprite

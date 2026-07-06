@@ -1,14 +1,15 @@
 ﻿using Content.Shared.Backmen.Supermatter.Components;
 using Content.Shared.Backmen.Supermatter.Events;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Examine;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Supermatter;
 
@@ -43,10 +44,14 @@ public abstract partial class SharedSupermatterSystem : EntitySystem
 
     private void OnImmuneExamined(Entity<BkmSupermatterImmuneComponent> ent, ref ExaminedEvent args)
     {
-        if(!args.IsInDetailsRange)
+        if (!args.IsInDetailsRange)
             return;
 
-        args.PushMarkup(Loc.GetString("supermatter-examine-immune"));
+        var locId = HasComp<ClothingComponent>(ent)
+            ? "supermatter-examine-immune-clothing"
+            : "supermatter-examine-immune-entity";
+
+        args.PushMarkup(Loc.GetString(locId));
     }
 
     protected float GetIntegrity(float damage, float explosionPoint)
@@ -75,22 +80,28 @@ public abstract partial class SharedSupermatterSystem : EntitySystem
             || _container.IsEntityInContainer(uid))
             return;
 
-        var ev = new BkmSupermatterImmuneEvent(target, uid);
-        RaiseLocalEvent(target, ev);
-        RaiseLocalEvent(uid, ev);
+        if (IsSupermatterImmune(target, uid))
+            return;
 
-        if(ev.Cancelled)
+        if (_projectileQuery.TryComp(target, out var projectile))
+        {
+            if (_net.IsServer)
+            {
+                supermatter.Power += (float) projectile.Damage.GetTotal();
+                _audio.PlayPvs(supermatter.ProjectileHitSound, uid);
+                var projectileHitEv = new BkmSupermatterProjectileHitEvent();
+                RaiseLocalEvent(uid, ref projectileHitEv);
+            }
+
+            PredictedQueueDel(target);
+            return;
+        }
+
+        if (!_net.IsServer)
             return;
 
         if (_foodQuery.TryComp(target, out var supermatterFood))
             supermatter.Power += supermatterFood.Energy;
-        else if (_projectileQuery.TryComp(target, out var projectile))
-        {
-            supermatter.Power += (float) projectile.Damage.GetTotal();
-            _audio.PlayPvs(supermatter.ProjectileHitSound, uid);
-            var projectileHitEv = new BkmSupermatterProjectileHitEvent();
-            RaiseLocalEvent(uid, ref projectileHitEv);
-        }
         else
             supermatter.Power++;
 
@@ -98,23 +109,25 @@ public abstract partial class SharedSupermatterSystem : EntitySystem
         DustEntity(uid, supermatter, target);
     }
 
+    protected bool IsSupermatterImmune(EntityUid target, EntityUid source)
+    {
+        if (SupermatterImmuneQuery.HasComp(target) || SupermatterImmuneQuery.HasComp(source))
+            return true;
+
+        var ev = new BkmSupermatterImmuneEvent(target, source);
+        RaiseLocalEvent(target, ev);
+        RaiseLocalEvent(source, ev);
+        return ev.Cancelled;
+    }
+
     /// <summary>
-    /// Server overrides this to route layered bodies through burn/gib logic.
+    /// Server-only. Spawns ash, plays burn sounds, deletes entities.
     /// </summary>
     protected virtual void DustEntity(EntityUid uid, BkmSupermatterComponent supermatter, EntityUid target)
     {
-        if (!_projectileQuery.HasComp(target))
-        {
-            Spawn(Ash, Transform(target).Coordinates);
-            _audio.PlayPvs(supermatter.DustSound, uid);
-        }
-
-        PredictedQueueDel(target);
     }
 
-    protected readonly EntProtoId Ash = "Ash";
-
-
+    [Dependency] private INetManager _net = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedContainerSystem _container = default!;

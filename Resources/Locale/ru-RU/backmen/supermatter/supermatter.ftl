@@ -7,7 +7,8 @@ supermatter-delamination-default = The Supermatter has Reached Critical Integrit
 supermatter-warning = ВНИМАНИЕ! Целостность гиперструктуры кристалла приближается к критическому уровню! Целостность: { $integrity }%
 supermatter-safe-alert = Целостность гиперструктуры кристалла возвращается к безопасным рабочим параметрам. Аварийная блокировка отключена. Целостность: { $integrity }%
 supermatter-examine-integrity = Его целостность равна [color=yellow]{ $integrity }%[/color].
-supermatter-examine-immune = Не позволяет [color=yellow]суперматерии[/color] дезинтегрировать носителя!
+supermatter-examine-immune-clothing = Защищает носителя от дезинтеграции [color=yellow]суперматерией[/color], когда надето.
+supermatter-examine-immune-entity = Не будет дезинтегрировано [color=yellow]суперматерией[/color].
 supermatter-announcer = Автоматический Суперматериальный Реактор
 supermatter-delam-explosion = ДЕЛАМИНАЦИЯ КРИСТАЛЛА НЕИЗБЕЖНА! Кристалл достиг критической потери целостности! Активировано поле дестабилизации причинности.
 supermatter-delam-overmass = ДЕЛАМИНАЦИЯ КРИСТАЛЛА НЕИЗБЕЖНА! Гиперструктура кристалла достигла критического уровня массы! Образование сингулярности неизбежно!
