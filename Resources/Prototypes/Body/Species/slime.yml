@@ -312,7 +312,7 @@
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Slime ]
-    stages: [ Digestion, Bloodstream ]
+    stages: [ Digestion, Bloodstream, Metabolites ]
 
 - type: entity
   parent: [ OrganBaseLungs, OrganSlimePersonInternal, OrganSlimePersonMetabolizer ]

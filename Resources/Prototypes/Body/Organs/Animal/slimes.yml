@@ -18,7 +18,7 @@
         Destroyed: 0
       slotId: core
     - type: Metabolizer
-      stages: [ Digestion, Bloodstream ]
+      stages: [ Digestion, Bloodstream, Metabolites ]
       maxReagents: 3
       metabolizerTypes: [ Slime ]
     - type: SolutionContainerManager
