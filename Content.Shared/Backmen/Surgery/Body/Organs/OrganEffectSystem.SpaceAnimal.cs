@@ -1,18 +1,13 @@
 using System.Linq;
 using Content.Shared.Backmen.Body.Components;
-using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Body;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
-using Content.Shared.StatusEffectNew;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Surgery.Body.Organs;
 
 public sealed partial class OrganEffectSystem
 {
-    [Dependency] private StatusEffectsSystem _statusEffects = default!;
-
     partial void OnOrganComponentsModifySpaceAnimal(
         Entity<OrganComponent> organEnt,
         ref OrganComponentsModifyEvent ev)
@@ -36,39 +31,6 @@ public sealed partial class OrganEffectSystem
                 organEnt.Comp.OrganIntegrity = space.HumanIntegrityCap;
             Dirty(organEnt, organEnt.Comp);
         }
-
-        SyncSpaceAnimalOrganStatusEffect(organEnt, ev.Body, space);
         // end-backmen: space-animal-organs
-    }
-
-    private void SyncSpaceAnimalOrganStatusEffect(
-        Entity<OrganComponent> organEnt,
-        EntityUid body,
-        SpaceAnimalOrganComponent space)
-    {
-        var effectProto = GetSpaceOrganStatusEffect(organEnt.Comp, space);
-        if (effectProto == null)
-            return;
-
-        if (organEnt.Comp.Enabled
-            && organEnt.Comp.OrganSeverity != OrganSeverity.Destroyed)
-        {
-            _statusEffects.TrySetStatusEffectDuration(body, effectProto.Value);
-        }
-        else
-        {
-            _statusEffects.TryRemoveStatusEffect(body, effectProto.Value);
-        }
-    }
-
-    private static EntProtoId? GetSpaceOrganStatusEffect(OrganComponent organ, SpaceAnimalOrganComponent space)
-    {
-        if (organ.Category == "Heart" && space.HeartStatusEffect is { } heart)
-            return heart;
-
-        if (organ.Category == "Lungs" && space.LungsStatusEffect is { } lungs)
-            return lungs;
-
-        return null;
     }
 }

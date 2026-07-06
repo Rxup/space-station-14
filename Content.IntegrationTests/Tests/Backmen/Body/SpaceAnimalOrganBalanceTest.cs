@@ -57,14 +57,16 @@ public sealed class SpaceAnimalOrganBalanceTest : GameTest
     public async Task DestroyedSpaceLungs_RemoveImmunityAndShowAnalyzerAlert()
     {
         var map = await Pair.CreateTestMap();
+        EntityUid human = default;
+        EntityUid lungs = default;
 
-        await Server.WaitAssertion(() =>
+        await Server.WaitPost(() =>
         {
             var entMan = Server.EntMan;
             var bodySys = entMan.System<BkmBodySharedSystem>();
             var trauma = entMan.System<ServerTraumaSystem>();
-            var human = entMan.SpawnEntity(MobHuman, map.MapCoords);
-            var lungs = entMan.SpawnEntity(SpaceLungs, map.MapCoords);
+            human = entMan.SpawnEntity(MobHuman, map.MapCoords);
+            lungs = entMan.SpawnEntity(SpaceLungs, map.MapCoords);
 
             Assert.That(bodySys.InsertOrganIntoBody(human, lungs), Is.True);
 
@@ -73,11 +75,18 @@ public sealed class SpaceAnimalOrganBalanceTest : GameTest
                 "Space lungs should grant immunity status effect when inserted.");
 
             trauma.SetOrganSeverity(lungs, OrganSeverity.Destroyed);
+        });
 
+        await Server.WaitIdleAsync();
+
+        await Server.WaitAssertion(() =>
+        {
+            var entMan = Server.EntMan;
             var organ = entMan.GetComponent<OrganComponent>(lungs);
             Assert.That(organ.OrganSeverity, Is.EqualTo(OrganSeverity.Destroyed));
             Assert.That(organ.Enabled, Is.False);
 
+            var statusSys = entMan.System<StatusEffectsSystem>();
             Assert.That(statusSys.TryGetStatusEffect(human, LungsImmunity, out _), Is.False,
                 "Immunity status effect should be removed when lungs are destroyed.");
 

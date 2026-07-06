@@ -408,17 +408,19 @@ public sealed class ServerTraumaSystem : TraumaSystem
 
         if (nearestSeverity != organ.OrganSeverity)
         {
-            var ev = new OrganDamageSeverityChanged(organ.OrganSeverity, nearestSeverity);
+            var old = organ.OrganSeverity;
+            organ.OrganSeverity = nearestSeverity;
+            Dirty(uid, organ);
+
+            var ev = new OrganDamageSeverityChanged(old, nearestSeverity);
             RaiseLocalEvent(uid, ref ev);
 
             if (Container.TryGetContainingContainer((uid, Transform(uid), MetaData(uid)), out var container))
             {
-                var ev1 = new OrganDamageSeverityChangedOnWoundable((uid, organ), organ.OrganSeverity, nearestSeverity);
+                var ev1 = new OrganDamageSeverityChangedOnWoundable((uid, organ), old, nearestSeverity);
                 RaiseLocalEvent(container.Owner, ref ev1);
             }
         }
-
-        organ.OrganSeverity = nearestSeverity;
     }
 
     [PublicAPI]
@@ -524,6 +526,12 @@ public sealed class ServerTraumaSystem : TraumaSystem
 
         var ev = new OrganDamageSeverityChanged(old, severity);
         RaiseLocalEvent(uid, ref ev);
+
+        if (Container.TryGetContainingContainer((uid, Transform(uid), MetaData(uid)), out var container))
+        {
+            var ev1 = new OrganDamageSeverityChangedOnWoundable((uid, organ), old, severity);
+            RaiseLocalEvent(container.Owner, ref ev1);
+        }
     }
 
     #endregion
