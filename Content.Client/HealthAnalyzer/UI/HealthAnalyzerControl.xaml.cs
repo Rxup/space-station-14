@@ -8,6 +8,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -116,7 +117,9 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         // Alerts
 
-        var showAlerts = state.Unrevivable == true || state.Bleeding == true;
+        var showAlerts = state.Unrevivable == true
+            || state.Bleeding == true
+            || state.OrganAlerts is { Count: > 0 };
 
         AlertsDivider.Visible = showAlerts;
         AlertsContainer.Visible = showAlerts;
@@ -139,6 +142,23 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
                 Margin = new Thickness(0, 4),
                 MaxWidth = 300
             });
+
+        if (state.OrganAlerts is { Count: > 0 } organAlerts)
+        {
+            foreach (var alert in organAlerts)
+            {
+                if (alert.Severity != OrganSeverity.Destroyed)
+                    continue;
+
+                var organName = Loc.GetString($"organs-category-{alert.Category}");
+                AlertsContainer.AddChild(new RichTextLabel
+                {
+                    Text = Loc.GetString("health-analyzer-window-organ-destroyed", ("organ", organName)),
+                    Margin = new Thickness(0, 4),
+                    MaxWidth = 300
+                });
+            }
+        }
 
         // Damage Groups
 

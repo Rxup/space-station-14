@@ -3,6 +3,8 @@
   id: OrganSpaceAnimalLungs
   name: space animal lungs
   components:
+  - type: SpaceAnimalOrgan
+    lungsStatusEffect: StatusEffectSpaceLungsImmunity
   - type: Organ
     # backmen edit
     intCap: 28
@@ -11,14 +13,14 @@
       Normal: 28
       Damaged: 16
       Destroyed: 0
-    onAdd:
-    - type: RespiratorImmunity
 
 - type: entity
   parent: OrganAnimalHeart
   id: OrganSpaceAnimalHeart
   name: space animal heart
   components:
+  - type: SpaceAnimalOrgan
+    heartStatusEffect: StatusEffectSpaceHeartImmunity
   - type: Organ
     # backmen edit
     intCap: 21
@@ -27,5 +29,3 @@
       Normal: 21
       Damaged: 12
       Destroyed: 0
-    onAdd:
-    - type: PressureImmunity

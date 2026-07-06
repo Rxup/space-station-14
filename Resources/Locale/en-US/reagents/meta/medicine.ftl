@@ -1,5 +1,5 @@
 reagent-name-cryptobiolin = cryptobiolin
-reagent-desc-cryptobiolin = Causes confusion and dizziness.
+reagent-desc-cryptobiolin = Causes confusion and dizziness. Renders you psionically insulated while active.
 
 reagent-name-dylovene = dylovene
 reagent-desc-dylovene = A broad-spectrum anti-toxin, which treats toxin damage in organisms. Overdosing will cause vomiting, dizzyness and pain.

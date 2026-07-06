@@ -1,4 +1,5 @@
 using Content.Shared.Backmen.Surgery.Tools;
+using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Robust.Shared.GameStates;
@@ -8,7 +9,7 @@ namespace Content.Shared.Body;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 // start-backmen: body
-[Access(typeof(BodySystem), typeof(BkmBodySharedSystem), typeof(TraumaSystem))]
+[Access(typeof(BodySystem), typeof(BkmBodySharedSystem), typeof(TraumaSystem), typeof(OrganEffectSystem))] // backmen: space-animal-organs
 // end-backmen: body
 public sealed partial class OrganComponent : Component, ISurgeryToolComponent
 {

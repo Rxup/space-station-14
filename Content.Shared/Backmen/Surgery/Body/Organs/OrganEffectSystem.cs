@@ -49,6 +49,8 @@ public sealed partial class OrganEffectSystem : EntitySystem
         if (!_net.IsServer) // TODO: Kill this once I figure out whats breaking the Diagnostic Cybernetics.
             return;
 
+        OnOrganComponentsModifySpaceAnimal(organEnt, ref ev);
+
         if (organEnt.Comp.OnAdd != null)
         {
             if (ev.Add)
@@ -106,4 +108,6 @@ public sealed partial class OrganEffectSystem : EntitySystem
             effectComp.Active.Remove(key);
         }
     }
+
+    partial void OnOrganComponentsModifySpaceAnimal(Entity<OrganComponent> organEnt, ref OrganComponentsModifyEvent ev);
 }

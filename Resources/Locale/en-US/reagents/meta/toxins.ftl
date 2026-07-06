@@ -35,7 +35,7 @@ reagent-name-lexorin = lexorin
 reagent-desc-lexorin = A fast-acting chemical used to asphyxiate people rapidly.
 
 reagent-name-mindbreaker-toxin = mindbreaker toxin
-reagent-desc-mindbreaker-toxin = A potent hallucinogenic compound that is formerly known as LSD.
+reagent-desc-mindbreaker-toxin = A potent hallucinogenic compound that is formerly known as LSD. Removes psionic powers at high doses.
 
 reagent-name-histamine = histamine
 reagent-desc-histamine = A chemical caused by allergenics reacting with antibodies. Lethal at large quantities.

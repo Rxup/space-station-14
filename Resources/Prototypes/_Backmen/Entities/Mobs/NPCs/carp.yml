@@ -1,4 +1,12 @@
 - type: entity
+  parent: SimpleSpaceMobBase
+  id: BaseMobCarpBackmen
+  abstract: true
+  components:
+  - type: Perishable
+    rotAfter: 360
+
+- type: entity
   name: carp
   suffix: syndicate
   parent: MobCarp

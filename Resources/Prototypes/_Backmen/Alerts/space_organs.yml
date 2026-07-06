@@ -1,0 +1,17 @@
+- type: alert
+  id: SpaceHeartImmunity
+  category: Pressure
+  icons:
+  - sprite: /Textures/Interface/Alerts/pressure.rsi
+    state: lowpressure1
+  name: alerts-space-heart-immunity-name
+  description: alerts-space-heart-immunity-desc
+
+- type: alert
+  id: SpaceLungsImmunity
+  category: Breathing
+  icons:
+  - sprite: /Textures/Interface/Alerts/breathing.rsi
+    state: too_much_oxy
+  name: alerts-space-lungs-immunity-name
+  description: alerts-space-lungs-immunity-desc
