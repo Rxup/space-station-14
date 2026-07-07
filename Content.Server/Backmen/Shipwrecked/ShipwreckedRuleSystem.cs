@@ -1961,8 +1961,19 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
     private void ApplyHecateAppearance(EntityUid uid)
     {
+        if (!HasComp<BodyComponent>(uid) && !HasComp<VisualBodyComponent>(uid))
+            return;
+
         var profile = _prototypeManager.Index(HecateProfile).Profile;
-        _visualBody.ApplyProfileTo(uid, profile);
+        var appearance = profile.Appearance;
+
+        _visualBody.ApplyProfile(uid, new OrganProfileData
+        {
+            Sex = profile.Sex,
+            SkinColor = appearance.SkinColor,
+            EyeColor = appearance.EyeColor,
+        });
+        _visualBody.ApplyMarkings(uid, appearance.Markings);
     }
 
     private void OnAskGeneratorUnlock(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskGeneratorUnlockEvent args)
