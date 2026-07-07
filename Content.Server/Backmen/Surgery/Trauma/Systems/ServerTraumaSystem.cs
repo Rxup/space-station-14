@@ -355,6 +355,9 @@ public sealed class ServerTraumaSystem : TraumaSystem
                 var ev1 = new TraumaBeingRemovedEvent(trauma, trauma.Comp.TraumaTarget.Value, trauma.Comp.TraumaSeverity, trauma.Comp.TraumaType);
                 RaiseLocalEvent(trauma.Comp.HoldingWoundable.Value, ref ev1);
             }
+
+            if (trauma.Comp.TraumaType == TraumaType.BoneDamage && trauma.Comp.HoldingWoundable is { } holdingWoundable)
+                TryClearBoneDamagePain(holdingWoundable); // backmen: bone-damage-pain-cleanup
         }
 
         QueueDel(trauma);

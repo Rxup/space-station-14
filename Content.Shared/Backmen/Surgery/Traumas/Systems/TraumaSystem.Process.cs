@@ -52,18 +52,17 @@ public partial class TraumaSystem
         {
             switch (trauma.Comp.TraumaType)
             {
+                // start-backmen: chemical-healing
+                // Surface wound healing (chemicals, gauze, etc.) can proceed while these are present;
+                // bones and organs are repaired separately via surgery / passive regeneration.
                 case TraumaType.BoneDamage:
-                    var targetedBone = trauma.Comp.TraumaTarget;
-                    if (!BoneQuery.TryComp(targetedBone, out var bone))
-                        break;
-
-                    if (bone.BoneSeverity is BoneSeverity.Damaged or BoneSeverity.Broken)
-                        return true;
-
-                    break;
+                case TraumaType.OrganDamage:
                 case TraumaType.NerveDamage:
-                case TraumaType.VeinsDamage: // Veins being destroyed actually should stop you from healing, but well
+                case TraumaType.VeinsDamage:
                     continue;
+                // end-backmen: chemical-healing
+                case TraumaType.Dismemberment:
+                    return true;
                 default:
                     return true;
             }

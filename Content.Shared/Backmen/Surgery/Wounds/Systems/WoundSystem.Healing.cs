@@ -196,5 +196,26 @@ public partial class WoundSystem
         return !ev1.Cancelled;
     }
 
+    // start-backmen: chemical-healing
+    /// <summary>
+    /// Whether a wound can be healed by bloodstream metabolites (e.g. bicaridine).
+    /// Skips bleeding and trauma blocks that still apply to manual treatment items.
+    /// </summary>
+    [PublicAPI]
+    public bool CanChemicallyHealWound(EntityUid wound, WoundComponent? comp = null)
+    {
+        if (!WoundQuery.Resolve(wound, ref comp))
+            return false;
+
+        if (!comp.CanBeHealed)
+            return false;
+
+        var ev = new WoundHealAttemptOnWoundableEvent((wound, comp));
+        RaiseLocalEvent(comp.HoldingWoundable, ref ev);
+
+        return !ev.Cancelled;
+    }
+    // end-backmen: chemical-healing
+
     #endregion
 }

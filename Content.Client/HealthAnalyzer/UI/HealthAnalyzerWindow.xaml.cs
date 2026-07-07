@@ -196,8 +196,22 @@ namespace Content.Client.HealthAnalyzer.UI
                     ? GetStatus(mobStateComponent.CurrentState)
                     : Loc.GetString("health-analyzer-window-entity-unknown-text");
 
+            // start-backmen: analyzer-authoritative-damage
+            if (msg.Damage is { } serverDamage)
+            {
+                DamageLabel.Text = serverDamage.Total.ToString();
+
+                var damageSortedGroups =
+                    serverDamage.Groups.OrderByDescending(damage => damage.Value)
+                        .ToDictionary(x => x.Key, x => FixedPoint2.New(x.Value));
+
+                var damageSortedTypes = serverDamage.Types.ToDictionary(x => x.Key, x => FixedPoint2.New(x.Value));
+
+                DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
+            }
+            else
+            {
             // start-backmen: nubody wound severity
-            // Damage stuff — conscious humanoids use wound severity, not DamageableComponent.TotalDamage
             BodyComponent? body = null;
             var usesWoundDamage = !isPart
                 && _entityManager.TryGetComponent(_target.Value, out body)
@@ -256,9 +270,8 @@ namespace Content.Client.HealthAnalyzer.UI
 
                 DamageLabel.Text = damageGroups.Values.Sum().ToString();
             }
-            // end-backmen: nubody wound severity
 
-            if (_entityManager.TryGetComponent<WoundableComponent>(part, out var woundable))
+            if (msg.Damage == null && _entityManager.TryGetComponent<WoundableComponent>(part, out var woundable))
             {
                 var wounds = _wound.GetWoundableWounds(part.Value, woundable).ToList();
                 DamageLabel.Text =
@@ -298,8 +311,11 @@ namespace Content.Client.HealthAnalyzer.UI
 
                 DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
             }
+            }
+            // end-backmen: nubody wound severity
+            // end-backmen: analyzer-authoritative-damage
 
-            // Start-backmen: pain
+            // start-backmen: pain
             // Pain Causes
             var showPainCauses = (msg.PainCauses != null && msg.PainCauses.Count > 0) || msg.TotalPain.HasValue;
 
@@ -310,7 +326,7 @@ namespace Content.Client.HealthAnalyzer.UI
             {
                 PainCausesDisplay.UpdatePainCauses(msg.PainCauses, msg.TotalPain, _target);
             }
-            // End-backmen: pain
+            // end-backmen: pain
 
             // Alerts
 

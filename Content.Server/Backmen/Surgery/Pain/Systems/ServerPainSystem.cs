@@ -71,7 +71,7 @@ public sealed partial class ServerPainSystem : PainSystem
         SubscribeLocalEvent<NerveOrganComponent, BodyPartAddedEvent>(OnBodyPartAdded, after: [typeof(ConsciousnessSystem)]);
         SubscribeLocalEvent<NerveOrganComponent, BodyPartRemovedEvent>(OnBodyPartRemoved, after: [typeof(ConsciousnessSystem)]);
 
-        SubscribeLocalEvent<PainInflicterComponent, WoundChangedEvent>(OnPainChanged);
+        SubscribeLocalEvent<PainInflicterComponent, WoundChangedEvent>(OnPainChanged); // backmen: phantom-pain-fix
 
         SubscribeLocalEvent<NerveSystemComponent, MobStateChangedEvent>(OnMobStateChanged);
 
@@ -286,60 +286,75 @@ public sealed partial class ServerPainSystem : PainSystem
 
     private void OnPainChanged(EntityUid uid, PainInflicterComponent component, ref WoundChangedEvent args)
     {
+        RefreshWoundablePain(args.Component.HoldingWoundable); // backmen: phantom-pain-fix
+    }
+
+    // start-backmen: phantom-pain-fix
+    /// <summary>
+    /// Recomputes wound-derived pain modifiers for a woundable from remaining wounds.
+    /// Removes modifiers when no wounds contribute pain (fixes phantom pain after healing).
+    /// </summary>
+    [PublicAPI]
+    public void RefreshWoundablePain(EntityUid woundable, WoundableComponent? component = null)
+    {
+        if (!TryComp(woundable, out component))
+            return;
+
         EntityUid? bodyUid = null;
-        if (TryComp<BodyPartComponent>(args.Component.HoldingWoundable, out var bodyPart))
+        if (TryComp<BodyPartComponent>(woundable, out var bodyPart))
             bodyUid = bodyPart.Body;
-        else if (TryComp<OrganComponent>(args.Component.HoldingWoundable, out var organ))
+        else if (TryComp<OrganComponent>(woundable, out var organ))
             bodyUid = organ.Body;
 
-        if (bodyUid == null)
+        if (bodyUid == null || !_consciousness.TryGetNerveSystem(bodyUid.Value, out var nerveSys))
             return;
-
-        if (!_consciousness.TryGetNerveSystem(bodyUid.Value, out var nerveSys))
-            return;
-
-        component.RawPain = FixedPoint2.Clamp(args.Component.WoundSeverityPoint, 0, _maxPainPerInflicter);
 
         var woundPain = FixedPoint2.Zero;
         var traumaticPain = FixedPoint2.Zero;
 
-        foreach (var wound in
-                 _wound.GetWoundableWoundsWithComp<PainInflicterComponent>(args.Component.HoldingWoundable))
+        foreach (var wound in _wound.GetWoundableWoundsWithComp<PainInflicterComponent>(woundable, component))
         {
-            switch (wound.Comp2.PainType)
+            var inflicter = wound.Comp2;
+            inflicter.RawPain = FixedPoint2.Clamp(wound.Comp1.WoundSeverityPoint, 0, _maxPainPerInflicter);
+            Dirty(wound.Owner, inflicter);
+
+            switch (inflicter.PainType)
             {
                 case PainType.TraumaticPain:
-                    traumaticPain += wound.Comp2.Pain;
+                    traumaticPain += inflicter.Pain;
                     break;
                 case PainType.Starving:
                     break;
                 default:
-                    woundPain += wound.Comp2.Pain;
+                    woundPain += inflicter.Pain;
                     break;
             }
         }
 
-        if (!TryAddPainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, woundPain))
-            TryChangePainModifier(nerveSys.Value, args.Component.HoldingWoundable, PainModifierIdentifier, woundPain);
+        SetWoundablePainModifier(nerveSys.Value, woundable, PainModifierIdentifier, woundPain);
+        SetWoundablePainModifier(nerveSys.Value, woundable, PainTraumaticModifierIdentifier, traumaticPain, PainType.TraumaticPain);
+    }
 
-        if (traumaticPain <= 0)
+    private void SetWoundablePainModifier(
+        EntityUid nerveSysUid,
+        EntityUid nerveUid,
+        string identifier,
+        FixedPoint2 pain,
+        PainType painType = PainType.WoundPain)
+    {
+        if (!NerveSystemQuery.TryComp(nerveSysUid, out var nerveSys))
             return;
 
-        if (!TryAddPainModifier(
-                nerveSys.Value,
-                args.Component.HoldingWoundable,
-                PainTraumaticModifierIdentifier,
-                traumaticPain,
-                PainType.TraumaticPain))
+        if (pain <= FixedPoint2.Zero)
         {
-            TryChangePainModifier(
-                nerveSys.Value,
-                args.Component.HoldingWoundable,
-                PainTraumaticModifierIdentifier,
-                traumaticPain,
-                painType: PainType.TraumaticPain);
+            TryRemovePainModifier(nerveSysUid, nerveUid, identifier, nerveSys);
+            return;
         }
+
+        if (!TryAddPainModifier(nerveSysUid, nerveUid, identifier, pain, painType, nerveSys))
+            TryChangePainModifier(nerveSysUid, nerveUid, identifier, pain, nerveSys, painType: painType);
     }
+    // end-backmen: phantom-pain-fix
 
     private void OnMobStateChanged(EntityUid uid, NerveSystemComponent nerveSys, MobStateChangedEvent args)
     {
