@@ -2,6 +2,7 @@ using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Medical;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
@@ -12,6 +13,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Medical;
+using Content.Shared.Medical.Healing;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -116,7 +118,13 @@ public sealed class HealingFallbackTest : GameTest
         await Server.WaitPost(() =>
         {
             var doAfterSys = Server.EntMan.System<SharedDoAfterSystem>();
+            var medicalTargetSys = Server.EntMan.System<BackmenMedicalTargetSystem>();
+            var healingComp = Server.EntMan.GetComponent<HealingComponent>(ointment);
+
             var healingEv = new HealingDoAfterEvent();
+            if (medicalTargetSys.TryResolveHealTarget(patient, healer, healingComp, out var woundable, out _, out _))
+                healingEv.TargetWoundable = Server.EntMan.GetNetEntity(woundable);
+
             var args = new DoAfterArgs(Server.EntMan, healer, TimeSpan.Zero, healingEv, patient, patient, ointment)
             {
                 EventTarget = patient,

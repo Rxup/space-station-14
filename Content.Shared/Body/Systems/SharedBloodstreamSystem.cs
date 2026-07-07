@@ -100,26 +100,40 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
 
                 TickBleed((uid, bloodstream));
 
+                // start-backmen: consciousness-bloodloss
+                var hasConsciousness = ConsciousnessQuery.HasComponent(uid);
+                // end-backmen: consciousness-bloodloss
+
                 // deal bloodloss damage if their blood level is below a threshold.
                 var bloodPercentage = GetBloodLevel(uid);
                 if (bloodPercentage < bloodstream.BloodlossThreshold)
                 {
-                    // bloodloss damage is based on the base value, and modified by how low your blood level is.
-                    var amt = bloodstream.BloodlossDamage / (0.1f + bloodPercentage);
+                    // start-backmen: consciousness-bloodloss
+                    if (!hasConsciousness)
+                    // end-backmen: consciousness-bloodloss
+                    {
+                        // bloodloss damage is based on the base value, and modified by how low your blood level is.
+                        var amt = bloodstream.BloodlossDamage / (0.1f + bloodPercentage);
 
-                    _damageableSystem.TryChangeDamage(uid, amt, ignoreResistances: false, interruptsDoAfters: false);
+                        _damageableSystem.TryChangeDamage(uid, amt, ignoreResistances: false, interruptsDoAfters: false);
 
-                    // Apply dizziness as a symptom of bloodloss.
-                    // The effect is applied in a way that it will never be cleared without being healthy.
-                    // Multiplying by 2 is arbitrary but works for this case, it just prevents the time from running out
-                    _status.TrySetStatusEffectDuration(uid, Bloodloss);
+                        // Apply dizziness as a symptom of bloodloss.
+                        // The effect is applied in a way that it will never be cleared without being healthy.
+                        // Multiplying by 2 is arbitrary but works for this case, it just prevents the time from running out
+                        _status.TrySetStatusEffectDuration(uid, Bloodloss);
+                    }
                 }
                 else
                 {
-                    // If they're healthy, we'll try and heal some bloodloss instead.
-                    _damageableSystem.TryChangeDamage(uid, bloodstream.BloodlossHealDamage * bloodPercentage, ignoreResistances: true, interruptsDoAfters: false);
+                    // start-backmen: consciousness-bloodloss
+                    if (!hasConsciousness)
+                    // end-backmen: consciousness-bloodloss
+                    {
+                        // If they're healthy, we'll try and heal some bloodloss instead.
+                        _damageableSystem.TryChangeDamage(uid, bloodstream.BloodlossHealDamage * bloodPercentage, ignoreResistances: true, interruptsDoAfters: false);
 
-                    _status.TryRemoveStatusEffect(uid, Bloodloss);
+                        _status.TryRemoveStatusEffect(uid, Bloodloss);
+                    }
                 }
             }
             else
@@ -177,12 +191,19 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         if (!_consciousness.TryGetNerveSystem((entity,consciousness), out var nerveSys))
             return;
 
-        // Calculate total bleeding from all wounds on body parts
+        // Calculate total bleeding from wounds that can actually bleed (respects tourniquets, etc.)
         var total = FixedPoint2.Zero;
         foreach (var bodyPart in _body.GetDistributedDamageTargets(entity.Owner))
         {
-            total = _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart)
-                    .Aggregate(total, (current, wound) => current + wound.Comp2.BleedingAmount);
+            foreach (var wound in _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart))
+            {
+                // start-backmen: tourniquet-bleeding-display
+                if (!CanWoundBleed((wound, wound.Comp2)) || wound.Comp2.BleedingAmount <= 0)
+                    continue;
+                // end-backmen: tourniquet-bleeding-display
+
+                total += wound.Comp2.BleedingAmount;
+            }
         }
 
         // I am very sorry, my dear shitcoders. but for now, while bloodstream is still in the state it is;
@@ -204,17 +225,29 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         if (!SolutionContainer.ResolveSolution(entity.Owner, entity.Comp.BloodSolutionName, ref entity.Comp.BloodSolution, out var bloodSolution))
             return;
 
-        var bloodMaxVolume = entity.Comp.BloodReferenceSolution.Volume;
-        var lethalBloodlossPoint = bloodMaxVolume * entity.Comp.LethalBloodlossThreshold;
-        var bloodAmount = bloodSolution.Volume;
+        var bloodPercentage = GetBloodLevel(entity.Owner);
+        FixedPoint2 consciousnessDamage;
 
-        var denominator = bloodMaxVolume - lethalBloodlossPoint;
-        if (denominator <= 0)
-            return;
+        // start-backmen: consciousness-bloodloss
+        if (bloodPercentage >= entity.Comp.BloodlossThreshold)
+        {
+            consciousnessDamage = FixedPoint2.Zero;
+        }
+        else
+        {
+            var bloodBelowThreshold = entity.Comp.BloodlossThreshold - bloodPercentage;
+            var maxBelowThreshold = entity.Comp.BloodlossThreshold - (float) entity.Comp.LethalBloodlossThreshold;
+            var missingBlood = maxBelowThreshold > 0
+                ? bloodBelowThreshold / maxBelowThreshold
+                : 1f;
+            missingBlood = Math.Clamp(missingBlood, 0f, 1f);
 
-        var missingBlood = 1 - (bloodAmount - lethalBloodlossPoint) / denominator;
-        missingBlood = FixedPoint2.Clamp(missingBlood, 0f, 1f);
-        var consciousnessDamage = -consciousness.Cap * missingBlood;
+            // Gentle near 90%, reaches full penalty only near lethal blood level.
+            var scaledMissing = missingBlood * missingBlood;
+            var consciousnessBuffer = consciousness.Cap - consciousness.Threshold;
+            consciousnessDamage = -consciousnessBuffer * scaledMissing;
+        }
+        // end-backmen: consciousness-bloodloss
 
         if (!_consciousness.SetConsciousnessModifier(
                 entity.Owner,
