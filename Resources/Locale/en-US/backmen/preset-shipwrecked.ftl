@@ -11,7 +11,8 @@ department-Shipwrecked-description = Shipwrecked
 
 shipwrecked-list-start = Status of the shipwrecked survivors:
 shipwrecked-list-escaped-name = - [color=white]{$name}[/color] escaped!
-shipwrecked-list-survived-name = - [color=white]{$name}[/color] was left behind...
+shipwrecked-list-survived-name = - [color=white]{$name}[/color] was left behind at launch...
+shipwrecked-list-stranded-name = - [color=white]{$name}[/color] remained on the planet.
 shipwrecked-list-perished-name = - [color=white]{$name}[/color] perished on the trip. Rest in peace.
 
 shipwrecked-list-start-objectives = Status of the objectives:
@@ -117,11 +118,19 @@ shipwrecked-hecate-response-weapons-before = There is an arms safe in the cockpi
 shipwrecked-hecate-response-weapons-after = I've already unlocked the safe for you. Handle the weapons with care.
 
 shipwrecked-hecate-response-status = Assessing situation...
-shipwrecked-hecate-response-status-need-thrusters = We are in need of our full set of thrusters for lift-off.
-shipwrecked-hecate-response-status-need-generator = We require a generator that isn't damaged.
+shipwrecked-hecate-response-status-need-thrusters =
+    We need all { $totalThrusterCount } thrusters — powered on and facing all directions.
+    Operational: { $goodThrusterCount } of { $totalThrusterCount }, thrust directions: { $directionCount } of 4.
+shipwrecked-hecate-response-status-need-generator =
+    The shuttle requires { $powerDemand } W from running generators.
+    Currently outputting { $currentSupply } W (installed on board: { $installedSupply } W) — { $status }.
+shipwrecked-hecate-generator-status-sufficient = sufficient
+shipwrecked-hecate-generator-status-insufficient = insufficient
 shipwrecked-hecate-response-status-need-console = The shuttle console could use some repairs.
-shipwrecked-hecate-response-status-all-green-first = Looks like we're all set for lift-off. Just tell me to launch when you're ready.
-shipwrecked-hecate-response-status-all-green-again = We're ready to launch whenever you are.
+shipwrecked-hecate-response-status-all-green-first =
+    Looks like we're all set for lift-off: { $powerDemand } W, { $totalThrusterCount } thrusters — all good. Tell me when to launch.
+shipwrecked-hecate-response-status-all-green-again =
+    We're ready to launch: { $powerDemand } W, { $totalThrusterCount } thrusters operational.
 
 # Pre-launch
 shipwrecked-hecate-response-launch-need-thrusters = It seems our engine layout has been altered. Are all of them still attached to the vessel?

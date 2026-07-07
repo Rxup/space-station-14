@@ -41,7 +41,12 @@ using Content.Shared.Access.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Backmen.Shipwrecked.Components;
 using Content.Shared.Gibbing;
+using Content.Shared.Body;
+using Content.Shared.Body.Events;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Humanoid;
+using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Power.Generator;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.CombatMode.Pacification;
@@ -127,6 +132,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
     [Dependency] private AudioSystem _audioSystem = default!;
     [Dependency] private BiomeSystem _biomeSystem = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
     [Dependency] private BuckleSystem _buckleSystem = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private DestructibleSystem _destructibleSystem = default!;
@@ -172,6 +178,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         SubscribeLocalEvent<RulePlayerSpawningEvent>(OnPlayersSpawning);
 
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, MapInitEvent>(OnInitHecate);
+        SubscribeLocalEvent<ShipwreckedNPCHecateComponent, InitialBodySpawnedEvent>(OnHecateBodyReady);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskGeneratorUnlockEvent>(OnAskGeneratorUnlock);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskWeaponsEvent>(OnAskWeapons);
         SubscribeLocalEvent<ShipwreckedNPCHecateComponent, ShipwreckedHecateAskWeaponsUnlockEvent>(OnAskWeaponsUnlock);
@@ -418,6 +425,10 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OrePlasma");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreUranium");
         _biomeSystem.AddMarkerLayer(planetMapUid, biome, "OreArtifactFragment");
+        foreach (var marker in destination.MarkerLayers)
+        {
+            _biomeSystem.AddMarkerLayer(planetMapUid, biome, marker);
+        }
         _biomeSystem.AddTemplate(planetMapUid, biome, "Loot", _prototypeManager.Index(CavesBiomeTemplate), 1);
         Dirty(planetMapUid, biome);
 
@@ -593,8 +604,11 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
                 Log.Error(e.ToString());
             }
 
-            if(dungeon.Count == 0)
+            if (dungeon.Count == 0)
+            {
+                Log.Warning("Shipwrecked failed to generate dungeon '{DungeonId}' at {Point}", dungeonProto.ID, point);
                 continue;
+            }
 
             component.Structures.AddRange(dungeon);
             foreach (var dungeon1 in dungeon)
@@ -799,6 +813,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         }
 
         var jobProtoId = _random.Pick(component.AvailableJobPrototypes);
+        var jobProto = _prototypeManager.Index(jobProtoId);
 
         var mindId = _mindSystem.CreateMind(player.UserId, profile.Name);
 
@@ -811,7 +826,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
         manifest.AppendLine(Loc.GetString("passenger-manifest-passenger-line",
                 ("name", mobName),
-                ("details", jobProtoId.Id)));
+                ("details", jobProto.LocalizedName)));
 
         // SpawnPlayerMob requires a PDA to setup the ID details,
         // and PDAs are a bit too posh for our rugged travellers.
@@ -1505,6 +1520,15 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
                     var shuttle = component.Shuttle.Value;
                     var spaceMap = _mapSystem.GetMapOrInvalid(component.SpaceMapId.Value);
 
+                    component.EscapedSurvivors.Clear();
+                    foreach (var (mob, _) in component.Survivors)
+                    {
+                        if (IsDead(mob) || Transform(mob).GridUid != component.Shuttle)
+                            continue;
+
+                        component.EscapedSurvivors.Add(mob);
+                    }
+
                     var query = EntityQueryEnumerator<TransformComponent, ActorComponent>();
                     while (query.MoveNext(out var actorUid, out var xform, out _))
                     {
@@ -1749,25 +1773,29 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         {
             var name = Loc.GetString("generic-unknown");
             if (!TerminatingOrDeleted(survivor))
-            {
                 name = MetaData(survivor).EntityName;
-            }
+
             if (IsDead(survivor))
             {
                 ev.AddLine(Loc.GetString("shipwrecked-list-perished-name",
                     ("name", name),
                     ("user", session.Name)));
             }
-            else if (shipwrecked.AllObjectivesComplete &&
-                Transform(survivor).GridUid == shipwrecked.Shuttle)
+            else if (shipwrecked.EscapedSurvivors.Contains(survivor))
             {
                 ev.AddLine(Loc.GetString("shipwrecked-list-escaped-name",
                     ("name", name),
                     ("user", session.Name)));
             }
-            else
+            else if (shipwrecked.AllObjectivesComplete)
             {
                 ev.AddLine(Loc.GetString("shipwrecked-list-survived-name",
+                    ("name", name),
+                    ("user", session.Name)));
+            }
+            else
+            {
+                ev.AddLine(Loc.GetString("shipwrecked-list-stranded-name",
                     ("name", name),
                     ("user", session.Name)));
             }
@@ -1776,31 +1804,41 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         ev.AddLine("");
         ev.AddLine(Loc.GetString("shipwrecked-list-start-objectives"));
 
-        if (GetLaunchConditionConsole(shipwrecked))
+        if (shipwrecked.AllObjectivesComplete)
+        {
             ev.AddLine(Loc.GetString("shipwrecked-list-objective-console-pass"));
-        else
-            ev.AddLine(Loc.GetString("shipwrecked-list-objective-console-fail"));
-
-        if (GetLaunchConditionGenerator(shipwrecked))
             ev.AddLine(Loc.GetString("shipwrecked-list-objective-generator-pass"));
-        else
-            ev.AddLine(Loc.GetString("shipwrecked-list-objective-generator-fail"));
-
-        if (GetLaunchConditionThrusters(shipwrecked, out var goodThrusters))
-        {
             ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-pass",
-                    ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
-        }
-        else if(goodThrusters == 0)
-        {
-            ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-fail",
-                    ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
+                ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
         }
         else
         {
-            ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-partial",
-                    ("goodThrusterCount", shipwrecked.OriginalThrusterCount),
+            if (GetLaunchConditionConsole(shipwrecked))
+                ev.AddLine(Loc.GetString("shipwrecked-list-objective-console-pass"));
+            else
+                ev.AddLine(Loc.GetString("shipwrecked-list-objective-console-fail"));
+
+            if (GetLaunchConditionGenerator(shipwrecked))
+                ev.AddLine(Loc.GetString("shipwrecked-list-objective-generator-pass"));
+            else
+                ev.AddLine(Loc.GetString("shipwrecked-list-objective-generator-fail"));
+
+            if (GetLaunchConditionThrusters(shipwrecked, out var goodThrusters, out _))
+            {
+                ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-pass",
                     ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
+            }
+            else if (goodThrusters == 0)
+            {
+                ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-fail",
+                    ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
+            }
+            else
+            {
+                ev.AddLine(Loc.GetString("shipwrecked-list-objective-thrusters-partial",
+                    ("goodThrusterCount", goodThrusters),
+                    ("totalThrusterCount", shipwrecked.OriginalThrusterCount)));
+            }
         }
 
         if (shipwrecked.AllObjectivesComplete)
@@ -1882,15 +1920,26 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
     private void OnInitHecate(EntityUid uid, ShipwreckedNPCHecateComponent component, MapInitEvent args)
     {
+        InitHecateDoorsAndSafes(uid, component);
+
+        if (HasComp<InitialBodyComponent>(uid))
+            return;
+
+        ApplyHecateAppearance(uid);
+    }
+
+    private void OnHecateBodyReady(EntityUid uid, ShipwreckedNPCHecateComponent component, InitialBodySpawnedEvent args)
+    {
+        InitHecateDoorsAndSafes(uid, component);
+        ApplyHecateAppearance(uid);
+    }
+
+    private void InitHecateDoorsAndSafes(EntityUid uid, ShipwreckedNPCHecateComponent component)
+    {
         component.GunSafe.Clear();
         component.EngineBayDoor.Clear();
 
-        var doorQuery = GetEntityQuery<DoorComponent>();
-        var storageQuery = GetEntityQuery<EntityStorageComponent>();
-
         var shopGrid = Transform(uid).GridUid;
-
-        var tagQuery = GetEntityQuery<TagComponent>();
 
         var query = EntityQueryEnumerator<TransformComponent, TagComponent>();
         while (query.MoveNext(out var entity, out var xform, out var tagComponent))
@@ -1907,6 +1956,12 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
                 component.EngineBayDoor.Add(entity);
             }
         }
+    }
+
+    private void ApplyHecateAppearance(EntityUid uid)
+    {
+        var profile = _prototypeManager.Index<HumanoidProfilePrototype>("Hecate").Profile;
+        _visualBody.ApplyProfileTo(uid, profile);
     }
 
     private void OnAskGeneratorUnlock(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskGeneratorUnlockEvent args)
@@ -1980,8 +2035,46 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         return false;
     }
 
-    private bool GetLaunchConditionGenerator(ShipwreckedRuleComponent component)
+    private bool IsOperationalGenerator(EntityUid uid, PowerSupplierComponent powerSupplier, TransformComponent xform)
     {
+        if (!xform.Anchored)
+            return false;
+
+        if (TryComp<FuelGeneratorComponent>(uid, out var fuelGenerator))
+            return fuelGenerator.On && powerSupplier.Enabled;
+
+        return powerSupplier.Enabled;
+    }
+
+    private float GetGeneratorRatedSupply(EntityUid uid, PowerSupplierComponent powerSupplier)
+    {
+        if (TryComp<FuelGeneratorComponent>(uid, out var fuelGenerator))
+            return fuelGenerator.TargetPower;
+
+        return powerSupplier.MaxSupply;
+    }
+
+    private float GetShuttleInstalledGeneratorCapacity(ShipwreckedRuleComponent component, out int installedCount)
+    {
+        installedCount = 0;
+        var totalCapacity = 0f;
+
+        var generatorQuery = EntityQueryEnumerator<PowerSupplierComponent, TransformComponent>();
+        while (generatorQuery.MoveNext(out var uid, out var powerSupplier, out var xform))
+        {
+            if (xform.GridUid != component.Shuttle || !xform.Anchored)
+                continue;
+
+            totalCapacity += GetGeneratorRatedSupply(uid, powerSupplier);
+            installedCount++;
+        }
+
+        return totalCapacity;
+    }
+
+    private float GetShuttleActiveGeneratorSupply(ShipwreckedRuleComponent component, out int activeCount)
+    {
+        activeCount = 0;
         var totalSupply = 0f;
 
         var generatorQuery = EntityQueryEnumerator<PowerSupplierComponent, TransformComponent>();
@@ -1990,20 +2083,32 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
             if (xform.GridUid != component.Shuttle)
                 continue;
 
-            if (!xform.Anchored || !powerSupplier.Enabled)
+            if (!IsOperationalGenerator(uid, powerSupplier, xform))
                 continue;
 
-            // It should be good enough that we have the generator here and anchored.
-            // There's not a significant need to see if it's wired in specifically to the engine.
-            totalSupply += powerSupplier.MaxSupply;
+            totalSupply += GetGeneratorRatedSupply(uid, powerSupplier);
+            activeCount++;
         }
 
-        return totalSupply >= component.OriginalPowerDemand;
+        return totalSupply;
     }
 
-    private bool GetLaunchConditionThrusters(ShipwreckedRuleComponent component, out int goodThrusters)
+    private bool GetLaunchConditionGenerator(ShipwreckedRuleComponent component)
+    {
+        return GetShuttleActiveGeneratorSupply(component, out _) >= component.OriginalPowerDemand;
+    }
+
+    private bool IsOperationalThruster(EntityUid uid, ThrusterComponent thruster, TransformComponent xform)
+    {
+        return xform.Anchored
+               && thruster.IsOn
+               && _thrusterSystem.CanEnable(uid, thruster);
+    }
+
+    private bool GetLaunchConditionThrusters(ShipwreckedRuleComponent component, out int goodThrusters, out int directionCount)
     {
         goodThrusters = 0;
+        var directions = new bool[4];
 
         var query = EntityQueryEnumerator<ThrusterComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var thruster, out var xform))
@@ -2012,16 +2117,51 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
                 continue;
 
             if (thruster.Type == ThrusterType.Angular)
-                // Skip the gyroscope.
                 continue;
 
-            if (!_thrusterSystem.CanEnable(uid, thruster))
+            if (!IsOperationalThruster(uid, thruster, xform))
                 continue;
 
-            ++goodThrusters;
+            goodThrusters++;
+            directions[(int) xform.LocalRotation.GetCardinalDir() / 2] = true;
         }
 
-        return goodThrusters >= component.OriginalThrusterCount;
+        directionCount = directions.Count(d => d);
+        return goodThrusters >= component.OriginalThrusterCount && directionCount == 4;
+    }
+
+    private NPCResponse CreateGeneratorStatusResponse(ShipwreckedRuleComponent rule)
+    {
+        var activeSupply = GetShuttleActiveGeneratorSupply(rule, out _);
+        var installedCapacity = GetShuttleInstalledGeneratorCapacity(rule, out _);
+        var statusKey = activeSupply >= rule.OriginalPowerDemand
+            ? "shipwrecked-hecate-generator-status-sufficient"
+            : "shipwrecked-hecate-generator-status-insufficient";
+
+        return new NPCResponse(Loc.GetString("shipwrecked-hecate-response-status-need-generator",
+            ("powerDemand", (int) rule.OriginalPowerDemand),
+            ("currentSupply", (int) activeSupply),
+            ("installedSupply", (int) installedCapacity),
+            ("status", Loc.GetString(statusKey))));
+    }
+
+    private NPCResponse CreateThrusterStatusResponse(ShipwreckedRuleComponent rule, int goodThrusters, int directionCount)
+    {
+        return new NPCResponse(Loc.GetString("shipwrecked-hecate-response-status-need-thrusters",
+            ("totalThrusterCount", rule.OriginalThrusterCount),
+            ("goodThrusterCount", goodThrusters),
+            ("directionCount", directionCount)));
+    }
+
+    private NPCResponse CreateAllGreenResponse(ShipwreckedRuleComponent rule, bool firstTime)
+    {
+        var key = firstTime
+            ? "shipwrecked-hecate-response-status-all-green-first"
+            : "shipwrecked-hecate-response-status-all-green-again";
+
+        return new NPCResponse(Loc.GetString(key,
+            ("powerDemand", (int) rule.OriginalPowerDemand),
+            ("totalThrusterCount", rule.OriginalThrusterCount)));
     }
 
     /// <summary>
@@ -2034,20 +2174,20 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         if (rule == null)
             return false;
 
-        var conditions = new (bool, NPCResponse)[] {
-            (GetLaunchConditionConsole(rule), args.NeedConsole),
-            (GetLaunchConditionGenerator(rule), args.NeedGenerator),
-            (GetLaunchConditionThrusters(rule, out _), args.NeedThrusters),
-        };
+        var hasConsole = GetLaunchConditionConsole(rule);
+        var hasGenerator = GetLaunchConditionGenerator(rule);
+        var hasThrusters = GetLaunchConditionThrusters(rule, out var goodThrusters, out var directionCount);
 
-        foreach (var (status, response) in conditions)
-        {
-            if (!status)
-                _npcConversationSystem.QueueResponse(uid, response);
-        }
+        if (!hasConsole)
+            _npcConversationSystem.QueueResponse(uid, args.NeedConsole);
 
-        var hasFailedCondition = conditions.Any(condition => condition.Item1 == false);
-        return !hasFailedCondition;
+        if (!hasGenerator)
+            _npcConversationSystem.QueueResponse(uid, CreateGeneratorStatusResponse(rule));
+
+        if (!hasThrusters)
+            _npcConversationSystem.QueueResponse(uid, CreateThrusterStatusResponse(rule, goodThrusters, directionCount));
+
+        return hasConsole && hasGenerator && hasThrusters;
     }
 
     private void OnAskStatus(EntityUid uid, ShipwreckedNPCHecateComponent component, ShipwreckedHecateAskStatusEvent args)
@@ -2062,11 +2202,11 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         if (_npcConversationSystem.IsDialogueLocked(uid, "launch"))
         {
             _npcConversationSystem.UnlockDialogue(uid, "launch");
-            _npcConversationSystem.QueueResponse(uid, args.AllGreenFirst);
+            _npcConversationSystem.QueueResponse(uid, CreateAllGreenResponse(rule, firstTime: true));
         }
         else
         {
-            _npcConversationSystem.QueueResponse(uid, args.AllGreenAgain);
+            _npcConversationSystem.QueueResponse(uid, CreateAllGreenResponse(rule, firstTime: false));
         }
     }
 

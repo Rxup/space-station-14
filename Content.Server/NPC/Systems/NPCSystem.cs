@@ -6,6 +6,7 @@ using Content.Shared.Backmen.Standing;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Content.Shared.StatusEffectNew;
 // end-backmen: npc-wake-stand
 using Content.Shared.CCVar;
 using Content.Shared.Mind.Components;
@@ -35,6 +36,7 @@ namespace Content.Server.NPC.Systems
         [Dependency] private SharedStunSystem _stun = default!;
         [Dependency] private StandingStateSystem _standing = default!;
         [Dependency] private SharedLayingDownSystem _layingDown = default!;
+        [Dependency] private StatusEffectsSystem _status = default!;
         // end-backmen: npc-wake-stand
 
         /// <summary>
@@ -135,6 +137,7 @@ namespace Content.Server.NPC.Systems
             if (HasComp<SleepingComponent>(uid))
                 RemComp<SleepingComponent>(uid);
 
+            _status.TryRemoveStatusEffect(uid, SharedStunSystem.StunId);
             _stun.TryUnstun(uid);
 
             if (TryComp<KnockedDownComponent>(uid, out var knocked))

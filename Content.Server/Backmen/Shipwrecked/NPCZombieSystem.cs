@@ -12,11 +12,13 @@ using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Body;
 using Content.Shared.Body.Events;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.Weapons.Melee;
@@ -42,6 +44,7 @@ public sealed partial class NPCZombieSystem : EntitySystem
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private MobThresholdSystem _mobThresholds = default!;
     [Dependency] private ServerConsciousnessSystem _consciousness = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
     [Dependency] private EntityQuery<ZombieSurpriseComponent> _zombieSurpriseQuery = default!;
     [Dependency] private EntityQuery<ZombieComponent> _zombieQuery = default!;
 
@@ -50,6 +53,7 @@ public sealed partial class NPCZombieSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<ZombifiedOnSpawnComponent, MapInitEvent>(OnSpawnZombifiedStartup, after: new []{ typeof(RandomMetadataSystem), typeof(RandomHumanoidSystem) });
+        SubscribeLocalEvent<ZombifiedOnSpawnComponent, InitialBodySpawnedEvent>(OnZombifiedBodyReady, after: [typeof(ServerConsciousnessSystem)]);
         SubscribeLocalEvent<ZombieSurpriseComponent, InitialBodySpawnedEvent>(OnZombieSurpriseBodyReady, after: [typeof(ServerConsciousnessSystem)]);
         SubscribeLocalEvent<ZombieSurpriseComponent, MapInitEvent>(OnZombieSurpriseMapInit, after: new []{ typeof(RandomMetadataSystem), typeof(RandomHumanoidSystem) });
         SubscribeLocalEvent<ZombieWakeupOnTriggerComponent, TriggerEvent>(OnZombieWakeupTrigger);
@@ -95,14 +99,23 @@ public sealed partial class NPCZombieSystem : EntitySystem
         RemComp<ZombieSurpriseComponent>(ev.Target);
         _mobThresholds.SetAllowRevives(ev.Target, true);
 
-        _stateSystem.Stand(ev.Target);
+        _status.TryRemoveStatusEffect(ev.Target, SharedStunSystem.StunId);
+        RemComp<StunnedComponent>(ev.Target);
+
+        if (TryComp<StandingStateComponent>(ev.Target, out var standing))
+            _stateSystem.Stand(ev.Target, standing, force: true);
+        else
+            _stateSystem.Stand(ev.Target, force: true);
+
         _zombieSystem.ZombifyEntity(ev.Target);
         EnsureComp<UniversalLanguageSpeakerComponent>(ev.Target);
         _language.SetLanguage(ev.Target, SharedLanguageSystem.Universal);
         RemComp<GhostTakeoverAvailableComponent>(ev.Target);
         RemComp<GhostRoleComponent>(ev.Target);
         RemComp<ConsciousnessComponent>(ev.Target);
-        RemComp<StunnedComponent>(ev.Target);
+
+        var injurable = EnsureComp<InjurableComponent>(ev.Target);
+        injurable.DamageContainer = "Biological";
 
         var z = EnsureComp<ZombieComponent>(ev.Target);
         z.BaseZombieInfectionChance = 0.0001f;
@@ -160,6 +173,19 @@ public sealed partial class NPCZombieSystem : EntitySystem
 
     private void OnSpawnZombifiedStartup(EntityUid uid, ZombifiedOnSpawnComponent component, MapInitEvent args)
     {
+        if (HasComp<InitialBodyComponent>(uid))
+            return;
+
+        QueueZombify(uid, component.IsBoss);
+    }
+
+    private void OnZombifiedBodyReady(EntityUid uid, ZombifiedOnSpawnComponent component, InitialBodySpawnedEvent args)
+    {
+        QueueZombify(uid, component.IsBoss);
+    }
+
+    private void QueueZombify(EntityUid uid, bool isBoss)
+    {
         if (TerminatingOrDeleted(uid))
             return;
 
@@ -167,7 +193,7 @@ public sealed partial class NPCZombieSystem : EntitySystem
         QueueLocalEvent(new NpcZombieMakeEvent
         {
             Target = uid,
-            IsBoss = component.IsBoss
+            IsBoss = isBoss
         });
     }
 

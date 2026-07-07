@@ -162,6 +162,12 @@ public sealed partial class ShipwreckedRuleComponent : Component
     /// </summary>
     [ViewVariables] public bool AllObjectivesComplete;
 
+    /// <summary>
+    /// Survivors aboard the shuttle when launch was initiated.
+    /// </summary>
+    [ViewVariables]
+    public HashSet<EntityUid> EscapedSurvivors = new();
+
 #endregion
 }
 

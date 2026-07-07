@@ -1,0 +1,26 @@
+- type: entityTable
+  id: ShipwreckGuaranteedScrewdriver
+  table: !type:GroupSelector
+    children:
+    - id: Screwdriver
+
+- type: entityTable
+  id: ShipwreckDungeonToolsTable
+  table: !type:GroupSelector
+    children:
+    - id: Screwdriver
+    - id: Wrench
+    - id: Crowbar
+    - id: Wirecutter
+    - id: FlashlightLantern
+    - id: Flare
+    - id: Welder
+      weight: 0.5
+    - id: Multitool
+      weight: 0.3
+    - id: Shovel
+      weight: 0.5
+    - id: SurvivalKnife
+      weight: 0.5
+    - id: FireExtinguisher
+      weight: 0.4

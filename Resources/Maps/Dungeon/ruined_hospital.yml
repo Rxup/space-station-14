@@ -4306,7 +4306,7 @@ entities:
     - type: Transform
       pos: 13.5,4.5
       parent: 1
-- proto: LockerFreezer
+- proto: LockerFreezerShipwreckFilled
   entities:
   - uid: 367
     components:

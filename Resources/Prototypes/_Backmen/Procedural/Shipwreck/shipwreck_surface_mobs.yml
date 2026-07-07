@@ -1,0 +1,44 @@
+- type: biomeMarkerLayer
+  id: ShipwreckWildlife
+  prototype: RandomAnimalSpawner
+  minGroupSize: 1
+  maxGroupSize: 3
+  radius: 48
+  maxCount: 20
+  size: 256
+
+- type: biomeMarkerLayer
+  id: ShipwreckWildlifeSnow
+  prototype: RandomAnimalSpawner
+  minGroupSize: 1
+  maxGroupSize: 2
+  radius: 64
+  maxCount: 12
+  size: 256
+
+- type: biomeMarkerLayer
+  id: ShipwreckWildlifeDesert
+  prototype: RandomAnimalSpawner
+  minGroupSize: 1
+  maxGroupSize: 2
+  radius: 56
+  maxCount: 14
+  size: 256
+
+- type: biomeMarkerLayer
+  id: ShipwreckWildlifeJungle
+  prototype: RandomAnimalSpawner
+  minGroupSize: 1
+  maxGroupSize: 4
+  radius: 40
+  maxCount: 28
+  size: 256
+
+- type: biomeMarkerLayer
+  id: ShipwreckSpaceCarps
+  prototype: MobCarpSalvage
+  minGroupSize: 1
+  maxGroupSize: 2
+  radius: 64
+  maxCount: 12
+  size: 256

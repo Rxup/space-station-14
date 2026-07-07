@@ -1,23 +1,5 @@
 # ruined hospital
 
-- type: entitySpawnEntry
-  id: RuinedHospitalWalls
-  #tile: Plating
-  #prob: 0.05
-  entries:
-  - id: RandomPainting
-    prob: 1
-    orGroup: content
-  - id: DefibrillatorCabinetFilled
-    prob: 0.2
-    orGroup: content
-  - id: ExtinguisherCabinetFilled
-    prob: 0.2
-    orGroup: content
-  - id: IntercomCommon
-    prob: 0.1
-    orGroup: content
-
 - type: entityTable
   id: RuinedHospitalDoor
   table: !type:AllSelector
@@ -34,6 +16,7 @@
       - RuinedHospital
     presets:
     - NyanoCompound
+    fallbackTile: FloorWhitePlastic
   - !type:CorridorDunGen
     width: 3
     tile: FloorWhitePlastic
@@ -45,7 +28,7 @@
     tile: Plating
     contents: BaseAirlock
   - !type:WallMountDunGen
-    contents: ScienceLabsWalls
+    contents: RuinedHospitalWalls
     tile: FloorSteel
 
   - !type:DungeonEntranceDunGen
@@ -69,6 +52,19 @@
     tile: Plating
     wall: WallDrywall
     cornerWall: WallDrywall
+
+  - !type:EntityTableDunGen
+    minCount: 1
+    maxCount: 1
+    perDungeon: false
+    table: !type:NestedSelector
+      tableId: ShipwreckGuaranteedScrewdriver
+
+  - !type:EntityTableDunGen
+    minCount: 4
+    maxCount: 10
+    table: !type:NestedSelector
+      tableId: ShipwreckDungeonToolsTable
 
 - type: entityTable
   id: RuinedHospitalWalls
@@ -106,6 +102,7 @@
       - RuinedDwelling
     presets:
     - NyanoStack
+    fallbackTile: FloorWood
   - !type:CornerClutterDunGen
     contents: BaseClutter
   - !type:EntranceFlankDunGen
@@ -114,18 +111,11 @@
   - !type:JunctionDunGen
     width: 1
     tile: FloorWood
-    contents: BaseAirlock
+    contents: RuinedDwellingsAirlock
   - !type:WallMountDunGen
-    contents: ScienceLabsWalls
+    contents: RuinedDwellingsWalls
     tile: FloorSteel
 
-#  - !type:MiddleConnectionPostGen
-#    count: 1
-#    tile: FloorWood
-#    entities:
-#      - CableApcExtension
-#      - WoodDoor
-#
   - !type:DungeonEntranceDunGen
     count: 2
     tile: FloorWood
@@ -152,6 +142,19 @@
     wall: WallDrywall
     cornerWall: WallDrywall
 
+  - !type:EntityTableDunGen
+    minCount: 1
+    maxCount: 1
+    perDungeon: false
+    table: !type:NestedSelector
+      tableId: ShipwreckGuaranteedScrewdriver
+
+  - !type:EntityTableDunGen
+    minCount: 4
+    maxCount: 10
+    table: !type:NestedSelector
+      tableId: ShipwreckDungeonToolsTable
+
 - type: entityTable
   id: RuinedDwellingsWalls
   table: !type:GroupSelector
@@ -168,6 +171,13 @@
 
 # ruined shops
 
+- type: entityTable
+  id: RuinedShopDoor
+  table: !type:AllSelector
+    children:
+    - id: CableApcExtension
+    - id: WoodDoor
+
 - type: dungeonConfig
   id: RuinedShop
   layers:
@@ -177,6 +187,7 @@
       - RuinedShop
     presets:
     - NyanoSolo9
+    fallbackTile: FloorWood
   - !type:CornerClutterDunGen
     contents: BaseClutter
   - !type:EntranceFlankDunGen
@@ -185,9 +196,9 @@
   - !type:JunctionDunGen
     width: 1
     tile: Plating
-    contents: BaseAirlock
+    contents: RuinedShopDoor
   - !type:WallMountDunGen
-    contents: ScienceLabsWalls
+    contents: RuinedDwellingsWalls
     tile: FloorSteel
   - !type:BoundaryWallDunGen
     tile: Plating
@@ -196,9 +207,25 @@
   - !type:DungeonEntranceDunGen
     count: 4
     tile: FloorWood
-    contents: RuinedDwellingsAirlock
-  #- !type:AutoCablingDunGen
-  #  entity: CableApcExtension
+    contents: RuinedShopDoor
+  - !type:RoomEntranceDunGen
+    tile: FloorWood
+    contents: RuinedShopDoor
+  - !type:AutoCablingDunGen
+    entity: CableApcExtension
+
+  - !type:EntityTableDunGen
+    minCount: 1
+    maxCount: 1
+    perDungeon: false
+    table: !type:NestedSelector
+      tableId: ShipwreckGuaranteedScrewdriver
+
+  - !type:EntityTableDunGen
+    minCount: 4
+    maxCount: 10
+    table: !type:NestedSelector
+      tableId: ShipwreckDungeonToolsTable
 
 - type: entitySpawnEntry
   id: ShopWoodDoor
@@ -217,27 +244,3 @@
     - id: CableApcExtension
     - id: Grille
     - id: Window
-
-#  postGeneration:
-#    - !type:EntrancePostGen
-#      count: 1
-#      tile: FloorAsphalt
-#      entities:
-#        - WoodDoor
-#
-#    - !type:ExternalWindowPostGen
-#      tile: FloorWood
-#      entities:
-#        - Window
-#
-#    - !type:WallMountPostGen
-#      tile: Plating
-#      prob: 0.05
-#      spawns:
-#        - id: RandomPosterAny
-#          orGroup: content
-#
-#    - !type:BoundaryWallPostGen
-#      tile: Plating
-#      wall: WallDrywall
-#      cornerWall: WallDrywall

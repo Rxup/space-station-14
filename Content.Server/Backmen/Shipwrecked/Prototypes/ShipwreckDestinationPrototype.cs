@@ -1,5 +1,6 @@
 using Content.Shared.Atmos;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.Parallax.Biomes.Markers;
 using Content.Shared.Procedural;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -42,6 +43,10 @@ public sealed partial class ShipwreckDestinationPrototype : IPrototype
     [ViewVariables]
     [DataField("atmosphere")]
     public GasMixture? Atmosphere { get; private set; } = null;
+
+    [ViewVariables]
+    [DataField("markerLayers")]
+    public List<ProtoId<BiomeMarkerLayerPrototype>> MarkerLayers { get; private set; } = new();
 
     [DataField("components")]
     [AlwaysPushInheritance]

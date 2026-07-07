@@ -17,6 +17,7 @@ using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Damage.Components;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
@@ -329,6 +330,9 @@ public sealed partial class ZombieSystem
         // No longer waiting to become a zombie:
         // Requires deferral because this is (probably) the event which called ZombifyEntity in the first place.
         RemCompDeferred<PendingZombieComponent>(target);
+
+        var injurable = EnsureComp<InjurableComponent>(target);
+        injurable.DamageContainer = "Biological";
 
         //zombie gamemode stuff
         var ev = new EntityZombifiedEvent(target);

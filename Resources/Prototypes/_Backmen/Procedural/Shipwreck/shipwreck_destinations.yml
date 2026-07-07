@@ -23,6 +23,9 @@
     - ZombieOutbreak
     - FleshMonsterInvasion
     - MalfunctioningRobots
+  markerLayers:
+    - ShipwreckWildlifeSnow
+    - ShipwreckSpaceCarps
   atmosphere:
     volume: 2450
     temperature: 251
@@ -56,6 +59,9 @@
   - ZombieOutbreak
   - FleshMonsterInvasion
   - MalfunctioningRobots
+  markerLayers:
+    - ShipwreckWildlifeDesert
+    - ShipwreckSpaceCarps
   atmosphere:
     volume: 2300
     temperature: 307
@@ -89,6 +95,9 @@
   - ZombieOutbreak
   - FleshMonsterInvasion
   - MalfunctioningRobots
+  markerLayers:
+    - ShipwreckWildlifeJungle
+    - ShipwreckSpaceCarps
   atmosphere:
     volume: 2400
     temperature: 296
@@ -122,6 +131,9 @@
   - ZombieOutbreak
   - FleshMonsterInvasion
   - MalfunctioningRobots
+  markerLayers:
+    - ShipwreckWildlife
+    - ShipwreckSpaceCarps
   atmosphere:
     volume: 2400
     temperature: 280
@@ -155,6 +167,8 @@
   - ZombieOutbreak
   - FleshMonsterInvasion
   - MalfunctioningRobots
+  markerLayers:
+    - ShipwreckSpaceCarps
   atmosphere:
     volume: 2300
     temperature: 320
@@ -188,6 +202,8 @@
   - ZombieOutbreak
   - FleshMonsterInvasion
   - MalfunctioningRobots
+  markerLayers:
+    - ShipwreckWildlife
   atmosphere:
     volume: 2400
     temperature: 280

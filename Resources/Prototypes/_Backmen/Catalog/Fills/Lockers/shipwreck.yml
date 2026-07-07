@@ -1,0 +1,26 @@
+- type: entityTable
+  id: ShipwreckFreezerFill
+  table: !type:GroupSelector
+    rolls: !type:RangeNumberSelector
+      range: 3, 6
+    children:
+    - id: DrinkRamen
+    - id: FoodSnackMRE
+    - id: FoodSnackChocolate
+    - id: FoodSnackChips
+    - id: DrinkWaterBottleFull
+    - id: FoodTinMRE
+    - id: FoodBurgerPlain
+    - id: FoodSnackBoritos
+    - id: DrinkMilkCarton
+    - id: FoodSnackCnDs
+
+- type: entity
+  id: LockerFreezerShipwreckFilled
+  suffix: Shipwreck, Filled
+  parent: LockerFreezerBase
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: ShipwreckFreezerFill

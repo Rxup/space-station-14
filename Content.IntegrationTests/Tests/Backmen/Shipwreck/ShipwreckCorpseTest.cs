@@ -3,8 +3,14 @@ using Content.Server.Backmen.Shipwrecked.Components;
 using Content.Server.Humanoid.Systems;
 using Content.Shared.Backmen.Shipwrecked;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Standing;
+using Content.Shared.Stunnable;
 using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.Zombies;
@@ -175,6 +181,76 @@ public sealed class ShipwreckCorpseTest : GameTest
             Assert.That(Server.EntMan.TryGetComponent(corpse, out MobStateComponent? mobState), Is.True);
             Assert.That(mobState!.CurrentState, Is.EqualTo(MobState.Alive),
                 "Zombified surprise NPC should be alive.");
+        });
+    }
+
+    [Test]
+    public async Task ZombifiedOnSpawn_SpawnsAliveAndMobile()
+    {
+        var map = await Pair.CreateTestMap();
+        var randomHumanoid = Server.EntMan.System<RandomHumanoidSystem>();
+        EntityUid zombie = default;
+
+        await Server.WaitPost(() =>
+        {
+            zombie = randomHumanoid.SpawnRandomHumanoid("Zombie", map.GridCoords, "zombie");
+        });
+
+        await Pair.RunTicksSync(10);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(Server.EntMan.EntityExists(zombie), Is.True);
+            Assert.That(Server.EntMan.HasComponent<ZombieComponent>(zombie), Is.True,
+                "ZombifiedOnSpawn mobs must be zombified after spawn.");
+            Assert.That(Server.EntMan.HasComponent<ZombifiedOnSpawnComponent>(zombie), Is.False,
+                "ZombifiedOnSpawn component should be removed after zombification.");
+            Assert.That(Server.EntMan.HasComponent<ConsciousnessComponent>(zombie), Is.False);
+
+            Assert.That(Server.EntMan.TryGetComponent(zombie, out MobStateComponent? mobState), Is.True);
+            Assert.That(mobState!.CurrentState, Is.EqualTo(MobState.Alive),
+                "ZombifiedOnSpawn mobs must be alive.");
+
+            Assert.That(Server.EntMan.HasComponent<StunnedComponent>(zombie), Is.False,
+                "ZombifiedOnSpawn mobs must not be stunned.");
+            Assert.That(Server.EntMan.TryGetComponent(zombie, out StandingStateComponent? standing), Is.True);
+            Assert.That(standing!.Standing, Is.True,
+                "ZombifiedOnSpawn mobs must be standing, not crawling.");
+        });
+    }
+
+    [Test]
+    public async Task ZombifiedOnSpawn_CanTakeDamage()
+    {
+        var map = await Pair.CreateTestMap();
+        var randomHumanoid = Server.EntMan.System<RandomHumanoidSystem>();
+        var damageable = Server.EntMan.System<DamageableSystem>();
+        EntityUid zombie = default;
+
+        await Server.WaitPost(() =>
+        {
+            zombie = randomHumanoid.SpawnRandomHumanoid("Zombie", map.GridCoords, "zombie");
+        });
+
+        await Pair.RunTicksSync(10);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(Server.EntMan.HasComponent<InjurableComponent>(zombie), Is.True,
+                "Zombified mobs must have InjurableComponent to receive damage.");
+        });
+
+        await Server.WaitPost(() =>
+        {
+            var damage = new DamageSpecifier();
+            damage.DamageDict.Add("Slash", FixedPoint2.New(10));
+            damageable.ChangeDamage(zombie, damage);
+        });
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(damageable.GetTotalDamage(zombie), Is.GreaterThan(FixedPoint2.Zero),
+                "Zombified mobs must take damage through InjurableComponent.");
         });
     }
 }

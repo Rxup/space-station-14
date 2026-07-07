@@ -51,6 +51,12 @@
     gender: Female
     appearance:
       eyeColor: "#208090"
+      markings:
+        Head:
+          Hair:
+            - markingId: HumanHairLong3
+              markingColor:
+                - "#111120"
 
 - type: startingGear
   id: HecateStartingGear
