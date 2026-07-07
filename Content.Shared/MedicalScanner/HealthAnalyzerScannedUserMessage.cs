@@ -7,6 +7,30 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.MedicalScanner;
 
+// start-backmen: analyzer-authoritative-damage
+/// <summary>
+/// Authoritative wound/damage totals for the health analyzer UI (computed on server).
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class HealthAnalyzerDamageDisplay
+{
+    public float Total;
+    public Dictionary<string, float> Groups = new();
+    public Dictionary<string, float> Types = new();
+
+    public HealthAnalyzerDamageDisplay()
+    {
+    }
+
+    public HealthAnalyzerDamageDisplay(float total, Dictionary<string, float> groups, Dictionary<string, float> types)
+    {
+        Total = total;
+        Groups = groups;
+        Types = types;
+    }
+}
+// end-backmen: analyzer-authoritative-damage
+
 /// <summary>
 /// On interacting with an entity retrieves the entity UID for use with getting the current damage of the mob.
 /// </summary>
@@ -35,6 +59,9 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     // start-backmen: organ-damage-alerts
     public List<HealthAnalyzerOrganAlert>? OrganAlerts => State.OrganAlerts;
     // end-backmen: organ-damage-alerts
+    // start-backmen: analyzer-authoritative-damage
+    public HealthAnalyzerDamageDisplay? Damage => State.Damage;
+    // end-backmen: analyzer-authoritative-damage
 
     public HealthAnalyzerScannedUserMessage(HealthAnalyzerUiState state)
     {
@@ -68,8 +95,11 @@ public struct HealthAnalyzerUiState
     // start-backmen: organ-damage-alerts
     public List<HealthAnalyzerOrganAlert>? OrganAlerts;
     // end-backmen: organ-damage-alerts
+    // start-backmen: analyzer-authoritative-damage
+    public HealthAnalyzerDamageDisplay? Damage;
+    // end-backmen: analyzer-authoritative-damage
 
-    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null, float hungerLevel = float.NaN, float thirstLevel = float.NaN, HungerThreshold? hungerAlert = null, ThirstThreshold? thirstAlert = null, List<HealthAnalyzerOrganAlert>? organAlerts = null)
+    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null, float hungerLevel = float.NaN, float thirstLevel = float.NaN, HungerThreshold? hungerAlert = null, ThirstThreshold? thirstAlert = null, List<HealthAnalyzerOrganAlert>? organAlerts = null, HealthAnalyzerDamageDisplay? damage = null) // backmen: analyzer-authoritative-damage
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -91,6 +121,7 @@ public struct HealthAnalyzerUiState
         // start-backmen: organ-damage-alerts
         OrganAlerts = organAlerts;
         // end-backmen: organ-damage-alerts
+        Damage = damage; // backmen: analyzer-authoritative-damage
     }
 }
 

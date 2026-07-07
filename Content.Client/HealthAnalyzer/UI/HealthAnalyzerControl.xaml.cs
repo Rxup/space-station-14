@@ -48,14 +48,24 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
     public void Populate(HealthAnalyzerUiState state)
     {
-        var target = _entityManager.GetEntity(state.TargetEntity);
-
-        if (target == null
-            || !_entityManager.TryGetComponent<DamageableComponent>(target, out var damageable))
+        if (!state.TargetEntity.HasValue)
         {
             NoPatientDataText.Visible = true;
             return;
         }
+
+        var target = _entityManager.GetEntity(state.TargetEntity);
+        var hasLocalEntity = target != null
+            && _entityManager.EntityExists(target.Value);
+
+        // start-backmen: analyzer-authoritative-damage
+        // Cryo pod patients may not replicate DamageableComponent locally; use server state.
+        if (!hasLocalEntity && state.Damage == null)
+        {
+            NoPatientDataText.Visible = true;
+            return;
+        }
+        // end-backmen: analyzer-authoritative-damage
 
         NoPatientDataText.Visible = false;
 
@@ -71,22 +81,38 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         // Patient Information
 
-        SpriteView.SetEntity(target.Value);
-        SpriteView.Visible = state.ScanMode.HasValue && state.ScanMode.Value;
-        NoDataTex.Visible = !SpriteView.Visible;
+        if (hasLocalEntity)
+        {
+            SpriteView.SetEntity(target!.Value);
+            SpriteView.Visible = state.ScanMode.HasValue && state.ScanMode.Value;
+            NoDataTex.Visible = !SpriteView.Visible;
 
-        var name = new FormattedMessage();
-        name.PushColor(Color.White);
-        name.AddText(_entityManager.HasComponent<MetaDataComponent>(target.Value)
-            ? Identity.Name(target.Value, _entityManager)
-            : Loc.GetString("health-analyzer-window-entity-unknown-text"));
-        NameLabel.SetMessage(name);
+            var name = new FormattedMessage();
+            name.PushColor(Color.White);
+            name.AddText(_entityManager.HasComponent<MetaDataComponent>(target.Value)
+                ? Identity.Name(target.Value, _entityManager)
+                : Loc.GetString("health-analyzer-window-entity-unknown-text"));
+            NameLabel.SetMessage(name);
 
-        SpeciesLabel.Text =
-            _entityManager.TryGetComponent<HumanoidProfileComponent>(target.Value,
-                out var humanoidComponent)
-                ? Loc.GetString(_prototypes.Index(humanoidComponent.Species).Name)
-                : Loc.GetString("health-analyzer-window-entity-unknown-species-text");
+            SpeciesLabel.Text =
+                _entityManager.TryGetComponent<HumanoidProfileComponent>(target.Value,
+                    out var humanoidComponent)
+                    ? Loc.GetString(_prototypes.Index(humanoidComponent.Species).Name)
+                    : Loc.GetString("health-analyzer-window-entity-unknown-species-text");
+
+            StatusLabel.Text =
+                _entityManager.TryGetComponent<MobStateComponent>(target.Value, out var mobStateComponent)
+                    ? GetStatus(mobStateComponent.CurrentState)
+                    : Loc.GetString("health-analyzer-window-entity-unknown-text");
+        }
+        else
+        {
+            SpriteView.Visible = false;
+            NoDataTex.Visible = true;
+            NameLabel.SetMessage(Loc.GetString("health-analyzer-window-entity-unknown-text"));
+            SpeciesLabel.Text = Loc.GetString("health-analyzer-window-entity-unknown-species-text");
+            StatusLabel.Text = Loc.GetString("health-analyzer-window-entity-unknown-text");
+        }
 
         // Basic Diagnostic
 
@@ -106,14 +132,40 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             ? $"{state.ThirstLevel * 100:F1} %"
             : Loc.GetString("health-analyzer-window-entity-unknown-value-text");
 
-        StatusLabel.Text =
-            _entityManager.TryGetComponent<MobStateComponent>(target.Value, out var mobStateComponent)
-                ? GetStatus(mobStateComponent.CurrentState)
-                : Loc.GetString("health-analyzer-window-entity-unknown-text");
+        // start-backmen: analyzer-authoritative-damage
+        if (state.Damage is { } serverDamage)
+        {
+            DamageLabel.Text = serverDamage.Total.ToString();
 
-        // Total Damage
+            var damageSortedGroups =
+                serverDamage.Groups.OrderByDescending(damage => damage.Value)
+                    .ToDictionary(x => x.Key, x => FixedPoint2.New(x.Value));
 
-        DamageLabel.Text = _damageable.GetTotalDamage(target.Value).ToString();
+            var damageSortedTypes =
+                serverDamage.Types.ToDictionary(x => x.Key, x => FixedPoint2.New(x.Value));
+
+            DrawDiagnosticGroups(damageSortedGroups, damageSortedTypes);
+        }
+        else if (hasLocalEntity
+                 && _entityManager.TryGetComponent<DamageableComponent>(target!.Value, out _))
+        {
+            DamageLabel.Text = _damageable.GetTotalDamage(target.Value).ToString();
+
+            var damageSortedGroups =
+                _damageable.GetDamagePerGroup(target.Value)
+                    .OrderByDescending(damage => damage.Value)
+                    .ToDictionary(x => x.Key, x => x.Value);
+
+            var damagePerType = _damageable.GetAllDamage(target.Value).DamageDict;
+
+            DrawDiagnosticGroups(damageSortedGroups, damagePerType);
+        }
+        else
+        {
+            DamageLabel.Text = "0";
+            GroupsContainer.RemoveAllChildren();
+        }
+        // end-backmen: analyzer-authoritative-damage
 
         // Alerts
 
@@ -159,18 +211,54 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
                 });
             }
         }
-
-        // Damage Groups
-
-        var damageSortedGroups =
-            _damageable.GetDamagePerGroup(target.Value)
-                .OrderByDescending(damage => damage.Value)
-                .ToDictionary(x => x.Key, x => x.Value);
-
-        var damagePerType = _damageable.GetAllDamage(target.Value).DamageDict;
-
-        DrawDiagnosticGroups(damageSortedGroups, damagePerType);
     }
+
+    // start-backmen: analyzer-authoritative-damage
+    private void DrawDiagnosticGroups(
+        Dictionary<string, FixedPoint2> groups,
+        IReadOnlyDictionary<string, FixedPoint2> damageDict)
+    {
+        GroupsContainer.RemoveAllChildren();
+
+        foreach (var (damageGroupId, damageAmount) in groups)
+        {
+            if (damageAmount == 0)
+                continue;
+
+            var groupTitleText = $"{Loc.GetString(
+                "health-analyzer-window-damage-group-text",
+                ("damageGroup", _prototypes.Index<DamageGroupPrototype>(damageGroupId).LocalizedName),
+                ("amount", damageAmount)
+            )}";
+
+            var groupContainer = new BoxContainer
+            {
+                Align = AlignMode.Begin,
+                Orientation = LayoutOrientation.Vertical,
+            };
+
+            groupContainer.AddChild(CreateDiagnosticGroupTitle(groupTitleText, damageGroupId));
+
+            GroupsContainer.AddChild(groupContainer);
+
+            var group = _prototypes.Index<DamageGroupPrototype>(damageGroupId);
+
+            foreach (var type in group.DamageTypes)
+            {
+                if (!damageDict.TryGetValue(type, out var typeAmount) || typeAmount <= 0)
+                    continue;
+
+                var damageString = Loc.GetString(
+                    "health-analyzer-window-damage-type-text",
+                    ("damageType", _prototypes.Index<DamageTypePrototype>(type).LocalizedName),
+                    ("amount", typeAmount)
+                );
+
+                groupContainer.AddChild(CreateDiagnosticItemLabel(damageString.Insert(0, " · ")));
+            }
+        }
+    }
+    // end-backmen: analyzer-authoritative-damage
 
     private static string GetStatus(MobState mobState)
     {

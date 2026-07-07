@@ -116,38 +116,48 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
                     if (damagePair.Value == 0)
                         continue;
 
-                    var damageGroup = (from @group in Proto.EnumeratePrototypes<DamageGroupPrototype>()
-                        where @group.DamageTypes.Contains(damagePair.Key)
-                        select @group).FirstOrDefault();
-
                     if (damagePair.Value < 0)
                     {
-                        if (!Wound.TryGetWoundableWithMostDamage(
-                                uid,
-                                out var mostDamaged,
-                                damageGroup?.ID))
+                        if (damagePair.Key == AsphyxiationDamageType)
                         {
                             actuallyInducedDamage.DamageDict[damagePair.Key] =
                                 TryApplyAsphyxiationChange(consciousness, damagePair);
                             continue;
                         }
 
-                        var damage = new DamageSpecifier();
-                        damage.DamageDict.Add(damagePair.Key, damagePair.Value);
+                        // start-backmen: chemical-heal-all-parts
+                        var bodyParts = GetBodyPartsWithChemicallyHealableDamage(uid, damagePair.Key);
 
-                        var beforePart = new BeforeDamageChangedEvent(damage, args.Origin);
-                        RaiseLocalEvent(mostDamaged.Value, ref beforePart);
-
-                        if (beforePart.Cancelled)
+                        actuallyInducedDamage.DamageDict[damagePair.Key] = 0;
+                        if (bodyParts.Count == 0)
+                        {
+                            actuallyInducedDamage.DamageDict[damagePair.Key] =
+                                TryApplyAsphyxiationChange(consciousness, damagePair);
                             continue;
+                        }
 
-                        var woundHealed =
-                            Wound.GetWoundsChanged(mostDamaged.Value, args.Origin, damage, component: mostDamaged.Value)
-                                .DamageDict.GetValueOrDefault(damagePair.Key);
+                        var healPerPart = new DamageSpecifier();
+                        healPerPart.DamageDict.Add(damagePair.Key, damagePair.Value / bodyParts.Count);
 
-                        actuallyInducedDamage.DamageDict[damagePair.Key] = woundHealed != 0
-                            ? woundHealed
-                            : TryApplyAsphyxiationChange(consciousness, damagePair);
+                        foreach (var bodyPartId in bodyParts)
+                        {
+                            var beforePart = new BeforeDamageChangedEvent(healPerPart, args.Origin);
+                            RaiseLocalEvent(bodyPartId, ref beforePart);
+
+                            if (beforePart.Cancelled)
+                                continue;
+
+                            actuallyInducedDamage.DamageDict[damagePair.Key] +=
+                                Wound.GetWoundsChanged(bodyPartId, args.Origin, healPerPart)
+                                    .DamageDict.GetValueOrDefault(damagePair.Key);
+                        }
+
+                        if (actuallyInducedDamage.DamageDict[damagePair.Key] == 0)
+                        {
+                            actuallyInducedDamage.DamageDict[damagePair.Key] =
+                                TryApplyAsphyxiationChange(consciousness, damagePair);
+                        }
+                        // end-backmen: chemical-heal-all-parts
                     }
                     else
                     {
@@ -547,7 +557,7 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
         foreach (var wound in Wound.GetBodyWounds(body, bodyComp))
         {
-            if (!Wound.CanHealWound(wound))
+            if (!Wound.CanChemicallyHealWound(wound)) // backmen: chemical-healing
                 continue;
 
             var severity = wound.Comp.WoundSeverityPoint;
@@ -574,6 +584,37 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
 
         return damage;
     }
+
+    // start-backmen: chemical-heal-all-parts
+    /// <summary>
+    /// Body parts that have a chemically healable wound of the given damage type.
+    /// </summary>
+    private List<EntityUid> GetBodyPartsWithChemicallyHealableDamage(
+        EntityUid body,
+        ProtoId<DamageTypePrototype> damageType)
+    {
+        var parts = new List<EntityUid>();
+
+        if (!TryComp<BodyComponent>(body, out var bodyComp))
+            return parts;
+
+        foreach (var part in Body.GetWoundableTargets(body, bodyComp))
+        {
+            if (!Wound.TryGetWoundOfDamageType(part, damageType, out var wound))
+                continue;
+
+            if (!Wound.CanChemicallyHealWound(wound.Value))
+                continue;
+
+            if (wound.Value.Comp.WoundSeverityPoint <= FixedPoint2.Zero)
+                continue;
+
+            parts.Add(part);
+        }
+
+        return parts;
+    }
+    // end-backmen: chemical-heal-all-parts
 
     private void OnHandleUnhandledDamage(Entity<ConsciousnessComponent> consciousness, ref HandleUnhandledWoundsEvent args)
     {

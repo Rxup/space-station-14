@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Backmen.Body;
+using Content.Server.Backmen.Surgery.Pain.Systems; // backmen: phantom-pain-fix
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -34,6 +35,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
     private readonly EntProtoId BluntWoundId = "Blunt";
 
     [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private ServerPainSystem _pain = default!; // backmen: phantom-pain-fix
 
     protected override FixedPoint2 GetMaxWoundSeverity() => FixedPoint2.New(_maxWoundSeverity);
 
@@ -872,6 +874,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
         GetWoundsChanged(woundableEnt, woundableEnt, damageSpec, false, woundable);
 
         Containers.Remove(woundEntity, woundable.Wounds!, false, true);
+        _pain.RefreshWoundablePain(woundableEnt, woundable); // backmen: phantom-pain-fix
         return true;
     }
 

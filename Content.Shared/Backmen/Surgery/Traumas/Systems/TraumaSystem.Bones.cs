@@ -13,6 +13,28 @@ namespace Content.Shared.Backmen.Surgery.Traumas.Systems;
 
 public partial class TraumaSystem
 {
+    private const string BoneDamagePainId = "BoneDamage";
+
+    // start-backmen: bone-damage-pain-cleanup
+    /// <summary>
+    /// Removes traumatic bone pain tied to a woundable once the bone is healthy again.
+    /// </summary>
+    protected void TryClearBoneDamagePain(EntityUid woundableUid)
+    {
+        if (!Body.TryGetWoundableBodyPartInfo(woundableUid, out var bodyUid, out _, out _))
+            return;
+
+        if (!Consciousness.TryGetNerveSystem(bodyUid, out var nerveSys))
+            return;
+
+        Pain.TryRemovePainModifier(
+            nerveSys.Value.Owner,
+            woundableUid,
+            BoneDamagePainId,
+            nerveSys.Value.Comp);
+    }
+    // end-backmen: bone-damage-pain-cleanup
+
     private void InitBones()
     {
         SubscribeLocalEvent<BoneComponent, BoneSeverityChangedEvent>(OnBoneSeverityChanged);
@@ -31,6 +53,10 @@ public partial class TraumaSystem
 
         switch (args.NewSeverity)
         {
+            case BoneSeverity.Normal:
+                TryClearBoneDamagePain(bone.Comp.BoneWoundable.Value); // backmen: bone-damage-pain-cleanup
+                break;
+
             case BoneSeverity.Damaged:
                 _audio.PlayPvs(bone.Comp.BoneBreakSound, bodyUid, AudioParams.Default.WithVolume(-8f));
                 break;
@@ -68,6 +94,8 @@ public partial class TraumaSystem
                     RemoveTrauma(trauma);
                 }
             }
+
+            TryClearBoneDamagePain(bone.Comp.BoneWoundable.Value); // backmen: bone-damage-pain-cleanup
         }
 
         switch (partType)

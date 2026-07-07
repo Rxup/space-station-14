@@ -1,4 +1,5 @@
 using Content.Server.Body.Systems;
+using Content.Shared.Backmen.Medical;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
@@ -7,7 +8,6 @@ using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
-using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -18,6 +18,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.Backmen.Tourniquet;
 
@@ -26,7 +27,6 @@ namespace Content.Server.Backmen.Tourniquet;
 /// </summary>
 public sealed partial class TourniquetSystem : EntitySystem
 {
-    [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private WoundSystem _wound = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
@@ -35,6 +35,7 @@ public sealed partial class TourniquetSystem : EntitySystem
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private PainSystem _pain = default!;
     [Dependency] private BloodstreamSystem _bloodstream = default!;
+    [Dependency] private BackmenMedicalTargetSystem _medicalTarget = default!;
 
     private const string TourniquetContainerId = "Tourniquet";
 
@@ -53,25 +54,30 @@ public sealed partial class TourniquetSystem : EntitySystem
 
     private bool TryTourniquet(EntityUid target, EntityUid user, EntityUid tourniquetEnt, TourniquetComponent tourniquet)
     {
-        if (!TryComp<TargetingComponent>(user, out var targeting))
+        if (!TryComp<TargetingComponent>(user, out _))
             return false;
 
         // To prevent people from tourniqueting simple mobs
         if (!HasComp<BodyComponent>(target) || !HasComp<ConsciousnessComponent>(target))
             return false;
 
-        var (partType, _) = _body.ConvertTargetBodyPart(targeting.Target);
-        if (tourniquet.BlockedBodyParts.Contains(partType))
+        // start-backmen: medical-targeting
+        if (!_medicalTarget.TryResolveTourniquetTarget(target, user, tourniquet.BlockedBodyParts, out var targetPart))
         {
-            _popup.PopupEntity(Loc.GetString("cant-put-tourniquet-here"), target, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("medical-item-no-healable-damage", ("target", target)), target, user, PopupType.MediumCaution);
             return false;
         }
 
-        _popup.PopupEntity(Loc.GetString("puts-on-a-tourniquet", ("user", user), ("target", target)), target, PopupType.Medium);
         _audio.PlayPvs(tourniquet.TourniquetPutOnSound, target, AudioParams.Default.WithVariation(0.125f).WithVolume(1f));
 
+        var doAfterEvent = new TourniquetDoAfterEvent
+        {
+            TargetWoundable = GetNetEntity(targetPart),
+        };
+
         var doAfterEventArgs =
-            new DoAfterArgs(EntityManager, user, tourniquet.Delay, new TourniquetDoAfterEvent(), target, target: target, used: tourniquetEnt)
+            new DoAfterArgs(EntityManager, user, tourniquet.Delay, doAfterEvent, target, target: target, used: tourniquetEnt)
+        // end-backmen: medical-targeting
             {
                 BreakOnDamage = true,
                 NeedHand = true,
@@ -85,7 +91,6 @@ public sealed partial class TourniquetSystem : EntitySystem
 
     private void TakeOffTourniquet(EntityUid target, EntityUid user, EntityUid tourniquetEnt, TourniquetComponent tourniquet)
     {
-        _popup.PopupEntity(Loc.GetString("takes-off-a-tourniquet", ("user", user), ("part", tourniquet.BodyPartTourniqueted!)), target, PopupType.Medium);
         _audio.PlayPvs(tourniquet.TourniquetPutOffSound, target, AudioParams.Default.WithVariation(0.125f).WithVolume(1f));
 
         var doAfterEventArgs =
@@ -126,31 +131,27 @@ public sealed partial class TourniquetSystem : EntitySystem
         if (!TryComp<TourniquetComponent>(args.Used, out var tourniquet))
             return;
 
-        if (!TryComp<TargetingComponent>(args.User, out var targeting))
-            return;
-
         var container = _container.EnsureContainer<ContainerSlot>(args.Target!.Value, TourniquetContainerId);
         if (container.ContainedEntity.HasValue)
         {
             _popup.PopupEntity(Loc.GetString("already-tourniqueted"), ent, PopupType.Medium);
+            args.Handled = true;
             return;
         }
 
-        var (partType, symmetry) = _body.ConvertTargetBodyPart(targeting.Target);
-
-        EntityUid? targetPart = null;
-        if (_body.TryGetWoundableTargetByType(ent, partType, symmetry, out var woundableTarget))
-            targetPart = woundableTarget;
-
-        if (targetPart == null)
+        // start-backmen: medical-targeting
+        if (!TryGetEntity(args.TargetWoundable, out var targetPart) || targetPart == null)
         {
             _popup.PopupEntity(Loc.GetString("does-not-exist-rebell"), ent, args.User, PopupType.MediumCaution);
+            args.Handled = true;
             return;
         }
+        // end-backmen: medical-targeting
 
         if (!_container.Insert(args.Used.Value, container))
         {
             _popup.PopupEntity(Loc.GetString("cant-tourniquet"), ent, PopupType.Medium);
+            args.Handled = true;
             return;
         }
 
@@ -164,6 +165,8 @@ public sealed partial class TourniquetSystem : EntitySystem
         }
 
         tourniquet.BodyPartTourniqueted = targetPart.Value;
+
+        _popup.PopupEntity(Loc.GetString("puts-on-a-tourniquet", ("user", args.User), ("target", ent)), ent, PopupType.Medium);
 
         args.Handled = true;
     }
@@ -219,6 +222,8 @@ public sealed partial class TourniquetSystem : EntitySystem
 
         _hands.TryPickupAnyHand(args.User, args.Used.Value);
         tourniquet.BodyPartTourniqueted = null;
+
+        _popup.PopupEntity(Loc.GetString("takes-off-a-tourniquet", ("user", args.User), ("part", tourniquetedBodyPart.Value)), ent, PopupType.Medium);
 
         args.Handled = true;
     }

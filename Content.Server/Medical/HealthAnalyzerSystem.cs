@@ -16,6 +16,7 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Backmen.Medical;
 using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.Backmen.Surgery.Wounds; // backmen: wounding
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
@@ -27,11 +28,19 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Backmen.Surgery.Wounds;
-using Content.Shared.Backmen.Surgery.Wounds.Systems;
+// start-backmen: analyzer-authoritative-damage
+using Content.Shared.Backmen.Surgery.Consciousness;
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
+using Content.Shared.FixedPoint;
+// end-backmen: analyzer-authoritative-damage
+using Content.Shared.Backmen.Surgery.Wounds.Systems; // backmen: wounding
 using Content.Server.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
+using System.Linq;
 
 namespace Content.Server.Medical;
 
@@ -54,6 +63,10 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     [Dependency] private ThirstSystem _thirstSystem = default!; // backmen: analyzer-satiation
 
     [Dependency] private EntityQuery<PainImmuneComponent> _painImmuneQuery = default!;
+    // start-backmen: analyzer-authoritative-damage
+    [Dependency] private EntityQuery<ConsciousnessComponent> _consciousnessQuery = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    // end-backmen: analyzer-authoritative-damage
 
     public override void Initialize()
     {
@@ -62,13 +75,36 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         SubscribeLocalEvent<HealthAnalyzerComponent, EntGotInsertedIntoContainerMessage>(OnInsertedIntoContainer);
         SubscribeLocalEvent<HealthAnalyzerComponent, ItemToggledEvent>(OnToggled);
         SubscribeLocalEvent<HealthAnalyzerComponent, DroppedEvent>(OnDropped);
-        // Start-backmen: surgery
+        SubscribeLocalEvent<DamageableComponent, DamageChangedEvent>(OnScannedPatientDamageChanged); // backmen: analyzer-live-update
+        // start-backmen: surgery
         Subs.BuiEvents<HealthAnalyzerComponent>(HealthAnalyzerUiKey.Key, subs =>
         {
             subs.Event<HealthAnalyzerPartMessage>(OnHealthAnalyzerPartSelected);
         });
-        // End-backmen: surgery
+        // end-backmen: surgery
     }
+
+    // start-backmen: analyzer-live-update
+    private void OnScannedPatientDamageChanged(Entity<DamageableComponent> ent, ref DamageChangedEvent args)
+    {
+        if (args.DamageDelta is not { } delta || delta.Empty)
+            return;
+
+        RefreshAnalyzersScanning(ent);
+    }
+
+    private void RefreshAnalyzersScanning(EntityUid patient)
+    {
+        var analyzerQuery = EntityQueryEnumerator<HealthAnalyzerComponent>();
+        while (analyzerQuery.MoveNext(out var analyzer, out var component))
+        {
+            if (component.ScannedEntity != patient)
+                continue;
+
+            UpdateScannedUser(analyzer, patient, true, component.CurrentBodyPart);
+        }
+    }
+    // end-backmen: analyzer-live-update
 
     public override void Update(float frameTime)
     {
@@ -335,6 +371,9 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         }
         // end-backmen: organ-damage-alerts
 
+        // start-backmen: analyzer-authoritative-damage
+        var damageDisplay = GetDamageDisplay(entity, part, painCauses);
+
         return new HealthAnalyzerUiState(
             GetNetEntity(entity),
             bodyTemperature,
@@ -351,8 +390,113 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             thirstLevel,
             hungerAlert,
             thirstAlert,
-            organAlerts);
+            organAlerts,
+            damageDisplay);
     }
+
+    private HealthAnalyzerDamageDisplay GetDamageDisplay(
+        EntityUid target,
+        EntityUid? part,
+        Dictionary<string, float>? painCauses)
+    {
+        var groups = new Dictionary<string, float>();
+        var types = new Dictionary<string, float>();
+
+        if (part != null && TryComp<WoundableComponent>(part, out var woundable))
+        {
+            foreach (var wound in _woundSystem.GetWoundableWounds(part.Value, woundable))
+            {
+                if (wound.Comp.IsScar || wound.Comp.DamageGroup == null)
+                    continue;
+
+                AddWoundDamage(groups, types, wound.Comp.DamageGroup.ID, wound.Comp.DamageType, wound.Comp.WoundSeverityPoint);
+            }
+        }
+        else if (TryComp<BodyComponent>(target, out var body) && _consciousnessQuery.HasComp(target))
+        {
+            foreach (var wound in _woundSystem.GetBodyWounds(target, body))
+            {
+                if (wound.Comp.IsScar || wound.Comp.DamageGroup == null)
+                    continue;
+
+                AddWoundDamage(groups, types, wound.Comp.DamageGroup.ID, wound.Comp.DamageType, wound.Comp.WoundSeverityPoint);
+            }
+
+            AddNonWoundDamageFromPainCauses(painCauses, groups, types);
+        }
+        else if (TryComp<DamageableComponent>(target, out var damageable))
+        {
+            var damageEnt = (target, damageable);
+            foreach (var (groupId, amount) in _damageable.GetDamagePerGroup(damageEnt))
+            {
+                if (amount <= FixedPoint2.Zero)
+                    continue;
+
+                groups[groupId] = (float) amount;
+            }
+
+            foreach (var (typeId, amount) in _damageable.GetAllDamage(damageEnt).DamageDict)
+            {
+                if (amount <= FixedPoint2.Zero)
+                    continue;
+
+                types[typeId] = (float) amount;
+            }
+        }
+
+        var total = groups.Values.Sum();
+        return new HealthAnalyzerDamageDisplay(total, groups, types);
+    }
+
+    private static void AddWoundDamage(
+        Dictionary<string, float> groups,
+        Dictionary<string, float> types,
+        string groupId,
+        string typeId,
+        FixedPoint2 severity)
+    {
+        if (severity <= FixedPoint2.Zero)
+            return;
+
+        var amount = (float) severity;
+
+        if (!groups.TryAdd(groupId, amount))
+            groups[groupId] += amount;
+
+        if (!types.TryAdd(typeId, amount))
+            types[typeId] += amount;
+    }
+
+    private static void AddNonWoundDamageFromPainCauses(
+        Dictionary<string, float>? painCauses,
+        Dictionary<string, float> damageGroups,
+        Dictionary<string, float> damageTypes)
+    {
+        if (painCauses == null)
+            return;
+
+        const string airlossGroup = "Airloss";
+
+        if (painCauses.TryGetValue(ConsciousnessModifierIds.Asphyxiation, out var asphyxiation)
+            && asphyxiation > 0)
+        {
+            if (!damageGroups.TryAdd(airlossGroup, asphyxiation))
+                damageGroups[airlossGroup] += asphyxiation;
+
+            if (!damageTypes.TryAdd(ConsciousnessModifierIds.Asphyxiation, asphyxiation))
+                damageTypes[ConsciousnessModifierIds.Asphyxiation] += asphyxiation;
+        }
+
+        if (painCauses.TryGetValue("Bloodloss", out var bloodloss) && bloodloss > 0)
+        {
+            if (!damageGroups.TryAdd(airlossGroup, bloodloss))
+                damageGroups[airlossGroup] += bloodloss;
+
+            if (!damageTypes.TryAdd("Bloodloss", bloodloss))
+                damageTypes["Bloodloss"] += bloodloss;
+        }
+    }
+    // end-backmen: analyzer-authoritative-damage
 
     /// <summary>
     /// Send an update for the target to the healthAnalyzer
