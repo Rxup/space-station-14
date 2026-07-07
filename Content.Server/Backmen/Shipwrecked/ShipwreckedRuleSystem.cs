@@ -1917,6 +1917,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
     private static readonly ProtoId<BiomeTemplatePrototype> CavesBiomeTemplate = "Caves";
     private static readonly ProtoId<TagPrototype> TagEngineeringAirlock = "EngineeringAirlock";
     private static readonly ProtoId<TagPrototype> TagSecureSafe = "SecureSafe";
+    private static readonly ProtoId<HumanoidProfilePrototype> HecateProfile = "Hecate";
 
     private void OnInitHecate(EntityUid uid, ShipwreckedNPCHecateComponent component, MapInitEvent args)
     {
@@ -1960,7 +1961,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
     private void ApplyHecateAppearance(EntityUid uid)
     {
-        var profile = _prototypeManager.Index<HumanoidProfilePrototype>("Hecate").Profile;
+        var profile = _prototypeManager.Index(HecateProfile).Profile;
         _visualBody.ApplyProfileTo(uid, profile);
     }
 
