@@ -16,6 +16,7 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Arrivals;
 using Content.Shared.DeviceLinking.Events;
+using Content.Shared.Wires;
 using Content.Shared.Gravity;
 using Content.Shared.Light.Components;
 using Content.Shared.Prying.Components;
@@ -51,7 +52,21 @@ public sealed partial class ArrivalsProtectSystem : SharedArrivalsProtectSystem
 
         SubscribeLocalEvent<BuildAttemptEvent>(OnBuildAttemptEvent);
         SubscribeLocalEvent<ArrivalsProtectComponent, LinkAttemptEvent>(OnLinkAttempt);
+
+        // start-backmen: arrivals-protect
+        SubscribeLocalEvent<ArrivalsProtectComponent, WiresActionAttemptEvent>(OnWiresActionAttempt);
+        // end-backmen: arrivals-protect
     }
+
+    // start-backmen: arrivals-protect
+    private void OnWiresActionAttempt(Entity<ArrivalsProtectComponent> ent, ref WiresActionAttemptEvent args)
+    {
+        if (args.Action == WiresAction.Mend)
+            return;
+
+        args.Cancelled = true;
+    }
+    // end-backmen: arrivals-protect
 
     private void OnGridMapInit(Entity<ArrivalsProtectGridComponent> ent, ref MapInitEvent args)
     {

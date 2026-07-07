@@ -14,6 +14,7 @@ using Content.Shared.Rejuvenate;
 using Content.Shared.Tools;
 using Content.Shared.Tools.Components;
 using Content.Shared.Wires;
+using Content.Shared.Backmen.Arrivals; // backmen: arrivals-protect
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -631,6 +632,13 @@ public sealed partial class WiresSystem : SharedWiresSystem
 
         if (wire == null)
             return;
+
+        // start-backmen: arrivals-protect
+        var attempt = new WiresActionAttemptEvent(user, action);
+        RaiseLocalEvent(target, ref attempt);
+        if (attempt.Cancelled)
+            return;
+        // end-backmen: arrivals-protect
 
         switch (action)
         {

@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Tools.Components;
+using Content.Shared.Wires;
 
 namespace Content.Shared.Backmen.Arrivals;
 
@@ -11,8 +12,20 @@ public abstract class SharedArrivalsProtectSystem : EntitySystem
 
         SubscribeLocalEvent<ToolUserAttemptUseEvent>(OnTryUse);
         SubscribeLocalEvent<ArrivalsProtectGridComponent, FlatPackUserAttemptUseEvent>(OnTryUnpack);
+
+        // start-backmen: arrivals-protect
+        SubscribeLocalEvent<ArrivalsProtectComponent, AttemptChangePanelEvent>(OnAttemptChangePanel);
+        // end-backmen: arrivals-protect
+
         ArrivalsProtectGridQuery = GetEntityQuery<ArrivalsProtectGridComponent>();
     }
+
+    // start-backmen: arrivals-protect
+    private void OnAttemptChangePanel(Entity<ArrivalsProtectComponent> ent, ref AttemptChangePanelEvent args)
+    {
+        args.Cancelled = true;
+    }
+    // end-backmen: arrivals-protect
 
     private void OnTryUnpack(Entity<ArrivalsProtectGridComponent> ent, ref FlatPackUserAttemptUseEvent args)
     {
