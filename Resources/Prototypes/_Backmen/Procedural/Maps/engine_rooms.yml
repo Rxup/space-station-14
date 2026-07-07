@@ -1,6 +1,6 @@
 - type: dungeonRoom
   id: SupermatterChamber1
-  size: 13, 9
+  size: 17, 11
   atlas: /Maps/Dungeon/Engine/supermatter_chamber.yml
   offset: 0, 0
   tags:
@@ -29,8 +29,8 @@
   components:
   - type: RoomFill
     rotation: false
-    minSize: 13, 9
-    maxSize: 13, 9
+    minSize: 17, 11
+    maxSize: 17, 11
     clearExisting: true
     roomWhitelist:
       tags:
