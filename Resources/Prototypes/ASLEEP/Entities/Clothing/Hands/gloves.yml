@@ -10,7 +10,7 @@
     sprite: ASLEEP/Clothing/Hands/Gloves/insulated_gloves.rsi
   - type: TemperatureProtection
     heatingCoefficient: 0.050
-    coolingCoefficient: 0.8
+    coolingCoefficient: 0.2
   - type: Butcherable
     butcheringType: Knife
     spawned:
