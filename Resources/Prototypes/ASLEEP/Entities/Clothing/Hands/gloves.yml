@@ -20,4 +20,4 @@
     fiberColor: fibers-blue
   - type: FingerprintMask
   - type: Insulated
-      coefficient: 0
+    coefficient: 0
