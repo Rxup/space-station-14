@@ -65,7 +65,7 @@ public sealed partial class BackmenMedicalTargetSystem : EntitySystem
                 return false;
 
             foreach (var amount in healDict.Values)
-                score += amount;
+                score += FixedPoint2.Abs(amount);
 
             if (healing.BloodlossModifier != 0)
                 score += bleeds;
