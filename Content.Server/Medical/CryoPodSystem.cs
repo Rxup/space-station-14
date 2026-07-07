@@ -58,7 +58,8 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
         var injecting = GetInjectingReagents(entity);
         var health = _healthAnalyzerSystem.GetHealthAnalyzerUiState(patient);
         health.ScanMode = true;
-        var hasDamage = patient is null ? false : _damageable.GetTotalDamage(patient.Value) > 0;
+        var hasDamage = health.Damage is { Total: > 0 }
+            || (patient is { } p && _damageable.GetTotalDamage(p) > 0); // backmen: wound-based damage
 
         UI.ServerSendUiMessage(
             entity.Owner,
