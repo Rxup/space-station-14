@@ -19,3 +19,5 @@
     fiberMaterial: fibers-insulative
     fiberColor: fibers-blue
   - type: FingerprintMask
+  - type: Insulated
+      coefficient: 0
