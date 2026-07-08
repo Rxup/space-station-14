@@ -181,6 +181,11 @@ public sealed class ShipwreckCorpseTest : GameTest
             Assert.That(Server.EntMan.TryGetComponent(corpse, out MobStateComponent? mobState), Is.True);
             Assert.That(mobState!.CurrentState, Is.EqualTo(MobState.Alive),
                 "Zombified surprise NPC should be alive.");
+            Assert.That(Server.EntMan.HasComponent<StunnedComponent>(corpse), Is.False,
+                "Zombified surprise NPC must not be stunned.");
+            Assert.That(Server.EntMan.TryGetComponent(corpse, out StandingStateComponent? standing), Is.True);
+            Assert.That(standing!.Standing, Is.True,
+                "Zombified surprise NPC must be standing.");
         });
     }
 

@@ -139,6 +139,7 @@ namespace Content.Server.NPC.Systems
 
             _status.TryRemoveStatusEffect(uid, SharedStunSystem.StunId);
             _stun.TryUnstun(uid);
+            RemComp<StunnedComponent>(uid);
 
             if (TryComp<KnockedDownComponent>(uid, out var knocked))
             {

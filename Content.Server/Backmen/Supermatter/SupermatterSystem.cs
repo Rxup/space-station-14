@@ -269,7 +269,7 @@ public sealed partial class SupermatterSystem : SharedSupermatterSystem
         //Rad Pulse Calculation
         _radiation.SetIntensity((uid, radcomponent), sMcomponent.Power *
                                  Math.Max(0, 1f + powerTransmissionBonus / 10f)
-                                 * 0.003f
+                                 * 0.015f
                                  * _config.GetCVar(CCVars.SupermatterRadsModifier));
 
         //Power * 0.55 * a value between 1 and 0.8
