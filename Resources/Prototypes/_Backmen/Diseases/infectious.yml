@@ -69,9 +69,6 @@
   cures:
   - !type:DiseaseBedrestCure
     maxLength: 100
-  - !type:DiseaseReagentCure
-    reagent:
-      ReagentId: Ultravasculine
 
 - type: disease
   id: BirdFlew
@@ -93,9 +90,6 @@
   cures:
   - !type:DiseaseBedrestCure
     maxLength: 120
-  - !type:DiseaseReagentCure
-    reagent:
-      ReagentId: Ultravasculine
 
 - type: disease
   id: VanAusdallsRobovirus
@@ -124,9 +118,13 @@
     stages:
     - 1
   cures:
+  - !type:DiseaseJustWaitCure
+    maxLength: 900
+    stages:
+    - 0
   - !type:DiseaseReagentCure
     reagent:
-      ReagentId: Ultravasculine
+      ReagentId: BeepskySmash
     stages:
     - 0
 
@@ -212,17 +210,11 @@
     - 2
   - !type:DiseaseReagentCure
     reagent:
-      ReagentId: Ultravasculine
+      ReagentId: BananaHonk
     stages:
     - 0
     - 1
     - 2
-  - !type:DiseaseReagentCure
-    reagent:
-      ReagentId: Ipecac
-    stages:
-    - 0
-    - 1
 
 - type: disease
   id: MemeticAmirmir
@@ -245,6 +237,7 @@
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Coffee
+    min: 10
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: IrishCoffee
@@ -303,6 +296,10 @@
       types:
         Poison: 2
   cures:
+  - !type:DiseaseBedrestCure
+    maxLength: 120
+  - !type:DiseaseJustWaitCure
+    maxLength: 240
   - !type:DiseaseReagentCure
     reagent:
       ReagentId: Ultravasculine
@@ -341,7 +338,8 @@
     min: 420 ## Reachable with a flamer
   - !type:DiseaseReagentCure
     reagent:
-      ReagentId: Ultravasculine
+      ReagentId: Theobromine
+    min: 10
 
 - type: disease
   id: TongueTwister
@@ -361,9 +359,6 @@
     maxLength: 30
   - !type:DiseaseJustWaitCure
     maxLength: 400
-  - !type:DiseaseReagentCure
-    reagent:
-      ReagentId: Ultravasculine
 
 - type: disease
   id: GreenFlu
@@ -436,7 +431,5 @@
     reagent:
       ReagentId: Ultravasculine
     stages:
-    - 0
-    - 1
     - 2
     - 3

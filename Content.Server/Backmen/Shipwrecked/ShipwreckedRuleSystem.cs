@@ -886,6 +886,8 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         //
 
         // Blow the thrusters.
+        CaptureOriginalPowerDemand(component);
+
         var query = EntityQueryEnumerator<ThrusterComponent, TransformComponent, MetaDataComponent>();
         while (query.MoveNext(out var uid, out var thruster, out var xform, out var metaDataComponent))
         {
@@ -1647,16 +1649,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         }
         EnsureMapUnpaused(component);
 
-        var loadQuery = EntityQueryEnumerator<ApcPowerReceiverComponent, TransformComponent>();
-        while (loadQuery.MoveNext(out _, out var apcPowerReceiver, out var xform))
-        {
-            if (xform.GridUid != component.Shuttle)
-                continue;
-
-            component.OriginalPowerDemand += apcPowerReceiver.Load;
-        }
-
-        Log.Info($"The original power demand for the shuttle is {component.OriginalPowerDemand} W");
+        CaptureOriginalPowerDemand(component);
 
         var shuttle = component.Shuttle!.Value;
 
@@ -2066,6 +2059,33 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
         return powerSupplier.MaxSupply;
     }
 
+    private void CaptureOriginalPowerDemand(ShipwreckedRuleComponent component)
+    {
+        if (component.Shuttle == null)
+            return;
+
+        var loadDemand = 0f;
+        var loadQuery = EntityQueryEnumerator<ApcPowerReceiverComponent, TransformComponent>();
+        while (loadQuery.MoveNext(out _, out var apcPowerReceiver, out var xform))
+        {
+            if (xform.GridUid != component.Shuttle)
+                continue;
+
+            loadDemand += apcPowerReceiver.Load;
+        }
+
+        var installedCapacity = GetShuttleInstalledGeneratorCapacity(component, out _);
+
+        // APC loads are often still zero when the gamemode starts; use rated generator output instead.
+        if (loadDemand > 0)
+            component.OriginalPowerDemand = loadDemand;
+        else if (installedCapacity > 0)
+            component.OriginalPowerDemand = installedCapacity;
+
+        Log.Info(
+            $"Shipwrecked shuttle power demand is {component.OriginalPowerDemand} W (apc loads: {loadDemand}, installed generators: {installedCapacity})");
+    }
+
     private float GetShuttleInstalledGeneratorCapacity(ShipwreckedRuleComponent component, out int installedCount)
     {
         installedCount = 0;
@@ -2107,6 +2127,9 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
     private bool GetLaunchConditionGenerator(ShipwreckedRuleComponent component)
     {
+        if (component.OriginalPowerDemand <= 0)
+            CaptureOriginalPowerDemand(component);
+
         return GetShuttleActiveGeneratorSupply(component, out _) >= component.OriginalPowerDemand;
     }
 
@@ -2144,6 +2167,9 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
     private NPCResponse CreateGeneratorStatusResponse(ShipwreckedRuleComponent rule)
     {
+        if (rule.OriginalPowerDemand <= 0)
+            CaptureOriginalPowerDemand(rule);
+
         var activeSupply = GetShuttleActiveGeneratorSupply(rule, out _);
         var installedCapacity = GetShuttleInstalledGeneratorCapacity(rule, out _);
         var statusKey = activeSupply >= rule.OriginalPowerDemand

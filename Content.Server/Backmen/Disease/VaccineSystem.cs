@@ -46,6 +46,7 @@ public sealed partial class VaccineSystem : EntitySystem
         SubscribeLocalEvent<DiseaseVaccineCreatorComponent, DiseaseMachineFinishedEvent>(OnVaccinatorFinished);
         SubscribeLocalEvent<DiseaseVaccineCreatorComponent, MaterialAmountChangedEvent>(OnVaccinatorAmountChanged);
         SubscribeLocalEvent<DiseaseVaccineCreatorComponent, ResearchRegistrationChangedEvent>(OnResearchRegistrationChanged);
+        SubscribeLocalEvent<DiseaseVaccineCreatorComponent, GetMaterialWhitelistEvent>(OnGetMaterialWhitelist);
 
         // vaccines, the item
         SubscribeLocalEvent<DiseaseVaccineComponent, AfterInteractEvent>(OnAfterInteract);
@@ -58,6 +59,15 @@ public sealed partial class VaccineSystem : EntitySystem
     private void OnResearchRegistrationChanged(EntityUid uid, DiseaseVaccineCreatorComponent component, ref ResearchRegistrationChangedEvent args)
     {
         component.DiseaseServer = TryComp<DiseaseServerComponent>(args.Server, out var diseaseServer) ? diseaseServer : null;
+    }
+
+    private void OnGetMaterialWhitelist(EntityUid uid, DiseaseVaccineCreatorComponent component, ref GetMaterialWhitelistEvent args)
+    {
+        if (args.Storage != uid)
+            return;
+
+        if (!args.Whitelist.Contains("Biomass"))
+            args.Whitelist.Add("Biomass");
     }
 
     /// <summary>
