@@ -166,6 +166,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
     [Dependency] private DoorSystem _door = default!;
     [Dependency] private ISerializationManager _serialization = default!;
     [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private NPCZombieSystem _npcZombieSystem = default!;
 
 
     public override void Initialize()
@@ -1310,6 +1311,10 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
         var crashSound = new SoundPathSpecifier("/Audio/Nyanotrasen/Effects/crash_impact_metal.ogg");
         _audioSystem.PlayPvs(crashSound, component.Shuttle.Value);
+
+        // start-backmen: shipwreck-crash-unstun
+        _npcZombieSystem.ClearStunOnMap(component.PlanetMapId);
+        // end-backmen: shipwreck-crash-unstun
     }
 
     private void DispatchShuttleAnnouncement(string message, ShipwreckedRuleComponent component)
@@ -1583,17 +1588,9 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
 
     private void CloseAllRuleJobs(ShipwreckedRuleComponent component)
     {
-        if (component.ShuttleStation == null)
-        {
-            return;
-        }
-
-        foreach (var componentAvailableJobPrototype in component.AvailableJobPrototypes)
-        {
-            _stationJobsSystem.TrySetJobSlot(component.ShuttleStation.Value, componentAvailableJobPrototype.Id, 0, true);
-        }
-
+        // start-backmen: shipwreck-late-join
         _autoPacified = false;
+        // end-backmen: shipwreck-late-join
     }
 
     protected override void Added(EntityUid uid, ShipwreckedRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)

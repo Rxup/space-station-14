@@ -78,3 +78,4 @@ markings-layer-LFoot = Левая стопа
 markings-layer-Overlay = Наложение
 markings-layer-TailOverlay = Наложение
 markings-reorder = Изменить порядок
+markings-limits = Достигнут лимит разметок для этого слоя.

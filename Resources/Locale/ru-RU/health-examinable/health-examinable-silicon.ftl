@@ -1,2 +1,15 @@
 health-examinable-silicon-none = Видимые повреждения корпуса отсутствуют.
 health-examinable-silicon-Blunt-75 = [color=crimson]{ CAPITALIZE(POSS-ADJ($target)) } оболочка почти разваливается![/color]
+
+health-examinable-silicon-Blunt-15 = [color=red]На корпусе { POSS-ADJ($target) } видны небольшие вмятины.[/color]
+health-examinable-silicon-Blunt-50 = [color=crimson]Корпус { POSS-ADJ($target) } сильно помят![/color]
+health-examinable-silicon-Blunt-100 = [color=crimson]Корпус { POSS-ADJ($target) } почти полностью смят![/color]
+health-examinable-silicon-Slash-8 = [color=red]На корпусе { POSS-ADJ($target) } видны мелкие царапины.[/color]
+health-examinable-silicon-Slash-30 = [color=red]На корпусе { POSS-ADJ($target) } заметные царапины.[/color]
+health-examinable-silicon-Slash-75 = [color=crimson]На обшивке { POSS-ADJ($target) } глубокие порезы![/color]
+health-examinable-silicon-Slash-100 = [color=crimson]Корпус { POSS-ADJ($target) } изодран![/color]
+health-examinable-silicon-Piercing-50 = [color=crimson]В корпусе { POSS-ADJ($target) } множество больших отверстий![/color]
+health-examinable-silicon-Heat-15 = [color=orange]На корпусе { POSS-ADJ($target) } поверхностные ожоги.[/color]
+health-examinable-silicon-Heat-50 = [color=orange]Корпус { POSS-ADJ($target) } сильно обуглен.[/color]
+health-examinable-silicon-Heat-75 = [color=orange]Корпус { POSS-ADJ($target) } частично расплавлен![/color]
+health-examinable-silicon-Shock-50 = [color=lightgoldenrodyellow]Схемы { POSS-ADJ($target) } частично перегорели![/color]

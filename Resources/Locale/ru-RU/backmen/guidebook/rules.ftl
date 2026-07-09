@@ -1,0 +1,10 @@
+backmen-rules-header-1 = Правила сервера
+backmen-rules-header-2 = Вводные слова
+backmen-rules-header-3 = Правила чата
+backmen-rules-header-4 = Об игровом процессе
+backmen-rules-header-5 = О командовании, отделах и ролях со сложностью «выше среднего»
+backmen-rules-header-6 = Об отделах и спецкомандах, отсутствующих в начале раунда
+backmen-rules-header-7 = О Синдикате
+backmen-rules-header-8 = О ролях из белого списка
+backmen-rules-header-9 = Об AHelp
+backmen-rules-header-10 = Об администрации

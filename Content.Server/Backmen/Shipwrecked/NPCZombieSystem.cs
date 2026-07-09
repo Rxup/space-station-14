@@ -25,6 +25,7 @@ using Content.Shared.Trigger;
 using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Zombies;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
@@ -178,10 +179,40 @@ public sealed partial class NPCZombieSystem : EntitySystem
     }
 
     /// <summary>
+    /// Clears stun from mobs on the planet map after the crash.
+    /// Zombies are also forced upright; posed surprise corpses only lose stun.
+    /// </summary>
+    public void ClearStunOnMap(MapId? mapId)
+    {
+        if (mapId == null || mapId == MapId.Nullspace)
+            return;
+
+        RunClearStunOnMap(mapId.Value);
+        Timer.Spawn(TimeSpan.Zero, () => RunClearStunOnMap(mapId.Value));
+    }
+
+    private void RunClearStunOnMap(MapId mapId)
+    {
+        var query = AllEntityQuery<MobStateComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out _, out var xform))
+        {
+            if (xform.MapID != mapId)
+                continue;
+
+            ClearEntityStun(uid);
+        }
+    }
+
+    private void ClearMobStunAndStand(EntityUid uid)
+    {
+        ClearEntityStun(uid, forceStand: true);
+    }
+
+    /// <summary>
     /// Corpses and sleep/knockdown can leave a bare <see cref="StunnedComponent"/> without visuals.
     /// Status-effect removal is deferred, so we also clear again on the next tick.
     /// </summary>
-    private void ClearMobStunAndStand(EntityUid uid)
+    private void ClearEntityStun(EntityUid uid, bool? forceStand = null)
     {
         if (TerminatingOrDeleted(uid))
             return;
@@ -199,6 +230,10 @@ public sealed partial class NPCZombieSystem : EntitySystem
 
         _stun.TryUnstun(uid);
         RemComp<StunnedComponent>(uid);
+
+        var shouldStand = forceStand ?? _zombieQuery.HasComp(uid);
+        if (!shouldStand)
+            return;
 
         if (!TryComp<StandingStateComponent>(uid, out var standing) || !_stateSystem.IsDown((uid, standing)))
             return;

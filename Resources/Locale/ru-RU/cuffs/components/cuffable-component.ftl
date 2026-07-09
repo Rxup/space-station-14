@@ -11,3 +11,6 @@ cuffable-component-remove-cuffs-by-other-success-message = { $otherName } сни
 cuffable-component-remove-cuffs-fail-message = Вам не удалось снять наручники.
 # UncuffVerb
 uncuff-verb-get-data-text = Освободить
+cuffable-component-remove-cuffs-partial-success-message = Вы частично ослабили наручники на {POSS-ADJ($target)} запястьях.
+cuffable-component-remove-cuffs-by-other-partial-success-message = {CAPITALIZE(SUBJECT($user))} частично ослабляет наручники на ваших запястьях.
+cuffable-component-remove-cuffs-to-other-partial-success-message = Вы частично ослабили наручники на {POSS-ADJ($target)} запястьях.

@@ -1,0 +1,17 @@
+corvax-law-header = Корпоративный закон
+corvax-law-oprs = СРС
+corvax-law-punishments = Наказания
+corvax-law-modificators = Модификаторы
+corvax-law-misc = Разное
+corvax-law-crimes = Статьи
+corvax-law-chapter-11 = Раздел 1, Глава 1
+corvax-law-chapter-12 = Раздел 1, Глава 2
+corvax-law-chapter-13 = Раздел 1, Глава 3
+corvax-law-chapter-14 = Раздел 1, Глава 4
+corvax-law-chapter-21 = Раздел 2, Глава 1
+corvax-law-chapter-22 = Раздел 2, Глава 2
+corvax-law-chapter-31 = Раздел 3, Глава 1
+corvax-law-chapter-32 = Раздел 3, Глава 2
+corvax-law-chapter-41 = Раздел 4, Глава 1
+corvax-law-chapter-42 = Раздел 4, Глава 2
+corvax-law-chapter-43 = Раздел 4, Глава 3

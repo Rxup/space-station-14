@@ -21,10 +21,10 @@ public sealed partial class ListeningSystem : EntitySystem
 
     private void OnSpeak(EntitySpokeEvent ev)
     {
-        PingListeners(ev.Source, ev.Message, ev.ObfuscatedMessage, ev.Language);
+        PingListeners(ev.Source, ev.Message, ev.OriginalMessage, ev.ObfuscatedMessage, ev.Language); // backmen: npc-listen-accentless
     }
 
-    public void PingListeners(EntityUid source, string message, string? obfuscatedMessage, LanguagePrototype? language = null)
+    public void PingListeners(EntityUid source, string message, string originalMessage, string? obfuscatedMessage, LanguagePrototype? language = null) // backmen: npc-listen-accentless
     {
         // TODO whispering / audio volume? Microphone sensitivity?
         // for now, whispering just arbitrarily reduces the listener's max range.
@@ -33,16 +33,18 @@ public sealed partial class ListeningSystem : EntitySystem
         var sourcePos = _xforms.GetWorldPosition(sourceXform);
 
         var attemptEv = new ListenAttemptEvent(source);
+        // start-backmen: npc-listen-accentless
         var ev = new ListenEvent(
             message,
             source,
-            language // backmen: language
-            );
+            language, // backmen: language
+            originalMessage);
         var obfuscatedEv = obfuscatedMessage == null ? null
             : new ListenEvent(obfuscatedMessage,
                 source,
-                language // backmen: language
-            );
+                language, // backmen: language
+                originalMessage);
+        // end-backmen: npc-listen-accentless
         var query = EntityQueryEnumerator<ActiveListenerComponent, TransformComponent>();
 
         while(query.MoveNext(out var listenerUid, out var listener, out var xform))

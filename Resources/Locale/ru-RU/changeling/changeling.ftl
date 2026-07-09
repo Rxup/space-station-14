@@ -35,3 +35,6 @@ changeling-biodegrade-used-popup-self = Мы извергаем кислоту �
 
 # stings
 
+changeling-paused-map-name = Карта на паузе
+changeling-sting-success = Жало успешно введено.
+changeling-transform-attempt-others = {CAPITALIZE(SUBJECT($user))} начинает менять облик!

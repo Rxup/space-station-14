@@ -605,7 +605,7 @@ public sealed partial class NPCConversationSystem : EntitySystem
             // Ignore someone speaking to us if we're already paying attention to someone else.
             return;
 
-        var words = ParseMessageIntoWords(args.Message);
+        var words = ParseMessageIntoWords(args.OriginalMessage);
         if (words.Count == 0)
             return;
 
@@ -618,7 +618,7 @@ public sealed partial class NPCConversationSystem : EntitySystem
                 // We were waiting on this person to say something, and they've said something.
                 ev.Handled = false;
                 ev.Speaker = uid.Comp.AttendingTo;
-                ev.Message = args.Message;
+                ev.Message = args.OriginalMessage;
                 ev.Words = words;
                 RaiseLocalEvent(uid, (object) ev);
 
@@ -635,13 +635,13 @@ public sealed partial class NPCConversationSystem : EntitySystem
                 // A response was found so go ahead with it.
                 QueueResponse(uid.AsNullable(), response);
             }
-            else if(JudgeQuestionLikelihood(uid, words, args.Message))
+            else if(JudgeQuestionLikelihood(uid, words, args.OriginalMessage))
             {
                 // The message didn't match any of the prompts, but it seemed like a question.
                 // Try GPT if enabled, otherwise use unknown response
                 if (uid.Comp.UseGpt && _gptEnabled)
                 {
-                    _ = TryGptResponse(uid, args.Message, args.Source);
+                    _ = TryGptResponse(uid, args.OriginalMessage, args.Source);
                 }
                 else
                 {
@@ -652,7 +652,7 @@ public sealed partial class NPCConversationSystem : EntitySystem
             else if (uid.Comp.UseGpt && _gptEnabled)
             {
                 // If GPT is enabled and no response found, try GPT anyway
-                _ = TryGptResponse(uid, args.Message, args.Source);
+                _ = TryGptResponse(uid, args.OriginalMessage, args.Source);
             }
 
             // If the message didn't seem like a question,
@@ -688,14 +688,14 @@ public sealed partial class NPCConversationSystem : EntitySystem
 
             if (!FindResponse(uid, words, out var response))
             {
-                if(JudgeQuestionLikelihood(uid, words, args.Message) &&
+                if(JudgeQuestionLikelihood(uid, words, args.OriginalMessage) &&
                     // This subcondition exists to block our name being interpreted as a question in its own right.
                     words.Count > 1)
                 {
                     // Try GPT if enabled, otherwise use unknown response
                     if (uid.Comp.UseGpt && _gptEnabled)
                     {
-                        _ = TryGptResponse(uid, args.Message, args.Source);
+                        _ = TryGptResponse(uid, args.OriginalMessage, args.Source);
                         return; // GPT will handle the response
                     }
                     response = _random.Pick(uid.Comp.ConversationTree.Unknown);

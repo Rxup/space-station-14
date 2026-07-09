@@ -14,3 +14,30 @@ examinable-solution-has-recognizable-chemicals = Вам удаётся расп�
 examinable-solution-recognized-first = [color={ $color }]{ $chemical }[/color]
 examinable-solution-recognized-next = , [color={ $color }]{ $chemical }[/color]
 examinable-solution-recognized-last = и [color={ $color }]{ $chemical }[/color]
+
+shared-solution-container-component-on-examine-main-text = Содержит {INDEFINITE($desc)} [color={$color}]{$desc}[/color] { $chemCount ->
+    [1] химикат.
+   *[other] смесь химикатов.
+    }
+
+examinable-solution-recognized = [color={$color}]{$chemical}[/color]
+
+examinable-solution-on-examine-volume = Содержимое { $fillLevel ->
+    [exact] [color=white]{$current}/{$max}u[/color].
+   *[other] [bold]{ -solution-vague-fill-level(fillLevel: $fillLevel) }[/bold].
+}
+
+examinable-solution-on-examine-volume-no-max = Содержимое { $fillLevel ->
+    [exact] [color=white]{$current}u[/color].
+   *[other] [bold]{ -solution-vague-fill-level(fillLevel: $fillLevel) }[/bold].
+}
+
+examinable-solution-on-examine-volume-puddle = Лужа { $fillLevel ->
+    [exact] [color=white]{$current}u[/color].
+    [full] огромная и переполненная!
+    [mostlyfull] огромная и переполненная!
+    [halffull] глубокая и растекающаяся.
+    [halfempty] очень глубокая.
+   *[mostlyempty] собирается в лужицы.
+    [empty] распадается на мелкие лужицы.
+}

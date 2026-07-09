@@ -32,3 +32,14 @@ gun-revolver-spun = Барабан вращается
 examine-gun-spread-modifier-reduction = Разброс снижен на [color=yellow]{$percentage}%[/color].
 examine-gun-spread-modifier-increase = Разброс повышен на [color=yellow]{$percentage}%[/color].
 gun-speedloader-empty = Спидлоадер пуст
+gun-battery-examine = Заряда хватает на [color={$color}]{$count}[/color] выстрелов.
+gun-chamber-bolt-ammo = Оружие не взведено
+gun-chamber-bolt = Затвор [color={$color}]{$bolt}[/color].
+gun-chamber-bolt-closed = Затвор закрыт
+gun-chamber-bolt-opened = Затвор открыт
+gun-chamber-bolt-close = Закрыть затвор
+gun-chamber-bolt-open = Открыть затвор
+gun-chamber-bolt-closed-state = открыт
+gun-chamber-bolt-open-state = закрыт
+gun-chamber-rack = Взвести
+gun-magazine-examine = Осталось выстрелов: [color={$color}]{$count}[/color].
