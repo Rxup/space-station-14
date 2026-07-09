@@ -34,6 +34,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedEyeSystem _eye = default!;
     [Dependency] private SharedVisibilitySystem _visibility = default!;
     [Dependency] private WeldableSystem _weldable = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
@@ -51,7 +52,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         _xformQuery = GetEntityQuery<TransformComponent>();
         _weldableQuery = GetEntityQuery<WeldableComponent>();
 
-        SubscribeLocalEvent<VentCrawlingComponent, GetVerbsEvent<InteractionVerb>>(OnGetExitVerbs);
+        SubscribeLocalEvent<VentCrawlingComponent, GetVerbsEvent<InnateVerb>>(OnGetInnateExitVerbs);
         SubscribeLocalEvent<VentCrawlingComponent, MoveInputEvent>(OnMoveInput);
         SubscribeLocalEvent<VentCrawlingComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
         SubscribeLocalEvent<VentCrawlingComponent, GetVisMaskEvent>(OnGetVisMask);
@@ -69,26 +70,38 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
-        if (!TryComp(args.User, out VentCrawlerComponent? crawler))
-            return;
-
         if (HasComp<VentCrawlingComponent>(args.User))
+        {
+            if (GetVentOnTile(args.User) == uid)
+            {
+                var user = args.User;
+                args.Verbs.Add(new InteractionVerb
+                {
+                    Text = Loc.GetString("vent-crawler-verb-exit"),
+                    Act = () => TryExitVent(user),
+                });
+            }
+
+            return;
+        }
+
+        if (!TryComp(args.User, out VentCrawlerComponent? crawler))
             return;
 
         if (!CanEnterVent(args.User, uid, crawler, out _))
             return;
 
-        var user = args.User;
+        var enterUser = args.User;
         var vent = uid;
 
         args.Verbs.Add(new InteractionVerb
         {
             Text = Loc.GetString("vent-crawler-verb-enter"),
-            Act = () => TryEnterVent(user, vent),
+            Act = () => TryEnterVent(enterUser, vent),
         });
     }
 
-    private void OnGetExitVerbs(EntityUid uid, VentCrawlingComponent component, GetVerbsEvent<InteractionVerb> args)
+    private void OnGetInnateExitVerbs(EntityUid uid, VentCrawlingComponent component, GetVerbsEvent<InnateVerb> args)
     {
         if (args.User != uid || !args.CanInteract)
             return;
@@ -96,7 +109,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         if (!IsOnVentTile(uid))
             return;
 
-        args.Verbs.Add(new InteractionVerb
+        args.Verbs.Add(new InnateVerb
         {
             Text = Loc.GetString("vent-crawler-verb-exit"),
             Act = () => TryExitVent(uid),
@@ -137,6 +150,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
     private void OnCrawlingStartup(EntityUid uid, VentCrawlingComponent component, ComponentStartup args)
     {
         ApplySubfloorVisibility(uid);
+        _eye.RefreshVisibilityMask(uid);
         _movementSpeed.RefreshMovementSpeedModifiers(uid);
 
         if (TryComp(uid, out PhysicsComponent? physics))
@@ -151,6 +165,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
             return;
 
         RestoreVisibility(uid);
+        _eye.RefreshVisibilityMask(uid);
         _movementSpeed.RefreshMovementSpeedModifiers(uid);
 
         if (TryComp(uid, out PhysicsComponent? physics))
