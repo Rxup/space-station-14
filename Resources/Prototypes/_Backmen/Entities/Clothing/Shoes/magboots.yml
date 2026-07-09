@@ -61,3 +61,32 @@
         enum.ToggleableVisuals.Layer:
           True: {state: icon-on}
           False: {state: icon}
+
+- type: entity
+  parent: ClothingShoesBootsMagBase
+  id: ClothingShoesBootsMagAtmos
+  name: Atmos magboots #Перчатки за авторством Asleep
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Shoes/Boots/magboots_atmos.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Shoes/Boots/magboots_atmos.rsi
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 1
+  - type: Item
+    size: Huge
+  - type: Charger
+    slotId: charger_slot
+    portable: true
+    chargeRate: 10
+  - type: ContainerContainer
+    containers:
+      charger_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: false
+        whitelist:
+          components:
+          - PowerCell
