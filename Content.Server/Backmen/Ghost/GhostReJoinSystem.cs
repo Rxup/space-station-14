@@ -110,11 +110,11 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
         {
             return;
         }
-        var timeOffset = _gameTiming.RealTime - ent.Comp.TimeOfDeath;
+        var timeOffset = GetTimeSinceDeath(_gameTiming, GetDeathTime(ui.Player.UserId, ent.Comp.TimeOfDeath));
         if (timeOffset < _ghostRespawnTime)
         {
             SendChatMsg(ui.Player,
-                Loc.GetString("ghost-respawn-time-left", ("time", FormatRespawnTimeRemaining(timeOffset)))
+                Loc.GetString("ghost-respawn-time-left", ("time", FormatRespawnTimeRemaining(GetRespawnTimeRemaining(_ghostRespawnTime, timeOffset))))
             );
             return;
         }
@@ -154,11 +154,11 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
         {
             return;
         }
-        var timeOffset = _gameTiming.RealTime - ent.Comp.TimeOfDeath;
+        var timeOffset = GetTimeSinceDeath(_gameTiming, GetDeathTime(ui.Player.UserId, ent.Comp.TimeOfDeath));
         if (timeOffset < _ghostRespawnTime)
         {
             SendChatMsg(ui.Player,
-                Loc.GetString("ghost-respawn-time-left", ("time", FormatRespawnTimeRemaining(timeOffset)))
+                Loc.GetString("ghost-respawn-time-left", ("time", FormatRespawnTimeRemaining(GetRespawnTimeRemaining(_ghostRespawnTime, timeOffset))))
             );
             return;
         }
@@ -286,20 +286,10 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
         }
 
         var userId = shell.Player.UserId;
+        var deathTime = GetDeathTime(userId, ghostComponent.TimeOfDeath);
+        SyncGhostDeathTime(ghost, ghostComponent, deathTime);
 
-        if (!_deathTime.TryGetValue(userId, out var deathTime))
-        {
-            _deathTime[userId] = ghostComponent.TimeOfDeath;
-            deathTime = ghostComponent.TimeOfDeath;
-        }
-
-        if (deathTime != ghostComponent.TimeOfDeath)
-        {
-            _ghostSystem.SetTimeOfDeath(ghost, deathTime, ghostComponent);
-            Dirty(ghost, ghostComponent);
-        }
-
-        var timeOffset = _gameTiming.RealTime - deathTime;
+        var timeOffset = GetTimeSinceDeath(_gameTiming, deathTime);
 
         if (timeOffset >= _ghostRespawnTime)
         {
@@ -316,17 +306,26 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
         }
 
         SendChatMsg(shell.Player,
-            Loc.GetString("ghost-respawn-time-left", ("time", FormatRespawnTimeRemaining(timeOffset)))
+            Loc.GetString("ghost-respawn-time-left", ("time", FormatRespawnTimeRemaining(GetRespawnTimeRemaining(_ghostRespawnTime, timeOffset))))
         );
     }
 
-    private string FormatRespawnTimeRemaining(TimeSpan timeSinceDeath)
+    private TimeSpan GetDeathTime(NetUserId userId, TimeSpan ghostTimeOfDeath)
     {
-        var remaining = _ghostRespawnTime - timeSinceDeath;
-        if (remaining < TimeSpan.Zero)
-            remaining = TimeSpan.Zero;
+        if (_deathTime.TryGetValue(userId, out var deathTime))
+            return deathTime;
 
-        return remaining.ToString(@"mm\:ss");
+        _deathTime[userId] = ghostTimeOfDeath;
+        return ghostTimeOfDeath;
+    }
+
+    private void SyncGhostDeathTime(EntityUid ghost, GhostComponent ghostComponent, TimeSpan deathTime)
+    {
+        if (ghostComponent.TimeOfDeath == deathTime)
+            return;
+
+        _ghostSystem.SetTimeOfDeath(ghost, deathTime, ghostComponent);
+        Dirty(ghost, ghostComponent);
     }
 
     private int _ghostRespawnMaxPlayers;
@@ -364,8 +363,7 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
 
         if (TryComp<GhostComponent>(ghost, out var ghostComponent))
         {
-            _ghostSystem.SetTimeOfDeath(ghost, _deathTime[mindSession.UserId], ghostComponent);
-            Dirty(ghost, ghostComponent);
+            SyncGhostDeathTime(ghost, ghostComponent, _deathTime[mindSession.UserId]);
         }
     }
 }

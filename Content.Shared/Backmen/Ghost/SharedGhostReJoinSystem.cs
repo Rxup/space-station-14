@@ -21,5 +21,21 @@ public abstract partial class SharedGhostReJoinSystem : EntitySystem
             true);
     }
 
-    protected TimeSpan _ghostRespawnTime = new(0, 30, 0);
+    protected TimeSpan _ghostRespawnTime = TimeSpan.FromMinutes(15);
+
+    protected static TimeSpan GetTimeSinceDeath(IGameTiming timing, TimeSpan timeOfDeath)
+    {
+        return timing.RealTime - timeOfDeath;
+    }
+
+    protected static TimeSpan GetRespawnTimeRemaining(TimeSpan respawnTime, TimeSpan timeSinceDeath)
+    {
+        var remaining = respawnTime - timeSinceDeath;
+        return remaining < TimeSpan.Zero ? TimeSpan.Zero : remaining;
+    }
+
+    protected static string FormatRespawnTimeRemaining(TimeSpan remaining)
+    {
+        return $"{(int) remaining.TotalMinutes:00}:{remaining.Seconds:00}";
+    }
 }

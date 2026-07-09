@@ -40,7 +40,7 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
         if(ui == null)
             return;
 
-        var timeOffset = _gameTiming.RealTime - ghostComponent.TimeOfDeath;
+        var timeOffset = GetTimeSinceDeath(_gameTiming, ghostComponent.TimeOfDeath);
         if (timeOffset >= _ghostRespawnTime)
         {
             if (ui.ReturnToRound.Disabled)
@@ -53,9 +53,7 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
         }
 
         ui.ReturnToRound.Disabled = true;
-        var remaining = _ghostRespawnTime - timeOffset;
-        if (remaining < TimeSpan.Zero)
-            remaining = TimeSpan.Zero;
-        ui.ReturnToRound.Text = Loc.GetString("ghost-gui-return-to-round-button") + " " + remaining.ToString(@"mm\:ss");
+        ui.ReturnToRound.Text = Loc.GetString("ghost-gui-return-to-round-button") + " " +
+                                 FormatRespawnTimeRemaining(GetRespawnTimeRemaining(_ghostRespawnTime, timeOffset));
     }
 }

@@ -55,7 +55,7 @@ public sealed partial class GhostComponent : Component
     /// but will give an accurate length of time <i>since</i> death.
     /// </remarks>
     [AutoNetworkedField] // backmen: ReturnToLobby
-    [ViewVariables(VVAccess.ReadWrite), DataField, AutoPausedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public TimeSpan TimeOfDeath = TimeSpan.Zero;
 
     /// <summary>

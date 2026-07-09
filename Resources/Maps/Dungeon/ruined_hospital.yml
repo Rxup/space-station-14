@@ -4217,7 +4217,7 @@ entities:
     - type: Transform
       pos: 17.68426,3.4232135
       parent: 1
-- proto: filingCabinetDrawer
+- proto: filingCabinetDrawerShipwreckFilled
   entities:
   - uid: 434
     components:
@@ -5329,26 +5329,18 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 12.5,21.5
       parent: 1
-- proto: VendingMachineWallMedical
+- proto: VendingMachineWallMedicalShipwreck
   entities:
   - uid: 433
     components:
     - type: Transform
       pos: 20.5,15.5
       parent: 1
-    - type: Fixtures
-      fixtures: {}
-    missingComponents:
-    - AccessReader
   - uid: 586
     components:
     - type: Transform
       pos: 12.5,8.5
       parent: 1
-    - type: Fixtures
-      fixtures: {}
-    missingComponents:
-    - AccessReader
 - proto: WallDrywall
   entities:
   - uid: 7

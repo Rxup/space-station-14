@@ -2368,7 +2368,7 @@ entities:
     - type: Transform
       pos: 7.5,20.5
       parent: 1
-- proto: WashingMachineBroken
+- proto: WashingMachineShipwreckFilled
   entities:
   - uid: 144
     components:
@@ -2385,8 +2385,6 @@ entities:
     - type: Transform
       pos: 13.5,4.5
       parent: 1
-- proto: WashingMachineFilledClothes
-  entities:
   - uid: 145
     components:
     - type: Transform

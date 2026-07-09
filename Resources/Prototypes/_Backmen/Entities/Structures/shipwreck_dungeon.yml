@@ -1,0 +1,29 @@
+# Loot containers and vendors for shipwreck procedural dungeons.
+
+- type: entity
+  parent: VendingMachineWallMedical
+  id: VendingMachineWallMedicalShipwreck
+  suffix: Shipwreck
+  components:
+  - type: AccessReader
+    access: []
+
+- type: entity
+  parent: filingCabinetDrawer
+  id: filingCabinetDrawerShipwreckFilled
+  suffix: Shipwreck, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: ShipwreckDrawerFill
+
+- type: entity
+  parent: WashingMachine
+  id: WashingMachineShipwreckFilled
+  suffix: Shipwreck, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: ShipwreckWashingMachineFill
