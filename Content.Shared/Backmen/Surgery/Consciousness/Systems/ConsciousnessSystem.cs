@@ -171,12 +171,10 @@ public abstract partial class ConsciousnessSystem : EntitySystem
 
             if (target.Comp1.PassedOut)
                 newMobState = MobState.Critical;
-
-            if (target.Comp1.Consciousness <= 0)
-                newMobState = MobState.Dead;
         }
 
-        if (target.Comp1.ForceDead)
+        // Lethal outcomes override pain crit and forced consciousness (e.g. pain shock adrenaline).
+        if (target.Comp1.ForceDead || target.Comp1.Consciousness <= 0)
             newMobState = MobState.Dead;
 
         MobStateSys.ChangeMobState(target, newMobState, target);

@@ -35,9 +35,12 @@ using Content.Server.Backmen.NPC.HTN;
 using Content.Server.Backmen.NPC.Queries.Considerations;
 using Content.Server.Backmen.NPC.Queries.Queries;
 using Content.Server.Backmen.Vampiric;
+using Content.Shared.Backmen.Flesh;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Humanoid;
 using Content.Shared.Temperature.Components;
+using Content.Shared.Zombies;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 
@@ -413,6 +416,18 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             {
                 if (EntityManager.System<CocoonerSystem>().IsCocoonableVictim(targetUid))
                     return 0f;
+
+                return 1f;
+            }
+            case TargetIsPounceableCon:
+            {
+                if (HasComp<FleshCultistComponent>(targetUid)
+                    || HasComp<ZombieComponent>(targetUid)
+                    || !HasComp<HumanoidProfileComponent>(targetUid)
+                    || !_mobState.IsAlive(targetUid))
+                {
+                    return 0f;
+                }
 
                 return 1f;
             }

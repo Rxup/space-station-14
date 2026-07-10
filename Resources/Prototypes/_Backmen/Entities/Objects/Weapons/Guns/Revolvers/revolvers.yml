@@ -3,7 +3,7 @@
   parent: BaseWeaponRevolver
   id: WeaponRevolverMatebaNew
   suffix: Револьвер
-  description: The iconic sidearm of the dreaded death squads. Uses .45 magnum ammo.
+  description: The iconic sidearm of the dreaded death squads. Uses .44 magnum ammo. # backmen: weapon-balance
   components:
   - type: Sprite
     sprite: Backmen/Objects/Weapons/Gunsx64/Revolver/mateba/big.rsi
@@ -24,7 +24,7 @@
         - SpeedLoader44Magnum
     proto: CartridgeRevolver44Magnum
   - type: Gun
-    fireRate: 3
+    fireRate: 2.5 # backmen: weapon-balance
     cameraRecoilScalar: 3
     soundGunshot:
       path: /Audio/Weapons/Guns64/Revolvers/mateba.ogg

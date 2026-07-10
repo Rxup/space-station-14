@@ -1,8 +1,10 @@
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
+using Content.Server.Backmen.Surgery.Consciousness.Systems;
 using Content.Server.Backmen.Surgery.Pain.Systems;
 using Content.Server.Backmen.Standing;
 using Content.Shared.Backmen.CCVar;
+using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.Backmen.Standing;
@@ -171,6 +173,39 @@ public sealed class PainCritTest : GameTest
             Assert.That(standing.Standing, Is.False);
             Assert.That(standing.CurrentState, Is.EqualTo(StandingState.Lying),
                 "Pain crit should cancel stand-up and keep the mob lying down.");
+        });
+    }
+
+    [Test]
+    public async Task PainCrit_CanDieWhileForceConscious()
+    {
+        var map = await Pair.CreateTestMap();
+        var painSys = Server.EntMan.System<ServerPainSystem>();
+        var consciousnessSys = Server.EntMan.System<ServerConsciousnessSystem>();
+        EntityUid human = default;
+
+        await Server.WaitPost(() =>
+        {
+            human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            Assert.That(Server.EntMan.TryGetComponent(human, out ConsciousnessComponent? consciousness), Is.True);
+
+            painSys.ForcePainCrit(consciousness!.NerveSystem!.Value, TimeSpan.FromSeconds(30));
+            consciousnessSys.ForceConscious((human, consciousness), TimeSpan.FromSeconds(30));
+            consciousnessSys.AddConsciousnessModifier(
+                (human, consciousness),
+                human,
+                -consciousness.Cap,
+                "PainCritDeathTest",
+                ConsciousnessModType.Pain);
+        });
+
+        await Pair.RunTicksSync(5);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(Server.EntMan.TryGetComponent(human, out MobStateComponent? mobState), Is.True);
+            Assert.That(mobState!.CurrentState, Is.EqualTo(MobState.Dead),
+                "Lethal consciousness loss must kill even during pain crit with ForceConscious active.");
         });
     }
 }

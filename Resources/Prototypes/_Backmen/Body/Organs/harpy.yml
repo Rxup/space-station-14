@@ -1,5 +1,5 @@
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganHarpy
   abstract: true
   suffix: harpy

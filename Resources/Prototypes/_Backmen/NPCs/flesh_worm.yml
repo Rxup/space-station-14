@@ -1,3 +1,25 @@
+- type: utilityQuery
+  id: NearbyFleshWormMeleeTargets
+  query:
+    - !type:NearbyHostilesQuery
+  considerations:
+    - !type:TargetIsPounceableCon
+      curve: !type:BoolCurve
+    - !type:TargetIsAliveCon
+      curve: !type:BoolCurve
+    - !type:TargetIsVisibleCon
+      curve: !type:BoolCurve
+    - !type:TargetDistanceCon
+      curve: !type:PresetCurve
+        preset: TargetDistance
+    - !type:TargetHealthCon
+      curve: !type:PresetCurve
+        preset: TargetHealth
+    - !type:TargetAccessibleCon
+      curve: !type:BoolCurve
+    - !type:TargetInLOSOrCurrentCon
+      curve: !type:BoolCurve
+
 - type: htnCompound
   id: FleshWormCompound
   branches:
@@ -16,7 +38,7 @@
     - tasks:
         - !type:HTNPrimitiveTask
           operator: !type:UtilityOperator
-            proto: NearbyMeleeTargets
+            proto: NearbyFleshWormMeleeTargets
         - !type:HTNCompoundTask
           task: FleshWormBeforeMeleeAttackTargetCompound
 
@@ -103,7 +125,7 @@
           services:
             - !type:UtilityService
               id: MeleeService
-              proto: NearbyMeleeTargets
+              proto: NearbyFleshWormMeleeTargets
               key: Target
         - !type:HTNPrimitiveTask
           preconditions:

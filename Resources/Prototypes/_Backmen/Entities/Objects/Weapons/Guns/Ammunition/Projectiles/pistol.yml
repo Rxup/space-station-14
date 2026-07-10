@@ -235,9 +235,11 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 15
-        Slash: 20
-        ArmorPiercing: 20
+        # start-backmen: weapon-balance
+        Piercing: 12
+        Slash: 15
+        ArmorPiercing: 8
+        # end-backmen: weapon-balance
 
 - type: entity
   id: BulletRevolver38SpecialAP
@@ -273,6 +275,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 10
-        Slash: 20
-        ArmorPiercing: 40
+        # start-backmen: weapon-balance
+        Piercing: 8
+        Slash: 12
+        ArmorPiercing: 15
+        # end-backmen: weapon-balance

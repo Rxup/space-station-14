@@ -93,6 +93,8 @@
   - type: Edible
     edible: Drink
     solution: fountain
+    destroyOnEmpty: false
+    requireDead: false
   - type: DrawableSolution
     solution: fountain
   - type: DrainableSolution

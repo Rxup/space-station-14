@@ -96,6 +96,9 @@
   - type: NpcFactionMember
     factions:
       - Zombie
+  - type: NPCRetaliation
+    attackMemoryLength: 60
+  - type: FactionException
   - type: HTN
     rootTask:
       task: FleshWormCompound

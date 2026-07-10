@@ -154,7 +154,7 @@
     species: Shark
 
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganShark
   abstract: true
   suffix: shark

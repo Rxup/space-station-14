@@ -267,7 +267,7 @@
     species: ArachneClassic
 
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganArachneClassic
   abstract: true
   suffix: arachne

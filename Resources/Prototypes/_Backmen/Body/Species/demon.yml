@@ -160,7 +160,7 @@
     species: Demon
 
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganDemon
   abstract: true
   suffix: demon

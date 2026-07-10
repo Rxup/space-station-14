@@ -124,7 +124,7 @@
   description: A dummy human meant to be used in character setup.
 
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganHuman
   abstract: true
   suffix: human

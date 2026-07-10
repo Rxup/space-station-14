@@ -173,7 +173,7 @@
     species: HumanoidFoxes
 
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganHumanoidFox
   abstract: true
   suffix: humanoid fox

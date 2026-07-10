@@ -195,7 +195,7 @@
     species: Shadowkin
 
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganShadowkinPart
   abstract: true
   suffix: shadowkin

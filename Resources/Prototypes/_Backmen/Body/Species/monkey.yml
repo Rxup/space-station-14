@@ -139,7 +139,7 @@
     state: full
 
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganMonkey
   abstract: true
   suffix: monkey

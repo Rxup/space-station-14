@@ -151,7 +151,7 @@
     state: full
 
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganKobold
   abstract: true
   suffix: kobold
