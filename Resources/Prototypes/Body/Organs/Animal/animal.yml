@@ -54,13 +54,6 @@
   - type: SolutionManager
     solutions:
     - SolutionMouseStomach
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
   - type: Item
     size: Small
     heldPrefix: stomach

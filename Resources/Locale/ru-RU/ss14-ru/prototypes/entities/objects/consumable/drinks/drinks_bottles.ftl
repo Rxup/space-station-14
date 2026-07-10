@@ -99,10 +99,3 @@ ent-DrinkEnergyDrinkJug = кувшин Ред Булеан
     .desc = Кувшин Ред Булеан, с количеством кофеина, которого хватит на убийство целой станции.
 ent-CustomDrinkJug = кувшин для напитков
     .desc = Кувшин для хранения нестандартных напитков.
-
-ent-DrinkCreamCartonXL = молочные сливки XL
-    .desc = { ent-DrinkCreamCarton.desc }
-ent-DrinkJuiceLimeCartonXL = сок лайма XL
-    .desc = { ent-DrinkJuiceLimeCarton.desc }
-ent-DrinkJuiceOrangeCartonXL = апельсиновый сок XL
-    .desc = { ent-DrinkJuiceOrangeCarton.desc }

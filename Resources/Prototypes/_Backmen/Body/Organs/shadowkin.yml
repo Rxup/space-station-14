@@ -75,13 +75,6 @@
   - type: SolutionManager
     solutions:
     - SolutionStomachShadowkin
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
   - type: Metabolizer
     maxReagents: 3
     metabolizerTypes: [Shadowkin]
