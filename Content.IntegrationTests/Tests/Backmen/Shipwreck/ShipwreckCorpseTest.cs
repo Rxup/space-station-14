@@ -143,6 +143,41 @@ public sealed class ShipwreckCorpseTest : GameTest
     }
 
     [Test]
+    public async Task ZombieSurprise_DetectorNotDisabledByCorpseCollision()
+    {
+        var map = await Pair.CreateTestMap();
+        var randomHumanoid = Server.EntMan.System<RandomHumanoidSystem>();
+        EntityUid corpse = default;
+        EntityUid? detector = null;
+
+        await Server.WaitPost(() =>
+        {
+            corpse = randomHumanoid.SpawnRandomHumanoid("ZombieSurprise", map.GridCoords, "zombie surprise");
+        });
+
+        await Pair.RunTicksSync(10);
+
+        await Server.WaitAssertion(() =>
+        {
+            var query = Server.EntMan.AllEntityQueryEnumerator<ZombieWakeupOnTriggerComponent, TriggerOnProximityComponent>();
+            while (query.MoveNext(out var uid, out var wakeup, out var proximity))
+            {
+                if (wakeup.ToZombify != corpse)
+                    continue;
+
+                detector = uid;
+                Assert.That(proximity.Enabled, Is.True,
+                    "Surprise corpse collision must not permanently disable the proximity detector.");
+                break;
+            }
+
+            Assert.That(detector, Is.Not.Null);
+            Assert.That(Server.EntMan.HasComponent<ZombieComponent>(corpse), Is.False,
+                "Corpse self-collision must not zombify the surprise NPC.");
+        });
+    }
+
+    [Test]
     public async Task ZombieSurprise_ProximityTrigger_Zombifies()
     {
         var map = await Pair.CreateTestMap();

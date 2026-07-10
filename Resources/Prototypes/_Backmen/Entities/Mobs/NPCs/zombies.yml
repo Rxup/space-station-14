@@ -159,8 +159,8 @@
       enabled: true
       requiresAnchored: false
       repeating: false
-      # Zero allows motionless mobs to trigger; NPCZombieSystem ignores posed corpses and other zombies.
-      triggerSpeed: 0
+      # Posed corpses have zero velocity; players moving nearby will exceed this threshold.
+      triggerSpeed: 0.001
       shape:
         !type:PhysShapeCircle
         radius: 2.2

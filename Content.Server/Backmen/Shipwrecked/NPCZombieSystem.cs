@@ -66,7 +66,7 @@ public sealed partial class NPCZombieSystem : EntitySystem
         SubscribeLocalEvent<ZombieSurpriseComponent, MapInitEvent>(OnZombieSurpriseMapInit, after: new []{ typeof(RandomMetadataSystem), typeof(RandomHumanoidSystem) });
         SubscribeLocalEvent<ZombieWakeupOnTriggerComponent, TriggerEvent>(OnZombieWakeupTrigger);
         SubscribeLocalEvent<NpcZombieMakeEvent>(OnZombifyEntity);
-        // triggerSpeed: 0 treats motionless mobs as valid; NPCZombieSystem ignores posed corpses and other zombies.
+        // triggerSpeed on the detector excludes motionless posed corpses; other zombies are filtered via AttemptTrigger.
         SubscribeLocalEvent<ZombieWakeupOnTriggerComponent, AttemptTriggerEvent>(OnZombieWakeupAttemptTrigger);
     }
 

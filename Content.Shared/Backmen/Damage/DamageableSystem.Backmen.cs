@@ -25,8 +25,9 @@ public sealed partial class DamageableSystem
     }
 
     /// <summary>
-    /// Keeps <see cref="DamageableComponent"/> aligned with wound severity after direct wound healing
+    /// Corrects overstated <see cref="DamageableComponent"/> values after direct wound healing
     /// (medical items, surgery) that bypasses <see cref="ChangeDamage"/>.
+    /// Does not apply damage — that path is handled by consciousness / <see cref="ChangeDamage"/>.
     /// </summary>
     public void SyncDamageableFromBodyWounds(
         Entity<DamageableComponent> ent,
@@ -41,9 +42,10 @@ public sealed partial class DamageableSystem
         foreach (var (type, amount) in woundDamage.DamageDict)
         {
             ent.Comp.Damage.DamageDict.TryGetValue(type, out var current);
-            var diff = amount - current;
-            if (diff != FixedPoint2.Zero)
-                delta.DamageDict[type] = diff;
+            if (current <= amount)
+                continue;
+
+            delta.DamageDict[type] = amount - current;
         }
 
         foreach (var (type, current) in ent.Comp.Damage.DamageDict)
