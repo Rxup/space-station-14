@@ -4,4 +4,10 @@
   id: BkmVentCrawlerVentBase
   components:
   - type: BkmVentCrawlerVent
+
+- type: entity
+  abstract: true
+  id: BkmVentCrawlerPipeBase
+  components:
+  - type: BkmVentCrawlerPipe
 # end-backmen: vent-crawler

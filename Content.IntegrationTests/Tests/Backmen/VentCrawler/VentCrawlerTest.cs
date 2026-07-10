@@ -362,6 +362,39 @@ public sealed class VentCrawlerTest : GameTest
         });
     }
 
+    [Test]
+    public async Task UnanchoredPipeUnderCrawler_ForcesExit()
+    {
+        var pair = Pair;
+        var server = Server;
+        var (vent, pipe, ventCoords) = await SetupVentLine(pair);
+
+        EntityUid headcrab = default;
+
+        await server.WaitAssertion(() =>
+        {
+            var ventCrawler = server.EntMan.System<VentCrawlerSystem>();
+            headcrab = server.EntMan.SpawnEntity("VentCrawlerTestMob", ventCoords);
+            Assert.That(ventCrawler.TryEnterVent(headcrab, vent), Is.True);
+            Assert.That(ventCrawler.TryStep(headcrab, Direction.South), Is.True);
+        });
+
+        await pair.RunTicksSync(30);
+
+        await server.WaitAssertion(() =>
+        {
+            var xformSystem = server.EntMan.System<SharedTransformSystem>();
+            xformSystem.Unanchor(pipe, server.EntMan.GetComponent<TransformComponent>(pipe));
+        });
+
+        await pair.RunTicksSync(5);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.False);
+        });
+    }
+
     private static async Task<(EntityUid Vent, EntityUid Pipe, EntityCoordinates VentCoords)> SetupVentLine(
         TestPair pair,
         Vector2i? extraPipeTile = null,

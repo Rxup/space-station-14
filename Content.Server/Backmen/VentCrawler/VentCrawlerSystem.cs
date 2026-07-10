@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Server._White.Headcrab;
-using Content.Server.Atmos.Piping.Components;
 using Content.Server.Body.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
@@ -15,6 +14,8 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NodeContainer;
+using Content.Shared.Construction.Components;
+using Content.Shared.Destructible;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
@@ -69,7 +70,11 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         SubscribeLocalEvent<VentCrawlingComponent, ExhaleLocationEvent>(OnExhaleLocation);
         // end-backmen: vent-crawler-atmos
 
-        SubscribeLocalEvent<AtmosUnsafeUnanchorComponent, EntityTerminatingEvent>(OnPipeTerminating);
+        // start-backmen: vent-crawler-pipe
+        SubscribeLocalEvent<BkmVentCrawlerPipeComponent, EntityTerminatingEvent>(OnVentCrawlerPipeTerminating);
+        SubscribeLocalEvent<BkmVentCrawlerPipeComponent, UserUnanchoredEvent>(OnVentCrawlerPipeUnanchored);
+        SubscribeLocalEvent<BkmVentCrawlerPipeComponent, BreakageEventArgs>(OnVentCrawlerPipeBreak);
+        // end-backmen: vent-crawler-pipe
 
         // start-backmen: vent-crawler-vent
         SubscribeLocalEvent<BkmVentCrawlerVentComponent, GetVerbsEvent<InteractionVerb>>(OnVentGetVerbs);
@@ -413,20 +418,35 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         _audio.PlayPvs(sound, source);
     }
 
-    private void OnPipeTerminating(EntityUid uid, AtmosUnsafeUnanchorComponent component, EntityTerminatingEvent args)
+    // start-backmen: vent-crawler-pipe
+    private void OnVentCrawlerPipeTerminating(EntityUid uid, BkmVentCrawlerPipeComponent component, EntityTerminatingEvent args)
+    {
+        EjectCrawlersOnPipe(uid);
+    }
+
+    private void OnVentCrawlerPipeUnanchored(EntityUid uid, BkmVentCrawlerPipeComponent component, UserUnanchoredEvent args)
+    {
+        EjectCrawlersOnPipe(uid);
+    }
+
+    private void OnVentCrawlerPipeBreak(EntityUid uid, BkmVentCrawlerPipeComponent component, BreakageEventArgs args)
     {
         EjectCrawlersOnPipe(uid);
     }
 
     private void EjectCrawlersOnPipe(EntityUid pipe)
     {
+        if (!Exists(pipe))
+            return;
+
+        var pipeCoords = Transform(pipe).Coordinates;
         var query = EntityQueryEnumerator<VentCrawlingComponent>();
         while (query.MoveNext(out var user, out var crawling))
         {
             if (crawling.CurrentPipe != pipe)
                 continue;
 
-            ForceExitVent(user, pipeBroken: true);
+            ForceExitVent(user, pipeCoords, crawling, pipeBroken: true);
         }
     }
 
@@ -438,7 +458,13 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         if (MetaData(uid).EntityPrototype is { ID: var protoId } && protoId == GasPipeBrokenPrototype)
             return false;
 
-        return TryGetPipeNode(uid, out _);
+        if (!TryGetPipeNode(uid, out _))
+            return false;
+
+        if (!Transform(uid).Anchored)
+            return false;
+
+        return true;
     }
 
     public bool CanCrawlInDirection(EntityUid currentPipe, Direction direction)
