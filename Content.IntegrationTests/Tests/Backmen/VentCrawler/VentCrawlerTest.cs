@@ -316,9 +316,10 @@ public sealed class VentCrawlerTest : GameTest
             var nodeContainerSys = entMan.System<NodeContainerSystem>();
             Assert.That(nodeContainerSys.TryGetNode(nodeContainer, "pipe", out PipeNode? pipeNode), Is.True);
             pipeNode!.Air.Temperature = pipeTemperature;
+            pipeNode.Air.AdjustMoles(Gas.Oxygen, 50f);
         });
 
-        await pair.RunTicksSync(35);
+        await pair.RunTicksSync(90);
 
         await server.WaitAssertion(() =>
         {
