@@ -4,6 +4,7 @@ using Content.Server.NPC.HTN;
 // start-backmen: npc-wake-stand
 using Content.Shared.Backmen.Standing;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.SSDIndicator;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.StatusEffectNew;
@@ -37,6 +38,7 @@ namespace Content.Server.NPC.Systems
         [Dependency] private StandingStateSystem _standing = default!;
         [Dependency] private SharedLayingDownSystem _layingDown = default!;
         [Dependency] private StatusEffectsSystem _status = default!;
+        [Dependency] private SSDIndicatorSystem _ssdIndicator = default!;
         // end-backmen: npc-wake-stand
 
         /// <summary>
@@ -138,6 +140,8 @@ namespace Content.Server.NPC.Systems
                 RemComp<SleepingComponent>(uid);
 
             _status.TryRemoveStatusEffect(uid, SharedStunSystem.StunId);
+            _status.TryRemoveStatusEffect(uid, SSDIndicatorSystem.StatusEffectSSDSleeping);
+            _ssdIndicator.ClearSsdSleep(uid);
             _stun.TryUnstun(uid);
             RemComp<StunnedComponent>(uid);
 

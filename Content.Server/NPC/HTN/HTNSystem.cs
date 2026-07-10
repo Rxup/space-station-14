@@ -9,6 +9,7 @@ using Content.Server.NPC.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Mobs;
 using Content.Shared.NPC;
+using Content.Shared.SSDIndicator;
 using JetBrains.Annotations;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -35,7 +36,7 @@ public sealed partial class HTNSystem : EntitySystem
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, ComponentStartup>(_npc.OnNPCStartup);
         SubscribeLocalEvent<HTNComponent, PlayerAttachedEvent>(_npc.OnPlayerNPCAttach);
-        SubscribeLocalEvent<HTNComponent, PlayerDetachedEvent>(_npc.OnPlayerNPCDetach);
+        SubscribeLocalEvent<HTNComponent, PlayerDetachedEvent>(_npc.OnPlayerNPCDetach, after: [typeof(SSDIndicatorSystem)]);
         SubscribeLocalEvent<HTNComponent, ComponentShutdown>(OnHTNShutdown);
         SubscribeNetworkEvent<RequestHTNMessage>(OnHTNMessage);
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeLoad);

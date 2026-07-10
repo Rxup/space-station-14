@@ -18,6 +18,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.SSDIndicator;
 using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.StatusEffectNew;
@@ -51,6 +52,7 @@ public sealed partial class NPCZombieSystem : EntitySystem
     [Dependency] private StatusEffectsSystem _status = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private SharedLayingDownSystem _layingDown = default!;
+    [Dependency] private SSDIndicatorSystem _ssdIndicator = default!;
     [Dependency] private EntityQuery<ZombieSurpriseComponent> _zombieSurpriseQuery = default!;
     [Dependency] private EntityQuery<ZombieComponent> _zombieQuery = default!;
 
@@ -221,6 +223,8 @@ public sealed partial class NPCZombieSystem : EntitySystem
             RemComp<SleepingComponent>(uid);
 
         _status.TryRemoveStatusEffect(uid, SharedStunSystem.StunId);
+        _status.TryRemoveStatusEffect(uid, SSDIndicatorSystem.StatusEffectSSDSleeping);
+        _ssdIndicator.ClearSsdSleep(uid);
 
         if (TryComp<KnockedDownComponent>(uid, out var knocked))
         {

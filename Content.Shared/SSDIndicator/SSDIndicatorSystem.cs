@@ -1,4 +1,5 @@
 using Content.Shared.CCVar;
+using Content.Shared.NPC;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -33,16 +34,7 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
 
     private void OnPlayerAttached(EntityUid uid, SSDIndicatorComponent component, PlayerAttachedEvent args)
     {
-        component.IsSSD = false;
-
-        // Removes force sleep and resets the time to zero
-        if (_icSsdSleep)
-        {
-            component.FallAsleepTime = TimeSpan.Zero;
-            _statusEffects.TryRemoveStatusEffect(uid, StatusEffectSSDSleeping);
-        }
-
-        Dirty(uid, component);
+        ClearSsdSleep(uid, component);
     }
 
     private void OnPlayerDetached(EntityUid uid, SSDIndicatorComponent component, PlayerDetachedEvent args)
@@ -69,6 +61,23 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
         Dirty(uid, component);
     }
 
+    /// <summary>
+    /// Clears SSD sleep scheduling and removes the forced sleep status effect.
+    /// </summary>
+    public void ClearSsdSleep(EntityUid uid, SSDIndicatorComponent? component = null)
+    {
+        if (!Resolve(uid, ref component, false))
+            return;
+
+        component.IsSSD = false;
+        component.FallAsleepTime = TimeSpan.Zero;
+
+        if (_icSsdSleep)
+            _statusEffects.TryRemoveStatusEffect(uid, StatusEffectSSDSleeping);
+
+        Dirty(uid, component);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -83,6 +92,7 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
         {
             // Forces the entity to sleep when the time has come
             if (!ssd.IsSSD
+                || HasComp<ActiveNPCComponent>(uid)
                 || ssd.NextUpdate > curTime
                 || ssd.FallAsleepTime > curTime
                 || TerminatingOrDeleted(uid))
