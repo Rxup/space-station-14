@@ -1,3 +1,5 @@
+using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.CCVar;
 using Content.Shared.Damage.Components;
@@ -24,6 +26,8 @@ public sealed partial class DamageableSystem
         SubscribeLocalEvent<DamageableComponent, RejuvenateEvent>(OnRejuvenate);
         SubscribeLocalEvent<DamageableComponent, ComponentHandleState>(DamageableHandleState);
         SubscribeLocalEvent<DamageableComponent, ComponentGetState>(DamageableGetState);
+
+        SubscribeLocalEvent<ConsciousnessComponent, WoundableIntegrityChangedOnBodyEvent>(OnWoundableIntegrityChangedOnBody); // backmen: wound-damageable-sync
 
         // Damage modifier CVars are updated and stored here to be queried in other systems.
         // Note that certain modifiers requires reloading the guidebook.

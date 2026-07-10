@@ -904,6 +904,32 @@ public partial class WoundSystem
     }
 
     /// <summary>
+    /// Aggregates wound severity points on a body by damage type.
+    /// Used to keep <see cref="DamageableComponent"/> in sync with the wound model.
+    /// </summary>
+    public DamageSpecifier GetBodyWoundDamageSpecifier(
+        EntityUid body,
+        BodyComponent? comp = null)
+    {
+        var damage = new DamageSpecifier();
+
+        if (!Resolve(body, ref comp))
+            return damage;
+
+        foreach (var wound in GetBodyWounds(body, comp))
+        {
+            var severity = wound.Comp.WoundSeverityPoint;
+            if (severity <= FixedPoint2.Zero)
+                continue;
+
+            damage.DamageDict.TryGetValue(wound.Comp.DamageType, out var existing);
+            damage.DamageDict[wound.Comp.DamageType] = existing + severity;
+        }
+
+        return damage;
+    }
+
+    /// <summary>
     /// Gets all woundable children of a specified woundable
     /// </summary>
     /// <param name="targetEntity">Owner of the woundable</param>

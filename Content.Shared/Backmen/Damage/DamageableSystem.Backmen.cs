@@ -1,5 +1,6 @@
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
+using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body;
@@ -13,6 +14,53 @@ namespace Content.Shared.Damage.Systems;
 
 public sealed partial class DamageableSystem
 {
+    private void OnWoundableIntegrityChangedOnBody(
+        Entity<ConsciousnessComponent> ent,
+        ref WoundableIntegrityChangedOnBodyEvent args)
+    {
+        if (!_netMan.IsServer || !TryComp<DamageableComponent>(ent, out var damageable))
+            return;
+
+        SyncDamageableFromBodyWounds((ent, damageable), ent.Comp.DamageContainer);
+    }
+
+    /// <summary>
+    /// Keeps <see cref="DamageableComponent"/> aligned with wound severity after direct wound healing
+    /// (medical items, surgery) that bypasses <see cref="ChangeDamage"/>.
+    /// </summary>
+    public void SyncDamageableFromBodyWounds(
+        Entity<DamageableComponent> ent,
+        ProtoId<DamageContainerPrototype>? container)
+    {
+        if (!TryComp<ConsciousnessComponent>(ent, out _))
+            return;
+
+        var woundDamage = _wounds.GetBodyWoundDamageSpecifier(ent);
+        var delta = new DamageSpecifier();
+
+        foreach (var (type, amount) in woundDamage.DamageDict)
+        {
+            ent.Comp.Damage.DamageDict.TryGetValue(type, out var current);
+            var diff = amount - current;
+            if (diff != FixedPoint2.Zero)
+                delta.DamageDict[type] = diff;
+        }
+
+        foreach (var (type, current) in ent.Comp.Damage.DamageDict)
+        {
+            if (current <= FixedPoint2.Zero || woundDamage.DamageDict.ContainsKey(type))
+                continue;
+
+            if (!_backmenDamageModel.CanBeDamagedBy((ent.Owner, ent.Comp), type))
+                continue;
+
+            delta.DamageDict[type] = -current;
+        }
+
+        if (!delta.Empty)
+            ApplyDamageToDamageable(ent, delta, container, null, false);
+    }
+
     public void ApplyDamageToDamageable(
         Entity<DamageableComponent> ent,
         DamageSpecifier damage,
