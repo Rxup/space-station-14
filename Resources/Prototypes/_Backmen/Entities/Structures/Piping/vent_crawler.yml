@@ -1,0 +1,7 @@
+# start-backmen: vent-crawler
+- type: entity
+  abstract: true
+  id: BkmVentCrawlerVentBase
+  components:
+  - type: BkmVentCrawlerVent
+# end-backmen: vent-crawler

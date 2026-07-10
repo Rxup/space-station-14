@@ -1,5 +1,7 @@
 vent-crawler-verb-enter = Climb into vent
 vent-crawler-verb-exit = Climb out of vent
+vent-crawler-action-exit = Climb out of vent
+vent-crawler-action-exit-desc = Exit through a nearby air vent.
 vent-crawler-entered = You squeeze into the ventilation shaft.
 vent-crawler-exited = You climb out of the vent.
 vent-crawler-dead-end = The pipe ends here.

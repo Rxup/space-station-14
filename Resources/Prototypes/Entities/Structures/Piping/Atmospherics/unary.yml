@@ -21,7 +21,9 @@
     - type: CollideOnAnchor
 
 - type: entity
-  parent: [GasUnaryBase, AirSensorBase]
+  # start-backmen: vent-crawler
+  parent: [GasUnaryBase, AirSensorBase, BkmVentCrawlerVentBase]
+  # end-backmen: vent-crawler
   id: GasVentPump
   name: air vent
   description: Has a valve and a pump attached to it.
@@ -111,7 +113,9 @@
       - PassiveVent
 
 - type: entity
-  parent: [GasUnaryBase, AirSensorBase]
+  # start-backmen: vent-crawler
+  parent: [GasUnaryBase, AirSensorBase, BkmVentCrawlerVentBase]
+  # end-backmen: vent-crawler
   id: GasVentScrubber
   name: air scrubber
   description: Has a valve and pump attached to it.

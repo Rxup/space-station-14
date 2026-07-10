@@ -1,0 +1,14 @@
+- type: entity
+  id: ActionVentCrawlerExit
+  parent: BaseAction
+  name: vent-crawler-action-exit
+  description: vent-crawler-action-exit-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    priority: 1
+    icon:
+      sprite: Structures/Piping/Atmospherics/vent.rsi
+      state: vent_off
+  - type: InstantAction
+    event: !type:VentCrawlerExitActionEvent

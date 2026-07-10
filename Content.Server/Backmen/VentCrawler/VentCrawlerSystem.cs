@@ -1,13 +1,15 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Server._White.Headcrab;
 using Content.Server.Atmos.Piping.Components;
+using Content.Server.Body.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Popups;
-using Content.Server.StationEvents.Components;
 using Content.Shared.Backmen.Flesh;
 using Content.Shared.Atmos;
 using Content.Shared.Backmen.VentCrawler;
+using Content.Shared.Actions;
 using Content.Shared.Eye;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Events;
@@ -39,6 +41,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
     [Dependency] private WeldableSystem _weldable = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     private EntityQuery<NodeContainerComponent> _nodeQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -56,16 +59,25 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         SubscribeLocalEvent<VentCrawlingComponent, MoveInputEvent>(OnMoveInput);
         SubscribeLocalEvent<VentCrawlingComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
         SubscribeLocalEvent<VentCrawlingComponent, GetVisMaskEvent>(OnGetVisMask);
-        SubscribeLocalEvent<VentCrawlingComponent, GettingAttackedAttemptEvent>(OnAttacked);
         SubscribeLocalEvent<VentCrawlingComponent, ComponentStartup>(OnCrawlingStartup);
         SubscribeLocalEvent<VentCrawlingComponent, ComponentShutdown>(OnCrawlingShutdown);
+        SubscribeLocalEvent<VentCrawlingComponent, VentCrawlerExitActionEvent>(OnExitAction);
+
+        // start-backmen: vent-crawler-atmos
+        SubscribeLocalEvent<VentCrawlingComponent, AtmosExposedGetAirEvent>(OnGetAir);
+        SubscribeLocalEvent<VentCrawlingComponent, InhaleLocationEvent>(OnInhaleLocation);
+        SubscribeLocalEvent<VentCrawlingComponent, ExhaleLocationEvent>(OnExhaleLocation);
+        // end-backmen: vent-crawler-atmos
 
         SubscribeLocalEvent<AtmosUnsafeUnanchorComponent, EntityTerminatingEvent>(OnPipeTerminating);
 
-        SubscribeLocalEvent<VentCritterSpawnLocationComponent, GetVerbsEvent<InteractionVerb>>(OnVentGetVerbs);
+        // start-backmen: vent-crawler-vent
+        SubscribeLocalEvent<BkmVentCrawlerVentComponent, GetVerbsEvent<InteractionVerb>>(OnVentGetVerbs);
+        // end-backmen: vent-crawler-vent
     }
 
-    private void OnVentGetVerbs(EntityUid uid, VentCritterSpawnLocationComponent component, GetVerbsEvent<InteractionVerb> args)
+    // start-backmen: vent-crawler-vent
+    private void OnVentGetVerbs(EntityUid uid, BkmVentCrawlerVentComponent component, GetVerbsEvent<InteractionVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
@@ -100,6 +112,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
             Act = () => TryEnterVent(enterUser, vent),
         });
     }
+    // end-backmen: vent-crawler-vent
 
     private void OnGetInnateExitVerbs(EntityUid uid, VentCrawlingComponent component, GetVerbsEvent<InnateVerb> args)
     {
@@ -114,6 +127,15 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
             Text = Loc.GetString("vent-crawler-verb-exit"),
             Act = () => TryExitVent(uid),
         });
+    }
+
+    private void OnExitAction(EntityUid uid, VentCrawlingComponent component, VentCrawlerExitActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
+        TryExitVent(uid, component);
     }
 
     private void OnMoveInput(EntityUid uid, VentCrawlingComponent component, ref MoveInputEvent args)
@@ -142,10 +164,39 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         args.VisibilityMask |= (int) VisibilityFlags.Subfloor;
     }
 
-    private void OnAttacked(EntityUid uid, VentCrawlingComponent component, ref GettingAttackedAttemptEvent args)
+    // start-backmen: vent-crawler-atmos
+    private void OnGetAir(EntityUid uid, VentCrawlingComponent component, ref AtmosExposedGetAirEvent args)
     {
-        args.Cancelled = true;
+        if (args.Handled || !TryGetPipeAir(component.CurrentPipe, out var air))
+            return;
+
+        args.Gas = air;
+        args.Handled = true;
     }
+
+    private void OnInhaleLocation(EntityUid uid, VentCrawlingComponent component, InhaleLocationEvent args)
+    {
+        if (TryGetPipeAir(component.CurrentPipe, out var air))
+            args.Gas = air;
+    }
+
+    private void OnExhaleLocation(EntityUid uid, VentCrawlingComponent component, ExhaleLocationEvent args)
+    {
+        if (TryGetPipeAir(component.CurrentPipe, out var air))
+            args.Gas = air;
+    }
+
+    private bool TryGetPipeAir(EntityUid pipeUid, [NotNullWhen(true)] out GasMixture? air)
+    {
+        air = null;
+
+        if (!IsValidCrawlPipe(pipeUid) || !TryGetPipeNode(pipeUid, out var pipeNode) || pipeNode == null)
+            return false;
+
+        air = pipeNode.Air;
+        return true;
+    }
+    // end-backmen: vent-crawler-atmos
 
     private void OnCrawlingStartup(EntityUid uid, VentCrawlingComponent component, ComponentStartup args)
     {
@@ -157,6 +208,8 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         {
             _physics.SetCanCollide(uid, false, body: physics);
         }
+
+        UpdateExitAction(uid, component);
     }
 
     private void OnCrawlingShutdown(EntityUid uid, VentCrawlingComponent component, ComponentShutdown args)
@@ -213,7 +266,17 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
 
             if (!IsValidCrawlPipe(crawling.CurrentPipe))
                 ForceExitVent(uid, pipeBroken: true);
+
+            UpdateExitAction(uid, crawling);
         }
+    }
+
+    private void UpdateExitAction(EntityUid uid, VentCrawlingComponent crawling)
+    {
+        if (crawling.ExitActionEntity is not { } action)
+            return;
+
+        _actions.SetEnabled(action, IsOnVentTile(uid));
     }
 
     public bool TryEnterVent(EntityUid user, EntityUid vent, VentCrawlerComponent? crawler = null)
@@ -415,7 +478,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
             return false;
         }
 
-        if (!IsGasVent(vent))
+        if (!IsVentCrawlerVent(vent))
         {
             reason = Loc.GetString("vent-crawler-not-vent");
             return false;
@@ -462,7 +525,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
 
         foreach (var entity in _map.GetAnchoredEntities(gridUid, grid, indices))
         {
-            if (IsGasVent(entity))
+            if (IsVentCrawlerVent(entity))
                 return entity;
         }
 
@@ -508,7 +571,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
 
         foreach (var entity in _map.GetAnchoredEntities(gridUid, grid, targetPos))
         {
-            if (!IsGasVent(entity) || !IsValidCrawlPipe(entity))
+            if (!IsVentCrawlerVent(entity) || !IsValidCrawlPipe(entity))
                 continue;
 
             nextPipe = entity;

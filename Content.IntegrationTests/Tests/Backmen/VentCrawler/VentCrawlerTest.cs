@@ -1,9 +1,17 @@
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Pair;
 using Content.Server.Backmen.VentCrawler;
+using Content.Server.Atmos.Components;
+using Content.Server.Atmos.EntitySystems;
+using Content.Server.NodeContainer.EntitySystems;
+using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Backmen.VentCrawler;
+using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Interaction;
+using Content.Shared.NodeContainer;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Tools.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -216,6 +224,106 @@ public sealed class VentCrawlerTest : GameTest
             Assert.That(ventCrawler.TryStep(headcrab, Direction.West), Is.False);
             Assert.That(server.EntMan.HasComponent<VentCrawlingComponent>(headcrab), Is.True);
             Assert.That(server.EntMan.GetComponent<TransformComponent>(headcrab).Coordinates, Is.EqualTo(coordsBefore));
+        });
+    }
+
+    [Test]
+    public async Task VentCrawling_BlocksInteractionWithFloorItems()
+    {
+        var pair = Pair;
+        var server = Server;
+        var (vent, pipe, ventCoords) = await SetupVentLine(pair);
+
+        EntityUid headcrab = default;
+        EntityUid floorItem = default;
+
+        await server.WaitAssertion(() =>
+        {
+            var ventCrawler = server.EntMan.System<VentCrawlerSystem>();
+            var interaction = server.EntMan.System<SharedInteractionSystem>();
+            var entMan = server.EntMan;
+
+            headcrab = entMan.SpawnEntity("VentCrawlerTestMob", ventCoords);
+            Assert.That(ventCrawler.TryEnterVent(headcrab, vent), Is.True);
+
+            floorItem = entMan.SpawnEntity("Crowbar", ventCoords);
+
+            Assert.That(interaction.IsAccessible(headcrab, floorItem), Is.False);
+            Assert.That(interaction.InRangeAndAccessible(headcrab, floorItem), Is.False);
+            Assert.That(interaction.IsAccessible(headcrab, vent), Is.True);
+            Assert.That(interaction.IsAccessible(headcrab, pipe), Is.True);
+        });
+    }
+
+    [Test]
+    public async Task VentCrawling_ExposesEntityToPipeAtmosphere()
+    {
+        var pair = Pair;
+        var server = Server;
+        var (vent, _, ventCoords) = await SetupVentLine(pair);
+
+        const float pipeTemperature = 500f;
+        EntityUid headcrab = default;
+
+        await server.WaitAssertion(() =>
+        {
+            var ventCrawler = server.EntMan.System<VentCrawlerSystem>();
+            var entMan = server.EntMan;
+
+            headcrab = entMan.SpawnEntity("VentCrawlerTestMob", ventCoords);
+            Assert.That(ventCrawler.TryEnterVent(headcrab, vent), Is.True);
+
+            var crawling = entMan.GetComponent<VentCrawlingComponent>(headcrab);
+            var nodeContainer = entMan.GetComponent<NodeContainerComponent>(crawling.CurrentPipe);
+            var nodeContainerSys = entMan.System<NodeContainerSystem>();
+            Assert.That(nodeContainerSys.TryGetNode(nodeContainer, "pipe", out PipeNode? pipeNode), Is.True);
+
+            pipeNode!.Air.Temperature = pipeTemperature;
+
+            var atmosphere = entMan.System<AtmosphereSystem>();
+            var xform = entMan.GetComponent<TransformComponent>(headcrab);
+            var mixture = atmosphere.GetContainingMixture((headcrab, xform));
+
+            Assert.That(mixture, Is.Not.Null);
+            Assert.That(mixture!.Temperature, Is.EqualTo(pipeTemperature).Within(0.1f));
+        });
+    }
+
+    [Test]
+    public async Task VentCrawling_PipeTemperatureAffectsEntity()
+    {
+        var pair = Pair;
+        var server = Server;
+        var (vent, _, ventCoords) = await SetupVentLine(pair);
+
+        const float pipeTemperature = 500f;
+        EntityUid headcrab = default;
+
+        await server.WaitAssertion(() =>
+        {
+            var ventCrawler = server.EntMan.System<VentCrawlerSystem>();
+            var entMan = server.EntMan;
+
+            headcrab = entMan.SpawnEntity("VentCrawlerTestMob", ventCoords);
+            entMan.EnsureComponent<AtmosExposedComponent>(headcrab);
+            var temperature = entMan.EnsureComponent<TemperatureComponent>(headcrab);
+            temperature.CurrentTemperature = Atmospherics.T20C;
+
+            Assert.That(ventCrawler.TryEnterVent(headcrab, vent), Is.True);
+
+            var crawling = entMan.GetComponent<VentCrawlingComponent>(headcrab);
+            var nodeContainer = entMan.GetComponent<NodeContainerComponent>(crawling.CurrentPipe);
+            var nodeContainerSys = entMan.System<NodeContainerSystem>();
+            Assert.That(nodeContainerSys.TryGetNode(nodeContainer, "pipe", out PipeNode? pipeNode), Is.True);
+            pipeNode!.Air.Temperature = pipeTemperature;
+        });
+
+        await pair.RunTicksSync(35);
+
+        await server.WaitAssertion(() =>
+        {
+            var temperature = server.EntMan.GetComponent<TemperatureComponent>(headcrab);
+            Assert.That(temperature.CurrentTemperature, Is.GreaterThan(Atmospherics.T20C + 1f));
         });
     }
 

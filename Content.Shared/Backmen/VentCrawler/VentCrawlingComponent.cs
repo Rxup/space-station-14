@@ -33,4 +33,7 @@ public sealed partial class VentCrawlingComponent : Component
 
     [ViewVariables]
     public bool HadVisibility;
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? ExitActionEntity;
 }
