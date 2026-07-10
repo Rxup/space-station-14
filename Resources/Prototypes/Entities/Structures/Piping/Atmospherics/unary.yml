@@ -81,7 +81,9 @@
       - DeviceMonitoringAndControl
 
 - type: entity
-  parent: GasUnaryBase
+  # start-backmen: vent-crawler
+  parent: [GasUnaryBase, BkmVentCrawlerVentBase]
+  # end-backmen: vent-crawler
   id: GasPassiveVent
   name: passive vent
   description: It's an open vent.

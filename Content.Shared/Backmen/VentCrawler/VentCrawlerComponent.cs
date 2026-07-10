@@ -1,5 +1,6 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Shared.Backmen.VentCrawler;
 
@@ -21,6 +22,18 @@ public sealed partial class VentCrawlerComponent : Component
 
     [DataField]
     public TimeSpan NextEnterAt;
+
+    /// <summary>
+    /// Whether pipe pressure affects this entity while vent crawling.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool PressureDamage = true;
+
+    /// <summary>
+    /// Whether pipe temperature affects this entity while vent crawling.
+    /// </summary>
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public bool TemperatureDamage = true;
 
     [DataField]
     public SoundSpecifier EnterSound = new SoundPathSpecifier(

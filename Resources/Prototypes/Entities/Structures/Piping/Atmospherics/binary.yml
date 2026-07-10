@@ -1,5 +1,7 @@
 - type: entity
-  parent: GasPipeBase
+  # start-backmen: vent-crawler
+  parent: [GasPipeBase, BkmVentCrawlerPipeBase]
+  # end-backmen: vent-crawler
   abstract: true
   id: GasBinaryBase
   placement:

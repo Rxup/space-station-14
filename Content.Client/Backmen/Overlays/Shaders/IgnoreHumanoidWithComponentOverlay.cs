@@ -5,6 +5,10 @@ using Robust.Client.Player;
 
 namespace Content.Client.Backmen.Overlays.Shaders;
 
+/// <summary>
+/// Client-side sprite filter for shadowkin dark swap.
+/// Hides humanoid sprites unless they have an allowed component (e.g. also dark-swapped).
+/// </summary>
 public sealed partial class IgnoreHumanoidWithComponentOverlay : Overlay
 {
     [Dependency] private IPlayerManager _playerManager = default!;
@@ -28,29 +32,30 @@ public sealed partial class IgnoreHumanoidWithComponentOverlay : Overlay
             if (_playerManager.LocalPlayer?.ControlledEntity == humanoid.Owner)
                 continue;
 
-            var cont = true;
+            var show = true;
             foreach (var comp in IgnoredComponents)
             {
                 if (!_entityManager.HasComponent(humanoid.Owner, comp.GetType()))
                     continue;
 
-                cont = false;
+                show = false;
                 break;
             }
+
             foreach (var comp in AllowAnywayComponents)
             {
                 if (!_entityManager.HasComponent(humanoid.Owner, comp.GetType()))
                     continue;
 
-                cont = true;
+                show = true;
                 break;
             }
-            if (cont)
+
+            if (show)
             {
                 Reset(humanoid.Owner);
                 continue;
             }
-
 
             if (!spriteQuery.TryGetComponent(humanoid.Owner, out var sprite))
                 continue;
@@ -62,24 +67,20 @@ public sealed partial class IgnoreHumanoidWithComponentOverlay : Overlay
             _nonVisibleList.Add(humanoid.Owner);
         }
 
-        foreach (var humanoid in _nonVisibleList.ToArray())
+        foreach (var uid in _nonVisibleList.ToArray())
         {
-            if (!_entityManager.Deleted(humanoid))
+            if (!_entityManager.Deleted(uid))
                 continue;
 
-            _nonVisibleList.Remove(humanoid);
+            _nonVisibleList.Remove(uid);
         }
     }
 
-
     public void Reset()
     {
-        foreach (var humanoid in _nonVisibleList.ToArray())
+        foreach (var uid in _nonVisibleList.ToArray())
         {
-            _nonVisibleList.Remove(humanoid);
-
-            if (_entityManager.TryGetComponent<SpriteComponent>(humanoid, out var sprite))
-                sprite.Visible = true;
+            Reset(uid);
         }
     }
 

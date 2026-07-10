@@ -3,9 +3,11 @@ using Content.Shared.Eye;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Pulling.Events;
 using Content.Shared.SubFloor;
 using Content.Shared.Throwing;
 using Robust.Shared.Containers;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.VentCrawler;
@@ -15,8 +17,15 @@ public abstract partial class SharedVentCrawlerSystem : EntitySystem
     public static readonly EntProtoId GasPipeBrokenPrototype = "GasPipeBroken";
     public static readonly EntProtoId ExitActionId = "ActionVentCrawlerExit";
 
+    /// <summary>
+    /// Built-in subfloor reveal range while crawling (matches default t-ray range).
+    /// </summary>
+    public const float VentCrawlerRevealRange = 4f;
+
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedVisibilitySystem _visibility = default!;
 
     private EntityQuery<BkmVentCrawlerVentComponent> _ventCrawlerVentQuery;
     private EntityQuery<SubFloorHideComponent> _subFloorHideQuery;
@@ -36,6 +45,8 @@ public abstract partial class SharedVentCrawlerSystem : EntitySystem
         SubscribeLocalEvent<VentCrawlingComponent, GettingAttackedAttemptEvent>(OnGettingAttackedAttempt);
         SubscribeLocalEvent<VentCrawlingComponent, DropAttemptEvent>(OnDropAttempt);
         SubscribeLocalEvent<VentCrawlingComponent, ThrowAttemptEvent>(OnThrowAttempt);
+        SubscribeLocalEvent<VentCrawlingComponent, GettingInteractedWithAttemptEvent>(OnGettingInteractedWithAttempt);
+        SubscribeLocalEvent<VentCrawlingComponent, BeingPulledAttemptEvent>(OnBeingPulledAttempt);
         SubscribeLocalEvent<VentCrawlingComponent, ComponentStartup>(OnCrawlingStartup);
         SubscribeLocalEvent<VentCrawlingComponent, ComponentShutdown>(OnCrawlingShutdown);
         SubscribeLocalEvent<VentCrawlingComponent, GetVisMaskEvent>(OnGetVisMask);
@@ -56,9 +67,7 @@ public abstract partial class SharedVentCrawlerSystem : EntitySystem
         if (user == target)
             return true;
 
-        // Allow inventory, hands, and nested storage — but not other loose world entities on the floor.
-        if (_container.IsInSameOrParentContainer(user, target, out var userContainer, out var targetContainer) &&
-            (userContainer != null || targetContainer != null))
+        if (IsUserOwnedItem(user, target))
             return true;
 
         if (IsVentCrawlerVent(target))
@@ -70,32 +79,62 @@ public abstract partial class SharedVentCrawlerSystem : EntitySystem
         return false;
     }
 
+    private bool IsUserOwnedItem(EntityUid user, EntityUid target)
+    {
+        if (_container.IsInSameOrParentContainer(user, target, out _, out var targetContainer) &&
+            targetContainer != null)
+            return true;
+
+        if (!_container.TryGetContainingContainer(target, out var container))
+            return false;
+
+        if (container.Owner == user)
+            return true;
+
+        return TryComp(container.Owner, out TransformComponent? ownerXform) && ownerXform.ParentUid == user;
+    }
+
     private void OnAccessibleOverride(Entity<VentCrawlingComponent> ent, ref AccessibleOverrideEvent args)
     {
-        if (args.Handled || args.Accessible || args.User != ent.Owner)
-            return;
-
-        if (!CanVentCrawlerAccess(args.User, args.Target))
+        if (args.Target == ent.Owner && args.User != ent.Owner)
         {
             args.Handled = true;
             args.Accessible = false;
             return;
         }
 
-        if (IsVentCrawlerVent(args.Target) || _subFloorHideQuery.HasComponent(args.Target))
+        if (args.Handled || args.Accessible || args.User != ent.Owner)
+            return;
+
+        if (CanVentCrawlerAccess(args.User, args.Target))
         {
             args.Handled = true;
             args.Accessible = true;
+            return;
         }
+
+        args.Handled = true;
+        args.Accessible = false;
     }
 
     private void OnInRangeOverride(Entity<VentCrawlingComponent> ent, ref InRangeOverrideEvent args)
     {
+        if (args.Target == ent.Owner && args.User != ent.Owner)
+        {
+            args.Handled = true;
+            args.InRange = false;
+            return;
+        }
+
         if (args.Handled || args.User != ent.Owner)
             return;
 
         if (CanVentCrawlerAccess(args.User, args.Target))
+        {
+            args.Handled = true;
+            args.InRange = true;
             return;
+        }
 
         args.Handled = true;
         args.InRange = false;
@@ -132,8 +171,24 @@ public abstract partial class SharedVentCrawlerSystem : EntitySystem
         args.Cancel();
     }
 
+    private void OnGettingInteractedWithAttempt(EntityUid uid, VentCrawlingComponent component, ref GettingInteractedWithAttemptEvent args)
+    {
+        if (args.Uid == uid)
+            return;
+
+        args.Cancelled = true;
+    }
+
+    private void OnBeingPulledAttempt(EntityUid uid, VentCrawlingComponent component, BeingPulledAttemptEvent args)
+    {
+        args.Cancel();
+    }
+
     private void OnCrawlingStartup(Entity<VentCrawlingComponent> ent, ref ComponentStartup args)
     {
+        ApplySubfloorVisibility(ent, ent.Comp);
+        _eye.RefreshVisibilityMask(ent.Owner);
+
         _actions.AddAction(ent, ref ent.Comp.ExitActionEntity, ExitActionId, ent);
         Dirty(ent, ent.Comp);
         OnVentCrawlingStarted(ent, ref args);
@@ -142,6 +197,9 @@ public abstract partial class SharedVentCrawlerSystem : EntitySystem
     private void OnCrawlingShutdown(Entity<VentCrawlingComponent> ent, ref ComponentShutdown args)
     {
         OnVentCrawlingStopped(ent, ref args);
+
+        RestoreSubfloorVisibility(ent, ent.Comp);
+        _eye.RefreshVisibilityMask(ent.Owner);
 
         _actions.RemoveAction(ent.Owner, ent.Comp.ExitActionEntity);
         ent.Comp.ExitActionEntity = null;
@@ -158,6 +216,26 @@ public abstract partial class SharedVentCrawlerSystem : EntitySystem
     private void OnGetVisMask(EntityUid uid, VentCrawlingComponent component, ref GetVisMaskEvent args)
     {
         args.VisibilityMask |= (int) VisibilityFlags.Subfloor;
+    }
+
+    private void ApplySubfloorVisibility(EntityUid uid, VentCrawlingComponent component)
+    {
+        var visibility = EnsureComp<VisibilityComponent>(uid);
+        component.HadVisibility = true;
+        _visibility.RemoveLayer((uid, visibility), (int) VisibilityFlags.Normal, false);
+        _visibility.AddLayer((uid, visibility), (int) VisibilityFlags.Subfloor, false);
+        _visibility.RefreshVisibility(uid);
+    }
+
+    private void RestoreSubfloorVisibility(EntityUid uid, VentCrawlingComponent component)
+    {
+        if (!component.HadVisibility || !TryComp<VisibilityComponent>(uid, out var visibility))
+            return;
+
+        _visibility.RemoveLayer((uid, visibility), (int) VisibilityFlags.Subfloor, false);
+        _visibility.AddLayer((uid, visibility), (int) VisibilityFlags.Normal, false);
+        _visibility.RefreshVisibility(uid);
+        component.HadVisibility = false;
     }
     // end-backmen: vent-crawler-interaction
 }

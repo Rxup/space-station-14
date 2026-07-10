@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Server._White.Headcrab;
+using Content.Server.Atmos.Components;
 using Content.Server.Body.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
@@ -15,6 +17,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.NodeContainer;
 using Content.Shared.Construction.Components;
 using Content.Shared.Destructible;
+using Content.Shared.Temperature.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
@@ -25,6 +28,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Server.Backmen.VentCrawler;
 
@@ -162,6 +166,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
     {
         _movementSpeed.RefreshMovementSpeedModifiers(ent);
         UpdateExitAction(ent, ent.Comp);
+        ApplyAtmosDamageSettings(ent.Owner, ent.Comp);
 
         if (TryComp(ent, out PhysicsComponent? physics))
             _physics.SetCanCollide(ent, false, body: physics);
@@ -172,7 +177,14 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         if (TerminatingOrDeleted(ent))
             return;
 
-        _movementSpeed.RefreshMovementSpeedModifiers(ent);
+        RestoreAtmosDamageSettings(ent.Owner, ent.Comp);
+
+        var uid = ent.Owner;
+        Timer.Spawn(0, () =>
+        {
+            if (Exists(uid))
+                _movementSpeed.RefreshMovementSpeedModifiers(uid);
+        });
 
         if (TryComp(ent, out PhysicsComponent? physics))
             _physics.SetCanCollide(ent, true, body: physics);
@@ -181,7 +193,10 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
     // start-backmen: vent-crawler-atmos
     private void OnGetAir(EntityUid uid, VentCrawlingComponent component, ref AtmosExposedGetAirEvent args)
     {
-        if (args.Handled || !TryGetPipeAir(component.CurrentPipe, out var air))
+        if (args.Handled || !ShouldExposeToPipeAtmosphere(uid))
+            return;
+
+        if (!TryGetPipeAir(component.CurrentPipe, out var air))
             return;
 
         args.Gas = air;
@@ -200,11 +215,76 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
             args.Gas = air;
     }
 
+    private bool ShouldExposeToPipeAtmosphere(EntityUid uid)
+    {
+        return !TryComp(uid, out VentCrawlerComponent? crawler)
+               || crawler.PressureDamage
+               || crawler.TemperatureDamage;
+    }
+
+    private void ApplyAtmosDamageSettings(EntityUid uid, VentCrawlingComponent crawling, VentCrawlerComponent? crawler = null)
+    {
+        if (!Resolve(uid, ref crawler, false))
+            return;
+
+        if (!crawler.PressureDamage)
+        {
+            if (!HasComp<PressureImmunityComponent>(uid))
+            {
+                EnsureComp<PressureImmunityComponent>(uid);
+                crawling.AppliedPressureImmunity = true;
+            }
+        }
+        else if (crawling.AppliedPressureImmunity)
+        {
+            RemComp<PressureImmunityComponent>(uid);
+            crawling.AppliedPressureImmunity = false;
+        }
+
+        if (!TryComp(uid, out TemperatureComponent? temperature))
+            return;
+
+        if (!crawler.TemperatureDamage)
+        {
+            if (crawling.SavedAtmosTemperatureTransferEfficiency == null)
+            {
+                crawling.SavedAtmosTemperatureTransferEfficiency = temperature.AtmosTemperatureTransferEfficiency;
+                temperature.AtmosTemperatureTransferEfficiency = 0;
+                Dirty(uid, temperature);
+            }
+        }
+        else if (crawling.SavedAtmosTemperatureTransferEfficiency is { } savedEfficiency)
+        {
+            temperature.AtmosTemperatureTransferEfficiency = savedEfficiency;
+            crawling.SavedAtmosTemperatureTransferEfficiency = null;
+            Dirty(uid, temperature);
+        }
+    }
+
+    private void RestoreAtmosDamageSettings(EntityUid uid, VentCrawlingComponent crawling)
+    {
+        if (crawling.AppliedPressureImmunity)
+        {
+            RemComp<PressureImmunityComponent>(uid);
+            crawling.AppliedPressureImmunity = false;
+        }
+
+        if (crawling.SavedAtmosTemperatureTransferEfficiency is not { } savedEfficiency
+            || !TryComp(uid, out TemperatureComponent? temperature))
+        {
+            return;
+        }
+
+        temperature.AtmosTemperatureTransferEfficiency = savedEfficiency;
+        crawling.SavedAtmosTemperatureTransferEfficiency = null;
+        Dirty(uid, temperature);
+    }
+
     private bool TryGetPipeAir(EntityUid pipeUid, [NotNullWhen(true)] out GasMixture? air)
     {
         air = null;
 
-        if (!IsValidCrawlPipe(pipeUid) || !TryGetPipeNode(pipeUid, out var pipeNode) || pipeNode == null)
+        if (!IsValidCrawlPipe(pipeUid) || !TryGetAnyPipeNode(pipeUid, out var pipeNode) || pipeNode == null)
             return false;
 
         air = pipeNode.Air;
@@ -224,6 +304,10 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
                 ForceExitVent(uid, pipeBroken: true);
                 continue;
             }
+
+            TryComp(uid, out VentCrawlerComponent? crawler);
+            if (crawler != null)
+                ApplyAtmosDamageSettings(uid, crawling, crawler);
 
             if (!crawling.IsStepping)
                 continue;
@@ -246,7 +330,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
             Dirty(uid, crawling);
             _transform.SetCoordinates(uid, crawling.StepDestination);
 
-            if (TryComp(uid, out VentCrawlerComponent? crawler))
+            if (crawler != null)
                 PlayVentSound(crawler.StepSound, uid);
 
             if (!IsValidCrawlPipe(crawling.CurrentPipe))
@@ -277,7 +361,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
             return false;
         }
 
-        if (!TryGetPipeNode(vent, out var pipeNode))
+        if (!TryGetAnyPipeNode(vent, out _))
             return false;
 
         var ventXform = Transform(vent);
@@ -438,7 +522,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         if (MetaData(uid).EntityPrototype is { ID: var protoId } && protoId == GasPipeBrokenPrototype)
             return false;
 
-        if (!TryGetPipeNode(uid, out _))
+        if (!TryGetAnyPipeNode(uid, out _))
             return false;
 
         if (!Transform(uid).Anchored)
@@ -449,10 +533,18 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
 
     public bool CanCrawlInDirection(EntityUid currentPipe, Direction direction)
     {
-        if (!TryGetPipeNode(currentPipe, out var pipeNode) || pipeNode == null)
+        if (!TryGetAllPipeNodes(currentPipe, out var pipeNodes))
             return false;
 
-        return pipeNode.CurrentPipeDirection.HasDirection(direction.ToPipeDirection());
+        var pipeDirection = direction.ToPipeDirection();
+
+        foreach (var pipeNode in pipeNodes)
+        {
+            if (pipeNode.CurrentPipeDirection.HasDirection(pipeDirection))
+                return true;
+        }
+
+        return false;
     }
 
     public bool CanEnterVent(EntityUid user, EntityUid vent, VentCrawlerComponent crawler, out string? reason)
@@ -542,7 +634,7 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
     {
         nextPipe = EntityUid.Invalid;
 
-        if (!TryGetPipeNode(currentPipe, out var currentNode) || currentNode == null)
+        if (!TryGetAllPipeNodes(currentPipe, out var currentNodes))
             return false;
 
         var currentXform = _xformQuery.GetComponent(currentPipe);
@@ -555,24 +647,27 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
 
         var gridEnt = (gridUid, grid);
 
-        foreach (var node in currentNode.GetReachableNodes(
-                     (currentPipe, currentXform),
-                     _nodeQuery,
-                     _xformQuery,
-                     gridEnt,
-                     EntityManager))
+        foreach (var currentNode in currentNodes)
         {
-            if (node is not PipeNode)
-                continue;
+            foreach (var node in currentNode.GetReachableNodes(
+                         (currentPipe, currentXform),
+                         _nodeQuery,
+                         _xformQuery,
+                         gridEnt,
+                         EntityManager))
+            {
+                if (node is not PipeNode)
+                    continue;
 
-            var ownerXform = _xformQuery.GetComponent(node.Owner);
-            var ownerPos = _map.TileIndicesFor(gridUid, grid, ownerXform.Coordinates);
+                var ownerXform = _xformQuery.GetComponent(node.Owner);
+                var ownerPos = _map.TileIndicesFor(gridUid, grid, ownerXform.Coordinates);
 
-            if (ownerPos != targetPos)
-                continue;
+                if (ownerPos != targetPos)
+                    continue;
 
-            nextPipe = node.Owner;
-            return true;
+                nextPipe = node.Owner;
+                return true;
+            }
         }
 
         foreach (var entity in _map.GetAnchoredEntities(gridUid, grid, targetPos))
@@ -627,17 +722,37 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         return !hasCrawlPipe;
     }
 
-    private bool TryGetPipeNode(EntityUid uid, out PipeNode? pipeNode)
+    private bool TryGetAllPipeNodes(EntityUid uid, [NotNullWhen(true)] out List<PipeNode> pipeNodes)
     {
-        pipeNode = null;
+        pipeNodes = new List<PipeNode>();
 
         if (!_nodeQuery.TryComp(uid, out var container))
             return false;
 
-        if (!_nodeContainer.TryGetNode(container, "pipe", out PipeNode? node))
+        foreach (var node in container.Nodes.Values)
+        {
+            if (node is PipeNode pipeNode)
+                pipeNodes.Add(pipeNode);
+        }
+
+        return pipeNodes.Count > 0;
+    }
+
+    private bool TryGetAnyPipeNode(EntityUid uid, [NotNullWhen(true)] out PipeNode? pipeNode)
+    {
+        pipeNode = null;
+
+        if (_nodeQuery.TryComp(uid, out var container) &&
+            _nodeContainer.TryGetNode(container, "pipe", out PipeNode? namedNode))
+        {
+            pipeNode = namedNode;
+            return true;
+        }
+
+        if (!TryGetAllPipeNodes(uid, out var pipeNodes))
             return false;
 
-        pipeNode = node;
+        pipeNode = pipeNodes[0];
         return true;
     }
 

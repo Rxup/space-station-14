@@ -3,6 +3,7 @@ using Content.Client.Items.UI;
 using Content.Client.Message;
 using Content.Client.Power.Visualizers;
 using Content.Client.Stylesheets;
+using Content.Shared.Backmen.VentCrawler;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Disposal.Components;
 using Content.Shared.Input;
@@ -67,6 +68,18 @@ public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
         // API is extremely skrungly. If this ever shows up on dottrace ping me and laugh.
         var canSee = false;
 
+        // start-backmen: vent-crawler
+        var ventCrawling = player is { } playerUid && HasComp<VentCrawlingComponent>(playerUid);
+
+        if (ventCrawling)
+        {
+            canSee = true;
+            range = SharedVentCrawlerSystem.VentCrawlerRevealRange;
+            mode = TrayScannerMode.All;
+        }
+        else
+        {
+        // end-backmen: vent-crawler
         foreach (var item in _inventory.GetHandOrInventoryEntities(player.Value, SlotFlags.POCKET))
         {
             if (!_trayScannerQuery.TryGetComponent(item, out var scanner) || !scanner.Enabled)
@@ -77,6 +90,9 @@ public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
             canSee = true;
             break;
         }
+        // start-backmen: vent-crawler
+        }
+        // end-backmen: vent-crawler
 
         inRange = new HashSet<Entity<SubFloorHideComponent>>();
 
