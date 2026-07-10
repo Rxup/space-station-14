@@ -9,7 +9,6 @@ using Content.Shared.Backmen.Flesh;
 using Content.Shared.Atmos;
 using Content.Shared.Backmen.VentCrawler;
 using Content.Shared.Actions;
-using Content.Shared.Eye;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -37,8 +36,6 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private SharedEyeSystem _eye = default!;
-    [Dependency] private SharedVisibilitySystem _visibility = default!;
     [Dependency] private WeldableSystem _weldable = default!;
     [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
@@ -59,9 +56,6 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         SubscribeLocalEvent<VentCrawlingComponent, GetVerbsEvent<InnateVerb>>(OnGetInnateExitVerbs);
         SubscribeLocalEvent<VentCrawlingComponent, MoveInputEvent>(OnMoveInput);
         SubscribeLocalEvent<VentCrawlingComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
-        SubscribeLocalEvent<VentCrawlingComponent, GetVisMaskEvent>(OnGetVisMask);
-        SubscribeLocalEvent<VentCrawlingComponent, ComponentStartup>(OnCrawlingStartup);
-        SubscribeLocalEvent<VentCrawlingComponent, ComponentShutdown>(OnCrawlingShutdown);
         SubscribeLocalEvent<VentCrawlingComponent, VentCrawlerExitActionEvent>(OnExitAction);
 
         // start-backmen: vent-crawler-atmos
@@ -164,9 +158,24 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         args.ModifySpeed(0f, 0f);
     }
 
-    private void OnGetVisMask(EntityUid uid, VentCrawlingComponent component, ref GetVisMaskEvent args)
+    protected override void OnVentCrawlingStarted(Entity<VentCrawlingComponent> ent, ref ComponentStartup args)
     {
-        args.VisibilityMask |= (int) VisibilityFlags.Subfloor;
+        _movementSpeed.RefreshMovementSpeedModifiers(ent);
+        UpdateExitAction(ent, ent.Comp);
+
+        if (TryComp(ent, out PhysicsComponent? physics))
+            _physics.SetCanCollide(ent, false, body: physics);
+    }
+
+    protected override void OnVentCrawlingStopped(Entity<VentCrawlingComponent> ent, ref ComponentShutdown args)
+    {
+        if (TerminatingOrDeleted(ent))
+            return;
+
+        _movementSpeed.RefreshMovementSpeedModifiers(ent);
+
+        if (TryComp(ent, out PhysicsComponent? physics))
+            _physics.SetCanCollide(ent, true, body: physics);
     }
 
     // start-backmen: vent-crawler-atmos
@@ -202,35 +211,6 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         return true;
     }
     // end-backmen: vent-crawler-atmos
-
-    private void OnCrawlingStartup(EntityUid uid, VentCrawlingComponent component, ComponentStartup args)
-    {
-        ApplySubfloorVisibility(uid);
-        _eye.RefreshVisibilityMask(uid);
-        _movementSpeed.RefreshMovementSpeedModifiers(uid);
-
-        if (TryComp(uid, out PhysicsComponent? physics))
-        {
-            _physics.SetCanCollide(uid, false, body: physics);
-        }
-
-        UpdateExitAction(uid, component);
-    }
-
-    private void OnCrawlingShutdown(EntityUid uid, VentCrawlingComponent component, ComponentShutdown args)
-    {
-        if (TerminatingOrDeleted(uid))
-            return;
-
-        RestoreVisibility(uid);
-        _eye.RefreshVisibilityMask(uid);
-        _movementSpeed.RefreshMovementSpeedModifiers(uid);
-
-        if (TryComp(uid, out PhysicsComponent? physics))
-        {
-            _physics.SetCanCollide(uid, true, body: physics);
-        }
-    }
 
     public override void Update(float frameTime)
     {
@@ -659,24 +639,6 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
 
         pipeNode = node;
         return true;
-    }
-
-    private void ApplySubfloorVisibility(EntityUid uid)
-    {
-        var visibility = EnsureComp<VisibilityComponent>(uid);
-        _visibility.RemoveLayer((uid, visibility), (int) VisibilityFlags.Normal, false);
-        _visibility.AddLayer((uid, visibility), (int) VisibilityFlags.Subfloor, false);
-        _visibility.RefreshVisibility(uid);
-    }
-
-    private void RestoreVisibility(EntityUid uid)
-    {
-        if (!TryComp<VisibilityComponent>(uid, out var visibility))
-            return;
-
-        _visibility.RemoveLayer((uid, visibility), (int) VisibilityFlags.Subfloor, false);
-        _visibility.AddLayer((uid, visibility), (int) VisibilityFlags.Normal, false);
-        _visibility.RefreshVisibility(uid);
     }
 
     private static Direction? GetDirection(MoveButtons pressed)

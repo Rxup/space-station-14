@@ -1,4 +1,5 @@
 using Content.Shared.Actions;
+using Content.Shared.Eye;
 using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -35,8 +36,9 @@ public abstract partial class SharedVentCrawlerSystem : EntitySystem
         SubscribeLocalEvent<VentCrawlingComponent, GettingAttackedAttemptEvent>(OnGettingAttackedAttempt);
         SubscribeLocalEvent<VentCrawlingComponent, DropAttemptEvent>(OnDropAttempt);
         SubscribeLocalEvent<VentCrawlingComponent, ThrowAttemptEvent>(OnThrowAttempt);
-        SubscribeLocalEvent<VentCrawlingComponent, ComponentStartup>(OnCrawlingActionStartup);
-        SubscribeLocalEvent<VentCrawlingComponent, ComponentShutdown>(OnCrawlingActionShutdown);
+        SubscribeLocalEvent<VentCrawlingComponent, ComponentStartup>(OnCrawlingStartup);
+        SubscribeLocalEvent<VentCrawlingComponent, ComponentShutdown>(OnCrawlingShutdown);
+        SubscribeLocalEvent<VentCrawlingComponent, GetVisMaskEvent>(OnGetVisMask);
         // end-backmen: vent-crawler-interaction
     }
 
@@ -130,16 +132,32 @@ public abstract partial class SharedVentCrawlerSystem : EntitySystem
         args.Cancel();
     }
 
-    private void OnCrawlingActionStartup(Entity<VentCrawlingComponent> ent, ref ComponentStartup args)
+    private void OnCrawlingStartup(Entity<VentCrawlingComponent> ent, ref ComponentStartup args)
     {
         _actions.AddAction(ent, ref ent.Comp.ExitActionEntity, ExitActionId, ent);
         Dirty(ent, ent.Comp);
+        OnVentCrawlingStarted(ent, ref args);
     }
 
-    private void OnCrawlingActionShutdown(Entity<VentCrawlingComponent> ent, ref ComponentShutdown args)
+    private void OnCrawlingShutdown(Entity<VentCrawlingComponent> ent, ref ComponentShutdown args)
     {
+        OnVentCrawlingStopped(ent, ref args);
+
         _actions.RemoveAction(ent.Owner, ent.Comp.ExitActionEntity);
         ent.Comp.ExitActionEntity = null;
+    }
+
+    protected virtual void OnVentCrawlingStarted(Entity<VentCrawlingComponent> ent, ref ComponentStartup args)
+    {
+    }
+
+    protected virtual void OnVentCrawlingStopped(Entity<VentCrawlingComponent> ent, ref ComponentShutdown args)
+    {
+    }
+
+    private void OnGetVisMask(EntityUid uid, VentCrawlingComponent component, ref GetVisMaskEvent args)
+    {
+        args.VisibilityMask |= (int) VisibilityFlags.Subfloor;
     }
     // end-backmen: vent-crawler-interaction
 }

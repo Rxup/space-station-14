@@ -795,6 +795,8 @@ public partial class WoundSystem
             result[part] = woundable.WoundableSeverity;
         }
 
+        ApplyDependentOrganLoss(states: result);
+
         return result;
     }
 
@@ -842,7 +844,24 @@ public partial class WoundSystem
             result[part] = nearestSeverity;
         }
 
+        ApplyDependentOrganLoss(states: result);
+
         return result;
+    }
+
+    private static void ApplyDependentOrganLoss(Dictionary<TargetBodyPart, WoundableSeverity> states)
+    {
+        foreach (var (proximalCategory, distalCategory) in SurgeryBodyPartMapping.DependentCategoryPairs)
+        {
+            if (!TargetBodyPartMapping.TryGetTargetPart(proximalCategory, out var proximalPart)
+                || !TargetBodyPartMapping.TryGetTargetPart(distalCategory, out var distalPart))
+                continue;
+
+            if (!states.TryGetValue(proximalPart, out var proximalState) || proximalState != WoundableSeverity.Loss)
+                continue;
+
+            states[distalPart] = WoundableSeverity.Loss;
+        }
     }
 
     private static WoundableSeverity WorseSeverity(WoundableSeverity current, WoundableSeverity incoming) =>

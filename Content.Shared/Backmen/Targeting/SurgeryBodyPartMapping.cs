@@ -244,6 +244,29 @@ public static class SurgeryBodyPartMapping
     }
 
     /// <summary>
+    /// Returns the proximal external organ a distal part depends on (arm for hand, leg for foot).
+    /// </summary>
+    public static bool TryGetProximalCategory(
+        ProtoId<OrganCategoryPrototype> distalCategory,
+        out ProtoId<OrganCategoryPrototype> proximalCategory)
+    {
+        foreach (var (proximal, distal) in DependentCategories)
+        {
+            if (distal != distalCategory)
+                continue;
+
+            proximalCategory = proximal;
+            return true;
+        }
+
+        proximalCategory = default;
+        return false;
+    }
+
+    public static IEnumerable<KeyValuePair<ProtoId<OrganCategoryPrototype>, ProtoId<OrganCategoryPrototype>>>
+        DependentCategoryPairs => DependentCategories;
+
+    /// <summary>
     /// Returns the organ category used as the surgery anchor when reattaching a missing external part.
     /// </summary>
     public static bool TryGetReattachAnchorCategory(

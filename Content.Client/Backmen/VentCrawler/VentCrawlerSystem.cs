@@ -24,15 +24,6 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
 
     private const float RevealRange = 4f;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<VentCrawlingComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<VentCrawlingComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<VentCrawlingComponent, GetVisMaskEvent>(OnGetVisMask);
-    }
-
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -79,36 +70,31 @@ public sealed partial class VentCrawlerSystem : SharedVentCrawlerSystem
         }
     }
 
-    private void OnStartup(EntityUid uid, VentCrawlingComponent component, ComponentStartup args)
+    protected override void OnVentCrawlingStarted(Entity<VentCrawlingComponent> ent, ref ComponentStartup args)
     {
-        if (TryComp<SpriteComponent>(uid, out var sprite))
+        if (TryComp<SpriteComponent>(ent, out var sprite))
         {
-            component.OriginalDrawDepth = sprite.DrawDepth;
-            _sprite.SetDrawDepth((uid, sprite), (int) DrawDepth.BelowFloor);
+            ent.Comp.OriginalDrawDepth = sprite.DrawDepth;
+            _sprite.SetDrawDepth((ent, sprite), (int) DrawDepth.BelowFloor);
         }
 
-        ApplySubfloorVisibility(uid, component);
-        _eye.RefreshVisibilityMask(uid);
+        ApplySubfloorVisibility(ent, ent.Comp);
+        _eye.RefreshVisibilityMask(ent.Owner);
     }
 
-    private void OnShutdown(EntityUid uid, VentCrawlingComponent component, ComponentShutdown args)
+    protected override void OnVentCrawlingStopped(Entity<VentCrawlingComponent> ent, ref ComponentShutdown args)
     {
-        if (TerminatingOrDeleted(uid))
+        if (TerminatingOrDeleted(ent))
             return;
 
-        if (TryComp<SpriteComponent>(uid, out var sprite) && component.OriginalDrawDepth != null)
+        if (TryComp<SpriteComponent>(ent, out var sprite) && ent.Comp.OriginalDrawDepth != null)
         {
-            _sprite.SetDrawDepth((uid, sprite), component.OriginalDrawDepth.Value);
-            component.OriginalDrawDepth = null;
+            _sprite.SetDrawDepth((ent, sprite), ent.Comp.OriginalDrawDepth.Value);
+            ent.Comp.OriginalDrawDepth = null;
         }
 
-        RestoreVisibility(uid, component);
-        _eye.RefreshVisibilityMask(uid);
-    }
-
-    private void OnGetVisMask(EntityUid uid, VentCrawlingComponent component, ref GetVisMaskEvent args)
-    {
-        args.VisibilityMask |= (int) VisibilityFlags.Subfloor;
+        RestoreVisibility(ent, ent.Comp);
+        _eye.RefreshVisibilityMask(ent.Owner);
     }
 
     private void ApplySubfloorVisibility(EntityUid uid, VentCrawlingComponent component)

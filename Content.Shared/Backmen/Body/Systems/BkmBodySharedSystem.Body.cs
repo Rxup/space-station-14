@@ -124,17 +124,16 @@ public partial class BkmBodySharedSystem
         if (!TryComp(args.Organ, out OrganComponent? organ))
             return;
 
-        if (organ.Category is { } removedLeg
-            && (removedLeg == "LegLeft" || removedLeg == "LegRight")
+        if (organ.Category is { } removedCategory
+            && SurgeryBodyPartMapping.TryGetDependentCategory(removedCategory, out var dependentCategory)
             && !TerminatingOrDeleted(ent)
             && !EntityManager.IsQueuedForDeletion(ent)
-            && SurgeryBodyPartMapping.TryGetDependentCategory(removedLeg, out var dependentFoot)
-            && _nubody.TryGetOrganByCategory(ent.AsNullable(), dependentFoot, out var footOrgan)
-            && !TerminatingOrDeleted(footOrgan)
-            && !EntityManager.IsQueuedForDeletion(footOrgan))
+            && _nubody.TryGetOrganByCategory(ent.AsNullable(), dependentCategory, out var dependentOrgan)
+            && !TerminatingOrDeleted(dependentOrgan)
+            && !EntityManager.IsQueuedForDeletion(dependentOrgan))
         {
-            // Surgery limb detachment moves the foot with the leg via DetachableOrganSystem.
-            // Detached limb bundles keep the foot until the leg is reattached (TransferDetachedSubtreeOrgans).
+            // Surgery limb detachment moves the distal part with the proximal limb via DetachableOrganSystem.
+            // Detached limb bundles keep the distal part until the proximal limb is reattached.
             var detachableSurgery = HasComp<DetachableOrganComponent>(args.Organ) && HasComp<SurgeryTargetComponent>(ent);
             var detachedLimbBundle = HasComp<BkmDetachedBodyComponent>(ent);
 
@@ -142,12 +141,12 @@ public partial class BkmBodySharedSystem
                 && !detachedLimbBundle
                 && Net.IsServer
                 && ent.Comp.Organs != null
-                && ent.Comp.Organs.Contains(footOrgan.Owner)
-                && Containers.Remove(footOrgan.Owner, ent.Comp.Organs, force: true, reparent: false)
-                && TryComp<OrganComponent>(footOrgan, out var footComp))
+                && ent.Comp.Organs.Contains(dependentOrgan.Owner)
+                && Containers.Remove(dependentOrgan.Owner, ent.Comp.Organs, force: true, reparent: false)
+                && TryComp<OrganComponent>(dependentOrgan, out var dependentComp))
             {
-                RemoveOrgan((footOrgan.Owner, footComp), ent.Owner);
-                QueueDel(footOrgan.Owner);
+                RemoveOrgan((dependentOrgan.Owner, dependentComp), ent.Owner);
+                QueueDel(dependentOrgan.Owner);
             }
         }
 

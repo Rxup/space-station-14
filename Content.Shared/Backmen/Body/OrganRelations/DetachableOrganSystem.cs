@@ -1,6 +1,8 @@
 using System.Numerics;
 using Content.Shared.Backmen.Surgery;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
+using Content.Shared.Backmen.Targeting;
+using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -16,6 +18,7 @@ public sealed partial class DetachableOrganSystem : EntitySystem
 
     [Dependency] private EntityQuery<DetachableOrganComponent> _detachableOrgan = default!;
     [Dependency] private INetManager _net = default!;
+    [Dependency] private BodySystem _body = default!;
     [Dependency] private OrganRelationSystem _organRelation = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private WoundSystem _wounds = default!;
@@ -139,6 +142,8 @@ public sealed partial class DetachableOrganSystem : EntitySystem
 
         ent.Comp.Detaching = false;
 
+        RemoveStrandedDependentOrgan(args.Target, ent.Owner);
+
         if (violent)
         {
             _scatter.ScatterViolentBundle(
@@ -156,6 +161,23 @@ public sealed partial class DetachableOrganSystem : EntitySystem
         RaiseLocalEvent(body, ref ev);
 
         _wounds.RefreshBodyTargetingStatus(args.Target);
+    }
+
+    /// <summary>
+    /// If a proximal limb detached but its distal organ failed to move into the bundle, remove it from the patient
+    /// so it can form its own detached bundle instead of staying orphaned on the body.
+    /// </summary>
+    private void RemoveStrandedDependentOrgan(EntityUid patient, EntityUid removedOrgan)
+    {
+        if (!TryComp<OrganComponent>(removedOrgan, out var removedOrganComp)
+            || removedOrganComp.Category is not { } removedCategory
+            || !SurgeryBodyPartMapping.TryGetDependentCategory(removedCategory, out var dependentCategory)
+            || !_body.TryGetOrganByCategory(patient, dependentCategory, out var dependent)
+            || !TryComp<OrganComponent>(dependent, out var dependentOrganComp)
+            || dependentOrganComp.Body != patient)
+            return;
+
+        EntityManager.System<BkmBodySharedSystem>().RemoveOrgan(dependent, dependentOrganComp);
     }
 }
 

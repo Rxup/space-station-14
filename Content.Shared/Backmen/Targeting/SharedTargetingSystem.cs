@@ -90,8 +90,14 @@ public abstract partial class SharedTargetingSystem : EntitySystem
     {
         foreach (var category in SurgeryBodyPartMapping.ExternalCategories)
         {
-            if (_body.TryGetOrganByCategory(body, category, out var organ))
-                yield return organ;
+            if (!_body.TryGetOrganByCategory(body, category, out var organ))
+                continue;
+
+            if (SurgeryBodyPartMapping.TryGetProximalCategory(category, out var proximalCategory)
+                && !_body.TryGetOrganByCategory(body, proximalCategory, out _))
+                continue;
+
+            yield return organ;
         }
     }
 
