@@ -1,8 +1,8 @@
 - type: entity
   id: ActionVentCrawlerExit
   parent: BaseAction
-  name: vent-crawler-action-exit
-  description: vent-crawler-action-exit-desc
+  name: climb out of vent
+  description: Exit through a nearby air vent.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action

@@ -8,24 +8,24 @@ namespace Content.Shared.Backmen.Blob;
 
 #region BlobTypedStorage
 [DataDefinition]
-public abstract partial class BlobTypedStorage<T> : IEnumerable<KeyValuePair<BlobTileType, T>>
+public abstract partial class BlobTypedStorage<T> : IEnumerable<KeyValuePair<BlobTileType, T>> where T : struct
 {
     [DataField]
-    public virtual T Core { get; set; } = default!;
+    public virtual T Core { get; set; }
     [DataField]
-    public virtual T Invalid  { get; set; } = default!;
+    public virtual T Invalid  { get; set; }
     [DataField]
-    public virtual T Resource  { get; set; } = default!;
+    public virtual T Resource  { get; set; }
     [DataField]
-    public virtual T Factory  { get; set; } = default!;
+    public virtual T Factory  { get; set; }
     [DataField]
-    public virtual T Node  { get; set; } = default!;
+    public virtual T Node  { get; set; }
     [DataField]
-    public virtual T Reflective  { get; set; } = default!;
+    public virtual T Reflective  { get; set; }
     [DataField]
-    public virtual T Strong  { get; set; } = default!;
+    public virtual T Strong  { get; set; }
     [DataField]
-    public virtual T Normal { get; set; } = default!;
+    public virtual T Normal { get; set; }
     [DataField]
     public virtual T Storage  { get; set; }
     /*[DataField]

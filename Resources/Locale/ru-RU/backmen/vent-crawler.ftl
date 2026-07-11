@@ -1,7 +1,5 @@
 vent-crawler-verb-enter = Залезть в вентиляцию
 vent-crawler-verb-exit = Вылезти из вентиляции
-vent-crawler-action-exit = Вылезти из вентиляции
-vent-crawler-action-exit-desc = Вылезти через ближайший воздушный вентиль.
 vent-crawler-entered = Вы протискиваетесь в вентиляционную шахту.
 vent-crawler-exited = Вы вылезаете из вентиля.
 vent-crawler-dead-end = Труба здесь заканчивается.

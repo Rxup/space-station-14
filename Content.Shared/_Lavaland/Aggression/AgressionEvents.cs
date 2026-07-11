@@ -5,8 +5,9 @@ namespace Content.Shared._Lavaland.Aggression;
 /// <summary>
 /// Raised on the entity with AggressiveComponent when it added new aggressor.
 /// </summary>
+[DataDefinition]
 [Serializable, NetSerializable]
-public sealed class AggressorAddedEvent : EntityEventArgs
+public sealed partial class AggressorAddedEvent : EntityEventArgs
 {
     [DataField] public NetEntity Aggressor;
 
@@ -19,8 +20,9 @@ public sealed class AggressorAddedEvent : EntityEventArgs
 /// <summary>
 /// Raised on the entity with AggressiveComponent when it removed one of it's aggressors.
 /// </summary>
+[DataDefinition]
 [Serializable, NetSerializable]
-public sealed class AggressorRemovedEvent : EntityEventArgs
+public sealed partial class AggressorRemovedEvent : EntityEventArgs
 {
     [DataField] public NetEntity Aggressor;
 

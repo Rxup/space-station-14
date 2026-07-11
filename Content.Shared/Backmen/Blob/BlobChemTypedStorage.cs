@@ -8,18 +8,18 @@ namespace Content.Shared.Backmen.Blob;
 
 #region BlobChemTypedStorage
 [DataDefinition, Serializable, NetSerializable]
-public abstract partial class BlobChemTypedStorage<T> : IEnumerable
+public abstract partial class BlobChemTypedStorage<T> : IEnumerable where T : struct
 {
     [DataField]
-    public virtual T BlazingOil { get; set; } = default!;
+    public virtual T BlazingOil { get; set; }
     [DataField]
-    public virtual T ReactiveSpines { get; set; }= default!;
+    public virtual T ReactiveSpines { get; set; }
     [DataField]
-    public virtual T RegenerativeMateria { get; set; }= default!;
+    public virtual T RegenerativeMateria { get; set; }
     [DataField]
-    public virtual T ExplosiveLattice { get; set; }= default!;
+    public virtual T ExplosiveLattice { get; set; }
     [DataField]
-    public virtual T ElectromagneticWeb { get; set; }= default!;
+    public virtual T ElectromagneticWeb { get; set; }
 
     // Индексатор для доступа к полям через перечисление BlobChemType
     [Pure]
@@ -77,6 +77,74 @@ public abstract partial class BlobChemTypedStorage<T> : IEnumerable
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
 }
+
+[DataDefinition, Serializable, NetSerializable]
+public abstract partial class BlobChemClassTypedStorage<T> : IEnumerable where T : class
+{
+    [DataField]
+    public virtual T BlazingOil { get; set; } = default!;
+    [DataField]
+    public virtual T ReactiveSpines { get; set; } = default!;
+    [DataField]
+    public virtual T RegenerativeMateria { get; set; } = default!;
+    [DataField]
+    public virtual T ExplosiveLattice { get; set; } = default!;
+    [DataField]
+    public virtual T ElectromagneticWeb { get; set; } = default!;
+
+    [Pure]
+    public T this[BlobChemType type]
+    {
+        get => type switch
+        {
+            BlobChemType.BlazingOil => BlazingOil,
+            BlobChemType.ReactiveSpines => ReactiveSpines,
+            BlobChemType.RegenerativeMateria => RegenerativeMateria,
+            BlobChemType.ExplosiveLattice => ExplosiveLattice,
+            BlobChemType.ElectromagneticWeb => ElectromagneticWeb,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), $"Unknown chemical type: {type}")
+        };
+        set
+        {
+            switch (type)
+            {
+                case BlobChemType.BlazingOil:
+                    BlazingOil = value;
+                    break;
+                case BlobChemType.ReactiveSpines:
+                    ReactiveSpines = value;
+                    break;
+                case BlobChemType.RegenerativeMateria:
+                    RegenerativeMateria = value;
+                    break;
+                case BlobChemType.ExplosiveLattice:
+                    ExplosiveLattice = value;
+                    break;
+                case BlobChemType.ElectromagneticWeb:
+                    ElectromagneticWeb = value;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), $"Unknown chemical type: {type}");
+            }
+        }
+    }
+
+    public void Add(BlobChemType key, T value)
+    {
+        this[key] = value;
+    }
+
+    public IEnumerator<KeyValuePair<BlobChemType, T>> GetEnumerator()
+    {
+        yield return new KeyValuePair<BlobChemType, T>(BlobChemType.BlazingOil, BlazingOil);
+        yield return new KeyValuePair<BlobChemType, T>(BlobChemType.ReactiveSpines, ReactiveSpines);
+        yield return new KeyValuePair<BlobChemType, T>(BlobChemType.RegenerativeMateria, RegenerativeMateria);
+        yield return new KeyValuePair<BlobChemType, T>(BlobChemType.ExplosiveLattice, ExplosiveLattice);
+        yield return new KeyValuePair<BlobChemType, T>(BlobChemType.ElectromagneticWeb, ElectromagneticWeb);
+    }
+
+    IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+}
 #endregion
 
 [DataDefinition, Serializable, NetSerializable]
@@ -86,7 +154,7 @@ public sealed partial class BlobChemColors : BlobChemTypedStorage<Color>
 }
 
 [DataDefinition, Serializable, NetSerializable]
-public sealed partial class BlobChemDamage : BlobChemTypedStorage<DamageSpecifier>
+public sealed partial class BlobChemDamage : BlobChemClassTypedStorage<DamageSpecifier>
 {
 
 }

@@ -6,7 +6,6 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Backmen.EntityEffects.Effects;
 
 /// <inheritdoc cref="EntityEffectSystem{T, TEffect}"/>
-[DataDefinition]
 public sealed partial class ChangeGlimmerReactionEffectEntityEffectSystem : EntityEffectSystem<MobStateComponent, ChangeGlimmerReactionEffect>
 {
     [Dependency] private GlimmerSystem _glimmer = default!;
