@@ -35,7 +35,7 @@
 - type: entity
   id: Reflector
   name: reflector
-  description: An angled mirror that redirects emitter bolts from the back and sides out through its facing direction.
+  description: An angled mirror that redirects emitter bolts from the back and sides out through its facing direction. It is said that the first versions were made from a CSSP refrigerator.
   parent: BaseStructure
   placement:
     mode: SnapgridCenter
