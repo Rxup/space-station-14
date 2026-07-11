@@ -9,11 +9,11 @@ namespace Content.Server.Backmen.Targeting;
 /// <summary>
 /// Applies combat spread tier overrides from combat training implants.
 /// </summary>
-public sealed class CombatTrainingImplantSystem : EntitySystem
+public sealed partial class CombatTrainingImplantSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {

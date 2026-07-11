@@ -16,12 +16,12 @@ public abstract partial class SharedTargetingSystem
 {
     public static readonly ProtoId<CombatTargetOddsRulesPrototype> DefaultCombatTargetOddsRules = "Shooter";
 
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private EntityQuery<ConsciousnessComponent> _consciousnessQuery;
     private EntityQuery<CombatTargetOddsOverrideComponent> _overrideQuery;
