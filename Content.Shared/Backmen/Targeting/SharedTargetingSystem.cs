@@ -16,12 +16,15 @@ public abstract partial class SharedTargetingSystem : EntitySystem
     private EntityQuery<BodyComponent> _bodyQuery;
     private EntityQuery<OrganComponent> _organQuery;
 
+    partial void InitializeCombatTargeting();
+
     public override void Initialize()
     {
         base.Initialize();
 
         _bodyQuery = GetEntityQuery<BodyComponent>();
         _organQuery = GetEntityQuery<OrganComponent>();
+        InitializeCombatTargeting();
     }
 
     /// <summary>

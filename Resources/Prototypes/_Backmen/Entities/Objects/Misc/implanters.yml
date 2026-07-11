@@ -6,3 +6,22 @@
   components:
     - type: Implanter
       implant: mantisImplant
+
+- type: entity
+  id: CombatTrainingImplanter
+  parent: BaseImplantOnlyImplanterSyndi
+  name: combat-training-implanter-name
+  description: combat-training-implanter-desc
+  components:
+  - type: Implanter
+    implant: CombatTrainingImplant
+
+- type: entity
+  id: CombatTrainingImplanterAdmeme
+  parent: BaseImplantOnlyImplanter
+  suffix: Admeme
+  name: combat-marksmanship-implanter-admeme-name
+  description: combat-marksmanship-implanter-admeme-desc
+  components:
+  - type: Implanter
+    implant: CombatTrainingImplantAdmeme

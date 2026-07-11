@@ -711,38 +711,18 @@ public partial class BkmBodySharedSystem
         TargetingComponent? targetComp = null,
         TargetingComponent? attackerComp = null)
     {
-        if (!Resolve(target, ref targetComp) || !Resolve(attacker, ref attackerComp))
-            return null;
+        if (_targeting.TryResolveCombatBodyPart(target, attacker, null, out var hitPart))
+            return hitPart;
 
-        var totalWeight = targetComp.TargetOdds[attackerComp.Target].Values.Sum();
-        var randomValue = _random.NextFloat() * totalWeight;
-
-        foreach (var (part, weight) in targetComp.TargetOdds[attackerComp.Target])
-        {
-            if (randomValue <= weight)
-                return part;
-            randomValue -= weight;
-        }
-
-        return TargetBodyPart.Chest; // Default to torso if something goes wrong
+        return GetRandomBodyPart(target);
     }
 
     public TargetBodyPart? GetRandomBodyPart(EntityUid target,
         TargetBodyPart targetPart = TargetBodyPart.Chest,
         TargetingComponent? targetComp = null)
     {
-        if (!Resolve(target, ref targetComp))
-            return null;
-
-        var totalWeight = targetComp.TargetOdds[targetPart].Values.Sum();
-        var randomValue = _random.NextFloat() * totalWeight;
-
-        foreach (var (part, weight) in targetComp.TargetOdds[targetPart])
-        {
-            if (randomValue <= weight)
-                return part;
-            randomValue -= weight;
-        }
+        if (_targeting.TryGetCombatTargetOddsSpread("Default", targetPart, out var weights))
+            return _targeting.PickCombatBodyPart(target, weights, null);
 
         return targetPart;
     }

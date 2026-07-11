@@ -1,0 +1,156 @@
+- type: combatTargetOdds
+  id: Base
+  abstract: true
+  spread:
+    Head:
+      Head: 0.17
+      Chest: 0.33
+      LeftArm: 0.25
+      RightArm: 0.25
+    Chest:
+      Chest: 0.17
+      Head: 0.08
+      RightArm: 0.375
+      LeftArm: 0.375
+    RightArm:
+      RightArm: 0.20
+      RightHand: 0.35
+      Chest: 0.45
+    LeftArm:
+      LeftArm: 0.20
+      LeftHand: 0.35
+      Chest: 0.45
+    RightHand:
+      RightHand: 0.20
+      RightArm: 0.80
+    LeftHand:
+      LeftHand: 0.20
+      LeftArm: 0.80
+    RightLeg:
+      RightLeg: 0.20
+      RightFoot: 0.35
+      Chest: 0.45
+    LeftLeg:
+      LeftLeg: 0.20
+      LeftFoot: 0.35
+      Chest: 0.45
+    RightFoot:
+      RightFoot: 0.20
+      RightLeg: 0.80
+    LeftFoot:
+      LeftFoot: 0.20
+      LeftLeg: 0.80
+
+- type: combatTargetOdds
+  id: Default
+  parent: Base
+
+- type: combatTargetOdds
+  id: Security
+  parent: Default
+  spread:
+    Head:
+      Head: 0.37
+      Chest: 0.23
+      LeftArm: 0.20
+      RightArm: 0.20
+    Chest:
+      Chest: 0.37
+      Head: 0.10
+      RightArm: 0.265
+      LeftArm: 0.265
+    RightArm:
+      RightArm: 0.37
+      RightHand: 0.23
+      Chest: 0.40
+    LeftArm:
+      LeftArm: 0.37
+      LeftHand: 0.23
+      Chest: 0.40
+    RightHand:
+      RightHand: 0.37
+      RightArm: 0.63
+    LeftHand:
+      LeftHand: 0.37
+      LeftArm: 0.63
+    RightLeg:
+      RightLeg: 0.37
+      RightFoot: 0.23
+      Chest: 0.40
+    LeftLeg:
+      LeftLeg: 0.37
+      LeftFoot: 0.23
+      Chest: 0.40
+    RightFoot:
+      RightFoot: 0.37
+      RightLeg: 0.63
+    LeftFoot:
+      LeftFoot: 0.37
+      LeftLeg: 0.63
+
+- type: combatTargetOdds
+  id: Elite
+  parent: Default
+  spread:
+    Head:
+      Head: 0.65
+      Chest: 0.15
+      LeftArm: 0.10
+      RightArm: 0.10
+    Chest:
+      Chest: 0.65
+      Head: 0.10
+      RightArm: 0.125
+      LeftArm: 0.125
+    RightArm:
+      RightArm: 0.65
+      RightHand: 0.15
+      Chest: 0.20
+    LeftArm:
+      LeftArm: 0.65
+      LeftHand: 0.15
+      Chest: 0.20
+    RightHand:
+      RightHand: 0.65
+      RightArm: 0.35
+    LeftHand:
+      LeftHand: 0.65
+      LeftArm: 0.35
+    RightLeg:
+      RightLeg: 0.65
+      RightFoot: 0.15
+      Chest: 0.20
+    LeftLeg:
+      LeftLeg: 0.65
+      LeftFoot: 0.15
+      Chest: 0.20
+    RightFoot:
+      RightFoot: 0.65
+      RightLeg: 0.35
+    LeftFoot:
+      LeftFoot: 0.65
+      LeftLeg: 0.35
+
+- type: combatTargetOdds
+  id: Admin
+  spread:
+    Head:
+      Head: 1.0
+    Chest:
+      Chest: 1.0
+    LeftArm:
+      LeftArm: 1.0
+    RightArm:
+      RightArm: 1.0
+    LeftHand:
+      LeftHand: 1.0
+    RightHand:
+      RightHand: 1.0
+    LeftLeg:
+      LeftLeg: 1.0
+    RightLeg:
+      RightLeg: 1.0
+    LeftFoot:
+      LeftFoot: 1.0
+    RightFoot:
+      RightFoot: 1.0

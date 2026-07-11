@@ -410,3 +410,23 @@
     Telecrystal: 2
   categories:
   - UplinkDeception
+
+- type: listing
+  id: UplinkCombatTrainingImplanter
+  name: uplink-combat-training-name
+  description: uplink-combat-training-desc
+  icon: { sprite: /Textures/Actions/Implants/implants.rsi, state: freedom }
+  productEntity: CombatTrainingImplanter
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkImplants
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - CombatTargetOddsOverride

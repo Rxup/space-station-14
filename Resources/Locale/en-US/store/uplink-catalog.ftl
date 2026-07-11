@@ -211,6 +211,8 @@ uplink-storage-implanter-desc = Hide goodies inside of yourself with new bluespa
 
 uplink-freedom-implanter-name = Freedom Implanter
 uplink-freedom-implanter-desc = Get away from those nasty sec officers with this three use implant!
+uplink-combat-training-name = Combat Training Implanter
+uplink-combat-training-desc = A Syndicate implant that improves aimed-shot accuracy to Security-tier levels (~35–40%).
 
 uplink-scram-implanter-name = Scram Implanter
 uplink-scram-implanter-desc = A 2-use implant which teleports you within a large radius. Attempts to teleport you onto an unobstructed tile. May sometimes fail to do so. Life insurance not included.
