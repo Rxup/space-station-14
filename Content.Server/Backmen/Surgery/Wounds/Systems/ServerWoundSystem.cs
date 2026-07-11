@@ -30,14 +30,10 @@ public sealed partial class ServerWoundSystem : WoundSystem
     private float _woundScarChance;
     private float _woundTransferPart;
 
-    private float _maxWoundSeverity;
-
     private readonly EntProtoId BluntWoundId = "Blunt";
 
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private ServerPainSystem _pain = default!; // backmen: phantom-pain-fix
-
-    protected override FixedPoint2 GetMaxWoundSeverity() => FixedPoint2.New(_maxWoundSeverity);
 
     public override void Initialize()
     {
@@ -45,7 +41,6 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
         Subs.CVar(Cfg, CCVars.MedicalHealingTickrate, val => _medicalHealingTickrate = val, true);
         Subs.CVar(Cfg, CCVars.WoundScarChance, val => _woundScarChance = val, true);
-        Subs.CVar(Cfg, CCVars.MaxWoundSeverity, val => _maxWoundSeverity = val, true);
         Subs.CVar(Cfg, CCVars.WoundTransferPart, val => _woundTransferPart = val, true);
     }
 
@@ -273,8 +268,8 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint = severity > 0
-            ? FixedPoint2.Clamp(old + ApplySeverityModifiers(wound.HoldingWoundable, severity, holdingComp), 0, _maxWoundSeverity)
-            : FixedPoint2.Clamp(old + severity, 0, _maxWoundSeverity);
+            ? FixedPoint2.Max(FixedPoint2.Zero, old + ApplySeverityModifiers(wound.HoldingWoundable, severity, holdingComp))
+            : FixedPoint2.Max(FixedPoint2.Zero, old + severity);
 
         if (wound.WoundSeverityPoint == old)
             return;
@@ -303,7 +298,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
         var old = wound.WoundSeverityPoint;
         wound.WoundSeverityPoint =
-            FixedPoint2.Clamp(ApplySeverityModifiers(wound.HoldingWoundable, severity, holdingComp), 0, _maxWoundSeverity);
+            FixedPoint2.Max(FixedPoint2.Zero, ApplySeverityModifiers(wound.HoldingWoundable, severity, holdingComp));
 
         if (wound.WoundSeverityPoint == old)
             return;
@@ -495,9 +490,9 @@ public sealed partial class ServerWoundSystem : WoundSystem
             DestroyWoundableChildren(woundableEntity, woundableComp);
 
             if (TryComp<OrganComponent>(woundableEntity, out var rootOrgan))
-                Body.RemoveOrgan(woundableEntity, rootOrgan);
+                TryViolentlyRemoveOrgan(woundableEntity, rootOrgan);
 
-            QueueDel(woundableEntity);
+            TryDeleteWoundableAfterDetach(woundableEntity);
 
             // start-backmen: surgery-gib-threshold
             if (EntityManager.System<BkmSurgeryDestructibleSystem>().ShouldFullBodyGib(bodyUid))
@@ -552,14 +547,36 @@ public sealed partial class ServerWoundSystem : WoundSystem
             }
 
             if (TryComp<OrganComponent>(woundableEntity, out var organ))
-                Body.RemoveOrgan(woundableEntity, organ);
+                TryViolentlyRemoveOrgan(woundableEntity, organ);
 
-            if (Containers.TryGetContainingContainer(woundableEntity, out var detachedContainer)
-                && HasComp<BkmDetachedBodyComponent>(detachedContainer.Owner))
-                return;
-
-            QueueDel(woundableEntity);
+            TryDeleteWoundableAfterDetach(woundableEntity);
         }
+    }
+
+    private bool IsInDetachedBodyBundle(EntityUid entity)
+    {
+        return Containers.TryGetContainingContainer(entity, out var container)
+            && HasComp<BkmDetachedBodyComponent>(container.Owner);
+    }
+
+    private void TryDeleteWoundableAfterDetach(EntityUid woundableEntity)
+    {
+        if (IsInDetachedBodyBundle(woundableEntity))
+            return;
+
+        QueueDel(woundableEntity);
+    }
+
+    private void TryViolentlyRemoveOrgan(EntityUid woundableEntity, OrganComponent organ)
+    {
+        if (HasComp<DetachableOrganComponent>(woundableEntity))
+        {
+            using var _ = EntityManager.System<DetachableOrganSystem>().EnterViolentDetach();
+            Body.RemoveOrgan(woundableEntity, organ);
+            return;
+        }
+
+        Body.RemoveOrgan(woundableEntity, organ);
     }
 
     private bool TryResolveDestroyParent(

@@ -54,7 +54,7 @@ public sealed partial class ServerWoundSystem
             if (TryComp<OrganComponent>(woundableEntity, out var rootOrgan))
                 Body.RemoveOrgan(woundableEntity, rootOrgan);
 
-            QueueDel(woundableEntity);
+            TryDeleteWoundableAfterDetach(woundableEntity);
 
             if (EntityManager.System<BkmSurgeryDestructibleSystem>().ShouldFullBodyGib(bodyUid))
                 Body.GibBody(bodyUid);
@@ -100,11 +100,7 @@ public sealed partial class ServerWoundSystem
             if (TryComp<OrganComponent>(woundableEntity, out var organ))
                 Body.RemoveOrgan(woundableEntity, organ);
 
-            if (Containers.TryGetContainingContainer(woundableEntity, out var detachedContainer)
-                && HasComp<BkmDetachedBodyComponent>(detachedContainer.Owner))
-                return;
-
-            QueueDel(woundableEntity);
+            TryDeleteWoundableAfterDetach(woundableEntity);
         }
     }
 

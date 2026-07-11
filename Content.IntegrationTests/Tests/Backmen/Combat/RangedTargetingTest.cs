@@ -6,6 +6,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Server.Implants;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -23,6 +24,7 @@ public sealed class RangedTargetingTest : GameTest
     private static readonly EntProtoId ArmorVest = "ClothingOuterArmorBasic";
     private static readonly EntProtoId XenoborgHeavy = "XenoborgHeavy";
     private static readonly EntProtoId CombatTrainingImplant = "CombatTrainingImplant";
+    private static readonly EntProtoId WeaponPistol = "WeaponPistolMk58";
 
     public override PoolSettings PoolSettings => new()
     {
@@ -89,6 +91,29 @@ public sealed class RangedTargetingTest : GameTest
             Assert.That(entMan.TryGetComponent(victim, out ConsciousnessComponent? _), Is.True);
             Assert.That(targeting.TryResolveCombatBodyPart(victim, shooterWithoutTargeting, null, out _), Is.False);
             Assert.That(targeting.TryResolveCombatBodyPart(victim, shooterWithTargeting, shooterWithTargeting, out var hitPart), Is.True);
+            Assert.That(Enum.IsDefined(hitPart), Is.True);
+        });
+    }
+
+    [Test]
+    public async Task TryResolveCombatBodyPart_SeedGunFallback()
+    {
+        var map = await Pair.CreateTestMap();
+        await Pair.RunTicksSync(5);
+
+        await Server.WaitPost(() =>
+        {
+            var entMan = Server.EntMan;
+            var targeting = entMan.System<TargetingSystem>();
+            var handsSys = entMan.System<SharedHandsSystem>();
+
+            var victim = entMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            var gunHolder = entMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            var gun = entMan.SpawnAtPosition(WeaponPistol, map.GridCoords);
+            entMan.EnsureComponent<TargetingComponent>(gunHolder);
+
+            Assert.That(handsSys.TryPickupAnyHand(gunHolder, gun, checkActionBlocker: false), Is.True);
+            Assert.That(targeting.TryResolveCombatBodyPart(victim, null, gun, out var hitPart), Is.True);
             Assert.That(Enum.IsDefined(hitPart), Is.True);
         });
     }

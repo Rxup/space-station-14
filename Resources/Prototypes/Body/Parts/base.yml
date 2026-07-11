@@ -9,13 +9,13 @@
   # start-backmen: surgery
   - type: Woundable
     damageContainer: Biological
-    integrity: 65
-    integrityCap: 65
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 60
-      Moderate: 45
-      Severe: 30
-      Critical: 12
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
@@ -60,13 +60,13 @@
     containerName: "сhest_slot"
   # backmen edit start
   - type: Woundable
-    integrity: 100
-    integrityCap: 100
+    integrity: 54
+    integrityCap: 54
     thresholds:
-      Minor: 84
-      Moderate: 70
-      Severe: 55
-      Critical: 30
+      Minor: 45
+      Moderate: 38
+      Severe: 30
+      Critical: 16
       Loss: 0
     passiveTraumaChances:
       BoneDamage: 0
@@ -107,13 +107,13 @@
     context: "ghost"
   # backmen edit start
   - type: Woundable
-    integrity: 42
-    integrityCap: 42
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 36
-      Moderate: 30
-      Severe: 24
-      Critical: 12
+      Minor: 30
+      Moderate: 25
+      Severe: 20
+      Critical: 10
       Loss: 0
     passiveTraumaChances:
       BoneDamage: 0.4
@@ -207,13 +207,13 @@
     symmetry: Left
     toolName: "a left hand" # backmen: surgery
   - type: Woundable
-    integrity: 50
-    integrityCap: 50
+    integrity: 27
+    integrityCap: 27
     thresholds:
-      Minor: 42
-      Moderate: 36
-      Severe: 26
-      Critical: 15
+      Minor: 23
+      Moderate: 19
+      Severe: 14
+      Critical: 8
       Loss: 0
   # backmen edit end
 
@@ -239,13 +239,13 @@
     symmetry: Right
     toolName: "a right hand" # backmen: surgery
   - type: Woundable
-    integrity: 50
-    integrityCap: 50
+    integrity: 27
+    integrityCap: 27
     thresholds:
-      Minor: 42
-      Moderate: 36
-      Severe: 26
-      Critical: 15
+      Minor: 23
+      Moderate: 19
+      Severe: 14
+      Critical: 8
       Loss: 0
   # backmen edit end
 
@@ -319,13 +319,13 @@
     symmetry: Left
     toolName: "a left foot" # backmen: surgery
   - type: Woundable
-    integrity: 50
-    integrityCap: 50
+    integrity: 27
+    integrityCap: 27
     thresholds:
-      Minor: 42
-      Moderate: 36
-      Severe: 26
-      Critical: 15
+      Minor: 23
+      Moderate: 19
+      Severe: 14
+      Critical: 8
       Loss: 0
     # backmen edit end
 
@@ -351,12 +351,12 @@
     symmetry: Right
     toolName: "a right foot" # backmen: surgery
   - type: Woundable
-    integrity: 50
-    integrityCap: 50
+    integrity: 27
+    integrityCap: 27
     thresholds:
-      Minor: 42
-      Moderate: 36
-      Severe: 26
-      Critical: 15
+      Minor: 23
+      Moderate: 19
+      Severe: 14
+      Critical: 8
       Loss: 0
   # backmen edit end

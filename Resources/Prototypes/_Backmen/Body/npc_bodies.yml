@@ -313,13 +313,13 @@
     state: cultgolem_chest
   - type: Woundable
     damageContainer: Inorganic
-    integrity: 100
-    integrityCap: 100
+    integrity: 54
+    integrityCap: 54
     thresholds:
-      Minor: 84
-      Moderate: 70
-      Severe: 55
-      Critical: 30
+      Minor: 45
+      Moderate: 38
+      Severe: 30
+      Critical: 16
       Loss: 0
     passiveTraumaChances:
       BoneDamage: 0
@@ -339,13 +339,13 @@
     state: cultgolem_head
   - type: Woundable
     damageContainer: Inorganic
-    integrity: 42
-    integrityCap: 42
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 36
-      Moderate: 30
-      Severe: 24
-      Critical: 12
+      Minor: 30
+      Moderate: 25
+      Severe: 20
+      Critical: 10
       Loss: 0
     passiveTraumaChances:
       BoneDamage: 0.4
@@ -458,13 +458,13 @@
   components:
   - type: Woundable
     damageContainer: Silicon
-    integrity: 100
-    integrityCap: 100
+    integrity: 54
+    integrityCap: 54
     thresholds:
-      Minor: 84
-      Moderate: 70
-      Severe: 55
-      Critical: 30
+      Minor: 45
+      Moderate: 38
+      Severe: 30
+      Critical: 16
       Loss: 0
     passiveTraumaChances:
       BoneDamage: 0

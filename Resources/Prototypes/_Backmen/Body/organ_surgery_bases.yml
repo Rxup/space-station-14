@@ -29,13 +29,13 @@
   - type: Damageable
   - type: Woundable
     damageContainer: Biological
-    integrity: 65
-    integrityCap: 65
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 60
-      Moderate: 45
-      Severe: 30
-      Critical: 12
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: NerveOrgan
   - type: SurgeryTool
@@ -58,13 +58,13 @@
   abstract: true
   components:
   - type: Woundable
-    integrity: 100
-    integrityCap: 100
+    integrity: 54
+    integrityCap: 54
     thresholds:
-      Minor: 84
-      Moderate: 70
-      Severe: 55
-      Critical: 30
+      Minor: 45
+      Moderate: 38
+      Severe: 30
+      Critical: 16
       Loss: 0
     passiveTraumaChances:
       BoneDamage: 0
@@ -108,13 +108,13 @@
   abstract: true
   components:
   - type: Woundable
-    integrity: 42
-    integrityCap: 42
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 36
-      Moderate: 30
-      Severe: 24
-      Critical: 12
+      Minor: 30
+      Moderate: 25
+      Severe: 20
+      Critical: 10
       Loss: 0
     passiveTraumaChances:
       BoneDamage: 0.4
@@ -174,13 +174,13 @@
   abstract: true
   components:
   - type: Woundable
-    integrity: 50
-    integrityCap: 50
+    integrity: 27
+    integrityCap: 27
     thresholds:
-      Minor: 42
-      Moderate: 36
-      Severe: 26
-      Critical: 15
+      Minor: 23
+      Moderate: 19
+      Severe: 14
+      Critical: 8
       Loss: 0
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
@@ -198,13 +198,13 @@
   abstract: true
   components:
   - type: Woundable
-    integrity: 50
-    integrityCap: 50
+    integrity: 27
+    integrityCap: 27
     thresholds:
-      Minor: 42
-      Moderate: 36
-      Severe: 26
-      Critical: 15
+      Minor: 23
+      Moderate: 19
+      Severe: 14
+      Critical: 8
       Loss: 0
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
@@ -221,6 +221,15 @@
   id: OrganSurgeryLegLeft
   abstract: true
   components:
+  - type: Woundable
+    integrity: 35
+    integrityCap: 35
+    thresholds:
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
+      Loss: 0
   - type: MovementBodyPart
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
@@ -238,6 +247,15 @@
   id: OrganSurgeryLegRight
   abstract: true
   components:
+  - type: Woundable
+    integrity: 35
+    integrityCap: 35
+    thresholds:
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
+      Loss: 0
   - type: MovementBodyPart
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
@@ -255,6 +273,15 @@
   id: OrganSurgeryFootLeft
   abstract: true
   components:
+  - type: Woundable
+    integrity: 27
+    integrityCap: 27
+    thresholds:
+      Minor: 23
+      Moderate: 19
+      Severe: 14
+      Critical: 8
+      Loss: 0
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: enum.HumanoidVisualLayers.LFoot
@@ -270,6 +297,15 @@
   id: OrganSurgeryFootRight
   abstract: true
   components:
+  - type: Woundable
+    integrity: 27
+    integrityCap: 27
+    thresholds:
+      Minor: 23
+      Moderate: 19
+      Severe: 14
+      Critical: 8
+      Loss: 0
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     occupiedLayer: enum.HumanoidVisualLayers.RFoot
@@ -289,10 +325,10 @@
     integrity: 35
     integrityCap: 35
     thresholds:
-      Minor: 30
+      Minor: 32
       Moderate: 24
-      Severe: 18
-      Critical: 10
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: WoundableVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]

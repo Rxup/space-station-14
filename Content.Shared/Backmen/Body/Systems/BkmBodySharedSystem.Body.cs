@@ -420,6 +420,14 @@ public partial class BkmBodySharedSystem
                 gibs.Add(item);
             }
         }
+
+        var scatter = EntityManager.System<BkmDetachedBodyScatterSystem>();
+        foreach (var gibEntity in gibs)
+        {
+            if (HasComp<BkmDetachedBodyComponent>(gibEntity))
+                scatter.ScatterViolentBundle(gibEntity, bodyTransform.Coordinates, splatDirection, splatModifier);
+        }
+
         _audioSystem.PlayPredicted(gibSoundOverride, bodyTransform.Coordinates, null);
         return gibs;
     }

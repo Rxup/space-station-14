@@ -1,0 +1,401 @@
+Тестовый запуск для d:\src\space-station-14\bin\Content.IntegrationTests\Content.IntegrationTests.dll (.NETCoreApp,Version=v10.0)
+╨Т╨╡╤А╤Б╨╕╤П VSTest 18.0.2 (x64)
+
+╨Ч╨░╨┐╤Г╤Б╨║ ╨▓╤Л╨┐╨╛╨╗╨╜╨╡╨╜╨╕╤П ╤В╨╡╤Б╤В╨╛╨▓; ╨┐╨╛╨┤╨╛╨╢╨┤╨╕╤В╨╡...
+╨Ю╨▒╤Й╨╡╨╡ ╨║╨╛╨╗╨╕╤З╨╡╤Б╤В╨▓╨╛ ╤В╨╡╤Б╤В╨╛╨▓╤Л╤Е ╤Д╨░╨╣╨╗╨╛╨▓ (1), ╤Б╨╛╨╛╤В╨▓╨╡╤В╤Б╤В╨▓╤Г╤О╤Й╨╕╤Е ╤Г╨║╨░╨╖╨░╨╜╨╜╨╛╨╝╤Г ╤И╨░╨▒╨╗╨╛╨╜╤Г.
+  ╨Э╨╡ ╨┐╤А╨╛╨╣╨┤╨╡╨╜ Nonexistent [26 s]
+  ╨б╨╛╨╛╨▒╤Й╨╡╨╜╨╕╨╡ ╨╛╨▒ ╨╛╤И╨╕╨▒╨║╨╡:
+   Multiple failures or warnings in test:
+  1) SetUp : System.InvalidOperationException : Duplicate Subscriptions for comp=Content.Shared.Backmen.Surgery.Wounds.Components.WoundableComponent, event=WoundsChangedEvent
+  --SetUp
+   at Robust.Shared.GameObjects.EntityEventBus.EntAddSubscription(CompIdx compType, Type compTypeObj, Type eventType, DirectedEventHandler handler, Type orderType, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityEventBus.Directed.cs:line 419
+   at Robust.Shared.GameObjects.EntityEventBus.SubscribeLocalEvent[TComp,TEvent](EntityEventRefHandler`2 handler, Type orderType, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityEventBus.Directed.cs:line 308
+   at Robust.Shared.GameObjects.EntitySystem.SubscribeLocalEvent[TComp,TEvent](EntityEventRefHandler`2 handler, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntitySystem.Subscriptions.cs:line 118
+   at Content.Server.Backmen.Surgery.Wounds.Systems.ServerWoundSystem.Initialize() in d:\src\space-station-14\Content.Server\Backmen\Surgery\Wounds\Systems\ServerWoundSystem.cs:line 54
+   at Robust.Shared.GameObjects.EntitySystemManager.Initialize(Boolean discover) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntitySystemManager.cs:line 215
+   at Robust.Shared.GameObjects.EntityManager.Startup() in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityManager.cs:line 233
+   at Robust.Server.GameObjects.ServerEntityManager.Startup() in d:\src\space-station-14\RobustToolbox\Robust.Server\GameObjects\ServerEntityManager.cs:line 60
+   at Robust.Server.BaseServer.Start(ServerOptions options, Func`1 logHandlerFactory) in d:\src\space-station-14\RobustToolbox\Robust.Server\BaseServer.cs:line 397
+   at Robust.UnitTesting.RobustIntegrationTest.ServerIntegrationInstance.Init() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 860
+   at Robust.UnitTesting.RobustIntegrationTest.ServerIntegrationInstance._serverMain() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 771
+--- End of stack trace from previous location ---
+   at Robust.UnitTesting.RobustIntegrationTest.IntegrationInstance.WaitIdleImplAsync(Boolean throwOnUnhandled, CancellationToken cancellationToken) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 564
+   at Robust.UnitTesting.RobustIntegrationTest.TestPair.GenerateServer() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.TestPair.cs:line 28
+   at Robust.UnitTesting.Pool.TestPair`2.Init(Int32 id, BasePoolManager manager, PairSettings settings, TextWriter testOut, TextWriter gravestone) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\TestPair.cs:line 83
+   at Robust.UnitTesting.Pool.PoolManager`1.CreateServerClientPair(PairSettings settings, ITestContextLike context, TextWriter testOut) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\PoolManager.cs:line 297
+   at Robust.UnitTesting.Pool.PoolManager`1.GetPair(PairSettings settings, ITestContextLike testContext) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\PoolManager.cs:line 202
+   at Content.IntegrationTests.PoolManager.GetServerClient(PoolSettings settings, ITestContextLike testContext) in d:\src\space-station-14\Content.IntegrationTests\PoolManager.cs:line 79
+   at Content.IntegrationTests.Fixtures.GameTest.DoSetup() in d:\src\space-station-14\Content.IntegrationTests\Fixtures\GameTest.cs:line 167
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUpOrTearDownMethod(TestExecutionContext context, IMethodInfo method)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUp(TestExecutionContext context)
+  2) TearDown : System.NullReferenceException : Object reference not set to an instance of an object.
+  --TearDown
+   at Content.IntegrationTests.Fixtures.GameTest.DoTeardown() in d:\src\space-station-14\Content.IntegrationTests\Fixtures\GameTest.cs:line 263
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.GetResult()
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUpOrTearDownMethod(TestExecutionContext context, IMethodInfo method)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunTearDown(TestExecutionContext context)
+
+  ╨в╤А╨░╤Б╤Б╨╕╤А╨╛╨▓╨║╨░ ╤Б╤В╨╡╨║╨░:
+  
+1) --SetUp
+   at Robust.Shared.GameObjects.EntityEventBus.EntAddSubscription(CompIdx compType, Type compTypeObj, Type eventType, DirectedEventHandler handler, Type orderType, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityEventBus.Directed.cs:line 419
+   at Robust.Shared.GameObjects.EntityEventBus.SubscribeLocalEvent[TComp,TEvent](EntityEventRefHandler`2 handler, Type orderType, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityEventBus.Directed.cs:line 308
+   at Robust.Shared.GameObjects.EntitySystem.SubscribeLocalEvent[TComp,TEvent](EntityEventRefHandler`2 handler, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntitySystem.Subscriptions.cs:line 118
+   at Content.Server.Backmen.Surgery.Wounds.Systems.ServerWoundSystem.Initialize() in d:\src\space-station-14\Content.Server\Backmen\Surgery\Wounds\Systems\ServerWoundSystem.cs:line 54
+   at Robust.Shared.GameObjects.EntitySystemManager.Initialize(Boolean discover) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntitySystemManager.cs:line 215
+   at Robust.Shared.GameObjects.EntityManager.Startup() in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityManager.cs:line 233
+   at Robust.Server.GameObjects.ServerEntityManager.Startup() in d:\src\space-station-14\RobustToolbox\Robust.Server\GameObjects\ServerEntityManager.cs:line 60
+   at Robust.Server.BaseServer.Start(ServerOptions options, Func`1 logHandlerFactory) in d:\src\space-station-14\RobustToolbox\Robust.Server\BaseServer.cs:line 397
+   at Robust.UnitTesting.RobustIntegrationTest.ServerIntegrationInstance.Init() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 860
+   at Robust.UnitTesting.RobustIntegrationTest.ServerIntegrationInstance._serverMain() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 771
+--- End of stack trace from previous location ---
+   at Robust.UnitTesting.RobustIntegrationTest.IntegrationInstance.WaitIdleImplAsync(Boolean throwOnUnhandled, CancellationToken cancellationToken) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 564
+   at Robust.UnitTesting.RobustIntegrationTest.TestPair.GenerateServer() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.TestPair.cs:line 28
+   at Robust.UnitTesting.Pool.TestPair`2.Init(Int32 id, BasePoolManager manager, PairSettings settings, TextWriter testOut, TextWriter gravestone) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\TestPair.cs:line 83
+   at Robust.UnitTesting.Pool.PoolManager`1.CreateServerClientPair(PairSettings settings, ITestContextLike context, TextWriter testOut) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\PoolManager.cs:line 297
+   at Robust.UnitTesting.Pool.PoolManager`1.GetPair(PairSettings settings, ITestContextLike testContext) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\PoolManager.cs:line 202
+   at Content.IntegrationTests.PoolManager.GetServerClient(PoolSettings settings, ITestContextLike testContext) in d:\src\space-station-14\Content.IntegrationTests\PoolManager.cs:line 79
+   at Content.IntegrationTests.Fixtures.GameTest.DoSetup() in d:\src\space-station-14\Content.IntegrationTests\Fixtures\GameTest.cs:line 167
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUpOrTearDownMethod(TestExecutionContext context, IMethodInfo method)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUp(TestExecutionContext context)
+2) --TearDown
+   at Content.IntegrationTests.Fixtures.GameTest.DoTeardown() in d:\src\space-station-14\Content.IntegrationTests\Fixtures\GameTest.cs:line 263
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.GetResult()
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUpOrTearDownMethod(TestExecutionContext context, IMethodInfo method)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunTearDown(TestExecutionContext context)
+
+  ╨б╤В╨░╨╜╨┤╨░╤А╤В╨╜╤Л╨╡ ╨▓╤Л╤Е╨╛╨┤╨╜╤Л╨╡ ╤Б╨╛╨╛╨▒╤Й╨╡╨╜╨╕╤П:
+ GetPair: Called by test Backmen.Body.GibDetachedBodyTest.Nonexistent
+ GetPair: Looking in pool for a suitable pair
+ GetPair: Creating a new pair, no suitable pair found in pool
+ CLIENT: 0,141s [DEBG] root: OS: Microsoft Windows 6.2.9200 X64
+ CLIENT: 0,142s [DEBG] root: .NET Runtime: .NET 10.0.9 win-x64
+ CLIENT: 0,142s [DEBG] root: Server GC: False
+ CLIENT: 0,142s [DEBG] root: Processor: 32x Intel(R) Core(TM) i9-14900K
+ CLIENT: 0,142s [DEBG] root: Available Memory: 63,68 GiB
+ CLIENT: 0,142s [DEBG] root: Architecture: X64
+ CLIENT: 0,142s [DEBG] root: Robust Version: 282.0.0.0
+ CLIENT: 0,142s [DEBG] root: Compile Options: DEVELOPMENT;TOOLS;DEBUG;CLIENT_SCRIPTING
+ CLIENT: 0,142s [DEBG] root: Intrinsics: X86Aes;Avx;Avx2;Bmi1;Bmi2;Fma;Lzcnt;Pclmulqdq;Popcnt;Sse;Sse2;Sse3;Ssse3;Sse41;Sse42;X86Base
+ CLIENT: 0,556s [DEBG] serialization: Skipping registering data definition for type Content.Shared.StatusIcon.StatusIconPrototype since it is abstract or an interface
+ CLIENT: 0,578s [DEBG] serialization: Skipping registering data definition for type Content.Shared.DeviceLinking.DevicePortPrototype since it is abstract or an interface
+ CLIENT: 0,580s [DEBG] serialization: Skipping registering data definition for type Content.Shared.Backmen.Blob.BlobTypedStorage`1[T] since it is abstract or an interface
+ CLIENT: 0,580s [DEBG] serialization: Skipping registering data definition for type Content.Shared.Backmen.Blob.BlobChemClassTypedStorage`1[T] since it is abstract or an interface
+ CLIENT: 0,580s [DEBG] serialization: Skipping registering data definition for type Content.Shared.Backmen.Blob.BlobChemTypedStorage`1[T] since it is abstract or an interface
+ CLIENT: 0,582s [DEBG] serialization: Skipping registering data definition for type Content.Shared.EntityConditions.EntityConditionEvent`1[T] since it is abstract or an interface
+ CLIENT: 1,983s [DEBG] res.preload: Skipping texture preloading due to CVar value.
+ CLIENT: 2,139s [INFO] szr: Serializer Types Hash: 39531916C46A7D9B31148C90462DC2CE6C072A585379C4DECEA2C8680BE83D67
+ CLIENT: 2,224s [WARN] proto: Registering an ignored prototype Content.Shared.Maps.GameMapPrototype
+ CLIENT: 2,229s [WARN] proto: Registering an ignored prototype Content.Shared.Backmen.Loadout.LoadoutItemPrototype
+ CLIENT: 15,141s [INFO] client: Tickrate changed to: 30 on tick 1
+ CLIENT: 15,141s [INFO] client: Tickrate changed to: 1 on tick 1
+ CLIENT: 15,141s [DEBG] client: Runlevel changed to: Initialize
+ CLIENT: 15,196s [DEBG] style: Initializing Stylesheets...
+ CLIENT: 15,275s [DEBG] style: Initialized 486 style rules in 00:00:00.0787267
+ CLIENT: 15,280s [DEBG] root: Switching to state Content.Client.MainMenu.MainScreen
+ CLIENT: 15,331s [DEBG] clyde: Tile atlas took 00:00:00.0502370 to build
+ SERVER: 15,373s [INFO] srv: Timescale changed to: 1 on tick 1
+ SERVER: 15,373s [INFO] srv: Name: MyServer
+ SERVER: 15,373s [INFO] srv: TickRate: 30(33,33ms)
+ SERVER: 15,373s [INFO] srv: Max players: 256
+ SERVER: 15,564s [INFO] szr: Serializer Types Hash: 39531916C46A7D9B31148C90462DC2CE6C072A585379C4DECEA2C8680BE83D67
+ SERVER: 15,594s [INFO] configpreset: Loaded config preset: "/ConfigPresets/Build/debug.toml"
+ SERVER: 17,287s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'AdminLogs' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,367s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'Cleanup' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,422s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'ServerNameFts' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,488s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'MarkingsJsonb' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,625s [WARN] db.ef: An operation of type 'UpdateDataOperation' will be attempted while a rebuild of table 'admin_notes' is pending. The database may not be in an expected state. Review the SQL generated by this migration to help diagnose any failures. Consider moving these operations to a subsequent migration.
+ SERVER: 17,631s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'AdminNotesImprovement' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,807s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'AdminNotesImprovementsForeignKeys' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,916s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'ConnectionLogServer' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,962s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'AdminLogPk' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 18,036s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'ClothingRemoval' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 18,066s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'AdminMessageDismiss' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 18,478s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'BanRefactor' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 26,413s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤М╤П╨╜╤Л╨╣"
+ SERVER: 26,413s [WARN] loc: Unknown messageId ("ru-RU"): "radiation protection"
+ SERVER: 26,413s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,414s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤М╤П╨╜╤Л╨╣"
+ SERVER: 26,415s [WARN] loc: Unknown messageId ("ru-RU"): "owo╨░╨║╤Ж╨╡╨╜╤В"
+ SERVER: 26,416s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,416s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,416s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "temporary blindness"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,418s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,418s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,418s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,419s [WARN] loc: Unknown messageId ("ru-RU"): "╨║╤А╨╛╨▓╨╛╨╕╨╖╨╗╨╕╤П╨╜╨╕╨╡"
+ SERVER: 26,419s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,419s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,420s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╨╡╤А╨╡╨╝╨╡╤И╨░╨╜╨╜╨░╤П ╤А╨╡╤З╤М"
+ SERVER: 26,420s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╤И╨╡╨╗╨╛╨╝╨╗╨╡╨╜╨╜╤Л╨╣"
+ SERVER: 26,420s [WARN] loc: Unknown messageId ("ru-RU"): "psionically insulated"
+ SERVER: 26,420s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,421s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,422s [WARN] loc: Unknown messageId ("ru-RU"): "2x max stamina"
+ SERVER: 26,422s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨╜╨╡╨╝╨╡╨╜╨╕╨╡ ╨╛╤В ╨▒╨╛╨╗╨╕"
+ SERVER: 26,422s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,423s [WARN] loc: Unknown messageId ("ru-RU"): "╨╢╨╕╨┤╨║╨░╤П ╨║╤А╨╛╨▓╤М"
+ SERVER: 26,424s [WARN] loc: Unknown messageId ("ru-RU"): "psionic rainbow repeater"
+ SERVER: 26,424s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,425s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "2x max stamina"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "temporary blindness"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,427s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,427s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╨╡╤А╨╡╨╝╨╡╤И╨░╨╜╨╜╨░╤П ╤А╨╡╤З╤М"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤А╨╕╨╜╤Г╨┤╨╕╤В╨╡╨╗╤М╨╜╤Л╨╣ ╤Б╨╛╨╜"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨╗╨░╨╣╨░╨║╤Ж╨╡╨╜╤В"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,431s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,431s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤А╨╕╨╜╤Г╨┤╨╕╤В╨╡╨╗╤М╨╜╤Л╨╣ ╤Б╨╛╨╜"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "1.5x max stamina"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤А╨╕╨╜╤Г╨┤╨╕╤В╨╡╨╗╤М╨╜╤Л╨╣ ╤Б╨╛╨╜"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,433s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,433s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,433s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤А╨╕╨╜╤Г╨┤╨╕╤В╨╡╨╗╤М╨╜╤Л╨╣ ╤Б╨╛╨╜"
+
+
+  ╨Э╨╡ ╨┐╤А╨╛╨╣╨┤╨╡╨╜ Nonexistent [26 s]
+  ╨б╨╛╨╛╨▒╤Й╨╡╨╜╨╕╨╡ ╨╛╨▒ ╨╛╤И╨╕╨▒╨║╨╡:
+   Multiple failures or warnings in test:
+  1) SetUp : System.InvalidOperationException : Duplicate Subscriptions for comp=Content.Shared.Backmen.Surgery.Wounds.Components.WoundableComponent, event=WoundsChangedEvent
+  --SetUp
+   at Robust.Shared.GameObjects.EntityEventBus.EntAddSubscription(CompIdx compType, Type compTypeObj, Type eventType, DirectedEventHandler handler, Type orderType, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityEventBus.Directed.cs:line 419
+   at Robust.Shared.GameObjects.EntityEventBus.SubscribeLocalEvent[TComp,TEvent](EntityEventRefHandler`2 handler, Type orderType, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityEventBus.Directed.cs:line 308
+   at Robust.Shared.GameObjects.EntitySystem.SubscribeLocalEvent[TComp,TEvent](EntityEventRefHandler`2 handler, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntitySystem.Subscriptions.cs:line 118
+   at Content.Server.Backmen.Surgery.Wounds.Systems.ServerWoundSystem.Initialize() in d:\src\space-station-14\Content.Server\Backmen\Surgery\Wounds\Systems\ServerWoundSystem.cs:line 54
+   at Robust.Shared.GameObjects.EntitySystemManager.Initialize(Boolean discover) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntitySystemManager.cs:line 215
+   at Robust.Shared.GameObjects.EntityManager.Startup() in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityManager.cs:line 233
+   at Robust.Server.GameObjects.ServerEntityManager.Startup() in d:\src\space-station-14\RobustToolbox\Robust.Server\GameObjects\ServerEntityManager.cs:line 60
+   at Robust.Server.BaseServer.Start(ServerOptions options, Func`1 logHandlerFactory) in d:\src\space-station-14\RobustToolbox\Robust.Server\BaseServer.cs:line 397
+   at Robust.UnitTesting.RobustIntegrationTest.ServerIntegrationInstance.Init() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 860
+   at Robust.UnitTesting.RobustIntegrationTest.ServerIntegrationInstance._serverMain() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 771
+--- End of stack trace from previous location ---
+   at Robust.UnitTesting.RobustIntegrationTest.IntegrationInstance.WaitIdleImplAsync(Boolean throwOnUnhandled, CancellationToken cancellationToken) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 564
+   at Robust.UnitTesting.RobustIntegrationTest.TestPair.GenerateServer() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.TestPair.cs:line 28
+   at Robust.UnitTesting.Pool.TestPair`2.Init(Int32 id, BasePoolManager manager, PairSettings settings, TextWriter testOut, TextWriter gravestone) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\TestPair.cs:line 83
+   at Robust.UnitTesting.Pool.PoolManager`1.CreateServerClientPair(PairSettings settings, ITestContextLike context, TextWriter testOut) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\PoolManager.cs:line 297
+   at Robust.UnitTesting.Pool.PoolManager`1.GetPair(PairSettings settings, ITestContextLike testContext) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\PoolManager.cs:line 202
+   at Content.IntegrationTests.PoolManager.GetServerClient(PoolSettings settings, ITestContextLike testContext) in d:\src\space-station-14\Content.IntegrationTests\PoolManager.cs:line 79
+   at Content.IntegrationTests.Fixtures.GameTest.DoSetup() in d:\src\space-station-14\Content.IntegrationTests\Fixtures\GameTest.cs:line 167
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUpOrTearDownMethod(TestExecutionContext context, IMethodInfo method)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUp(TestExecutionContext context)
+  2) TearDown : System.NullReferenceException : Object reference not set to an instance of an object.
+  --TearDown
+   at Content.IntegrationTests.Fixtures.GameTest.DoTeardown() in d:\src\space-station-14\Content.IntegrationTests\Fixtures\GameTest.cs:line 263
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.GetResult()
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUpOrTearDownMethod(TestExecutionContext context, IMethodInfo method)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunTearDown(TestExecutionContext context)
+
+  ╨в╤А╨░╤Б╤Б╨╕╤А╨╛╨▓╨║╨░ ╤Б╤В╨╡╨║╨░:
+  
+1) --SetUp
+   at Robust.Shared.GameObjects.EntityEventBus.EntAddSubscription(CompIdx compType, Type compTypeObj, Type eventType, DirectedEventHandler handler, Type orderType, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityEventBus.Directed.cs:line 419
+   at Robust.Shared.GameObjects.EntityEventBus.SubscribeLocalEvent[TComp,TEvent](EntityEventRefHandler`2 handler, Type orderType, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityEventBus.Directed.cs:line 308
+   at Robust.Shared.GameObjects.EntitySystem.SubscribeLocalEvent[TComp,TEvent](EntityEventRefHandler`2 handler, Type[] before, Type[] after) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntitySystem.Subscriptions.cs:line 118
+   at Content.Server.Backmen.Surgery.Wounds.Systems.ServerWoundSystem.Initialize() in d:\src\space-station-14\Content.Server\Backmen\Surgery\Wounds\Systems\ServerWoundSystem.cs:line 54
+   at Robust.Shared.GameObjects.EntitySystemManager.Initialize(Boolean discover) in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntitySystemManager.cs:line 215
+   at Robust.Shared.GameObjects.EntityManager.Startup() in D:\src\space-station-14\RobustToolbox\Robust.Shared\GameObjects\EntityManager.cs:line 233
+   at Robust.Server.GameObjects.ServerEntityManager.Startup() in d:\src\space-station-14\RobustToolbox\Robust.Server\GameObjects\ServerEntityManager.cs:line 60
+   at Robust.Server.BaseServer.Start(ServerOptions options, Func`1 logHandlerFactory) in d:\src\space-station-14\RobustToolbox\Robust.Server\BaseServer.cs:line 397
+   at Robust.UnitTesting.RobustIntegrationTest.ServerIntegrationInstance.Init() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 860
+   at Robust.UnitTesting.RobustIntegrationTest.ServerIntegrationInstance._serverMain() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 771
+--- End of stack trace from previous location ---
+   at Robust.UnitTesting.RobustIntegrationTest.IntegrationInstance.WaitIdleImplAsync(Boolean throwOnUnhandled, CancellationToken cancellationToken) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.cs:line 564
+   at Robust.UnitTesting.RobustIntegrationTest.TestPair.GenerateServer() in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\RobustIntegrationTest.TestPair.cs:line 28
+   at Robust.UnitTesting.Pool.TestPair`2.Init(Int32 id, BasePoolManager manager, PairSettings settings, TextWriter testOut, TextWriter gravestone) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\TestPair.cs:line 83
+   at Robust.UnitTesting.Pool.PoolManager`1.CreateServerClientPair(PairSettings settings, ITestContextLike context, TextWriter testOut) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\PoolManager.cs:line 297
+   at Robust.UnitTesting.Pool.PoolManager`1.GetPair(PairSettings settings, ITestContextLike testContext) in d:\src\space-station-14\RobustToolbox\Robust.UnitTesting\Pool\PoolManager.cs:line 202
+   at Content.IntegrationTests.PoolManager.GetServerClient(PoolSettings settings, ITestContextLike testContext) in d:\src\space-station-14\Content.IntegrationTests\PoolManager.cs:line 79
+   at Content.IntegrationTests.Fixtures.GameTest.DoSetup() in d:\src\space-station-14\Content.IntegrationTests\Fixtures\GameTest.cs:line 167
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.BlockUntilCompleted()
+   at NUnit.Framework.Internal.MessagePumpStrategy.NoMessagePumpStrategy.WaitForCompletion(AwaitAdapter awaiter)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUpOrTearDownMethod(TestExecutionContext context, IMethodInfo method)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUp(TestExecutionContext context)
+2) --TearDown
+   at Content.IntegrationTests.Fixtures.GameTest.DoTeardown() in d:\src\space-station-14\Content.IntegrationTests\Fixtures\GameTest.cs:line 263
+   at NUnit.Framework.Internal.TaskAwaitAdapter.GenericAdapter`1.GetResult()
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await[TResult](TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.AsyncToSyncAdapter.Await(TestExecutionContext context, Func`1 invoke)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunSetUpOrTearDownMethod(TestExecutionContext context, IMethodInfo method)
+   at NUnit.Framework.Internal.Commands.SetUpTearDownItem.RunTearDown(TestExecutionContext context)
+
+  ╨б╤В╨░╨╜╨┤╨░╤А╤В╨╜╤Л╨╡ ╨▓╤Л╤Е╨╛╨┤╨╜╤Л╨╡ ╤Б╨╛╨╛╨▒╤Й╨╡╨╜╨╕╤П:
+ GetPair: Called by test Backmen.Body.GibDetachedBodyTest.Nonexistent
+ GetPair: Looking in pool for a suitable pair
+ GetPair: Creating a new pair, no suitable pair found in pool
+ CLIENT: 0,141s [DEBG] root: OS: Microsoft Windows 6.2.9200 X64
+ CLIENT: 0,142s [DEBG] root: .NET Runtime: .NET 10.0.9 win-x64
+ CLIENT: 0,142s [DEBG] root: Server GC: False
+ CLIENT: 0,142s [DEBG] root: Processor: 32x Intel(R) Core(TM) i9-14900K
+ CLIENT: 0,142s [DEBG] root: Available Memory: 63,68 GiB
+ CLIENT: 0,142s [DEBG] root: Architecture: X64
+ CLIENT: 0,142s [DEBG] root: Robust Version: 282.0.0.0
+ CLIENT: 0,142s [DEBG] root: Compile Options: DEVELOPMENT;TOOLS;DEBUG;CLIENT_SCRIPTING
+ CLIENT: 0,142s [DEBG] root: Intrinsics: X86Aes;Avx;Avx2;Bmi1;Bmi2;Fma;Lzcnt;Pclmulqdq;Popcnt;Sse;Sse2;Sse3;Ssse3;Sse41;Sse42;X86Base
+ CLIENT: 0,453s [DEBG] serialization: Skipping registering data definition for type Content.Shared.StatusIcon.StatusIconPrototype since it is abstract or an interface
+ CLIENT: 0,470s [DEBG] serialization: Skipping registering data definition for type Content.Shared.Backmen.Blob.BlobChemClassTypedStorage`1[T] since it is abstract or an interface
+ CLIENT: 0,470s [DEBG] serialization: Skipping registering data definition for type Content.Shared.Backmen.Blob.BlobChemTypedStorage`1[T] since it is abstract or an interface
+ CLIENT: 0,475s [DEBG] serialization: Skipping registering data definition for type Content.Shared.Backmen.Blob.BlobTypedStorage`1[T] since it is abstract or an interface
+ CLIENT: 0,511s [DEBG] serialization: Skipping registering data definition for type Content.Shared.DeviceLinking.DevicePortPrototype since it is abstract or an interface
+ CLIENT: 0,526s [DEBG] serialization: Skipping registering data definition for type Content.Shared.EntityConditions.EntityConditionEvent`1[T] since it is abstract or an interface
+ CLIENT: 1,983s [DEBG] res.preload: Skipping texture preloading due to CVar value.
+ CLIENT: 2,139s [INFO] szr: Serializer Types Hash: 39531916C46A7D9B31148C90462DC2CE6C072A585379C4DECEA2C8680BE83D67
+ CLIENT: 2,224s [WARN] proto: Registering an ignored prototype Content.Shared.Maps.GameMapPrototype
+ CLIENT: 2,229s [WARN] proto: Registering an ignored prototype Content.Shared.Backmen.Loadout.LoadoutItemPrototype
+ CLIENT: 14,530s [INFO] client: Tickrate changed to: 30 on tick 1
+ CLIENT: 14,531s [INFO] client: Tickrate changed to: 1 on tick 1
+ CLIENT: 14,532s [DEBG] client: Runlevel changed to: Initialize
+ CLIENT: 14,721s [DEBG] style: Initializing Stylesheets...
+ CLIENT: 14,868s [DEBG] style: Initialized 486 style rules in 00:00:00.1465335
+ CLIENT: 14,907s [DEBG] root: Switching to state Content.Client.MainMenu.MainScreen
+ CLIENT: 15,010s [DEBG] clyde: Tile atlas took 00:00:00.0950445 to build
+ SERVER: 15,103s [INFO] srv: Timescale changed to: 1 on tick 1
+ SERVER: 15,103s [INFO] srv: Name: MyServer
+ SERVER: 15,103s [INFO] srv: TickRate: 30(33,33ms)
+ SERVER: 15,103s [INFO] srv: Max players: 256
+ SERVER: 15,183s [INFO] szr: Serializer Types Hash: 39531916C46A7D9B31148C90462DC2CE6C072A585379C4DECEA2C8680BE83D67
+ SERVER: 15,252s [INFO] configpreset: Loaded config preset: "/ConfigPresets/Build/debug.toml"
+ SERVER: 17,287s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'AdminLogs' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,367s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'Cleanup' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,422s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'ServerNameFts' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,488s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'MarkingsJsonb' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,625s [WARN] db.ef: An operation of type 'UpdateDataOperation' will be attempted while a rebuild of table 'admin_notes' is pending. The database may not be in an expected state. Review the SQL generated by this migration to help diagnose any failures. Consider moving these operations to a subsequent migration.
+ SERVER: 17,631s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'AdminNotesImprovement' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,807s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'AdminNotesImprovementsForeignKeys' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,916s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'ConnectionLogServer' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 17,962s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'AdminLogPk' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 18,036s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'ClothingRemoval' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 18,066s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'AdminMessageDismiss' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 18,478s [WARN] db.ef: The migration operation 'PRAGMA foreign_keys = 0;
+ ' from migration 'BanRefactor' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+ SERVER: 26,413s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤М╤П╨╜╤Л╨╣"
+ SERVER: 26,413s [WARN] loc: Unknown messageId ("ru-RU"): "radiation protection"
+ SERVER: 26,413s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,414s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤М╤П╨╜╤Л╨╣"
+ SERVER: 26,415s [WARN] loc: Unknown messageId ("ru-RU"): "owo╨░╨║╤Ж╨╡╨╜╤В"
+ SERVER: 26,416s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,416s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,416s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "temporary blindness"
+ SERVER: 26,417s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,418s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,418s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,418s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,418s [WARN] loc: Unknown messageId ("ru-RU"): "╨║╤А╨╛╨▓╨╛╨╕╨╖╨╗╨╕╤П╨╜╨╕╨╡"
+ SERVER: 26,419s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,419s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,420s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╨╡╤А╨╡╨╝╨╡╤И╨░╨╜╨╜╨░╤П ╤А╨╡╤З╤М"
+ SERVER: 26,420s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╤И╨╡╨╗╨╛╨╝╨╗╨╡╨╜╨╜╤Л╨╣"
+ SERVER: 26,420s [WARN] loc: Unknown messageId ("ru-RU"): "psionically insulated"
+ SERVER: 26,420s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,421s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,422s [WARN] loc: Unknown messageId ("ru-RU"): "2x max stamina"
+ SERVER: 26,422s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨╜╨╡╨╝╨╡╨╜╨╕╨╡ ╨╛╤В ╨▒╨╛╨╗╨╕"
+ SERVER: 26,422s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,423s [WARN] loc: Unknown messageId ("ru-RU"): "╨╢╨╕╨┤╨║╨░╤П ╨║╤А╨╛╨▓╤М"
+ SERVER: 26,424s [WARN] loc: Unknown messageId ("ru-RU"): "psionic rainbow repeater"
+ SERVER: 26,424s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,425s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "2x max stamina"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "temporary blindness"
+ SERVER: 26,426s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,427s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,427s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╨╡╤А╨╡╨╝╨╡╤И╨░╨╜╨╜╨░╤П ╤А╨╡╤З╤М"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤А╨╕╨╜╤Г╨┤╨╕╤В╨╡╨╗╤М╨╜╤Л╨╣ ╤Б╨╛╨╜"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨╗╨░╨╣╨░╨║╤Ж╨╡╨╜╤В"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,428s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,430s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,430s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,431s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,431s [WARN] loc: Unknown messageId ("ru-RU"): "╨│╨░╨╗╨╗╤О╤Ж╨╕╨╜╨░╤Ж╨╕╨╕"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤А╨╕╨╜╤Г╨┤╨╕╤В╨╡╨╗╤М╨╜╤Л╨╣ ╤Б╨╛╨╜"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "1.5x max stamina"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "╨╛╨│╨╗╤Г╤И╨╡╨╜"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤А╨╕╨╜╤Г╨┤╨╕╤В╨╡╨╗╤М╨╜╤Л╨╣ ╤Б╨╛╨╜"
+ SERVER: 26,432s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,433s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,433s [WARN] loc: Unknown messageId ("ru-RU"): "╤Б╨╛╨╜╨╗╨╕╨▓╨╛╤Б╤В╤М"
+ SERVER: 26,433s [WARN] loc: Unknown messageId ("ru-RU"): "╨┐╤А╨╕╨╜╤Г╨┤╨╕╤В╨╡╨╗╤М╨╜╤Л╨╣ ╤Б╨╛╨╜"
+
+
+
+╨Э╨╡ ╨┐╤А╨╛╨╣╨┤╨╡╨╜!: ╨╜╨╡ ╨┐╤А╨╛╨╣╨┤╨╡╨╜╨╛     2, ╨┐╤А╨╛╨╣╨┤╨╡╨╜╨╛     0, ╨┐╤А╨╛╨┐╤Г╤Й╨╡╨╜╨╛     0, ╨▓╤Б╨╡╨│╨╛     2, ╨┤╨╗╨╕╤В╨╡╨╗╤М╨╜╨╛╤Б╤В╤М 26 s. - Content.IntegrationTests.dll (net10.0)

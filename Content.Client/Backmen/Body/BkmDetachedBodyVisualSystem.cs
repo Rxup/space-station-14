@@ -25,6 +25,7 @@ public sealed partial class BkmDetachedBodyVisualSystem : EntitySystem
         SubscribeLocalEvent<BkmDetachedBodyComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<BkmDetachedBodyComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<BkmDetachedBodyComponent, EntInsertedIntoContainerMessage>(OnContainerInserted);
+        SubscribeLocalEvent<BkmDetachedBodyComponent, AfterAutoHandleStateEvent>(OnState);
     }
 
     private void OnStartup(Entity<BkmDetachedBodyComponent> ent, ref ComponentStartup args) =>
@@ -41,37 +42,30 @@ public sealed partial class BkmDetachedBodyVisualSystem : EntitySystem
         RefreshVisuals(ent);
     }
 
+    private void OnState(Entity<BkmDetachedBodyComponent> ent, ref AfterAutoHandleStateEvent args) =>
+        RefreshVisuals(ent);
+
     private void RefreshVisuals(Entity<BkmDetachedBodyComponent> ent)
     {
         if (!_containers.TryGetContainer(ent, BodyComponent.ContainerID, out var organContainer))
             return;
 
-        if (ent.Comp.MessyScatter && TryComp(ent, out SpriteComponent? bodySprite))
-        {
-            var index = 0;
-            foreach (var _ in bodySprite.AllLayers)
-            {
-                _sprite.LayerSetVisible((ent, bodySprite), index, false);
-                index++;
-            }
-
-            if (ent.Comp.RootOrgan is { } root && organContainer.Contains(root))
-                ApplyMessyOrganVisual(ent, root, bodySprite);
-
-            return;
-        }
-
         foreach (var organ in organContainer.ContainedEntities)
-        {
-            if (HasComp<VisualOrganComponent>(organ))
-            {
-                var inserted = new OrganGotInsertedEvent(ent);
-                RaiseLocalEvent(organ, ref inserted);
-                continue;
-            }
+            ApplyOrganVisuals(ent, organ);
+    }
 
-            ApplySpriteOrganVisual(ent, organ);
-        }
+    private void ApplyOrganVisuals(EntityUid bundle, EntityUid organ)
+    {
+        var inserted = new OrganGotInsertedEvent(bundle);
+
+        if (HasComp<VisualOrganComponent>(organ))
+            RaiseLocalEvent(organ, ref inserted);
+
+        if (HasComp<VisualOrganMarkingsComponent>(organ))
+            RaiseLocalEvent(organ, ref inserted);
+
+        if (!HasComp<VisualOrganComponent>(organ))
+            ApplySpriteOrganVisual(bundle, organ);
     }
 
     /// <summary>
@@ -92,26 +86,6 @@ public sealed partial class BkmDetachedBodyVisualSystem : EntitySystem
 
         var layer = ResolveDetachedOrganLayer(organ);
         if (!_sprite.LayerMapTryGet((body, bodySprite), layer, out var index, true))
-            return;
-
-        _sprite.LayerSetData((body, bodySprite), index, new PrototypeLayerData
-        {
-            RsiPath = organRsi.Path.ToString(),
-            State = _sprite.LayerGetRsiState((organ, organSprite), 0).Name,
-        });
-        _sprite.LayerSetVisible((body, bodySprite), index, true);
-    }
-
-    private void ApplyMessyOrganVisual(EntityUid body, EntityUid organ, SpriteComponent bodySprite)
-    {
-        if (!TryComp(organ, out SpriteComponent? organSprite))
-            return;
-
-        var organRsi = organSprite.LayerGetActualRSI(0) ?? organSprite.BaseRSI;
-        if (organRsi == null)
-            return;
-
-        if (!_sprite.LayerMapTryGet((body, bodySprite), HumanoidVisualLayers.Chest, out var index, true))
             return;
 
         _sprite.LayerSetData((body, bodySprite), index, new PrototypeLayerData

@@ -6,6 +6,8 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Vehicle.Components;
+using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -16,6 +18,7 @@ public abstract partial class SharedTargetingSystem
 {
     public static readonly ProtoId<CombatTargetOddsRulesPrototype> DefaultCombatTargetOddsRules = "Shooter";
 
+    [Dependency] private SharedContainerSystem _containers = default!;
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedJobSystem _jobs = default!;
@@ -36,7 +39,7 @@ public abstract partial class SharedTargetingSystem
 
     public bool TryResolveCombatBodyPart(
         EntityUid victim,
-        EntityUid shooter,
+        EntityUid? shooter,
         EntityUid? seedEntity,
         [NotNullWhen(true)] out TargetBodyPart hitPart)
     {
@@ -45,17 +48,106 @@ public abstract partial class SharedTargetingSystem
         if (!_consciousnessQuery.HasComponent(victim))
             return false;
 
-        if (!_targetingQuery.TryComp(shooter, out var targeting))
+        if (!TryResolveCombatTargetingEntity(shooter, seedEntity, out var targetingEntity, out var oddsEntity))
+            return false;
+
+        if (!_targetingQuery.TryComp(targetingEntity, out var targeting))
             return false;
 
         var aimedPart = NormalizeTarget(targeting.Target);
-        var oddsProto = ResolveCombatTargetOddsProto(shooter);
+        var oddsProto = ResolveCombatTargetOddsProto(oddsEntity);
 
         if (!TryGetCombatTargetOddsSpread(oddsProto, aimedPart, out var weights))
             return false;
 
         hitPart = PickCombatBodyPart(victim, weights, seedEntity);
         return true;
+    }
+
+    /// <summary>
+    /// Resolves which entity supplies <see cref="TargetingComponent"/> aim and which supplies combat odds.
+    /// Hitscan passes the real shooter as <paramref name="shooter"/> and the gun as <paramref name="seedEntity"/>.
+    /// </summary>
+    private bool TryResolveCombatTargetingEntity(
+        EntityUid? shooter,
+        EntityUid? seedEntity,
+        out EntityUid targetingEntity,
+        out EntityUid oddsEntity)
+    {
+        targetingEntity = default;
+        oddsEntity = default;
+
+        if (shooter is { } shooterUid)
+        {
+            oddsEntity = shooterUid;
+
+            if (_targetingQuery.HasComponent(shooterUid))
+            {
+                targetingEntity = shooterUid;
+                return true;
+            }
+
+            if (TryResolvePilotTargeting(shooterUid, out var pilot))
+            {
+                targetingEntity = pilot;
+                return true;
+            }
+        }
+
+        if (seedEntity is { } seedUid)
+        {
+            if (oddsEntity == default)
+                oddsEntity = seedUid;
+
+            if (_targetingQuery.HasComponent(seedUid))
+            {
+                targetingEntity = seedUid;
+                return true;
+            }
+
+            if (TryResolveItemWielderTargeting(seedUid, out var wielder))
+            {
+                targetingEntity = wielder;
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private bool TryResolvePilotTargeting(EntityUid entity, out EntityUid pilot)
+    {
+        pilot = default;
+
+        var query = EntityQueryEnumerator<VehicleOperatorComponent>();
+        while (query.MoveNext(out var operatorUid, out var vehicleOperator))
+        {
+            if (vehicleOperator.Vehicle != entity || !_targetingQuery.HasComponent(operatorUid))
+                continue;
+
+            pilot = operatorUid;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryResolveItemWielderTargeting(EntityUid item, out EntityUid wielder)
+    {
+        wielder = default;
+
+        if (!_containers.TryGetContainingContainer(item, out var container))
+            return false;
+
+        var holder = container.Owner;
+
+        if (_targetingQuery.HasComponent(holder))
+        {
+            wielder = holder;
+            return true;
+        }
+
+        return TryResolvePilotTargeting(holder, out wielder);
     }
 
     public TargetBodyPart PickCombatBodyPart(

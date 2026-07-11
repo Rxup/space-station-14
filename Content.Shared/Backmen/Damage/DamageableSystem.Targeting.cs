@@ -16,7 +16,10 @@ public sealed partial class DamageableSystem
         if (!HasComp<ConsciousnessComponent>(victim))
             return null;
 
-        if (origin == null || !_targeting.TryResolveCombatBodyPart(victim, origin.Value, seedEntity, out var hitPart))
+        if (origin == null && seedEntity == null)
+            return null;
+
+        if (!_targeting.TryResolveCombatBodyPart(victim, origin, seedEntity, out var hitPart))
             return null;
 
         return hitPart;
