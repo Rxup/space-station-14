@@ -52,9 +52,12 @@ public sealed partial class ServerWoundSystem
             SpawnPartBurnEffects(woundableEntity);
 
             if (TryComp<OrganComponent>(woundableEntity, out var rootOrgan))
+            {
+                using var _ = EntityManager.System<DetachableOrganSystem>().EnterBurnDestroy();
                 Body.RemoveOrgan(woundableEntity, rootOrgan);
+            }
 
-            TryDeleteWoundableAfterDetach(woundableEntity);
+            QueueDel(woundableEntity);
 
             if (EntityManager.System<BkmSurgeryDestructibleSystem>().ShouldFullBodyGib(bodyUid))
                 Body.GibBody(bodyUid);
@@ -98,9 +101,12 @@ public sealed partial class ServerWoundSystem
                 wound.Comp2.ScalingLimit += 4;
 
             if (TryComp<OrganComponent>(woundableEntity, out var organ))
+            {
+                using var _ = EntityManager.System<DetachableOrganSystem>().EnterBurnDestroy();
                 Body.RemoveOrgan(woundableEntity, organ);
+            }
 
-            TryDeleteWoundableAfterDetach(woundableEntity);
+            QueueDel(woundableEntity);
         }
     }
 

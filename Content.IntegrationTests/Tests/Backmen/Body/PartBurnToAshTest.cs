@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
 using Content.IntegrationTests.Fixtures;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Body.OrganRelations;
@@ -59,10 +57,13 @@ public sealed class PartBurnToAshTest : GameTest
         await Server.WaitAssertion(() =>
         {
             var entMan = Server.EntMan;
+            var organBody = entMan.System<BodySystem>();
             var hand = entMan.GetEntity(netHand);
             var mob = entMan.GetEntity(netMob);
 
             Assert.That(entMan.EntityExists(mob), Is.True, "Mob should survive hand burn.");
+            Assert.That(organBody.TryGetOrganByCategory(mob, "HandLeft", out _), Is.False,
+                "Hand should be removed from the body after heat loss.");
             Assert.That(entMan.EntityExists(hand), Is.False, "Hand should be destroyed by heat loss.");
             Assert.That(CountAshOnMap(entMan), Is.GreaterThan(ashBefore), "Ash should spawn when hand burns.");
         });
@@ -72,6 +73,7 @@ public sealed class PartBurnToAshTest : GameTest
     public async Task BluntLossOnHand_DoesNotSpawnAsh()
     {
         var map = await Pair.CreateTestMap();
+        NetEntity netMob = default;
         NetEntity netHand = default;
         var ashBefore = 0;
 
@@ -85,6 +87,7 @@ public sealed class PartBurnToAshTest : GameTest
 
             var mob = entMan.SpawnEntity("MobHuman", map.MapCoords);
             Assert.That(bodySys.TryGetWoundableTargetByType(mob, BodyPartType.Hand, BodyPartSymmetry.Left, out var hand), Is.True);
+            netMob = entMan.GetNetEntity(mob);
             netHand = entMan.GetNetEntity(hand);
 
             Assert.That(entMan.TryGetComponent(hand, out WoundableComponent? handWoundable), Is.True);
@@ -99,9 +102,11 @@ public sealed class PartBurnToAshTest : GameTest
         await Server.WaitAssertion(() =>
         {
             var entMan = Server.EntMan;
-            var hand = entMan.GetEntity(netHand);
+            var organBody = entMan.System<BodySystem>();
+            var mob = entMan.GetEntity(netMob);
 
-            Assert.That(entMan.EntityExists(hand), Is.False, "Hand should be destroyed by blunt loss.");
+            Assert.That(organBody.TryGetOrganByCategory(mob, "HandLeft", out _), Is.False,
+                "Hand should be removed from the body after blunt loss.");
             Assert.That(CountAshNear(entMan, map.MapCoords), Is.EqualTo(ashBefore),
                 "Blunt amputation should not spawn burn ash.");
         });

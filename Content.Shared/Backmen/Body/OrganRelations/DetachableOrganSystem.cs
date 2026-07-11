@@ -26,6 +26,7 @@ public sealed partial class DetachableOrganSystem : EntitySystem
     [Dependency] private BkmDetachedBodyScatterSystem _scatter = default!;
 
     private int _violentDetachDepth;
+    private int _burnDestroyDepth;
     private Vector2? _violentSplatDirection;
     private float _violentSplatModifier = 1f;
 
@@ -50,6 +51,24 @@ public sealed partial class DetachableOrganSystem : EntitySystem
         }
 
         return new ViolentDetachScope(this);
+    }
+
+    /// <summary>
+    /// Suppresses detached-body bundle creation while a part is burned to ash.
+    /// </summary>
+    public BurnDestroyScope EnterBurnDestroy() => new(this);
+
+    public sealed class BurnDestroyScope : IDisposable
+    {
+        private readonly DetachableOrganSystem _system;
+
+        public BurnDestroyScope(DetachableOrganSystem system)
+        {
+            _system = system;
+            _system._burnDestroyDepth++;
+        }
+
+        public void Dispose() => _system._burnDestroyDepth--;
     }
 
     public sealed class ViolentDetachScope : IDisposable
@@ -86,6 +105,9 @@ public sealed partial class DetachableOrganSystem : EntitySystem
 
         // Only detach limbs leaving a surgery patient — not when extracting from a limb bundle for reattachment.
         if (!HasComp<SurgeryTargetComponent>(args.Target))
+            return;
+
+        if (_burnDestroyDepth > 0)
             return;
 
         foreach (var parent in _organRelation.AllParents(ent.Owner))
