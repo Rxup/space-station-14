@@ -75,7 +75,7 @@ public sealed partial class DirectionalReflectSystem : EntitySystem
         var difference = newVelocity - velocity;
 
         _physics.SetLinearVelocity(projectileUid, physics.LinearVelocity + difference, body: physics);
-        _transform.SetLocalRotation(projectileUid, outputAngle);
+        _transform.SetWorldRotation(projectileUid, outputAngle);
 
         PlayAudioAndPopup(reflector.Comp, reflector);
 
