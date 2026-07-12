@@ -56,11 +56,11 @@ public sealed partial class ProjectileSystem : SharedProjectileSystem
             damageRequired -= _damageableSystem.GetTotalDamage((target, damageableComponent));
             damageRequired = FixedPoint2.Max(damageRequired, FixedPoint2.Zero);
         }
-        var deleted = Deleted(target);
 
+        // start-backmen: reflector
         if (_damageableSystem.TryChangeDamage((target, damageableComponent), ev.Damage, out var damage, component.IgnoreResistances, origin: component.Shooter) && Exists(component.Shooter))
         {
-            if (!deleted)
+            if (Exists(target))
             {
                 _color.RaiseEffect(Color.Red, new List<EntityUid> { target }, Filter.Pvs(target, entityManager: EntityManager));
             }
@@ -76,13 +76,14 @@ public sealed partial class ProjectileSystem : SharedProjectileSystem
             component.ProjectileSpent = true;
         }
 
-        if (!deleted)
+        if (Exists(target))
         {
             _guns.PlayImpactSound(target, damage, component.SoundHit, component.ForceSound);
 
             if (!args.OurBody.LinearVelocity.IsLengthZero())
                 _sharedCameraRecoil.KickCamera(target, args.OurBody.LinearVelocity.Normalized());
         }
+        // end-backmen: reflector
 
         if (component.DeleteOnCollide && component.ProjectileSpent)
             QueueDel(uid);
