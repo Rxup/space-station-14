@@ -72,15 +72,27 @@ public sealed partial class DirectionalReflectSystem : EntitySystem
 
         // Shots from the back or sides are redirected out through the output face.
         var speed = velocity.Length();
-        var newVelocity = outputAngle.ToWorldVec() * speed;
-        var difference = newVelocity - velocity;
+        var targetMapVelocity = outputDir * speed;
+        var projectileAngle = TryComp<ProjectileComponent>(projectileUid, out var projectile)
+            ? projectile.Angle
+            : Angle.Zero;
+        var projectileRotation = outputDir.ToWorldAngle() + projectileAngle;
 
-        _physics.SetLinearVelocity(projectileUid, physics.LinearVelocity + difference, body: physics);
-        _transform.SetWorldRotation(projectileUid, outputAngle);
+        // Match gun firing so sprite direction and velocity stay aligned.
+        var finalLinear = physics.LinearVelocity + targetMapVelocity - velocity;
+        _physics.SetLinearVelocity(projectileUid, finalLinear, body: physics);
+        _physics.SetAngularVelocity(projectileUid, 0f, body: physics);
+
+        // Push the bolt past the reflector so collision resolution does not skew the trajectory.
+        var reflectorPos = _transform.GetWorldPosition(reflector);
+        _transform.SetWorldPositionRotation(
+            projectileUid,
+            reflectorPos + outputDir * 0.55f,
+            projectileRotation);
 
         PlayAudioAndPopup(reflector.Comp, reflector);
 
-        if (TryComp<ProjectileComponent>(projectileUid, out var projectile))
+        if (projectile != null)
         {
             _adminLogger.Add(
                 LogType.BulletHit,

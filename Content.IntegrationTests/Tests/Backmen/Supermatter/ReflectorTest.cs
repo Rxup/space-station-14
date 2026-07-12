@@ -78,6 +78,9 @@ public sealed class ReflectorTest : GameTest
             var outputDir = Angle.Zero.ToWorldVec();
             Assert.That(Vector2.Dot(Vector2.Normalize(redirected), outputDir), Is.GreaterThan(0.99f));
             Assert.That(redirected.Length(), Is.EqualTo(10f).Within(0.01f));
+            Assert.That(
+                xformSys.GetWorldRotation(bolt).Degrees,
+                Is.EqualTo((outputDir.ToWorldAngle() + projectile.Angle).Degrees).Within(0.1));
             Assert.That(projectile.Shooter, Is.EqualTo(reflector));
         });
     }
