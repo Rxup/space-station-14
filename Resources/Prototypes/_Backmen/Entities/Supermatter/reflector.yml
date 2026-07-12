@@ -7,7 +7,7 @@
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: Backmen/Supermatter/reflector.rsi
+    sprite: Backmen/Supermatter/reflectorframe.rsi
     state: reflector
   - type: InteractionOutline
   - type: Rotatable
