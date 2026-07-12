@@ -13,6 +13,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
+using Content.Shared.Body.Events;
 using Content.Shared.Body.Part;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.FixedPoint;
@@ -70,6 +71,8 @@ public sealed partial class ServerPainSystem : PainSystem
 
         SubscribeLocalEvent<NerveOrganComponent, BodyPartAddedEvent>(OnBodyPartAdded, after: [typeof(ConsciousnessSystem)]);
         SubscribeLocalEvent<NerveOrganComponent, BodyPartRemovedEvent>(OnBodyPartRemoved, after: [typeof(ConsciousnessSystem)]);
+        SubscribeLocalEvent<NerveOrganComponent, OrganAddedToBodyEvent>(OnOrganAddedToBody, after: [typeof(ConsciousnessSystem)]);
+        SubscribeLocalEvent<NerveOrganComponent, OrganRemovedFromBodyEvent>(OnOrganRemovedFromBody, after: [typeof(ConsciousnessSystem)]);
 
         SubscribeLocalEvent<PainInflicterComponent, WoundChangedEvent>(OnPainChanged); // backmen: phantom-pain-fix
 
@@ -235,10 +238,7 @@ public sealed partial class ServerPainSystem : PainSystem
         if (!bodyPart.Body.HasValue)
             return;
 
-        if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
-            return;
-
-        UpdateNerveSystemNerves(brainUid.Value, bodyPart.Body.Value, Comp<NerveSystemComponent>(brainUid.Value));
+        HandleWoundableAttachedToBody(bodyPart.Body.Value, nerve);
     }
 
     private void OnBodyPartRemoved(Entity<NerveOrganComponent> nerve, ref BodyPartRemovedEvent args)
@@ -247,41 +247,79 @@ public sealed partial class ServerPainSystem : PainSystem
         if (!bodyPart.Body.HasValue)
             return;
 
-        if (!_consciousness.TryGetNerveSystem(bodyPart.Body.Value, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
+        HandleWoundableDetachedFromBody(bodyPart.Body.Value, nerve);
+    }
+
+    private void OnOrganAddedToBody(Entity<NerveOrganComponent> nerve, ref OrganAddedToBodyEvent args)
+    {
+        HandleWoundableAttachedToBody(args.Body, nerve);
+    }
+
+    private void OnOrganRemovedFromBody(Entity<NerveOrganComponent> nerve, ref OrganRemovedFromBodyEvent args)
+    {
+        HandleWoundableDetachedFromBody(args.OldBody, nerve);
+    }
+
+    private void HandleWoundableAttachedToBody(EntityUid body, Entity<NerveOrganComponent> nerve)
+    {
+        if (!_consciousness.TryGetNerveSystem(body, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
             return;
 
-        foreach (var modifier in brainUid.Value.Comp.Modifiers
-                     .Where(modifier => modifier.Key.Item1 == nerve.Owner))
-        {
-            // Clean up pain of separated woundables
-            brainUid.Value.Comp.Modifiers.Remove((modifier.Key.Item1, modifier.Key.Item2));
-        }
+        var nerveSys = Comp<NerveSystemComponent>(brainUid.Value);
+        UpdateNerveSystemNerves(brainUid.Value, body, nerveSys);
+        RefreshWoundablePain(nerve.Owner);
+    }
 
-        if (nerve.Owner != brainUid.Value.Comp.RootNerve
-            && !TerminatingOrDeleted(brainUid.Value.Comp.RootNerve))
-        {
-            var pain = Comp<WoundableComponent>(nerve.Owner).IntegrityCap / 3f;
-            if (!TryChangePainModifier(
-                    brainUid.Value,
-                    brainUid.Value.Comp.RootNerve,
-                    PainPhantomPainIdentifier,
-                    pain,
-                    brainUid.Value,
-                    TimeSpan.FromMinutes(1f),
-                    PainType.TraumaticPain))
-            {
-                TryAddPainModifier(
-                    brainUid.Value,
-                    brainUid.Value.Comp.RootNerve,
-                    PainPhantomPainIdentifier,
-                    pain,
-                    PainType.TraumaticPain,
-                    brainUid.Value,
-                    TimeSpan.FromMinutes(1f));
-            }
-        }
+    private void HandleWoundableDetachedFromBody(EntityUid body, Entity<NerveOrganComponent> nerve)
+    {
+        if (!_consciousness.TryGetNerveSystem(body, out var brainUid) || TerminatingOrDeleted(brainUid.Value))
+            return;
 
-        UpdateNerveSystemNerves(brainUid.Value, bodyPart.Body.Value, Comp<NerveSystemComponent>(brainUid.Value));
+        var nerveSys = Comp<NerveSystemComponent>(brainUid.Value);
+        ClearPainModifiersForWoundable(brainUid.Value, nerve.Owner, nerveSys);
+        ApplyPhantomPainOnSeverance(brainUid.Value, nerve, nerveSys);
+        UpdateNerveSystemNerves(brainUid.Value, body, nerveSys);
+    }
+
+    private void ClearPainModifiersForWoundable(
+        EntityUid nerveSysUid,
+        EntityUid woundableUid,
+        NerveSystemComponent nerveSys)
+    {
+        foreach (var key in nerveSys.Modifiers.Keys.Where(key => key.Item1 == woundableUid).ToList())
+            TryRemovePainModifier(nerveSysUid, key.Item1, key.Item2, nerveSys);
+    }
+
+    private void ApplyPhantomPainOnSeverance(
+        EntityUid nerveSysUid,
+        Entity<NerveOrganComponent> nerve,
+        NerveSystemComponent nerveSys)
+    {
+        if (nerve.Owner == nerveSys.RootNerve || TerminatingOrDeleted(nerveSys.RootNerve))
+            return;
+
+        if (!TryComp<WoundableComponent>(nerve.Owner, out var woundable))
+            return;
+
+        var pain = woundable.IntegrityCap / 3f;
+        if (!TryChangePainModifier(
+                nerveSysUid,
+                nerveSys.RootNerve,
+                PainPhantomPainIdentifier,
+                pain,
+                nerveSys,
+                TimeSpan.FromMinutes(1f),
+                PainType.TraumaticPain))
+        {
+            TryAddPainModifier(
+                nerveSysUid,
+                nerveSys.RootNerve,
+                PainPhantomPainIdentifier,
+                pain,
+                PainType.TraumaticPain,
+                nerveSys,
+                TimeSpan.FromMinutes(1f));
+        }
     }
 
     private void OnPainChanged(EntityUid uid, PainInflicterComponent component, ref WoundChangedEvent args)
@@ -389,6 +427,27 @@ public sealed partial class ServerPainSystem : PainSystem
             nerve.ParentedNerveSystem = uid;
             DirtyField(bodyPartId, nerve, nameof(NerveOrganComponent.ParentedNerveSystem));
             UpdatePainFeels(bodyPartId, nerve);
+        }
+
+        CleanupOrphanPainModifiers(uid, body, component);
+    }
+
+    /// <summary>
+    /// Drops pain modifiers keyed to woundables no longer on this body (e.g. after amputation or limb swap).
+    /// </summary>
+    private void CleanupOrphanPainModifiers(EntityUid nerveSysUid, EntityUid body, NerveSystemComponent nerveSys)
+    {
+        var activeWoundables = new HashSet<EntityUid>(_body.GetWoundableTargets(body));
+
+        if (nerveSys.RootNerve != default)
+            activeWoundables.Add(nerveSys.RootNerve);
+
+        foreach (var key in nerveSys.Modifiers.Keys.ToList())
+        {
+            if (activeWoundables.Contains(key.Item1))
+                continue;
+
+            TryRemovePainModifier(nerveSysUid, key.Item1, key.Item2, nerveSys);
         }
     }
 

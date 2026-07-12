@@ -1,6 +1,5 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Server.Light.EntitySystems;
 using Content.Server.Temperature.Systems;
 using Content.Server.Weather;
 using Content.Shared._Lavaland.Procedural.Components;
@@ -10,6 +9,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Light.Components;
 using Content.Shared.Popups;
+using Content.Shared.Weather;
 using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.Map;
@@ -28,8 +28,6 @@ public sealed partial class LavalandWeatherSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private TemperatureSystem _temperature = default!;
     [Dependency] private DamageableSystem _damage = default!;
-    [Dependency] private RoofSystem _roof = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
 
     private const double LavalandWeatherJobTime = 0.005;
@@ -54,23 +52,25 @@ public sealed partial class LavalandWeatherSystem : EntitySystem
     private void ProcessLavalandDamage(Entity<DamageableComponent> entity, Entity<LavalandStormedMapComponent> lavaland)
     {
         var xform = Transform(entity);
-        // Do the damage to all poor people on lava that are not on outpost/big ruins
-        if (xform.GridUid != lavaland.Owner)
+
+        // Match popup targeting: anyone on the lavaland map can be affected.
+        if (xform.MapUid != lavaland.Owner)
             return;
 
-
-        if (
-            _mapSystem.TryGetTileRef(lavaland.Owner, Comp<MapGridComponent>(lavaland.Owner), xform.Coordinates, out var tile) &&
-            _roof.IsRooved(
-                (lavaland.Owner, Comp<MapGridComponent>(lavaland.Owner), Comp<RoofComponent>(lavaland.Owner)),
-                tile.GridIndices))
-        {
+        var gridUid = xform.GridUid;
+        if (gridUid == null || !TryComp<MapGridComponent>(gridUid, out var grid))
             return;
-        }
+
+        if (!_mapSystem.TryGetTileRef(gridUid.Value, grid, xform.Coordinates, out var tile))
+            return;
+
+        TryComp<RoofComponent>(gridUid, out var roof);
+        if (!_weather.CanWeatherAffect((gridUid.Value, grid, roof), tile))
+            return;
 
         var proto = _proto.Index(lavaland.Comp.CurrentWeather);
         _temperature.ChangeHeat(entity, proto.TemperatureChange, ignoreHeatResistance: true);
-        _damage.ChangeDamage(entity.AsNullable(), proto.Damage);
+        _damage.ChangeDamage(entity.AsNullable(), proto.Damage, ignoreResistances: true);
     }
 
     public override void Update(float frameTime)

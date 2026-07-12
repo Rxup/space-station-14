@@ -13,6 +13,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Backmen.Targeting; // backmen: land-mine-leg-damage
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -461,13 +462,32 @@ public sealed partial class ExplosionSystem
                 // start-backmen: body
                 if (_bodyQuery.TryComp(entity, out var body) && _consciousnessQuery.HasComp(entity))
                 {
-                    var bodyParts = _body.GetDistributedDamageTargets(entity, body).ToList();
+                    TargetBodyPart? mineTarget = null;
+                    if (cause is { } mineUid && _landMineQuery.TryComp(mineUid, out var landMine))
+                        mineTarget = landMine.DamageTarget;
+
+                    var bodyParts = mineTarget is { } target
+                        ? _targeting.GetTargetEntities(entity, target).ToList()
+                        : _body.GetDistributedDamageTargets(entity, body).ToList();
+
                     // backmen: surgery
                     if (bodyParts.Count == 0)
                     {
                         _damageableSystem.TryChangeDamage((entity, damageable), damage, ignoreResistances: true, ignoreGlobalModifiers: true);
                         continue;
                     }
+
+                    // start-backmen: land-mine-leg-damage
+                    if (mineTarget != null)
+                    {
+                        foreach (var part in bodyParts)
+                        {
+                            _damageableSystem.TryChangeDamage(part, damage / bodyParts.Count, ignoreResistances: true, ignoreGlobalModifiers: true);
+                        }
+
+                        continue;
+                    }
+                    // end-backmen: land-mine-leg-damage
 
                     _robustRandom.Shuffle(bodyParts);
 

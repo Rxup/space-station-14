@@ -7,7 +7,7 @@ namespace Content.Shared.LandMines;
 /// ItemToggleComponent it will only trigger if "ItemToggle.Activated" is true.
 /// </summary>
 [RegisterComponent]
-public sealed partial class LandMineComponent : Component
+public sealed partial class LandMineComponent : Component // backmen: partial for DamageTarget
 {
     /// <summary>
     /// The text that popups when the landmine is stepped on.

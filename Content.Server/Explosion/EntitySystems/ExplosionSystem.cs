@@ -8,6 +8,8 @@ using Content.Server.Destructible;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NPC.Pathfinding;
 using Content.Shared.Backmen.Body.Systems; // backmen: body
+using Content.Shared.Backmen.Targeting; // backmen: land-mine-leg-damage
+using Content.Shared.LandMines; // backmen: land-mine-leg-damage
 using Content.Shared.Atmos.Components;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Body;
@@ -60,6 +62,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private SharedMapSystem _map = default!;
     [Dependency] private BkmBodySharedSystem _body = default!; // backmen: body
+    [Dependency] private SharedTargetingSystem _targeting = default!; // backmen: land-mine-leg-damage
     [Dependency] private SurgeryCavityExplosionSystem _surgeryCavity = default!; // backmen: surgery
     [Dependency] private FlammableSystem _flammableSystem = default!;
     [Dependency] private DestructibleSystem _destructibleSystem = default!;
@@ -74,6 +77,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
     private EntityQuery<AirtightComponent> _airtightQuery;
     private EntityQuery<BodyComponent> _bodyQuery; // backmen edit
     private EntityQuery<ConsciousnessComponent> _consciousnessQuery; // backmen edit
+    private EntityQuery<LandMineComponent> _landMineQuery; // backmen: land-mine-leg-damage
     private EntityQuery<TileHistoryComponent> _tileHistoryQuery;
 
     /// <summary>
@@ -119,6 +123,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         _airtightQuery = GetEntityQuery<AirtightComponent>();
         _bodyQuery = GetEntityQuery<BodyComponent>(); // backmen edit
         _consciousnessQuery = GetEntityQuery<ConsciousnessComponent>(); // backmen edit
+        _landMineQuery = GetEntityQuery<LandMineComponent>(); // backmen: land-mine-leg-damage
         _tileHistoryQuery = GetEntityQuery<TileHistoryComponent>();
         _prototypeManager.PrototypesReloaded += ReloadExplosionPrototypes;
     }
