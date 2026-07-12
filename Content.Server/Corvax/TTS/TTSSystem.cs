@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Chat.Systems;
 using Content.Server.SS220.Chat.Systems;
@@ -7,7 +8,10 @@ using Content.Shared.Corvax.CCCVars;
 using Content.Shared.Corvax.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
+using Content.Shared.Preferences;
 using Content.Shared.Radio;
+using Robust.Shared.Enums;
+using Robust.Shared.Random;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -45,11 +49,35 @@ public sealed partial class TTSSystem : EntitySystem
 
     private void OnTtsInitialized(Entity<TTSComponent> ent, ref MapInitEvent args)
     {
-        if (ent.Comp.VoicePrototypeId != null || HasComp<HumanoidProfileComponent>(ent))
+        EnsureVoice(ent, ent.Comp);
+    }
+
+    private void EnsureVoice(EntityUid uid, TTSComponent component)
+    {
+        if (component.VoicePrototypeId != null)
             return;
 
+        if (TryComp<HumanoidProfileComponent>(uid, out var humanoid))
+        {
+            component.VoicePrototypeId = GetRandomVoiceForSex(humanoid.Sex);
+            return;
+        }
+
         if (_prototypeManager.TryGetRandom<TTSVoicePrototype>(_robustRandom, out var newTtsVoice))
-            ent.Comp.VoicePrototypeId = newTtsVoice.ID;
+            component.VoicePrototypeId = newTtsVoice.ID;
+    }
+
+    private ProtoId<TTSVoicePrototype> GetRandomVoiceForSex(Sex sex)
+    {
+        var voices = _prototypeManager
+            .EnumeratePrototypes<TTSVoicePrototype>()
+            .Where(v => v.RoundStart && HumanoidCharacterProfile.CanHaveVoice(v, sex))
+            .ToArray();
+
+        if (voices.Length > 0)
+            return _robustRandom.Pick(voices).ID;
+
+        return HumanoidProfileSystem.DefaultSexVoice.GetValueOrDefault(sex, HumanoidProfileSystem.DefaultVoice);
     }
 
 
@@ -60,6 +88,8 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeLanguageEvent args)
     {
+        EnsureVoice(uid, component);
+
         var voiceId = component.VoicePrototypeId;
         if (!_isEnabled ||
             args.Message.Length > MaxMessageChars ||

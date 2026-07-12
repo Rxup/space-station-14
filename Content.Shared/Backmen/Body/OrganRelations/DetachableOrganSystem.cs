@@ -259,6 +259,9 @@ public sealed partial class DetachableOrganSystem : EntitySystem
 
             bodySys.RemoveOrgan(organUid, organ);
         }
+
+        if (_net.IsServer && bodySys.IsOrganlessBody(patient))
+            bodySys.CleanupGibbedBodyShell(patient);
     }
 
     private int GetOrganRelationDepth(EntityUid organId)

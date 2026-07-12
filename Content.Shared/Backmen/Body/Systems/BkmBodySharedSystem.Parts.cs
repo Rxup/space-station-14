@@ -72,7 +72,7 @@ public partial class BkmBodySharedSystem
 
         foreach (var containerName in containerNames)
         {
-            _inventorySystem.DropSlotContents(partEnt.Comp.Body.Value, containerName, inventory);
+            InventorySystem.DropSlotContents(partEnt.Comp.Body.Value, containerName, inventory);
         }
 
     }

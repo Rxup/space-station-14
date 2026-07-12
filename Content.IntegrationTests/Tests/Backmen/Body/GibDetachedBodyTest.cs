@@ -6,6 +6,7 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
+using Content.Shared.Body.Organ;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 using System.Collections.Generic;
@@ -25,10 +26,12 @@ public sealed class GibDetachedBodyTest : GameTest
     public async Task GibBody_CreatesMultipleDetachedBundles()
     {
         var map = await Pair.CreateTestMap();
+        NetEntity netPatient = default;
 
         await Server.WaitAssertion(() =>
         {
             var patient = Server.EntMan.SpawnEntity("MobHuman", map.MapCoords);
+            netPatient = Server.EntMan.GetNetEntity(patient);
             var bodySys = Server.EntMan.System<BkmBodySystem>();
             bodySys.GibBody(patient, gibOrgans: true);
         });
@@ -37,6 +40,9 @@ public sealed class GibDetachedBodyTest : GameTest
 
         await Server.WaitAssertion(() =>
         {
+            Assert.That(Server.EntMan.EntityExists(Server.EntMan.GetEntity(netPatient)), Is.False,
+                "Gib must delete the mob shell after scattering organs.");
+
             var bundleCount = 0;
             var positions = new List<Vector2>();
             var enumerator = Server.EntMan.EntityQueryEnumerator<BkmDetachedBodyComponent>();
@@ -62,33 +68,55 @@ public sealed class GibDetachedBodyTest : GameTest
     public async Task DestroyTorso_KeepsOrganInsideDetachedBundle()
     {
         var map = await Pair.CreateTestMap();
+        NetEntity netPatient = default;
 
-        await Server.WaitAssertion(() =>
+        await Server.WaitPost(() =>
         {
             var patient = Server.EntMan.SpawnEntity("MobHuman", map.MapCoords);
+            netPatient = Server.EntMan.GetNetEntity(patient);
             var bodySys = Server.EntMan.System<BkmBodySystem>();
             var woundSys = Server.EntMan.System<WoundSystem>();
 
             Assert.That(bodySys.TryGetWoundableTargetByType(patient, BodyPartType.Chest, null, out var torso));
-            Assert.That(bodySys.TryGetWoundableTargetByType(patient, BodyPartType.Arm, BodyPartSymmetry.Left, out var leftArm));
+            Assert.That(bodySys.TryGetWoundableTargetByType(patient, BodyPartType.Arm, BodyPartSymmetry.Left, out _));
             var torsoWoundable = Server.EntMan.GetComponent<WoundableComponent>(torso);
 
             woundSys.DestroyWoundable(patient, torso, torsoWoundable);
+        });
 
+        await Server.WaitRunTicks(90);
+
+        await Server.WaitAssertion(() =>
+        {
+            Assert.That(Server.EntMan.EntityExists(Server.EntMan.GetEntity(netPatient)), Is.False,
+                "An organless mob shell must be removed after violent torso gib.");
+
+            EntityUid torso = default;
             EntityUid? bundle = null;
+            EntityUid? leftArm = default;
             var query = Server.EntMan.EntityQueryEnumerator<BkmDetachedBodyComponent, BodyComponent>();
             while (query.MoveNext(out var uid, out _, out var body))
             {
-                if (body.Organs?.Contains(torso) != true)
-                    continue;
+                foreach (var organ in body.Organs?.ContainedEntities ?? [])
+                {
+                    if (!Server.EntMan.TryGetComponent(organ, out OrganComponent? organComp) || organComp.Category is not { } category)
+                        continue;
 
-                bundle = uid;
-                break;
+                    if (category == "Torso")
+                    {
+                        bundle = uid;
+                        torso = organ;
+                    }
+
+                    if (category == "ArmLeft")
+                        leftArm = organ;
+                }
             }
 
             Assert.That(bundle, Is.Not.Null, "Torso destroy should create a detached bundle containing the torso organ.");
             Assert.That(Server.EntMan.EntityExists(torso), Is.True, "Torso organ must survive inside the detached bundle.");
-            Assert.That(Server.EntMan.EntityExists(leftArm), Is.True, "Left arm should detach into its own bundle.");
+            Assert.That(leftArm, Is.Not.Null);
+            Assert.That(Server.EntMan.EntityExists(leftArm.Value), Is.True, "Left arm should detach into its own bundle.");
 
             var bundleCount = 0;
             EntityUid? armBundle = null;
@@ -99,12 +127,12 @@ public sealed class GibDetachedBodyTest : GameTest
 
                 if (bundleBody.Organs?.Contains(torso) == true)
                 {
-                    Assert.That(bundleBody.Organs?.Contains(leftArm), Is.False,
+                    Assert.That(bundleBody.Organs?.Contains(leftArm.Value), Is.False,
                         "Torso gib must not sweep external limbs into the chest bundle.");
                     continue;
                 }
 
-                if (bundleBody.Organs?.Contains(leftArm) == true)
+                if (bundleBody.Organs?.Contains(leftArm.Value) == true)
                     armBundle = uid;
             }
 
