@@ -62,11 +62,12 @@ public sealed partial class DirectionalReflectSystem : EntitySystem
             return false;
 
         var outputAngle = _transform.GetWorldRotation(reflector);
-        var incomingFrom = (-velocity).ToWorldAngle();
-        var fromOutputFace = Math.Abs(Angle.ShortestDistance(outputAngle, incomingFrom).Degrees);
+        var outputDir = outputAngle.ToWorldVec().Normalized();
+        var incomingDir = (-velocity).Normalized();
+        var frontAlignment = Vector2.Dot(incomingDir, -outputDir);
 
         // Only shots fired into the output face are absorbed.
-        if (fromOutputFace < reflector.Comp.FrontAbsorbAngle.Degrees)
+        if (frontAlignment > Math.Cos(reflector.Comp.FrontAbsorbAngle.Theta))
             return false;
 
         // Shots from the back or sides are redirected out through the output face.
