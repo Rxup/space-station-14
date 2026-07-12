@@ -195,9 +195,13 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
             }
             default:
             {
-                var target = args.TargetPart ?? Body.GetRandomBodyPart(uid);
-                if (args.Origin.HasValue && TryComp<TargetingComponent>(args.Origin.Value, out var targeting))
-                    target = Body.GetRandomBodyPart(uid, args.Origin.Value, attackerComp: targeting);
+                var target = args.TargetPart;
+                if (target == null)
+                {
+                    target = Body.GetRandomBodyPart(uid);
+                    if (args.Origin.HasValue && TryComp<TargetingComponent>(args.Origin.Value, out var targeting))
+                        target = Body.GetRandomBodyPart(uid, args.Origin.Value, attackerComp: targeting);
+                }
 
                 var (partType, symmetry) = Body.ConvertTargetBodyPart(target);
                 var possibleTargets = new List<EntityUid>();

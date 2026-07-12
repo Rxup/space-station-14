@@ -57,3 +57,26 @@
   - type: RattleOnTrigger
     radioChannel: InteQ
     targetUser: true
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: CombatTrainingImplant
+  name: combat-training-implant-name
+  description: combat-training-implant-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: CombatTrainingImplant
+    odds: Security
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: CombatTrainingImplantAdmeme
+  suffix: Admeme
+  name: combat-marksmanship-implant-admeme-name
+  description: combat-marksmanship-implant-admeme-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: CombatTrainingImplant
+    odds: Admin

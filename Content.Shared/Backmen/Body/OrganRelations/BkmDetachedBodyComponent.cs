@@ -5,7 +5,7 @@ namespace Content.Shared.Backmen.Body.OrganRelations;
 /// <summary>
 /// Marker for the temporary body container spawned when external organs are surgically detached.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class BkmDetachedBodyComponent : Component
 {
     /// <summary>

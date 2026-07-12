@@ -50,8 +50,9 @@
         department: Medical
         time: 18000
     job: ERTMedical
+    mindRoles:
+    - MindRoleERTMedical
   - type: Loadout
-    prototypes: [ERTMedicTay39Gear]
   - type: RandomMetadata
     nameSegments:
     - NamesCPLs

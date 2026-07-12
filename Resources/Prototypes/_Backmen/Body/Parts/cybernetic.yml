@@ -6,13 +6,13 @@
   - type: Damageable
   - type: Woundable
     damageContainer: Silicon
-    integrity: 65
-    integrityCap: 65
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 60
-      Moderate: 45
-      Severe: 30
-      Critical: 12
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLArm
@@ -31,13 +31,13 @@
   - type: Damageable
   - type: Woundable
     damageContainer: Silicon
-    integrity: 65
-    integrityCap: 65
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 60
-      Moderate: 45
-      Severe: 30
-      Critical: 12
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRArm
@@ -56,13 +56,13 @@
   - type: Damageable
   - type: Woundable
     damageContainer: Silicon
-    integrity: 65
-    integrityCap: 65
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 60
-      Moderate: 45
-      Severe: 30
-      Critical: 12
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLLeg
@@ -81,13 +81,13 @@
   - type: Damageable
   - type: Woundable
     damageContainer: Silicon
-    integrity: 65
-    integrityCap: 65
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 60
-      Moderate: 45
-      Severe: 30
-      Critical: 12
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRLeg
@@ -106,13 +106,13 @@
   - type: Damageable
   - type: Woundable
     damageContainer: Silicon
-    integrity: 65
-    integrityCap: 65
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 60
-      Moderate: 45
-      Severe: 30
-      Critical: 12
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLHand
@@ -129,13 +129,13 @@
   - type: Damageable
   - type: Woundable
     damageContainer: Silicon
-    integrity: 65
-    integrityCap: 65
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 60
-      Moderate: 45
-      Severe: 30
-      Critical: 12
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRHand
@@ -152,13 +152,13 @@
   - type: Damageable
   - type: Woundable
     damageContainer: Silicon
-    integrity: 65
-    integrityCap: 65
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 60
-      Moderate: 45
-      Severe: 30
-      Critical: 12
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopLFoot
@@ -175,13 +175,13 @@
   - type: Damageable
   - type: Woundable
     damageContainer: Silicon
-    integrity: 65
-    integrityCap: 65
+    integrity: 35
+    integrityCap: 35
     thresholds:
-      Minor: 60
-      Moderate: 45
-      Severe: 30
-      Critical: 12
+      Minor: 32
+      Moderate: 24
+      Severe: 16
+      Critical: 6
       Loss: 0
   - type: BodyPart
     baseLayerId: MobCyberneticBishopRFoot

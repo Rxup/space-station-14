@@ -183,6 +183,8 @@
         department: Engineering
         time: 9000
     job: ERTEngineer
+    mindRoles:
+    - MindRoleERTEngineer
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -294,6 +296,8 @@
         department: Medical
         time: 9000
     job: ERTMedical
+    mindRoles:
+    - MindRoleERTMedical
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember
@@ -350,6 +354,8 @@
         role: JobJanitor
         time: 1500
     job: ERTJanitor
+    mindRoles:
+    - MindRoleERTJanitor
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember

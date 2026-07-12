@@ -92,7 +92,7 @@ public sealed partial class BkmBodySystem : BkmBodySharedSystem
         var ev = new BeingGibbedEvent(gibs);
         RaiseLocalEvent(bodyId, ref ev);
 
-        QueueDel(bodyId);
+        CleanupGibbedBodyShell(bodyId);
 
         return gibs;
     }

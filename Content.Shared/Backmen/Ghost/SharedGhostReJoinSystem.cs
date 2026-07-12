@@ -23,9 +23,19 @@ public abstract partial class SharedGhostReJoinSystem : EntitySystem
 
     protected TimeSpan _ghostRespawnTime = TimeSpan.FromMinutes(15);
 
+    protected static TimeSpan GetComparisonTime(IGameTiming timing)
+    {
+        // TimeOfDeath is stored using server RealTime. Clients must use ServerTime.
+        return timing.ServerTime != TimeSpan.Zero ? timing.ServerTime : timing.RealTime;
+    }
+
     protected static TimeSpan GetTimeSinceDeath(IGameTiming timing, TimeSpan timeOfDeath)
     {
-        return timing.RealTime - timeOfDeath;
+        if (timeOfDeath == TimeSpan.Zero)
+            return TimeSpan.Zero;
+
+        var elapsed = GetComparisonTime(timing) - timeOfDeath;
+        return elapsed < TimeSpan.Zero ? TimeSpan.Zero : elapsed;
     }
 
     protected static TimeSpan GetRespawnTimeRemaining(TimeSpan respawnTime, TimeSpan timeSinceDeath)

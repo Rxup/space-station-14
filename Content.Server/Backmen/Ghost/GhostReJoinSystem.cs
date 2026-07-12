@@ -356,14 +356,19 @@ public sealed partial class GhostReJoinSystem : SharedGhostReJoinSystem
         if(mindSession == null)
             return;
 
-        if(!_deathTime.ContainsKey(mindSession.UserId))
-            _deathTime[mindSession.UserId] = _gameTiming.RealTime;
+        if (!TryComp<GhostComponent>(ghost, out var ghostComponent))
+            return;
+
+        if (!_deathTime.TryGetValue(mindSession.UserId, out var deathTime))
+        {
+            deathTime = ghostComponent.TimeOfDeath != TimeSpan.Zero
+                ? ghostComponent.TimeOfDeath
+                : _gameTiming.RealTime;
+            _deathTime[mindSession.UserId] = deathTime;
+        }
 
         Log.Debug($"Attach time {_deathTime[mindSession.UserId]} to ghost {ghost:entity}");
 
-        if (TryComp<GhostComponent>(ghost, out var ghostComponent))
-        {
-            SyncGhostDeathTime(ghost, ghostComponent, _deathTime[mindSession.UserId]);
-        }
+        SyncGhostDeathTime(ghost, ghostComponent, deathTime);
     }
 }

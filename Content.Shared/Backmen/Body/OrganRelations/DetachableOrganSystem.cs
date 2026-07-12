@@ -26,6 +26,7 @@ public sealed partial class DetachableOrganSystem : EntitySystem
     [Dependency] private BkmDetachedBodyScatterSystem _scatter = default!;
 
     private int _violentDetachDepth;
+    private int _burnDestroyDepth;
     private Vector2? _violentSplatDirection;
     private float _violentSplatModifier = 1f;
 
@@ -50,6 +51,24 @@ public sealed partial class DetachableOrganSystem : EntitySystem
         }
 
         return new ViolentDetachScope(this);
+    }
+
+    /// <summary>
+    /// Suppresses detached-body bundle creation while a part is burned to ash.
+    /// </summary>
+    public BurnDestroyScope EnterBurnDestroy() => new(this);
+
+    public sealed class BurnDestroyScope : IDisposable
+    {
+        private readonly DetachableOrganSystem _system;
+
+        public BurnDestroyScope(DetachableOrganSystem system)
+        {
+            _system = system;
+            _system._burnDestroyDepth++;
+        }
+
+        public void Dispose() => _system._burnDestroyDepth--;
     }
 
     public sealed class ViolentDetachScope : IDisposable
@@ -86,6 +105,9 @@ public sealed partial class DetachableOrganSystem : EntitySystem
 
         // Only detach limbs leaving a surgery patient — not when extracting from a limb bundle for reattachment.
         if (!HasComp<SurgeryTargetComponent>(args.Target))
+            return;
+
+        if (_burnDestroyDepth > 0)
             return;
 
         foreach (var parent in _organRelation.AllParents(ent.Owner))
@@ -133,6 +155,9 @@ public sealed partial class DetachableOrganSystem : EntitySystem
                 || childOrgan.Body != args.Target)
                 continue;
 
+            if (!ShouldRelocateIntoDetachedBundle(ent.Owner, child.Owner))
+                continue;
+
             if (!_container.Insert(child.Owner, container, force: true))
             {
                 Log.Error($"{ToPrettyString(child)} could not be transferred to new body {ToPrettyString(body)}.");
@@ -143,6 +168,13 @@ public sealed partial class DetachableOrganSystem : EntitySystem
         ent.Comp.Detaching = false;
 
         RemoveStrandedDependentOrgan(args.Target, ent.Owner);
+
+        if (violent
+            && TryComp<OrganComponent>(ent.Owner, out var detachedOrgan)
+            && detachedOrgan.Category == "Torso")
+        {
+            ScatterRemainingTorsoExternals(args.Target, ent.Owner);
+        }
 
         if (violent)
         {
@@ -178,6 +210,72 @@ public sealed partial class DetachableOrganSystem : EntitySystem
             return;
 
         EntityManager.System<BkmBodySharedSystem>().RemoveOrgan(dependent, dependentOrganComp);
+    }
+
+    /// <summary>
+    /// Torso organ relations include external limbs and head; those stay on the patient for separate bundles.
+    /// </summary>
+    private bool ShouldRelocateIntoDetachedBundle(EntityUid detachedOrgan, EntityUid childOrgan)
+    {
+        if (!TryComp<OrganComponent>(detachedOrgan, out var detachedComp) || detachedComp.Category is not { } detachedCategory)
+            return true;
+
+        if (!TryComp<OrganComponent>(childOrgan, out var childComp) || childComp.Category is not { } childCategory)
+            return true;
+
+        return detachedCategory != "Torso" || !SurgeryBodyPartMapping.IsExternalCategory(childCategory);
+    }
+
+    /// <summary>
+    /// After a violent torso detach, peel remaining external limbs/head off into their own scattered bundles.
+    /// </summary>
+    private void ScatterRemainingTorsoExternals(EntityUid patient, EntityUid torso)
+    {
+        var externals = new List<EntityUid>();
+
+        foreach (var child in _organRelation.AllChildren(torso))
+        {
+            if (!TryComp<OrganComponent>(child.Owner, out var organ) || organ.Body != patient)
+                continue;
+
+            if (organ.Category is not { } category || !SurgeryBodyPartMapping.IsExternalCategory(category))
+                continue;
+
+            externals.Add(child.Owner);
+        }
+
+        if (externals.Count == 0)
+            return;
+
+        externals.Sort((a, b) => GetOrganRelationDepth(b).CompareTo(GetOrganRelationDepth(a)));
+
+        var bodySys = EntityManager.System<BkmBodySharedSystem>();
+        foreach (var organUid in externals)
+        {
+            if (TerminatingOrDeleted(organUid)
+                || !TryComp<OrganComponent>(organUid, out var organ)
+                || organ.Body != patient)
+                continue;
+
+            bodySys.RemoveOrgan(organUid, organ);
+        }
+
+        if (_net.IsServer && bodySys.IsOrganlessBody(patient))
+            bodySys.CleanupGibbedBodyShell(patient);
+    }
+
+    private int GetOrganRelationDepth(EntityUid organId)
+    {
+        var depth = 0;
+        var current = organId;
+
+        while (TryComp<ChildOrganComponent>(current, out var child) && child.Parent is { } parent)
+        {
+            depth++;
+            current = parent;
+        }
+
+        return depth;
     }
 }
 

@@ -484,11 +484,6 @@ public partial class WoundSystem
         return severity * toMultiply;
     }
 
-    /// <summary>
-    /// Upper bound for <see cref="WoundComponent.WoundSeverityPoint"/> on this side.
-    /// </summary>
-    protected virtual FixedPoint2 GetMaxWoundSeverity() => FixedPoint2.New(200);
-
     [PublicAPI]
     public DamageSpecifier GetWoundsChanged(
         EntityUid woundable,
@@ -541,10 +536,8 @@ public partial class WoundSystem
                     }
 
                     var currentSeverity = continuedWound.Value.Comp.WoundSeverityPoint;
-                    var severityDelta = FixedPoint2.Clamp(
-                        currentSeverity + severityApplied,
-                        FixedPoint2.Zero,
-                        GetMaxWoundSeverity()) - currentSeverity;
+                    var severityDelta = FixedPoint2.Max(FixedPoint2.Zero, currentSeverity + severityApplied)
+                        - currentSeverity;
 
                     actuallyInducedDamage.DamageDict[damagePiece.Key] = severityDelta;
                     if (severityDelta > FixedPoint2.Zero)
@@ -569,9 +562,7 @@ public partial class WoundSystem
                     continue;
                 }
 
-                var severity = FixedPoint2.Min(
-                    ApplySeverityModifiers(woundable, damagePiece.Value, component),
-                    GetMaxWoundSeverity());
+                var severity = ApplySeverityModifiers(woundable, damagePiece.Value, component);
 
                 if (severity <= FixedPoint2.Zero)
                 {

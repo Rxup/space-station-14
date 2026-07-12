@@ -1,4 +1,9 @@
 ent-mantisImplant = имплант
     .desc = This implant gives the user blades, thanks to which he can kill his victim without leaving evidence.
+ent-CombatTrainingImplant = имплант боевой подготовки
+    .desc = Повышает точность стрельбы по выбранной части тела до уровня СБ.
+ent-CombatTrainingImplantAdmeme = имплант меткой стрельбы
+    .suffix = Admeme
+    .desc = Админский имплант — 100% попадание в прицеленную часть тела.
 ent-ActionToggleMantis = Активировать клинки богомола
     .desc = Remember to equip the important pieces of your suit before going into action.
