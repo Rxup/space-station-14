@@ -36,9 +36,10 @@ public sealed class ReflectorTest : GameTest
             var reflector = entMan.SpawnEntity(Reflector, map.MapCoords);
             xformSys.SetWorldRotation(reflector, Angle.Zero);
 
+            // Hits the output-facing mirror surface.
             var bolt = entMan.SpawnEntity(EmitterBolt, map.MapCoords);
             var boltPhysics = entMan.GetComponent<PhysicsComponent>(bolt);
-            physics.SetLinearVelocity(bolt, new Vector2(0f, -10f), body: boltPhysics);
+            physics.SetLinearVelocity(bolt, new Vector2(0f, 10f), body: boltPhysics);
 
             var projectile = entMan.GetComponent<ProjectileComponent>(bolt);
             var attempt = new ProjectileReflectAttemptEvent(bolt, projectile, false);
@@ -62,9 +63,10 @@ public sealed class ReflectorTest : GameTest
             var reflector = entMan.SpawnEntity(Reflector, map.MapCoords);
             xformSys.SetWorldRotation(reflector, Angle.Zero);
 
+            // Typical emitter-behind setup: bolt travels through the back and should exit forward.
             var bolt = entMan.SpawnEntity(EmitterBolt, map.MapCoords);
             var boltPhysics = entMan.GetComponent<PhysicsComponent>(bolt);
-            physics.SetLinearVelocity(bolt, new Vector2(0f, 10f), body: boltPhysics);
+            physics.SetLinearVelocity(bolt, new Vector2(0f, -10f), body: boltPhysics);
 
             var projectile = entMan.GetComponent<ProjectileComponent>(bolt);
             var attempt = new ProjectileReflectAttemptEvent(bolt, projectile, false);
@@ -106,6 +108,37 @@ public sealed class ReflectorTest : GameTest
 
             var redirected = physics.GetMapLinearVelocity(bolt, component: boltPhysics);
             var outputDir = Angle.Zero.ToWorldVec();
+            Assert.That(Vector2.Dot(Vector2.Normalize(redirected), outputDir), Is.GreaterThan(0.99f));
+        });
+    }
+
+    [Test]
+    public async Task EmitterBehindReflector_IsRedirectedAlongOutputFace()
+    {
+        var map = await Pair.CreateTestMap();
+
+        await Server.WaitAssertion(() =>
+        {
+            var entMan = Server.EntMan;
+            var physics = entMan.System<SharedPhysicsSystem>();
+            var xformSys = entMan.System<SharedTransformSystem>();
+
+            var reflector = entMan.SpawnEntity(Reflector, map.MapCoords);
+            // Output faces east toward the containment field.
+            xformSys.SetWorldRotation(reflector, Angle.FromDegrees(90));
+
+            var bolt = entMan.SpawnEntity(EmitterBolt, map.MapCoords);
+            var boltPhysics = entMan.GetComponent<PhysicsComponent>(bolt);
+            physics.SetLinearVelocity(bolt, new Vector2(10f, 0f), body: boltPhysics);
+
+            var projectile = entMan.GetComponent<ProjectileComponent>(bolt);
+            var attempt = new ProjectileReflectAttemptEvent(bolt, projectile, false);
+            entMan.EventBus.RaiseLocalEvent(reflector, ref attempt);
+
+            Assert.That(attempt.Cancelled, Is.True, "Emitter-behind shots should be redirected forward.");
+
+            var redirected = physics.GetMapLinearVelocity(bolt, component: boltPhysics);
+            var outputDir = Angle.FromDegrees(90).ToWorldVec();
             Assert.That(Vector2.Dot(Vector2.Normalize(redirected), outputDir), Is.GreaterThan(0.99f));
         });
     }
