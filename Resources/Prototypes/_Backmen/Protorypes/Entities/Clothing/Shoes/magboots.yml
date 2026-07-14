@@ -1,26 +1,44 @@
 - type: entity
-  parent: ClothingShoesBootsMagBase
+  parent: ClothingShoesBootsMag
   id: ClothingShoesBootsMagAtmos
-  name: Atmos magboots
+  name: atmos magnetic boots
+  description: Advanced magnetic boots for atmospheric technicians, equipped with a built-in battery charger.
   components:
-  - type: Sprite
-    sprite: Backmen/Clothing/Shoes/Boots/magboots_atmos.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Shoes/Boots/magboots_atmos.rsi
   - type: Item
     size: Huge
-    type: Charger
-  - slotId: charger_slot
+    sprite: Backmen/Clothing/Shoes/Boots/magboots_atmos.rsi
+  - type: ItemSlots
+  - slots:
+      charger_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCell
+        whitelist:
+          tags: PowerCell
+  - type: Charger
+    slotId: charger_slot
     portable: true
     chargeRate: 10
   - type: ContainerContainer
     containers:
       charger_slot: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      charger_slot:
-        name: power-cell-slot-component-slot-name-default
-        ejectOnInteract: false
-        whitelist:
-          components:
-          - PowerCell
+  - type: Magboots
+  - type: ToggleableMagboots
+    onState:
+      components:
+      - type: SlowOnDamage
+      speedModifier: 0.5
+    type: NoSlip
+    offState:
+      components:
+  - type: SlowOnDamage
+    speedModifier: 1
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+    enum.MagbootsVisuals.On:
+      sprite:
+        layer: 0
+        state: icon
+        stateOn: icon-on
