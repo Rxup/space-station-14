@@ -149,9 +149,9 @@
   name: Atmos magboots
   components:
   - type: Sprite
-    sprite: Backmen/Clothing/Shoes/boots/magboots_atmos.rsi
+    sprite: Backmen/Clothing/Shoes/Boots/magboots_atmos.rsi
   - type: Clothing
-    sprite: Backmen/Clothing/Shoes/boots/magboots_atmos.rsi
+    sprite: Backmen/Clothing/Shoes/Boots/magboots_atmos.rsi
   - type: Item
     size: Huge
   - type: Charger
