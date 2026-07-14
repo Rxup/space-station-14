@@ -155,8 +155,6 @@
   - type: Item
     size: Huge
   - type: Charger
-    slotId: charger_slot
-    portable: true
     chargeRate: 10
   - type: ContainerContainer
     containers:
