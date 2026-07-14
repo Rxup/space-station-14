@@ -717,3 +717,27 @@
   - type: Tag
     tags:
     - Kangaroo
+
+- type: entity
+  parent: [ ClothingHandsBase, BaseEngineeringContraband ]
+  id: InsulatedGlovesAtmos
+  name: insulated gloves atmos
+  description: Insulated gloves made especially for atmospheric technicians.
+  components:
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/insulated_gloves.rsi
+  - type: Clothing
+    sprite: Backmen/Clothing/Hands/Gloves/insulated_gloves.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.050
+    coolingCoefficient: 0.2
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
+    - id: ClothingHandsGlovesFingerlessInsulated
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+    fiberColor: fibers-blue
+  - type: FingerprintMask
+  - type: Insulated
+    coefficient: 0

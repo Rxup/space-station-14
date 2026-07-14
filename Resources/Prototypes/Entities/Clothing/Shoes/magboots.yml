@@ -142,3 +142,32 @@
     itemIconStyle: BigItem
   - type: InstantAction
     event: !type:ToggleActionEvent
+
+- type: entity
+  parent: ClothingShoesBootsMagBase
+  id: ClothingShoesBootsMagAtmos
+  name: Atmos magboots
+  components:
+  - type: Sprite
+    sprite: ASLEEP/Clothing/Shoes/magboots_atmos.rsi
+  - type: Clothing
+    sprite: ASLEEP/Clothing/Shoes/magboots_atmos.rsi
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 1
+  - type: Item
+    size: Huge
+  - type: Charger
+    slotId: charger_slot
+    portable: true
+    chargeRate: 10
+  - type: ContainerContainer
+    containers:
+      charger_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: false
+        whitelist:
+          components:
+          - PowerCell
