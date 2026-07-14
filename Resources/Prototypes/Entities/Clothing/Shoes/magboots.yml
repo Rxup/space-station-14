@@ -142,27 +142,3 @@
     itemIconStyle: BigItem
   - type: InstantAction
     event: !type:ToggleActionEvent
-
-- type: entity
-  parent: ClothingShoesBootsMagBase
-  id: ClothingShoesBootsMagAtmos
-  name: Atmos magboots
-  components:
-  - type: Sprite
-    sprite: Backmen/Clothing/Shoes/Boots/magboots_atmos.rsi
-  - type: Clothing
-    sprite: Backmen/Clothing/Shoes/Boots/magboots_atmos.rsi
-  - type: Item
-    size: Huge
-  - type: Charger
-    chargeRate: 10
-  - type: ContainerContainer
-    containers:
-      charger_slot: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      charger_slot:
-        ejectOnInteract: false
-        whitelist:
-          components:
-          - PowerCell
