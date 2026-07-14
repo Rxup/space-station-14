@@ -21,7 +21,6 @@
       charger_slot:
         name: power-cell-slot-component-slot-name-default
         ejectOnInteract: false
-        startingItem: /obj/Item/PowerCell (Что то типа этого)
         whitelist:
           components:
           - PowerCell
