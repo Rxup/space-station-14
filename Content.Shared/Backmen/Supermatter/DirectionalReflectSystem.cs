@@ -129,8 +129,5 @@ public sealed partial class DirectionalReflectSystem : EntitySystem
     {
         if (!_net.IsServer)
             return;
-
-        _popup.PopupEntity(Loc.GetString("directional-reflect-shot"), reflector);
-        _audio.PlayPvs(comp.SoundOnReflect, reflector);
     }
 }

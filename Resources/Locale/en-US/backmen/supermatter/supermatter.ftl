@@ -8,8 +8,6 @@ supermatter-delamination-overmass = The Supermatter has Reached Critical Mass Fa
 supermatter-delamination-default = The Supermatter has Reached Critical Integrity Falure. Emergency Causality Destabilization Field has been Activated.
 supermatter-seconds-before-delam = { $Seconds } Seconds Remain Before Delamination.
 
-directional-reflect-shot = The shot ricochets off the reflector!
-
 ent-Reflector = reflector
     .desc = An angled mirror that redirects emitter bolts from the back and sides out through its facing direction.
 
