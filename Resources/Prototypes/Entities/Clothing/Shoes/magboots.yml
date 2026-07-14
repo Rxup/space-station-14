@@ -152,9 +152,6 @@
     sprite: Backmen/Clothing/Shoes/boots/magboots_atmos.rsi
   - type: Clothing
     sprite: Backmen/Clothing/Shoes/boots/magboots_atmos.rsi
-  - type: ApcPowerReceiver
-    needsPower: false
-    powerLoad: 1
   - type: Item
     size: Huge
   - type: Charger
