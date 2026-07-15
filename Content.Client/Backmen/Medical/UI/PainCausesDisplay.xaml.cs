@@ -273,6 +273,7 @@ public sealed partial class PainCausesDisplay : Control
             "DeathThreshold" => Loc.GetString("health-analyzer-window-pain-cause-death-threshold"),
             "Suicide" => Loc.GetString("health-analyzer-window-pain-cause-suicide"),
             "OrganDamage" => Loc.GetString("health-analyzer-window-pain-cause-organ-damage"),
+            "BoneDamage" => Loc.GetString("health-analyzer-window-pain-cause-bone-damage"),
             "Starving" => Loc.GetString("health-analyzer-window-pain-cause-starving"),
             "TraumaticPain" => Loc.GetString("health-analyzer-window-pain-cause-traumatic-pain"),
             _ => identifier,
@@ -283,12 +284,17 @@ public sealed partial class PainCausesDisplay : Control
     {
         return identifier switch
         {
-            "WoundPain" => "MedicalDoctor",
+            // Surgical wound treatment (hemostat / treat wounds)
+            "WoundPain" => "Utility_Surgeries",
+            // Oxygenation, blood packs, triage and defibrillation
             ConsciousnessModifierIds.Asphyxiation => "MedicalDoctor",
             "Bloodloss" => "MedicalDoctor",
             "DeathThreshold" => "MedicalDoctor",
             "Suicide" => "MedicalDoctor",
-            "OrganDamage" => "MedicalDoctor",
+            // Trauma surgeries
+            "OrganDamage" => "Organ_Manipulation",
+            "BoneDamage" => "Surgery",
+            "TraumaticPain" => "Surgery",
             _ => null,
         };
     }
