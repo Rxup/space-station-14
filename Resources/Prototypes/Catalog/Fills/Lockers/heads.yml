@@ -176,6 +176,8 @@
     - id: ClothingHeadCage # backmen edit
     - id: PrinterDocFlatpack # Corvax-Printer
     - id: SupermatterFlatpack # backmen edit
+    - id: SupermatterComputerCircuitboard # backmen: supermatter console
+    - id: HandheldSupermatterConsole # backmen: supermatter console
     - id: MetalFoamGrenade
 
 # Hardsuit table, used for suit storage as well

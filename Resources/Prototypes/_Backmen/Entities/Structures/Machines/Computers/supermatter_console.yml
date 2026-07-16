@@ -1,0 +1,94 @@
+# Supermatter monitoring console — ported from Goob-Station PR #5788 / #6808
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerSupermatter
+  name: supermatter monitoring console
+  description: Used to monitor the status of supermatter crystals.
+  components:
+  - type: Computer
+    board: SupermatterComputerCircuitboard
+  - type: Sprite
+    sprite: Backmen/Supermatter/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: supermatter-0
+    - map: ["computerLayerKeys"]
+      state: supermatter_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#0f704b"
+  - type: GenericVisualizer
+    visuals:
+      enum.ComputerVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true, shader: unshaded }
+          False: { visible: true, shader: shaded }
+      enum.SupermatterConsoleVisuals.ComputerLayerScreen:
+        computerLayerScreen:
+          0: { state: supermatter-0 }
+          1: { state: supermatter-1 }
+          2: { state: supermatter-2 }
+          3: { state: supermatter-3 }
+          4: { state: supermatter-4 }
+          5: { state: supermatter-5 }
+          6: { state: supermatter-6 }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
+  - type: SupermatterConsole
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.SupermatterConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.SupermatterConsoleUiKey.Key:
+            type: SupermatterConsoleBoundUserInterface
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SupermatterComputerCircuitboard
+  name: supermatter monitoring console board
+  description: A computer printed circuit board for a supermatter monitoring console.
+  components:
+  - type: Sprite
+    state: cpu_engineering
+  - type: ComputerBoard
+    prototype: ComputerSupermatter
+
+- type: entity
+  id: HandheldSupermatterConsole
+  name: handheld supermatter console
+  description: A portable console that lets the user monitor supermatter crystal status.
+  parent: BaseHandheldComputer
+  components:
+  - type: Sprite
+    sprite: Backmen/Objects/Devices/tablets.rsi
+    layers:
+    - state: tablet
+    - state: supermatterconsole
+      shader: unshaded
+  - type: ActivatableUI
+    inHandsOnly: true
+    singleUser: true
+    key: enum.SupermatterConsoleUiKey.Key
+  - type: SupermatterConsole
+  - type: UserInterface
+    interfaces:
+      enum.SupermatterConsoleUiKey.Key:
+        type: SupermatterConsoleBoundUserInterface
+  - type: Item
+    size: Small
