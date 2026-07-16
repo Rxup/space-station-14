@@ -142,8 +142,7 @@ public sealed partial class SupermatterConsoleSystem : SharedSupermatterConsoleS
         if (!Exists(focusSupermatter.Value))
             return null;
 
-        if (!TryComp<TransformComponent>(focusSupermatter.Value, out var focusSupermatterXform))
-            return null;
+        var focusSupermatterXform = Transform(focusSupermatter.Value);
 
         if (!focusSupermatterXform.Anchored)
             return null;
@@ -250,7 +249,8 @@ public sealed partial class SupermatterConsoleSystem : SharedSupermatterConsoleS
     private void InitializeConsole(EntityUid uid, SupermatterConsoleComponent component)
     {
         // ИСПРАВЛЕНИЕ: Используем TryComp вместо Transform()
-        if (!TryComp<TransformComponent>(uid, out var xform) || xform.GridUid == null)
+        var xform = Transform(uid);
+        if (xform.GridUid == null)
             return;
 
         Dirty(uid, component);
