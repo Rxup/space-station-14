@@ -1,0 +1,36 @@
+- type: combatTargetOddsRules
+  id: Shooter
+  default: Default
+  security: Security
+  elite: Elite
+  admin: Admin
+  securityJobs:
+  - SecurityOfficer
+  - Warden
+  - Detective
+  - HeadOfSecurity
+  eliteJobs:
+  - DeathSquad
+  - ERTLeader
+  - ERTSecurity
+  - ERTMedical
+  - ERTEngineer
+  - ERTChaplain
+  - ERTJanitor
+  - CBURN
+  - SpecialOperationsOfficer
+  eliteMindRoles:
+  - MindRoleNukeops
+  - MindRoleNukeopsCommander
+  - MindRoleNukeopsMedic
+  - MindRoleLoneops
+  - MindRoleXenoborg
+  securityBorgPrototypes: []
+  eliteBorgPrototypes:
+  - BorgChassisSyndicateAssault
+  - PlayerBorgSyndicateAssaultBattery
+  - PlayerBorgSyndicateAssaultGhostRole
+  - XenoborgEngi
+  - XenoborgHeavy
+  - XenoborgScout
+  - XenoborgStealth

@@ -1,3 +1,4 @@
+using System;
 using Robust.Shared.Configuration;
 
 namespace Content.Shared.Backmen.CCVar;
@@ -15,8 +16,9 @@ public sealed partial class CCVars
         CVarDef.Create("medical.heal_tickrate", 0.5f, CVar.SERVERONLY);
 
     /// <summary>
-    /// The name is self-explanatory
+    /// Deprecated: wound severity is no longer capped; kept for legacy server configs.
     /// </summary>
+    [Obsolete("Wound severity is no longer capped at this value.")]
     public static readonly CVarDef<float> MaxWoundSeverity =
         CVarDef.Create("wounding.max_wound_severity", 200f, CVar.SERVERONLY);
 

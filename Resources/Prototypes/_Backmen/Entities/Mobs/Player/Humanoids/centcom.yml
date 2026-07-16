@@ -102,6 +102,8 @@
         department: Command
         time: 18000
     job: SpecialOperationsOfficer
+    mindRoles:
+    - MindRoleSpecialOperationsOfficer
   - type: SpecForce
     actionBssActionName: ActionCentcomFtlAction
   - type: NpcFactionMember

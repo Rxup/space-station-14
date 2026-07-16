@@ -1,8 +1,9 @@
 ﻿[game]
-hostname = "[RU][TTS] BACKMEN 🌆 [LRP]"
+hostname = "[RU][TTS] Alliance: ReBELL🌆 [MRP]"
 maxplayers = 70
 soft_max_players = 60
-desc="""Русскоязычный сервер Backmen\nКлассический геймплей, собственная сборка, умеренное РП\nДобро пожаловать в сообщество! ✨"""
+desc="""Русскоязычный сервер Alliance:ReBELL. Классический геймплей, собственная сборка, ёбидоёби
+Добро пожаловать в сообщество! ✨"""
 map_pool="BackmenDefaultMapPool"
 defaultpreset="secret"
 secret_weight_prototype = "BackmenSecret"
@@ -131,4 +132,4 @@ timermap = 60
 
 [hub]
 advertise = true
-tags = "lang:ru,rp:low,region:eu_e,tts"
+tags = "lang:ru,rp:med,region:eu_e,tts"

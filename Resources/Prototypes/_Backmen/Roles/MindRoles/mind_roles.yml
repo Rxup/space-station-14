@@ -210,4 +210,12 @@
   - type: MindRole
     jobPrototype: DeathSquad
 
+- type: entity
+  parent: BaseJobMindRole
+  id: MindRoleSpecialOperationsOfficer
+  name: Офицер спецопераций
+  components:
+  - type: MindRole
+    jobPrototype: SpecialOperationsOfficer
+
 

@@ -40,8 +40,9 @@ health-analyzer-window-pain-cause-suffocation = Oxygen Deprivation
 health-analyzer-window-pain-cause-bloodloss = Blood Loss
 health-analyzer-window-pain-cause-death-threshold = Near Death State
 health-analyzer-window-pain-cause-suicide = Self-Inflicted Harm
-# backmen: organ-damage
+# backmen: organ-damage / bone-damage
 health-analyzer-window-pain-cause-organ-damage = Organ Damage
+health-analyzer-window-pain-cause-bone-damage = Bone Damage
 health-analyzer-window-pain-cause-starving = Starvation
 health-analyzer-window-pain-cause-traumatic-pain = Traumatic Pain
 

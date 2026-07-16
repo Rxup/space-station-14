@@ -1,8 +1,11 @@
 using Content.Shared.Body;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
+using Content.Shared.Backmen.Targeting;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -35,7 +38,9 @@ public abstract partial class BkmBodySharedSystem : EntitySystem
 
     [Dependency] private IRobustRandom _random = default!; // backmen edit
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private InventorySystem _inventorySystem = default!; // backmen edit
+    [Dependency] private SharedTargetingSystem _targeting = default!;
+    [Dependency] protected InventorySystem InventorySystem = default!; // backmen edit
+    [Dependency] protected SharedHandsSystem HandsSystem = default!;
     [Dependency] protected IPrototypeManager Prototypes = default!;
     [Dependency] protected INetManager Net = default!;
     [Dependency] protected MovementSpeedModifierSystem Movement = default!;

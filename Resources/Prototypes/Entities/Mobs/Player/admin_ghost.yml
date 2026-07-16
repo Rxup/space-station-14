@@ -115,6 +115,11 @@
     canOperate: true
     canBeOperatedOn: false
   # end-backmen: surgery
+  # start-backmen: combat-targeting
+  - type: Targeting
+  - type: CombatTargetOddsOverride
+    odds: Admin
+  # end-backmen: combat-targeting
 
 - type: entity
   abstract: true

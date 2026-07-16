@@ -23,6 +23,7 @@
   components:
   - type: BkmSupermatter
   - type: RadiationSource
+    slope: 5
   - type: AmbientSound
     range: 5
     volume: 0

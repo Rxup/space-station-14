@@ -31,9 +31,16 @@ namespace Content.Shared.Ghost
 
         private void OnGhostExamine(EntityUid uid, GhostComponent component, ExaminedEvent args)
         {
-            var timeSinceDeath = _gameTiming.RealTime.Subtract(component.TimeOfDeath);
-            var deathTimeInfo = timeSinceDeath.Minutes > 0
-                ? Loc.GetString("comp-ghost-examine-time-minutes", ("minutes", timeSinceDeath.Minutes))
+            var now = _gameTiming.ServerTime != TimeSpan.Zero ? _gameTiming.ServerTime : _gameTiming.RealTime;
+            var timeSinceDeath = component.TimeOfDeath == TimeSpan.Zero
+                ? TimeSpan.Zero
+                : now.Subtract(component.TimeOfDeath);
+
+            if (timeSinceDeath < TimeSpan.Zero)
+                timeSinceDeath = TimeSpan.Zero;
+
+            var deathTimeInfo = timeSinceDeath.TotalMinutes >= 1
+                ? Loc.GetString("comp-ghost-examine-time-minutes", ("minutes", (int) timeSinceDeath.TotalMinutes))
                 : Loc.GetString("comp-ghost-examine-time-seconds", ("seconds", timeSinceDeath.Seconds));
 
             args.PushMarkup(deathTimeInfo);

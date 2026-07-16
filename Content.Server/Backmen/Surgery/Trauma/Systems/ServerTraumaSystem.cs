@@ -42,7 +42,11 @@ public sealed class ServerTraumaSystem : TraumaSystem
             if (woundable.WoundableSeverity is WoundableSeverity.Critical or WoundableSeverity.Loss)
                 continue;
 
-            if (bone.BoneSeverity is BoneSeverity.Broken or BoneSeverity.Damaged)
+            // Broken bones need surgical treatment; Damaged bones heal passively.
+            if (bone.BoneSeverity is BoneSeverity.Broken)
+                continue;
+
+            if (bone.BoneIntegrity >= bone.IntegrityCap)
                 continue;
 
             if (MobState.IsDead(bodyPart.Body.Value))

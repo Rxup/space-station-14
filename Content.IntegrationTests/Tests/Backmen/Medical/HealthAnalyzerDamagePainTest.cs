@@ -74,46 +74,32 @@ public sealed class HealthAnalyzerDamagePainTest : GameTest
     }
 
     [Test]
-    public async Task WoundSeverityCap_StopsGrowingAndPainStaysStable()
+    public async Task RepeatedHeadDamage_CapsInflicterPainPerWound()
     {
         var map = await Pair.CreateTestMap();
-        EntityUid human = default;
-        FixedPoint2 severityAfterCap = FixedPoint2.Zero;
-        float painAfterCap;
 
         await Server.WaitPost(() =>
         {
-            human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
+            var human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
             var damageSys = Server.EntMan.System<DamageableSystem>();
             var piercing = new DamageSpecifier { DamageDict = { ["Piercing"] = FixedPoint2.New(50) } };
 
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 20; i++)
                 damageSys.ChangeDamage(human, piercing, targetPart: TargetBodyPart.Head);
 
             var woundSys = Server.EntMan.System<WoundSystem>();
-            severityAfterCap = woundSys.GetBodySeverityPoint(human);
-            Assert.That(severityAfterCap, Is.GreaterThanOrEqualTo(FixedPoint2.New(200)),
-                "Head piercing should reach wound severity cap.");
-
-            var consciousness = Server.EntMan.GetComponent<ConsciousnessComponent>(human);
-            painAfterCap = (float) Server.EntMan.GetComponent<NerveSystemComponent>(consciousness.NerveSystem!.Value).Pain;
-
-            for (var i = 0; i < 10; i++)
-                damageSys.ChangeDamage(human, piercing, targetPart: TargetBodyPart.Head);
-
-            Assert.That(woundSys.GetBodySeverityPoint(human), Is.EqualTo(severityAfterCap),
-                "Severity must not grow past cap.");
-
-            var painAfterMore = (float) Server.EntMan.GetComponent<NerveSystemComponent>(consciousness.NerveSystem!.Value).Pain;
-            Assert.That(painAfterMore, Is.EqualTo(painAfterCap).Within(5f),
-                "Pain must not balloon after severity cap.");
+            Assert.That(woundSys.GetBodySeverityPoint(human), Is.GreaterThanOrEqualTo(FixedPoint2.New(200)),
+                "Repeated head piercing should accumulate substantial wound severity.");
 
             foreach (var wound in woundSys.GetBodyWounds(human, Server.EntMan.GetComponent<BodyComponent>(human)))
             {
                 if (!Server.EntMan.TryGetComponent<PainInflicterComponent>(wound, out var inflicter))
                     continue;
 
-                Assert.That(inflicter.RawPain, Is.LessThanOrEqualTo(wound.Comp.WoundSeverityPoint));
+                Assert.That(inflicter.RawPain, Is.LessThanOrEqualTo(FixedPoint2.New(100)),
+                    "RawPain must respect inflicter cap.");
+                Assert.That(inflicter.RawPain, Is.LessThanOrEqualTo(wound.Comp.WoundSeverityPoint),
+                    "RawPain must not exceed wound severity.");
             }
         });
     }

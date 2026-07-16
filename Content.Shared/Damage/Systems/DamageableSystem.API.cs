@@ -91,12 +91,13 @@ public sealed partial class DamageableSystem
         EntityUid? origin = null,
         bool ignoreGlobalModifiers = false,
         float partMultiplier = 1.00f,
-        TargetBodyPart? targetPart = null
+        TargetBodyPart? targetPart = null,
+        EntityUid? seedEntity = null // backmen: combat-targeting
     )
     {
         //! Empty just checks if the DamageSpecifier is _literally_ empty, as in, is internal dictionary of damage types is empty.
         // If you deal 0.0 of some damage type, Empty will be false!
-        newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, partMultiplier, targetPart);
+        newDamage = ChangeDamage(ent, damage, ignoreResistances, interruptsDoAfters, origin, ignoreGlobalModifiers, partMultiplier, targetPart, seedEntity);
         return !newDamage.Empty;
     }
 
@@ -119,7 +120,8 @@ public sealed partial class DamageableSystem
         EntityUid? origin = null,
         bool ignoreGlobalModifiers = false,
         float partMultiplier = 1.00f, // backmen
-        TargetBodyPart? targetPart = null // backmen
+        TargetBodyPart? targetPart = null, // backmen
+        EntityUid? seedEntity = null // backmen: combat-targeting
     )
     {
         var damageDone = new DamageSpecifier();
@@ -140,8 +142,10 @@ public sealed partial class DamageableSystem
 
         // Wound routing needs a body part on consciousness mobs; armor keeps legacy global stacking when targetPart is null.
         var dispatchTargetPart = targetPart;
+        // start-backmen: combat-targeting
         if (dispatchTargetPart == null && HasComp<ConsciousnessComponent>(ent.Owner))
-            dispatchTargetPart = ResolveTargetBodyPart(ent, origin, null);
+            dispatchTargetPart = ResolveCombatTargetBodyPart(ent.Owner, origin, seedEntity);
+        // end-backmen: combat-targeting
 
         // Apply resistances
         if (!ignoreResistances)
@@ -154,7 +158,7 @@ public sealed partial class DamageableSystem
 
             // TODO DAMAGE
             // byref struct event.
-            var ev = new DamageModifyEvent(damage, origin, targetPart); // backmen
+            var ev = new DamageModifyEvent(damage, origin, dispatchTargetPart); // backmen: combat-targeting
             RaiseLocalEvent(ent, ev);
             damage = ev.Damage;
 
@@ -501,20 +505,4 @@ public sealed partial class DamageableSystem
     /// </summary>
     public bool CanBeDamagedBy(Entity<DamageableComponent?> ent, ProtoId<DamageTypePrototype> type) =>
         _backmenDamageModel.CanBeDamagedBy(ent, type); // backmen: damage-container
-
-    /// <summary>
-    /// Picks a hit location for wound routing on consciousness mobs when callers omit an explicit target part.
-    /// </summary>
-    private TargetBodyPart? ResolveTargetBodyPart(EntityUid ent, EntityUid? origin, TargetBodyPart? targetPart)
-    {
-        if (targetPart != null)
-            return targetPart;
-
-        var target = _body.GetRandomBodyPart(ent);
-
-        if (origin != null && TryComp<TargetingComponent>(origin.Value, out var attackerTargeting))
-            target = _body.GetRandomBodyPart(ent, origin.Value, attackerComp: attackerTargeting) ?? target;
-
-        return target;
-    }
 }
