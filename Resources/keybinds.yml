@@ -663,12 +663,14 @@ binds:
   key: MouseRight
   canFocus: true
 # backmen keybinds-start
-- function: LookUp
-  type: State
-  key: Space
 - function: ToggleStanding
   type: State
   key: V
+# start-backmen: unique action
+- function: CMUniqueAction
+  type: State
+  key: R
+# end-backmen: unique action
 # Targeting
 - function: TargetHead
   type: State

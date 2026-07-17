@@ -94,8 +94,7 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
             human.AddFunction(ContentKeyFunctions.ToggleStanding); // Backmen
-            human.AddFunction(ContentKeyFunctions.LookUp); // BACKMEN EDIT
-            human.AddFunction(CMKeyFunctions.CMUniqueAction); // BACKMEN EDIT
+            human.AddFunction(CMKeyFunctions.CMUniqueAction); // backmen: unique action
             human.AddFunction(ContentKeyFunctions.TargetHead);
             human.AddFunction(ContentKeyFunctions.TargetChest); // backmen: chest targeting
             human.AddFunction(ContentKeyFunctions.TargetLeftArm);

@@ -1,6 +1,8 @@
-﻿using Content.Shared.Backmen.Weapons.Common;
+﻿using Content.Shared.ActionBlocker;
+using Content.Shared.Backmen.Weapons.Common;
 using Content.Shared.Examine;
 using Content.Shared.Popups;
+using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
@@ -11,14 +13,37 @@ public abstract partial class SharedPumpActionSystem : EntitySystem
 {
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
 
     public override void Initialize()
     {
+        // start-backmen: unique action verb
+        SubscribeLocalEvent<PumpActionComponent, GetVerbsEvent<InteractionVerb>>(OnGetVerbs);
+        // end-backmen: unique action verb
         SubscribeLocalEvent<PumpActionComponent, ExaminedEvent>(OnExamined, before: [typeof(SharedGunSystem)]);
         SubscribeLocalEvent<PumpActionComponent, AttemptShootEvent>(OnAttemptShoot);
         SubscribeLocalEvent<PumpActionComponent, GunShotEvent>(OnGunShot);
         SubscribeLocalEvent<PumpActionComponent, UniqueActionEvent>(OnUniqueAction);
     }
+
+    // start-backmen: unique action verb
+    private void OnGetVerbs(Entity<PumpActionComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
+    {
+        if (!args.CanAccess || !args.CanInteract)
+            return;
+
+        if (!_actionBlocker.CanInteract(args.User, args.Target))
+            return;
+
+        var user = args.User;
+        var target = ent.Owner;
+        args.Verbs.Add(new InteractionVerb
+        {
+            Act = () => RaiseLocalEvent(target, new UniqueActionEvent(user)),
+            Text = Loc.GetString("ui-options-function-cm-unique-action"),
+        });
+    }
+    // end-backmen: unique action verb
 
     protected virtual void OnExamined(Entity<PumpActionComponent> ent, ref ExaminedEvent args)
     {

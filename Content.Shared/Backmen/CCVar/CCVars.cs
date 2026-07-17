@@ -98,9 +98,6 @@ public sealed partial class CCVars
     public static readonly CVarDef<bool> OfferModeIndicatorsPointShow =
         CVarDef.Create("hud.offer_mode_indicators_point_show", true, CVar.ARCHIVE | CVar.CLIENTONLY);
 
-    public static readonly CVarDef<bool> HoldLookUp =
-        CVarDef.Create("white.hold_look_up", false, CVar.CLIENT | CVar.ARCHIVE);
-
     /*
     Atmos
     */
