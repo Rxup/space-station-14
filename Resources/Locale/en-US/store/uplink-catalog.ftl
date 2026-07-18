@@ -213,14 +213,6 @@ uplink-freedom-implanter-name = Freedom Implanter
 uplink-freedom-implanter-desc = Get away from those nasty sec officers with this three use implant!
 uplink-combat-training-name = Combat Training Implanter
 uplink-combat-training-desc = A Syndicate implant that improves aimed-shot accuracy to Security-tier levels (~35–40%).
-combat-training-implanter-name = Combat Training Implanter
-combat-training-implanter-desc = A Syndicate implanter that installs a combat training implant.
-combat-training-implant-name = Combat Training Implant
-combat-training-implant-desc = Improves aimed-shot accuracy to Security-tier levels (~35–40%).
-combat-marksmanship-implanter-admeme-name = Combat Marksmanship Implanter
-combat-marksmanship-implanter-admeme-desc = Admin implanter that grants 100% accuracy on the targeted body part.
-combat-marksmanship-implant-admeme-name = Combat Marksmanship Implant
-combat-marksmanship-implant-admeme-desc = Admin implant that guarantees hits on the aimed body part.
 
 uplink-scram-implanter-name = Scram Implanter
 uplink-scram-implanter-desc = A 2-use implant which teleports you within a large radius. Attempts to teleport you onto an unobstructed tile. May sometimes fail to do so. Life insurance not included.

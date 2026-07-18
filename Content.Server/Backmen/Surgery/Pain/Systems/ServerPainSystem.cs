@@ -416,6 +416,7 @@ public sealed partial class ServerPainSystem : PainSystem
 
     private void UpdateNerveSystemNerves(EntityUid uid, EntityUid body, NerveSystemComponent component)
     {
+        var previousNerves = component.Nerves.Keys.ToHashSet();
         component.Nerves.Clear();
         foreach (var bodyPartId in _body.GetWoundableTargets(body))
         {
@@ -423,10 +424,19 @@ public sealed partial class ServerPainSystem : PainSystem
                 continue;
 
             component.Nerves.Add(bodyPartId, nerve);
+            previousNerves.Remove(bodyPartId);
 
             nerve.ParentedNerveSystem = uid;
-            DirtyField(bodyPartId, nerve, nameof(NerveOrganComponent.ParentedNerveSystem));
             UpdatePainFeels(bodyPartId, nerve);
+        }
+
+        foreach (var orphan in previousNerves)
+        {
+            if (!NerveQuery.TryComp(orphan, out var nerve))
+                continue;
+
+            if (nerve.ParentedNerveSystem == uid)
+                nerve.ParentedNerveSystem = EntityUid.Invalid;
         }
 
         CleanupOrphanPainModifiers(uid, body, component);
@@ -516,7 +526,9 @@ public sealed partial class ServerPainSystem : PainSystem
             nerveSys.ReactionUpdateTime = Timing.CurTime + nerveSys.PainReactionTime;
         nerveSys.Pain = newPain;
 
-        DirtyField(uid, nerveSys, nameof(NerveSystemComponent.Pain));
+        // Full Dirty (not DirtyField): RT 283.1 (#6685) can emit field deltas when the client's
+        // fromTick <= CreationTick, which PVS asserts against. Unclassified dirty forces a full state.
+        Dirty(uid, nerveSys);
 
         if (!_consciousness.SetConsciousnessModifier(
                 organ.Body.Value,

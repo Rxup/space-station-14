@@ -115,7 +115,7 @@ public sealed partial class PsionicAbilitiesSystem : SharedPsionicAbilitiesSyste
         {
             // component moment
             var comp = _componentFactory.GetComponent(compName);
-            if (EntityManager.TryGetComponent(uid, comp.GetType(), out var psionicPower))
+            if (TryComp(uid, comp.GetType(), out var psionicPower))
                 RemComp(uid, psionicPower);
         }
         if (psionic.PsionicAbility != null)
