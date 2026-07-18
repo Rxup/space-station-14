@@ -240,7 +240,7 @@ public sealed partial class AirDropSystem : SharedAirDropSystem
             if (compName == "Sprite")
                 continue;
 
-            if (EntityManager.TryGetComponent(renderedItem, comp.Component.GetType(), out var sourceComp))
+            if (TryComp(renderedItem, comp.Component.GetType(), out var sourceComp))
                 CopyComp(renderedItem, ent, sourceComp);
         }
 

@@ -40,13 +40,17 @@ public abstract partial class PainSystem : EntitySystem
 
     private void OnNerveSystemTerminating(Entity<NerveSystemComponent> ent, ref EntityTerminatingEvent args)
     {
-        foreach (var (nerveUid, _) in ent.Comp.Nerves.ToArray())
+        // Clear every nerve that still points here — Nerves may be incomplete after amputations/rebuilds.
+        var query = EntityQueryEnumerator<NerveOrganComponent>();
+        while (query.MoveNext(out _, out var nerve))
         {
-            if (!NerveQuery.TryComp(nerveUid, out var nerve))
+            if (nerve.ParentedNerveSystem != ent.Owner)
                 continue;
 
             nerve.ParentedNerveSystem = EntityUid.Invalid;
         }
+
+        ent.Comp.Nerves.Clear();
     }
 
     private void OnNerveSystemAfterAutoHandleState(Entity<NerveSystemComponent> ent, ref AfterAutoHandleStateEvent args)

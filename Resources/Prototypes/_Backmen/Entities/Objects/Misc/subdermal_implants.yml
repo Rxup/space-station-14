@@ -61,8 +61,8 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: CombatTrainingImplant
-  name: combat-training-implant-name
-  description: combat-training-implant-desc
+  name: combat training implant
+  description: Improves aimed-shot accuracy to Security-tier levels (~35–40%).
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
@@ -73,8 +73,8 @@
   parent: BaseSubdermalImplant
   id: CombatTrainingImplantAdmeme
   suffix: Admeme
-  name: combat-marksmanship-implant-admeme-name
-  description: combat-marksmanship-implant-admeme-desc
+  name: combat marksmanship implant
+  description: Admin implant that guarantees hits on the aimed body part.
   categories: [ HideSpawnMenu ]
   components:
   - type: SubdermalImplant
