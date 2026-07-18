@@ -204,7 +204,8 @@ public sealed partial class ExplosionSystem
         float? fireStacks,
         float? temperature,
         float currentIntensity,
-        EntityUid? cause)
+        EntityUid? cause,
+        TargetBodyPart? damageTarget = null) // backmen: land-mine-leg-damage
     {
         var size = grid.Comp.TileSize;
         var gridBox = new Box2(tile * size, (tile + 1) * size);
@@ -223,7 +224,7 @@ public sealed partial class ExplosionSystem
         // process those entities
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause, damageTarget);
         }
 
         // start-backmen: protect system
@@ -240,7 +241,7 @@ public sealed partial class ExplosionSystem
         foreach (var entity in _anchored)
         {
             processed.Add(entity);
-            ProcessEntity(entity, epicenter, damage, throwForce, id, null, fireStacks, cause);
+            ProcessEntity(entity, epicenter, damage, throwForce, id, null, fireStacks, cause, damageTarget);
         }
 
         // heat the atmosphere
@@ -282,7 +283,7 @@ public sealed partial class ExplosionSystem
         {
             // Here we only throw, no dealing damage. Containers n such might drop their entities after being destroyed, but
             // they should handle their own damage pass-through, with their own damage reduction calculation.
-            ProcessEntity(uid, epicenter, null, throwForce, id, xform, null, cause);
+            ProcessEntity(uid, epicenter, null, throwForce, id, xform, null, cause, damageTarget);
         }
 
         return !tileBlocked;
@@ -319,7 +320,8 @@ public sealed partial class ExplosionSystem
         HashSet<EntityUid> processed,
         string id,
         float? fireStacks,
-        EntityUid? cause)
+        EntityUid? cause,
+        TargetBodyPart? damageTarget = null) // backmen: land-mine-leg-damage
     {
         var gridBox = Box2.FromDimensions(tile * DefaultTileSize, new Vector2(DefaultTileSize, DefaultTileSize));
         var worldBox = spaceMatrix.TransformBox(gridBox);
@@ -335,7 +337,7 @@ public sealed partial class ExplosionSystem
         foreach (var (uid, xform) in state.Item1)
         {
             processed.Add(uid);
-            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks, cause, damageTarget);
         }
 
         if (throwForce <= 0)
@@ -349,7 +351,7 @@ public sealed partial class ExplosionSystem
 
         foreach (var (uid, xform) in list)
         {
-            ProcessEntity(uid, epicenter, null, throwForce, id, xform, fireStacks, cause);
+            ProcessEntity(uid, epicenter, null, throwForce, id, xform, fireStacks, cause, damageTarget);
         }
     }
 
@@ -448,7 +450,8 @@ public sealed partial class ExplosionSystem
         string id,
         TransformComponent? xform,
         float? fireStacksOnIgnite,
-        EntityUid? cause)
+        EntityUid? cause,
+        TargetBodyPart? damageTarget = null) // backmen: land-mine-leg-damage
     {
         if (originalDamage is not null)
         {
@@ -462,9 +465,8 @@ public sealed partial class ExplosionSystem
                 // start-backmen: body
                 if (_bodyQuery.TryComp(entity, out var body) && _consciousnessQuery.HasComp(entity))
                 {
-                    TargetBodyPart? mineTarget = null;
-                    if (cause is { } mineUid && _landMineQuery.TryComp(mineUid, out var landMine))
-                        mineTarget = landMine.DamageTarget;
+                    // Prefer the target captured at queue time — the land mine is usually already deleted.
+                    var mineTarget = damageTarget;
 
                     var bodyParts = mineTarget is { } target
                         ? _targeting.GetTargetEntities(entity, target).ToList()
@@ -766,6 +768,11 @@ sealed class Explosion
     public readonly EntityUid? Cause;
 
     /// <summary>
+    /// backmen: land-mine-leg-damage — body-part targeting captured when the explosion was queued.
+    /// </summary>
+    public readonly TargetBodyPart? DamageTarget;
+
+    /// <summary>
     ///     Initialize a new instance for processing
     /// </summary>
     public Explosion(ExplosionSystem system,
@@ -782,12 +789,14 @@ sealed class Explosion
         IEntityManager entMan,
         EntityUid visualEnt,
         EntityUid? cause,
+        TargetBodyPart? damageTarget, // backmen: land-mine-leg-damage
         SharedMapSystem mapSystem,
         DamageableSystem damageable,
         EntityQuery<TileHistoryComponent> historyQuery)
     {
         VisualEnt = visualEnt;
         Cause = cause;
+        DamageTarget = damageTarget; // backmen: land-mine-leg-damage
         _system = system;
         _mapSystem = mapSystem;
         ExplosionType = explosionType;
@@ -954,7 +963,8 @@ sealed class Explosion
                     ExplosionType.FireStacks,
                     ExplosionType.Temperature,
                     _currentIntensity,
-                    Cause);
+                    Cause,
+                    DamageTarget); // backmen: land-mine-leg-damage
 
                 // If the floor is not blocked by some dense object, damage the floor tiles.
                 if (canDamageFloor)
@@ -990,7 +1000,8 @@ sealed class Explosion
                     ProcessedEntities,
                     ExplosionType.ID,
                     ExplosionType.FireStacks,
-                    Cause);
+                    Cause,
+                    DamageTarget); // backmen: land-mine-leg-damage
             }
 
             if (!MoveNext())
@@ -1034,4 +1045,5 @@ public sealed class QueuedExplosion(ExplosionPrototype proto)
     public int MaxTileBreak;
     public bool CanCreateVacuum;
     public EntityUid? Cause; // The entity that exploded, for logging purposes.
+    public TargetBodyPart? DamageTarget; // backmen: land-mine-leg-damage — captured at queue time
 }

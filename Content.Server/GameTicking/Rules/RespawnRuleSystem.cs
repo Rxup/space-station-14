@@ -74,7 +74,12 @@ public sealed partial class RespawnRuleSystem : GameRuleSystem<RespawnDeadRuleCo
 
     private void OnMobStateChanged(MobStateChangedEvent args)
     {
-        if (args.NewMobState != MobState.Dead)
+        // Backmen consciousness often leaves players in Critical without reaching Dead.
+        // SoftCritical (pain) is excluded — they can still act.
+        if (args.NewMobState is not (MobState.Dead or MobState.Critical))
+            return;
+
+        if (args.OldMobState is MobState.Dead or MobState.Critical)
             return;
 
         if (!TryComp<ActorComponent>(args.Target, out var actor))

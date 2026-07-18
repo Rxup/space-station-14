@@ -1,10 +1,10 @@
 using Content.Server.Backmen.Body.Systems;
+using Content.Shared.Backmen.Damage;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Timing;
 using Content.Server.Popups;
 using Robust.Shared.Physics.Events;
 using Content.Shared.Body;
-using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -20,6 +20,7 @@ public sealed partial class GibOnCollideSystem : EntitySystem
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private BkmBodySystem _body = default!;
     [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private BackmenDamageModelSystem _damageModel = default!;
 
     public override void Initialize()
     {
@@ -42,8 +43,7 @@ public sealed partial class GibOnCollideSystem : EntitySystem
                 || !_mobStateSystem.IsAlive(otherUid, mobState))
                 return;
 
-            if (!TryComp<InjurableComponent>(otherUid, out var injurable)
-                || injurable.DamageContainer?.Id != BiologicalDamageContainerPrototype.Id)
+            if (!_damageModel.MatchesDamageContainerFilter(otherUid, [BiologicalDamageContainerPrototype.Id]))
                 return;
         }
 
