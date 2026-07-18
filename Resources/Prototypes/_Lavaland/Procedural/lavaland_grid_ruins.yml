@@ -11,12 +11,12 @@
   priority: -1 # highest priority
   isGrid: true
 
-- type: lavalandGridRuin # Backmen
-  id: InteQSizo
-  name: lavaland-inteq-sizo
-  path: /Maps/Backmen/Lavaland/InteQ_Sizo.yml
-  priority: -1 # highest priority
-  isGrid: true
+#- type: lavalandGridRuin # Backmen
+#  id: InteQSizo
+#  name: lavaland-inteq-sizo
+#  path: /Maps/Backmen/Lavaland/InteQ_Sizo.yml
+#  priority: -1 # highest priority
+#  isGrid: true
 
 - type: lavalandGridRuin # backmen-edit
   id: UriilChapelArena
