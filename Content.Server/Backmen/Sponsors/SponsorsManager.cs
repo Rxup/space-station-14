@@ -57,8 +57,14 @@ public sealed partial class SponsorsManager : ISharedSponsorsManager
     {
         if (_cachedSponsors.TryGetValue(userId, out var sponsor))
         {
-            color = Color.TryFromHex(sponsor.OOCColor);
-            return color != null;
+            if (sponsor.OOCColor != null && Color.TryFromHex(sponsor.OOCColor, out var parsed))
+            {
+                color = parsed;
+                return true;
+            }
+
+            color = null;
+            return false;
         }
 
         color = null;
@@ -214,9 +220,14 @@ public sealed partial class SponsorsManager : ISharedSponsorsManager
             return false;
         }
 
-        color = Color.TryFromHex(_cachedSponsors[userId].OOCColor);
+        if (Color.TryFromHex(_cachedSponsors[userId].OOCColor, out var parsed))
+        {
+            color = parsed;
+            return true;
+        }
 
-        return color != null;
+        color = null;
+        return false;
     }
 
     public int GetExtraCharSlots(NetUserId userId)
