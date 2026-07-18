@@ -4,6 +4,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Placeable;
@@ -111,7 +112,8 @@ public sealed partial class PlaceableSurfaceSystem : EntitySystem
         foreach (var entity in args.DumpQueue)
         {
             var rand = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(entity));
-            _transformSystem.SetWorldPositionRotation(entity, targetPos + rand.NextVector2Box() / 4, targetRot);
+            var offset = new Vector2(rand.NextFloat(-1f, 1f), rand.NextFloat(-1f, 1f)) / 4;
+            _transformSystem.SetWorldPositionRotation(entity, targetPos + offset, targetRot);
         }
     }
 }

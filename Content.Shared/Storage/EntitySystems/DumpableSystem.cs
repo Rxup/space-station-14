@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
@@ -7,6 +8,7 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -144,7 +146,8 @@ public sealed partial class DumpableSystem : EntitySystem
             {
                 var transform = Transform(entity);
                 var rand = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(entity));
-                _transformSystem.SetWorldPositionRotation(entity, targetPos + rand.NextVector2Box() / 4, rand.NextAngle(), transform);
+                var offset = new Vector2(rand.NextFloat(-1f, 1f), rand.NextFloat(-1f, 1f)) / 4;
+                _transformSystem.SetWorldPositionRotation(entity, targetPos + offset, rand.NextAngle(), transform);
             }
 
             return;
