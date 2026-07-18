@@ -14,6 +14,7 @@ using Content.Shared.Points;
 using Content.Shared.Storage;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
 
 namespace Content.Server.GameTicking.Rules;
@@ -33,6 +34,9 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
     [Dependency] private TransformSystem _transform = default!;
 
     [Dependency] private EntityQuery<PainImmuneComponent> _painImmuneQuery = default!;
+
+    /// <summary>Arena ambient matching MeteorArena / dm01 MapLight; forced after LightCycle removal.</summary>
+    private static readonly Color DeathMatchAmbientLight = Color.FromHex("#D8B059");
 
     public override void Initialize()
     {
@@ -61,10 +65,16 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
 
     private void DisableMapDayNightCycle()
     {
-        var query = AllEntityQuery<LightCycleComponent>();
-        while (query.MoveNext(out var mapUid, out _))
+        var cycleQuery = AllEntityQuery<LightCycleComponent>();
+        while (cycleQuery.MoveNext(out var mapUid, out _))
         {
             DisableDayNightCycle(mapUid);
+        }
+
+        var lightQuery = AllEntityQuery<MapLightComponent, MapComponent>();
+        while (lightQuery.MoveNext(out var mapUid, out var mapLight, out _))
+        {
+            EnsureDeathMatchAmbient(mapUid, mapLight);
         }
     }
 
@@ -73,6 +83,23 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
         RemComp<LightCycleComponent>(mapUid);
         RemComp<SunShadowCycleComponent>(mapUid);
         RemComp<SunShadowComponent>(mapUid);
+        EnsureDeathMatchAmbient(mapUid);
+    }
+
+    private void EnsureDeathMatchAmbient(EntityUid mapUid, MapLightComponent? mapLight = null)
+    {
+        mapLight ??= EnsureComp<MapLightComponent>(mapUid);
+        if (TryComp<MapComponent>(mapUid, out var map) && !map.LightingEnabled)
+        {
+            map.LightingEnabled = true;
+            Dirty(mapUid, map);
+        }
+
+        if (mapLight.AmbientLightColor.Equals(DeathMatchAmbientLight))
+            return;
+
+        mapLight.AmbientLightColor = DeathMatchAmbientLight;
+        Dirty(mapUid, mapLight);
     }
 
     private bool IsDeathmatchActive()

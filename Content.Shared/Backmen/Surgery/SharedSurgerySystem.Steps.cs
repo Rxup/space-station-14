@@ -1632,7 +1632,7 @@ public abstract partial class SharedSurgerySystem
     {
         foreach (var tool in tools)
         {
-            if (EntityManager.TryGetComponent(tool, component.GetType(), out var found) && found is ISurgeryToolComponent toolComp)
+            if (TryComp(tool, component.GetType(), out var found) && found is ISurgeryToolComponent toolComp)
             {
                 withComp = tool;
                 speed = toolComp.Speed;

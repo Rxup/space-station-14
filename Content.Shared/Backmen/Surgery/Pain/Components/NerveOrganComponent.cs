@@ -26,8 +26,9 @@ public sealed partial class NerveOrganComponent : Component
 
     /// <summary>
     /// Nerve system, to which this nerve is parented.
+    /// Server-only: networking a deleted brain EntityUid trips MetaData Resolve errors in PVS GetState.
     /// </summary>
-    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    [ViewVariables(VVAccess.ReadOnly)]
     public EntityUid ParentedNerveSystem;
 }
 

@@ -42,7 +42,9 @@ public sealed class KillTrackingSystem : EntitySystem
 
     private void OnMobStateChanged(EntityUid uid, KillTrackerComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState != component.KillState || args.OldMobState >= args.NewMobState)
+        // SoftCritical (pain) sits between Critical and Dead numerically but is less severe than Critical;
+        // do not use raw enum ordering here.
+        if (!JustEnteredKillState(args.OldMobState, args.NewMobState, component.KillState))
             return;
 
         // impulse is the entity that did the finishing blow.
@@ -93,6 +95,24 @@ public sealed class KillTrackingSystem : EntitySystem
 
         var ev = new KillReportedEvent(uid, killSource, assistSource, suicide);
         RaiseLocalEvent(uid, ref ev, true);
+    }
+
+    /// <summary>
+    /// True when the entity first crossed the kill threshold.
+    /// </summary>
+    private static bool JustEnteredKillState(MobState oldState, MobState newState, MobState killState)
+    {
+        return IsKillState(newState, killState) && !IsKillState(oldState, killState);
+    }
+
+    private static bool IsKillState(MobState state, MobState killState)
+    {
+        // Default KillState is Critical: death also counts (Alive→Dead one-shots skip Critical).
+        // SoftCritical (pain) is excluded — players can still act.
+        if (killState == MobState.Critical)
+            return state is MobState.Critical or MobState.Dead;
+
+        return state == killState;
     }
 
     private KillSource GetKillSource(EntityUid? sourceEntity)

@@ -10,8 +10,8 @@
 - type: entity
   id: CombatTrainingImplanter
   parent: BaseImplantOnlyImplanterSyndi
-  name: combat-training-implanter-name
-  description: combat-training-implanter-desc
+  name: combat training implanter
+  description: A Syndicate implanter that installs a combat training implant.
   components:
   - type: Implanter
     implant: CombatTrainingImplant
@@ -20,8 +20,8 @@
   id: CombatTrainingImplanterAdmeme
   parent: BaseImplantOnlyImplanter
   suffix: Admeme
-  name: combat-marksmanship-implanter-admeme-name
-  description: combat-marksmanship-implanter-admeme-desc
+  name: combat marksmanship implanter
+  description: Admin implanter that grants 100% accuracy on the targeted body part.
   components:
   - type: Implanter
     implant: CombatTrainingImplantAdmeme

@@ -15,9 +15,12 @@ public sealed partial class PumpActionSystem : SharedPumpActionSystem
     protected override void OnExamined(Entity<PumpActionComponent> ent, ref ExaminedEvent args)
     {
         if (!_input.TryGetKeyBinding(CMKeyFunctions.CMUniqueAction, out var bind))
+        {
+            args.PushMarkup(Loc.GetString("cm-gun-pump-examine"), 1);
             return;
+        }
 
-        args.PushMarkup($"[bold]Нажми на [color=cyan]необычное взаимодействие[/color] (по стандарту \"R\") чтобы зарядить перед выстрелом.[/bold]", 1);
+        args.PushMarkup(Loc.GetString("cm-gun-pump-examine-key", ("key", bind.GetKeyString())), 1);
     }
 
     protected override void OnAttemptShoot(Entity<PumpActionComponent> ent, ref AttemptShootEvent args)
@@ -27,8 +30,8 @@ public sealed partial class PumpActionSystem : SharedPumpActionSystem
         if (!ent.Comp.Pumped)
         {
             var message = _input.TryGetKeyBinding(CMKeyFunctions.CMUniqueAction, out var bind)
-                ? $"Сначала тебе нужно зарядить это оружие с помощью {bind.GetKeyString()}!"
-                : "Сначала тебе нужно зарядить это оружие!";
+                ? Loc.GetString("cm-gun-pump-fail-key", ("key", bind.GetKeyString()))
+                : Loc.GetString("cm-gun-pump-fail");
             _popup.PopupClient(message, args.User, args.User);
         }
     }

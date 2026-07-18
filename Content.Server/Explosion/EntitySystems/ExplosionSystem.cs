@@ -348,8 +348,20 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
             // they are close enough to combine so just add total intensity and prevent queuing another one
             queued.TotalIntensity += totalIntensity;
+            // start-backmen: land-mine-leg-damage
+            if (queued.DamageTarget == null && cause is { } combineCause
+                && _landMineQuery.TryComp(combineCause, out var combineMine))
+                queued.DamageTarget = combineMine.DamageTarget;
+            // end-backmen: land-mine-leg-damage
             return;
         }
+
+        // start-backmen: land-mine-leg-damage
+        // Capture before the cause (e.g. land mine) is QueueDel'd — processing may run next tick.
+        TargetBodyPart? damageTarget = null;
+        if (cause is { } causeUid && _landMineQuery.TryComp(causeUid, out var landMine))
+            damageTarget = landMine.DamageTarget;
+        // end-backmen: land-mine-leg-damage
 
         var boom = new QueuedExplosion(type)
         {
@@ -360,7 +372,8 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             TileBreakScale = tileBreakScale,
             MaxTileBreak = maxTileBreak,
             CanCreateVacuum = canCreateVacuum,
-            Cause = cause
+            Cause = cause,
+            DamageTarget = damageTarget, // backmen: land-mine-leg-damage
         };
         _explosionQueue.Enqueue(boom);
         _queuedExplosions.Add(boom);
@@ -435,6 +448,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             EntityManager,
             visualEnt,
             queued.Cause,
+            queued.DamageTarget, // backmen: land-mine-leg-damage
             _map,
             _damageableSystem,
             _tileHistoryQuery);

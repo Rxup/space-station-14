@@ -11,6 +11,7 @@ lobbyenabled = true
 cryo_sleep_rejoining = true
 lobbyduration=300
 contraband_examine = true
+role_timers = false
 
 # IPIntel stuff
 ipintel_enabled = true
