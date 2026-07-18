@@ -217,6 +217,9 @@ public sealed partial class ServerWoundSystem : WoundSystem
             if (proto.ID != wound.Comp.DamageType)
                 continue;
 
+            if (!RollForWoundMerging(wound.AsNullable(), severity))
+                continue;
+
             ApplyWoundSeverity(wound, severity, wound);
             woundContinued = wound;
 
@@ -810,9 +813,6 @@ public sealed partial class ServerWoundSystem : WoundSystem
             actualHeal += -heal;
             ApplyWoundSeverity(wound, heal, wound);
         }
-
-        UpdateWoundableIntegrity(woundable, component);
-        CheckWoundableSeverityThresholds(woundable, component);
 
         healed = actualHeal;
         return actualHeal > 0;

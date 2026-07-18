@@ -28,7 +28,6 @@ using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Backmen.Targeting;
 using Robust.Shared.Audio;
-using Robust.Shared.GameObjects;
 
 namespace Content.Shared.Medical.Healing;
 
@@ -154,6 +153,65 @@ public sealed partial class HealingSystem : EntitySystem
     }
 
     // start-backmen: healing-fallback
+    private bool AreHealableWoundsPresent(
+        Entity<WoundableComponent> woundable,
+        HealingComponent healing,
+        EntityUid body,
+        EntityUid user)
+    {
+        var healableWoundsPresent = false;
+        var bleedingWounds = 0;
+        var nonhealableWounds = 0;
+        foreach (var wound in _wounds.GetWoundableWounds(woundable, woundable))
+        {
+            if (TryComp(wound, out BleedInflicterComponent? bleeds))
+            {
+                if (bleeds.IsBleeding && bleeds.BleedingAmount > healing.UnableToHealBleedsThreshold)
+                {
+                    bleedingWounds++;
+                    continue;
+                }
+
+                healableWoundsPresent = true;
+                break;
+            }
+
+            if (!healing.Damage.DamageDict.ContainsKey(wound.Comp.DamageType))
+            {
+                nonhealableWounds++;
+                continue;
+            }
+
+            if (!_wounds.CanHealWound(wound, wound))
+                continue;
+
+            healableWoundsPresent = true;
+            break;
+        }
+
+        if (nonhealableWounds > 0)
+        {
+            var popup = Loc.GetString("medical-item-no-healable-damage", ("target", body));
+            if (_trauma.AnyTraumasBlockingHealing(woundable, woundable))
+            {
+                popup = Loc.GetString("medical-item-requires-partial-surgery-rebell", ("target", body));
+            }
+            else
+            {
+                if (bleedingWounds > nonhealableWounds)
+                    popup = Loc.GetString("medical-item-cant-use-bleeding-heavy", ("target", body));
+            }
+
+            _popupSystem.PopupPredicted(
+                popup,
+                body,
+                user,
+                PopupType.MediumCaution);
+        }
+
+        return healableWoundsPresent;
+    }
+
     private void OnBodyDoAfter(EntityUid ent, BodyComponent comp, ref HealingDoAfterEvent args)
     {
         if (args.Target == null || !TryComp(args.Used, out HealingComponent? healing))
@@ -163,19 +221,17 @@ public sealed partial class HealingSystem : EntitySystem
             return;
 
         EntityUid targetedWoundable;
-        Dictionary<string, FixedPoint2> stuffToHeal;
-
-        if (TryGetEntity(args.TargetWoundable, out var resolvedWoundable) && resolvedWoundable != null)
+        if (!TryGetEntity(args.TargetWoundable, out var potentialWoundable))
         {
-            targetedWoundable = resolvedWoundable.Value;
-            stuffToHeal = healing.Damage.DamageDict
-                .Where(damage => _wounds.HasDamageOfType(targetedWoundable, damage.Key))
-                .ToDictionary(damage => damage.Key.Id, damage => damage.Value);
+            if (!_medicalTarget.TryResolveHealTarget(ent, args.User, healing, out targetedWoundable, out _, out _))
+            {
+                args.Handled = true;
+                return;
+            }
         }
-        else if (!_medicalTarget.TryResolveHealTarget(ent, args.User, healing, out targetedWoundable, out stuffToHeal, out _))
+        else
         {
-            args.Handled = true;
-            return;
+            targetedWoundable = potentialWoundable.Value;
         }
 
         if (!TryComp<WoundableComponent>(targetedWoundable, out var woundableComp))
@@ -184,100 +240,62 @@ public sealed partial class HealingSystem : EntitySystem
             return;
         }
 
-        var totalBleeds = _medicalTarget.GetTotalBleeds(targetedWoundable, woundableComp);
+        // TODO: When complex bloodstream is implemented, rework adding blood
+        if (healing.ModifyBloodLevel != 0)
+            _bloodstreamSystem.TryModifyBloodLevel(ent, healing.ModifyBloodLevel);
 
-        var woundableDamageContainer = woundableComp.DamageContainer;
-        if (healing.DamageContainers != null && woundableDamageContainer.HasValue &&
-            !healing.DamageContainers.Contains(woundableDamageContainer.Value))
+        var healed = FixedPoint2.Zero;
+        foreach (var wound in _wounds.GetWoundableWounds(targetedWoundable, woundableComp))
         {
-            _popupSystem.PopupEntity(
-                Loc.GetString("cant-heal-damage-rebell", ("target", ent), ("used", args.Used)),
-                ent,
-                args.User,
-                PopupType.Medium);
-            args.Handled = true;
-            return;
-        }
-
-        var dontRepeat = false;
-        var bleedsManipulated = false;
-
-        var bleedStopAbility = FixedPoint2.New(-healing.BloodlossModifier);
-        if (totalBleeds > healing.UnableToHealBleedsThreshold
-            && (healing.BloodlossModifier != 0 || stuffToHeal.Count == 0))
-        {
-            _popupSystem.PopupEntity(
-                Loc.GetString("medical-item-cant-use-bleeding-heavy", ("target", ent)),
-                ent,
-                args.User,
-                PopupType.MediumCaution);
-            args.Handled = true;
-            return;
-        }
-
-        if (healing.BloodlossModifier != 0)
-        {
-            foreach (var wound in _wounds.GetWoundableWoundsWithComp<BleedInflicterComponent>(targetedWoundable, woundableComp))
+            if (TryComp(wound, out BleedInflicterComponent? bleeds))
             {
-                var bleeds = wound.Comp2;
-                if (!bleeds.IsBleeding)
+                if (bleeds.IsBleeding && bleeds.BleedingAmount > healing.UnableToHealBleedsThreshold)
                     continue;
 
-                if (bleedStopAbility > bleeds.BleedingAmount)
-                {
-                    bleedStopAbility -= bleeds.BleedingAmountRaw;
+                // TODO: this will be reworked along with complex bloodstream system
+                bleeds.BleedingAmountRaw = 0;
+                bleeds.SeverityPenalty = 0;
+                bleeds.ScalingLimit = 0;
 
-                    bleeds.BleedingAmountRaw = 0;
-                    bleeds.Scaling = 0;
-
-                    bleeds.IsBleeding = false;
-                }
-                else
-                {
-                    bleeds.BleedingAmountRaw -= bleedStopAbility;
-                }
+                bleeds.IsBleeding = false;
             }
-        }
 
-        var isBleeding = -healing.BloodlossModifier != bleedStopAbility;
-        if (!isBleeding)
-        {
-            _wounds.TryHaltAllBleeding(targetedWoundable, woundableComp);
-            if (healing.ModifyBloodLevel != 0)
-            {
-                _bloodstreamSystem.TryModifyBloodLevel(ent, healing.ModifyBloodLevel);
-                bleedsManipulated = true;
-            }
-        }
-
-        var healedTotal = FixedPoint2.Zero;
-        foreach (var (key, value) in stuffToHeal)
-        {
-            if (!_wounds.TryHealWoundsOnWoundable(targetedWoundable, -value, key, out var healed, woundableComp))
+            if (!healing.Damage.DamageDict.TryGetValue(wound.Comp.DamageType, out var value))
                 continue;
 
-            healedTotal += healed;
+            healed = wound.Comp.WoundSeverityPoint > value
+                ? value
+                : wound.Comp.WoundSeverityPoint;
+
+            // TODO: When I rework the bloodstream system, I will also rework the healing logic
+            _wounds.ApplyWoundSeverity(wound, value, wound);
+            break;
         }
 
-        if (healedTotal <= 0 && !bleedsManipulated)
+        if (healed == FixedPoint2.Zero)
         {
-            string popup;
-            if (_trauma.AnyTraumasBlockingHealing(targetedWoundable, woundableComp))
-                popup = Loc.GetString("medical-item-requires-surgery-rebell", ("target", args.Target));
-            else if (totalBleeds > healing.UnableToHealBleedsThreshold && healing.BloodlossModifier != 0)
-                popup = Loc.GetString("medical-item-cant-use-bleeding-heavy", ("target", args.Target));
-            else
-                popup = Loc.GetString("medical-item-no-healable-damage", ("target", args.Target));
-
-            _popupSystem.PopupEntity(
-                popup,
+            _popupSystem.PopupPredicted(
+                Loc.GetString("medical-item-no-healable-damage", ("target", args.Target)),
                 args.Target.Value,
                 args.User,
                 PopupType.MediumCaution);
             args.Handled = true;
-            return;
         }
 
+        //var woundableDamageContainer = woundableComp.DamageContainer;
+        //if (healing.DamageContainers != null && woundableDamageContainer.HasValue &&
+        //    !healing.DamageContainers.Contains(woundableDamageContainer.Value))
+        //{
+        //    _popupSystem.PopupPredicted(
+        //        Loc.GetString("cant-heal-damage-rebell", ("target", ent), ("used", args.Used)),
+        //        ent,
+        //        args.User,
+        //        PopupType.Medium);
+        //    args.Handled = true;
+        //    return;
+        //}
+
+        var dontRepeat = false;
         if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
         {
             if(!_stacks.TryUse((args.Used.Value,stackComp), 1))
@@ -297,29 +315,24 @@ public sealed partial class HealingSystem : EntitySystem
         if (ent != args.User)
         {
             _adminLogger.Add(LogType.Healed,
-                $"{ToPrettyString(args.User):user} healed {ToPrettyString(ent):target} for {healedTotal:damage} damage");
+                $"{ToPrettyString(args.User):user} healed {ToPrettyString(ent):target} for {healed:damage} damage");
         }
         else
         {
             _adminLogger.Add(LogType.Healed,
-                $"{ToPrettyString(args.User):user} healed themselves for {healedTotal:damage} damage");
+                $"{ToPrettyString(args.User):user} healed themselves for {healed:damage} damage");
         }
 
         _audio.PlayPvs(healing.HealingEndSound, ent, AudioParams.Default.WithVariation(0.125f).WithVolume(1f));
 
-        args.Repeat = IsBodyDamaged((ent, comp), args.User, (args.Used.Value, healing), false) && !dontRepeat;
+        args.Repeat =
+            AreHealableWoundsPresent((targetedWoundable, woundableComp), healing, ent, args.User)
+            && !dontRepeat;
         args.Handled = true;
 
         if (args.Repeat)
             return;
-
-        if (_trauma.AnyTraumasBlockingHealing(targetedWoundable, woundableComp))
-        {
-            _popupSystem.PopupEntity(Loc.GetString("medical-item-requires-partial-surgery-rebell", ("target", ent)), ent, args.User, PopupType.MediumCaution);
-            return;
-        }
-
-        _popupSystem.PopupEntity(Loc.GetString("medical-item-finished-using", ("item", args.Used)), ent, args.User, PopupType.Medium);
+        _popupSystem.PopupPredicted(Loc.GetString("medical-item-finished-using", ("item", args.Used)), ent, args.User, PopupType.Medium);
     }
     // end-backmen: healing-fallback
 
@@ -354,66 +367,6 @@ public sealed partial class HealingSystem : EntitySystem
 
         return false;
     }
-
-    // start-backmen: healing-fallback
-    private bool IsBodyDamaged(Entity<BodyComponent> target, EntityUid user, Entity<HealingComponent> healing, bool throwPopups = true)
-    {
-        if (!HasComp<ConsciousnessComponent>(target))
-            return false;
-
-        if (_medicalTarget.TryResolveHealTarget(target, user, healing.Comp, out _, out _, out _))
-            return true;
-
-        if (!throwPopups)
-            return false;
-
-        if (!TryComp<TargetingComponent>(user, out var targeting))
-            return false;
-
-        var (partType, symmetry) = _bodySystem.ConvertTargetBodyPart(targeting.Target);
-        if (!_bodySystem.TryGetWoundableTargetByType(target, partType, symmetry, out var targetedWoundable))
-        {
-            _popupSystem.PopupEntity(Loc.GetString("does-not-exist-rebell"), target, user, PopupType.MediumCaution);
-            return false;
-        }
-
-        if (!TryComp<WoundableComponent>(targetedWoundable, out var woundableComp))
-            return false;
-
-        var totalBleeds = _medicalTarget.GetTotalBleeds(targetedWoundable, woundableComp);
-        var stuffToHeal = healing.Comp.Damage.DamageDict
-            .Where(damage => _wounds.HasDamageOfType(targetedWoundable, damage.Key))
-            .ToDictionary(damage => damage.Key, damage => damage.Value);
-
-        if (totalBleeds > healing.Comp.UnableToHealBleedsThreshold
-            && (healing.Comp.BloodlossModifier != 0 || stuffToHeal.Count == 0))
-        {
-            _popupSystem.PopupEntity(
-                Loc.GetString("medical-item-cant-use-bleeding-heavy", ("target", target)),
-                target,
-                user,
-                PopupType.MediumCaution);
-        }
-        else if (_trauma.AnyTraumasBlockingHealing(targetedWoundable, woundableComp))
-        {
-            _popupSystem.PopupEntity(
-                Loc.GetString("medical-item-requires-surgery-rebell", ("target", target)),
-                target,
-                user,
-                PopupType.MediumCaution);
-        }
-        else
-        {
-            _popupSystem.PopupEntity(
-                Loc.GetString("medical-item-no-healable-damage", ("target", target)),
-                target,
-                user,
-                PopupType.MediumCaution);
-        }
-
-        return false;
-    }
-    // end-backmen: healing-fallback
 
     private void OnHealingUse(Entity<HealingComponent> healing, ref UseInHandEvent args)
     {
@@ -456,10 +409,26 @@ public sealed partial class HealingSystem : EntitySystem
         if (TryComp<StackComponent>(healing, out var stack) && stack.Count < 1)
             return false;
 
+        // start-backmen: medical-targeting
+        var healingEvent = new HealingDoAfterEvent();
+        EntityUid targetWoundable = default;
+        if (TryComp<BodyComponent>(target, out _)
+            && HasComp<ConsciousnessComponent>(target)
+            && _medicalTarget.TryResolveHealTarget(target, user, healing.Comp, out var woundable, out _, out _))
+        {
+            healingEvent.TargetWoundable = GetNetEntity(woundable);
+            targetWoundable = woundable;
+        }
+        // end-backmen: medical-targeting
+
         var anythingToDo =
             HasDamage(healing, target!) ||
-            (TryComp<BodyComponent>(target, out var bodyComp) &&
-             IsBodyDamaged((target, bodyComp), user, healing)) ||
+            (HasComp<ConsciousnessComponent>(target) && targetWoundable != default &&
+             AreHealableWoundsPresent(
+                 (targetWoundable, Comp<WoundableComponent>(targetWoundable)),
+                     healing.Comp,
+                     target.Owner,
+                 user)) ||
             healing.Comp.ModifyBloodLevel > 0 // Special case if healing item can restore lost blood...
                 && TryComp<BloodstreamComponent>(target, out var bloodstream)
                 && _solutionContainerSystem.ResolveSolution(target.Owner, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution)
@@ -484,16 +453,6 @@ public sealed partial class HealingSystem : EntitySystem
         var delay = isNotSelf
             ? healing.Comp.Delay
             : healing.Comp.Delay * GetScaledHealingPenalty(target, healing.Comp.SelfHealPenaltyMultiplier);
-
-        // start-backmen: medical-targeting
-        var healingEvent = new HealingDoAfterEvent();
-        if (TryComp<BodyComponent>(target, out _)
-            && HasComp<ConsciousnessComponent>(target)
-            && _medicalTarget.TryResolveHealTarget(target, user, healing.Comp, out var woundable, out _, out _))
-        {
-            healingEvent.TargetWoundable = GetNetEntity(woundable);
-        }
-        // end-backmen: medical-targeting
 
         var doAfterEventArgs =
             new DoAfterArgs(EntityManager, user, delay, healingEvent, target, target: target, used: healing)

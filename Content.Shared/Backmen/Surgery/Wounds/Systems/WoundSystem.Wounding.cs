@@ -18,6 +18,7 @@ using Content.Shared.Gibbing.Events;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Shared.Backmen.Surgery.Wounds.Systems;
 
@@ -28,8 +29,7 @@ public partial class WoundSystem
 
     private const string WoundableDestroyalIdentifier = "WoundableDestroyal";
 
-    private float _dodgeDistanceChance;
-    private float _dodgeDistanceChange;
+    private float _woundMergeRatio;
 
     protected EntityQuery<WoundComponent> WoundQuery;
     protected EntityQuery<WoundableComponent> WoundableQuery;
@@ -56,8 +56,7 @@ public partial class WoundSystem
         //SubscribeLocalEvent<WoundableComponent, BeforeDamageChangedEvent>(CheckDodge);
         SubscribeLocalEvent<WoundableComponent, WoundHealAttemptOnWoundableEvent>(HealWoundsOnWoundableAttempt);
 
-        Subs.CVar(Cfg, CCVars.DodgeDistanceChance, val => _dodgeDistanceChance = val, true);
-        Subs.CVar(Cfg, CCVars.DodgeDistanceChange, val => _dodgeDistanceChange = val, true);
+        Subs.CVar(Cfg, CCVars.WoundMergeRatio, val => _woundMergeRatio = val, true);
 
         WoundQuery = GetEntityQuery<WoundComponent>();
         WoundableQuery = GetEntityQuery<WoundableComponent>();
@@ -374,6 +373,21 @@ public partial class WoundSystem
     }
 
     [PublicAPI]
+    public bool RollForWoundMerging(
+        Entity<WoundComponent?> woundProgenitor,
+        FixedPoint2 severity)
+    {
+        if (severity < FixedPoint2.Zero)
+            return false;
+
+        if (!WoundQuery.Resolve(woundProgenitor, ref woundProgenitor.Comp))
+            return false;
+
+        var chance = woundProgenitor.Comp.MergeChance * (severity / _woundMergeRatio);
+        return Random.Prob((float) chance);
+    }
+
+    [PublicAPI]
     public bool CanContinueWound(
         EntityUid uid,
         string id,
@@ -395,6 +409,9 @@ public partial class WoundSystem
         foreach (var wound in GetWoundableWounds(uid, woundable))
         {
             if (proto.ID != wound.Comp.DamageType)
+                continue;
+
+            if (!RollForWoundMerging(wound.AsNullable(), severity))
                 continue;
 
             continuableWound = wound;
@@ -505,52 +522,20 @@ public partial class WoundSystem
         var changedWounds = new Dictionary<Entity<WoundComponent>, FixedPoint2>();
         var totalChange = FixedPoint2.Zero;
 
+        // TODO: Cache a list of wounds of a SPECIFIC damage type and pull it up, to cut down on computation costs
         foreach (var damagePiece in damage.DamageDict)
         {
-            if (TryGetWoundOfDamageType(woundable, damagePiece.Key, out var foundWound, component))
-            {
-                // Healing ignores severity modifiers
-                var severityApplied = damagePiece.Value > 0
-                    ? ApplySeverityModifiers(woundable, damagePiece.Value, component)
-                    : damagePiece.Value;
+            // Healing ignores healing modifiers
+            var severityApplied = damagePiece.Value > 0
+                ? ApplySeverityModifiers(woundable, damagePiece.Value, component)
+                : damagePiece.Value;
 
-                if (severityApplied < 0 && -severityApplied > foundWound.Value.Comp.WoundSeverityPoint)
-                {
-                    actuallyInducedDamage.DamageDict[damagePiece.Key] = -foundWound.Value.Comp.WoundSeverityPoint;
-
-                    removedWounds.Add(foundWound.Value);
-                    changedWounds.Add(foundWound.Value, -foundWound.Value.Comp.WoundSeverityPoint);
-                    totalChange -= foundWound.Value.Comp.WoundSeverityPoint;
-                }
-                else
-                {
-                    if (!CanContinueWound(
-                            woundable,
-                            damagePiece.Key,
-                            damagePiece.Value,
-                            out var continuedWound,
-                            component))
-                    {
-                        actuallyInducedDamage.DamageDict[damagePiece.Key] = 0;
-                        continue;
-                    }
-
-                    var currentSeverity = continuedWound.Value.Comp.WoundSeverityPoint;
-                    var severityDelta = FixedPoint2.Max(FixedPoint2.Zero, currentSeverity + severityApplied)
-                        - currentSeverity;
-
-                    actuallyInducedDamage.DamageDict[damagePiece.Key] = severityDelta;
-                    if (severityDelta > FixedPoint2.Zero)
-                        damageIncreased = true;
-
-                    if (severityDelta == FixedPoint2.Zero)
-                        continue;
-
-                    changedWounds.Add(continuedWound.Value, severityDelta);
-                    totalChange += severityDelta;
-                }
-            }
-            else
+            if (!CanContinueWound(
+                    woundable,
+                    damagePiece.Key,
+                    damagePiece.Value,
+                    out var continuedWound,
+                    component))
             {
                 if (damagePiece.Value <= 0 || !CanAddWound(
                         woundable,
@@ -575,6 +560,22 @@ public partial class WoundSystem
 
                 woundsToAdd.Add(damagePiece.Key, severity);
                 totalChange += severity;
+            }
+            else
+            {
+                var currentSeverity = continuedWound.Value.Comp.WoundSeverityPoint;
+                var severityDelta = FixedPoint2.Max(FixedPoint2.Zero, currentSeverity + severityApplied)
+                                    - currentSeverity;
+
+                actuallyInducedDamage.DamageDict[damagePiece.Key] = severityDelta;
+                if (severityDelta > FixedPoint2.Zero)
+                    damageIncreased = true;
+
+                if (severityDelta == FixedPoint2.Zero)
+                    continue;
+
+                changedWounds.Add(continuedWound.Value, severityDelta);
+                totalChange += severityDelta;
             }
         }
 
