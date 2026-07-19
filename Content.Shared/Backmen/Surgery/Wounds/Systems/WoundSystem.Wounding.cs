@@ -406,7 +406,8 @@ public partial class WoundSystem
         string id,
         FixedPoint2 severity,
         [NotNullWhen(true)] out Entity<WoundComponent>? continuableWound,
-        WoundableComponent? woundable = null)
+        WoundableComponent? woundable = null,
+        bool forceMerging = false)
     {
         continuableWound = null;
         if (!IsWoundPrototypeValid(id))
@@ -421,7 +422,7 @@ public partial class WoundSystem
             if (proto.ID != wound.Comp.DamageType)
                 continue;
 
-            if (severity > 0 && !RollForWoundMerging(wound.AsNullable(), severity))
+            if (severity > 0 && (!RollForWoundMerging(wound.AsNullable(), severity) || forceMerging))
                 continue;
 
             continuableWound = wound;
@@ -544,7 +545,8 @@ public partial class WoundSystem
                     damagePiece.Key,
                     damagePiece.Value,
                     out var continuedWound,
-                    component))
+                    component,
+                    !performLogic))
             {
                 if (damagePiece.Value <= 0 || !CanAddWound(
                         ent,
