@@ -1068,6 +1068,7 @@ public partial class WoundSystem
         WoundableComponent? targetWoundable = null)
     {
         if (!WoundableQuery.Resolve(targetEntity, ref targetWoundable, false)
+            || targetWoundable.Wounds == null
             || targetWoundable.Wounds.Count == 0)
             yield break;
 
@@ -1088,6 +1089,7 @@ public partial class WoundSystem
         WoundableComponent? targetWoundable = null) where T: Component, new()
     {
         if (!WoundableQuery.Resolve(targetEntity, ref targetWoundable, false)
+            || targetWoundable.Wounds == null
             || targetWoundable.Wounds.Count == 0)
             yield break;
 
@@ -1115,6 +1117,7 @@ public partial class WoundSystem
         bool healable = false)
     {
         if (!WoundableQuery.Resolve(targetEntity, ref targetWoundable, false)
+            || targetWoundable.Wounds == null
             || targetWoundable.Wounds.Count == 0)
             return FixedPoint2.Zero;
 
@@ -1182,6 +1185,7 @@ public partial class WoundSystem
     {
         var (targetEntity, targetWoundable) = woundable;
         if (!WoundableQuery.Resolve(targetEntity, ref targetWoundable, false)
+            || targetWoundable.Wounds == null
             || targetWoundable.Wounds.Count == 0)
             return FixedPoint2.Zero;
 

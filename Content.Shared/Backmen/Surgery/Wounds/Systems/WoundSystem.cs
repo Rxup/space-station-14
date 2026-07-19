@@ -284,7 +284,7 @@ public abstract partial class WoundSystem : EntitySystem
         if (!WoundableQuery.Resolve(woundableEnt, ref woundableComp, false))
             return;
 
-        if (!woundableComp.Wounds.Contains(woundUid))
+        if (woundableComp.Wounds == null || !woundableComp.Wounds.Contains(woundUid))
             return;
 
         var delta = woundComp.WoundSeverityPoint - oldSeverity;
@@ -306,6 +306,9 @@ public abstract partial class WoundSystem : EntitySystem
     {
         var (uid, component) = woundable;
         if (!WoundableQuery.Resolve(uid, ref component, false))
+            return;
+
+        if (component.Wounds == null)
             return;
 
         // Ignore scars for woundable integrity.. Unless you want to confuse people with a minor woundable state

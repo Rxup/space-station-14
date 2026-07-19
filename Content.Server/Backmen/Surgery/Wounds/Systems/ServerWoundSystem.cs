@@ -352,6 +352,9 @@ public sealed partial class ServerWoundSystem : WoundSystem
         if (!WoundableQuery.Resolve(uid, ref component))
             return false;
 
+        if (component.Wounds == null)
+            return false;
+
         foreach (var multiplier in
                  component.SeverityMultipliers.Where(multiplier => multiplier.Value.Identifier == identifier))
         {
@@ -382,6 +385,9 @@ public sealed partial class ServerWoundSystem : WoundSystem
         WoundableComponent? component = null)
     {
         if (!WoundableQuery.Resolve(uid, ref component))
+            return false;
+
+        if (component.Wounds == null)
             return false;
 
         foreach (var multiplier in
@@ -754,6 +760,9 @@ public sealed partial class ServerWoundSystem : WoundSystem
         if (!Resolve(woundable, ref component))
             return false;
 
+        if (component.Wounds == null)
+            return false;
+
         var woundsToHeal =
             (from wound in component.Wounds.ContainedEntities
                 let woundComp = Comp<WoundComponent>(wound)
@@ -798,6 +807,9 @@ public sealed partial class ServerWoundSystem : WoundSystem
         if (!Resolve(woundable, ref component))
             return false;
 
+        if (component.Wounds == null)
+            return false;
+
         var woundsToHeal =
             (from wound in component.Wounds.ContainedEntities
                 let woundComp = Comp<WoundComponent>(wound)
@@ -839,6 +851,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
     {
         if (!WoundableQuery.Resolve(target, ref woundableComponent, false)
             || !WoundQuery.Resolve(wound, ref woundComponent, false)
+            || woundableComponent.Wounds == null
             || woundableComponent.Wounds.Contains(wound))
             return false;
 
@@ -876,6 +889,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
     {
         if (!WoundQuery.Resolve(woundEntity, ref wound, false)
             || !WoundableQuery.TryComp(wound.HoldingWoundable, out var woundable)
+            || woundable.Wounds == null
             || !woundable.Wounds.Contains(woundEntity))
             return false;
 

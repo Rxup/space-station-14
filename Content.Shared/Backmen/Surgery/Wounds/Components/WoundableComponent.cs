@@ -135,7 +135,7 @@ public sealed partial class WoundableComponent : Component
     /// Container potentially holding wounds.
     /// </summary>
     [ViewVariables]
-    public Container Wounds;
+    public Container? Wounds;
 
     //[ViewVariables]
     //public Dictionary<ProtoId<DamageTypePrototype>, List<Entity<WoundComponent>>> WoundsByDamageType = new();
