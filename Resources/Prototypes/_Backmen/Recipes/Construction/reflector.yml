@@ -1,0 +1,65 @@
+- type: constructionGraph
+  id: Reflector
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: frame
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - material: Steel
+        amount: 15
+        doAfter: 10
+
+  - node: frame
+    entity: ReflectorFrame
+    edges:
+    - to: reflector
+      conditions:
+      - !type:EntityAnchored
+      steps:
+      - material: Diamond
+        amount: 1
+        doAfter: 3
+      - material: ReinforcedGlass
+        amount: 5
+        doAfter: 5
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 15
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 5
+
+  - node: reflector
+    entity: Reflector
+    edges:
+    - to: frame
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialDiamond1
+        amount: 1
+      - !type:SpawnPrototype
+        prototype: SheetRGlass1
+        amount: 5
+      steps:
+      - tool: Welding
+        doAfter: 8
+
+- type: construction
+  id: Reflector
+  graph: Reflector
+  startNode: start
+  targetNode: reflector
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

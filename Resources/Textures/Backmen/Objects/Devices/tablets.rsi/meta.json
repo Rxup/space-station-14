@@ -1,0 +1,10 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Base tablet from Space Station 14. Supermatter console icon from Goob-Station PR #5788.",
+  "size": { "x": 32, "y": 32 },
+  "states": [
+    { "name": "tablet" },
+    { "name": "supermatterconsole" }
+  ]
+}

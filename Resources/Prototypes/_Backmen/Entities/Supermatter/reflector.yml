@@ -1,0 +1,93 @@
+﻿- type: entity
+  id: ReflectorFrame
+  name: reflector frame
+  description: An unfinished reflector assembly. Anchor it, then add a diamond and reinforced glass.
+  parent: BaseStructureDynamic
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Backmen/Supermatter/reflectorframe.rsi
+    state: reflector
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Construction
+    graph: Reflector
+    node: frame
+  - type: Damageable
+    damageModifierSet: StructuralMetallic
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 10
+            max: 15
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: Reflector
+  name: reflector
+  description: An angled mirror that redirects emitter bolts from the back and sides out through its facing direction. It is said that the first versions were made from a CSSP refrigerator.
+  parent: BaseStructure
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Backmen/Supermatter/reflector.rsi
+    state: reflector
+  - type: InteractionOutline
+  - type: Rotatable
+  - type: Anchorable
+  - type: Appearance
+  - type: Construction
+    graph: Reflector
+    node: reflector
+  - type: DirectionalReflect
+    reflects: Energy
+    frontAbsorbAngle: 45
+  - type: Damageable
+    damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetSteel1:
+            min: 10
+            max: 15
+          MaterialDiamond1:
+            min: 1
+            max: 1
+          SheetRGlass1:
+            min: 3
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,0.49"
+        hard: true
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
