@@ -58,6 +58,7 @@ public sealed partial class WoundComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public TimeSpan CanHealAfter = TimeSpan.FromSeconds(15f);
 
+    /// TODO: This should be obliterated
     /// <summary>
     /// Damage group of this wound.
     /// </summary>

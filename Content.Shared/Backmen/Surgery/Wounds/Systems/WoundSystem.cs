@@ -182,10 +182,12 @@ public abstract partial class WoundSystem : EntitySystem
             var bodySeverity = FixedPoint2.Zero;
             if (TryGetWoundableBody(ent, out var bodyUid) && TryComp<BodyComponent>(bodyUid, out var bodyComp))
             {
-                foreach (var woundable in Body.GetWoundableTargets(bodyUid, bodyComp))
-                {
-                    bodySeverity += GetWoundableIntegrityDamage(woundable);
-                }
+                // TODO: the hell
+                bodySeverity =
+                    Body.GetWoundableTargets(bodyUid, bodyComp)
+                        .Aggregate(bodySeverity,
+                            (current, woundable)
+                            => current + GetWoundableIntegrityDamage((woundable, Comp<WoundableComponent>(woundable))));
 
                 var ev1 = new WoundableIntegrityChangedOnBodyEvent(
                     ent,
@@ -241,9 +243,10 @@ public abstract partial class WoundSystem : EntitySystem
         wound.NetworkedDamageGroup = damageGroup?.ID;
     }
 
-    protected void CheckSeverityThresholds(EntityUid wound, WoundComponent? component = null)
+    protected void CheckSeverityThresholds(Entity<WoundComponent?> wound)
     {
-        if (!WoundQuery.Resolve(wound, ref component, false))
+        var (uid, component) = wound;
+        if (!WoundQuery.Resolve(uid, ref component, false))
             return;
 
         var nearestSeverity = component.WoundSeverity;
@@ -259,48 +262,53 @@ public abstract partial class WoundSystem : EntitySystem
         if (nearestSeverity != component.WoundSeverity)
         {
             var ev = new WoundSeverityChangedEvent(component.WoundSeverity, nearestSeverity);
-            RaiseLocalEvent(wound, ref ev);
+            RaiseLocalEvent(uid, ref ev);
         }
         component.WoundSeverity = nearestSeverity;
 
         if (!TerminatingOrDeleted(wound))
-            DirtyField(wound, component, nameof(WoundComponent.WoundSeverity));
+            DirtyField(uid, component, nameof(WoundComponent.WoundSeverity));
     }
 
     // NOTE: THIS SHOULD BE ONLY RAISED ON A CHANGE OF VALUES. OUTSIDE OF CLASSICAL DAMAGE HANDLING LIKE HEALING
-    protected void RaiseWoundEvents(EntityUid uid,
-        EntityUid woundableEnt,
-        WoundComponent wound,
-        FixedPoint2 oldSeverity,
-        WoundableComponent? woundableComp = null)
+    protected void RaiseWoundEvents(
+        Entity<WoundComponent?> woundEnt,
+        Entity<WoundableComponent?> woundable,
+        FixedPoint2 oldSeverity)
     {
-        if (!WoundableQuery.Resolve(woundableEnt, ref woundableComp, false) || woundableComp.Wounds == null)
+        var (woundUid, woundComp) = woundEnt;
+        if (!WoundQuery.Resolve(woundUid, ref woundComp, false))
             return;
 
-        if (!woundableComp.Wounds.Contains(uid))
+        var (woundableEnt, woundableComp) = woundable;
+        if (!WoundableQuery.Resolve(woundableEnt, ref woundableComp, false))
             return;
 
-        var delta = wound.WoundSeverityPoint - oldSeverity;
+        if (!woundableComp.Wounds.Contains(woundUid))
+            return;
+
+        var delta = woundComp.WoundSeverityPoint - oldSeverity;
         var damageSpec = new DamageSpecifier();
 
-        damageSpec.DamageDict.Add(wound.DamageType, delta);
+        damageSpec.DamageDict.Add(woundComp.DamageType, delta);
 
-        var woundChangedEvent = new WoundChangedEvent(wound, delta);
-        RaiseLocalEvent(uid, ref woundChangedEvent);
+        var woundChangedEvent = new WoundChangedEvent(woundComp, delta);
+        RaiseLocalEvent(woundUid, ref woundChangedEvent);
 
         // Raise woundable effects without computing the severity changes, so we do not accidentally duplicate the severity.
-        GetWoundsChanged(woundableEnt, woundableEnt, damageSpec, false, woundableComp);
+        GetWoundsChanged(woundable, woundableEnt, damageSpec, false);
 
-        var ev = new WoundSeverityPointChangedEvent(wound, oldSeverity, wound.WoundSeverityPoint);
-        RaiseLocalEvent(uid, ref ev);
+        var ev = new WoundSeverityPointChangedEvent(woundComp, oldSeverity, woundComp.WoundSeverityPoint);
+        RaiseLocalEvent(woundUid, ref ev);
     }
 
-    protected void UpdateWoundableIntegrity(EntityUid uid, WoundableComponent? component = null)
+    protected void UpdateWoundableIntegrity(Entity<WoundableComponent?> woundable)
     {
-        if (!WoundableQuery.Resolve(uid, ref component, false) || component.Wounds == null)
+        var (uid, component) = woundable;
+        if (!WoundableQuery.Resolve(uid, ref component, false))
             return;
 
-        // Ignore scars for woundable integrity.. Unless you want to confuse people with minor woundable state
+        // Ignore scars for woundable integrity.. Unless you want to confuse people with a minor woundable state
         var damage =
             component.Wounds.ContainedEntities.Select(WoundQuery.Comp)
                 .Where(wound => !wound.IsScar)
@@ -318,7 +326,8 @@ public abstract partial class WoundSystem : EntitySystem
         {
             bodySeverity = Body.GetWoundableTargets(bodyUid, bodyComp)
                 .Aggregate(bodySeverity,
-                    (current, woundable) => current + GetWoundableIntegrityDamage(woundable));
+                    (current, target) =>
+                        current + GetWoundableIntegrityDamage((target, Comp<WoundableComponent>(target))));
 
             var ev1 = new WoundableIntegrityChangedOnBodyEvent(
                 (uid, component),
@@ -331,9 +340,10 @@ public abstract partial class WoundSystem : EntitySystem
         DirtyField(uid, component, nameof(WoundableComponent.WoundableIntegrity));
     }
 
-    protected void CheckWoundableSeverityThresholds(EntityUid woundable, WoundableComponent? component = null)
+    protected void CheckWoundableSeverityThresholds(Entity<WoundableComponent?> woundable)
     {
-        if (!WoundableQuery.Resolve(woundable, ref component, false))
+        var (uid, component) = woundable;
+        if (!WoundableQuery.Resolve(uid, ref component, false))
             return;
 
         var nearestSeverity = component.WoundableSeverity;

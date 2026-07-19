@@ -31,7 +31,7 @@ public partial class BkmBodySharedSystem
     /// </summary>
     public IEnumerable<EntityUid> GetWoundableTargets(EntityUid bodyId, BodyComponent? body = null)
     {
-        if (!Resolve(bodyId, ref body, logMissing: false) || body!.Organs == null)
+        if (!Resolve(bodyId, ref body, logMissing: false) || body.Organs == null)
             yield break;
 
         foreach (var organUid in body.Organs.ContainedEntities.ToArray())

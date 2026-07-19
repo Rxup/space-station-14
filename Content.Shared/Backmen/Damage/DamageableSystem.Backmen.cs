@@ -108,7 +108,7 @@ public sealed partial class DamageableSystem
 
             foreach (var wound in _wounds.GetWoundableWounds(part, woundable))
             {
-                _wounds.SetWoundSeverity(wound, newValue, wound);
+                _wounds.SetWoundSeverity(wound.AsNullable(), newValue);
             }
         }
     }

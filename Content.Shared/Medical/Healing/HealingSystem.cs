@@ -268,7 +268,7 @@ public sealed partial class HealingSystem : EntitySystem
                 : wound.Comp.WoundSeverityPoint;
 
             // TODO: When I rework the bloodstream system, I will also rework the healing logic
-            _wounds.ApplyWoundSeverity(wound, value, wound);
+            _wounds.ApplyWoundSeverity(wound.AsNullable(), value);
             break;
         }
 
