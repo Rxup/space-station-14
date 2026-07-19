@@ -227,10 +227,10 @@
     highPressureMultiplier: 0.2
     lowPressureMultiplier: 1000
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: StaminaResistance
-    damageCoefficient: 0.2
+    damageCoefficient: 0.3
   - type: Armor
     coverage:
     - Groin
@@ -242,12 +242,12 @@
     - Tail
     modifiers:
       coefficients:
-        Blunt: 0.3
-        Slash: 0.2
-        Piercing: 0.2
-        ArmorPiercing: 0.5
-        Heat: 0.3
-        Radiation: 0.3
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        ArmorPiercing: 0.6
+        Heat: 0.2
+        Radiation: 0.01
 
   - type: ExplosionResistance
     damageCoefficient: 0.8

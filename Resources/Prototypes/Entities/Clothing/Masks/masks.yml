@@ -533,10 +533,9 @@
     - Head
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
+        Blunt: 0.95
+        Slash: 0.95
         Piercing: 0.95
-        ArmorPiercing: 0.95
         Heat: 0.95
   - type: DiseaseProtection #Backmen & Ataraxia anti viral
     protection: 0.2

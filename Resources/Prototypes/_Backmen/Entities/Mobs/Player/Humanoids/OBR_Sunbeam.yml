@@ -1,0 +1,103 @@
+### Солнечный луч ОБР
+
+# ОБР Лидер
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Солнечный луч Лидер
+  parent: MobHumanOBRLeaderSunbeam
+  suffix: ОБР
+  id: MobHumanOBRLeaderSunbeam
+  components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: AntagImmune
+  - type: Loadout
+    prototypes: [OBRLeaderSunbeamItems]
+
+# ОБР Медик
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Солнечный луч Медик
+  parent: MobHumanOBRMedicSunbeam
+  suffix: ОБР
+  id: MobHumanOBRMedicSunbeam
+  components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBRMedicSunbeamItems]
+  - type: AntagImmune
+
+# ОБР Офицер
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Солнечный луч Офицер
+  parent: MobHumanOBRSecuritySunbeam
+  suffix: ОБР
+  id: MobHumanOBRSecuritySunbeam
+  components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBRSecuritySunbeamItems]
+  - type: AntagImmune
+
+# ОБР Инженер
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Солнечный луч Медик
+  parent: MobHumanOBREngineerSunbeam 
+  suffix: ОБР
+  id: MobHumanOBREngineerSunbeam 
+  components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBREngineerSunbeamItems]
+  - type: AntagImmune
+
+# ОБР Уборщик
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Солнечный луч Уборщик
+  parent: MobHumanOBRJanitorSunbeam 
+  suffix: ОБР
+  id: MobHumanOBRJanitorSunbeam 
+  components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBRJanitorSunbeamItems]
+  - type: AntagImmune
+
+# ОБР Священник
+- type: entity
+  categories: [ HideSpawnMenu ]
+  name: Солнечный луч Священник
+  parent: MobHumanOBRPriestSunbeam
+  suffix: ОБР
+  id: MobHumanOBRPriestSunbeam
+  components:
+  - type: SpecForce
+    actionBssActionName: ActionCentcomFtlAction
+  - type: NpcFactionMember
+    factions:
+      - CentralCommand
+  - type: Loadout
+    prototypes: [OBRPriestSunbeamItems]
+  - type: AntagImmune
