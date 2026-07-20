@@ -53,8 +53,6 @@ public abstract partial class WoundSystem : EntitySystem
     [Dependency] protected MobStateSystem MobState = default!;
     [Dependency] protected DamageableSystem Damageable = default!;
 
-    [Dependency] private SharedPopupSystem _popup = default!;
-
     protected readonly Dictionary<WoundSeverity, FixedPoint2> WoundThresholds = new()
     {
         { WoundSeverity.Healed, 0 },
@@ -93,7 +91,7 @@ public abstract partial class WoundSystem : EntitySystem
 
     private void OnWoundableTerminating(Entity<WoundableComponent> ent, ref EntityTerminatingEvent args)
     {
-        SanitizeWoundableReferences(ent.Owner, ent.Comp);
+        //SanitizeWoundableReferences(ent.Owner, ent.Comp);
 
         if (ent.Comp.ParentWoundable is not { } parentUid
             || !WoundableQuery.TryComp(parentUid, out var parentWoundable))
@@ -149,8 +147,8 @@ public abstract partial class WoundSystem : EntitySystem
 
         if (holdingWoundable != EntityUid.Invalid)
         {
-            UpdateWoundableIntegrity(holdingWoundable);
-            CheckWoundableSeverityThresholds(holdingWoundable);
+            UpdateWoundableIntegrity((holdingWoundable, Comp<WoundableComponent>(holdingWoundable)));
+            CheckWoundableSeverityThresholds((holdingWoundable, Comp<WoundableComponent>(holdingWoundable)));
         }
 
         if (ent.Comp.WoundSeverity != old.Severity)
@@ -164,7 +162,7 @@ public abstract partial class WoundSystem : EntitySystem
 
     private void OnWoundableAfterAutoHandleState(Entity<WoundableComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        SanitizeWoundableReferences(ent.Owner, ent.Comp);
+        //SanitizeWoundableReferences(ent.Owner, ent.Comp);
 
         if (!_net.IsClient)
         {
@@ -243,11 +241,9 @@ public abstract partial class WoundSystem : EntitySystem
         wound.NetworkedDamageGroup = damageGroup?.ID;
     }
 
-    protected void CheckSeverityThresholds(Entity<WoundComponent?> wound)
+    protected void CheckSeverityThresholds(Entity<WoundComponent> wound)
     {
         var (uid, component) = wound;
-        if (!WoundQuery.Resolve(uid, ref component, false))
-            return;
 
         var nearestSeverity = component.WoundSeverity;
         foreach (var (severity, value) in WoundThresholds.OrderByDescending(kv => kv.Value))
@@ -272,17 +268,12 @@ public abstract partial class WoundSystem : EntitySystem
 
     // NOTE: THIS SHOULD BE ONLY RAISED ON A CHANGE OF VALUES. OUTSIDE OF CLASSICAL DAMAGE HANDLING LIKE HEALING
     protected void RaiseWoundEvents(
-        Entity<WoundComponent?> woundEnt,
-        Entity<WoundableComponent?> woundable,
+        Entity<WoundComponent> woundEnt,
+        Entity<WoundableComponent> woundable,
         FixedPoint2 oldSeverity)
     {
         var (woundUid, woundComp) = woundEnt;
-        if (!WoundQuery.Resolve(woundUid, ref woundComp, false))
-            return;
-
         var (woundableEnt, woundableComp) = woundable;
-        if (!WoundableQuery.Resolve(woundableEnt, ref woundableComp, false))
-            return;
 
         if (woundableComp.Wounds == null || !woundableComp.Wounds.Contains(woundUid))
             return;
@@ -302,12 +293,9 @@ public abstract partial class WoundSystem : EntitySystem
         RaiseLocalEvent(woundUid, ref ev);
     }
 
-    protected void UpdateWoundableIntegrity(Entity<WoundableComponent?> woundable)
+    protected void UpdateWoundableIntegrity(Entity<WoundableComponent> woundable)
     {
         var (uid, component) = woundable;
-        if (!WoundableQuery.Resolve(uid, ref component, false))
-            return;
-
         if (component.Wounds == null)
             return;
 
@@ -343,12 +331,9 @@ public abstract partial class WoundSystem : EntitySystem
         DirtyField(uid, component, nameof(WoundableComponent.WoundableIntegrity));
     }
 
-    protected void CheckWoundableSeverityThresholds(Entity<WoundableComponent?> woundable)
+    protected void CheckWoundableSeverityThresholds(Entity<WoundableComponent> woundable)
     {
         var (uid, component) = woundable;
-        if (!WoundableQuery.Resolve(uid, ref component, false))
-            return;
-
         var nearestSeverity = component.WoundableSeverity;
         foreach (var (severity, value) in component.Thresholds.OrderByDescending(kv => kv.Value))
         {
@@ -424,12 +409,13 @@ public abstract partial class WoundSystem : EntitySystem
             nameof(WoundableComponent.WoundableSeverity));
     }
 
-    protected void FixWoundableRoots(EntityUid targetEntity, WoundableComponent targetWoundable)
+    protected void FixWoundableRoots(Entity<WoundableComponent> woundable)
     {
+        var (targetEntity, targetWoundable) = woundable;
         if (targetWoundable.ChildWoundables.Count == 0)
             return;
 
-        foreach (var (childEntity, childWoundable) in GetAllWoundableChildren(targetEntity, targetWoundable))
+        foreach (var (childEntity, childWoundable) in GetAllWoundableChildren(woundable))
         {
             childWoundable.RootWoundable = targetWoundable.RootWoundable;
             DirtyField(childEntity, childWoundable, nameof(WoundableComponent.RootWoundable));
@@ -439,29 +425,30 @@ public abstract partial class WoundSystem : EntitySystem
     }
 
     protected void InternalAddWoundableToParent(
-        EntityUid parentEntity,
-        EntityUid childEntity,
-        WoundableComponent parentWoundable,
-        WoundableComponent childWoundable)
+        Entity<WoundableComponent> parentEntity,
+        Entity<WoundableComponent> childEntity)
     {
+        var (parentUid, parentWoundable) = parentEntity;
+        var (childUid, childWoundable) = childEntity;
+
         parentWoundable.ChildWoundables.Add(childEntity);
         childWoundable.ParentWoundable = parentEntity;
         childWoundable.RootWoundable = parentWoundable.RootWoundable;
 
-        FixWoundableRoots(childEntity, childWoundable);
+        FixWoundableRoots(childEntity);
 
         var woundableRoot = CompOrNull<WoundableComponent>(parentWoundable.RootWoundable) ?? parentWoundable;
-        var woundableAttached = new WoundableAttachedEvent(parentEntity, parentWoundable);
+        var woundableAttached = new WoundableAttachedEvent(parentUid, parentWoundable);
 
-        RaiseLocalEvent(childEntity, ref woundableAttached);
+        RaiseLocalEvent(childUid, ref woundableAttached);
 
-        foreach (var (woundId, wound) in GetAllWounds(childEntity, childWoundable))
+        foreach (var (woundId, wound) in GetAllWounds(childEntity))
         {
             var ev = new WoundAddedEvent(wound, parentWoundable, woundableRoot);
             RaiseLocalEvent(woundId, ref ev);
         }
 
-        DirtyFields(childEntity, childWoundable, null,
+        DirtyFields(childUid, childWoundable, null,
             nameof(WoundableComponent.ParentWoundable),
             nameof(WoundableComponent.RootWoundable),
             nameof(WoundableComponent.ChildWoundables));
@@ -471,31 +458,32 @@ public abstract partial class WoundSystem : EntitySystem
     }
 
     protected void InternalRemoveWoundableFromParent(
-        EntityUid parentEntity,
-        EntityUid childEntity,
-        WoundableComponent parentWoundable,
-        WoundableComponent childWoundable)
+        Entity<WoundableComponent> parentEntity,
+        Entity<WoundableComponent> childEntity)
     {
+        var (parentUid, parentWoundable) = parentEntity;
+        var (childUid, childWoundable) = childEntity;
+
         var removedFromParent = parentWoundable.ChildWoundables.Remove(childEntity);
 
-        if (TerminatingOrDeleted(childEntity) || TerminatingOrDeleted(parentEntity))
+        if (TerminatingOrDeleted(childUid) || TerminatingOrDeleted(parentUid))
         {
             if (removedFromParent && !TerminatingOrDeleted(parentEntity))
-                DirtyField(parentEntity, parentWoundable, nameof(WoundableComponent.ChildWoundables));
+                DirtyField(parentUid, parentWoundable, nameof(WoundableComponent.ChildWoundables));
 
             return;
         }
         childWoundable.ParentWoundable = null;
         childWoundable.RootWoundable = childEntity;
 
-        FixWoundableRoots(childEntity, childWoundable);
+        FixWoundableRoots(childEntity);
 
         var oldWoundableRoot = WoundableQuery.Comp(parentWoundable.RootWoundable);
         var woundableDetached = new WoundableDetachedEvent(parentEntity, parentWoundable);
 
         RaiseLocalEvent(childEntity, ref woundableDetached);
 
-        foreach (var (woundId, wound) in GetAllWounds(childEntity, childWoundable))
+        foreach (var (woundId, wound) in GetAllWounds(childEntity))
         {
             var ev = new WoundRemovedEvent(wound, childWoundable, oldWoundableRoot);
             RaiseLocalEvent(woundId, ref ev);
@@ -504,11 +492,11 @@ public abstract partial class WoundSystem : EntitySystem
             RaiseLocalEvent(childWoundable.RootWoundable, ref ev2);
         }
 
-        DirtyFields(childEntity, childWoundable, null,
+        DirtyFields(childUid, childWoundable, null,
             nameof(WoundableComponent.ParentWoundable),
             nameof(WoundableComponent.RootWoundable),
             nameof(WoundableComponent.ChildWoundables));
-        DirtyFields(parentEntity, parentWoundable, null,
+        DirtyFields(parentUid, parentWoundable, null,
             nameof(WoundableComponent.ChildWoundables),
             nameof(WoundableComponent.RootWoundable));
     }
@@ -548,18 +536,15 @@ public abstract partial class WoundSystem : EntitySystem
         }
     }
 
-    protected void DestroyWoundableChildren(EntityUid woundableEntity, WoundableComponent? woundableComp = null)
+    protected void DestroyWoundableChildren(Entity<WoundableComponent> woundableEntity)
     {
-        if (!WoundableQuery.Resolve(woundableEntity, ref woundableComp, false))
-            return;
-
-        foreach (var (child, childWoundable) in GetAllWoundableChildren(woundableEntity, woundableComp))
+        var (uid, _) = woundableEntity;
+        foreach (var (child, childWoundable) in GetAllWoundableChildren(woundableEntity))
         {
-            if (child == woundableEntity || TerminatingOrDeleted(child))
+            if (child == uid || TerminatingOrDeleted(child))
                 continue;
 
-            var parent = childWoundable.ParentWoundable ?? woundableEntity;
-
+            var parent = childWoundable.ParentWoundable ?? uid;
             if (childWoundable.WoundableSeverity is WoundableSeverity.Critical)
             {
                 DestroyWoundable(parent, child, childWoundable);

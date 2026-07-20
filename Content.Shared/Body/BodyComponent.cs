@@ -17,6 +17,9 @@ public sealed partial class BodyComponent : Component
     /// </summary>
     [ViewVariables]
     public Container? Organs;
+
+    // backmen-edit
+    [ViewVariables, DataField] public bool ComplexBody;
 }
 
 /// <summary>

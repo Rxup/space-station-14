@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Backmen.Arachne;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Body.Part;
@@ -29,7 +30,7 @@ public partial class BkmBodySharedSystem
     /// <summary>
     /// Returns woundable surgery targets: nubody external organs.
     /// </summary>
-    public IEnumerable<EntityUid> GetWoundableTargets(EntityUid bodyId, BodyComponent? body = null)
+    public IEnumerable<Entity<WoundableComponent>> GetWoundableTargets(EntityUid bodyId, BodyComponent? body = null)
     {
         if (!Resolve(bodyId, ref body, logMissing: false) || body.Organs == null)
             yield break;
@@ -42,8 +43,11 @@ public partial class BkmBodySharedSystem
             if (!TryComp<OrganComponent>(organUid, out var organ) || organ.Category is not { } category)
                 continue;
 
+            if (!TryComp<WoundableComponent>(organUid, out var woundableComp))
+                continue;
+
             if (SurgeryBodyPartMapping.IsExternalCategory(category))
-                yield return organUid;
+                yield return (organUid, woundableComp);
         }
     }
 
