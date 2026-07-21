@@ -415,7 +415,7 @@ public abstract partial class WoundSystem : EntitySystem
         if (targetWoundable.ChildWoundables.Count == 0)
             return;
 
-        foreach (var (childEntity, childWoundable) in GetAllWoundableChildren(woundable))
+        foreach (var (childEntity, childWoundable) in GetAllWoundableChildren(woundable.AsNullable()))
         {
             childWoundable.RootWoundable = targetWoundable.RootWoundable;
             DirtyField(childEntity, childWoundable, nameof(WoundableComponent.RootWoundable));
@@ -442,7 +442,7 @@ public abstract partial class WoundSystem : EntitySystem
 
         RaiseLocalEvent(childUid, ref woundableAttached);
 
-        foreach (var (woundId, wound) in GetAllWounds(childEntity))
+        foreach (var (woundId, wound) in GetAllWounds(childEntity.AsNullable()))
         {
             var ev = new WoundAddedEvent(wound, parentWoundable, woundableRoot);
             RaiseLocalEvent(woundId, ref ev);
@@ -483,7 +483,7 @@ public abstract partial class WoundSystem : EntitySystem
 
         RaiseLocalEvent(childEntity, ref woundableDetached);
 
-        foreach (var (woundId, wound) in GetAllWounds(childEntity))
+        foreach (var (woundId, wound) in GetAllWounds(childEntity.AsNullable()))
         {
             var ev = new WoundRemovedEvent(wound, childWoundable, oldWoundableRoot);
             RaiseLocalEvent(woundId, ref ev);
@@ -539,7 +539,7 @@ public abstract partial class WoundSystem : EntitySystem
     protected void DestroyWoundableChildren(Entity<WoundableComponent> woundableEntity)
     {
         var (uid, _) = woundableEntity;
-        foreach (var (child, childWoundable) in GetAllWoundableChildren(woundableEntity))
+        foreach (var (child, childWoundable) in GetAllWoundableChildren(woundableEntity.AsNullable()))
         {
             if (child == uid || TerminatingOrDeleted(child))
                 continue;
@@ -547,11 +547,11 @@ public abstract partial class WoundSystem : EntitySystem
             var parent = childWoundable.ParentWoundable ?? uid;
             if (childWoundable.WoundableSeverity is WoundableSeverity.Critical)
             {
-                DestroyWoundable(parent, child, childWoundable);
+                DestroyWoundable(parent, (child, childWoundable));
                 continue;
             }
 
-            AmputateWoundable(parent, child, childWoundable);
+            AmputateWoundable(parent, (child, childWoundable));
         }
     }
 }

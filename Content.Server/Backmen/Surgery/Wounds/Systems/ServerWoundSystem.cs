@@ -78,7 +78,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
             Entity<WoundableComponent> owner = (ent, woundable);
             var bleedWounds =
-                GetWoundableWoundsWithComp<BleedInflicterComponent>(owner).ToArray();
+                GetWoundableWoundsWithComp<BleedInflicterComponent>(owner.AsNullable()).ToArray();
             var bleedingAmount = bleedWounds.Aggregate(FixedPoint2.Zero,
                     (current, wound) => current + wound.Comp2.BleedingAmount);
 
@@ -95,7 +95,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
                 continue;
 
             var woundsToHeal =
-                GetWoundableWounds(owner)
+                GetWoundableWounds(owner.AsNullable())
                     .Where(wound => CanHealWound(wound, wound))
                     .Where(wound => wound.Comp.DamagedLastTime + wound.Comp.CanHealAfter < Timing.CurTime)
                     .ToArray();
@@ -106,7 +106,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
             var healAmount = -woundable.HealAbility / woundsToHeal.Length;
             foreach (var x in woundsToHeal)
             {
-                ApplyWoundSeverity(x,
+                ApplyWoundSeverity(x.AsNullable(),
                     ApplyHealingRateMultipliersNullable((x, x), owner, healAmount, owner));
             }
         }
@@ -216,10 +216,10 @@ public sealed partial class ServerWoundSystem : WoundSystem
             if (proto.ID != wound.Comp.DamageType)
                 continue;
 
-            if (!RollForWoundMerging(wound, severity))
+            if (!RollForWoundMerging(wound.AsNullable(), severity))
                 continue;
 
-            ApplyWoundSeverity(wound, severity);
+            ApplyWoundSeverity(wound.AsNullable(), severity);
             woundContinued = wound;
 
             return true;
@@ -256,7 +256,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
     }
 
     [PublicAPI]
-    public override void ApplyWoundSeverityNullable(
+    public override void ApplyWoundSeverity(
         Entity<WoundComponent?> woundEnt,
         FixedPoint2 severity)
     {
@@ -286,7 +286,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
     }
 
     [PublicAPI]
-    public override void SetWoundSeverityNullable(
+    public override void SetWoundSeverity(
         Entity<WoundComponent?> woundEnt,
         FixedPoint2 severity)
     {
@@ -320,7 +320,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
     #region Severity Multipliers
 
     [PublicAPI]
-    public override bool TryAddWoundableSeverityMultiplierNullable(
+    public override bool TryAddWoundableSeverityMultiplier(
         Entity<WoundableComponent?> woundable,
         EntityUid owner,
         FixedPoint2 change,
@@ -333,7 +333,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
         if (!comp.SeverityMultipliers.TryAdd(owner, new WoundableSeverityMultiplier(change, identifier)))
             return false;
 
-        foreach (var wound in GetWoundableWoundsNullable(woundable))
+        foreach (var wound in GetWoundableWounds(woundable))
         {
             CheckSeverityThresholds(wound);
         }
@@ -439,16 +439,18 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
     #region Detaching Woundables
 
-    // TODO: REWORK THIS
     [PublicAPI]
     public override void DestroyWoundable(
-        EntityUid parentWoundableEntity,
-        EntityUid woundableEntity,
-        WoundableComponent? woundableComp = null,
-        WoundableComponent? parentWoundableComp = null)
+        Entity<WoundableComponent?> parentWoundableEntity,
+        Entity<WoundableComponent?> woundableEntity)
     {
+        var (woundableUid, woundableComp) = woundableEntity;
+        var (parentWoundableUid, parentWoundableComp) = parentWoundableEntity;
         if (!WoundableQuery.Resolve(woundableEntity, ref woundableComp)
-            || !TryResolveDestroyParent(parentWoundableEntity, ref parentWoundableComp, out parentWoundableEntity))
+            || !WoundableQuery.Resolve(parentWoundableEntity, ref parentWoundableComp))
+            return;
+
+        if (!Body.TryGetWoundableBodyPartInfo(woundableUid, out var bodyUid, out var partType, out _))
             return;
 
         // if wounds amount somehow changes, it triggers an enumeration error. owch
@@ -459,26 +461,22 @@ public sealed partial class ServerWoundSystem : WoundSystem
             nameof(WoundableComponent.WoundableSeverity));
 
         if (TryComp<TargetingComponent>(bodyUid, out var targeting))
-        {
             RefreshBodyTargetingStatus(bodyUid, targeting);
-        }
 
         Audio.PlayPvs(woundableComp.WoundableDestroyedSound, bodyUid);
 
-        if (IsWoundableRoot(woundableEntity, woundableComp))
+        if (IsWoundableRoot(woundableEntity))
         {
             DropWoundableOrgans(woundableEntity, woundableComp);
-            DestroyWoundableChildren(woundableEntity, woundableComp);
+            DestroyWoundableChildren((woundableUid, woundableComp));
 
             if (TryComp<OrganComponent>(woundableEntity, out var rootOrgan))
                 TryViolentlyRemoveOrgan(woundableEntity, rootOrgan);
 
-            TryDeleteWoundableAfterDetach(woundableEntity);
+            Body.DetachPartFromRoot();
 
-            // start-backmen: surgery-gib-threshold
-            if (EntityManager.System<BkmSurgeryDestructibleSystem>().ShouldFullBodyGib(bodyUid))
-                Body.GibBody(bodyUid); // More blood for the Blood Gods!
-            // end-backmen: surgery-gib-threshold
+            // TODO: Check for if it's a separated body or a full body
+            Body.GibBody(bodyUid);
         }
         else
         {
@@ -502,9 +500,9 @@ public sealed partial class ServerWoundSystem : WoundSystem
                 Body.DetachPart(parentWoundableEntity, container.ID, woundableEntity);
 
             DropWoundableOrgans(woundableEntity, woundableComp);
-            DestroyWoundableChildren(woundableEntity, woundableComp);
+            DestroyWoundableChildren((woundableEntity, woundableComp));
 
-            foreach (var wound in GetWoundableWounds(woundableEntity, woundableComp))
+            foreach (var wound in GetWoundableWounds(woundableEntity))
             {
                 TransferWoundDamage(parentWoundableEntity, woundableEntity, wound, parentWoundableComp, wound);
             }
@@ -524,7 +522,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
                 return;
 
             foreach (var wound in
-                     GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity, parentWoundableComp))
+                     GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity))
             {
                 // Bleeding :3
                 wound.Comp2.ScalingLimit += 4;
@@ -541,14 +539,6 @@ public sealed partial class ServerWoundSystem : WoundSystem
     {
         return Containers.TryGetContainingContainer(entity, out var container)
             && HasComp<BkmDetachedBodyComponent>(container.Owner);
-    }
-
-    private void TryDeleteWoundableAfterDetach(EntityUid woundableEntity)
-    {
-        if (IsInDetachedBodyBundle(woundableEntity))
-            return;
-
-        QueueDel(woundableEntity);
     }
 
     private void TryViolentlyRemoveOrgan(EntityUid woundableEntity, OrganComponent organ)
@@ -585,13 +575,13 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
     [PublicAPI]
     public override void AmputateWoundable(
-        EntityUid parentWoundableEntity,
-        EntityUid woundableEntity,
-        WoundableComponent? woundableComp = null,
-        WoundableComponent? parentWoundableComp = null)
+        Entity<WoundableComponent?> parentWoundableEntity,
+        Entity<WoundableComponent?> woundableEntity)
     {
-        if (!WoundableQuery.Resolve(woundableEntity, ref woundableComp)
-            || !WoundableQuery.Resolve(parentWoundableEntity, ref parentWoundableComp))
+        var (woundableUid, woundableComp) = woundableEntity;
+        var (parentWoundableUid, parentWoundableComp) = parentWoundableEntity;
+        if (!WoundableQuery.Resolve(woundableUid, ref woundableComp)
+            || !WoundableQuery.Resolve(parentWoundableUid, ref parentWoundableComp))
             return;
 
         if (!Body.TryGetWoundableBodyPartInfo(parentWoundableEntity, out var bodyUid, out _, out _))
@@ -599,7 +589,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
         Audio.PlayPvs(woundableComp.WoundableDelimbedSound, bodyUid);
 
-        foreach (var wound in GetWoundableWounds(woundableEntity, woundableComp))
+        foreach (var wound in GetWoundableWounds(woundableEntity))
         {
             TransferWoundDamage(parentWoundableEntity, woundableEntity, wound);
         }
@@ -609,7 +599,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
             return;
 
         foreach (var wound in
-                 GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity, parentWoundableComp))
+                 GetWoundableWoundsWithComp<BleedInflicterComponent>(parentWoundableEntity))
         {
             wound.Comp2.ScalingLimit += 4;
         }
@@ -755,7 +745,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
                 : -healNumba;
 
             actualHeal += -heal;
-            ApplyWoundSeverity(wound, heal);
+            ApplyWoundSeverity(wound.AsNullable(), heal);
         }
 
         Entity<WoundableComponent> woundableEntity = (woundable, component);
@@ -802,7 +792,7 @@ public sealed partial class ServerWoundSystem : WoundSystem
                 : -healNumba;
 
             actualHeal += -heal;
-            ApplyWoundSeverity(wound, heal);
+            ApplyWoundSeverity(wound.AsNullable(), heal);
         }
 
         healed = actualHeal;
