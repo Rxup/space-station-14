@@ -126,7 +126,7 @@ public sealed partial class WoundableComponent : Component
     public WoundableSeverity WoundableSeverity;
 
     /// <summary>
-    /// How much time in seconds had this woundable accumulated from the last healing tick.
+    /// How much time in seconds had this woundable accumulated from the last healing tick?
     /// </summary>
     [AutoNetworkedField, ViewVariables]
     public float HealingRateAccumulated;
@@ -137,8 +137,11 @@ public sealed partial class WoundableComponent : Component
     [ViewVariables]
     public Container? Wounds;
 
+    //[ViewVariables]
+    //public Dictionary<ProtoId<DamageTypePrototype>, List<Entity<WoundComponent>>> WoundsByDamageType = new();
+
     /// <summary>
-    /// Container holding this woundables bone.
+    /// Container holding this woundable's bone.
     /// </summary>
     [ViewVariables]
     public Container Bone;

@@ -80,7 +80,7 @@ public sealed partial class BkmDetachedBodySystem : EntitySystem
 
         if (TryComp<WoundableComponent>(rootOrgan, out var woundable))
         {
-            actuallyInduced = _wounds.GetWoundsChanged(rootOrgan, args.Origin, args.Damage, component: woundable);
+            actuallyInduced = _wounds.GetWoundsChanged((rootOrgan, woundable), args.Origin, args.Damage);
             container = woundable.DamageContainer;
         }
         else

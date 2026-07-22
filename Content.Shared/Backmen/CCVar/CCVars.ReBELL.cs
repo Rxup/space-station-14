@@ -29,16 +29,18 @@ public sealed partial class CCVars
         CVarDef.Create("wounding.wound_scar_chance", 0.10f, CVar.SERVERONLY);
 
     /// <summary>
-    /// What part of wounds will be transferred from a destroyed woundable to its parent?
+    /// How much of the wound's severity will be transferred?
     /// </summary>
     public static readonly CVarDef<float> WoundTransferPart =
         CVarDef.Create("wounding.wound_severity_transfer", 0.10f, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
-    /// for every n units of distance, (tiles), chance for dodging is equal to n*x percents, look for it down here
+    /// Per how much damage, the prototype value of "wound chance" is counted
+    /// For example, a wound with merge chance of 0.1, with a merge ratio of 10, and severity of 10
+    /// Would have a merge chance of 0.1, cuz, (severity / merge ratio) * merge chance
     /// </summary>
-    public static readonly CVarDef<float> DodgeDistanceChance =
-        CVarDef.Create("targeting.dodge_chance_distance", 6f, CVar.SERVER | CVar.REPLICATED);
+    public static readonly CVarDef<float> WoundMergeRatio =
+        CVarDef.Create("wounding.wound_merge_ratio", 10f, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// the said x amount of percents
@@ -51,7 +53,7 @@ public sealed partial class CCVars
      */
 
     /// <summary>
-    /// Should Pain System work at all?
+    /// Should the Pain System work at all?
     /// </summary>
     public static readonly CVarDef<bool> PainEnabled =
         CVarDef.Create("pain.enabled", true, CVar.SERVER | CVar.REPLICATED);

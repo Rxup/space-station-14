@@ -21,6 +21,7 @@
     woundVisibility: Always
     scarWound: BluntScar
     integrityMultiplier: 0.3 #heheheha
+    mergeChance: 0.2
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
@@ -58,6 +59,7 @@
     woundVisibility: Always
     scarWound: PiercingScar
     integrityMultiplier: 0.12
+    mergeChance: 0.07
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
@@ -94,6 +96,7 @@
     woundVisibility: Always
     scarWound: PiercingScar
     integrityMultiplier: 0.05
+    mergeChance: 0.04
   - type: TraumaInflicter
     severityThreshold: 6
     allowedTraumas:
@@ -127,6 +130,7 @@
     woundVisibility: Always
     scarWound: SlashScar
     integrityMultiplier: 0.17
+    mergeChance: 0.15
   - type: TraumaInflicter
     severityThreshold: 9
     allowedTraumas:
@@ -162,6 +166,7 @@
     woundVisibility: Always
     scarWound: BurnScar
     integrityMultiplier: 0.21 # boiling people
+    mergeChance: 0.5
   - type: TraumaInflicter
     severityThreshold: 24
     allowedTraumas:
@@ -198,6 +203,7 @@
     woundVisibility: Always
     scarWound: BurnScar
     integrityMultiplier: 0.01
+    mergeChance: 0.5
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
@@ -225,6 +231,7 @@
     woundVisibility: AdvancedScanner
     scarWound: BurnScar
     integrityMultiplier: 0.1
+    mergeChance: 1
   - type: TraumaInflicter
     severityThreshold: 0
     allowedTraumas:
@@ -253,6 +260,7 @@
     woundVisibility: AdvancedScanner
     scarWound: BurnScar
     integrityMultiplier: 0 # Rotting does not gib people
+    mergeChance: 1
   - type: TraumaInflicter
     severityThreshold: 12
     allowedTraumas:
@@ -279,6 +287,7 @@
     woundVisibility: HandScanner
     scarWound: RadiationScar
     integrityMultiplier: 0.06
+    mergeChance: 1
   - type: TraumaInflicter
     severityThreshold: 11
     allowedTraumas:
@@ -334,6 +343,7 @@
     woundType: Internal
     woundVisibility: AdvancedScanner
     integrityMultiplier: 0
+    mergeChance: 1
   - type: PainInflicter
     painType: TraumaticPain
     multiplier: 0.333
@@ -349,6 +359,7 @@
     woundVisibility: HandScanner
     scarWound: BurnScar
     integrityMultiplier: 0.07
+    mergeChance: 0.3
   - type: TraumaInflicter
     severityThreshold: 9
     allowedTraumas:

@@ -195,7 +195,8 @@ public abstract partial class SharedBloodstreamSystem : EntitySystem
         var total = FixedPoint2.Zero;
         foreach (var bodyPart in _body.GetDistributedDamageTargets(entity.Owner))
         {
-            foreach (var wound in _wound.GetWoundableWoundsWithComp<BleedInflicterComponent>(bodyPart))
+            foreach (var wound in
+                     _wound.GetWoundableWoundsWithCompNullable<BleedInflicterComponent>(bodyPart))
             {
                 // start-backmen: tourniquet-bleeding-display
                 if (!CanWoundBleed((wound, wound.Comp2)) || wound.Comp2.BleedingAmount <= 0)

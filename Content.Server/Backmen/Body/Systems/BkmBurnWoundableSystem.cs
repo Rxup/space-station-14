@@ -11,5 +11,5 @@ public sealed partial class BkmBurnWoundableSystem : EntitySystem
     [Dependency] private WoundSystem _wounds = default!;
 
     public bool ShouldBurnToAsh(EntityUid woundable, WoundableComponent? component = null) =>
-        _wounds.ShouldBurnToAsh(woundable, component);
+        _wounds.ShouldBurnToAshNullable((woundable, component));
 }
