@@ -64,8 +64,19 @@ public sealed partial class BkmDetachedBodyVisualSystem : EntitySystem
         if (HasComp<VisualOrganMarkingsComponent>(organ))
             RaiseLocalEvent(organ, ref inserted);
 
-        if (!HasComp<VisualOrganComponent>(organ))
+        // World-sprite fallback is only for external limbs that intentionally omit VisualOrgan
+        // (e.g. spider legs). Internal organs (ears, tongue, brain, …) must not paint their
+        // item sprites onto the bundle — that drew ears as a spiral under detached heads.
+        if (!HasComp<VisualOrganComponent>(organ) && ShouldApplyWorldSpriteOrganVisual(organ))
             ApplySpriteOrganVisual(bundle, organ);
+    }
+
+    private bool ShouldApplyWorldSpriteOrganVisual(EntityUid organ)
+    {
+        if (!TryComp(organ, out OrganComponent? organComp) || organComp.Category is not { } category)
+            return false;
+
+        return SurgeryBodyPartMapping.IsExternalCategory(category);
     }
 
     /// <summary>
@@ -84,7 +95,9 @@ public sealed partial class BkmDetachedBodyVisualSystem : EntitySystem
         if (organRsi == null)
             return;
 
-        var layer = ResolveDetachedOrganLayer(organ);
+        if (!TryResolveDetachedOrganLayer(organ, out var layer))
+            return;
+
         if (!_sprite.LayerMapTryGet((body, bodySprite), layer, out var index, true))
             return;
 
@@ -96,43 +109,55 @@ public sealed partial class BkmDetachedBodyVisualSystem : EntitySystem
         _sprite.LayerSetVisible((body, bodySprite), index, true);
     }
 
-    private Enum ResolveDetachedOrganLayer(EntityUid organ)
+    private bool TryResolveDetachedOrganLayer(EntityUid organ, out Enum layer)
     {
         if (TryComp(organ, out WoundableVisualsComponent? visuals))
-            return visuals.OccupiedLayer;
+        {
+            layer = visuals.OccupiedLayer;
+            return true;
+        }
+
+        layer = HumanoidVisualLayers.Chest;
 
         if (!TryComp(organ, out OrganComponent? organComp) || organComp.Category is not { } category)
-            return HumanoidVisualLayers.Chest;
+            return false;
 
         if (SurgeryBodyPartMapping.IsSpiderLegCategory(category))
         {
-            return category.Id.StartsWith("SpiderLegRight", StringComparison.Ordinal)
+            layer = category.Id.StartsWith("SpiderLegRight", StringComparison.Ordinal)
                 ? HumanoidVisualLayers.RLeg
                 : HumanoidVisualLayers.LLeg;
+            return true;
         }
 
-        if (SurgeryBodyPartMapping.TryGetBodyPartType(category, out var type, out var symmetry))
+        if (!SurgeryBodyPartMapping.TryGetBodyPartType(category, out var type, out var symmetry))
+            return false;
+
+        layer = type switch
         {
-            return type switch
-            {
-                BodyPartType.Head => HumanoidVisualLayers.Head,
-                BodyPartType.Chest or BodyPartType.Groin => HumanoidVisualLayers.Chest,
-                BodyPartType.Arm => symmetry == BodyPartSymmetry.Right
-                    ? HumanoidVisualLayers.RArm
-                    : HumanoidVisualLayers.LArm,
-                BodyPartType.Hand => symmetry == BodyPartSymmetry.Right
-                    ? HumanoidVisualLayers.RHand
-                    : HumanoidVisualLayers.LHand,
-                BodyPartType.Leg => symmetry == BodyPartSymmetry.Right
-                    ? HumanoidVisualLayers.RLeg
-                    : HumanoidVisualLayers.LLeg,
-                BodyPartType.Foot => symmetry == BodyPartSymmetry.Right
-                    ? HumanoidVisualLayers.RFoot
-                    : HumanoidVisualLayers.LFoot,
-                _ => HumanoidVisualLayers.Chest,
-            };
-        }
+            BodyPartType.Head => HumanoidVisualLayers.Head,
+            BodyPartType.Chest or BodyPartType.Groin => HumanoidVisualLayers.Chest,
+            BodyPartType.Arm => symmetry == BodyPartSymmetry.Right
+                ? HumanoidVisualLayers.RArm
+                : HumanoidVisualLayers.LArm,
+            BodyPartType.Hand => symmetry == BodyPartSymmetry.Right
+                ? HumanoidVisualLayers.RHand
+                : HumanoidVisualLayers.LHand,
+            BodyPartType.Leg => symmetry == BodyPartSymmetry.Right
+                ? HumanoidVisualLayers.RLeg
+                : HumanoidVisualLayers.LLeg,
+            BodyPartType.Foot => symmetry == BodyPartSymmetry.Right
+                ? HumanoidVisualLayers.RFoot
+                : HumanoidVisualLayers.LFoot,
+            _ => HumanoidVisualLayers.Chest,
+        };
 
-        return HumanoidVisualLayers.Chest;
+        return type is BodyPartType.Head
+            or BodyPartType.Chest
+            or BodyPartType.Groin
+            or BodyPartType.Arm
+            or BodyPartType.Hand
+            or BodyPartType.Leg
+            or BodyPartType.Foot;
     }
 }

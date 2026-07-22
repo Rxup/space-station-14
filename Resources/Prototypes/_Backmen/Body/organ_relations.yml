@@ -20,6 +20,15 @@
     size: Normal
   - type: InteractionOutline
   - type: Clickable
+  # Same control stack as OrganBaseBrain: mind sits here after brain insert,
+  # movement input ghosts the player instead of walking the limb bundle.
+  - type: MindContainer
+  - type: Input
+    context: "ghost"
+  - type: InputMover
+  - type: Examiner
+  - type: BlockMovement
+  - type: GhostOnMove
   - type: Physics
     bodyType: Dynamic
   - type: Fixtures
