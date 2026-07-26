@@ -1,4 +1,5 @@
 using Content.Shared.Backmen.Body.Systems;
+using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Nutrition;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain;
@@ -10,6 +11,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 
 namespace Content.Server.Backmen.Nutrition;
@@ -17,6 +19,7 @@ namespace Content.Server.Backmen.Nutrition;
 public sealed partial class HungerPainSystem : EntitySystem
 {
     [Dependency] private BkmBodySharedSystem _body = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private ConsciousnessSystem _consciousness = default!;
     [Dependency] private HungerSystem _hunger = default!;
     [Dependency] private MobStateSystem _mobState = default!;
@@ -24,6 +27,7 @@ public sealed partial class HungerPainSystem : EntitySystem
     [Dependency] private TraumaSystem _trauma = default!;
 
     private EntityQuery<ActorComponent> _actorQuery;
+    private float _starvingPainMax;
 
     public const string PainStarvingModifierIdentifier = "Starving";
 
@@ -31,6 +35,7 @@ public sealed partial class HungerPainSystem : EntitySystem
     {
         base.Initialize();
         _actorQuery = GetEntityQuery<ActorComponent>();
+        Subs.CVar(_cfg, CCVars.HungerStarvingPainMax, value => _starvingPainMax = value, true);
     }
 
     public override void Update(float frameTime)
@@ -68,7 +73,8 @@ public sealed partial class HungerPainSystem : EntitySystem
             {
                 var severity = 1f - hungerValue / starvingThreshold;
                 severity = Math.Clamp(severity, 0f, 1f);
-                var targetPain = severity * hunger.StarvingPainMax;
+                var maxPain = GetStarvingPainMax(hunger);
+                var targetPain = severity * maxPain;
 
                 if (tracker.CurrentStarvingPain < targetPain)
                 {
@@ -127,6 +133,14 @@ public sealed partial class HungerPainSystem : EntitySystem
 
         tracker.CurrentStarvingPain = remainingPain;
         Dirty(body, tracker);
+    }
+
+    private float GetStarvingPainMax(HungerComponent hunger)
+    {
+        if (_starvingPainMax <= 0f)
+            return hunger.StarvingPainMax;
+
+        return Math.Min(hunger.StarvingPainMax, _starvingPainMax);
     }
 
     private void ApplyStarvingPain(EntityUid nerveSys, EntityUid chest, HungerPainTrackerComponent tracker)
