@@ -25,7 +25,7 @@ using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Cloning.Events;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Flash.Components;
+using Content.Shared.Flash;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
@@ -75,6 +75,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private SharedFlashSystem _flash = default!;
 
     private static readonly ProtoId<LanguagePrototype> FleshLang = "Flesh";
 
@@ -240,7 +241,8 @@ public sealed partial class FleshCultistSystem : EntitySystem
     private void OnFlashImmunityMutation(EntityUid uid, FleshCultistComponent component,
         FleshCultistFlashImmunityMutationEvent args)
     {
-        EnsureComp<FlashImmunityComponent>(uid);
+        // Mutation on a mob should not use item-style examine text ("It provides protection...").
+        _flash.EnsureFlashImmunity(uid, showInExamine: false);
     }
 
     private void OnColdTempImmunityMutation(EntityUid uid, FleshCultistComponent component,
@@ -601,6 +603,18 @@ public sealed partial class FleshCultistSystem : EntitySystem
         }
     }
 
+    private static readonly HashSet<string> AbsorbableBloodReagents = new()
+    {
+        "Blood",
+        "CopperBlood",
+        "InsectBlood",
+        "AmmoniaBlood",
+        "ZombieBlood",
+        "Sap",
+    };
+
+    private const float AbsorbBloodRange = 1.5f;
+
     private void OnAbsormBloodPoolActionEvent(EntityUid uid, FleshCultistComponent component,
         FleshCultistAbsorbBloodPoolActionEvent args)
     {
@@ -609,14 +623,11 @@ public sealed partial class FleshCultistSystem : EntitySystem
 
         var xform = _transformSystem.GetMapCoordinates(uid);
         var puddles = new ValueList<(EntityUid Entity, string Solution)>();
-        puddles.Clear();
 
-        foreach (var entity in _lookup.GetEntitiesInRange(xform, 0.5f))
+        foreach (var entity in _lookup.GetEntitiesInRange(xform, AbsorbBloodRange))
         {
             if (TryComp<PuddleComponent>(entity, out var puddle))
-            {
                 puddles.Add((entity, puddle.SolutionName));
-            }
         }
 
         if (puddles.Count == 0)
@@ -626,30 +637,25 @@ public sealed partial class FleshCultistSystem : EntitySystem
             return;
         }
 
-        var totalBloodQuantity = new float();
+        var totalBloodQuantity = 0f;
 
         foreach (var (puddle, solution) in puddles)
         {
             if (!_solution.TryGetSolution(puddle, solution, out _, out var puddleSolution))
-            {
                 continue;
-            }
-            var hasImpurities = false;
-            var pudleBloodQuantity = new FixedPoint2();
+
+            FixedPoint2 puddleBloodQuantity = 0;
             foreach (var puddleSolutionContent in puddleSolution.Contents.ToArray())
             {
-                if (puddleSolutionContent.Reagent.Prototype != "Blood")
-                {
-                    hasImpurities = true;
-                }
-                else
-                {
-                    pudleBloodQuantity += puddleSolutionContent.Quantity;
-                }
+                if (AbsorbableBloodReagents.Contains(puddleSolutionContent.Reagent.Prototype))
+                    puddleBloodQuantity += puddleSolutionContent.Quantity;
             }
-            if (hasImpurities)
+
+            // Absorb blood even if the puddle has other reagents mixed in.
+            if (puddleBloodQuantity <= 0)
                 continue;
-            totalBloodQuantity += pudleBloodQuantity.Float();
+
+            totalBloodQuantity += puddleBloodQuantity.Float();
             QueueDel(puddle);
         }
 
@@ -673,6 +679,14 @@ public sealed partial class FleshCultistSystem : EntitySystem
         {
             _solution.TryAddSolution(injectableSolution.Value, transferSolution);
         }
+
+        // Saturation from blood: ~3 hunger per 10u, capped so absorb cannot dump a full meal.
+        var hungerGain = FixedPoint2.Min(FixedPoint2.New(totalBloodQuantity / 10f * 3f), 40);
+        if (component.Hunger + hungerGain > component.MaxHunger)
+            hungerGain = FixedPoint2.Max(component.MaxHunger - component.Hunger, 0);
+        if (hungerGain > 0)
+            ChangeParasiteHunger(uid, hungerGain, component);
+
         args.Handled = true;
     }
 }

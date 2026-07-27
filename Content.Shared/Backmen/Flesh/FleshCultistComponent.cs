@@ -11,7 +11,10 @@ namespace Content.Shared.Backmen.Flesh;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class FleshCultistComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)] public FixedPoint2 Hunger = 140;
+    /// <summary>
+    /// Starting hunger must leave room for one humanoid devour (saturation 80) under <see cref="MaxHunger"/>.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)] public FixedPoint2 Hunger = 100;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("hungerСonsumption")]
     public FixedPoint2 HungerСonsumption = -0.07; // 80 hunger in 30 minutes

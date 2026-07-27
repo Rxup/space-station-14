@@ -234,6 +234,35 @@
     key: walls
     base: meat
 
+# start-backmen: flesh-cult-fix
+- type: entity
+  parent: BaseWall
+  id: WallFlesh
+  name: flesh wall
+  description: A pulsating wall of living flesh.
+  components:
+  - type: Tag
+    tags:
+      - Wall
+      - Structure
+      - Flesh
+  - type: Sprite
+    sprite: Structures/Walls/flesh.rsi
+  - type: Icon
+    sprite: Structures/Walls/flesh.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: walls
+    base: flesh
+# end-backmen: flesh-cult-fix
+
 - type: entity
   parent: BaseWall
   id: WallCult

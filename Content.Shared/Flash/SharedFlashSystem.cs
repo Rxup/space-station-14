@@ -285,4 +285,17 @@ public abstract partial class SharedFlashSystem : EntitySystem
         if (ent.Comp.ShowInExamine)
             args.PushMarkup(Loc.GetString("flash-protection"));
     }
+
+    // start-backmen: flesh-cult-fix
+    /// <summary>
+    /// Grants flash immunity and optionally hides the item-style examine text (for innate/mutation immunity).
+    /// </summary>
+    public void EnsureFlashImmunity(EntityUid uid, bool showInExamine = true, FlashImmunityComponent? component = null)
+    {
+        component ??= EnsureComp<FlashImmunityComponent>(uid);
+        component.Enabled = true;
+        component.ShowInExamine = showInExamine;
+        Dirty(uid, component);
+    }
+    // end-backmen: flesh-cult-fix
 }

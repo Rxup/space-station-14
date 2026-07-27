@@ -8,6 +8,10 @@ ent-WallClown = bananium wall
     .desc = { ent-BaseWall.desc }
 ent-WallMeat = meat wall
     .desc = Sticky.
+# start-backmen: flesh-cult-fix
+ent-WallFlesh = flesh wall
+    .desc = A pulsating wall of living flesh.
+# end-backmen: flesh-cult-fix
 ent-WallCult = cult wall
     .desc = { ent-BaseWall.desc }
 ent-WallDebug = debug wall
