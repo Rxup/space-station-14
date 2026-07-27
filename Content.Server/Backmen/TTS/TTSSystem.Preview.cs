@@ -44,7 +44,7 @@ public sealed partial class TTSSystem
         var cached = await GetFromCache(cacheId);
         if (cached != null)
         {
-            RaiseNetworkEvent(new PlayTTSEvent(cached), Filter.SinglePlayer(args.SenderSession));
+            RaiseNetworkEvent(new PlayTTSEvent(cached), Filter.SinglePlayer(args.SenderSession), false); // not record for replay
             return;
         }
 

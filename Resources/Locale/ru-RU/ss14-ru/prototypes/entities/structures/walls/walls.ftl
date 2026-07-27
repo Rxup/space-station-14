@@ -13,10 +13,6 @@ ent-WallClown = бананиумовая стена
     .desc = { ent-BaseWall.desc }
 ent-WallMeat = мясная стена
     .desc = Липко.
-# start-backmen: flesh-cult-fix
-ent-WallFlesh = стена из плоти
-    .desc = Пульсирующая стена из живой плоти.
-# end-backmen: flesh-cult-fix
 ent-WallCult = стена культа
     .desc = { ent-BaseWall.desc }
 ent-WallDebug = отладочная стена
@@ -36,7 +32,7 @@ ent-WallPlastitaniumIndestructible = пластитановая стена
     .suffix = Неразрушимый
     .desc = { ent-BaseWall.desc }
 ent-WallFlesh = стена из плоти
-    .desc = { ent-BaseWall.desc }
+    .desc = Пульсирующая стена из живой плоти.
 ent-WallPlastitanium = пластитановая стена
     .desc = { ent-WallPlastitaniumIndestructible.desc }
 ent-WallPlastitaniumDiagonal = пластитановая стена
