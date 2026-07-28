@@ -277,6 +277,18 @@ public sealed partial class FleshCultistSystem : EntitySystem
     }
 
     private static readonly ReagentId BloodId = new("Blood", null);
+
+    /// <summary>
+    /// Fixture density written onto a corpse after devour / heart absorb.
+    /// Must stay below normal mob density (<see cref="BaseMobDensity"/> ≈ 50).
+    /// </summary>
+    private const float DevouredBodyDensity = 10f;
+
+    /// <summary>
+    /// Bodies at or below this density are treated as already consumed.
+    /// </summary>
+    private const float DevouredBodyDensityThreshold = 20f;
+
     private void OnDevourAction(EntityUid uid, FleshCultistComponent component, FleshCultistDevourActionEvent args)
     {
         if (args.Handled)
@@ -285,9 +297,31 @@ public sealed partial class FleshCultistSystem : EntitySystem
         var target = args.Target;
 
         if (!TryComp<MobStateComponent>(target, out var targetState))
+        {
+            _popupSystem.PopupEntity(
+                Loc.GetString("flesh-cultist-devout-target-invalid"),
+                uid, uid);
             return;
-        if (!TryComp<BloodstreamComponent>(target, out var bloodstream) || bloodstream.BloodSolution is not {} bloodSolution)
+        }
+
+        if (!TryComp<BloodstreamComponent>(target, out var bloodstream))
+        {
+            _popupSystem.PopupEntity(
+                Loc.GetString("flesh-cultist-devout-target-not-have-flesh"),
+                uid, uid);
             return;
+        }
+
+        // Local ref: BloodstreamComponent.BloodSolution is Access-restricted for write.
+        Entity<SolutionComponent>? bloodSolEnt = bloodstream.BloodSolution;
+        if (!_solution.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodSolEnt, out var bloodSolution))
+        {
+            _popupSystem.PopupEntity(
+                Loc.GetString("flesh-cultist-devout-target-not-have-flesh"),
+                uid, uid);
+            return;
+        }
+
         var hasAppearance = false;
         {
             switch (targetState.CurrentState)
@@ -303,30 +337,28 @@ public sealed partial class FleshCultistSystem : EntitySystem
                             return;
                         }
 
-                        if (TryComp<FixturesComponent>(target, out var fixturesComponent))
+                        if (TryComp<FixturesComponent>(target, out var fixturesComponent) &&
+                            fixturesComponent.Fixtures.TryGetValue("fix1", out var fixture) &&
+                            fixture.Density <= DevouredBodyDensityThreshold)
                         {
-                            if (fixturesComponent.Fixtures["fix1"].Density <= 60)
-                            {
-                                _popupSystem.PopupEntity(
-                                    Loc.GetString("flesh-cultist-devout-target-invalid"),
-                                    uid, uid);
-                                return;
-                            }
+                            _popupSystem.PopupEntity(
+                                Loc.GetString("flesh-cultist-devout-target-invalid"),
+                                uid, uid);
+                            return;
                         }
 
                         hasAppearance = true;
                     }
                     else
                     {
-
-                        if (!bloodSolution.Comp.Solution.ContainsPrototype(BloodId.Prototype))
+                        if (!bloodSolution.ContainsPrototype(BloodId.Prototype))
                         {
                             _popupSystem.PopupEntity(
                                 Loc.GetString("flesh-cultist-devout-target-not-have-flesh"),
                                 uid, uid);
                             return;
                         }
-                        if (bloodSolution.Comp.Solution.MaxVolume < 30)
+                        if (bloodSolution.MaxVolume < 30)
                         {
                             _popupSystem.PopupEntity(
                                 Loc.GetString("flesh-cultist-devout-target-invalid"),
@@ -335,7 +367,7 @@ public sealed partial class FleshCultistSystem : EntitySystem
                         }
                     }
 
-                    var saturation = MatchSaturation(bloodSolution.Comp.Solution.MaxVolume.Value / 100, hasAppearance);
+                    var saturation = MatchSaturation(bloodSolution.MaxVolume.Value / 100, hasAppearance);
                     if (component.Hunger + saturation >= component.MaxHunger)
                     {
                         _popupSystem.PopupEntity(
@@ -372,7 +404,11 @@ public sealed partial class FleshCultistSystem : EntitySystem
         if (args.Args.Target == null)
             return;
 
-        if (!TryComp<BloodstreamComponent>(args.Args.Target.Value, out var bloodstream) || bloodstream.BloodSolution is not { } bloodSolution)
+        if (!TryComp<BloodstreamComponent>(args.Args.Target.Value, out var bloodstream))
+            return;
+
+        Entity<SolutionComponent>? bloodSolEnt = bloodstream.BloodSolution;
+        if (!_solution.ResolveSolution(args.Args.Target.Value, bloodstream.BloodSolutionName, ref bloodSolEnt, out var bloodSolution))
             return;
 
         var hasAppearance = false;
@@ -411,9 +447,10 @@ public sealed partial class FleshCultistSystem : EntitySystem
             _bloodstreamSystem.TryModifyBloodLevel(args.Args.Target.Value, -300);
 
             // nubody: skeleton visual overlay deferred
-            if (TryComp<FixturesComponent>(args.Args.Target, out var fixturesComponent))
+            if (TryComp<FixturesComponent>(args.Args.Target, out var fixturesComponent) &&
+                fixturesComponent.Fixtures.TryGetValue("fix1", out var fixture))
             {
-                _physics.SetDensity(args.Args.Target.Value, "fix1", fixturesComponent.Fixtures["fix1"], 50);
+                _physics.SetDensity(args.Args.Target.Value, "fix1", fixture, DevouredBodyDensity);
             }
 
             if (TryComp<AppearanceComponent>(args.Args.Target, out var appComponent))
@@ -425,12 +462,12 @@ public sealed partial class FleshCultistSystem : EntitySystem
             hasAppearance = true;
         }
 
-        var saturation = MatchSaturation(bloodSolution.Comp.Solution.MaxVolume.Value / 100, hasAppearance);
-        var evolutionPoint = MatchEvolutionPoint(bloodSolution.Comp.Solution.MaxVolume.Value / 100, hasAppearance);
-        var healPoint = MatchHealPoint(bloodSolution.Comp.Solution.MaxVolume.Value / 100, hasAppearance);
+        var saturation = MatchSaturation(bloodSolution.MaxVolume.Value / 100, hasAppearance);
+        var evolutionPoint = MatchEvolutionPoint(bloodSolution.MaxVolume.Value / 100, hasAppearance);
+        var healPoint = MatchHealPoint(bloodSolution.MaxVolume.Value / 100, hasAppearance);
         var tempSol = new Solution() { MaxVolume = 5 };
 
-        var bloodstreamSol = bloodstream.BloodSolution ?? bloodstream.TemporarySolution;
+        var bloodstreamSol = bloodSolEnt ?? bloodstream.TemporarySolution;
         if(bloodstreamSol != null)
             tempSol.AddSolution(bloodstreamSol.Value.Comp.Solution, _proto);
 

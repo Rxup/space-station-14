@@ -15,7 +15,7 @@ public sealed partial class ShowDiseaseIconsSystem : EquipmentHudSystem<ShowDise
 {
     private static readonly ProtoId<HealthIconPrototype> InfectedIcon = "InfectedIcon";
 
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private HealthIconPrototype _infectedIcon = default!;
 

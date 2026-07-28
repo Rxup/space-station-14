@@ -189,11 +189,19 @@ public sealed partial class SpreaderFleshSystem : EntitySystem
                     {
                         Trigger = new DamageTrigger { Damage = 5 }
                     };
-                    damageThreshold.Behaviors.Add(new SpawnEntitiesBehavior
+                    // Only restore the original structure when we know its prototype id.
+                    if (!string.IsNullOrEmpty(entityStrucrureId))
                     {
-                        Spawn = new Dictionary<EntProtoId, MinMax> { { entityStrucrureId, new MinMax{Min = 1, Max = 1} } },
-                        Offset = 0f
-                    });
+                        damageThreshold.Behaviors.Add(new SpawnEntitiesBehavior
+                        {
+                            Spawn = new Dictionary<EntProtoId, MinMax>
+                            {
+                                { entityStrucrureId, new MinMax { Min = 1, Max = 1 } },
+                            },
+                            Offset = 0f
+                        });
+                    }
+
                     damageThreshold.Behaviors.Add(new DoActsBehavior
                     {
                         Acts = ThresholdActs.Destruction

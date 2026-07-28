@@ -25,6 +25,9 @@
       state: icon
     - type: Item
       sprite: Backmen/Objects/Weapons/Melee/anti_psychic_knife.rsi
+      storedSprite:
+        state: storage
+        sprite: Backmen/Objects/Weapons/Melee/anti_psychic_knife.rsi
     - type: Tag
       tags:
         - ForensicBeltEquip
