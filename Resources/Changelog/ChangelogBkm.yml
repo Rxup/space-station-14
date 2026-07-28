@@ -3743,3 +3743,9 @@
     type: Tweak
   id: 252
   time: '2026-07-28T08:05:00.0000000+00:00'
+- author: Rxup
+  changes:
+  - message: "Cherry-pick upstream после RT 284: ExpireIdCard, EntityPrototypeHelpers obsolete, yaml audio params (AddVolume)."
+    type: Fix
+  id: 253
+  time: '2026-07-28T08:25:00.0000000+00:00'
