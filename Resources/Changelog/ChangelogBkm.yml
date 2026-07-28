@@ -3749,3 +3749,11 @@
     type: Fix
   id: 253
   time: '2026-07-28T08:25:00.0000000+00:00'
+- author: Rxup
+  changes:
+  - message: "Space Villain: провод LMTR снимает лимиты HP/MP и не завершает игру; обновлён UI аркады."
+    type: Fix
+  - message: "Cherry-pick фиксов: windoors, powercelldraw, EntityMenu, anchor delay stacking, recycler spill, deadchat highlight."
+    type: Fix
+  id: 254
+  time: '2026-07-28T08:40:00.0000000+00:00'
