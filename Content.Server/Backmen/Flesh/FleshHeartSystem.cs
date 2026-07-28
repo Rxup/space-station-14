@@ -90,40 +90,56 @@ public sealed partial class FleshHeartSystem : EntitySystem
 
     private void OnDestruction(EntityUid uid, FleshHeartComponent component, DestructionEventArgs args)
     {
-        _audioSystem.Stop(component.AmbientAudioStream, component.AmbientAudioStream);
-        var stationUid = _stationSystem.GetOwningStation(uid);
-        if (stationUid != null)
+        // Ensure the heart is removed even if cleanup throws (e.g. nested WallFlesh destructible spawn).
+        // DestroyEntity only QueueDels after this handler returns.
+        try
         {
-            _alertLevel.SetLevel(stationUid.Value, component.AlertLevelOnDeactivate, true,
-                true, true);
-        }
-
-        var xform = Transform(uid);
-        var coordinates = xform.Coordinates;
-        foreach (var ent in component.BodyContainer.ContainedEntities.ToArray())
-        {
-            _containerSystem.Remove(ent, component.BodyContainer, force: true, destination: coordinates);
-            _randomHelper.RandomOffset(ent, 1f);
-        }
-
-        var fleshTilesQuery = EntityQueryEnumerator<SpreaderFleshComponent>();
-        while (fleshTilesQuery.MoveNext(out var ent, out var comp))
-        {
-            QueueDel(ent);
-        }
-
-        var fleshWallsQuery = EntityQueryEnumerator<TagComponent>();
-        while (fleshWallsQuery.MoveNext(out var ent, out var comp))
-        {
-            if (_tagSystem.HasAllTags(comp, WallTag, FleshTag))
+            _audioSystem.Stop(component.AmbientAudioStream, component.AmbientAudioStream);
+            var stationUid = _stationSystem.GetOwningStation(uid);
+            if (stationUid != null)
             {
-                _damageableSystem.TryChangeDamage(ent, component.DamageMobsIfHeartDestruct);
+                _alertLevel.SetLevel(stationUid.Value, component.AlertLevelOnDeactivate, true,
+                    true, true);
+            }
+
+            if (component.BodyContainer != null)
+            {
+                var xform = Transform(uid);
+                var coordinates = xform.Coordinates;
+                foreach (var ent in component.BodyContainer.ContainedEntities.ToArray())
+                {
+                    _containerSystem.Remove(ent, component.BodyContainer, force: true, destination: coordinates);
+                    _randomHelper.RandomOffset(ent, 1f);
+                }
+            }
+
+            var fleshTilesQuery = EntityQueryEnumerator<SpreaderFleshComponent>();
+            while (fleshTilesQuery.MoveNext(out var ent, out _))
+            {
+                QueueDel(ent);
+            }
+
+            // Delete flesh walls directly — damaging them can nest Destructible spawn of the
+            // original wall prototype and abort heart deletion if that spawn fails.
+            var fleshWallsQuery = EntityQueryEnumerator<TagComponent>();
+            while (fleshWallsQuery.MoveNext(out var ent, out var comp))
+            {
+                if (_tagSystem.HasAllTags(comp, WallTag, FleshTag))
+                    QueueDel(ent);
+            }
+
+            foreach (var mob in component.EdgeMobs.ToArray())
+            {
+                if (Deleted(mob) || EntityManager.IsQueuedForDeletion(mob))
+                    continue;
+
+                _damageableSystem.TryChangeDamage(mob, component.DamageMobsIfHeartDestruct);
             }
         }
-
-        foreach (var mob in component.EdgeMobs.ToArray())
+        finally
         {
-            _damageableSystem.TryChangeDamage(mob, component.DamageMobsIfHeartDestruct);
+            if (!Deleted(uid) && !EntityManager.IsQueuedForDeletion(uid))
+                QueueDel(uid);
         }
     }
 
@@ -227,14 +243,15 @@ public sealed partial class FleshHeartSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<FixturesComponent>(args.Climber, out var fixturesComponent))
+        if (!TryComp<FixturesComponent>(args.Climber, out var fixturesComponent) ||
+            !fixturesComponent.Fixtures.TryGetValue("fix1", out var fixture))
         {
             _popup.PopupEntity(Loc.GetString("flesh-heart-cant-absorb-targer"),
                 args.Instigator, PopupType.Large);
             return;
         }
 
-        if (fixturesComponent.Fixtures["fix1"].Density <= 60)
+        if (fixture.Density <= 20f)
         {
             _popup.PopupEntity(
                 Loc.GetString("flesh-heart-cant-absorb-targer"),
@@ -273,7 +290,7 @@ public sealed partial class FleshHeartSystem : EntitySystem
             _bloodstreamSystem.TryModifyBloodLevel(args.Climber, -300);
 
             // nubody: skeleton visual overlay deferred
-            _physics.SetDensity(args.Climber, "fix1", fixturesComponent.Fixtures["fix1"], 50);
+            _physics.SetDensity(args.Climber, "fix1", fixture, 10f);
 
             if (TryComp<AppearanceComponent>(args.Climber, out var appComponent))
             {

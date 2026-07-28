@@ -118,7 +118,8 @@ public sealed partial class ChatUIController : IOnSystemChanged<CharacterInfoSys
 
             // Make sure the character's name is highlighted only when mentioned directly (eg. it's said by someone),
             // for example in 'Name Surname says, "..."' 'Name Surname' won't be highlighted.
-            keyword = StartAtSign.Replace(keyword, @"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*))");
+            // (?<=:.*) also matches deadchat lines like 'Name Surname: ...'
+            keyword = StartAtSign.Replace(keyword, @"(?<=(?<=^.?OOC:.*:.*)|(?<=,.*"".*)|(?<=\n.*)|(?<=:.*))");
 
             _highlights.Add(keyword);
         }
