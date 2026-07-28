@@ -179,7 +179,6 @@ public sealed partial class AutoPsiSystem : EntitySystem
                 id.SentenceDuration = TimeSpan.FromMinutes(40);
                 Dirty(idCard, id);
             }
-            _idCardSystem.SetPermanent(idCard.Owner, true);
             _idCardSystem.SetExpireTime(idCard.Owner, TimeSpan.FromMinutes(40) + _timing.CurTime);
         }
     }
