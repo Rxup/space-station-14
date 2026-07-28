@@ -3737,3 +3737,9 @@
     type: Add
   id: 251
   time: '2026-07-28T07:48:00.0000000+00:00'
+- author: Rxup
+  changes:
+  - message: "Обновлён игровой движок до RobustToolbox 284.0.2."
+    type: Tweak
+  id: 252
+  time: '2026-07-28T08:05:00.0000000+00:00'
