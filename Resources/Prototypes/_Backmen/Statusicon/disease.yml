@@ -1,0 +1,11 @@
+# Generic infection marker for medical HUD. Does not name the disease.
+- type: healthIcon
+  id: InfectedIcon
+  priority: 2
+  locationPreference: Right
+  layer: Mod
+  offsetHorizontal: -8
+  isShaded: true
+  icon:
+    sprite: /Textures/Backmen/Interface/Misc/health_icons.rsi
+    state: Infected

@@ -72,3 +72,4 @@
       - Biological
       - RaceDemon
       - HalfSpirit
+    - type: ShowDiseaseIcons # backmen: disease-hud

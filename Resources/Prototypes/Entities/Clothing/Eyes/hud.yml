@@ -15,6 +15,7 @@
   components:
   - type: ShowHealthBars
   - type: ShowHealthIcons
+  - type: ShowDiseaseIcons # backmen: disease-hud
 
 - type: entity
   parent: ClothingEyesBase

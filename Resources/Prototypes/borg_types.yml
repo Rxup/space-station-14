@@ -177,6 +177,7 @@
     - RaceDemon
     - HalfSpirit
   - type: ShowHealthIcons
+  - type: ShowDiseaseIcons # backmen: disease-hud
 
   # Visual
   inventoryTemplateId: borgDutch

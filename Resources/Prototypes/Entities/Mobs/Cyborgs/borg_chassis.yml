@@ -329,6 +329,7 @@
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+  - type: ShowDiseaseIcons # backmen: disease-hud
 
 - type: entity
   parent: BaseBorgChassisDerelict
