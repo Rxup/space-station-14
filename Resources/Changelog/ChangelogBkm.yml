@@ -3757,3 +3757,9 @@
     type: Fix
   id: 254
   time: '2026-07-28T08:40:00.0000000+00:00'
+- author: Rxup
+  changes:
+  - message: "Cherry-pick: vehicle spawn parenting, fake mindshield popup, changeling bloodstream cloning."
+    type: Fix
+  id: 255
+  time: '2026-07-28T08:50:00.0000000+00:00'
