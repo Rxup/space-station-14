@@ -70,136 +70,154 @@ public sealed partial class NPCCombatSystem
                 continue;
             }
 
-            if (!_xformQuery.TryGetComponent(comp.Target, out var targetXform) ||
-                !_physicsQuery.TryGetComponent(comp.Target, out var targetBody))
+            var attackTarget = GetAttackTarget(uid, comp.Target); // backmen: entity-storage-combat
+
+            if (!_xformQuery.TryGetComponent(attackTarget, out var targetXform) || // backmen: entity-storage-combat
+                !_physicsQuery.TryGetComponent(attackTarget, out var targetBody)) // backmen: entity-storage-combat
             {
                 comp.Status = CombatStatus.TargetUnreachable;
                 comp.ShootAccumulator = 0f;
                 continue;
             }
 
-            if (targetXform.MapID != xform.MapID)
-            {
-                comp.Status = CombatStatus.TargetUnreachable;
-                comp.ShootAccumulator = 0f;
-                continue;
-            }
+            // start-backmen: entity-storage-combat
+            ShootAt(uid, comp, xform, attackTarget, targetXform, targetBody, frameTime);
+            // end-backmen: entity-storage-combat
+        }
+    }
 
-            if (_combatQuery.TryGetComponent(uid, out var combatMode))
-            {
-                _combat.SetInCombatMode(uid, true, combatMode);
-            }
+    // start-backmen: entity-storage-combat
+    private void ShootAt(
+        EntityUid uid,
+        NPCRangedCombatComponent comp,
+        TransformComponent xform,
+        EntityUid attackTarget,
+        TransformComponent targetXform,
+        PhysicsComponent targetBody,
+        float frameTime)
+    {
+        if (targetXform.MapID != xform.MapID)
+        {
+            comp.Status = CombatStatus.TargetUnreachable;
+            comp.ShootAccumulator = 0f;
+            return;
+        }
 
-            if (!_gun.TryGetGun(uid, out var gun))
-            {
-                comp.Status = CombatStatus.NoWeapon;
-                comp.ShootAccumulator = 0f;
-                continue;
-            }
+        if (_combatQuery.TryGetComponent(uid, out var combatMode))
+        {
+            _combat.SetInCombatMode(uid, true, combatMode);
+        }
 
-            var ammoEv = new GetAmmoCountEvent();
-            RaiseLocalEvent(gun, ref ammoEv);
+        if (!_gun.TryGetGun(uid, out var gun))
+        {
+            comp.Status = CombatStatus.NoWeapon;
+            comp.ShootAccumulator = 0f;
+            return;
+        }
 
-            if (ammoEv.Count == 0)
-            {
-                // Recharging then?
-                if (_rechargeQuery.HasComponent(gun))
-                {
-                    continue;
-                }
+        var ammoEv = new GetAmmoCountEvent();
+        RaiseLocalEvent(gun, ref ammoEv);
 
-                comp.Status = CombatStatus.Unspecified;
-                comp.ShootAccumulator = 0f;
-                continue;
-            }
-
-            comp.LOSAccumulator -= frameTime;
-
-            var worldPos = _transform.GetWorldPosition(xform);
-            var targetPos = _transform.GetWorldPosition(targetXform);
-
-            // We'll work out the projected spot of the target and shoot there instead of where they are.
-            var distance = (targetPos - worldPos).Length();
-            var oldInLos = comp.TargetInLOS;
-
-            // TODO: Should be doing these raycasts in parallel
-            // Ideally we'd have 2 steps, 1. to go over the normal details for shooting and then 2. to handle beep / rotate / shoot
-            if (comp.LOSAccumulator < 0f)
-            {
-                comp.LOSAccumulator += UnoccludedCooldown;
-
-                // For consistency with NPC steering.
-                var collisionGroup = comp.UseOpaqueForLOSChecks ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
-                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup);
-            }
-
-            if (!comp.TargetInLOS)
-            {
-                comp.ShootAccumulator = 0f;
-                comp.Status = CombatStatus.NotInSight;
-
-                if (TryComp(uid, out steering))
-                {
-                    steering.ForceMove = true;
-                }
-
-                continue;
-            }
-
-            if (!oldInLos && comp.SoundTargetInLOS != null)
-            {
-                _audio.PlayPvs(comp.SoundTargetInLOS, uid);
-            }
-
-            comp.ShootAccumulator += frameTime;
-
-            if (comp.ShootAccumulator < comp.ShootDelay)
-            {
-                continue;
-            }
-
-            var mapVelocity = targetBody.LinearVelocity;
-            var targetSpot = targetPos + mapVelocity * distance / ShootSpeed;
-
-            // If we have a max rotation speed then do that.
-            var goalRotation = (targetSpot - worldPos).ToWorldAngle();
-            var rotationSpeed = comp.RotationSpeed;
-
-            if (!_rotate.TryRotateTo(uid, goalRotation, frameTime, comp.AccuracyThreshold, rotationSpeed?.Theta ?? double.MaxValue, xform))
-            {
-                continue;
-            }
-
-            // TODO: LOS
-            // TODO: Ammo checks
-            // TODO: Burst fire
-            // TODO: Cycling
-            // Max rotation speed
-
-            // TODO: Check if we can face
-
-            if (!Enabled || !_gun.CanShoot(gun))
-                continue;
-
-            EntityCoordinates targetCordinates;
-
-            if (_map.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
-            {
-                targetCordinates = new EntityCoordinates(gridUid, _map.WorldToLocal(gridUid, mapGrid, targetSpot));
-            }
-            else
-            {
-                targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
-            }
-
-            comp.Status = CombatStatus.Normal;
-
-            if (gun.Comp.NextFire > _timing.CurTime)
+        if (ammoEv.Count == 0)
+        {
+            // Recharging then?
+            if (_rechargeQuery.HasComponent(gun))
             {
                 return;
             }
 
-            _gun.AttemptShoot(uid, gun, targetCordinates, comp.Target);
+            comp.Status = CombatStatus.Unspecified;
+            comp.ShootAccumulator = 0f;
+            return;
         }
+
+        comp.LOSAccumulator -= frameTime;
+
+        var worldPos = _transform.GetWorldPosition(xform);
+        var targetPos = _transform.GetWorldPosition(targetXform);
+
+        // We'll work out the projected spot of the target and shoot there instead of where they are.
+        var distance = (targetPos - worldPos).Length();
+        var oldInLos = comp.TargetInLOS;
+
+        // TODO: Should be doing these raycasts in parallel
+        // Ideally we'd have 2 steps, 1. to go over the normal details for shooting and then 2. to handle beep / rotate / shoot
+        if (comp.LOSAccumulator < 0f)
+        {
+            comp.LOSAccumulator += UnoccludedCooldown;
+
+            // For consistency with NPC steering.
+            var collisionGroup = comp.UseOpaqueForLOSChecks ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
+            comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, attackTarget, distance + 0.1f, collisionGroup);
+        }
+
+        if (!comp.TargetInLOS)
+        {
+            comp.ShootAccumulator = 0f;
+            comp.Status = CombatStatus.NotInSight;
+
+            if (TryComp(uid, out NPCSteeringComponent? forceSteering))
+            {
+                forceSteering.ForceMove = true;
+            }
+
+            return;
+        }
+
+        if (!oldInLos && comp.SoundTargetInLOS != null)
+        {
+            _audio.PlayPvs(comp.SoundTargetInLOS, uid);
+        }
+
+        comp.ShootAccumulator += frameTime;
+
+        if (comp.ShootAccumulator < comp.ShootDelay)
+        {
+            return;
+        }
+
+        var mapVelocity = targetBody.LinearVelocity;
+        var targetSpot = targetPos + mapVelocity * distance / ShootSpeed;
+
+        // If we have a max rotation speed then do that.
+        var goalRotation = (targetSpot - worldPos).ToWorldAngle();
+        var rotationSpeed = comp.RotationSpeed;
+
+        if (!_rotate.TryRotateTo(uid, goalRotation, frameTime, comp.AccuracyThreshold, rotationSpeed?.Theta ?? double.MaxValue, xform))
+        {
+            return;
+        }
+
+        // TODO: LOS
+        // TODO: Ammo checks
+        // TODO: Burst fire
+        // TODO: Cycling
+        // Max rotation speed
+
+        // TODO: Check if we can face
+
+        if (!Enabled || !_gun.CanShoot(gun))
+            return;
+
+        EntityCoordinates targetCordinates;
+
+        if (_map.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
+        {
+            targetCordinates = new EntityCoordinates(gridUid, _map.WorldToLocal(gridUid, mapGrid, targetSpot));
+        }
+        else
+        {
+            targetCordinates = new EntityCoordinates(xform.MapUid!.Value, targetSpot);
+        }
+
+        comp.Status = CombatStatus.Normal;
+
+        if (gun.Comp.NextFire > _timing.CurTime)
+        {
+            return;
+        }
+
+        _gun.AttemptShoot(uid, gun, targetCordinates, attackTarget);
     }
+    // end-backmen: entity-storage-combat
 }

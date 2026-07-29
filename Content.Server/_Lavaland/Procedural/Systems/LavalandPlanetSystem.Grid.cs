@@ -5,6 +5,7 @@ using Content.Shared._Lavaland.Procedural.Components;
 using Content.Shared._Lavaland.Procedural.Prototypes;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
+using Content.Shared.Maps;
 using Robust.Server.Physics;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -17,6 +18,7 @@ public sealed partial class LavalandPlanetSystem
         [Dependency] private GridFixtureSystem _gridFixture = default!;
         [Dependency] private ITileDefinitionManager _tileDef = default!;
         [Dependency] private SharedRoofSystem _roofSystem = default!;
+        [Dependency] private TileSystem _tileSystem = default!;
 
     private bool LoadGridRuin(
         LavalandGridRuinPrototype ruin,
@@ -47,31 +49,18 @@ public sealed partial class LavalandPlanetSystem
             // It's not useless!
             spawned = spawnedBoundedGrid.Value.Owner;
 
-            if (!_fixtureQuery.TryGetComponent(spawned, out var manager))
+            if (!TryComp<MapGridComponent>(spawned.Value, out var boundGrid))
             {
-                Log.Error($"Failed to load ruin {ruin.ID} onto dummy map, it doesn't have fixture component! AAAAA!!");
+                Log.Error($"Failed to load ruin {ruin.ID} onto dummy map, it doesn't have MapGrid! AAAAA!!");
                 Del(spawned);
                 return false;
             }
 
-            // Actually calculate ruin bound
-            var transform = _physics.GetRelativePhysicsTransform(spawned.Value, preloader.Owner);
-            // holy shit
-            var bounds = (from fixture in manager.Fixtures.Values where fixture.Hard select fixture.Shape.ComputeAABB(transform, 0).Rounded(0)).ToList();
-            // Round this list of boxes up to
-            var calculatedBox = _random.Pick(bounds);
-            foreach (var bound in bounds)
-            {
-                calculatedBox = calculatedBox.Union(bound);
-            }
-
-            // Safety measure
-            calculatedBox = calculatedBox.Enlarged(8f);
-
-            // Add calculated box to dictionary
+            // Tile LocalAABB is relative to grid origin — more reliable than fixture AABBs
+            // which can miss coverage and let ruins overlap.
+            var calculatedBox = boundGrid.LocalAABB.Enlarged(8f);
             ruinsBoundsDict.Add(ruin.ID, calculatedBox);
 
-            // Move our calculated box to correct position
             var v1 = calculatedBox.BottomLeft + coord;
             var v2 = calculatedBox.TopRight + coord;
             ruinBox = new Box2(v1, v2);
@@ -91,6 +80,9 @@ public sealed partial class LavalandPlanetSystem
         if (usedSpace.Any(used => used.Intersects(ruinBox)))
         {
             Log.Debug("Ruin can't be placed on it's coordinates, skipping spawn");
+            coords.Remove(coord);
+            if (spawned != null)
+                Del(spawned.Value);
             return false;
         }
 
@@ -137,6 +129,11 @@ public sealed partial class LavalandPlanetSystem
 
                     var matrix = Matrix3Helpers.CreateTransform(offset, rotation);
 
+                    // GridFixtureSystem.Merge copies tiles but not TileHistory, so stack planet
+                    // under isSpace tiles (Lattice) afterwards via ReplaceTile.
+                    // Resolve the under-tile before merge: after merge the cell is already Lattice,
+                    // and TryGetBiomeTile would prefer that existing tile over the biome.
+                    var spaceTiles = new List<(Vector2i PlanetIndices, Tile SpaceTile, Tile UnderTile)>();
                     {
                         var enumerator = _map.GetAllTilesEnumerator(spawned.Value, spawnedGrid);
                         while (enumerator.MoveNext(out var tileRef))
@@ -149,18 +146,43 @@ public sealed partial class LavalandPlanetSystem
                                 tilesToRoof.Add(offsetTile);
                             }
 
-                            if(tileRef.Value.Tile != Tile.Empty)
+                            var ruinTile = tileRef.Value.Tile;
+                            if (ruinTile.IsEmpty)
                                 continue;
 
-                            if (_map.TryGetTileRef(sourceGridUid, sourceGrid, offsetTile, out var lavalandTile) &&
-                                !lavalandTile.Tile.IsEmpty)
+                            var tileDef = (ContentTileDefinition) _tileDef[ruinTile.TypeId];
+                            if (!tileDef.MapAtmosphere)
+                                continue;
+
+                            Tile? underTile = null;
+                            if (_map.TryGetTileRef(sourceGridUid, sourceGrid, offsetTile, out var existingRef) &&
+                                !existingRef.Tile.IsEmpty)
                             {
-                                _map.SetTile(spawned.Value, spawnedGrid, tileRef.Value.GridIndices, lavalandTile.Tile);
+                                var existingDef = (ContentTileDefinition) _tileDef[existingRef.Tile.TypeId];
+                                if (!existingDef.MapAtmosphere)
+                                    underTile = existingRef.Tile;
                             }
+
+                            if (underTile == null &&
+                                _biome.TryGetBiomeTile(sourceGridUid, sourceGrid, offsetTile, out var biomeTile))
+                            {
+                                underTile = biomeTile;
+                            }
+
+                            if (underTile != null)
+                                spaceTiles.Add((offsetTile, ruinTile, underTile.Value));
                         }
                     }
 
                     _gridFixture.Merge(sourceGridUid, spawned.Value, matrix);
+
+                    foreach (var (planetIndices, spaceTile, underTile) in spaceTiles)
+                    {
+                        var spaceDef = (ContentTileDefinition) _tileDef[spaceTile.TypeId];
+                        _map.SetTile(sourceGridUid, sourceGrid, planetIndices, underTile);
+                        var tileRef = _map.GetTileRef(sourceGridUid, sourceGrid, planetIndices);
+                        _tileSystem.ReplaceTile(tileRef, spaceDef, sourceGridUid, sourceGrid, variant: spaceTile.Variant);
+                    }
 
                     foreach (var vector2I in tilesToRoof)
                     {

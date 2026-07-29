@@ -76,7 +76,7 @@
     node: crategenericsteel
     containers:
       - entity_storage
-  - type: RequireProjectileTarget
+  # backmen: crate-projectile-block — removed RequireProjectileTarget so projectiles hit crates
 
 - type: entity
   parent: CrateGeneric

@@ -9,6 +9,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Xenoborgs.Components;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -89,7 +90,9 @@ public sealed partial class XenoborgsRuleSystem : GameRuleSystem<XenoborgsRuleCo
 
         foreach (var (_, sessionData, name) in antags)
         {
-            args.AddLine(Loc.GetString("xenoborgs-list", ("name", name), ("user", sessionData.UserName)));
+            args.AddLine(Loc.GetString("xenoborgs-list",
+                ("name", FormattedMessage.EscapeText(name)),
+                ("user", FormattedMessage.EscapeText(sessionData.UserName))));
         }
         args.AddLine("");
     }

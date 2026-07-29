@@ -494,6 +494,18 @@
   id: MobGuttertankBase
   abstract: true
   components:
+  # backmen: guttertank-open-closet — MobMask/MobLayer so open closets don't block the tank
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: AmbientSound
     volume: -4
     range: 5

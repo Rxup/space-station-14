@@ -63,6 +63,11 @@
     - Book
   - type: StealTarget
     stealGroup: Bible
+  # start-backmen: todo
+  - type: Construction
+    graph: BlessedBible
+    node: start
+  # end-backmen: todo
 
 - type: entity
   parent: [Bible, BaseSyndicateContraband]

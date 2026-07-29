@@ -69,6 +69,8 @@ public sealed partial class LavalandPlanetSystem : EntitySystem
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
     {
+        _ruinBoundariesDict.Clear();
+
         var ent = GetPreloaderEntity();
         if (ent == null)
             return;

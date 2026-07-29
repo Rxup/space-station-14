@@ -22,11 +22,12 @@
   start: start
   graph:
     - node: start
+      entity: Bible # backmen: todo
       edges:
       - to: bible
         steps:
           - material: Bluespace
-            amount: 1
+            amount: 5 # backmen: todo
             doAfter: 5
     - node: bible
       entity: BlessedBible

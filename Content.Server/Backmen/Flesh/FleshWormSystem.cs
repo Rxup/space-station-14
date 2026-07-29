@@ -97,11 +97,6 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
 
     public bool CanPounce(EntityUid worm, EntityUid target, FleshWormComponent? component = null)
     {
-        return CanPounceBasic(worm, target, component) && !IsFaceBlocked(target);
-    }
-
-    private bool CanPounceBasic(EntityUid worm, EntityUid target, FleshWormComponent? component = null)
-    {
         if (!Resolve(worm, ref component) || component.IsDeath || component.EquipedOn.Valid)
             return false;
 
@@ -136,7 +131,7 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
         if (!Resolve(worm, ref component))
             return false;
 
-        if (!CanPounceBasic(worm, target, component))
+        if (!CanPounce(worm, target, component))
             return false;
 
         if (rollChance && _random.Next(1, 101) > component.ChansePounce)

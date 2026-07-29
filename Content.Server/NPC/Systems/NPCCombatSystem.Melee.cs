@@ -62,8 +62,10 @@ public sealed partial class NPCCombatSystem
             return;
         }
 
+        var attackTarget = GetAttackTarget(uid, component.Target); // backmen: entity-storage-combat
+
         if (!TryComp(uid, out TransformComponent? xform) ||
-            !TryComp(component.Target, out TransformComponent? targetXform))
+            !TryComp(attackTarget, out TransformComponent? targetXform)) // backmen: entity-storage-combat
         {
             component.Status = CombatStatus.TargetUnreachable;
             return;
@@ -89,7 +91,7 @@ public sealed partial class NPCCombatSystem
         }
 
         // TODO: When I get parallel operators move this as NPC combat shouldn't be handling this.
-        _steering.Register(uid, new EntityCoordinates(component.Target, Vector2.Zero), steering);
+        _steering.Register(uid, new EntityCoordinates(attackTarget, Vector2.Zero), steering); // backmen: entity-storage-combat
 
         if (distance > weapon.Range)
         {
@@ -101,14 +103,14 @@ public sealed partial class NPCCombatSystem
             return;
 
         if (_random.Prob(component.MissChance) &&
-            _physicsQuery.TryGetComponent(component.Target, out var targetPhysics) &&
+            _physicsQuery.TryGetComponent(attackTarget, out var targetPhysics) && // backmen: entity-storage-combat
             targetPhysics.LinearVelocity.LengthSquared() != 0f)
         {
             _melee.AttemptLightAttackMiss(uid, weaponUid, weapon, targetXform.Coordinates.Offset(_random.NextVector2(0.5f)));
         }
         else
         {
-            _melee.AttemptLightAttack(uid, weaponUid, weapon, component.Target);
+            _melee.AttemptLightAttack(uid, weaponUid, weapon, attackTarget); // backmen: entity-storage-combat
         }
     }
 }

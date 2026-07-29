@@ -190,6 +190,11 @@
     tags:
     - Book
     - BlessedBible
+  # start-backmen: todo
+  - type: Construction
+    graph: BlessedBible
+    node: bible
+  # end-backmen: todo
 
 - type: tool
   id: Praying
@@ -1283,9 +1288,15 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:PolymorphBehavior
-        prototypes:
-        - RageUriil
+      # start-backmen: todo
+      # Polymorph the phase-2 boss (ArchangelUriil), not this trigger — otherwise x2 bosses.
+      - !type:SpawnEntitiesBehavior
+        offset: 0
+        spawn:
+          RageActivator:
+            min: 1
+            max: 1
+      # end-backmen: todo
 
 - type: entity
   id: RageTriggerActivator
@@ -1301,6 +1312,53 @@
     damage:
       types:
         Bloodloss: 1
+
+# start-backmen: todo
+# Waits for MobUriilPhase2 (tag ArchangelUriil) and polymorphs it into enraged form.
+- type: entity
+  id: RageActivator
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Physics
+    bodyType: KinematicController
+    canCollide: true
+  - type: InteractionOutline
+  - type: TimedDespawn
+    lifetime: 40
+  - type: TriggerOnCollide
+    fixtureID: projectile
+    maxTriggers: null # don't burn the only trigger on non-whitelist contacts
+  - type: PolymorphOnTrigger
+    polymorph: RageUriil
+    targetUser: true
+  - type: WhitelistTriggerCondition
+    userWhitelist:
+      tags:
+      - ArchangelUriil
+  - type: Projectile
+    damage: {}
+    deleteOnCollide: false
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.85,-0.85,0.85,0.85"
+        mask:
+        - Impassable
+        - BulletImpassable
+        hard: false
+      fly-by:
+        shape: !type:PhysShapeCircle
+          radius: 1.5
+        layer:
+        - Impassable
+        - MidImpassable
+        - HighImpassable
+        - LowImpassable
+        hard: false
+# end-backmen: todo
+
 - type: Tag
   id: ArchangelUriil
 

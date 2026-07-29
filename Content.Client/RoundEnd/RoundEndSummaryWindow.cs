@@ -79,7 +79,8 @@ namespace Content.Client.RoundEnd
             if (!string.IsNullOrEmpty(roundEnd))
             {
                 var roundEndLabel = new RichTextLabel();
-                roundEndLabel.SetMarkup(roundEnd);
+                // Permissive: antag/player names and locale strings can contain characters that break strict markup.
+                roundEndLabel.SetMarkupPermissive(roundEnd);
                 roundEndSummaryContainer.AddChild(roundEndLabel);
             }
 

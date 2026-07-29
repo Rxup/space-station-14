@@ -70,6 +70,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SharedStealthSystem _stealth = default!;
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
+    [Dependency] private NPCCombatSystem _npcCombat = default!; // backmen: entity-storage-combat
 
     private ObjectPool<HashSet<EntityUid>> _entPool =
         new DefaultObjectPool<HashSet<EntityUid>>(new SetPolicy<EntityUid>(), 256);
@@ -78,6 +79,21 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     private List<EntityUid> _entityList = new();
     private HashSet<Entity<IComponent>> _entitySet = new();
     private List<EntityPrototype.ComponentRegistryEntry> _compTypes = new();
+
+    // start-backmen: entity-storage-combat
+    private EntityUid GetEntityStorageOrSelf(EntityUid owner, EntityUid target)
+    {
+        if (!_container.TryGetContainingContainer(target, out var container) ||
+            !HasComp<EntityStorageComponent>(container.Owner))
+            return target;
+
+        // Only treat as the crate if this NPC can actually damage it.
+        if (!_npcCombat.CanDamageEntityStorage(owner, container.Owner))
+            return target;
+
+        return container.Owner;
+    }
+    // end-backmen: entity-storage-combat
 
     /// <summary>
     /// Runs the UtilityQueryPrototype and returns the best-matching entities.
@@ -330,25 +346,27 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             case TargetInLOSCon:
             {
                 var radius = blackboard.GetValueOrDefault<float>(blackboard.GetVisionRadiusKey(EntityManager), EntityManager);
+                var losTarget = GetEntityStorageOrSelf(owner, targetUid); // backmen: entity-storage-combat
 
-                return _examine.InRangeUnOccluded(owner, targetUid, radius + 0.5f, null) ? 1f : 0f;
+                return _examine.InRangeUnOccluded(owner, losTarget, radius + 0.5f, null) ? 1f : 0f; // backmen: entity-storage-combat
             }
             case TargetInLOSOrCurrentCon:
             {
                 var radius = blackboard.GetValueOrDefault<float>(blackboard.GetVisionRadiusKey(EntityManager), EntityManager);
                 const float bufferRange = 0.5f;
+                var losTarget = GetEntityStorageOrSelf(owner, targetUid); // backmen: entity-storage-combat
 
                 if (blackboard.TryGetValue<EntityUid>("Target", out var currentTarget, EntityManager) &&
                     currentTarget == targetUid &&
                     TryComp(owner, out TransformComponent? xform) &&
-                    TryComp(targetUid, out TransformComponent? targetXform) &&
+                    TryComp(losTarget, out TransformComponent? targetXform) && // backmen: entity-storage-combat
                     xform.Coordinates.TryDistance(EntityManager, _transform, targetXform.Coordinates, out var distance) &&
                     distance <= radius + bufferRange)
                 {
                     return 1f;
                 }
 
-                return _examine.InRangeUnOccluded(owner, targetUid, radius + bufferRange, null) ? 1f : 0f;
+                return _examine.InRangeUnOccluded(owner, losTarget, radius + bufferRange, null) ? 1f : 0f; // backmen: entity-storage-combat
             }
             // start-backmen: soft crit
             case TargetIsAliveOrSoftCritCon:
