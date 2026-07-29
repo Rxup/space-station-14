@@ -32,8 +32,8 @@ public sealed partial class NPCCombatSystem : EntitySystem
     [Dependency] private SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private WieldableSystem _wield = default!;
-    [Dependency] private readonly ContainerSystem _container = default!; // backmen: entity-storage-combat
-    [Dependency] private readonly IPrototypeManager _prototype = default!; // backmen: entity-storage-combat
+    [Dependency] private ContainerSystem _container = default!; // backmen: entity-storage-combat
+    [Dependency] private IPrototypeManager _prototype = default!; // backmen: entity-storage-combat
 
     /// <summary>
     /// If disabled we'll move into range but not attack.
