@@ -13,6 +13,7 @@
   access:
   - Medical
   - Maintenance
+  - Virology
   extendedAccess:
   - Chemistry
   #start-backmen: currency

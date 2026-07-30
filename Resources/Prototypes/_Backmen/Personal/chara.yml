@@ -35,7 +35,7 @@
           Quantity: 1500
   - type: Injector
     solutionName: pen
-    currentTransferAmount: null
+    currentTransferAmount: 25 # multi-use hypo; null dumps entire 2400u tank
     activeModeProtoId: HyposprayInjectMode
     allowedModes:
     - HyposprayInjectMode
