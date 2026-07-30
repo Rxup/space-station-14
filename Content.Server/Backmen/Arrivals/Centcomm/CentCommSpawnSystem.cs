@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Spawners.Components;
@@ -111,16 +110,7 @@ public sealed partial class CentCommSpawnSystem : EntitySystem
             : null;
 
         _stationJobs.SetSetupAvailableJobs(station, availableJobs, jobs, syncJobList);
-
-        // Keep derived job caches in sync after CentCom director rewrites SetupAvailableJobs.
-        jobs.MidRoundTotalJobs = jobs.SetupAvailableJobs.Values
-            .Select(x => Math.Max(x[1], 0))
-            .Sum();
-
-        jobs.OverflowJobs = jobs.SetupAvailableJobs
-            .Where(x => x.Value[0] < 0)
-            .Select(x => x.Key)
-            .ToHashSet();
+        _stationJobs.SyncDerivedJobCaches(station, jobs);
     }
 
     private void OnCentCommEvent(Entity<StationCentCommDirectorComponent> ent, ref CentCommEvent args)

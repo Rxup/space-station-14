@@ -111,6 +111,29 @@ public sealed partial class StationJobsSystem : EntitySystem
         UpdateJobsAvailable();
     }
 
+    // start-backmen: centcomm-director
+    /// <summary>
+    /// Recalculates <see cref="StationJobsComponent.MidRoundTotalJobs"/> and
+    /// <see cref="StationJobsComponent.OverflowJobs"/> from <see cref="StationJobsComponent.SetupAvailableJobs"/>.
+    /// </summary>
+    public void SyncDerivedJobCaches(EntityUid station, StationJobsComponent? stationJobs = null)
+    {
+        if (!Resolve(station, ref stationJobs, false))
+            return;
+
+        stationJobs.MidRoundTotalJobs = stationJobs.SetupAvailableJobs.Values
+            .Select(x => Math.Max(x[1], 0))
+            .Sum();
+
+        stationJobs.OverflowJobs = stationJobs.SetupAvailableJobs
+            .Where(x => x.Value[0] < 0)
+            .Select(x => x.Key)
+            .ToHashSet();
+
+        UpdateJobsAvailable();
+    }
+    // end-backmen: centcomm-director
+
     #region Public API
 
     /// <inheritdoc cref="TryAssignJob(Robust.Shared.GameObjects.EntityUid,string,NetUserId,Content.Server.Station.Components.StationJobsComponent?)"/>
