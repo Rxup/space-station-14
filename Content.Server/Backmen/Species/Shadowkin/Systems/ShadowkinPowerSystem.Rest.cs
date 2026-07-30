@@ -56,7 +56,7 @@ public sealed partial class ShadowkinRestSystem : EntitySystem
         {
             foreach (var action in grant.ActionEntities)
             {
-                if (MetaData(action).EntityPrototype?.ID == ShadowkinRest)
+                if (MetaData(action).EntityPrototype?.ID == ShadowkinRest.Id)
                 {
                     ent.Comp.ShadowkinRestAction = action;
                     return;

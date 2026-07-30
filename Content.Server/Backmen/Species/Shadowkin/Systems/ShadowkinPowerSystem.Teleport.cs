@@ -52,7 +52,7 @@ public sealed partial class ShadowkinTeleportSystem : EntitySystem
         {
             foreach (var action in grant.ActionEntities)
             {
-                if (MetaData(action).EntityPrototype?.ID == ShadowkinTeleport)
+                if (MetaData(action).EntityPrototype?.ID == ShadowkinTeleport.Id)
                 {
                     ent.Comp.ShadowkinTeleportAction = action;
                     return;

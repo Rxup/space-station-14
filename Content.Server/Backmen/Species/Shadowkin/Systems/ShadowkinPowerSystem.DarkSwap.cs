@@ -139,7 +139,7 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
         {
             foreach (var action in grant.ActionEntities)
             {
-                if (MetaData(action).EntityPrototype?.ID == ShadowkinDarkSwap)
+                if (MetaData(action).EntityPrototype?.ID == ShadowkinDarkSwap.Id)
                 {
                     ent.Comp.ShadowkinDarkSwapAction = action;
                     return;
