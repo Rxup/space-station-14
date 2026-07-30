@@ -47,7 +47,7 @@
     back:
     - Flash
     - HandHeldCameras
-    - MagazinePistol
+    - MagazinePistol9x17 # backmen: ammo-calibers
 
 - type: chameleonOutfit
   id: WardenChameleonOutfit

@@ -25,15 +25,12 @@
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: running
     noRot: true
-    netsync: false
   - type: Clickable
   - type: InteractionOutline
-  - type: SolutionContainerManager
   - type: AtmosExposed
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Critical
       300: Dead
   - type: Internals
   - type: Damageable
@@ -77,8 +74,8 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: Blood
-        Quantity: 0.1
+      - ReagentId: FluorosulfuricAcid
+        Quantity: 650
   - type: UnpoweredFlashlight
   - type: PointLight
     enabled: false
@@ -100,11 +97,6 @@
     speechSounds: Xeno
   - type: Eye
     drawFov: false
-  - type: SolutionRegeneration
-    generated:
-      reagents:
-      - ReagentId: Water
-        Quantity: 10
   - type: Access
     tags:
     - Xeno
@@ -168,15 +160,20 @@
   description: Молодой ксеноморф
   parent: KsenosXenoBase
   components:
-  - type: ActionGrant
-    actions:
-    - ActionViewLaws
   - type: Sprite
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: larva
       sprite: Backmen/test/base/rsi/Textures/Mob/xeno/worm.rsi
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: larva
+      Critical:
+        Base: crit
+      Dead:
+        Base: dead
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -206,7 +203,7 @@
   - type: Puller
     needsHands: true
   - type: Polymorphable
-    innatePolymorphs: [ LarvaToDrone, LarvaToRunner, DroneToSpitter, RunnerToWarrior]
+    innatePolymorphs: [ LarvaToDrone, LarvaToRunner ]
   - type: Fixtures
     fixtures:
       fix1:
@@ -234,7 +231,6 @@
     rules: "Командуй ульем, защищай свою кладку яиц. Способности: Размах хвостом (стан на лкм или вокруг на пкм) Липкие корни, Строительство стен ксено (на G), Лечебные феромоны, Широкий удар (ПКМ)"
     raffle:
       settings: default
-  - type: Body
   - type: InnateTool
     tools:
       - id: WeaponXenoQueenStun
@@ -242,7 +238,6 @@
       - id: XenoRCD
       - id: WeaponXenoHealingSpit
       - id: PinpointerXeno
-  - type: XenoAcidSpiller
   - type: SolutionContainerManager
     solutions:
       udder:
@@ -584,7 +579,6 @@
     rules: "Защищай королеву и жги космодесантников с расстояния. Способности: Кислотный плевок, Широкий удар (ПКМ)"
     raffle:
       settings: default
-  - type: Body
   - type: HTN
     rootTask:
       task: SimpleHumanoidHostileCompound
@@ -834,6 +828,13 @@
   id: KsenosXenoKing
   description: Неостановимая сила, сноящая всё на своём пути.
   components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    name: Король Улья
+    description: Неостановимая сила, сносящая всё на своём пути.
+    rules: "Командуй ульем вместе с королевой или вместо неё. Способности: широкие удары, стан хвостом, щит."
+    raffle:
+      settings: default
   - type: Sprite
     drawdepth: Mobs
     sprite: Backmen/test/base/rsi/Textures/Mob/xeno/king.rsi
@@ -1454,7 +1455,6 @@
     - type: Sprite
       sprite: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi
       drawdepth: FloorTiles
-      netsync: false
     - type: Icon
       sprite: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi
       state: full
@@ -1517,7 +1517,6 @@
     - type: Sprite
       sprite: Objects/Weapons/Melee/shields.rsi
       state: ratvarian-icon
-      netsync: false
     - type: Item
     - type: Blocking
       activeBlockFraction: 0.7
@@ -1733,7 +1732,6 @@
     layers:
       - state: icon
     noRot: true
-    netsync: false
   - type: Damageable
     damageModifierSet: Slime
   - type: Injurable
@@ -1790,7 +1788,6 @@
   - type: Transform
     noRot: True
   - type: Sprite
-    netsync: false
     noRot: True
     sprite: Objects/Devices/pinpointer.rsi
     layers:

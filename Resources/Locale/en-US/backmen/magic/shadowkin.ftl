@@ -8,3 +8,4 @@ action-name-shadowkin-rest=Rest
 action-description-shadowkin-rest=Rama
 
 ethereal-pickup-fail=Your hand sizzles as it passes through...
+shadowkin-teleport-blocked=You can't teleport into that!

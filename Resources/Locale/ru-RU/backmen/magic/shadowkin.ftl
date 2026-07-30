@@ -5,3 +5,4 @@ action-description-shadowkin-darkswap = Ммра Маммм!
 action-name-shadowkin-rest = Отдых
 action-description-shadowkin-rest = Рама
 ethereal-pickup-fail = Ваша рука шипит, проходя сквозь...
+shadowkin-teleport-blocked = Сюда телепортироваться нельзя!

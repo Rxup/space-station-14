@@ -26,6 +26,9 @@ public sealed partial class OreBagSystem : EntitySystem
         if (!TryComp<StorageComponent>(uid, out var storage))
             return;
 
+        // Claim the interact so we don't fall through to other dump/place handlers.
+        args.Handled = true;
+
         var validEntities = new List<EntityUid>();
 
         foreach (var entity in storage.Container.ContainedEntities)

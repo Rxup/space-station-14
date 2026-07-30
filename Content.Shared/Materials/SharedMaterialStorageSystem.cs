@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
 using JetBrains.Annotations;
@@ -21,6 +22,7 @@ public abstract partial class SharedMaterialStorageSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!; // backmen: unpowered-material-insert
 
     /// <summary>
     /// Default volume for a sheet if the material's entity prototype has no material composition.
@@ -342,6 +344,13 @@ public abstract partial class SharedMaterialStorageSystem : EntitySystem
 
         if (!Resolve(toInsert, ref material, ref composition, false))
             return false;
+
+        // start-backmen: unpowered-material-insert
+        // Shared so client prediction (e.g. ore bag dump into ore processor) does not
+        // DetachEntity items when the machine is unpowered and the server rejects insert.
+        if (!_powerReceiver.IsPowered(receiver))
+            return false;
+        // end-backmen: unpowered-material-insert
 
         Logger.Debug($"Checking whitelist for {ToPrettyString(toInsert)} on {ToPrettyString(receiver)}");
         if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, toInsert))

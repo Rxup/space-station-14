@@ -49,7 +49,7 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, MapInitEvent>(OnMapInit, after: [typeof(ActionGrantSystem)]);
         SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, ComponentShutdown>(Shutdown);
 
         SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, ShadowkinDarkSwapEvent>(DarkSwap);
@@ -130,8 +130,23 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
 
     private readonly EntProtoId ShadowkinDarkSwap = "ShadowkinDarkSwap";
 
-    private void OnInit(Entity<ShadowkinDarkSwapPowerComponent> ent, ref ComponentInit args)
+    private void OnMapInit(Entity<ShadowkinDarkSwapPowerComponent> ent, ref MapInitEvent args)
     {
+        if (ent.Comp.ShadowkinDarkSwapAction is { Valid: true })
+            return;
+
+        if (TryComp<ActionGrantComponent>(ent, out var grant))
+        {
+            foreach (var action in grant.ActionEntities)
+            {
+                if (MetaData(action).EntityPrototype?.ID == ShadowkinDarkSwap)
+                {
+                    ent.Comp.ShadowkinDarkSwapAction = action;
+                    return;
+                }
+            }
+        }
+
         _actions.AddAction(ent, ref ent.Comp.ShadowkinDarkSwapAction, ShadowkinDarkSwap);
     }
 

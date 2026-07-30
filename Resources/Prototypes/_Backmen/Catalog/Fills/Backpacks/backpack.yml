@@ -30,7 +30,7 @@
           amount: 2
         - id: WeaponDominatorNT
         - id: WeaponPistolG23
-        - id: MagazinePistol
+        - id: MagazinePistol9x17
           amount: 2
         - id: WeaponRifleM28Tactical
         - id: MagazineRifle762UEG
@@ -55,7 +55,7 @@
         - id: MagazineShotgunMagnum12
           amount: 4
         - id: WeaponPistolVP78
-        - id: MagazinePistolHighCapacity
+        - id: MagazinePistol57x28Extd
           amount: 4
         - id: C4
           amount: 5
@@ -82,7 +82,7 @@
           amount: 2
         - id: WeaponDominatorNT
         - id: WeaponPistolG23
-        - id: MagazinePistol
+        - id: MagazinePistol9x17
           amount: 2
         - id: WeaponRifleG36Tactical
         - id: MagazineRifle556UEG
@@ -101,7 +101,7 @@
         - id: BattleMedipen
         - id: BattleMedipen
         - id: WeaponPistolG23
-        - id: MagazinePistol
+        - id: MagazinePistol9x17
           amount: 2
         - id: WeaponSubMachineGunMP5Tactical
         - id: MagazinePistolSubMachineGun9x17
@@ -124,7 +124,7 @@
         - id: BattleMedipen
           amount: 2
         - id: WeaponPistolG23
-        - id: MagazinePistol
+        - id: MagazinePistol9x17
           amount: 3
         - id: MedkitFilled
         - id: BoxLightMixed
@@ -310,7 +310,7 @@
         - id: BoxFlare
         - id: BoxFlare
         - id: WeaponPistolG22
-        - id: MagazinePistol
+        - id: MagazinePistol9x17
           amount: 2
         - id: MedkitFilled
         - id: Defibrillator
@@ -339,7 +339,7 @@
           amount: 3
         - id: BoxHandcuff
         - id: WeaponPistolG22
-        - id: MagazinePistol
+        - id: MagazinePistol9x17
           amount: 4
 
 - type: entity

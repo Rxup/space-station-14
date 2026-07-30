@@ -1,4 +1,5 @@
 using Content.Server.Backmen.Species.Shadowkin.Components;
+using Content.Shared.Actions;
 using Content.Shared.Backmen.Species.Shadowkin.Events;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Damage.Systems;
@@ -66,6 +67,7 @@ public sealed partial class ShadowkinBlackeyeSystem : EntitySystem
         RemCompDeferred<ShadowkinDarkSwappedComponent>(ent);
         RemCompDeferred<ShadowkinRestPowerComponent>(ent);
         RemCompDeferred<ShadowkinTeleportPowerComponent>(ent);
+        RemCompDeferred<ActionGrantComponent>(ent);
 
         // Popup
         _popup.PopupEntity(Loc.GetString("shadowkin-blackeye"),ent, ent, PopupType.Large);

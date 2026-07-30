@@ -5,6 +5,7 @@ disease-banana-compulsion = You really want to eat some bananas.
 disease-beat-chest-compulsion = {CAPITALIZE(THE($person))} beats {POSS-ADJ($person)} chest.
 disease-think = You feel like you can't think straight.
 disease-polymorph = You feel your body twist and change form!
+disease-xeno-polymorph = You feel your body twist and change form!
 disease-sick-stomach = You feel like throwing up.
 
 disease-wet-hands-drop = Your hands feel slippery and you drop something!

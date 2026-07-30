@@ -246,7 +246,8 @@ public sealed partial class ShadowkinSystem : EntitySystem
 
             var target = coords.Offset(offset);
 
-            if (_teleport.DoTeleport(uid, target))
+            // Never phase through glass on forced teleports — window → space is an easy death.
+            if (_teleport.DoTeleport(uid, target, allowThroughGlass: false, popup: false))
             {
                 return;
             }

@@ -206,6 +206,16 @@
       - !type:Emote
         emote: Scream
         probability: 0.2
+      # start-backmen: xeno-virus-acid
+      - !type:ChemCauseDisease
+        conditions:
+        - !type:ReagentCondition
+          reagent: FluorosulfuricAcid
+          min: 1
+        probability: 0.3
+        causeChance: 0.3
+        disease: XenoVirus
+      # end-backmen: xeno-virus-acid
   metabolisms:
     Bloodstream:
       metabolismRate: 3.00 # High damage, high metabolism rate. You need a lot of units to crit. Simulates acid burning through you fast.
@@ -222,6 +232,16 @@
       - !type:Emote
         emote: Scream
         probability: 0.25
+      # start-backmen: xeno-virus-acid
+      - !type:ChemCauseDisease
+        conditions:
+        - !type:ReagentCondition
+          reagent: FluorosulfuricAcid
+          min: 5
+        probability: 0.3
+        causeChance: 0.3
+        disease: XenoVirus
+      # end-backmen: xeno-virus-acid
 
 - type: reagent
   id: SulfuricAcid
