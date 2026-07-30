@@ -1067,8 +1067,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 242
-      configurators:
-      - invalid
   - uid: 238
     components:
     - type: Transform
@@ -1078,8 +1076,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 242
-      configurators:
-      - invalid
 - proto: GasVentScrubber
   entities:
   - uid: 130
@@ -1091,8 +1087,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 242
-      configurators:
-      - invalid
   - uid: 137
     components:
     - type: Transform
@@ -1102,8 +1096,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 242
-      configurators:
-      - invalid
   - uid: 140
     components:
     - type: Transform
@@ -1113,8 +1105,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 242
-      configurators:
-      - invalid
 - proto: Grille
   entities:
   - uid: 38
