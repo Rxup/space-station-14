@@ -59,6 +59,7 @@
     prototypes: [OperatorGavna]
   - type: RandomHumanoidProfile
     randomizeName: true
+    randomizeHair: true
   - type: AntagImmune
   - type: Psionic
   - type: DispelPower

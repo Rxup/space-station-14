@@ -40,18 +40,19 @@
     - BaseStation
     - BaseStationAlertLevels
     - BaseStationNanotrasen
-    - BkmCCBaseStationCargo #Backmen
-    - BaseStationJobsSpawning #Backmen
-    - BaseStationRecords #Backmen
-    - BkmCCBaseStationShuttles #Backmen
-    - BaseStationExpeditions #Backmen
-    - BaseStationMagnet #Backmen
+    - BkmCCBaseStationCargo # backmen: centcomm-cargo
+    - BaseStationJobsSpawning # backmen: centcomm-jobs
+    - BaseStationRecords # backmen: centcomm-records
+    - BkmCCBaseStationShuttles # backmen: centcomm-shuttles
+    - BaseStationExpeditions # backmen: centcomm-expeditions
+    - BaseStationMagnet # backmen: centcomm-magnet
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform
+    # start-backmen: centcomm-director
     - type: StationCentCommDirector
-      eventSchedule: # 10min = 600sec
-      - 0: Noop # init event prevent from missfire
+      eventSchedule: # offsets from previous event; schedule starts on RoundStarted
+      - 0: Noop # zero-point so the next entry's delta arms the real schedule
       - 600: AddWorker #10min
       - 600: AddWorker #20min
       - 600: AddWorker #30min
@@ -69,8 +70,7 @@
         BKCCCargo: [ 1, 2 ]
         BKCCSecOfficer: [ 2, 4 ]
         BKCCAssistant: [ 2, 5 ]
-
-
+    # end-backmen: centcomm-director
 
 - type: entity
   id: StandardStationArena

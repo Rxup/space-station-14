@@ -35,6 +35,9 @@
     - tasks:
         - !type:HTNCompoundTask
           task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
 
 - type: htnCompound
   id: NPCGuardCompound
@@ -42,3 +45,6 @@
     - tasks:
         - !type:HTNCompoundTask
           task: MeleeCombatCompound
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound

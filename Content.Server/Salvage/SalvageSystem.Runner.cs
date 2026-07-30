@@ -180,21 +180,21 @@ public sealed partial class SalvageSystem
                 ftlTime = MathF.Min(ftlTime, _shuttle.DefaultStartupTime);
                 var shuttleQuery = AllEntityQuery<ShuttleComponent, TransformComponent>();
 
-                if (TryComp<StationDataComponent>(comp.Station, out var data))
+                // start-backmen: salvage-return-station
+                // HashSet.Grids order is undefined — first member can be cargo itself or a
+                // grid parked on CentCom (Backmen CentCom cargo / mis-linked members), so
+                // auto-FTL must target the largest non-CentCom station grid like Arrivals does.
+                if (GetExpeditionReturnGrid(comp.Station) is { } targetGrid)
                 {
-                    foreach (var member in data.Grids)
+                    while (shuttleQuery.MoveNext(out var shuttleUid, out var shuttle, out var shuttleXform))
                     {
-                        while (shuttleQuery.MoveNext(out var shuttleUid, out var shuttle, out var shuttleXform))
-                        {
-                            if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
-                                continue;
+                        if (shuttleXform.MapUid != uid || HasComp<FTLComponent>(shuttleUid))
+                            continue;
 
-                            _shuttle.FTLToDock(shuttleUid, shuttle, member, ftlTime);
-                        }
-
-                        break;
+                        _shuttle.FTLToDock(shuttleUid, shuttle, targetGrid, ftlTime);
                     }
                 }
+                // end-backmen: salvage-return-station
             }
 
             if (remaining < TimeSpan.Zero)
@@ -203,4 +203,73 @@ public sealed partial class SalvageSystem
             }
         }
     }
+
+    // start-backmen: salvage-return-station
+    /// <summary>
+    /// Grid to auto-dock to when an expedition ends. Largest station grid that is not
+    /// CentCom and not another shuttle (cargo is a station member but must not be the target).
+    /// </summary>
+    private EntityUid? GetExpeditionReturnGrid(EntityUid station)
+    {
+        if (!TryComp<StationDataComponent>(station, out var data))
+            return null;
+
+        TryComp<StationCentcommComponent>(station, out var centcomm);
+        var centComGrid = centcomm?.Entity;
+        var centComMap = centcomm?.MapEntity;
+
+        // True only for the CentCom station (its member grids live on the CentCom map).
+        // Regular stations also have StationCentcommComponent.Entity set to CentCom — ignore that.
+        var stationIsCentCom = false;
+        if (centComMap != null)
+        {
+            foreach (var gridUid in data.Grids)
+            {
+                if (HasComp<ShuttleComponent>(gridUid))
+                    continue;
+
+                if (TryComp(gridUid, out TransformComponent? xform) && xform.MapUid == centComMap)
+                {
+                    stationIsCentCom = true;
+                    break;
+                }
+            }
+        }
+
+        EntityUid? largest = null;
+        var largestSize = 0f;
+
+        foreach (var gridUid in data.Grids)
+        {
+            if (!stationIsCentCom)
+            {
+                if (centComGrid != null && gridUid == centComGrid)
+                    continue;
+
+                if (centComMap != null
+                    && TryComp(gridUid, out TransformComponent? gridXform)
+                    && gridXform.MapUid == centComMap)
+                {
+                    continue;
+                }
+            }
+
+            // Cargo / other shuttles are station members but must not be the FTL target.
+            if (HasComp<ShuttleComponent>(gridUid))
+                continue;
+
+            if (!_gridQuery.TryComp(gridUid, out var grid))
+                continue;
+
+            var size = grid.LocalAABB.Size.LengthSquared();
+            if (size < largestSize)
+                continue;
+
+            largestSize = size;
+            largest = gridUid;
+        }
+
+        return largest ?? _station.GetLargestGrid((station, data));
+    }
+    // end-backmen: salvage-return-station
 }

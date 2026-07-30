@@ -172,6 +172,20 @@
   description: Zombie.
   categories: [ HideSpawnMenu ]
   components:
+  # start-backmen: headcrab-zombie-sprite
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    layers:
+    - state: zombie
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: zombie
+      Dead:
+        Base: zombie_dead
+  # end-backmen: headcrab-zombie-sprite
   - type: EmoteOnDamage
     emotes:
     - Pain
@@ -736,7 +750,7 @@
       Dead:
         Base: vortigaunt
   - type: BatteryAmmoProvider
-    proto: Lightning
+    proto: VortigauntLightning # backmen: vortigaunt-lightning
     fireCost: 50
   - type: BatterySelfRecharger
     autoRechargeRate: 50
@@ -798,25 +812,27 @@
     description: Monster from Xen
   - type: GhostTakeoverAvailable
 
-#- type: entity
-#  parent: BasicHitscan
-#  id: Lightning
-#  categories: [ HideSpawnMenu ]
-#  components:
-#  - type: HitscanBasicRaycast
-#    maxDistance: 7
-#  - type: HitscanBasicDamage
-#    damage:
-#      groups:
-#        Brute: 5
-#        Burn: 20
-#  - type: HitscanBasicVisuals
-#    muzzleFlash:
-#      sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
-#      state: blue_lightning
-#    travelFlash:
-#      sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
-#      state: blue_lightning
-#    impactFlash:
-#      sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
-#      state: blue_lightning
+# start-backmen: vortigaunt-lightning
+- type: entity
+  parent: BasicHitscan
+  id: VortigauntLightning
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicRaycast
+    maxDistance: 7
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Blunt: 5
+        Shock: 20
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+      state: blue_lightning
+    travelFlash:
+      sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+      state: blue_lightning
+    impactFlash:
+      sprite: Backmen/test/base/rsi/Textures/Effects/ligthning.rsi
+      state: blue_lightning
+# end-backmen: vortigaunt-lightning

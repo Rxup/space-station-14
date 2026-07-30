@@ -40,6 +40,7 @@
         true
   - type: NPCRetaliation
     attackMemoryLength: 10
+  - type: FactionException
   - type: NpcFactionMember
     factions:
       - SimpleNeutral

@@ -1,12 +1,15 @@
+using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.GameTicking;
 using Content.Shared.Station.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Arrivals.CentComm;
 
@@ -15,6 +18,7 @@ public sealed partial class CentCommSpawnSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private StationJobsSystem _stationJobs = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -22,7 +26,9 @@ public sealed partial class CentCommSpawnSystem : EntitySystem
 
         SubscribeLocalEvent<StationCentCommDirectorComponent, CentCommEvent>(OnCentCommEvent);
         SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialized, before: [typeof(StationJobsSystem)]);
-        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
+        // after CentcommSystem so CentCom station exists when GridFill loads it during RoundStarting
+        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting, after: [typeof(Content.Server.Backmen.Arrivals.CentcommSystem)]);
+        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
     }
 
     private void OnStationInitialized(StationInitializedEvent ev)
@@ -34,6 +40,10 @@ public sealed partial class CentCommSpawnSystem : EntitySystem
         }
 
         ConfigureJobs(ev.Station, director, jobs);
+
+        // Mid-round CentCom load (e.g. GridFill toggled on) never sees RoundStarted.
+        if (_gameTicker.RunLevel == GameRunLevel.InRound)
+            StartEventSchedule(director);
     }
 
     private void OnRoundStarting(RoundStartingEvent ev)
@@ -43,6 +53,32 @@ public sealed partial class CentCommSpawnSystem : EntitySystem
         {
             ConfigureJobs(uid, director, jobs, syncJobList: true);
         }
+    }
+
+    private void OnRoundStarted(RoundStartedEvent ev)
+    {
+        var query = EntityQueryEnumerator<StationCentCommDirectorComponent>();
+        while (query.MoveNext(out _, out var director))
+        {
+            StartEventSchedule(director);
+        }
+    }
+
+    /// <summary>
+    /// Arms the director schedule from round start so events are not tied to lobby/map-load time.
+    /// The leading Noop (offset 0) is the zero-point: it fires immediately and applies the next
+    /// entry's delta to <see cref="StationCentCommDirectorComponent.NextEventTick"/>.
+    /// </summary>
+    private void StartEventSchedule(StationCentCommDirectorComponent director)
+    {
+        if (director.EventSchedule.Count == 0)
+            return;
+
+        // Already armed for this round.
+        if (director.NextEventTick > TimeSpan.Zero)
+            return;
+
+        director.NextEventTick = _timing.CurTime + director.EventSchedule[0].timeOffset;
     }
 
     private void ConfigureJobs(
@@ -75,6 +111,16 @@ public sealed partial class CentCommSpawnSystem : EntitySystem
             : null;
 
         _stationJobs.SetSetupAvailableJobs(station, availableJobs, jobs, syncJobList);
+
+        // Keep derived job caches in sync after CentCom director rewrites SetupAvailableJobs.
+        jobs.MidRoundTotalJobs = jobs.SetupAvailableJobs.Values
+            .Select(x => Math.Max(x[1], 0))
+            .Sum();
+
+        jobs.OverflowJobs = jobs.SetupAvailableJobs
+            .Where(x => x.Value[0] < 0)
+            .Select(x => x.Key)
+            .ToHashSet();
     }
 
     private void OnCentCommEvent(Entity<StationCentCommDirectorComponent> ent, ref CentCommEvent args)
@@ -84,6 +130,9 @@ public sealed partial class CentCommSpawnSystem : EntitySystem
 
         switch (args.EventId)
         {
+            case CentComEventId.Noop:
+                args.Handled = true;
+                break;
             case CentComEventId.AddWorker:
                 args.Handled = true;
 
@@ -149,7 +198,7 @@ public sealed partial class CentCommSpawnSystem : EntitySystem
         var result = new List<EntityCoordinates>();
 
         var q = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-        while (q.MoveNext(out var uid, out var spawnPoint, out var transform))
+        while (q.MoveNext(out _, out var spawnPoint, out var transform))
         {
             if (spawnPoint.SpawnType != SpawnPointType.LateJoin || transform.GridUid == null)
                 continue;

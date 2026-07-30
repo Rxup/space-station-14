@@ -1,0 +1,65 @@
+---
+description: Backmen markers, Robust subscriptions, and Dependency/partial IoC rules
+alwaysApply: true
+---
+
+# Backmen / Robust coding conventions
+
+## Change markers (non-Backmen paths)
+
+When editing files **outside** `Content.*/Backmen/`, `**/_Backmen/**`, and similar Backmen-owned trees, mark every Backmen-specific change:
+
+### Multi-line block
+
+```csharp
+// start-backmen: short-tag
+...changed lines...
+// end-backmen: short-tag
+```
+
+YAML/YML use `# start-backmen: tag` / `# end-backmen: tag`.
+
+### Single-line change
+
+Put the marker at end of the line:
+
+```csharp
+proto: VortigauntLightning // backmen: vortigaunt-lightning
+```
+
+```yaml
+- BaseStationExpeditions # backmen: centcomm-expeditions
+```
+
+- Use a short kebab-case tag shared by the matching start/end pair.
+- Do **not** add these markers inside Backmen-owned paths (`**/Backmen/**`, `**/_Backmen/**`).
+- Prefer replacing or wrapping only the Backmen delta; do not leave unmarked edits in upstream files.
+
+## Event subscriptions (RobustToolbox)
+
+Robust allows **one** `SubscribeLocalEvent<TComp, TEvent>` (component + event) binding project-wide.
+
+- Do **not** subscribe the same `(Component, Event)` pair from another system — that link cannot be duplicated.
+- If another system already owns that subscription, extend that system (partial), raise a different event, or use a directed/broadcast event without a second component subscription.
+- Broadcast/non-component subscriptions (`SubscribeLocalEvent<SomeEvent>`) are separate; still avoid double-handling the same directed flow unless intentional with `before`/`after` ordering.
+
+## `[Dependency]` / IoC
+
+- `[Dependency]` fields must **not** be `readonly`:
+
+```csharp
+[Dependency] private readonly FooSystem _foo = default!; // WRONG
+[Dependency] private FooSystem _foo = default!;          // OK
+```
+
+- Any class that declares `[Dependency]` fields must be `partial`:
+
+```csharp
+public sealed partial class MySystem : EntitySystem
+```
+
+## Developer docs
+
+Prefer the official SS14 developer wiki when unsure about engine/content patterns, APIs, or conventions:
+
+https://docs.spacestation14.com/

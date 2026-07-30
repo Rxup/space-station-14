@@ -61,4 +61,5 @@
     prototypes: [CCCargoFull]
   - type: RandomHumanoidProfile
     randomizeName: true
+    randomizeHair: true
   - type: AntagImmune

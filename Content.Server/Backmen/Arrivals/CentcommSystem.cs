@@ -85,15 +85,17 @@ public sealed partial class CentcommSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // Schedule is armed on RoundStarted; do not tick events in lobby / map load.
+        if (_gameTicker.RunLevel != GameRunLevel.InRound)
+            return;
+
         var curTime = _gameTiming.CurTime;
 
         var q = EntityQueryEnumerator<StationCentCommDirectorComponent, StationSpawningComponent>();
-        while (q.MoveNext(out var stationUid, out var centcomDirector, out var stationSpawning))
+        while (q.MoveNext(out var stationUid, out var centcomDirector, out _))
         {
-            if (!(centcomDirector.EventSchedule.Count > 0 && curTime >= centcomDirector.NextEventTick))
-            {
+            if (centcomDirector.EventSchedule.Count == 0 || curTime < centcomDirector.NextEventTick)
                 continue;
-            }
 
             // Pop the event.
             var curEvent = centcomDirector.EventSchedule[0];

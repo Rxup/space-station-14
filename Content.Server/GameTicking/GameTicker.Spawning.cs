@@ -254,10 +254,10 @@ namespace Content.Server.GameTicking
 
             DoSpawn(player, character, station, jobId, silent, out var mob, out var jobPrototype, out var jobName);
 
-            // start-backmen
+            // start-backmen: always-use-spawner
             if (jobPrototype.AlwaysUseSpawner)
                 lateJoin = false;
-            // end-backmen
+            // end-backmen: always-use-spawner
 
             if (lateJoin && !silent)
             {
@@ -445,6 +445,10 @@ namespace Content.Server.GameTicking
         public EntityCoordinates GetObserverSpawnPoint()
         {
             _possiblePositions.Clear();
+            // start-backmen: observer-spawn-station
+            // Prefer the main station map so observers don't land on CentCom.
+            var stationPositions = new List<EntityCoordinates>();
+            // end-backmen: observer-spawn-station
             var spawnPointQuery = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
             while (spawnPointQuery.MoveNext(out var uid, out var point, out var transform))
             {
@@ -456,22 +460,30 @@ namespace Content.Server.GameTicking
                     continue;
                 }
 
-                _possiblePositions.Add(transform.Coordinates);
+                // start-backmen: observer-spawn-station
+                if (transform.MapID == DefaultMap)
+                    stationPositions.Add(transform.Coordinates);
+                else
+                    _possiblePositions.Add(transform.Coordinates);
+                // end-backmen: observer-spawn-station
             }
+
+            // start-backmen: observer-spawn-station
+            if (stationPositions.Count > 0)
+            {
+                _possiblePositions.Clear();
+                _possiblePositions.AddRange(stationPositions);
+            }
+            // end-backmen: observer-spawn-station
 
             // Fallback to a random grid.
             if (_possiblePositions.Count == 0)
             {
-                var query = AllEntityQuery<MapGridComponent>();
-                while (query.MoveNext(out var uid, out var grid))
-                {
-                    if (!TryComp(uid, out MetaDataComponent? meta) || meta.EntityPaused || TerminatingOrDeleted(uid))
-                    {
-                        continue;
-                    }
-
-                    _possiblePositions.Add(new EntityCoordinates(uid, Vector2.Zero));
-                }
+                // start-backmen: observer-spawn-station
+                CollectObserverGridFallbacks(preferDefaultMap: true);
+                if (_possiblePositions.Count == 0)
+                    CollectObserverGridFallbacks(preferDefaultMap: false);
+                // end-backmen: observer-spawn-station
             }
 
             if (_possiblePositions.Count != 0)
@@ -519,6 +531,23 @@ namespace Content.Server.GameTicking
             _sawmill.Warning("Found no observer spawn points!");
             return EntityCoordinates.Invalid;
         }
+
+        // start-backmen: observer-spawn-station
+        private void CollectObserverGridFallbacks(bool preferDefaultMap)
+        {
+            var query = AllEntityQuery<MapGridComponent>();
+            while (query.MoveNext(out var uid, out _))
+            {
+                if (!TryComp(uid, out MetaDataComponent? meta) || meta.EntityPaused || TerminatingOrDeleted(uid))
+                    continue;
+
+                if (preferDefaultMap && Transform(uid).MapID != DefaultMap)
+                    continue;
+
+                _possiblePositions.Add(new EntityCoordinates(uid, Vector2.Zero));
+            }
+        }
+        // end-backmen: observer-spawn-station
 
         #endregion
     }

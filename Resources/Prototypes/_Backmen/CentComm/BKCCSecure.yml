@@ -55,4 +55,5 @@
     prototypes: [CentComPrivateOfficerGear]
   - type: RandomHumanoidProfile
     randomizeName: true
+    randomizeHair: true
   - type: AntagImmune
