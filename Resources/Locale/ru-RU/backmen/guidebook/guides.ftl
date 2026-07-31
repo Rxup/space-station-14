@@ -15,3 +15,5 @@ guide-entry-special-actions = Особые действия
 guide-entry-mood = Настроение
 guide-entry-shadowkin-lore = Лор Shadowkin
 guide-entry-superpsi = Супер-пси
+guide-entry-rebell-damage = Система получения урона
+guide-entry-rebell = ReBELL
