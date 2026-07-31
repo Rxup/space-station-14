@@ -51,4 +51,17 @@
       catalyst: true
   products:
     DryHands: 4
+
+- type: reaction
+  id: Antigrippin
+  impact: Low
+  reactants:
+    Diphenhydramine:
+      amount: 1
+    Dylovene:
+      amount: 1
+    Carbon:
+      amount: 1
+  products:
+    Antigrippin: 3
 # end-backmen: medicine

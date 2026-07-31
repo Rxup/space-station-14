@@ -14,13 +14,12 @@
     probability: 0.025
     emote: Sneeze
   cures:
-  - !type:DiseaseBedrestCure
-    maxLength: 20
+  # Cold-exposure pool: no bedrest — each needs a different chem (diagnose first).
   - !type:DiseaseJustWaitCure
-    maxLength: 400
+    maxLength: 900
   - !type:DiseaseReagentCure
     reagent:
-      ReagentId: Ultravasculine
+      ReagentId: Antigrippin
 ###    - !type:DiseaseReagentCure ### In Loving Memory, Lean
 ###      reagent: Lean            ### 2022/03/12 - 2022/03/13
 
@@ -41,13 +40,11 @@
       types:
         Caustic: 1
   cures:
-  - !type:DiseaseBedrestCure
-    maxLength: 30
   - !type:DiseaseJustWaitCure
-    maxLength: 600
+    maxLength: 900
   - !type:DiseaseReagentCure
     reagent:
-      ReagentId: SpaceCleaner
+      ReagentId: Dermaline
 
 - type: disease
   id: SpaceFlu
@@ -67,8 +64,11 @@
       types:
         Heat: 1
   cures:
-  - !type:DiseaseBedrestCure
-    maxLength: 100
+  - !type:DiseaseJustWaitCure
+    maxLength: 900
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Diphenhydramine
 
 - type: disease
   id: BirdFlew
@@ -88,8 +88,11 @@
       types:
         Caustic: 1
   cures:
-  - !type:DiseaseBedrestCure
-    maxLength: 120
+  - !type:DiseaseJustWaitCure
+    maxLength: 900
+  - !type:DiseaseReagentCure
+    reagent:
+      ReagentId: Dylovene
 
 - type: disease
   id: VanAusdallsRobovirus
