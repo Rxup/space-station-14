@@ -4,15 +4,9 @@
 
 - type: markingsGroup
   id: Undergarments
-  limits:
-    enum.HumanoidVisualLayers.UndergarmentTop:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentTopTanktop ]
-    enum.HumanoidVisualLayers.UndergarmentBottom:
-      limit: 1
-      required: false
-      nudityDefault: [ UndergarmentBottomBoxers ]
+  # start-backmen: clothing-undergarments — use Werx/Niz loadout clothing instead of marking underwear
+  limits: {}
+  # end-backmen: clothing-undergarments
 
 - type: entity
   id: OrganBase
@@ -63,8 +57,9 @@
       - Tail
       - Overlay
       - TailOverlay
-      - UndergarmentTop
-      - UndergarmentBottom
+      # start-backmen: clothing-undergarments
+      # UndergarmentTop / UndergarmentBottom removed — Backmen uses clothing slots
+      # end-backmen: clothing-undergarments
       - Special
 
 - type: entity

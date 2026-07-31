@@ -57,7 +57,7 @@
   storage:
     back:
     - Flash
-    - MagazinePistol
+    - MagazinePistol9x17 # backmen: ammo-calibers
 
 - type: chameleonOutfit
   id: HeadOfSecurityChameleonOutfit

@@ -5,6 +5,7 @@ disease-banana-compulsion = Вы очень реально хотите пере
 disease-beat-chest-compulsion = { CAPITALIZE(THE($person)) } бьёт { POSS-ADJ($person) } торс.
 disease-think = Вы чувствуете, что не можете ясно мыслить.
 disease-polymorph = Вы чувствуете, как ваше тело скручивается и меняет форму!
+disease-xeno-polymorph = Вы чувствуете, как ваше тело скручивается и меняет форму!
 disease-sick-stomach = Вы чувствуете, что вас стошнит.
 disease-wet-hands-drop = Ваши руки скользкие, и вы роняете что-то!
 disease-wet-hands-lube = Ваши руки покрыты странной смазкой!

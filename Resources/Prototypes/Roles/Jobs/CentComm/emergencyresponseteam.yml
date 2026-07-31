@@ -320,7 +320,7 @@
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazinePistol
+    - MagazinePistol9x17 # backmen: ammo-calibers
 
 - type: startingGear
   id: ERTSecurityGearEVA
@@ -344,7 +344,7 @@
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazinePistol
+    - MagazinePistol9x17 # backmen: ammo-calibers
 
 - type: startingGear
   id: ERTSecurityGearEVALecter
@@ -370,7 +370,7 @@
     - RegenerativeMesh
     - BoxZiptie
     - CrowbarRed
-    - MagazinePistol
+    - MagazinePistol9x17 # backmen: ammo-calibers
 
 - type: chameleonOutfit
   id: ERTSecurityChameleonOutfit

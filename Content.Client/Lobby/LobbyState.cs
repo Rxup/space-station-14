@@ -242,11 +242,12 @@ namespace Content.Client.Lobby
 
         private void UpdateLobbySoundtrackInfo(LobbySoundtrackChangedEvent ev)
         {
-
-             if (
-                ev.SoundtrackFilename != null
-                && _resourceCache.TryGetResource<AudioResource>(ev.SoundtrackFilename, out var lobbySongResource)
-                )
+            // start-backmen: lobby-song
+            if (ev.SoundtrackFilename == null)
+            {
+                Lobby!.LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
+            }
+            else if (_resourceCache.TryGetResource<AudioResource>(ev.SoundtrackFilename, out var lobbySongResource))
             {
                 var lobbyStream = lobbySongResource.AudioStream;
 
@@ -262,8 +263,9 @@ namespace Content.Client.Lobby
                     ("songTitle", title),
                     ("songArtist", artist));
 
-
+                Lobby!.LobbySong.SetMarkup(markup);
             }
+            // end-backmen: lobby-song
         }
 
         private void UpdateLobbyBackground()
@@ -303,9 +305,17 @@ namespace Content.Client.Lobby
             Lobby.ChangelogContainer.Children.Clear();
 
             var changelogs = await _changelog.LoadChangelog();
-            var whiteChangelog = changelogs.Find(cl => cl.Name == "Changelog");
+            // start-backmen: lobby-changelog-merge
+            // Merge upstream + Backmen changelogs by time for the lobby preview.
+            var mergeNames = new[] { "Changelog", "ChangelogBkm" };
+            var mergedEntries = changelogs
+                .Where(cl => mergeNames.Contains(cl.Name))
+                .SelectMany(cl => cl.Entries)
+                .OrderByDescending(c => c.Time)
+                .Take(5)
+                .ToList();
 
-            if (whiteChangelog is null)
+            if (mergedEntries.Count == 0)
             {
                 Lobby.ChangelogContainer.Children.Add(
                     new RichTextLabel().SetMarkup(Loc.GetString("ui-lobby-changelog-not-found")));
@@ -313,9 +323,8 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            var entries = whiteChangelog.Entries
-                .OrderByDescending(c => c.Time)
-                .Take(5);
+            var entries = mergedEntries;
+            // end-backmen: lobby-changelog-merge
 
             foreach (var entry in entries)
             {

@@ -41,6 +41,7 @@
 - type: entity
   id: ShadowkinRest
   name: shadowkin rest
+  parent: BaseMentalAction
   components:
     - type: Action
       useDelay: 60
@@ -49,7 +50,5 @@
       icon:
         sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
         state: rest
-      checkCanInteract: false
-      checkConsciousness: false
     - type: InstantAction
       event: !type:ShadowkinRestEvent

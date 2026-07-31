@@ -49,11 +49,7 @@ public sealed partial class HumanoidProfileEditor
             TabContainer.AddChild(children[i]);
         }
 
-        TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-voice-tab"));
-        TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-jobs-tab"));
-        TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-antags-tab"));
-        TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-traits-tab"));
-        TabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-markings-tab"));
+        RefreshTabTitles(); // backmen: tts-tab-titles
 
         _ttsTab.OnVoiceSelected += voiceId =>
         {
@@ -76,10 +72,27 @@ public sealed partial class HumanoidProfileEditor
         _ttsTab.Dispose();
         _ttsTab = null;
 
-        TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-jobs-tab"));
-        TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-antags-tab"));
-        TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab"));
-        TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
+        RefreshTabTitles(); // backmen: tts-tab-titles
+    }
+
+    /// <summary>
+    /// Sets profile editor tab titles. Accounts for optional TTS Voice tab inserted after Appearance.
+    /// </summary>
+    private void RefreshTabTitles()
+    {
+        var offset = _ttsTab != null ? 1 : 0;
+
+        TabContainer.SetTabTitle(0, Loc.GetString("humanoid-profile-editor-appearance-tab"));
+        if (_ttsTab != null)
+            TabContainer.SetTabTitle(1, Loc.GetString("humanoid-profile-editor-voice-tab"));
+
+        TabContainer.SetTabTitle(1 + offset, Loc.GetString("humanoid-profile-editor-jobs-tab"));
+        TabContainer.SetTabTitle(2 + offset, Loc.GetString("humanoid-profile-editor-antags-tab"));
+        TabContainer.SetTabTitle(3 + offset, Loc.GetString("humanoid-profile-editor-traits-tab"));
+        TabContainer.SetTabTitle(4 + offset, Loc.GetString("humanoid-profile-editor-markings-tab"));
+
+        if (_flavorText != null)
+            TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("humanoid-profile-editor-flavortext-tab"));
     }
 
     private void UpdateTTSVoicesControls()

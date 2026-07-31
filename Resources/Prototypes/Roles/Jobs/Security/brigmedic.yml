@@ -20,6 +20,8 @@
     - Brig
     - Maintenance
     - External
+  extendedAccess:
+    - Virology # backmen: virology-access
   #start-backmen: currency
   minBankBalance: 150
   maxBankBalance: 250

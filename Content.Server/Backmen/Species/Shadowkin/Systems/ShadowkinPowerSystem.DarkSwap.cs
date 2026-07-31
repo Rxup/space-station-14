@@ -49,7 +49,7 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, MapInitEvent>(OnMapInit, after: [typeof(ActionGrantSystem)]);
         SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, ComponentShutdown>(Shutdown);
 
         SubscribeLocalEvent<ShadowkinDarkSwapPowerComponent, ShadowkinDarkSwapEvent>(DarkSwap);
@@ -130,14 +130,38 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
 
     private readonly EntProtoId ShadowkinDarkSwap = "ShadowkinDarkSwap";
 
-    private void OnInit(Entity<ShadowkinDarkSwapPowerComponent> ent, ref ComponentInit args)
+    private void OnMapInit(Entity<ShadowkinDarkSwapPowerComponent> ent, ref MapInitEvent args)
     {
+        if (ent.Comp.ShadowkinDarkSwapAction is { Valid: true })
+            return;
+
+        if (TryComp<ActionGrantComponent>(ent, out var grant))
+        {
+            foreach (var action in grant.ActionEntities)
+            {
+                if (MetaData(action).EntityPrototype?.ID == ShadowkinDarkSwap.Id)
+                {
+                    ent.Comp.ShadowkinDarkSwapAction = action;
+                    return;
+                }
+            }
+        }
+
         _actions.AddAction(ent, ref ent.Comp.ShadowkinDarkSwapAction, ShadowkinDarkSwap);
     }
 
     private void Shutdown(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, component.ShadowkinDarkSwapAction);
+        var action = component.ShadowkinDarkSwapAction;
+        component.ShadowkinDarkSwapAction = null;
+
+        if (action is not { Valid: true })
+            return;
+
+        if (HasComp<ActionGrantComponent>(uid))
+            return;
+
+        _actions.RemoveAction(action);
     }
 
     public override void Update(float frameTime)

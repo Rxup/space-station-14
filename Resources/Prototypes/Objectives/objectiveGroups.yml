@@ -36,6 +36,8 @@
     EscapeShuttleObjective: 1
     DieObjective: 0.2
     #HijackShuttleObjective: 0.02
+    RaiseGlimmerObjective: 0.35 # backmen: traitor-raise-glimmer
+    BecomePsionicObjective: 0.4 # backmen: traitor-become-psionic
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocial

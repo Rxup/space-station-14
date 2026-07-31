@@ -158,6 +158,11 @@
   - type: ShadowkinDarkSwapPower
   - type: ShadowkinRestPower
   - type: ShadowkinTeleportPower
+  - type: ActionGrant
+    actions:
+    - ShadowkinTeleport
+    - ShadowkinDarkSwap
+    - ShadowkinRest
   - type: Vocal
     sounds:
       Male: MaleSlime

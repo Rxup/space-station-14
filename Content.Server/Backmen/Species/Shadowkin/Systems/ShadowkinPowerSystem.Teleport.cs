@@ -1,16 +1,16 @@
 using Content.Server.Backmen.Species.Shadowkin.Components;
 using Content.Server.Backmen.Species.Shadowkin.Events;
-using Content.Server.Magic;
 using Content.Shared.Actions;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Interaction;
+using Content.Shared.Maps;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Physics;
-using Content.Shared.Tag;
+using Content.Shared.Popups;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -26,49 +26,100 @@ public sealed partial class ShadowkinTeleportSystem : EntitySystem
     [Dependency] private SharedStaminaSystem _stamina = default!;
     [Dependency] private PullingSystem _pulling = default!;
     [Dependency] private SharedActionsSystem _actions = default!;
-    [Dependency] private MagicSystem _magic = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
-    [Dependency] private TagSystem _tagSystem = default!;
     [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+
+    private static readonly EntProtoId ShadowkinTeleport = "ShadowkinTeleport";
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ShadowkinTeleportPowerComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<ShadowkinTeleportPowerComponent, MapInitEvent>(OnMapInit, after: [typeof(ActionGrantSystem)]);
         SubscribeLocalEvent<ShadowkinTeleportPowerComponent, ComponentShutdown>(Shutdown);
 
         SubscribeLocalEvent<ShadowkinTeleportPowerComponent, ShadowkinTeleportEvent>(Teleport);
     }
 
-    private static readonly EntProtoId ShadowkinTeleport = "ShadowkinTeleport";
-    private static readonly ProtoId<TagPrototype> Structure = "Structure";
-    private void OnInit(Entity<ShadowkinTeleportPowerComponent> ent, ref ComponentInit args)
+    private void OnMapInit(Entity<ShadowkinTeleportPowerComponent> ent, ref MapInitEvent args)
     {
+        if (ent.Comp.ShadowkinTeleportAction is { Valid: true })
+            return;
+
+        if (TryComp<ActionGrantComponent>(ent, out var grant))
+        {
+            foreach (var action in grant.ActionEntities)
+            {
+                if (MetaData(action).EntityPrototype?.ID == ShadowkinTeleport.Id)
+                {
+                    ent.Comp.ShadowkinTeleportAction = action;
+                    return;
+                }
+            }
+        }
+
         _actions.AddAction(ent, ref ent.Comp.ShadowkinTeleportAction, ShadowkinTeleport);
     }
 
     private void Shutdown(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, component.ShadowkinTeleportAction);
+        // ActionGrant owns the innate actions; removing here as well double-fires RemoveAction
+        // (grant already detached → ERRO on "never attached"). Only clean up if we AddAction'd ourselves.
+        var action = component.ShadowkinTeleportAction;
+        component.ShadowkinTeleportAction = null;
+
+        if (action is not { Valid: true })
+            return;
+
+        if (HasComp<ActionGrantComponent>(uid))
+            return;
+
+        _actions.RemoveAction(action);
     }
 
     private static readonly SoundSpecifier SoundTeleport = new SoundPathSpecifier("/Audio/Backmen/Effects/Shadowkin/Powers/teleport.ogg");
-    public bool DoTeleport(EntityUid user, EntityCoordinates target, SoundSpecifier? sound = null, float? soundVolume = 5f)
+
+    /// <param name="allowThroughGlass">
+    /// Manual teleport may pass through glass (Opaque-only LoS). Forced/auto teleports must not —
+    /// going through a window into space is a common death.
+    /// </param>
+    public bool DoTeleport(
+        EntityUid user,
+        EntityCoordinates target,
+        SoundSpecifier? sound = null,
+        float? soundVolume = 5f,
+        bool allowThroughGlass = true,
+        bool popup = true)
     {
-        if(!_interaction.InRangeUnobstructed(user,
-               target,
-               0,
-               CollisionGroup.Opaque,
-               predicate: (ent) => _tagSystem.HasTag(ent, Structure),
-               popup:true))
+        // Glass uses GlassLayer (Impassable, no Opaque). Opaque-only lets you go *through* glass;
+        // adding Impassable blocks the path for auto-teleport.
+        var collisionMask = allowThroughGlass
+            ? CollisionGroup.Opaque
+            : CollisionGroup.Opaque | CollisionGroup.Impassable;
+
+        if (!_interaction.InRangeUnobstructed(user, target, 0, collisionMask, popup: popup))
             return false;
 
         var userPos = Transform(user);
 
         if (userPos.MapID != _transform.GetMapId(target) ||
             userPos.GridUid == null ||
-            _transform.GetGrid(target) is not {} grid)
+            _transform.GetGrid(target) is not { })
+            return false;
+
+        // Through glass is fine; landing *in* glass/walls is not.
+        if (!_turf.TryGetTileRef(target, out var tileRef) ||
+            _turf.IsTileBlocked(tileRef.Value, CollisionGroup.Impassable))
+        {
+            if (popup)
+                _popup.PopupEntity(Loc.GetString("shadowkin-teleport-blocked"), user, user);
+            return false;
+        }
+
+        // Auto-teleport must not dump the shadowkin into space either.
+        if (!allowThroughGlass && _turf.IsSpace(tileRef.Value))
             return false;
 
         PullableComponent? pullable = null; // To avoid "might not be initialized when accessed" warning
@@ -87,9 +138,6 @@ public sealed partial class ShadowkinTeleportSystem : EntitySystem
 
         if (pullable != null && puller?.Pulling != null)
         {
-            // Get transform of the pulled entity
-            //var pulledTransform = Transform(puller.Pulling!.Value);
-
             // Teleport the pulled entity to the target
             // TODO: Relative position to the performer
             _transform.SetCoordinates(puller.Pulling.Value, target);
@@ -117,10 +165,10 @@ public sealed partial class ShadowkinTeleportSystem : EntitySystem
         if (HasComp<HandcuffComponent>(args.Performer))
             return;
 
-        if(_statusEffects.HasEffectComp<PsionicInsulationComponent>(args.Performer))
+        if (_statusEffects.HasEffectComp<PsionicInsulationComponent>(args.Performer))
             return;
 
-        if(!DoTeleport(args.Performer, args.Target, args.Sound, args.Volume))
+        if (!DoTeleport(args.Performer, args.Target, args.Sound, args.Volume))
             return;
 
         // Take power and deal stamina damage

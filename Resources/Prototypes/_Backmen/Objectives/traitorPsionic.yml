@@ -49,8 +49,8 @@
 - type: entity
   id: RaiseGlimmerObjective
   parent: BaseTraitorObjective
-  name: Raise Glimmer.
-  description: Get the glimmer above the specified amount.
+  name: Raise station glimmer to 1000Ψ.
+  description: Pump the noösphere surrounding the station to at least 1000Ψ.
   components:
   - type: Objective
     difficulty: 2.5
@@ -59,4 +59,4 @@
       sprite: Backmen/Icons/psi.rsi
       state: psi
   - type: RaiseGlimmerCondition
-    target: 500
+    target: 1000

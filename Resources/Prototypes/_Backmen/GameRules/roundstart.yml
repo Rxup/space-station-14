@@ -198,6 +198,7 @@
     objectives:
     - EscapeThiefShuttleObjective
     - ThiefRaiseGlimmerObjective
+    - ThiefBecomePsionicObjective
     - ThiefSupercritAnomaliesObjective
   - type: AntagRandomObjectives
     sets:

@@ -6,8 +6,9 @@
   - type: AntagObjectives
     objectives:
     - EscapeThiefShuttleObjective
-    - ThiefRaiseGlimmerObjective
-    - ThiefSupercritAnomaliesObjective
+    - ThiefRaiseGlimmerObjective # backmen: thief-raise-glimmer
+    - ThiefBecomePsionicObjective # backmen: thief-become-psionic
+    - ThiefSupercritAnomaliesObjective # backmen: thief-supercrit-anomalies
   - type: AntagRandomObjectives
     sets:
     - groups: ThiefBigObjectiveGroups

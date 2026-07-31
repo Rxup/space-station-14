@@ -255,30 +255,29 @@ public sealed partial class VisualBodySystem : SharedVisualBodySystem
         if (!ent.Comp.HideableLayers.Contains(args.Args.Layer))
             return;
 
-        foreach (var markings in ent.Comp.Markings.Values)
+        // start-backmen: hide-marking-undergarments — include applied censor defaults, not only profile markings
+        foreach (var marking in ent.Comp.AppliedMarkings)
         {
-            foreach (var marking in markings)
+            if (!_marking.TryGetMarking(marking, out var proto))
+                continue;
+
+            if (proto.BodyPart != args.Args.Layer && !(ent.Comp.DependentHidingLayers.TryGetValue(args.Args.Layer, out var dependent) && dependent.Contains(proto.BodyPart)))
+                continue;
+
+            foreach (var sprite in proto.Sprites)
             {
-                if (!_marking.TryGetMarking(marking, out var proto))
+                DebugTools.Assert(sprite is SpriteSpecifier.Rsi);
+                if (sprite is not SpriteSpecifier.Rsi rsi)
                     continue;
 
-                if (proto.BodyPart != args.Args.Layer && !(ent.Comp.DependentHidingLayers.TryGetValue(args.Args.Layer, out var dependent) && dependent.Contains(proto.BodyPart)))
+                var layerId = $"{proto.ID}-{rsi.RsiState}";
+
+                if (!_sprite.LayerMapTryGet(args.Body.Owner, layerId, out var index, true))
                     continue;
 
-                foreach (var sprite in proto.Sprites)
-                {
-                    DebugTools.Assert(sprite is SpriteSpecifier.Rsi);
-                    if (sprite is not SpriteSpecifier.Rsi rsi)
-                        continue;
-
-                    var layerId = $"{proto.ID}-{rsi.RsiState}";
-
-                    if (!_sprite.LayerMapTryGet(args.Body.Owner, layerId, out var index, true))
-                        continue;
-
-                    _sprite.LayerSetVisible(args.Body.Owner, index, args.Args.Visible);
-                }
+                _sprite.LayerSetVisible(args.Body.Owner, index, args.Args.Visible);
             }
         }
+        // end-backmen: hide-marking-undergarments
     }
 }

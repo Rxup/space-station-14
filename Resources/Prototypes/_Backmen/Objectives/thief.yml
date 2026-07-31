@@ -14,6 +14,19 @@
 
 - type: entity
   parent: BaseThiefObjective
+  id: ThiefBecomePsionicObjective
+  name: Become psionic
+  description: We need you to acquire psionics and keep them until your mission is complete.
+  components:
+  - type: Objective
+    difficulty: 1
+    icon:
+      sprite: Backmen/Clothing/Head/Hats/tinfoil.rsi
+      state: icon
+  - type: BecomePsionicCondition
+
+- type: entity
+  parent: BaseThiefObjective
   id: ThiefSupercritAnomaliesObjective
   name: Cause 2 anomalies to go supercritical.
   description: Introduce the station crew to the fire they're playing with.

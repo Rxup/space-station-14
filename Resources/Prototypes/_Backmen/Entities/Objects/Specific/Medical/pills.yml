@@ -25,3 +25,38 @@
           reagents:
             - ReagentId: Cryptobiolin
               Quantity: 20
+
+- type: entity
+  name: pill
+  parent: Pill
+  id: PillAntigrippin
+  suffix: Antigrippin 10u
+  description: Antiviral pill for space cold. Won't help with flu or vent cough.
+  components:
+  - type: Pill
+    pillType: 5
+  - type: Sprite
+    state: pill6
+  - type: Label
+    currentLabel: antigrippin 10u
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Antigrippin
+          Quantity: 10
+
+- type: entity
+  name: pill canister
+  parent: PillCanister
+  id: PillCanisterAntigrippin
+  suffix: Antigrippin 10u, 7
+  components:
+  - type: Label
+    currentLabel: antigrippin 10u
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: PillAntigrippin
+        amount: 7

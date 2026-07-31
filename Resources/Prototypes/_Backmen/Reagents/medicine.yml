@@ -135,6 +135,32 @@
         time: 0.75
         type: Remove
 
+# start-backmen: disease
+- type: reagent
+  id: Antigrippin
+  name: reagent-name-antigrippin
+  group: Medicine
+  desc: reagent-desc-antigrippin
+  physicalDesc: reagent-physical-desc-chalky
+  flavor: medicine
+  color: "#7ec8e3"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:AdjustReagent
+        reagent: Histamine
+        amount: -2.0
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -1
+            Cold: -0.5
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1.0
+        probability: 0.15
+# end-backmen: disease
+
 # start-backmen: psionic
 - type: reagent
   id: Cryptobiolin

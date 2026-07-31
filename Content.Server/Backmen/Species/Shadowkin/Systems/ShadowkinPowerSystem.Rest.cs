@@ -3,6 +3,7 @@ using Content.Server.Backmen.Species.Shadowkin.Events;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Robust.Shared.Prototypes;
 
@@ -13,12 +14,16 @@ public sealed partial class ShadowkinRestSystem : EntitySystem
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private ShadowkinPowerSystem _power = default!;
     [Dependency] private SleepingSystem _sleeping = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+
+    private static readonly EntProtoId ShadowkinRest = "ShadowkinRest";
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ShadowkinRestPowerComponent, ComponentInit>(OnInit);
+        // ActionGrant adds the button on MapInit; we only keep a handle for cooldowns.
+        SubscribeLocalEvent<ShadowkinRestPowerComponent, MapInitEvent>(OnMapInit, after: [typeof(ActionGrantSystem)]);
         SubscribeLocalEvent<ShadowkinRestPowerComponent, ComponentShutdown>(OnShutdown);
 
         SubscribeLocalEvent<ShadowkinRestPowerComponent, ShadowkinRestEvent>(Rest);
@@ -37,15 +42,43 @@ public sealed partial class ShadowkinRestSystem : EntitySystem
         args.ModifySpeed(1.5f);
     }
 
-    private readonly EntProtoId ShadowkinRest = "ShadowkinRest";
-    private void OnInit(Entity<ShadowkinRestPowerComponent> ent, ref ComponentInit args)
+    private void OnMapInit(Entity<ShadowkinRestPowerComponent> ent, ref MapInitEvent args)
     {
+        LinkOrAddAction(ent);
+    }
+
+    private void LinkOrAddAction(Entity<ShadowkinRestPowerComponent> ent)
+    {
+        if (ent.Comp.ShadowkinRestAction is { Valid: true })
+            return;
+
+        if (TryComp<ActionGrantComponent>(ent, out var grant))
+        {
+            foreach (var action in grant.ActionEntities)
+            {
+                if (MetaData(action).EntityPrototype?.ID == ShadowkinRest.Id)
+                {
+                    ent.Comp.ShadowkinRestAction = action;
+                    return;
+                }
+            }
+        }
+
         _actions.AddAction(ent, ref ent.Comp.ShadowkinRestAction, ShadowkinRest);
     }
 
     private void OnShutdown(EntityUid uid, ShadowkinRestPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, component.ShadowkinRestAction);
+        var action = component.ShadowkinRestAction;
+        component.ShadowkinRestAction = null;
+
+        if (action is not { Valid: true })
+            return;
+
+        if (HasComp<ActionGrantComponent>(uid))
+            return;
+
+        _actions.RemoveAction(action);
     }
 
     private void Rest(EntityUid uid, ShadowkinRestPowerComponent component, ShadowkinRestEvent args)
@@ -53,11 +86,6 @@ public sealed partial class ShadowkinRestSystem : EntitySystem
         // Need power to modify power
         if (!HasComp<ShadowkinComponent>(args.Performer) || component.ShadowkinRestAction is null)
             return;
-
-        // Rest is a funny ability, keep it :)
-        // // Don't activate abilities if handcuffed
-        // if (_entity.HasComponent<HandcuffComponent>(args.Performer))
-        //     return;
 
         SleepingComponent? sleepingComponent = null;
 
@@ -68,35 +96,31 @@ public sealed partial class ShadowkinRestSystem : EntitySystem
             if (HasComp<StunnedComponent>(args.Performer))
                 return;
 
-            if(!_sleeping.TrySleeping(args.Performer))
+            if (!_sleeping.TrySleeping(args.Performer))
                 return;
 
             EnsureComp<ShadowkinRestPowerUsedComponent>(args.Performer);
 
-            // Sleepy time
-            _sleeping.TrySleeping(args.Performer);
-            EnsureComp<ForcedSleepingStatusEffectComponent>(args.Performer);
+            // Forced sleep until the shadowkin uses Rest again to wake.
+            _statusEffects.TrySetStatusEffectDuration(
+                args.Performer,
+                SleepingSystem.StatusEffectForcedSleeping);
 
-            // No waking up normally (it would do nothing)
-            //_actions.RemoveAction(args.Performer, new InstantAction(_prototype.Index<InstantActionPrototype>("Wake")));
             if (TryComp(args.Performer, out sleepingComponent) && sleepingComponent.WakeAction is { Valid: true })
                 _actions.SetEnabled(sleepingComponent.WakeAction, false);
 
             _actions.SetCooldown(component.ShadowkinRestAction.Value, TimeSpan.FromSeconds(1));
-            // No action cooldown
-            args.Handled = false;
+            args.Handled = true;
         }
         // Waking
-        else if(isSleepingByPower && TryComp(args.Performer, out sleepingComponent))
+        else if (isSleepingByPower && TryComp(args.Performer, out sleepingComponent))
         {
             if (sleepingComponent.WakeAction is { Valid: true })
                 _actions.SetEnabled(sleepingComponent.WakeAction, true);
 
-            // Wake up
-            // Action cooldown
             RemCompDeferred<ShadowkinRestPowerUsedComponent>(args.Performer);
-            RemComp<ForcedSleepingStatusEffectComponent>(args.Performer);
-            args.Handled = _sleeping.TryWaking((args.Performer,sleepingComponent), true);
+            _statusEffects.TryRemoveStatusEffect(args.Performer, SleepingSystem.StatusEffectForcedSleeping);
+            args.Handled = _sleeping.TryWaking((args.Performer, sleepingComponent), true);
             _actions.SetCooldown(component.ShadowkinRestAction.Value, TimeSpan.FromMinutes(1));
         }
     }

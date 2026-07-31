@@ -9,7 +9,8 @@
     xmlns:info="clr-namespace:Content.Client.Info"
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
     xmlns:animatedBackground="clr-namespace:Content.Client.Backmen.UI.AnimatedBackground"
-    xmlns:buttons="clr-namespace:Content.Client.Backmen.UI.Buttons">
+    xmlns:buttons="clr-namespace:Content.Client.Backmen.UI.Buttons"
+    xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
     <!-- Background -->
     <animatedBackground:AnimatedBackgroundControl Access="Public" Name="Background" VerticalExpand="True" HorizontalExpand="True"
                                                   Stretch="KeepAspectCovered" />
@@ -97,14 +98,31 @@
                         </BoxContainer>
                     </PanelContainer>
                     <!-- Changelog -->
-                    <PanelContainer Name="Changelog" StyleClasses="LobbyBackground" HorizontalAlignment="Right"
+                    <PanelContainer Name="Changelog" HorizontalAlignment="Right"
                                     VerticalAlignment="Top" Visible="True">
-                        <BoxContainer Orientation="Vertical">
+                        <!-- start-backmen: lobby-changelog-bg -->
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BackgroundColor="#00000099" />
+                        </PanelContainer.PanelOverride>
+                        <!-- end-backmen: lobby-changelog-bg -->
+                        <BoxContainer Orientation="Vertical" Margin="8 8 8 8">
                             <RichTextLabel Name="ChangelogLabel" Access="Public" HorizontalAlignment="Center" />
-                            <BoxContainer Name="ChangelogContainer" Access="Public" Orientation="Vertical"
-                                          StyleClasses="LobbyBackground" />
+                            <BoxContainer Name="ChangelogContainer" Access="Public" Orientation="Vertical" />
                         </BoxContainer>
                     </PanelContainer>
+                    <!-- start-backmen: lobby-song -->
+                    <BoxContainer Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <PanelContainer Margin="3 3 3 3">
+                            <PanelContainer.PanelOverride>
+                                <graphics:StyleBoxFlat BackgroundColor="#00000099" />
+                            </PanelContainer.PanelOverride>
+                            <BoxContainer Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                          Margin="8 6 8 6">
+                                <RichTextLabel Name="LobbySong" Access="Public" HorizontalAlignment="Left" />
+                            </BoxContainer>
+                        </PanelContainer>
+                    </BoxContainer>
+                    <!-- end-backmen: lobby-song -->
                 </Control>
             </BoxContainer>
             <!-- Right Panel -->
@@ -133,7 +151,14 @@
                     <!-- Gold line -->
                     <controls:HLine StyleClasses="highlight" Thickness="2" Access="Public" />
                     <controls:HSpacer Spacing="10" />
-                    <widgets:ChatBox Name="Chat" Access="Public" VerticalExpand="True" Margin="3 3 3 3" MinHeight="50" />
+                    <!-- start-backmen: lobby-chat-bg -->
+                    <PanelContainer VerticalExpand="True" Margin="3 3 3 3" MinHeight="50">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BackgroundColor="#00000099" />
+                        </PanelContainer.PanelOverride>
+                        <widgets:ChatBox Name="Chat" Access="Public" VerticalExpand="True" />
+                    </PanelContainer>
+                    <!-- end-backmen: lobby-chat-bg -->
                 </BoxContainer>
                 <TextureButton Name="CollapseButton"
                                 TexturePath="filled_right_arrow.svg.192dpi"

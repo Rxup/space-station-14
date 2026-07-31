@@ -6,8 +6,10 @@
   abstract: true
   noSpawn: true
   components:
+  # start-backmen: artifact-psi-zap
   - type: GlimmerSource
     secondsPerGlimmer: 60
+  # end-backmen: artifact-psi-zap
   # Visual
   - type: Sprite
     sprite: Objects/Specific/Xenoarchaeology/item_artifacts.rsi

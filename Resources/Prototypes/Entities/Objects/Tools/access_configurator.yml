@@ -48,6 +48,7 @@
       - Security
       - Service
       - Theatre
+      - Virology # backmen: virology-access
       - GenpopEnter
       - GenpopLeave
       privilegedIdSlot:
@@ -128,6 +129,7 @@
     - SyndicateAgent
     - Wizard
     - Xenoborg
+    - Virology # backmen: virology-access
     - GenpopEnter
     - GenpopLeave
     privilegedIdSlot:
