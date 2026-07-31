@@ -1355,7 +1355,7 @@ public sealed partial class ShipwreckedRuleSystem : GameRuleSystem<ShipwreckedRu
             false,
             true,
             Color.SeaGreen);
-        
+
         var announcementEv = new AnnouncementSpokeEvent(filter, _audioSystem.GetSound(ChatSystem.DefaultAnnouncementSound), AudioParams.Default.WithVolume(-2f), message);
         RaiseLocalEvent(announcementEv);
         //var audioPath = _audioSystem.GetSound(audio);

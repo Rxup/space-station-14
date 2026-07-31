@@ -132,7 +132,7 @@ public partial class WoundSystem
     }
 
     [PublicAPI]
-    public FixedPoint2 ApplyHealingRateMultipliers(Entity<WoundComponent?> wound, EntityUid woundable, FixedPoint2 severity, WoundableComponent? component = null)
+    public FixedPoint2 ApplyHealingRateMultipliersNullable(Entity<WoundComponent?> wound, EntityUid woundable, FixedPoint2 severity, WoundableComponent? component = null)
     {
         if (!WoundableQuery.Resolve(woundable, ref component, false))
             return severity;
@@ -149,6 +149,12 @@ public partial class WoundSystem
         var toMultiply =
             component.HealingMultipliers.Sum(multiplier => (float) multiplier.Value.Change) / component.HealingMultipliers.Count;
         return severity * toMultiply * woundHealingMultiplier;
+    }
+
+    [PublicAPI]
+    public FixedPoint2 ApplyHealingRateMultipliers(Entity<WoundComponent> wound, EntityUid woundable, FixedPoint2 severity, WoundableComponent? component = null)
+    {
+        return ApplyHealingRateMultipliersNullable(wound.AsNullable(), woundable, severity, component);
     }
 
     [PublicAPI]

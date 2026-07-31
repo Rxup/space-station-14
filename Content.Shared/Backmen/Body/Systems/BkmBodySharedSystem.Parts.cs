@@ -421,39 +421,6 @@ public partial class BkmBodySharedSystem
     #region RootPartManagement
 
     /// <summary>
-    /// Returns true if the partId is the root body container for the specified bodyId.
-    /// </summary>
-    public bool IsPartRoot(
-        EntityUid bodyId,
-        EntityUid partId,
-        BodyComponent? body = null,
-        BodyPartComponent? part = null)
-    {
-        return Resolve(partId, ref part)
-            && Resolve(bodyId, ref body)
-            && Containers.TryGetContainingContainer(bodyId, partId, out var container)
-            && container.ID == BodyRootContainerId;
-    }
-
-    /// <summary>
-    /// Returns true if we can attach the partId to the bodyId as the root entity.
-    /// </summary>
-    public bool CanAttachToRoot(
-        EntityUid bodyId,
-        EntityUid partId,
-        BodyComponent? body = null,
-        BodyPartComponent? part = null)
-    {
-        return false;
-    }
-
-    /// <summary>
-    /// Returns the root part of this body if it exists.
-    /// </summary>
-    public (EntityUid Entity, BodyPartComponent BodyPart)? GetRootPartOrNull(EntityUid bodyId, BodyComponent? body = null) =>
-        null;
-
-    /// <summary>
     /// Returns true if the partId can be attached to the parentId in the specified slot.
     /// </summary>
     public bool CanAttachPart(

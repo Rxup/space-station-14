@@ -18,6 +18,8 @@ public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableV
     [Dependency] private BkmBodySharedSystem _body = default!;
     [Dependency] private WoundSystem _wound = default!;
 
+    [Dependency] private SpriteSystem _sprite = default!;
+
     [Dependency] private IRobustRandom _random = default!;
 
     private const float AltBleedingSpriteChance = 0.15f;
@@ -29,8 +31,8 @@ public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableV
         SubscribeLocalEvent<WoundableVisualsComponent, ComponentInit>(InitializeEntity, after: [typeof(WoundSystem)]);
         SubscribeLocalEvent<WoundableVisualsComponent, ComponentStartup>(StartupEntity, after: [typeof(WoundSystem)]);
 
-        SubscribeLocalEvent<WoundableVisualsComponent, BodyPartRemovedEvent>(WoundableRemoved);
-        SubscribeLocalEvent<WoundableVisualsComponent, BodyPartAddedEvent>(WoundableConnected);
+        SubscribeLocalEvent<BodyComponent, BodyPartRemovedEvent>(WoundableRemoved);
+        SubscribeLocalEvent<BodyComponent, BodyPartAddedEvent>(WoundableConnected);
 
         SubscribeLocalEvent<WoundableVisualsComponent, WoundableIntegrityChangedEvent>(OnWoundableIntegrityChanged);
     }
@@ -73,41 +75,52 @@ public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableV
         UpdateWoundableVisuals(uid, component, bodySprite);
     }
 
-    private void WoundableConnected(EntityUid uid, WoundableVisualsComponent component, ref BodyPartAddedEvent args)
+    private void WoundableConnected(EntityUid uid, BodyComponent component, ref BodyPartAddedEvent args)
     {
-        if (!TryComp(args.Part.Comp.Body, out SpriteComponent? bodySprite))
+        //if (!component.ComplexBody)
+        //    return;
+
+        if (!TryComp(uid, out SpriteComponent? bodySprite)
+            || !TryComp(args.Part, out WoundableVisualsComponent? visuals))
             return;
 
-        EnsureDamageLayersOnSprite(component, bodySprite);
+        EnsureDamageLayersOnSprite(visuals, bodySprite);
     }
 
-    private void WoundableRemoved(EntityUid uid, WoundableVisualsComponent component, ref BodyPartRemovedEvent args)
+    // TODO: redo this
+    private void WoundableRemoved(EntityUid uid, BodyComponent component, ref BodyPartRemovedEvent args)
     {
-        var body = args.Part.Comp.Body;
-        if (!TryComp(body, out SpriteComponent? bodySprite))
+        // TODO: derive bodies by complexness
+        //if (!component.ComplexBody)
+        //    return;
+
+        if (!TryComp(uid, out SpriteComponent? bodySprite))
             return;
 
-        foreach (var part in _body.GetBodyPartChildren(uid))
+        var removedPart = args.Part;
+
+        Entity<SpriteComponent?> bodyEnt = (uid, bodySprite);
+        foreach (var part in _body.GetBodyPartChildren(removedPart))
         {
             if (!TryComp<WoundableVisualsComponent>(part.Id, out var woundableVisuals))
                 continue;
 
             foreach (var (group, _) in woundableVisuals.DamageOverlayGroups!)
             {
-                if (!bodySprite.LayerMapTryGet($"{woundableVisuals.OccupiedLayer}{group}", out var layer))
+                if (!_sprite.LayerMapTryGet(bodyEnt, $"{woundableVisuals.OccupiedLayer}{group}", out var layer, false))
                     continue;
 
-                bodySprite.LayerSetVisible(layer, false);
-                bodySprite.LayerMapRemove(layer);
+                _sprite.LayerSetVisible(bodyEnt, layer, false);
+                _sprite.RemoveLayer(bodyEnt, layer);
             }
 
-            if (bodySprite.LayerMapTryGet($"{woundableVisuals.OccupiedLayer}Bleeding", out var childBleeds))
+            if (_sprite.LayerMapTryGet(bodyEnt, $"{woundableVisuals.OccupiedLayer}Bleeding", out var childBleeds, false))
             {
-                bodySprite.LayerSetVisible(childBleeds, false);
-                bodySprite.LayerMapRemove(childBleeds);
+                _sprite.LayerSetVisible(bodyEnt, childBleeds, false);
+                _sprite.RemoveLayer(bodyEnt, childBleeds);
             }
 
-            if (TryComp(uid, out SpriteComponent? pieceSprite))
+            if (TryComp(part.Id, out SpriteComponent? pieceSprite))
                 UpdateWoundableVisuals(part.Id, woundableVisuals, pieceSprite);
         }
     }

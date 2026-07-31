@@ -10,7 +10,7 @@ namespace Content.Shared.Backmen.Surgery.Wounds.Components;
 public sealed partial class WoundComponent : Component
 {
     /// <summary>
-    /// 'Parent' of wound. Basically the entity to which the wound was applied.
+    /// The 'Parent' of the wound. Basically the entity to which the wound was applied.
     /// </summary>
     [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public EntityUid HoldingWoundable;
@@ -21,7 +21,7 @@ public sealed partial class WoundComponent : Component
     public FixedPoint2 WoundIntegrityDamage => WoundSeverityPoint * WoundableIntegrityMultiplier;
 
     /// <summary>
-    /// Actually, severity of the wound. The more the worse.
+    /// The severity of the wound. The more the worse.
     /// Directly depends on <see cref="WoundSeverity"/>
     /// </summary>
     [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
@@ -32,6 +32,12 @@ public sealed partial class WoundComponent : Component
     /// </summary>
     [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly), DataField("integrityMultiplier")]
     public FixedPoint2 WoundableIntegrityMultiplier = 1;
+
+    /// <summary>
+    /// With what chance will this wound merge when a new one occurs?
+    /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly), DataField("mergeChance")]
+    public FixedPoint2 MergeChance = 0.1;
 
     /// <summary>
     /// maybe some cool mechanical stuff to treat those wounds later. I genuinely have no idea
@@ -52,6 +58,7 @@ public sealed partial class WoundComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public TimeSpan CanHealAfter = TimeSpan.FromSeconds(15f);
 
+    /// TODO: This should be obliterated
     /// <summary>
     /// Damage group of this wound.
     /// </summary>

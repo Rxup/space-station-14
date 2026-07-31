@@ -18,7 +18,6 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.GameObjects;
 
 namespace Content.Server.Backmen.Tourniquet;
 
@@ -140,7 +139,7 @@ public sealed partial class TourniquetSystem : EntitySystem
         }
 
         // start-backmen: medical-targeting
-        if (!TryGetEntity(args.TargetWoundable, out var targetPart) || targetPart == null)
+        if (!TryGetEntity(args.TargetWoundable, out var targetPart))
         {
             _popup.PopupEntity(Loc.GetString("does-not-exist-rebell"), ent, args.User, PopupType.MediumCaution);
             args.Handled = true;
