@@ -152,7 +152,16 @@ public sealed partial class ShadowkinDarkSwapSystem : EntitySystem
 
     private void Shutdown(EntityUid uid, ShadowkinDarkSwapPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, component.ShadowkinDarkSwapAction);
+        var action = component.ShadowkinDarkSwapAction;
+        component.ShadowkinDarkSwapAction = null;
+
+        if (action is not { Valid: true })
+            return;
+
+        if (HasComp<ActionGrantComponent>(uid))
+            return;
+
+        _actions.RemoveAction(action);
     }
 
     public override void Update(float frameTime)

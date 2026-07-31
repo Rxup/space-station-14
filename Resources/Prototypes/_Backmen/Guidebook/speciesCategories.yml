@@ -6,4 +6,4 @@
     - SpeciesArachne
     - SpeciesFelinid
     - SpeciesOni
-    - Shadowkin
+    # Shadowkin is under main Species (Guidebook/species.yml) — do not list here or guidebook errors on duplicate id

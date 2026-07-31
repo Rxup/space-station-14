@@ -69,7 +69,16 @@ public sealed partial class ShadowkinRestSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, ShadowkinRestPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, component.ShadowkinRestAction);
+        var action = component.ShadowkinRestAction;
+        component.ShadowkinRestAction = null;
+
+        if (action is not { Valid: true })
+            return;
+
+        if (HasComp<ActionGrantComponent>(uid))
+            return;
+
+        _actions.RemoveAction(action);
     }
 
     private void Rest(EntityUid uid, ShadowkinRestPowerComponent component, ShadowkinRestEvent args)

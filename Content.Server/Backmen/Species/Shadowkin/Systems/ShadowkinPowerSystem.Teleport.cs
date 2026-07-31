@@ -65,7 +65,18 @@ public sealed partial class ShadowkinTeleportSystem : EntitySystem
 
     private void Shutdown(EntityUid uid, ShadowkinTeleportPowerComponent component, ComponentShutdown args)
     {
-        _actions.RemoveAction(uid, component.ShadowkinTeleportAction);
+        // ActionGrant owns the innate actions; removing here as well double-fires RemoveAction
+        // (grant already detached → ERRO on "never attached"). Only clean up if we AddAction'd ourselves.
+        var action = component.ShadowkinTeleportAction;
+        component.ShadowkinTeleportAction = null;
+
+        if (action is not { Valid: true })
+            return;
+
+        if (HasComp<ActionGrantComponent>(uid))
+            return;
+
+        _actions.RemoveAction(action);
     }
 
     private static readonly SoundSpecifier SoundTeleport = new SoundPathSpecifier("/Audio/Backmen/Effects/Shadowkin/Powers/teleport.ogg");
