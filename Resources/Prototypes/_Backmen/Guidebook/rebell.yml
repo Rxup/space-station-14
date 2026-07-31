@@ -1,0 +1,4 @@
+- type: guideEntry
+  id: Rebell
+  name: Система получения урона
+  text: "/ServerInfo/_Backmen/Guidebook/Rebell/rebell.xml"
