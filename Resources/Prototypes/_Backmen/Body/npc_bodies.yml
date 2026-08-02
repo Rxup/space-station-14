@@ -802,10 +802,6 @@
   components:
   - type: Organ
     category: HandLeft
-  - type: HandOrgan
-    handID: left
-    data:
-      location: Left
   - type: Sprite
     state: l_hand
 
@@ -816,10 +812,6 @@
   components:
   - type: Organ
     category: HandRight
-  - type: HandOrgan
-    handID: right
-    data:
-      location: Right
   - type: Sprite
     state: r_hand
 

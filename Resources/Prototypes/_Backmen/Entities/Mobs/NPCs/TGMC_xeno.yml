@@ -44,23 +44,6 @@
   - type: Insulated
   - type: Hands
     showInHands: true
-    hands:
-      left:
-        location: Left
-      right:
-        location: Right
-      innate-3:
-        location: Middle
-      innate-4:
-        location: Right
-      innate-5:
-        location: Left
-    sortedHands:
-    - left
-    - right
-    - innate-3
-    - innate-4
-    - innate-5
   - type: MobState
     allowedStates:
       - Alive
@@ -201,7 +184,7 @@
         Piercing: 2.5
         ArmorPiercing: 2.5
   - type: Puller
-    needsHands: true
+    needsHands: false
   - type: Polymorphable
     innatePolymorphs: [ LarvaToDrone, LarvaToRunner ]
   - type: Fixtures
@@ -816,7 +799,7 @@
     radius: 9
     color: "#ff3333"
   - type: Puller
-    needsHands: true
+    needsHands: false
   - type: NameIdentifier
     group: Xeno
   - type: Polymorphable

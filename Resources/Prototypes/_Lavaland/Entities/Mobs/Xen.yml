@@ -811,6 +811,18 @@
     name: Vortigaunt
     description: Monster from Xen
   - type: GhostTakeoverAvailable
+  # start-backmen: vortigaunt-speech
+  - type: Speech
+    speechVerb: LargeMob
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
+  - type: ShadowkinAccent
+  # end-backmen: vortigaunt-speech
 
 # start-backmen: vortigaunt-lightning
 - type: entity
