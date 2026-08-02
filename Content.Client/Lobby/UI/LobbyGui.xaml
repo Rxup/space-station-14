@@ -110,7 +110,8 @@
                             <!-- start-backmen: lobby-changelog-scroll -->
                             <ScrollContainer Name="ChangelogScroll" Access="Public"
                                             HScrollEnabled="False" VScrollEnabled="True"
-                                            HorizontalExpand="True" MaxHeight="320" MinHeight="80">
+                                            HorizontalExpand="True" ReturnMeasure="True"
+                                            MaxHeight="320" MinHeight="80">
                                 <BoxContainer Name="ChangelogContainer" Access="Public" Orientation="Vertical"
                                               HorizontalExpand="True" />
                             </ScrollContainer>
@@ -153,7 +154,8 @@
                             <graphics:StyleBoxFlat BackgroundColor="#000000C0" />
                         </PanelContainer.PanelOverride>
                         <ScrollContainer HScrollEnabled="False" VScrollEnabled="True"
-                                        MinHeight="80" MaxHeight="220" HorizontalExpand="True">
+                                        ReturnMeasure="True" MinHeight="80" MaxHeight="220"
+                                        HorizontalExpand="True">
                             <info:ServerInfo Name="ServerInfo" Access="Public" MinSize="0 60"
                                              Margin="6 6 6 6" HorizontalExpand="True" />
                         </ScrollContainer>
