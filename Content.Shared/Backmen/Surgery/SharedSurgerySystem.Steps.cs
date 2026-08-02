@@ -1107,6 +1107,14 @@ public abstract partial class SharedSurgerySystem
 
     private void OnTraumaTreatmentCheck(Entity<SurgeryTraumaTreatmentStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
     {
+        if (ent.Comp.TraumaType == TraumaType.BoneDamage)
+        {
+            // Wound trauma entities can be gone after surface healing while the bone is still broken.
+            if (_trauma.HasWoundableBoneDamage(args.Part) || _trauma.HasWoundableTrauma(args.Part, TraumaType.BoneDamage))
+                args.Cancelled = true;
+            return;
+        }
+
         if (_trauma.HasWoundableTrauma(args.Part, ent.Comp.TraumaType))
             args.Cancelled = true;
     }

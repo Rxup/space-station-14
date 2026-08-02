@@ -876,6 +876,16 @@ public sealed partial class ServerWoundSystem : WoundSystem
 
         Log.Debug($"Wound: {MetaData(woundEntity).EntityPrototype!.ID}({woundEntity}) removed on {MetaData(wound.HoldingWoundable).EntityPrototype!.ID}({wound.HoldingWoundable})");
 
+        // Remove trauma entities properly so bone/organ pain can resync instead of orphaning modifiers.
+        if (TryComp<TraumaInflicterComponent>(woundEntity, out var traumaInflicter))
+        {
+            foreach (var traumaUid in traumaInflicter.TraumaContainer.ContainedEntities.ToList())
+            {
+                if (TryComp<TraumaComponent>(traumaUid, out var traumaComp))
+                    Trauma.RemoveTrauma((traumaUid, traumaComp), (woundEntity, traumaInflicter));
+            }
+        }
+
         var woundableEnt = wound.HoldingWoundable;
         UpdateWoundableIntegrity(wound.HoldingWoundable, woundable);
         CheckWoundableSeverityThresholds(wound.HoldingWoundable, woundable);

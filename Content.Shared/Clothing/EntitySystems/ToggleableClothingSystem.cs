@@ -237,13 +237,18 @@ public sealed partial class ToggleableClothingSystem : EntitySystem
 
         if (!TryComp<ToggleableClothingComponent>(attached.AttachedUid, out var toggle)
             || toggle.Container == null
+            || toggle.ClothingUid == null // backmen: clear-ingestion-blockers
             || toggle.Container.ContainedEntity != null)
         {
             return false;
         }
 
         ToggleClothing(wearer, attached.AttachedUid, toggle);
-        return true;
+
+        // start-backmen: clear-ingestion-blockers
+        // Only report success if the attached item actually left the slot.
+        return !_inventorySystem.TryGetSlotEntity(wearer, slot, out var remaining) || remaining != equippedUid;
+        // end-backmen: clear-ingestion-blockers
     }
 
     /// <summary>

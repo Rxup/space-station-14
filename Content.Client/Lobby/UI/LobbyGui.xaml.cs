@@ -45,7 +45,7 @@ namespace Content.Client.Lobby.UI
                     CharacterSetupState.Visible = false;
                     Center.Visible = true;
                     LabelName.Visible = true;
-                    Changelog.Visible = false;
+                    Changelog.Visible = true; // backmen: lobby-changelog
                     // BACKMEN EDIT END
                     break;
                 case LobbyGuiState.CharacterSetup:

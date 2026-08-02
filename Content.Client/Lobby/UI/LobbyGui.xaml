@@ -99,22 +99,29 @@
                     </PanelContainer>
                     <!-- Changelog -->
                     <PanelContainer Name="Changelog" HorizontalAlignment="Right"
-                                    VerticalAlignment="Top" Visible="True">
-                        <!-- start-backmen: lobby-changelog-bg -->
+                                    VerticalAlignment="Top" Visible="True" MaxWidth="400">
+                        <!-- start-backmen: lobby-panel-bg -->
                         <PanelContainer.PanelOverride>
-                            <graphics:StyleBoxFlat BackgroundColor="#00000099" />
+                            <graphics:StyleBoxFlat BackgroundColor="#000000C0" />
                         </PanelContainer.PanelOverride>
-                        <!-- end-backmen: lobby-changelog-bg -->
+                        <!-- end-backmen: lobby-panel-bg -->
                         <BoxContainer Orientation="Vertical" Margin="8 8 8 8">
                             <RichTextLabel Name="ChangelogLabel" Access="Public" HorizontalAlignment="Center" />
-                            <BoxContainer Name="ChangelogContainer" Access="Public" Orientation="Vertical" />
+                            <!-- start-backmen: lobby-changelog-scroll -->
+                            <ScrollContainer Name="ChangelogScroll" Access="Public"
+                                            HScrollEnabled="False" VScrollEnabled="True"
+                                            HorizontalExpand="True" MaxHeight="320" MinHeight="80">
+                                <BoxContainer Name="ChangelogContainer" Access="Public" Orientation="Vertical"
+                                              HorizontalExpand="True" />
+                            </ScrollContainer>
+                            <!-- end-backmen: lobby-changelog-scroll -->
                         </BoxContainer>
                     </PanelContainer>
                     <!-- start-backmen: lobby-song -->
                     <BoxContainer Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                         <PanelContainer Margin="3 3 3 3">
                             <PanelContainer.PanelOverride>
-                                <graphics:StyleBoxFlat BackgroundColor="#00000099" />
+                                <graphics:StyleBoxFlat BackgroundColor="#000000C0" />
                             </PanelContainer.PanelOverride>
                             <BoxContainer Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Bottom"
                                           Margin="8 6 8 6">
@@ -140,8 +147,18 @@
                     <controls:HSpacer Spacing="10" />
                     <!-- Server info -->
                     <controls:NanoHeading Text="{Loc 'ui-lobby-server-info-block'}" />
-                    <info:ServerInfo Name="ServerInfo" Access="Public" MinSize="0 100" VerticalExpand="false"
-                                     Margin="3 3 3 3" MaxWidth="400" HorizontalAlignment="Left" />
+                    <!-- start-backmen: lobby-serverinfo-bg -->
+                    <PanelContainer Margin="3 3 3 3" MaxWidth="400" HorizontalAlignment="Left">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BackgroundColor="#000000C0" />
+                        </PanelContainer.PanelOverride>
+                        <ScrollContainer HScrollEnabled="False" VScrollEnabled="True"
+                                        MinHeight="80" MaxHeight="220" HorizontalExpand="True">
+                            <info:ServerInfo Name="ServerInfo" Access="Public" MinSize="0 60"
+                                             Margin="6 6 6 6" HorizontalExpand="True" />
+                        </ScrollContainer>
+                    </PanelContainer>
+                    <!-- end-backmen: lobby-serverinfo-bg -->
                     <Label Name="StationTime" Access="Public" FontColorOverride="{x:Static maths:Color.MediumVioletRed}"
                            Margin="3 3 3 3" HorizontalAlignment="Left" />
                     <Label Name="StartTime" Access="Public" FontColorOverride="{x:Static maths:Color.MediumVioletRed}"
@@ -154,7 +171,7 @@
                     <!-- start-backmen: lobby-chat-bg -->
                     <PanelContainer VerticalExpand="True" Margin="3 3 3 3" MinHeight="50">
                         <PanelContainer.PanelOverride>
-                            <graphics:StyleBoxFlat BackgroundColor="#00000099" />
+                            <graphics:StyleBoxFlat BackgroundColor="#000000C0" />
                         </PanelContainer.PanelOverride>
                         <widgets:ChatBox Name="Chat" Access="Public" VerticalExpand="True" />
                     </PanelContainer>

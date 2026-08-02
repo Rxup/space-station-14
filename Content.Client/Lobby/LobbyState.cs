@@ -312,7 +312,7 @@ namespace Content.Client.Lobby
                 .Where(cl => mergeNames.Contains(cl.Name))
                 .SelectMany(cl => cl.Entries)
                 .OrderByDescending(c => c.Time)
-                .Take(5)
+                .Take(12) // backmen: lobby-changelog-scroll
                 .ToList();
 
             if (mergedEntries.Count == 0)

@@ -207,13 +207,10 @@
         emote: Scream
         probability: 0.2
       # start-backmen: xeno-virus-acid
+      # No ReagentCondition: body has no SolutionComponent for Touch checks.
       - !type:ChemCauseDisease
-        conditions:
-        - !type:ReagentCondition
-          reagent: FluorosulfuricAcid
-          min: 1
+        scaling: false
         probability: 0.3
-        causeChance: 0.3
         disease: XenoVirus
       # end-backmen: xeno-virus-acid
   metabolisms:
@@ -233,13 +230,10 @@
         emote: Scream
         probability: 0.25
       # start-backmen: xeno-virus-acid
+      # No min:5 — acid burns at 3u/tick and never stacks that high from drinking.
       - !type:ChemCauseDisease
-        conditions:
-        - !type:ReagentCondition
-          reagent: FluorosulfuricAcid
-          min: 5
+        scaling: false
         probability: 0.3
-        causeChance: 0.3
         disease: XenoVirus
       # end-backmen: xeno-virus-acid
 

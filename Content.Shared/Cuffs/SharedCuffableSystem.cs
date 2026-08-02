@@ -410,6 +410,11 @@ namespace Content.Shared.Cuffs
         /// </summary>
         private void OnHandCountChanged(Entity<CuffableComponent> ent, ref HandCountChangedEvent message)
         {
+            // start-backmen: cuffable-terminating
+            if (TerminatingOrDeleted(ent))
+                return;
+            // end-backmen: cuffable-terminating
+
             // TODO: either don't store a container ref, or make it actually nullable.
             if (ent.Comp.Container == default!)
                 return;
@@ -423,6 +428,11 @@ namespace Content.Shared.Cuffs
 
                 var handcuffContainer = ent.Comp.Container;
                 var handcuffEntity = handcuffContainer.ContainedEntities[^1];
+
+                // start-backmen: cuffable-terminating
+                if (TerminatingOrDeleted(handcuffEntity))
+                    return;
+                // end-backmen: cuffable-terminating
 
                 _transform.PlaceNextTo(handcuffEntity, ent.Owner);
             }

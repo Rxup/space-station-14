@@ -48,6 +48,23 @@ public sealed partial class IngestionSystem
         Dirty(entity);
     }
 
+    // start-backmen: clear-ingestion-blockers
+    /// <summary>
+    /// Enables or disables an ingestion blocker. Used when NPC face-clearing cannot unequip the item.
+    /// </summary>
+    public void SetBlockerEnabled(Entity<IngestionBlockerComponent?> blocker, bool enabled)
+    {
+        if (!Resolve(blocker, ref blocker.Comp, false))
+            return;
+
+        if (blocker.Comp.Enabled == enabled)
+            return;
+
+        blocker.Comp.Enabled = enabled;
+        Dirty(blocker);
+    }
+    // end-backmen: clear-ingestion-blockers
+
     private void OnIngestionBlockerAttempt(Entity<IngestionBlockerComponent> entity, ref IngestionAttemptEvent args)
     {
         if (!args.Cancelled && entity.Comp.Enabled)

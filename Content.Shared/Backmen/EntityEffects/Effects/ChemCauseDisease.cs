@@ -9,7 +9,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared.Backmen.EntityEffects.Effects;
 
 /// <summary>
-/// Default metabolism for medicine reagents.
+/// Adds a disease to the metabolizing / reacting entity.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T, TEffect}"/>
 [UsedImplicitly]
@@ -19,9 +19,6 @@ public sealed partial class ChemCauseDiseaseEntityEffectSystem : EntityEffectSys
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<ChemCauseDisease> args)
     {
-        if (args.Scale != 1f)
-            return;
-
         _disease.TryAddDisease(entity, args.Effect.Disease);
     }
 }
@@ -34,12 +31,6 @@ public sealed partial class ChemCauseDisease : EntityEffectBase<ChemCauseDisease
     public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
         => Loc.GetString("reagent-effect-guidebook-chem-cause-disease", ("chance", Probability),
             ("disease", prototype.Index<DiseasePrototype>(Disease).Name));
-
-    /// <summary>
-    /// Chance it has each tick to cause disease, between 0 and 1
-    /// </summary>
-    [DataField]
-    public float CauseChance = 0.15f;
 
     /// <summary>
     /// The disease to add.

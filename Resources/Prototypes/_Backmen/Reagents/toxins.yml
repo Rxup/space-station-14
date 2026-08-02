@@ -34,11 +34,8 @@
         probability: 0.2
 # start-backmen: Disease
       - !type:ChemCauseDisease
-        conditions:
-        - !type:ReagentCondition
-          reagent: SlermQueenPlus
-          min: 1
-        causeChance: 0.3
+        scaling: false
+        probability: 0.3
         disease: XenoMaidVirus
 # end-backmen: Disease
   metabolisms:
@@ -47,11 +44,8 @@
       effects:
 # start-backmen: Disease
       - !type:ChemCauseDisease
-        conditions:
-        - !type:ReagentCondition
-          reagent: SlermQueenPlus
-          min: 5
-        causeChance: 0.3
+        scaling: false
+        probability: 0.3
         disease: XenoMaidVirus
       - !type:GenericStatusEffect
         key: SeeingRainbows

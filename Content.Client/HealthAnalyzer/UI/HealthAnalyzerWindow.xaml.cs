@@ -332,7 +332,10 @@ namespace Content.Client.HealthAnalyzer.UI
 
             var hasDisease = _entityManager.HasComponent<DiseasedComponent>(_target.Value); // backmen
             var hasTrauma = _trauma.HasBodyTrauma(_target.Value, TraumaType.OrganDamage); // backmen
-            var hasBoneDmg = _trauma.HasBodyTrauma(_target.Value, TraumaType.BoneDamage); // backmenm
+            // start-backmen: bone-damage-pain
+            var hasBoneDmg = _trauma.HasBodyBoneDamage(_target.Value)
+                || _trauma.HasBodyTrauma(_target.Value, TraumaType.BoneDamage);
+            // end-backmen: bone-damage-pain
             var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || hasDisease || hasTrauma || hasBoneDmg || msg.PainImmune == true
                 || msg.HungerAlert != null || msg.ThirstAlert != null; // backmen
 

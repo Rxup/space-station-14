@@ -30,6 +30,11 @@ public sealed partial class ExtraHandsEquipmentSystem : EntitySystem
 
     private void OnUnequipped(Entity<ExtraHandsEquipmentComponent> ent, ref GotUnequippedEvent args)
     {
+        // start-backmen: cuffable-terminating
+        if (TerminatingOrDeleted(args.EquipTarget))
+            return;
+        // end-backmen: cuffable-terminating
+
         if (!TryComp<HandsComponent>(args.EquipTarget, out var handsComp))
             return;
 

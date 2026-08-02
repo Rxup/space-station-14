@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body;
@@ -15,11 +16,14 @@ public partial class TraumaSystem
 {
     private const string BoneDamagePainId = "BoneDamage";
 
-    // start-backmen: bone-damage-pain-cleanup
     /// <summary>
-    /// Removes traumatic bone pain tied to a woundable once the bone is healthy again.
+    /// Keeps traumatic bone pain in sync with current bone integrity.
+    /// Clears pain when the bone is healthy; otherwise sets pain from remaining integrity loss.
     /// </summary>
-    protected void TryClearBoneDamagePain(EntityUid woundableUid)
+    protected void SyncBoneDamagePain(
+        EntityUid woundableUid,
+        BoneComponent bone,
+        FixedPoint2? integrityOverride = null)
     {
         if (!Body.TryGetWoundableBodyPartInfo(woundableUid, out var bodyUid, out _, out _))
             return;
@@ -27,13 +31,89 @@ public partial class TraumaSystem
         if (!Consciousness.TryGetNerveSystem(bodyUid, out var nerveSys))
             return;
 
-        Pain.TryRemovePainModifier(
-            nerveSys.Value.Owner,
-            woundableUid,
-            BoneDamagePainId,
-            nerveSys.Value.Comp);
+        // BoneIntegrityChangedEvent fires before BoneIntegrity is written — allow callers to pass NewIntegrity.
+        var integrity = integrityOverride ?? bone.BoneIntegrity;
+
+        if (integrity >= bone.IntegrityCap)
+        {
+            Pain.TryRemovePainModifier(
+                nerveSys.Value.Owner,
+                woundableUid,
+                BoneDamagePainId,
+                nerveSys.Value.Comp);
+            return;
+        }
+
+        var pain = (bone.IntegrityCap - integrity) * 2;
+        if (pain <= FixedPoint2.Zero)
+        {
+            Pain.TryRemovePainModifier(
+                nerveSys.Value.Owner,
+                woundableUid,
+                BoneDamagePainId,
+                nerveSys.Value.Comp);
+            return;
+        }
+
+        if (!Pain.TryChangePainModifier(
+                nerveSys.Value.Owner,
+                woundableUid,
+                BoneDamagePainId,
+                pain,
+                nerveSys.Value.Comp,
+                painType: PainType.TraumaticPain))
+        {
+            Pain.TryAddPainModifier(
+                nerveSys.Value.Owner,
+                woundableUid,
+                BoneDamagePainId,
+                pain,
+                PainType.TraumaticPain,
+                nerveSys.Value.Comp);
+        }
     }
-    // end-backmen: bone-damage-pain-cleanup
+
+    /// <summary>
+    /// Removes traumatic bone pain tied to a woundable once the bone is healthy again.
+    /// </summary>
+    protected void TryClearBoneDamagePain(EntityUid woundableUid)
+    {
+        if (!WoundableQuery.TryComp(woundableUid, out var woundable))
+        {
+            // Fall back to a blind remove if the woundable is gone.
+            if (!Body.TryGetWoundableBodyPartInfo(woundableUid, out var bodyUid, out _, out _))
+                return;
+
+            if (!Consciousness.TryGetNerveSystem(bodyUid, out var nerveSys))
+                return;
+
+            Pain.TryRemovePainModifier(
+                nerveSys.Value.Owner,
+                woundableUid,
+                BoneDamagePainId,
+                nerveSys.Value.Comp);
+            return;
+        }
+
+        var boneEnt = woundable.Bone.ContainedEntities.FirstOrNull();
+        if (boneEnt == null || !BoneQuery.TryComp(boneEnt, out var boneComp))
+        {
+            if (!Body.TryGetWoundableBodyPartInfo(woundableUid, out var bodyUid, out _, out _))
+                return;
+
+            if (!Consciousness.TryGetNerveSystem(bodyUid, out var nerveSys))
+                return;
+
+            Pain.TryRemovePainModifier(
+                nerveSys.Value.Owner,
+                woundableUid,
+                BoneDamagePainId,
+                nerveSys.Value.Comp);
+            return;
+        }
+
+        SyncBoneDamagePain(woundableUid, boneComp);
+    }
 
     private void InitBones()
     {
@@ -51,12 +131,10 @@ public partial class TraumaSystem
         if (!Body.TryGetWoundableBodyPartInfo(bone.Comp.BoneWoundable.Value, out var bodyUid, out var partType, out _))
             return;
 
+        SyncBoneDamagePain(bone.Comp.BoneWoundable.Value, bone.Comp);
+
         switch (args.NewSeverity)
         {
-            case BoneSeverity.Normal:
-                TryClearBoneDamagePain(bone.Comp.BoneWoundable.Value); // backmen: bone-damage-pain-cleanup
-                break;
-
             case BoneSeverity.Damaged:
                 _audio.PlayPvs(bone.Comp.BoneBreakSound, bodyUid, AudioParams.Default.WithVolume(-8f));
                 break;
@@ -94,9 +172,10 @@ public partial class TraumaSystem
                     RemoveTrauma(trauma);
                 }
             }
-
-            TryClearBoneDamagePain(bone.Comp.BoneWoundable.Value); // backmen: bone-damage-pain-cleanup
         }
+
+        // Keep analyzer pain in sync even when wounds (and trauma entities) are already gone.
+        SyncBoneDamagePain(bone.Comp.BoneWoundable.Value, bone.Comp, args.NewIntegrity);
 
         switch (partType)
         {
@@ -111,6 +190,40 @@ public partial class TraumaSystem
     #endregion
 
     #region Public API
+
+    /// <summary>
+    /// True if any body part has a bone that is not fully healthy (independent of wound trauma entities).
+    /// </summary>
+    [PublicAPI]
+    public bool HasBodyBoneDamage(EntityUid body, BodyComponent? bodyComp = null)
+    {
+        if (!Resolve(body, ref bodyComp, false))
+            return false;
+
+        foreach (var woundable in Body.GetWoundableTargets(body, bodyComp))
+        {
+            if (HasWoundableBoneDamage(woundable))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// True if this woundable's bone is damaged/broken, even when the wound trauma entities are gone.
+    /// </summary>
+    [PublicAPI]
+    public bool HasWoundableBoneDamage(EntityUid woundable, WoundableComponent? woundableComp = null)
+    {
+        if (!WoundableQuery.Resolve(woundable, ref woundableComp, false))
+            return false;
+
+        var boneEnt = woundableComp.Bone.ContainedEntities.FirstOrNull();
+        if (boneEnt == null || !BoneQuery.TryComp(boneEnt, out var bone))
+            return false;
+
+        return bone.BoneSeverity != BoneSeverity.Normal || bone.BoneIntegrity < bone.IntegrityCap;
+    }
 
     [PublicAPI]
     public virtual bool ApplyBoneTrauma(

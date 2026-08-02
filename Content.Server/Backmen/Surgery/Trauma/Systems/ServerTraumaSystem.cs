@@ -190,20 +190,8 @@ public sealed class ServerTraumaSystem : TraumaSystem
             switch (trauma)
             {
                 case TraumaType.BoneDamage:
-                    if (!Consciousness.TryGetNerveSystem(bodyUid, out var nerveSysB))
-                        break;
-
-                    if (ApplyBoneTrauma(targetChosen.Value, target, inflicter, severity))
-                    {
-                        Pain.TryAddPainModifier(
-                            nerveSysB.Value.Owner,
-                                target.Owner,
-                                "BoneDamage",
-                                severity * 2,
-                                PainType.TraumaticPain,
-                                nerveSysB.Value.Comp);
-                    }
-
+                    // Pain is synced from bone integrity in OnBoneIntegrityChanged / SyncBoneDamagePain.
+                    ApplyBoneTrauma(targetChosen.Value, target, inflicter, severity);
                     break;
 
                 case TraumaType.OrganDamage:
@@ -361,7 +349,7 @@ public sealed class ServerTraumaSystem : TraumaSystem
             }
 
             if (trauma.Comp.TraumaType == TraumaType.BoneDamage && trauma.Comp.HoldingWoundable is { } holdingWoundable)
-                TryClearBoneDamagePain(holdingWoundable); // backmen: bone-damage-pain-cleanup
+                TryClearBoneDamagePain(holdingWoundable); // syncs remaining bone pain, or clears if healed
         }
 
         QueueDel(trauma);
@@ -582,6 +570,8 @@ public sealed class ServerTraumaSystem : TraumaSystem
 
         AddTrauma(boneEnt, woundable, inflicter, TraumaType.BoneDamage, inflicterSeverity);
         ApplyDamageToBone(boneEnt, inflicterSeverity, boneComp);
+        // Integrity may be unchanged (already at 0) — still sync pain from current bone state.
+        SyncBoneDamagePain(woundable, boneComp);
 
         return true;
     }
