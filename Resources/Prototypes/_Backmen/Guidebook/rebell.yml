@@ -1,0 +1,12 @@
+- type: guideEntry
+  id: RebellGuide
+  name: guide-entry-rebell
+  text: "/ServerInfo/_Backmen/Guidebook/Rebell/rebell.xml"
+  children:
+  - Rebell
+
+- type: guideEntry
+  id: Rebell
+  name: guide-entry-rebell-damage
+  text: "/ServerInfo/_Backmen/Guidebook/Rebell/rebelldamage.xml"
+

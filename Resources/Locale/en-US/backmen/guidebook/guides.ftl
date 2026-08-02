@@ -15,3 +15,5 @@ guide-entry-special-actions = Special Actions
 guide-entry-mood = Mood
 guide-entry-shadowkin-lore = Shadowkin Lore
 guide-entry-superpsi = Super-Psi
+guide-entry-rebell-damage = Damage system
+guide-entry-rebell = ReBELL
