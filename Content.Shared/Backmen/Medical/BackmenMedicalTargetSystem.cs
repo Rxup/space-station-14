@@ -32,6 +32,42 @@ public sealed partial class BackmenMedicalTargetSystem : EntitySystem
     }
 
     // start-backmen: medical-targeting
+    /// <summary>
+    /// Whether <paramref name="candidate"/> is a valid topical heal target for <paramref name="healing"/>.
+    /// </summary>
+    public bool TryEvaluateHealCandidate(
+        EntityUid candidate,
+        HealingComponent healing,
+        out Dictionary<string, FixedPoint2> healDict,
+        out FixedPoint2 score)
+    {
+        healDict = new Dictionary<string, FixedPoint2>();
+        score = FixedPoint2.Zero;
+
+        if (!TryComp<WoundableComponent>(candidate, out var woundableComp))
+            return false;
+
+        healDict = healing.Damage.DamageDict
+            .Where(damage => _wounds.HasDamageOfType(candidate, damage.Key))
+            .ToDictionary(damage => damage.Key.Id, damage => damage.Value);
+
+        var bleeds = GetTotalBleeds(candidate, woundableComp);
+        if (bleeds > healing.UnableToHealBleedsThreshold
+            && (healing.BloodlossModifier != 0 || healDict.Count == 0))
+            return false;
+
+        foreach (var amount in healDict.Values)
+            score += FixedPoint2.Abs(amount);
+
+        if (healing.BloodlossModifier != 0)
+            score += bleeds;
+
+        if (healing.ModifyBloodLevel > 0)
+            score += FixedPoint2.New(0.01);
+
+        return score > 0;
+    }
+
     public bool TryResolveHealTarget(
         EntityUid body,
         EntityUid healer,
@@ -44,54 +80,28 @@ public sealed partial class BackmenMedicalTargetSystem : EntitySystem
         stuffToHeal = new Dictionary<string, FixedPoint2>();
         usedFallback = false;
 
-        if (!TryComp<TargetingComponent>(healer, out var targeting))
-            return false;
-
-        bool TryCandidate(EntityUid candidate, out Dictionary<string, FixedPoint2> healDict, out FixedPoint2 score)
-        {
-            healDict = new Dictionary<string, FixedPoint2>();
-            score = FixedPoint2.Zero;
-
-            if (!TryComp<WoundableComponent>(candidate, out var woundableComp))
-                return false;
-
-            healDict = healing.Damage.DamageDict
-                .Where(damage => _wounds.HasDamageOfType(candidate, damage.Key))
-                .ToDictionary(damage => damage.Key.Id, damage => damage.Value);
-
-            var bleeds = GetTotalBleeds(candidate, woundableComp);
-            if (bleeds > healing.UnableToHealBleedsThreshold
-                && (healing.BloodlossModifier != 0 || healDict.Count == 0))
-                return false;
-
-            foreach (var amount in healDict.Values)
-                score += FixedPoint2.Abs(amount);
-
-            if (healing.BloodlossModifier != 0)
-                score += bleeds;
-
-            if (healing.ModifyBloodLevel > 0)
-                score += FixedPoint2.New(0.01);
-
-            return score > 0;
-        }
-
-        var (partType, symmetry) = _body.ConvertTargetBodyPart(targeting.Target);
         var selected = EntityUid.Invalid;
-        if (_body.TryGetWoundableTargetByType(body, partType, symmetry, out selected)
-            && TryCandidate(selected, out stuffToHeal, out _))
+
+        // Prefer the healer's aimed part when Targeting is present and that part is still a candidate.
+        if (TryComp<TargetingComponent>(healer, out var targeting))
         {
-            woundable = selected;
-            return true;
+            var (partType, symmetry) = _body.ConvertTargetBodyPart(targeting.Target);
+            if (_body.TryGetWoundableTargetByType(body, partType, symmetry, out selected)
+                && TryEvaluateHealCandidate(selected, healing, out stuffToHeal, out _))
+            {
+                woundable = selected;
+                return true;
+            }
         }
 
+        // Auto / fallback: pick the best woundable the item can actually treat.
         EntityUid? best = null;
         var bestScore = FixedPoint2.Zero;
         Dictionary<string, FixedPoint2>? bestHealDict = null;
 
         foreach (var candidate in _body.GetWoundableTargets(body))
         {
-            if (!TryCandidate(candidate, out var healDict, out var score))
+            if (!TryEvaluateHealCandidate(candidate, healing, out var healDict, out var score))
                 continue;
 
             if (score <= bestScore)

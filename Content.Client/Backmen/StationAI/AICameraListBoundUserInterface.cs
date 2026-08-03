@@ -19,28 +19,27 @@ public sealed class AICameraListBoundUserInterface : BoundUserInterface
     {
         base.Open();
         Window?.Close();
-        EntityUid? gridUid = null;
-
-        if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
-        {
-            gridUid = xform.GridUid;
-        }
 
         var aiSystem = EntMan.System<SharedStationAiSystem>();
 
         if (!aiSystem.TryGetCore(Owner, out var ai) ||
             ai.Comp?.RemoteEntity == null)
         {
-            //Logger.ErrorS("AICameraListBoundUserInterface","AI Eye component not found");
-            //Close();
             return;
         }
+
+        EntityUid? gridUid = null;
+        if (EntMan.TryGetComponent<TransformComponent>(ai.Owner, out var coreXform))
+            gridUid = coreXform.GridUid;
+        else if (EntMan.TryGetComponent<TransformComponent>(Owner, out var xform))
+            gridUid = xform.GridUid;
 
         Window = new AICameraList(gridUid, Owner, ai.Comp.RemoteEntity.Value);
         Window.OpenCentered();
         Window.OnClose += Close;
         Window.WarpToCamera += WindowOnWarpToCamera;
         Window.Refresh.OnPressed += RefreshOnOnPressed;
+        SendMessage(new EyeCamRequest());
     }
 
     private void RefreshOnOnPressed(BaseButton.ButtonEventArgs obj)

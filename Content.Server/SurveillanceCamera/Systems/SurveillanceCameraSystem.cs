@@ -420,6 +420,17 @@ public sealed partial class SurveillanceCameraSystem : SharedSurveillanceCameraS
 
         _appearance.SetData(uid, SurveillanceCameraVisualsKey.Key, key, appearance);
     }
+
+    // start-backmen: ai-camera-viewed
+    /// <summary>
+    /// Re-evaluates camera appearance (Active / InUse / Disabled).
+    /// Used by AI eye viewers that track presence outside ActivePvsViewers.
+    /// </summary>
+    public void RefreshVisuals(EntityUid uid, SurveillanceCameraComponent? component = null)
+    {
+        UpdateVisuals(uid, component);
+    }
+    // end-backmen: ai-camera-viewed
 }
 
 public sealed class OnSurveillanceCameraViewerAddEvent : EntityEventArgs

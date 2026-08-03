@@ -9,6 +9,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.Backmen.Targeting;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -171,7 +172,8 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
         var showAlerts = state.Unrevivable == true
             || state.Bleeding == true
-            || state.OrganAlerts is { Count: > 0 };
+            || state.OrganAlerts is { Count: > 0 }
+            || state.BoneAlerts is { Count: > 0 }; // backmen: bone-damage-alerts
 
         AlertsDivider.Visible = showAlerts;
         AlertsContainer.Visible = showAlerts;
@@ -211,7 +213,46 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
                 });
             }
         }
+
+        // start-backmen: bone-damage-alerts
+        if (state.BoneAlerts is { Count: > 0 } boneAlerts)
+        {
+            foreach (var alert in boneAlerts)
+            {
+                if (alert.Severity is not (BoneSeverity.Damaged or BoneSeverity.Broken))
+                    continue;
+
+                var partName = Loc.GetString(GetTargetBodyPartLocId(alert.BodyPart));
+                var locId = alert.Severity == BoneSeverity.Broken
+                    ? "health-analyzer-window-bone-broken"
+                    : "health-analyzer-window-bone-damaged";
+                AlertsContainer.AddChild(new RichTextLabel
+                {
+                    Text = Loc.GetString(locId, ("part", partName)),
+                    Margin = new Thickness(0, 4),
+                    MaxWidth = 300
+                });
+            }
+        }
+        // end-backmen: bone-damage-alerts
     }
+
+    // start-backmen: bone-damage-alerts
+    private static string GetTargetBodyPartLocId(TargetBodyPart part)
+    {
+        var name = part.ToString();
+        var chars = new System.Text.StringBuilder(name.Length + 4);
+        for (var i = 0; i < name.Length; i++)
+        {
+            var c = name[i];
+            if (i > 0 && char.IsUpper(c))
+                chars.Append('-');
+            chars.Append(char.ToLowerInvariant(c));
+        }
+
+        return $"target-body-part-{chars}";
+    }
+    // end-backmen: bone-damage-alerts
 
     // start-backmen: analyzer-authoritative-damage
     private void DrawDiagnosticGroups(

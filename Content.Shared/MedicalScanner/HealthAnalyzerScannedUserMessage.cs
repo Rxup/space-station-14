@@ -59,6 +59,9 @@ public sealed class HealthAnalyzerScannedUserMessage : BoundUserInterfaceMessage
     // start-backmen: organ-damage-alerts
     public List<HealthAnalyzerOrganAlert>? OrganAlerts => State.OrganAlerts;
     // end-backmen: organ-damage-alerts
+    // start-backmen: bone-damage-alerts
+    public List<HealthAnalyzerBoneAlert>? BoneAlerts => State.BoneAlerts;
+    // end-backmen: bone-damage-alerts
     // start-backmen: analyzer-authoritative-damage
     public HealthAnalyzerDamageDisplay? Damage => State.Damage;
     // end-backmen: analyzer-authoritative-damage
@@ -95,11 +98,14 @@ public struct HealthAnalyzerUiState
     // start-backmen: organ-damage-alerts
     public List<HealthAnalyzerOrganAlert>? OrganAlerts;
     // end-backmen: organ-damage-alerts
+    // start-backmen: bone-damage-alerts
+    public List<HealthAnalyzerBoneAlert>? BoneAlerts;
+    // end-backmen: bone-damage-alerts
     // start-backmen: analyzer-authoritative-damage
     public HealthAnalyzerDamageDisplay? Damage;
     // end-backmen: analyzer-authoritative-damage
 
-    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null, float hungerLevel = float.NaN, float thirstLevel = float.NaN, HungerThreshold? hungerAlert = null, ThirstThreshold? thirstAlert = null, List<HealthAnalyzerOrganAlert>? organAlerts = null, HealthAnalyzerDamageDisplay? damage = null) // backmen: analyzer-authoritative-damage
+    public HealthAnalyzerUiState(NetEntity? targetEntity, float temperature, float bloodLevel, bool? scanMode, bool? bleeding, bool? unrevivable, Dictionary<TargetBodyPart, WoundableSeverity>? body, NetEntity? part = null, Dictionary<string, float>? painCauses = null, float? totalPain = null, bool? painImmune = null, float hungerLevel = float.NaN, float thirstLevel = float.NaN, HungerThreshold? hungerAlert = null, ThirstThreshold? thirstAlert = null, List<HealthAnalyzerOrganAlert>? organAlerts = null, HealthAnalyzerDamageDisplay? damage = null, List<HealthAnalyzerBoneAlert>? boneAlerts = null) // backmen: bone-damage-alerts
     {
         TargetEntity = targetEntity;
         Temperature = temperature;
@@ -122,6 +128,7 @@ public struct HealthAnalyzerUiState
         OrganAlerts = organAlerts;
         // end-backmen: organ-damage-alerts
         Damage = damage; // backmen: analyzer-authoritative-damage
+        BoneAlerts = boneAlerts; // backmen: bone-damage-alerts
     }
 }
 

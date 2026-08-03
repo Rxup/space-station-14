@@ -149,7 +149,7 @@
                     <!-- Server info -->
                     <controls:NanoHeading Text="{Loc 'ui-lobby-server-info-block'}" />
                     <!-- start-backmen: lobby-serverinfo-bg -->
-                    <PanelContainer Margin="3 3 3 3" MaxWidth="400" HorizontalAlignment="Left">
+                    <PanelContainer Margin="3 3 3 3" HorizontalExpand="True">
                         <PanelContainer.PanelOverride>
                             <graphics:StyleBoxFlat BackgroundColor="#000000C0" />
                         </PanelContainer.PanelOverride>
@@ -161,10 +161,19 @@
                         </ScrollContainer>
                     </PanelContainer>
                     <!-- end-backmen: lobby-serverinfo-bg -->
-                    <Label Name="StationTime" Access="Public" FontColorOverride="{x:Static maths:Color.MediumVioletRed}"
-                           Margin="3 3 3 3" HorizontalAlignment="Left" />
-                    <Label Name="StartTime" Access="Public" FontColorOverride="{x:Static maths:Color.MediumVioletRed}"
-                           Margin="3 3 3 3" StyleClasses="Label" HorizontalExpand="True" />
+                    <!-- start-backmen: lobby-roundtime-bg -->
+                    <PanelContainer Margin="3 3 3 3" HorizontalExpand="True">
+                        <PanelContainer.PanelOverride>
+                            <graphics:StyleBoxFlat BackgroundColor="#000000C0" />
+                        </PanelContainer.PanelOverride>
+                        <BoxContainer Orientation="Vertical" Margin="6 6 6 6" HorizontalExpand="True">
+                            <Label Name="StationTime" Access="Public" FontColorOverride="{x:Static maths:Color.MediumVioletRed}"
+                                   HorizontalAlignment="Left" />
+                            <Label Name="StartTime" Access="Public" FontColorOverride="{x:Static maths:Color.MediumVioletRed}"
+                                   StyleClasses="Label" HorizontalExpand="True" />
+                        </BoxContainer>
+                    </PanelContainer>
+                    <!-- end-backmen: lobby-roundtime-bg -->
                     <controls:HSpacer Spacing="5" />
                     <BoxContainer MinHeight="10" />
                     <!-- Gold line -->

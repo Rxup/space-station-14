@@ -1,11 +1,13 @@
 using Content.IntegrationTests.Fixtures;
 using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Server.Backmen.Surgery.Pain.Systems;
+using Content.Server.Backmen.Surgery.Trauma.Systems;
 using Content.Server.Body.Systems;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
 using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Surgery.Wounds.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
@@ -18,6 +20,7 @@ using Content.Shared.Backmen.Targeting;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.IntegrationTests.Tests.Backmen.Medical;
 
@@ -154,6 +157,51 @@ public sealed class MorphinePainTest : GameTest
                 statusSys.HasStatusEffect(human, "StatusEffectDrowsiness"),
                 Is.True,
                 "Morphine should apply drowsiness via StatusEffectDrowsiness at >=12u.");
+        });
+    }
+
+    [Test]
+    public async Task Morphine_SuppressesBoneTraumaticPain()
+    {
+        var map = await Pair.CreateTestMap();
+        var bloodstreamSys = Server.EntMan.System<BloodstreamSystem>();
+        var bodySys = Server.EntMan.System<BkmBodySharedSystem>();
+        var trauma = Server.EntMan.System<ServerTraumaSystem>();
+        EntityUid human = default;
+        float painBeforeMorphine = 0;
+
+        await Server.WaitPost(() =>
+        {
+            human = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
+
+            Assert.That(Server.EntMan.TryGetComponent(human, out ConsciousnessComponent? consciousness), Is.True);
+            Assert.That(consciousness!.NerveSystem, Is.Not.Null);
+
+            Assert.That(
+                bodySys.TryGetWoundableTargetByType(human, BodyPartType.Leg, BodyPartSymmetry.Left, out var leg),
+                Is.True);
+            Assert.That(Server.EntMan.TryGetComponent(leg, out WoundableComponent? woundable), Is.True);
+            var boneEnt = woundable!.Bone.ContainedEntities.FirstOrNull();
+            Assert.That(boneEnt, Is.Not.Null);
+            Assert.That(trauma.SetBoneIntegrity(boneEnt.Value, FixedPoint2.Zero), Is.True);
+
+            painBeforeMorphine = (float) Server.EntMan.GetComponent<NerveSystemComponent>(consciousness.NerveSystem!.Value).Pain;
+            Assert.That(painBeforeMorphine, Is.GreaterThan(0), "Broken bone should cause traumatic pain.");
+
+            Assert.That(Server.EntMan.TryGetComponent(human, out BloodstreamComponent? stream), Is.True);
+            var morphine = new Solution();
+            morphine.AddReagent(MorphineReagent, FixedPoint2.New(10));
+            Assert.That(bloodstreamSys.TryAddToBloodstream((human, stream), morphine), Is.True);
+        });
+
+        await Pair.RunTicksSync(90);
+
+        await Server.WaitAssertion(() =>
+        {
+            var consciousness = Server.EntMan.GetComponent<ConsciousnessComponent>(human);
+            var painAfter = (float) Server.EntMan.GetComponent<NerveSystemComponent>(consciousness.NerveSystem!.Value).Pain;
+            Assert.That(painAfter, Is.LessThan(painBeforeMorphine),
+                "Morphine should suppress traumatic bone pain, not only wound pain.");
         });
     }
 }

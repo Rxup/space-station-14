@@ -9,6 +9,9 @@
     useDelay: 3
     priority: 17
     checkCanInteract: false
+  - type: TargetAction
+    checkCanAccess: false
+    range: -1
   - type: WorldTargetAction
     event: !type:AIEyeCampShootActionEvent
 

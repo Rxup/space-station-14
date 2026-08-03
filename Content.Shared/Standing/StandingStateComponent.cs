@@ -1,5 +1,6 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization; // backmen: standing-state-net
 
 namespace Content.Shared.Standing;
 
@@ -57,6 +58,7 @@ public sealed partial class StandingStateComponent : Component
 }
 
 // BACKMEN EDIT START
+[Serializable, NetSerializable]
 public enum StandingState
 {
     Lying,
