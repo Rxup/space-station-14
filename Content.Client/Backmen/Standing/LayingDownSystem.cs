@@ -39,24 +39,30 @@ public sealed partial class LayingDownSystem : SharedLayingDownSystem
 
     private void OnChangeStanding(Entity<StandingStateComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if(_animation.HasRunningAnimation(ent, "rotate"))
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
 
-        if (!TryComp<SpriteComponent>(ent, out var sprite))
-        {
-            return;
-        }
+        // PVS detach pauses entities and freezes in-flight "rotate" animations.
+        // Skipping the visual rebuild while that key is still present leaves the old
+        // lying sprite after re-entry even though StandingState/speed already updated.
+        if (_animation.HasRunningAnimation(ent, "rotate"))
+            _animation.Stop(ent.Owner, null, "rotate");
 
         if (ent.Comp.Standing)
         {
-            _sprites.SetRotation((ent, sprite), Angle.Zero);
+            var vertical = Angle.Zero;
+            if (TryComp<RotationVisualsComponent>(ent, out var standingRotation))
+                vertical = standingRotation.VerticalRotation;
+
+            _sprites.SetRotation((ent, sprite), vertical);
             return;
         }
 
-        if (sprite.Rotation != Angle.FromDegrees(270) && sprite.Rotation != Angle.FromDegrees(90))
-        {
-            _sprites.SetRotation((ent, sprite), Angle.FromDegrees(270));
-        }
+        var horizontal = Angle.FromDegrees(270);
+        if (TryComp<RotationVisualsComponent>(ent, out var lyingRotation))
+            horizontal = lyingRotation.HorizontalRotation;
+
+        _sprites.SetRotation((ent, sprite), horizontal);
     }
 
     protected override bool GetAutoGetUp(Entity<LayingDownComponent> ent, ICommonSession session)

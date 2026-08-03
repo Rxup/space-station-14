@@ -4,6 +4,7 @@ using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain;
 using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Surgery.Steps.Parts;
+using Content.Shared.Backmen.Surgery.Traumas;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Traumas.Systems;
 using Content.Shared.Backmen.Surgery.Wounds.Components;
@@ -325,7 +326,10 @@ public abstract partial class SharedSurgerySystem : EntitySystem
 
         // inverted = not cancelled (no trauma present), not inverted = cancelled (trauma present)
         args.Cancelled = !ent.Comp.Inverted;
-        if (_trauma.HasWoundableTrauma(args.Part, ent.Comp.TraumaType))
+        // BoneDamage trauma entities are cleaned up with wounds; bone integrity may still be damaged.
+        var traumaPresent = _trauma.HasWoundableTrauma(args.Part, ent.Comp.TraumaType)
+            || ent.Comp.TraumaType == TraumaType.BoneDamage && _trauma.HasWoundableBoneDamage(args.Part);
+        if (traumaPresent)
             args.Cancelled = ent.Comp.Inverted;
         // if trauma is present and inverted - cancelled; if trauma is NOT present and inverted - not cancelled
         // if trauma is NOT present and NOT inverted = cancelled; if trauma is present and NOT inverted = not cancelled

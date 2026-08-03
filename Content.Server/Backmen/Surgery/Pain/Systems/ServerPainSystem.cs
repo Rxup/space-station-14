@@ -505,18 +505,30 @@ public sealed partial class ServerPainSystem : PainSystem
         if (!TryComp<OrganComponent>(uid, out var organ) || !organ.Body.HasValue)
             return;
 
-        var totalPain = FixedPoint2.Zero;
         var woundPain = FixedPoint2.Zero;
+        var otherPain = FixedPoint2.Zero;
+        var suppressant = FixedPoint2.Zero;
 
         foreach (var modifier in nerveSys.Modifiers)
         {
-            if (modifier.Value.PainType == PainType.WoundPain)
-                woundPain += ApplyModifiersToPain(modifier.Key.Item1, modifier.Value.Change, nerveSys, modifier.Value.PainType);
+            var applied = ApplyModifiersToPain(modifier.Key.Item1, modifier.Value.Change, nerveSys, modifier.Value.PainType);
+            // Negative modifiers (e.g. Morphine PainSuppressant) must reduce traumatic/bone pain too —
+            // folding them into WoundPain cancels them out of the traumatic remainder.
+            if (applied < FixedPoint2.Zero)
+            {
+                suppressant += applied;
+                continue;
+            }
 
-            totalPain += ApplyModifiersToPain(modifier.Key.Item1, modifier.Value.Change, nerveSys, modifier.Value.PainType);
+            if (modifier.Value.PainType == PainType.WoundPain)
+                woundPain += applied;
+            else
+                otherPain += applied;
         }
 
-        var newPain = FixedPoint2.Clamp(woundPain, 0, nerveSys.SoftPainCap) + totalPain - woundPain;
+        var newPain = FixedPoint2.Max(
+            FixedPoint2.Zero,
+            FixedPoint2.Clamp(woundPain, 0, nerveSys.SoftPainCap) + otherPain + suppressant);
 
         // throw away the scream, so they instantly do not overlap pain sounds
         nerveSys.NextPainScream = Timing.CurTime + _random.Next(nerveSys.PainScreamsIntervalMin, nerveSys.PainScreamsIntervalMax);

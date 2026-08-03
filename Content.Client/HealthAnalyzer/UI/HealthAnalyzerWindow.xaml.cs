@@ -332,11 +332,10 @@ namespace Content.Client.HealthAnalyzer.UI
 
             var hasDisease = _entityManager.HasComponent<DiseasedComponent>(_target.Value); // backmen
             var hasTrauma = _trauma.HasBodyTrauma(_target.Value, TraumaType.OrganDamage); // backmen
-            // start-backmen: bone-damage-pain
-            var hasBoneDmg = _trauma.HasBodyBoneDamage(_target.Value)
-                || _trauma.HasBodyTrauma(_target.Value, TraumaType.BoneDamage);
-            // end-backmen: bone-damage-pain
-            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || hasDisease || hasTrauma || hasBoneDmg || msg.PainImmune == true
+            // start-backmen: bone-damage-alerts
+            var hasBoneAlerts = msg.BoneAlerts is { Count: > 0 };
+            // end-backmen: bone-damage-alerts
+            var showAlerts = msg.Unrevivable == true || msg.Bleeding == true || hasDisease || hasTrauma || hasBoneAlerts || msg.PainImmune == true
                 || msg.HungerAlert != null || msg.ThirstAlert != null; // backmen
 
             AlertsDivider.Visible = showAlerts;
@@ -392,16 +391,28 @@ namespace Content.Client.HealthAnalyzer.UI
                 AlertsContainer.AddChild(organTraumaLabel);
             }
 
-            if (hasBoneDmg)
+            // start-backmen: bone-damage-alerts
+            if (msg.BoneAlerts is { Count: > 0 } boneAlerts)
             {
-                var boneTraumaLabel = new RichTextLabel
+                foreach (var alert in boneAlerts)
                 {
-                    Margin = new Thickness(0, 4),
-                    MaxWidth = 300,
-                };
-                boneTraumaLabel.SetMessage(Loc.GetString("health-analyzer-window-bone-damage-present"), defaultColor: Color.Red);
-                AlertsContainer.AddChild(boneTraumaLabel);
+                    if (alert.Severity is not (BoneSeverity.Damaged or BoneSeverity.Broken))
+                        continue;
+
+                    var partName = Loc.GetString(GetTargetBodyPartLocId(alert.BodyPart));
+                    var locId = alert.Severity == BoneSeverity.Broken
+                        ? "health-analyzer-window-bone-broken"
+                        : "health-analyzer-window-bone-damaged";
+                    var boneTraumaLabel = new RichTextLabel
+                    {
+                        Margin = new Thickness(0, 4),
+                        MaxWidth = 300,
+                    };
+                    boneTraumaLabel.SetMarkup(Loc.GetString(locId, ("part", partName)));
+                    AlertsContainer.AddChild(boneTraumaLabel);
+                }
             }
+            // end-backmen: bone-damage-alerts
 
             if (msg.PainImmune == true)
             {
@@ -640,6 +651,23 @@ namespace Content.Client.HealthAnalyzer.UI
                     damageTypes["Bloodloss"] += amount;
             }
         }
+
+        // start-backmen: bone-damage-alerts
+        private static string GetTargetBodyPartLocId(TargetBodyPart part)
+        {
+            var name = part.ToString();
+            var chars = new System.Text.StringBuilder(name.Length + 4);
+            for (var i = 0; i < name.Length; i++)
+            {
+                var c = name[i];
+                if (i > 0 && char.IsUpper(c))
+                    chars.Append('-');
+                chars.Append(char.ToLowerInvariant(c));
+            }
+
+            return $"target-body-part-{chars}";
+        }
+        // end-backmen: bone-damage-alerts
         // End-backmen: surgery
     }
 }

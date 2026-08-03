@@ -16,8 +16,10 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Backmen.Medical;
 using Content.Shared.Backmen.Surgery.Traumas;
+using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds; // backmen: wounding
 using Content.Shared.MedicalScanner;
+using Robust.Shared.Utility;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.PowerCell;
@@ -75,7 +77,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         SubscribeLocalEvent<HealthAnalyzerComponent, EntGotInsertedIntoContainerMessage>(OnInsertedIntoContainer);
         SubscribeLocalEvent<HealthAnalyzerComponent, ItemToggledEvent>(OnToggled);
         SubscribeLocalEvent<HealthAnalyzerComponent, DroppedEvent>(OnDropped);
-        SubscribeLocalEvent<DamageableComponent, DamageChangedEvent>(OnScannedPatientDamageChanged); // backmen: analyzer-live-update
         // start-backmen: surgery
         Subs.BuiEvents<HealthAnalyzerComponent>(HealthAnalyzerUiKey.Key, subs =>
         {
@@ -83,28 +84,6 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         });
         // end-backmen: surgery
     }
-
-    // start-backmen: analyzer-live-update
-    private void OnScannedPatientDamageChanged(Entity<DamageableComponent> ent, ref DamageChangedEvent args)
-    {
-        if (args.DamageDelta is not { } delta || delta.Empty)
-            return;
-
-        RefreshAnalyzersScanning(ent);
-    }
-
-    private void RefreshAnalyzersScanning(EntityUid patient)
-    {
-        var analyzerQuery = EntityQueryEnumerator<HealthAnalyzerComponent>();
-        while (analyzerQuery.MoveNext(out var analyzer, out var component))
-        {
-            if (component.ScannedEntity != patient)
-                continue;
-
-            UpdateScannedUser(analyzer, patient, true, component.CurrentBodyPart);
-        }
-    }
-    // end-backmen: analyzer-live-update
 
     public override void Update(float frameTime)
     {
@@ -371,6 +350,52 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
         }
         // end-backmen: organ-damage-alerts
 
+        // start-backmen: bone-damage-alerts
+        List<HealthAnalyzerBoneAlert>? boneAlerts = null;
+        if (HasComp<BodyComponent>(entity))
+        {
+            boneAlerts = new List<HealthAnalyzerBoneAlert>();
+            var seenParts = new HashSet<TargetBodyPart>();
+
+            foreach (var woundable in _bodySystem.GetWoundableTargets(entity))
+            {
+                if (!TryComp<WoundableComponent>(woundable, out var woundableComp))
+                    continue;
+
+                var boneEnt = woundableComp.Bone.ContainedEntities.FirstOrNull();
+                if (boneEnt == null || !TryComp<BoneComponent>(boneEnt, out var bone))
+                    continue;
+
+                if (bone.BoneSeverity == BoneSeverity.Normal && bone.BoneIntegrity >= bone.IntegrityCap)
+                    continue;
+
+                TargetBodyPart? targetPart = null;
+                if (TryComp<BodyPartComponent>(woundable, out var bodyPart))
+                    targetPart = _bodySystem.GetTargetBodyPart(bodyPart);
+                else if (TryComp<OrganComponent>(woundable, out var organ)
+                         && organ.Category is { } category
+                         && TargetBodyPartMapping.TryGetTargetPart(category, out var mapped))
+                    targetPart = mapped;
+
+                if (targetPart is not { } resolvedPart || !seenParts.Add(resolvedPart))
+                    continue;
+
+                var severity = bone.BoneSeverity;
+                if (severity == BoneSeverity.Normal)
+                    severity = BoneSeverity.Damaged;
+
+                boneAlerts.Add(new HealthAnalyzerBoneAlert
+                {
+                    BodyPart = resolvedPart,
+                    Severity = severity,
+                });
+            }
+
+            if (boneAlerts.Count == 0)
+                boneAlerts = null;
+        }
+        // end-backmen: bone-damage-alerts
+
         // start-backmen: analyzer-authoritative-damage
         var damageDisplay = GetDamageDisplay(entity, part, painCauses);
 
@@ -391,7 +416,8 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
             hungerAlert,
             thirstAlert,
             organAlerts,
-            damageDisplay);
+            damageDisplay,
+            boneAlerts);
     }
 
     private HealthAnalyzerDamageDisplay GetDamageDisplay(
