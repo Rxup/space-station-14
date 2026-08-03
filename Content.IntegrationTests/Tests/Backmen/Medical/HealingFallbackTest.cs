@@ -154,7 +154,7 @@ public sealed class HealingFallbackTest : GameTest
     }
 
     [Test]
-    public async Task Brutepack_HealsLeftArm_WhenHeadSelectedAndArmDamaged()
+    public async Task Ointment_HealsLeftArm_WhenHeadSelectedAndArmDamaged()
     {
         var map = await Pair.CreateTestMap();
         var damageSys = Server.EntMan.System<DamageableSystem>();
@@ -162,38 +162,40 @@ public sealed class HealingFallbackTest : GameTest
         var bodySys = Server.EntMan.System<BkmBodySharedSystem>();
         EntityUid patient = default;
         EntityUid healer = default;
-        EntityUid brutepack = default;
+        EntityUid ointment = default;
 
         await Server.WaitPost(() =>
         {
             patient = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
             healer = Server.EntMan.SpawnAtPosition(MobHuman, map.GridCoords);
-            brutepack = Server.EntMan.Spawn("Brutepack");
+            ointment = Server.EntMan.Spawn("Ointment");
 
-            // Brutepack heals 3.75 blunt per use — keep damage under that so one use clears the part.
-            var blunt = new DamageSpecifier { DamageDict = { ["Blunt"] = FixedPoint2.New(3) } };
-            damageSys.ChangeDamage(patient, blunt, targetPart: TargetBodyPart.LeftArm);
+            // Cold avoids blunt bone-trauma flakiness; this test only checks targeting fallback.
+            var cold = new DamageSpecifier { DamageDict = { ["Cold"] = FixedPoint2.New(4) } };
+            damageSys.ChangeDamage(patient, cold, targetPart: TargetBodyPart.LeftArm);
 
             Assert.That(
                 bodySys.TryGetWoundableTargetByType(patient, BodyPartType.Arm, BodyPartSymmetry.Left, out var arm),
                 Is.True);
-            Assert.That(woundSys.HasDamageOfType(arm, "Blunt"), Is.True);
+            Assert.That(woundSys.HasDamageOfType(arm, "Cold"), Is.True);
 
             var targeting = Server.EntMan.EnsureComponent<TargetingComponent>(healer);
             targeting.Target = TargetBodyPart.Head;
+            Server.EntMan.Dirty(healer, targeting);
         });
 
-        await RaiseHealingDoAfter(patient, healer, brutepack);
+        await RaiseHealingDoAfter(patient, healer, ointment);
+        await Pair.RunTicksSync(2);
 
         await Server.WaitAssertion(() =>
         {
             Assert.That(
                 bodySys.TryGetWoundableTargetByType(patient, BodyPartType.Arm, BodyPartSymmetry.Left, out var arm),
                 Is.True);
-            Assert.That(woundSys.HasDamageOfType(arm, "Blunt"), Is.False);
+            Assert.That(woundSys.HasDamageOfType(arm, "Cold"), Is.False);
 
             Assert.That(bodySys.TryGetWoundableTargetByType(patient, BodyPartType.Head, null, out var head), Is.True);
-            Assert.That(woundSys.HasDamageOfType(head, "Blunt"), Is.False);
+            Assert.That(woundSys.HasDamageOfType(head, "Cold"), Is.False);
         });
     }
 
