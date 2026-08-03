@@ -7,6 +7,7 @@ using Content.Shared.Backmen.StationAI;
 using Content.Shared.Backmen.StationAI.Components;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.StationAi;
+using Content.Shared.SurveillanceCamera;
 using Content.Shared.SurveillanceCamera.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
@@ -27,6 +28,7 @@ public sealed partial class AICameraSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
     [Dependency] private SharedStationAiSystem _stationAi = default!;
+    [Dependency] private SurveillanceCameraSystem _cameraSystem = default!;
 
 
      private const double MoverJobTime = 0.005;
@@ -42,8 +44,10 @@ public sealed partial class AICameraSystem : EntitySystem
 
          SubscribeLocalEvent<AIEyeComponent, ComponentGetStateAttemptEvent>(OnIsEyeOwner);
          SubscribeLocalEvent<AIEyeComponent, MoveEvent>(OnEyeMove);
-         SubscribeLocalEvent<AICameraComponent, SurveillanceCameraDeactivateEvent>(OnActiveCameraDisable);
+         // Deactivate is raised as a broadcast event (and directed at monitors), not on the camera.
+         SubscribeLocalEvent<SurveillanceCameraDeactivateEvent>(OnActiveCameraDisable);
          SubscribeLocalEvent<AICameraComponent, EntityTerminatingEvent>(OnRemove);
+         SubscribeLocalEvent<AICameraComponent, SurveillanceCameraGetIsViewedExternallyEvent>(OnCameraGetIsViewed);
 
          SubscribeLocalEvent<StationAiHeldComponent, AIEyeCampShootActionEvent>(OnShoot);
          SubscribeLocalEvent<StationAiHeldComponent, AIEyeCampActionEvent>(OnOpenCamUi);
@@ -76,7 +80,10 @@ public sealed partial class AICameraSystem : EntitySystem
 
          aiEye.FollowsCameras.Clear();
 
-         var pos = Transform(ent).GridUid;
+         var pos = Transform(core.Owner).GridUid ?? Transform(ent).GridUid;
+         if (pos == null)
+             return;
+
          var cams = EntityQueryEnumerator<SurveillanceCameraComponent, TransformComponent>();
          while (cams.MoveNext(out var camUid, out var cam, out var transformComponent))
          {
@@ -89,7 +96,7 @@ public sealed partial class AICameraSystem : EntitySystem
 
      private void OnOpenCamUi(Entity<StationAiHeldComponent> ent, ref AIEyeCampActionEvent args)
      {
-         //AIEye
+         args.Handled = true;
          _uiSystem.TryToggleUi(ent.Owner, AICameraListUiKey.Key, ent);
      }
 
@@ -106,7 +113,8 @@ public sealed partial class AICameraSystem : EntitySystem
              return;
 
          var camPos = Transform(uid.Value);
-         if (Transform(uid.Value).GridUid != Transform(ent).GridUid)
+         var aiGrid = Transform(core.Owner).GridUid ?? Transform(ent).GridUid;
+         if (camPos.GridUid != aiGrid)
              return;
 
          if (!TryComp<SurveillanceCameraComponent>(uid, out var camera))
@@ -136,10 +144,13 @@ public sealed partial class AICameraSystem : EntitySystem
          if(!TryComp<AIEyeComponent>(core.Comp.RemoteEntity, out var eye))
              return;
 
-         if(eye.Camera == null || TerminatingOrDeleted(eye.Camera))
+         if (eye.Camera == null || TerminatingOrDeleted(eye.Camera))
+         {
+             _popup.PopupCursor("нужна активная камера!", ent, PopupType.LargeCaution);
              return;
+         }
 
-         if (_transform.GetGrid(args.Target) != Transform(ent).GridUid)
+         if (_transform.GetGrid(args.Target) != (Transform(core.Owner).GridUid ?? Transform(ent).GridUid))
              return;
 
          if (!TryComp<SurveillanceCameraComponent>(eye.Camera, out var camera))
@@ -147,7 +158,7 @@ public sealed partial class AICameraSystem : EntitySystem
 
          if (!camera.Active)
          {
-             _popup.PopupCursor("камера не работает!", core.Comp.RemoteEntity.Value, PopupType.LargeCaution);
+             _popup.PopupCursor("камера не работает!", ent, PopupType.LargeCaution);
              return;
          }
 
@@ -167,9 +178,18 @@ public sealed partial class AICameraSystem : EntitySystem
          OnCameraOffline(ent);
      }
 
-     private void OnActiveCameraDisable(Entity<AICameraComponent> ent, ref SurveillanceCameraDeactivateEvent args)
+     private void OnActiveCameraDisable(SurveillanceCameraDeactivateEvent args)
      {
-         OnCameraOffline(ent);
+         if (!TryComp<AICameraComponent>(args.Camera, out var camera))
+             return;
+
+         OnCameraOffline((args.Camera, camera));
+     }
+
+     private void OnCameraGetIsViewed(Entity<AICameraComponent> ent, ref SurveillanceCameraGetIsViewedExternallyEvent args)
+     {
+         if (ent.Comp.ActiveViewers.Count > 0)
+             args.Viewed = true;
      }
 
      private void OnCameraOffline(Entity<AICameraComponent> ent)
@@ -181,9 +201,10 @@ public sealed partial class AICameraSystem : EntitySystem
                  continue;
              }
 
-             RemoveActiveCamera((viewer, aiEyeComponent));
+             RemoveActiveCamera((viewer, aiEyeComponent), refreshVisuals: false);
          }
          ent.Comp.ActiveViewers.Clear();
+         RefreshCameraVisuals(ent.Owner);
      }
 
      public override void Update(float frameTime)
@@ -219,21 +240,25 @@ public sealed partial class AICameraSystem : EntitySystem
          return _interaction.InRangeUnobstructed(eyeCoordinates, eye.Comp.Camera.Value, CameraEyeRange);
      }
 
-     public void RemoveActiveCamera(Entity<AIEyeComponent> eye)
+     public void RemoveActiveCamera(Entity<AIEyeComponent> eye, bool refreshVisuals = true)
      {
          if (!eye.Comp.Camera.HasValue)
          {
              return;
          }
 
-         if (!TryComp<SurveillanceCameraComponent>(eye.Comp.Camera.Value, out _))
+         var cameraUid = eye.Comp.Camera.Value;
+         if (!TryComp<SurveillanceCameraComponent>(cameraUid, out _))
          {
              return;
          }
 
-         EnsureComp<AICameraComponent>(eye.Comp.Camera.Value).ActiveViewers.Remove(eye);
+         EnsureComp<AICameraComponent>(cameraUid).ActiveViewers.Remove(eye);
          eye.Comp.Camera = null;
          DirtyField(eye, eye.Comp, nameof(AIEyeComponent.Camera));
+
+         if (refreshVisuals)
+             RefreshCameraVisuals(cameraUid);
      }
      private void ChangeActiveCamera(Entity<AIEyeComponent> eye, EntityUid camUid, SurveillanceCameraComponent? cameraComponent = null)
      {
@@ -255,6 +280,12 @@ public sealed partial class AICameraSystem : EntitySystem
          eye.Comp.Camera = camUid;
          DirtyField(eye, eye.Comp, nameof(AIEyeComponent.Camera));
          EnsureComp<AICameraComponent>(camUid).ActiveViewers.Add(eye);
+         RefreshCameraVisuals(camUid, cameraComponent);
+     }
+
+     private void RefreshCameraVisuals(EntityUid cameraUid, SurveillanceCameraComponent? camera = null)
+     {
+         _cameraSystem.RefreshVisuals(cameraUid, camera);
      }
 
      public void HandleMove(Entity<AIEyeComponent> eye, MapCoordinates eyeCoordinates, HashSet<Entity<SurveillanceCameraComponent>> cameraComponents)
