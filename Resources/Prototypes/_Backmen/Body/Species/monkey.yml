@@ -201,10 +201,20 @@
   id: OrganMonkeyFootRight
 
 - type: entity
-  parent: [ OrganBaseEyes, OrganMonkeyExternal ]
+  parent: [ OrganBaseEyes, OrganMonkey ]
   id: OrganMonkeyEyes
   components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/Monkey/organs.rsi
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
   - type: VisualOrgan
     data:
       sprite: Mobs/Animals/monkey.rsi
       state: eyes
+  - type: VisualOrganMarkings
+    markingData:
+      group: Monkey
+      layers:
+      - Eyes

@@ -224,10 +224,20 @@
   id: OrganKoboldFootRight
 
 - type: entity
-  parent: [ OrganBaseEyes, OrganKoboldExternal ]
+  parent: [ OrganBaseEyes, OrganKobold ]
   id: OrganKoboldEyes
   components:
+  - type: Sprite
+    sprite: Backmen/Mobs/Animals/Kobold/organs.rsi
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
   - type: VisualOrgan
     data:
       sprite: Mobs/Animals/kobold.rsi
       state: eyes
+  - type: VisualOrganMarkings
+    markingData:
+      group: Kobold
+      layers:
+      - Eyes
