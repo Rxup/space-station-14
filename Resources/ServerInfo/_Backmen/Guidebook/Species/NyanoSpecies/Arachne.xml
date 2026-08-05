@@ -1,24 +1,24 @@
 <Document>
-# Arachne
+# Арахны
 
   <Box>
     <GuideEntityEmbed Entity="MobArachneClassic" Caption=""/>
   </Box>
 
-[color=#66bbff]Arachne can be achieved via the metem machine.[/color]
+  [color=#66bbff]Арахны могут быть достигнуты через метем-машина.[/color]
 
-Arachne appear very similarly to humans, but have a tauric spider body.
+  Арахны внешне похожи на людей, но имеют таурическое паучье тело.
 
-## Ability Differences
+  ## Различия в способностях
 
-- Slightly more blunt damage.
-- Slightly more slash damage.
-- Slighly less piercing damage.
-- Can spin webs, using food as fuel.
+  - Немного больше урона от тупого оружия.
+  - Немного больше урона от рубящего оружия.
+  - Немного меньше проникающего урона.
+  - Могут плести паутину, используя еду как топливо.
 
-## Physical Differences
+  ## Физические отличия
 
-- Look like a spider.
-- Only female.
-- Can be 60-666 years old.
+  - Выглядят как паук.
+  - Только женского пола.
+  - Могут быть возрастом от 60 до 666 лет.
 </Document>

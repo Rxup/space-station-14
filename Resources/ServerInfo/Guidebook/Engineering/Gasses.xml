@@ -118,4 +118,121 @@
 
   Его можно конденсировать для получения аммиака, который можно использовать для производства космического очистителя
 
+  <!-- start-backmen: exotic-gases -->
+  ## БЗ
+  <Box>
+    <GuideEntityEmbed Entity="ADTBZCanister" Caption=""/>
+  </Box>
+  Для синтеза требуется **плазма** и **азот** в пропорции **4:1**.
+  Необходимая температура: от **373К** до **15 кК**.
+  Давление может быть любым.
+  Реакция экзотермическая.
+  БЗ выглядит как тёмно-синий пар. При вдыхании **усыпляет** и наносит урон ядами.
+  Цена за моль - [color=orange][protodata="BZ" comp="GasPrototype" member="PricePerMole" format="N0"/] кредитов[/color].
+
+  ## Плюоксиум
+  <Box>
+    <GuideEntityEmbed Entity="ADTPluoxiumCanister" Caption=""/>
+  </Box>
+  Для синтеза требуется **кислород** и **тритий** в пропорции **80:20**.
+  Необходимая температура: от **1 кК** до **10 кК**.
+  Давление может быть любым.
+  Реакция экзотермическая.
+  Плюоксиум выглядит как голубой пар. При вдыхании **не наносит урон** и **не усыпляет**, но **не даёт дышать**.
+  Цена за моль - [color=orange][protodata="Pluoxium" comp="GasPrototype" member="PricePerMole" format="N0"/] кредита[/color].
+
+  ## Водород (Н2)
+  <Box>
+    <GuideEntityEmbed Entity="ADTHydrogenCanister" Caption=""/>
+  </Box>
+  Для синтеза требуется **плазма** и **тритий** в пропорции **5:1**.
+  Необходимая температура: от **380К** до **2500К**.
+  Давление может быть любым.
+  Реакция экзотермическая.
+  Водород выглядит как бесцветный газ. **Горюч** при наличии кислорода.
+  Цена за моль - [color=orange][protodata="Hydrogen" comp="GasPrototype" member="PricePerMole" format="N0"/] кредита[/color].
+
+  ## Нитриум
+  <Box>
+    <GuideEntityEmbed Entity="ADTNitriumCanister" Caption=""/>
+  </Box>
+  Для синтеза требуется **азот** и **тритий** в пропорции **10:1**.
+  Необходимая температура: от **200К** до **250К**.
+  Давление может быть любым.
+  Реакция экзотермическая.
+  Нитриум выглядит как красно-оранжевый пар. При вдыхании **лечит физические ранения** и **урон от ядов**, но наносит урон по вдохам.
+  При сильном воздействии наносит урон ядами и усыпляет.
+  Цена за моль - [color=orange][protodata="Nitrium" comp="GasPrototype" member="PricePerMole" format="N0"/] кредитов[/color].
+
+  ## Хилиум
+  <Box>
+    <GuideEntityEmbed Entity="ADTHealiumCanister" Caption=""/>
+  </Box>
+  Для синтеза требуется **фрезон** и **БЗ** в равных пропорциях. Необходимая температура: от **25К** до **300К**.
+  Давление может быть любым.
+  Реакция экзотермическая, дополнительные газы не выделяются.
+  Хилиум выглядит как тёмно-красный пар. Усыпляет и лечит физические, ожоговые ранения, а также урон от ядов.
+  Цена за моль - [color=orange][protodata="Healium" comp="GasPrototype" member="PricePerMole" format="N0"/] кредитов[/color].
+
+  ## Гипер-ноблий
+  <Box>
+    <GuideEntityEmbed Entity="ADTHyperNobliumCanister" Caption=""/>
+  </Box>
+  Для синтеза требуется **азот** и **тритий** в пропорции **10:5**.
+  Необходимая температура: от **2,7 К** до **15 К**. Давление может быть любым.
+  Реакция экзотермическая.
+  Из особенностей реакции: если есть **БЗ**, то тратится меньше **трития**.
+  Особенность газа: замедление и полная остановка **всех реакций** газов, включая горение плазмы.
+  Гипер-ноблий выглядит как синий газ.
+  Цена за моль - [color=orange][protodata="HyperNoblium" comp="GasPrototype" member="PricePerMole" format="N0"/] кредитов[/color].
+
+  ## Прото-нитрат
+  <Box>
+    <GuideEntityEmbed Entity="ADTProtoNitrateCanister" Caption=""/>
+  </Box>
+  Для синтеза требуется **плюоксиум** и **водород** в одинаковых пропорциях.
+  Необходимая температура: от **5 кК** до **10 кК**.
+  Давление может быть любым.
+  Реакция экзотермическая, дополнительные газы не выделяются.
+  Выглядит как тёмно-зелёный пар.
+  Цена за моль - [color=orange][protodata="ProtoNitrate" comp="GasPrototype" member="PricePerMole" format="N0"/] кредитов[/color].
+
+  ## Заукер
+  <Box>
+    <GuideEntityEmbed Entity="ADTZaukerCanister" Caption=""/>
+  </Box>
+  Для синтеза требуется **нитриум** и **гипер-ноблий** в равных пропорциях.
+  Необходимая температура: от **50 кК** до **75 кК**.
+  Давление может быть любым.
+  Реакция эндотермическая, дополнительные газы не выделяются.
+  Заукер является чёрным газом. Крайне ядовит.
+  Распадается при контакте с азотом.
+  Цена за моль - [color=orange][protodata="Zauker" comp="GasPrototype" member="PricePerMole" format="N0"/] кредитов[/color].
+
+  ## Галон
+  <Box>
+    <GuideEntityEmbed Entity="ADTHalonCanister" Caption=""/>
+  </Box>
+  Рецепта для синтеза нет.
+  Галон выглядит как сине-серый пар.
+  При высокой температуре поглощает тепло и кислород, предотвращая тем самым горение.
+  Цена за моль - [color=orange][protodata="Halon" comp="GasPrototype" member="PricePerMole" format="N0"/] кредитов[/color].
+
+  ## Гелий
+  <Box>
+    <GuideEntityEmbed Entity="ADTHeliumCanister" Caption=""/>
+  </Box>
+  Рецепта для синтеза нет.
+  Гелий является бесцветным газом.
+  Цена за моль - [color=orange][protodata="Helium" comp="GasPrototype" member="PricePerMole" format="N0"/] кредитов[/color].
+
+  ## Анти-ноблиум
+  <Box>
+    <GuideEntityEmbed Entity="ADTAntiNobliumCanister" Caption=""/>
+  </Box>
+  Рецепта для синтеза нет.
+  Выглядит как чёрный рой мошек.
+  Цена за моль - [color=orange][protodata="AntiNoblium" comp="GasPrototype" member="PricePerMole" format="N0"/] кредитов[/color].
+  <!-- end-backmen: exotic-gases -->
+
 </Document>

@@ -41,8 +41,8 @@
 
   [color=#a4885c]Базовые[/color] модули делают киборгов универсальнее. Они могут быть установлены в любую оболочку, предоставляя такие полезные инструменты, как монтировки, GPS, и способность взаимодействовать с кабелями. [bold]В обычную оболочку киборга можно установить до 6 модулей.[/bold]
   <Box>
-    <GuideEntityEmbed Entity="BorgModuleCable" Caption="Cable"/>
-    <GuideEntityEmbed Entity="BorgModuleFireExtinguisher" Caption="Fire Extinguisher"/>
+    <GuideEntityEmbed Entity="BorgModuleCable" Caption="Кабели"/>
+    <GuideEntityEmbed Entity="BorgModuleFireExtinguisher" Caption="Огнетушитель"/>
   </Box>
   <Box>
     [italic]Примеры базовых модулей[/italic]
@@ -50,12 +50,12 @@
 
   Для более специфических нужд существуют [color=#a4885c]специализированные[/color] модули, предоставляющие такие возможности, как сканирование аномалий, возведение стен, реанимация членов экипажа или уборка пролитой космической смазки. Эти модули обычно окрашены в ту же палитру, что и отдел [italic](или профессия)[/italic], к которому они относятся. Эти модули [italic](за исключением [color=#D381C9]научных[/color] модулей, которые могут быть установлены на любую оболочку)[/italic] могут быть установлены только на соответствующие оболочки борга. [bold]В специализированные оболочки боргов, такие как инженерные, уборочные, сервисные, медицинские и шахтёрские оболочки, можно установить до 4 модулей.[/bold]
   <Box>
-    <GuideEntityEmbed Entity="BorgModuleAnomaly" Caption="Anomaly"/>
-    <GuideEntityEmbed Entity="BorgModuleRCD" Caption="RCD"/>
-    <GuideEntityEmbed Entity="BorgModuleMining" Caption="Mining"/>
-    <GuideEntityEmbed Entity="BorgModuleCleaning" Caption="Cleaning"/>
-    <GuideEntityEmbed Entity="BorgModuleService" Caption="Service"/>
-    <GuideEntityEmbed Entity="BorgModuleChemical" Caption="Chemical"/>
+    <GuideEntityEmbed Entity="BorgModuleAnomaly" Caption="Аномалии"/>
+    <GuideEntityEmbed Entity="BorgModuleRCD" Caption="РСУ"/>
+    <GuideEntityEmbed Entity="BorgModuleMining" Caption="Добыча"/>
+    <GuideEntityEmbed Entity="BorgModuleCleaning" Caption="Уборка"/>
+    <GuideEntityEmbed Entity="BorgModuleService" Caption="Сервис"/>
+    <GuideEntityEmbed Entity="BorgModuleChemical" Caption="Химия"/>
   </Box>
   <Box>
     [italic]Примеры специализированных модулей. Обратите внимание на цвета корпуса и печатной платы.

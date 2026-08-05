@@ -18,18 +18,9 @@
     <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndieMedic" Caption="Кроваво-красный медицинский скафандр"/>
   </Box>
 
-  You've just been chosen to be a nuclear operative for the [color=#ff0000]Syndicate[/color]. You have one goal, to blow up one of Nanotrasen's finest vessels with a nuclear fission explosive.
-
-  ## Operatives
-  Your team will be made up of several different roles, which are:
-  - [bold]Operatives[/bold], standard soldiers who can take up the grunt work.
-  - The [bold]Corpsman[/bold] who works with reagents to make medicines or chemical weapons.
-  - The [bold]Commander[/bold] who draws up the plan and leads the team.
-
+  - [color=#a4885c]Оперативник[/color] — рядовой боец, выполняющий основную боевую работу.
   <Box>
     <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndie" Caption="Кроваво-красный скафандр"/>
-    <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndieMedic" Caption="corpsman's hardsuit"/>
-    <GuideEntityEmbed Entity="ClothingOuterHardsuitSyndieCommander" Caption="commander's hardsuit"/>
   </Box>
 
   Если вы были выбраны на одну из этих особенных ролей, но не чувствуете себя готовым, один из ваших товарищей по команде может взять на себя эту ответственность.
@@ -45,50 +36,49 @@
   ## Как добраться до станции
 
   Вооружившись и разработав план, возьмите джетпак из оружейной и вместе с другими оперативниками отправляйтесь на [color=#a4885c]Шаттл Ядерных Оперативников[/color]. Здесь вы найдете несколько дополнительных взрывчаток и инструментов, а также ядерную бомбу и ядерные коды.
-  На шаттле вы найдете [color=#a4885c]консоль системы опознавания[/color], которая позволит вам скрываться от других кораблей и сканеров массы. Убедитесь, что [color=#a4885c]Показать "свой-чужой"[/color] и [color=#a4885c]Показать судно[/color] выключены, чтобы скрыть ваш шаттл от экипажа. Когда все будут готовы, отправляйтесь к станции с помощью БСС, а затем летите к ней с помощью реактивного ранца. Не забудьте ядерную бомбу на своём корабле, если собираетесь её использовать, и уж точно не забудьте ядерные коды или пинпоинтер.
+  На шаттле вы найдете [color=#a4885c]консоль системы опознавания[/color], которая позволит вам скрываться от других кораблей и сканеров массы. Убедитесь, что [color=#a4885c]Показать "свой-чужой"[/color] и [color=#a4885c]Показать судно[/color] выключены, чтобы скрыть ваш шаттл от экипажа.
+  Запомните [color=#a4885c]код ядерной аутентификации[/color] из папки на шаттле, затем [bold]проверьте, совпадает ли ID бомбы с ID боеголовки на вашем шаттле.[/bold] Если нет — вы будете активировать бомбу станции, а не свою.
+  Когда все будут готовы, отправляйтесь к станции с помощью БСС, а затем летите к ней с помощью реактивного ранца. Не забудьте ядерную бомбу на своём корабле, если собираетесь её использовать, и уж точно не забудьте ядерные коды или пинпоинтер.
+
+  <Box>
+    <GuideEntityEmbed Entity="BoxFolderNuclearCodes" Caption="Ядерные коды"/>
+    <GuideEntityEmbed Entity="ComputerIFFSyndicate" Caption="Консоль опознавания"/>
+    <GuideEntityEmbed Entity="JetpackBlack" Caption="Джетпак"/>
+  </Box>
 
   ## Диск
 
   Вы заметите, что каждый оперативник стартует с [color=#a4885c]пинпоинтером[/color]. Это устройство - один из самых важных предметов в миссии, и вы должны всегда держать его при себе. Включите пинпоинтер, когда прибудете на станцию, и он всегда будет указывать на вашу следующую цель - [color=#a4885c]ядерный диск[/color].
   Ядерный диск (формально диск ядерной аутентификации) принадлежит капитану, который почти всегда будет иметь его при себе. Следуйте по направлению стрелки на пинпоинтере к диску и сделайте всё возможное, чтобы получить его.
 
-
   <Box>
     <GuideEntityEmbed Entity="PinpointerNuclear" Caption="Пинпоинтер"/>
     <GuideEntityEmbed Entity="NukeDisk" Caption="Диск ядерной аутентификации"/>
   </Box>
 
-  ## Ядерная боеголовка
+  ## Ядерная боеголовка и процедура активации
 
-  Go with your other operatives to your [color=cyan]shuttle[/color].
-  Onboard, you'll find a folder with the [color=cyan]nuclear authentication code[/color].
-  Memorize the code, then [bold]check to see if the nuke ID matches the nuke on your shuttle.[/bold] If it doesn't, you'll be arming the station's nuke instead.
+  Вы зашли так далеко. Завершите дело.
 
-  The shuttle is equipped with an [color=cyan]IFF Computer[/color]. It allows you to hide from other ships and mass scanners when [italic]Show IFF[/italic] is toggled off.
+  - Достаньте [bold]диск ядерной аутентификации[/bold] и вставьте его в боеголовку.
+  - Введите [bold]код ядерной аутентификации[/bold] и нажмите "[bold]E[/bold]" на клавиатуре, чтобы подтвердить.
+  - [bold]Закрепите[/bold] боеголовку на твёрдом полу внутри станции.
+  - [bold]Чтобы начать последовательность детонации, нажмите [color=#EB2D3A]ARM[/color][/bold]. Через 300 секунд боеголовка взорвётся.
+  - [bold]Защищайте боеголовку от сотрудников НТ и киборгов[/bold], даже ценой своих жизней! Требования миссии [italic]не включают ваше возвращение[/italic].
 
-  When everyone is ready, FTL to the station and fly to it using the [color=cyan]jetpacks[/color] on the shuttle. Don't forget the code, your pinpointers, and the nuke if you're taking it.
-
-  <Box>
-    <GuideEntityEmbed Entity="BoxFolderNuclearCodes"/>
-    <GuideEntityEmbed Entity="ComputerIFFSyndicate"/>
-    <GuideEntityEmbed Entity="JetpackBlack"/>
-  </Box>
-
-  ## The Nuke & Arming Procedure
-  You've made it this far.  Finish the job.
-
-  - Obtain the [bold]nuclear authentication disk[/bold] and insert it into the nuke.
-  - Type in the [bold]nuclear authentication code[/bold] and press "[bold]E[/bold]" on the keypad to Enter.
-  - [bold]Anchor[/bold] the nuke on solid floor inside the station.
-  - [bold]To begin the detonation sequence, press [color=#EB2D3A]ARM[/color][/bold]. After 300 seconds, the nuke will explode.
-  - [bold]Defend the nuke from NT employees and cyborgs[/bold], even if it's at the cost of your lives! The mission requirements [italic]do not include your return[/italic].
-
-  It takes 30 seconds to [bold]disarm[/bold] the nuke. Re-arming it is possible, but the chance of mission success drops if you allow the countdown to be interrupted.
-  Should the nuke be re-armed, the timer will continue from where it left off.
+  На [bold]обезвреживание[/bold] боеголовки уходит 30 секунд. Повторная активация возможна, но шансы на успех миссии падают, если позволить прервать отсчёт.
+  Если боеголовку снова активируют, таймер продолжится с того места, где остановился.
 
   <Box>
-    <GuideEntityEmbed Entity="NuclearBomb" Caption="The Nuclear Fission Explosive"/>
+    <GuideEntityEmbed Entity="NuclearBomb" Caption="Ядерная боеголовка"/>
   </Box>
+
+  ## Условия победы
+
+  [color=#a4885c]Крупная победа Синдиката[/color]
+  - Ядерная бомба взрывается на станции.
+  - Экипаж сбегает на эвакуации, но бомба всё ещё взведена.
+  - Взведённая бомба доставлена на ЦентКом на эвакуационном шаттле.
 
   [color=#a4885c]Скромная победа Синдиката[/color]
   - Экипаж сбегает, но оставляет всех оперативников в живых.
@@ -106,5 +96,3 @@
 
   Если вы чувствуете, что не сможете полностью победить в роли члена экипажа или оперативника, рассмотрите эти варианты компромисса.
 </Document>
-
-

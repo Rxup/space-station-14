@@ -35,7 +35,7 @@
 # start-backmen: Disease
       - !type:ChemCauseDisease
         scaling: false
-        probability: 0.3
+        probability: 1
         disease: XenoMaidVirus
 # end-backmen: Disease
   metabolisms:
@@ -45,7 +45,7 @@
 # start-backmen: Disease
       - !type:ChemCauseDisease
         scaling: false
-        probability: 0.3
+        probability: 1
         disease: XenoMaidVirus
       - !type:GenericStatusEffect
         key: SeeingRainbows

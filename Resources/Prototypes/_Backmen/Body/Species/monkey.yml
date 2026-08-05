@@ -69,7 +69,7 @@
 - type: entity
   parent:
   - AppearanceMonkey
-  - BaseSpeciesMobOrganic
+  - BaseSpeciesMobSurgery
   id: MobMonkeyPlayer
   name: monkey
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey.
@@ -138,6 +138,8 @@
     sprite: Mobs/Animals/monkey.rsi
     state: full
 
+# --- Organs (nubody: VisualOrgan on External, like OrganHumanExternal) ---
+
 - type: entity
   parent: OrganBaseOrganic
   id: OrganMonkey
@@ -145,23 +147,18 @@
   suffix: monkey
 
 - type: entity
-  id: OrganMonkeyVisual
+  parent: OrganMonkey
+  id: OrganMonkeyExternal
   abstract: true
   components:
+  - type: Sprite
+    sprite: Mobs/Animals/monkey.rsi
   - type: VisualOrgan
     data:
       sprite: Mobs/Animals/monkey.rsi
   - type: VisualOrganMarkings
     markingData:
       group: Monkey
-
-- type: entity
-  parent: [ OrganMonkey, OrganMonkeyVisual ]
-  id: OrganMonkeyExternal
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: Mobs/Animals/monkey.rsi
 
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganMonkeyExternal ]
@@ -204,7 +201,7 @@
   id: OrganMonkeyFootRight
 
 - type: entity
-  parent: [ OrganMonkeyVisual, OrganBaseEyes, OrganAnimalEyes ]
+  parent: [ OrganBaseEyes, OrganMonkeyExternal ]
   id: OrganMonkeyEyes
   components:
   - type: VisualOrgan

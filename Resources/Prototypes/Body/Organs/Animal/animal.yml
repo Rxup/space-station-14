@@ -59,80 +59,35 @@
     heldPrefix: stomach
 
 - type: entity
+  # start-backmen: animal-brain-nubody
+  # Must share OrganBaseBrain (category: Brain) so surgery can swap with OrganHumanBrain.
   id: OrganAnimalBrain
-  parent: BaseAnimalOrganUnGibbable
+  parent: OrganBaseBrain
   name: animal brain
   description: "Not so intelligence, not so honk."
   components:
   - type: Sprite
-    state: brain
-  - type: Organ
-    # backmen edit
-    slotId: brain # backmen: surgery
-    intCap: 28
-    integrity: 28
-    organRegenerationRate: 0.02
-    integrityThresholds:
-      Normal: 28
-      Damaged: 16
-      Destroyed: 0
-  - type: NerveSystem # backmen: wounding
-  - type: ConsciousnessRequired
-    identifier: "nerveSystem"
-    causesDeath: true
-  - type: Input
-    context: "ghost"
-  - type: Brain
-  - type: BkmSupermatterImmune
-  - type: InputMover
-  - type: Examiner
-  - type: BlockMovement
-  - type: Tag
-    tags:
-      - Meat
-  - type: SolutionContainerManager
-    solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: GreyMatter
-          Quantity: 5
+    sprite: Mobs/Species/Human/organs.rsi
+    layers:
+    - state: brain
   - type: FlavorProfile
     flavors:
       - people
-  - type: FoodSequenceElement
-    entries:
-      Burger: Brain
-      Taco: Brain
-  - type: Item
-    size: Small
-    heldPrefix: brain
+  - type: Tag
+    tags:
+      - Meat
+  # end-backmen: animal-brain-nubody
 
 - type: entity
+  # start-backmen: animal-eyes-nubody
   id: OrganAnimalEyes
-  parent: BaseAnimalOrgan
+  parent: OrganBaseEyes
   name: animal eyes
   description: "I see you!"
   components:
-  # start-backmen: surgery
-  - type: Organ
-    slotId: eyes
-    intCap: 12
-    integrity: 12
-    integrityThresholds:
-      Normal: 12
-      Damaged: 6
-      Destroyed: 0
-  - type: Eyes
-  # end-backmen: surgery
   - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
     layers:
       - state: eyeball-l
       - state: eyeball-r
-  - type: Item
-    size: Small
-    heldPrefix: eyeballs
+  # end-backmen: animal-eyes-nubody

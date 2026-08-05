@@ -21,12 +21,12 @@
 ## Дополнительное оборудование
 <Box>
 <GuideEntityEmbed Entity="WetFloorSign"/>
-<GuideEntityEmbed Entity="Holoprojector" Caption="holosign projector"/>
+<GuideEntityEmbed Entity="Holoprojector" Caption="голографический проектор"/>
 <GuideEntityEmbed Entity="LightReplacer"/>
 <GuideEntityEmbed Entity="WireBrush"/>
 </Box>
 <Box>
-<GuideEntityEmbed Entity="AdvMopItem" Caption="Advanced mop, ask in R&D"/>
+<GuideEntityEmbed Entity="AdvMopItem" Caption="Улучшенная швабра, спросите в РнД"/>
 </Box>
 
 ## Сбор и ликвидация жидкостей

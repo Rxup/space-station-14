@@ -489,9 +489,7 @@
     </ColorBox>
     <ColorBox>
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        Includes destruction of job equipment such as hydro trays, booze dispensers, chemical dispensers. Step up from
-        vandalism but a step down from mass destruction.
-        Включает уничто
+		Включает уничтожение рабочего оборудования, такого как гидропонные лотки, раздатчики алкоголя и химические раздатчики. Ступень выше вандализма, но ниже массовых разрушений.
       </Box>
     </ColorBox>
     <ColorBox>

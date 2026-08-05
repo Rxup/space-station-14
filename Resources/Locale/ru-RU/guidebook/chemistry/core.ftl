@@ -13,7 +13,7 @@ guidebook-reagent-sources-ent-wrapper = [bold]{ $name }[/bold] \[1\]
 guidebook-reagent-sources-gas-wrapper = [bold]{$name} (газ)[/bold] \[1\]
 guidebook-reagent-effects-header = Эффекты
 guidebook-reagent-effects-metabolism-stage-rate = [bold]{$stage}[/bold] [color=gray]({$rate} ед. в секунду)[/color]
-guidebook-reagent-effects-metabolite-item = { $reagent } at a rate of { NATURALPERCENT($rate, 2) }
+guidebook-reagent-effects-metabolite-item = { $reagent } со скоростью { NATURALPERCENT($rate, 2) }
 guidebook-reagent-effects-metabolites = Метаболизируется в {$items}.
 guidebook-reagent-effects-metabolism-group-rate = [bold]{ $group }[/bold] [color=gray]({ $rate } единиц в секунду)[/color]
 guidebook-reagent-plant-metabolisms-header = Метаболизм растений

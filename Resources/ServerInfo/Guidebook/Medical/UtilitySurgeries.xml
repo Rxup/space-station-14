@@ -8,9 +8,9 @@
 Далее закройте разрез при помощи прибора для прижигания.
 
 <Box>
-<GuideEntityEmbed Entity="Scalpel" Caption="scalpel"/>
-<GuideEntityEmbed Entity="Hemostat" Caption="hemostat"/>
-<GuideEntityEmbed Entity="Cautery" Caption="cautery"/>
+<GuideEntityEmbed Entity="Scalpel" Caption="скальпель"/>
+<GuideEntityEmbed Entity="Hemostat" Caption="гемостат"/>
+<GuideEntityEmbed Entity="Cautery" Caption="прижигатель"/>
 </Box>
 
 Эта процедура работает тем лучше, чем больше у вашего пациента повреждений, особенно если он всё ещё жив. Это позволяет вам воскрешать пациентов
