@@ -1344,10 +1344,12 @@
     factions:
     - SimpleHostile
 
+# Shared ancestor NPC bits without a damage model (Injurable vs Consciousness chosen by children).
+# start-backmen: ancestor-surgery
 - type: entity
   name: genetic ancestor
-  id: MobBaseAncestor
-  parent: [AppearanceMonkey, SimpleMobBase, StripableInventoryBase] # backmen: ancestor-surgery
+  id: MobBaseAncestorCommon
+  parent: [SimpleMobBaseCore, StripableInventoryBase]
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
@@ -1371,7 +1373,6 @@
         layer:
         - MobLayer
   - type: Stripping
-  - type: RandomHumanoidProfile # backmen: ancestor-surgery
   - type: GenericVisualizer
     visuals:
       enum.CreamPiedVisuals.Creamed:
@@ -1436,7 +1437,24 @@
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
   - type: JobStatus # marks them as crew
-  # start-backmen: ancestor-surgery
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+
+# Flat / Injurable ancestors (scurret etc.) — no VisualBody, no Consciousness.
+- type: entity
+  id: MobBaseAncestor
+  parent: [MobBaseAncestorCommon, MobDamageable]
+  abstract: true
+
+# Layered surgery ancestors — Consciousness + MobDamageableSurgery (no Injurable).
+- type: entity
+  id: MobBaseAncestorSurgery
+  parent: [MobBaseAncestorCommon, MobDamageableSurgery]
+  abstract: true
+  components:
+  - type: RandomHumanoidProfile
   - type: Consciousness
     damageContainer: Biological
   - type: Targeting
@@ -1447,14 +1465,17 @@
         type: StrippableBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-  # end-backmen: ancestor-surgery
 
-
+- type: entity
+  id: MobBaseAncestorMonkey
+  parent: [AppearanceMonkey, MobBaseAncestorSurgery]
+  abstract: true
+# end-backmen: ancestor-surgery
 
 - type: entity
   name: monkey
   id: MobMonkey
-  parent: MobBaseAncestor
+  parent: MobBaseAncestorMonkey # backmen: ancestor-surgery
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   components:
   - type: NameIdentifier
@@ -1489,7 +1510,7 @@
 - type: entity
   name: monkey
   id: MobBaseSyndicateMonkey
-  parent: MobBaseAncestor
+  parent: MobBaseAncestorMonkey # backmen: ancestor-surgery
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   suffix: syndicate base
   components:
@@ -1538,13 +1559,12 @@
 - type: entity
   name: kobold
   id: MobBaseKobold
-  parent: [MobBaseAncestor, AppearanceKobold] # backmen: ancestor-surgery
+  parent: [AppearanceKobold, MobBaseAncestorSurgery] # backmen: ancestor-surgery
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   abstract: true
   components:
   - type: NameIdentifier
     group: Kobold
-  - type: RandomHumanoidProfile # backmen: ancestor-surgery
   - type: LizardAccent
   - type: ReplacementAccent
     accent: kobold

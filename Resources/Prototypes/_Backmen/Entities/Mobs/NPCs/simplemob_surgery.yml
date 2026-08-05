@@ -1,0 +1,27 @@
+# Surgery damage-model forks of the *Core simple-mob bases in simplemob.yml.
+# Settings live on *Core; only MobDamageableSurgery is added here (no Injurable).
+
+- type: entity
+  save: false
+  parent:
+  - BaseSimpleMobCore
+  - MobDamageableSurgery
+  id: BaseSimpleMobSurgery
+  suffix: AI
+  abstract: true
+
+- type: entity
+  abstract: true
+  parent:
+  - SimpleSpaceMobBaseCore
+  - MobDamageableSurgery
+  id: SimpleSpaceMobBaseSurgery
+  suffix: AI
+
+- type: entity
+  abstract: true
+  parent:
+  - SimpleMobBaseCore
+  - MobDamageableSurgery
+  id: SimpleMobBaseSurgery
+  suffix: AI
