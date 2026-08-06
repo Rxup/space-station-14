@@ -61,6 +61,7 @@
   technologyPrerequisites:
   - PowerGenerationMachines
 
+# Frontier gunnery tree (Arsenal T3). Base unlocks GCS; children unlock ordnance families.
 - type: technology
   id: FrontierGunneryMachines
   name: research-technology-frontier-gunnery-machines
@@ -69,7 +70,7 @@
     state: gunnery_screen
   discipline: Arsenal
   tier: 3
-  cost: 3000000
+  cost: 1500000
   recipeUnlocks:
   - GunneryControlComputerCircuitboard
   - MachineGCSLowCircuitboard
@@ -77,13 +78,93 @@
   - MachineGCSHighCircuitboard
   - MachineGCSUltraCircuitboard
   - MachineGCSStationCircuitboard
-  - CharonSlugUniversal
-  - ASM220TorpedoHEUniversal
-  - ASM220TorpedoECMUniversal
-  - 150mmApShellUniversal
-  - 150mmEmpShellUniversal
-  - GPOL50BombUniversal
-  - ZenithRocketUniversal
-  - QuasarAcceleratorUniversal
   technologyPrerequisites:
   - ShuttleWeaponAdvancedMachines
+
+- type: technology
+  id: FrontierTorpedoOrdnance
+  name: research-technology-frontier-torpedo-ordnance
+  icon:
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/asm220.rsi
+    state: standard
+  discipline: Arsenal
+  tier: 3
+  cost: 500000
+  recipeUnlocks:
+  - ASM220TorpedoHEUniversal
+  - ASM220TorpedoECMUniversal
+  technologyPrerequisites:
+  - FrontierGunneryMachines
+
+- type: technology
+  id: FrontierTorpedoAdvanced
+  name: research-technology-frontier-torpedo-advanced
+  icon:
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/asm220.rsi
+    state: losat
+  discipline: Arsenal
+  tier: 3
+  cost: 750000
+  recipeUnlocks:
+  - ASM220TorpedoLOSATUniversal
+  technologyPrerequisites:
+  - FrontierTorpedoOrdnance
+
+- type: technology
+  id: FrontierKineticOrdnance
+  name: research-technology-frontier-kinetic-ordnance
+  icon:
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/charonslug.rsi
+    state: railgun_slug
+  discipline: Arsenal
+  tier: 3
+  cost: 500000
+  recipeUnlocks:
+  - CharonSlugUniversal
+  - 150mmApShellUniversal
+  - 150mmEmpShellUniversal
+  technologyPrerequisites:
+  - FrontierGunneryMachines
+
+- type: technology
+  id: FrontierKineticAdvanced
+  name: research-technology-frontier-kinetic-advanced
+  icon:
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/charonslug.rsi
+    state: subnuclear
+  discipline: Arsenal
+  tier: 3
+  cost: 750000
+  recipeUnlocks:
+  - CharonSubnuclearSlugUniversal
+  technologyPrerequisites:
+  - FrontierKineticOrdnance
+
+- type: technology
+  id: FrontierFighterOrdnance
+  name: research-technology-frontier-fighter-ordnance
+  icon:
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/GPO.rsi
+    state: GPO
+  discipline: Arsenal
+  tier: 3
+  cost: 400000
+  recipeUnlocks:
+  - GPOL50BombUniversal
+  - ZenithRocketUniversal
+  technologyPrerequisites:
+  - FrontierGunneryMachines
+
+- type: technology
+  id: FrontierFighterAdvanced
+  name: research-technology-frontier-fighter-advanced
+  icon:
+    sprite: _Mono/Objects/Weapons/Guns/Ammunition/Explosives/quasar.rsi
+    state: quasar
+  discipline: Arsenal
+  tier: 3
+  cost: 500000
+  recipeUnlocks:
+  - QuasarAcceleratorUniversal
+  technologyPrerequisites:
+  - FrontierFighterOrdnance

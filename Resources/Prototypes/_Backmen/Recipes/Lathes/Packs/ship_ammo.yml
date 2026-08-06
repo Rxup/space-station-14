@@ -1,10 +1,13 @@
-# Frontier ship ordnance — unlocked by FrontierGunneryMachines
+# Frontier ship ordnance — packs mirror research branches under FrontierGunneryMachines
+
 - type: latheRecipePack
   id: BackmenFrontierShipAmmo
   recipes:
   - CharonSlugUniversal
+  - CharonSubnuclearSlugUniversal
   - ASM220TorpedoHEUniversal
   - ASM220TorpedoECMUniversal
+  - ASM220TorpedoLOSATUniversal
   - 150mmApShellUniversal
   - 150mmEmpShellUniversal
   - GPOL50BombUniversal

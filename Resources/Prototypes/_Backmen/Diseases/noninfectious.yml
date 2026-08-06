@@ -103,15 +103,19 @@
     reagent:
       ReagentId: Licoxide
     amount: 0.5
-  # accent chance when speaking
+  # xeno language when speaking (same pattern as BleedersBite / LangFlesh)
   - !type:DiseaseGenericStatusEffect
     probability: 0.1
-    key: StatusEffectSpeechXeno
+    key: StatusEffectLangXenoAccent
+    time: 3
+    type: Add
     stages:
     - 1
   - !type:DiseaseGenericStatusEffect
     probability: 0.4
-    key: StatusEffectSpeechXeno
+    key: StatusEffectLangXenoAccent
+    time: 3
+    type: Add
     stages:
     - 2
   # cellular damage, from being eaten on the inside
@@ -178,15 +182,19 @@
     reagent:
       ReagentId: Licoxide
     amount: 0.5
-  # accent chance when speaking
+  # xeno language when speaking (same pattern as BleedersBite / LangFlesh)
   - !type:DiseaseGenericStatusEffect
     probability: 0.1
-    key: StatusEffectSpeechXeno
+    key: StatusEffectLangXenoAccent
+    time: 3
+    type: Add
     stages:
     - 1
   - !type:DiseaseGenericStatusEffect
     probability: 0.4
-    key: StatusEffectSpeechXeno
+    key: StatusEffectLangXenoAccent
+    time: 3
+    type: Add
     stages:
     - 2
   # cellular damage, from being eaten on the inside

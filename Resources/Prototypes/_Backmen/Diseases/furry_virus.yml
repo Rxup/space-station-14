@@ -89,6 +89,21 @@
       key: StatusEffectOwO
       stages:
         - 2
+    # fox language when speaking (same pattern as BleedersBite / LangFlesh)
+    - !type:DiseaseGenericStatusEffect
+      probability: 0.3
+      key: StatusEffectLangFoxAccent
+      time: 3
+      type: Add
+      stages:
+        - 1
+    - !type:DiseaseGenericStatusEffect
+      probability: 0.55
+      key: StatusEffectLangFoxAccent
+      time: 3
+      type: Add
+      stages:
+        - 2
   cures:
     - !type:DiseaseJustWaitCure
       maxLength: 800

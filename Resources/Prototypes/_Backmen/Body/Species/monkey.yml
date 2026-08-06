@@ -76,10 +76,16 @@
   components:
   - type: HumanoidProfile
     species: Monkey
+  - type: LanguageSpeaker
+    currentLanguage: Monkey
+  - type: LanguageKnowledge
+    speaks:
+    - Monkey
+    understands:
+    - Monkey
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
-  - type: MonkeyAccent
   - type: Clumsy
     gunShootFailDamage:
       types:

@@ -1480,10 +1480,16 @@
   components:
   - type: NameIdentifier
     group: Monkey
+  - type: LanguageSpeaker
+    currentLanguage: Monkey
+  - type: LanguageKnowledge
+    speaks:
+    - Monkey
+    understands:
+    - Monkey
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
-  - type: MonkeyAccent
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
   - type: AlwaysRevolutionaryConvertible
@@ -1516,12 +1522,18 @@
   components:
   - type: NameIdentifier
     group: Monkey
+  - type: LanguageSpeaker
+    currentLanguage: Monkey
+  - type: LanguageKnowledge
+    speaks:
+    - Monkey
+    understands:
+    - Monkey
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
-  - type: MonkeyAccent
   - type: NpcFactionMember
     factions:
     - Syndicate

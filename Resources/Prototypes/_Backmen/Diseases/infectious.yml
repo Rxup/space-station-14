@@ -87,6 +87,12 @@
     damage:
       types:
         Caustic: 1
+  # chicken language when speaking (same pattern as BleedersBite / LangFlesh)
+  - !type:DiseaseGenericStatusEffect
+    probability: 0.35
+    key: StatusEffectLangChickenAccent
+    time: 3
+    type: Add
   cures:
   - !type:DiseaseJustWaitCure
     maxLength: 900
@@ -115,6 +121,21 @@
     emote: RobotBeep
     stages:
     - 0
+    - 1
+  # binary language when speaking (same pattern as BleedersBite / LangFlesh)
+  - !type:DiseaseGenericStatusEffect
+    probability: 0.25
+    key: StatusEffectLangBinaryAccent
+    time: 3
+    type: Add
+    stages:
+    - 0
+  - !type:DiseaseGenericStatusEffect
+    probability: 0.5
+    key: StatusEffectLangBinaryAccent
+    time: 3
+    type: Add
+    stages:
     - 1
   - !type:DiseaseCyborgConversion
     probability: 0.33
@@ -175,15 +196,19 @@
     emote: MonkeyScreeches
     stages:
     - 2
-  # monkey accent chance when speaking
+  # monkey language when speaking (same pattern as BleedersBite / LangFlesh)
   - !type:DiseaseGenericStatusEffect
     probability: 0.2
-    key: StatusEffectSpeechMonkey
+    key: StatusEffectLangMonkeyAccent
+    time: 3
+    type: Add
     stages:
     - 1
   - !type:DiseaseGenericStatusEffect
     probability: 0.5
-    key: StatusEffectSpeechMonkey
+    key: StatusEffectLangMonkeyAccent
+    time: 3
+    type: Add
     stages:
     - 2
   # asphyxiation damage, probably from all the screeching
@@ -317,6 +342,21 @@
   effects:
   - !type:DiseaseGenericStatusEffect
     key: StatusEffectOwO
+  # nekomimetic language when speaking (same pattern as BleedersBite / LangFlesh)
+  - !type:DiseaseGenericStatusEffect
+    probability: 0.3
+    key: StatusEffectLangNekomimeticAccent
+    time: 3
+    type: Add
+    stages:
+    - 0
+  - !type:DiseaseGenericStatusEffect
+    probability: 0.55
+    key: StatusEffectLangNekomimeticAccent
+    time: 3
+    type: Add
+    stages:
+    - 1
   - !type:DiseaseAdjustReagent ## 20 / 0.05 / 60 is around 25 minutes before overdose (0.2u metabolize each tick)
     probability: 0.25
     reagent:

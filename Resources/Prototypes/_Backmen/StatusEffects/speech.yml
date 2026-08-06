@@ -1,19 +1,5 @@
 - type: entity
   parent: MobStatusEffectBase
-  id: StatusEffectSpeechMonkey
-  name: monkey accent
-  components:
-  - type: MonkeyAccent
-
-- type: entity
-  parent: MobStatusEffectBase
-  id: StatusEffectSpeechXeno
-  name: xeno accent
-  components:
-  - type: XenoAccent
-
-- type: entity
-  parent: MobStatusEffectBase
   id: StatusEffectSpeechOhio
   name: ohio accent
   components:
@@ -33,7 +19,7 @@
   components:
   - type: LanguageAccent
     language: Flesh
-    chance: 0.2 # 40%
+    chance: 0.2
 
 - type: entity
   parent: MobStatusEffectBase
@@ -42,4 +28,58 @@
   components:
   - type: LanguageAccent
     language: OldFastCodes
-    chance: 0.2 # 20%
+    chance: 0.2
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectLangMonkeyAccent
+  name: lang monkey accent
+  components:
+  - type: LanguageAccent
+    language: Monkey
+    chance: 0.2
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectLangXenoAccent
+  name: lang xeno accent
+  components:
+  - type: LanguageAccent
+    language: Xeno
+    chance: 0.2
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectLangBinaryAccent
+  name: lang binary accent
+  components:
+  - type: LanguageAccent
+    language: Binary
+    chance: 0.2
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectLangChickenAccent
+  name: lang chicken accent
+  components:
+  - type: LanguageAccent
+    language: Chicken
+    chance: 0.2
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectLangNekomimeticAccent
+  name: lang nekomimetic accent
+  components:
+  - type: LanguageAccent
+    language: Nekomimetic
+    chance: 0.2
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectLangFoxAccent
+  name: lang fox accent
+  components:
+  - type: LanguageAccent
+    language: Fox
+    chance: 0.2

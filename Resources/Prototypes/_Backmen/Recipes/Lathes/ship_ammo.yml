@@ -1,0 +1,23 @@
+# Advanced Frontier ship ordnance (unlocked by child Frontier researches)
+
+- type: latheRecipe
+  id: ASM220TorpedoLOSATUniversal
+  parent: BaseTorpedoRecipe
+  result: Asm220TorpedoLOSAT
+  materials:
+    Steel: 2000
+    Plasma: 500
+    Glass: 200
+    Gold: 150
+    Silver: 150
+    Plasteel: 300
+
+- type: latheRecipe
+  id: CharonSubnuclearSlugUniversal
+  parent: BaseRailgunSlugRecipe
+  result: CharonSubnuclearSlugAmmo
+  materials:
+    Steel: 2000
+    Plasteel: 500
+    Plasma: 400
+    Uranium: 200
