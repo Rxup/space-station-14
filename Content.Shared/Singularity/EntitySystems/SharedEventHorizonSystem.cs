@@ -155,18 +155,23 @@ public abstract partial class SharedEventHorizonSystem : EntitySystem
         || !Resolve(uid, ref fixtures, logMissing: false))
             return;
 
+        // start-backmen: box2-nonnegative
+        // Box2 rejects negative sizes; clamp for empty/despawning horizons (upstream).
+        var fixtureRadius = MathF.Max(0f, eventHorizon.Radius);
+        // end-backmen: box2-nonnegative
+
         // Update both fixtures the event horizon is associated with:
         var consumer = _fixtures.GetFixtureOrNull(uid, consumerId, fixtures);
         if (consumer != null)
         {
-            _physics.SetRadius(uid, consumerId, consumer, consumer.Shape, eventHorizon.Radius, fixtures);
+            _physics.SetRadius(uid, consumerId, consumer, consumer.Shape, fixtureRadius, fixtures); // backmen: box2-nonnegative
             _physics.SetHard(uid, consumer, false, fixtures);
         }
 
         var collider = _fixtures.GetFixtureOrNull(uid, colliderId, fixtures);
         if (collider != null)
         {
-            _physics.SetRadius(uid, colliderId, collider, collider.Shape, eventHorizon.Radius, fixtures);
+            _physics.SetRadius(uid, colliderId, collider, collider.Shape, fixtureRadius, fixtures); // backmen: box2-nonnegative
             _physics.SetHard(uid, collider, true, fixtures);
         }
 

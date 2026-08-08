@@ -1,6 +1,6 @@
 using System.Linq;
 using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Ghost.Components;
+using Content.Shared.Ghost; // backmen: ghost-namespace
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
