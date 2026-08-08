@@ -1,6 +1,6 @@
 ent-ShadowkinTeleport = Телепорт
-    .desc = Аарамрра!
+    .desc = { "" }
 ent-ShadowkinDarkSwap = Темный Обмен
-    .desc = Ммра Маммм!
+    .desc = { "" }
 ent-ShadowkinRest = Отдых
-    .desc = Рама
+    .desc = { ent-BaseMentalAction.desc }

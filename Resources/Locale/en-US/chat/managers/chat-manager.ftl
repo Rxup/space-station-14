@@ -169,3 +169,6 @@ chat-speech-verb-wawa-1 = intones
 chat-speech-verb-wawa-2 = states
 chat-speech-verb-wawa-3 = declares
 chat-speech-verb-wawa-4 = ponders
+chat-manager-wrap-language-font = [font="{ $fontType }" size={ $fontSize }]{ $message }[/font]
+chat-manager-wrap-language-font-whisper = [font="{ $fontType }"]{ $message }[/font]
+chat-manager-wrap-language-color = [color={ $color }]{ $message }[/color]

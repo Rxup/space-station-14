@@ -201,3 +201,5 @@ marking-HumanHairVolaju = Volaju
 marking-HumanHairWisp = Wisp
 marking-HumanHairLongWithBangs = Long With Bangs
 marking-HumanHairOverEyePigtail = Pigtail (Over Eye)
+marking-HumanHairShoulderLengthOverEye = До плеч через глаз
+marking-HumanHairShavedFemale = Женская с выбритым боком

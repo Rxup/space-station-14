@@ -1,3 +1,3 @@
 ent-BackmenRandomVending = случайный спавнер торгового автомата
-    .suffix = Any, Backmen
+    .suffix = Любой, Backmen
     .desc = { ent-MarkerBase.desc }

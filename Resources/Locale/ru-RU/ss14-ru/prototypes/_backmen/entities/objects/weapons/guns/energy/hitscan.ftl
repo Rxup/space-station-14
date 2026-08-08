@@ -1,3 +1,5 @@
+ent-WeaponMultiphaseEnergyGun = мультифазная энергетическая пушка X-01
+    .desc = Первая попытка Nanotrasen переделать антикварный лазерный пистолет. Имеет больше режимов стрельбы, но не имеет возможности самозарядки.
 ent-X01Attack = лазерная пуля
     .desc = { ent-EmitterBolt.desc }
 ent-BulletEnergyGunLaserMk2 = лазерная пуля
@@ -5,8 +7,8 @@ ent-BulletEnergyGunLaserMk2 = лазерная пуля
 ent-BulletImpactEffectRedDisabler = { "" }
     .desc = { "" }
 ent-WeaponDominatorNT = 45MW.TRG
-    .desc = Nanotrasen's first attempt to remake the Antique Laser Gun. Has more firing modes on offer but lacks the ability to self-recharge.
+    .desc = Первая попытка Nanotrasen воссоздать антикварный лазерный пистолет. Больше режимов стрельбы, но без самозарядки.
 ent-WeaponDisablerSuper = 45MW.TRG Super
     .desc = { ent-WeaponDominatorNT.desc }
 ent-WeaponRifleSWS = SWS Моторизованная Импульсная Винтовка
-    .desc = The Pulse Rifle is the standard-issue service rifle of the Earth Defense Force and is also common among corporate security officers.
+    .desc = Импульсная винтовка — стандартное служебное оружие Сил обороны Земли, также распространена среди корпоративной охраны.

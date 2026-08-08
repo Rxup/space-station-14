@@ -1,7 +1,9 @@
 altar-sacrifice-verb = Жертва
 soul-entity-name = Кристалл души { $trapped }
 soul-entity-desc = Кристалл души, внутри которого находится душа { $trapped }.
+
 altar-popup = { $user } начинает жертвовать { $target }!
+
 altar-failure-reason-self = Нельзя жертвовать собой!
 altar-failure-reason-user = У вас нет псионического или духовного образования!
 altar-failure-reason-user-humanoid = Ты не гуманоид!

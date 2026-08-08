@@ -1,4 +1,4 @@
 ent-DrinkVisualizerTestCut = визуальный вырез контейнера раствора
-    .desc = A stainless steel insulated pitcher. Everyone's best friend in the morning.
+    .desc = Нержавеющий изолированный кувшин. Лучший друг каждого по утрам.
 ent-DrinkVisualizerTestNot = визуальный не-вырез контейнера раствора
-    .desc = A stainless steel insulated pitcher. Everyone's best friend in the morning.
+    .desc = Нержавеющий изолированный кувшин. Лучший друг каждого по утрам.

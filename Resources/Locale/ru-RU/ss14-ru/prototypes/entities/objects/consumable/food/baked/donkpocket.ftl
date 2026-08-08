@@ -1,5 +1,7 @@
 ent-FoodDonkpocketBase = { ent-FoodInjectableBase }
     .desc = { ent-FoodInjectableBase.desc }
+ent-SolutionFoodDonkpocketWarm = { ent-SolutionFood }
+    .desc = { ent-SolutionFood.desc }
 ent-FoodDonkpocket = донк-покет
     .desc = Еда опытного предателя.
 ent-FoodDonkpocketWarm = тёплый донк-покет
@@ -19,7 +21,7 @@ ent-FoodDonkpocketTeriyakiWarm = тёплый терияки-покет
 ent-FoodDonkpocketPizza = пицца-покет
     .desc = Вкусные, сырные и удивительно сытные.
 ent-FoodDonkpocketPizzaWarm = тёплый пицца-покет
-    .desc = тёплый сырный наполнитель - очень вкусный.
+    .desc = тёплый сырный наполнитель — очень вкусный.
 ent-FoodDonkpocketHonk = хонк-покет
     .desc = Отмеченный наградами донк-покет, который завоевал сердца как клоунов, так и людей.
 ent-FoodDonkpocketHonkWarm = тёплый хонк-покет

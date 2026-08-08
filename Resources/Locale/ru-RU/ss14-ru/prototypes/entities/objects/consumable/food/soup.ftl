@@ -1,5 +1,5 @@
-ent-FoodBowlBase = { ent-FoodBase }
-    .desc = { ent-FoodBase.desc }
+ent-FoodBowlBase = { ent-FoodInjectableBase }
+    .desc = { ent-FoodInjectableBase.desc }
 ent-FoodSoupPea = гороховый суп
     .desc = Простой гороховый суп.
 ent-FoodSaladAesir = божественный салат
@@ -63,7 +63,7 @@ ent-FoodSoupChiliClown = чили кон карнавал
 ent-FoodSoupMonkey = обезьяний восторг
     .desc = Восхитительный суп с кусочками обезьяньего мяса, тушёного до идеальной мягкости, в бульоне со слабым привкусом бананов.
 ent-FoodSoupTomato = томатный суп
-    .desc = Пить это - всё равно что быть вампиром! Томатным вампиром...
+    .desc = Пить это — всё равно что быть вампиром! Томатным вампиром...
 ent-FoodSoupEyeball = суп с глазными яблоками
     .desc = Он смотрит на тебя в ответ...
 ent-FoodSoupMiso = мисо суп

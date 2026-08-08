@@ -1,8 +1,8 @@
 ent-FleshClaw = Коготь Плоти
-    .desc = Flesh Claw
+    .desc = Плотский коготь
 ent-FleshFist = кулак плоти
-    .desc = Fisting is three hundred bucks
+    .desc = Фистинг стоит триста баксов
 ent-FleshBlade = Клинок плоти
-    .desc = Flesh blade
+    .desc = Плотский клинок
 ent-FleshSpikeHandGun = шипованная пушка
     .desc = { ent-BaseItem.desc }

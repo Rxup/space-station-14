@@ -80,7 +80,7 @@ ent-BulletMachineGunImpulseTurret = импульсный лазер
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-BulletShuttleGrapplingHook = shuttle grappling hook
+ent-BulletShuttleGrapplingHook = гарпун шаттла
     .desc = { ent-GrapplingHook.desc }
     .suffix = Фронтир
 
@@ -109,7 +109,7 @@ ent-ImpulseLaserUnanchor = ImpulseLaserUnanchor
     .suffix = Неоткрепляемый, ShuttleGun, Фронтир
 
 ent-MissileTND = ядерная ракета класса "Инферно"
-    .desc = A missile designed to be fired by missile launchers.
+    .desc = Ракета, предназначенная для пуска из ракетных установок.
     .suffix = Missile, Фронтир
 
 ent-RedHeavyLaserSyndie = RedHeavyLaserSyndie
@@ -120,7 +120,7 @@ ent-SynLaserExplosion = SynLaserExplosion
     .desc = { "" }
     .suffix = Фронтир
 
-ent-TeslaGunTurretBullet = tesla gun lightning
+ent-TeslaGunTurretBullet = молния тесла-пушки
     .desc = { "" }
     .suffix = Фронтир
 
@@ -224,7 +224,7 @@ ent-WeaponMissileLauncherStarColosus = Ядерная артиллерийска
     .desc = Артиллерийская установка, рассчитанная на глобальные разрушения. Ядерный снаряд "Инферно" распространяет ударную волну, которая поглощает всё в радиусе действия, разрушая корабли и станции.
     .suffix = НЕ МАППИТЬ!, ShuttleGun, Фронтир
 
-ent-WeaponMissileLauncherStarColosusEmpty = WeaponMissileLauncherStarColosusEmpty
+ent-WeaponMissileLauncherStarColosusEmpty = Ядерная артиллерийская установка "Звездный Колосс"
     .desc = Артиллерийская установка, рассчитанная на глобальные разрушения. Ядерный снаряд "Инферно" распространяет ударную волну, которая поглощает всё в радиусе действия, разрушая корабли и станции.
     .suffix = Пустой, ShuttleGun, Фронтир
 

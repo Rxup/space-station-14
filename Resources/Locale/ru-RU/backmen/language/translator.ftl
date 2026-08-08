@@ -4,6 +4,7 @@ translator-implanter-refuse = { $implanter }  не оказывает никак
 translator-implanter-success = { $implanter } успешно введен { $target }.
 translator-implanter-ready = имплантер готов к использованию.
 translator-implanter-used = имплантер выглядит пустым.
+
 translator-examined-langs-understood = Он может переводить: [color=green]{ $languages }[/color].
 translator-examined-langs-spoken = Это может быть переведено на : [color=green]{ $languages }[/color].
 translator-examined-requires-any = требуется, чтобы вы знали хотя бы один из этих языков: [color=yellow]{ $languages }[/color].

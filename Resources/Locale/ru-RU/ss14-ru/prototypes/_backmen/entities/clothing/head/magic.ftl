@@ -3,5 +3,5 @@ ent-ClothingHeadHatVioletwizardReal = { ent-ClothingHeadHatVioletwizard }
 ent-ClothingHeadHatWizardReal = { ent-ClothingHeadHatWizard }
     .desc = { ent-ClothingHeadHatWizard.desc }
 ent-ClothingHeadHatRedwizardReal = { ent-ClothingHeadHatRedwizard }
-    .suffix = magical
     .desc = { ent-ClothingHeadHatRedwizard.desc }
+    .suffix = magical

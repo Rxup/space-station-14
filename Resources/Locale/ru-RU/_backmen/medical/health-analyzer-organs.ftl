@@ -1,5 +1,6 @@
 # start-backmen: organ-damage-alerts
-health-analyzer-window-organ-destroyed = [color=red]Повреждены: {$organ}[/color]
+health-analyzer-window-organ-destroyed = [color=red]Повреждены: { $organ }[/color]
+health-analyzer-window-organ-damage-present = В организме присутствуют травмы органов!
 
 organs-category-lungs = лёгкие
 organs-category-heart = сердце
@@ -14,6 +15,7 @@ organs-category-ears = уши
 # end-backmen: organ-damage-alerts
 
 # start-backmen: bone-damage-alerts
-health-analyzer-window-bone-damaged = [color=red]Повреждение кости: {$part}[/color]
-health-analyzer-window-bone-broken = [color=red]Перелом: {$part}[/color]
+health-analyzer-window-bone-damage-present = В организме присутствуют травмы костей!
+health-analyzer-window-bone-damaged = [color=red]Повреждение кости: { $part }[/color]
+health-analyzer-window-bone-broken = [color=red]Перелом: { $part }[/color]
 # end-backmen: bone-damage-alerts

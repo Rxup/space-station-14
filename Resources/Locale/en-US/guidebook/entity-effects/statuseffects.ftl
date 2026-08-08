@@ -1,4 +1,4 @@
-﻿entity-effect-status-effect-Stun = stunning
+entity-effect-status-effect-Stun = stunning
 entity-effect-status-effect-KnockedDown = knockdown
 entity-effect-status-effect-Jitter = jittering
 entity-effect-status-effect-SeeingRainbows = hallucinations
@@ -14,3 +14,4 @@ entity-effect-status-effect-StaminaModifier = modified stamina
 entity-effect-status-effect-RadiationProtection = radiation protection
 entity-effect-status-effect-Drowsiness = drowsiness
 entity-effect-status-effect-Adrenaline = adrenaline
+entity-effect-status-effect-TemporaryBlindness = слепота

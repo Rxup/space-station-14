@@ -1,10 +1,10 @@
 ent-EnergyDomeGeneratorPersonalSyndie = кроваво-красный генератор личного щита
-    .desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
+    .desc = Персональный генератор щита, защищающий носителя от лазеров и пуль, но не позволяющий самому использовать дистанционное оружие. Работает от батареи.
 ent-EnergyDomeDirectionalTurtle = BR-40c "Черепаха"
-    .desc = A two-handed and heavy energy barrier with extremely low passive energy consumption. Can be tethered with a multitool.
+    .desc = Тяжёлый двуручный энергобарьер с крайне низким пассивным потреблением энергии. Можно привязать мультитулом.
 ent-EnergyDomeWiredTest = Статический купол
-    .desc = Test energy barrier powered by station wiring. I don't know how the hell to balance it.....
+    .desc = Тестовый энергобарьер, питаемый проводкой станции. Понятия не имею, как его балансировать.....
 ent-EnergyDomeGeneratorBackpackSyndie = кроваво-красный генератор щита для рюкзака
-    .desc = A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
+    .desc = Рюкзачный генератор щита, защищающий носителя от лазеров и пуль, но не позволяющий самому использовать дистанционное оружие. Работает от батареи.
 ent-EnergyDomeGeneratorPersonalNT = BT-21b "Барьер"
-    .desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
+    .desc = Персональный генератор щита, защищающий носителя от лазеров и пуль, но не позволяющий самому использовать дистанционное оружие. Работает от батареи.

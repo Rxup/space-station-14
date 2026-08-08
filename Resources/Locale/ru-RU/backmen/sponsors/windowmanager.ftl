@@ -1,5 +1,7 @@
 sponsor-win-manager-title = Спонсор панель
 sponsor-win-manager-tier = Ваш уровень:
+
+
 sponsor-win-manager-ghost-default = Стандартный
 sponsor-win-manager-ghost-tier1 = Анимированный Стандартный
 sponsor-win-manager-ghost-tier2 = Анимированный Лавовый
@@ -19,6 +21,7 @@ sponsor-win-manager-ghost-Luna = Луна
 sponsor-win-manager-ghost-p03 = p03
 sponsor-win-manager-ghost-astronaut = Астронавт
 sponsor-win-manager-theme = Тема призрака:
+
 sponsor-win-manager-tier-0 = Бесплатный
 sponsor-win-manager-tier-1 = EAT
 sponsor-win-manager-tier-2 = Команда Разработки

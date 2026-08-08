@@ -3,9 +3,7 @@ flavor-complex-bacchus-drink = нечто самое резкое и разры�
 flavor-complex-singularity = сингулярность
 flavor-complex-friendly = дружелюбно
 flavor-complex-heavy = тяжело
-
 ## Nyano???
-
 flavor-complex-enthralling = завораживающе
 flavor-complex-sublime = возвышенно
 flavor-complex-holy = небесно
@@ -22,6 +20,3 @@ flavor-complex-sapopicante = как помидоры и специи
 flavor-complex-graveyard = как крепкий холодный напиток
 flavor-complex-bubbletea = как сливочная сладость
 flavor-complex-corncob = как неудачная шутка
-
-# zhi shi pishi s Ы
-

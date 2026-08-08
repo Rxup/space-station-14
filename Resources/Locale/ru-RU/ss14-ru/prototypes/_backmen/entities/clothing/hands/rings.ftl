@@ -1,0 +1,14 @@
+ent-ClothingStandardRing = серебряное кольцо
+    .desc = Перекрашенное стальное кольцо.
+ent-ClothingSilverSapphireRing = кольцо с сапфиром
+    .desc = Дешёвая стеклянная имитация сапфира.
+ent-ClothingGoldRing = золотое кольцо
+    .desc = Кольцо из настоящего золота!
+ent-ClothingGoldRubyRing = золотое кольцо с рубином
+    .desc = Золотое кольцо с рубином!
+ent-ClothingGlowingGoldRing = сияющее золотое кольцо
+    .desc = Кольцо из ультраредких золотых материалов.
+ent-ClothingGlowingGoldRubyRing = сияющее золотое кольцо с рубином
+    .desc = Кольцо из ультраредких золотых материалов и редкого космического рубина!
+ent-ClothingGlowingSilverSapphireRing = сияющее серебряное кольцо с сапфиром
+    .desc = Простое серебряное кольцо и редкий космический сапфир!

@@ -1,0 +1,17 @@
+ent-CarpSpawnerMundane = Спавнер NPC-карпа
+    .desc = { ent-MarkerBase.desc }
+    .suffix = 100
+ent-SnakeSpawnerMundane = Спавнер NPC-змеи
+    .desc = { ent-MarkerBase.desc }
+    .suffix = 100
+ent-SnakeMobMundane = Спавнер утилизационной змеи
+    .desc = { ent-MarkerBase.desc }
+    .suffix = 75
+ent-SnakeMobMundane25 = Спавнер утилизационной змеи
+    .desc = { ent-MarkerBase.desc }
+    .suffix = 25
+ent-SpaceTickSpawnerNPC = Спавнер NPC космического клеща
+    .desc = { ent-MarkerBase.desc }
+    .suffix = 100
+ent-XenoAISpawner = Спавнер NPC-ксено
+    .desc = { ent-MarkerBase.desc }

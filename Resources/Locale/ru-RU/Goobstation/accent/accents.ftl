@@ -1,6 +1,7 @@
 # Gondola
 accent-words-gondola-1 = ...
-# Ohio
+
+#Ohio
 accent-ohio-prefix-1 = ГОООЛ челы,
 accent-ohio-prefix-2 = Чат...
 accent-ohio-prefix-3 = Эпик вин,
@@ -8,6 +9,7 @@ accent-ohio-prefix-4 = Литерали...
 accent-ohio-prefix-5 = БРО...
 accent-ohio-prefix-6 = Называйте меня риззлером потомушо,
 accent-ohio-prefix-7 = Это типа...
+
 accent-ohio-suffix-1 = . Как в Саратове.
 accent-ohio-suffix-2 = . Из Саратова...
 accent-ohio-suffix-3 = . Как в Фортнайте.
@@ -21,192 +23,286 @@ accent-ohio-suffix-10 = . У кого столько ризза?
 accent-ohio-suffix-11 = . Это такой конец.
 accent-ohio-suffix-12 = . Чозанафек!!!!!!11!!!111!
 accent-ohio-suffix-13 = . Нужно бы сделать мьюинг.
+
 accent-ohio-words-1 = харизма
 accent-ohio-words-replace-1 = ризз
+
 accent-ohio-words-2 = крутой
 accent-ohio-words-replace-2 = сигма
+
 accent-ohio-words-3 = потрясающий
 accent-ohio-words-replace-3 = ризз
+
 accent-ohio-words-4 = бог
 accent-ohio-words-replace-4 = гол
+
 accent-ohio-words-5 = атаковал
 accent-ohio-words-replace-5 = зариззал
+
 accent-ohio-words-6 = убил
 accent-ohio-words-replace-6 = увёз в Саратов
+
 accent-ohio-words-7 = убийство
 accent-ohio-words-replace-7 = поездка в Саратов
+
 accent-ohio-words-8 = мёртв
 accent-ohio-words-replace-8 = в Саратове
+
 accent-ohio-words-9 = техи
 accent-ohio-words-replace-9 = Закулисье
+
 accent-ohio-words-10 = технические
 accent-ohio-words-replace-10 = Закулисные
+
 accent-ohio-words-11 = туннели
 accent-ohio-words-replace-11 = Закулисье
+
 accent-ohio-words-12 = атакован
 accent-ohio-words-replace-12 = разживлён
+
 accent-ohio-words-13 = ядерный оперативник
 accent-ohio-words-replace-13 = сасси бака предатель из Амонг Ас
+
 accent-ohio-words-14 = синдикат
 accent-ohio-words-replace-14 = сасси бака предатель из Амонг Ас
+
 accent-ohio-words-15 = синди
 accent-ohio-words-replace-15 = сасси бака предатель из Амонг Ас
+
 accent-ohio-words-16 = предатель
 accent-ohio-words-replace-16 = сасси бака предатель из Амонг Ас
+
 accent-ohio-words-17 = вот
 accent-ohio-words-replace-17 = гол
+
 accent-ohio-words-18 = вкусный
 accent-ohio-words-replace-18 = няма
+
 accent-ohio-words-19 = милый
 accent-ohio-words-replace-19 = НЯШНИ!!11! UwU OwO
+
 accent-ohio-words-20 = женщины
 accent-ohio-words-replace-20 = ЖЕНЩИНЫ
+
 accent-ohio-words-21 = девочки
 accent-ohio-words-replace-21 = ЖЕНЩИНЫ
+
 accent-ohio-words-22 = девочка
 accent-ohio-words-replace-22 = ЖЕНЩИНА
+
 accent-ohio-words-23 = woman
 accent-ohio-words-replace-23 = ЖЕНЩИНА
+
 accent-ohio-words-24 = мисс
 accent-ohio-words-replace-24 = ЖЕНЩИНА
+
 accent-ohio-words-25 = мис
 accent-ohio-words-replace-25 = ЖЕНЩИНА
+
 accent-ohio-words-26 = мисис
 accent-ohio-words-replace-26 = ЖЕНЩИНА
+
 accent-ohio-words-27 = мис.
 accent-ohio-words-replace-27 = ЖЕНЩИНА
+
 accent-ohio-words-28 = миссис
 accent-ohio-words-replace-28 = ЖЕНЩИНА
+
 accent-ohio-words-29 = сучка
 accent-ohio-words-replace-29 = ЖЕНЩИНА
+
 accent-ohio-words-30 = реально
 accent-ohio-words-replace-30 = фор рил
+
 accent-ohio-words-31 = действительно
 accent-ohio-words-replace-31 = мелким шрифтом
+
 accent-ohio-words-32 = терпим
 accent-ohio-words-replace-32 = терпим карлики
+
 accent-ohio-words-33 = эпик
 accent-ohio-words-replace-33 = поггерс
+
 accent-ohio-words-34 = язык
 accent-ohio-words-replace-34 = лигма
+
 accent-ohio-words-35 = игра
 accent-ohio-words-replace-35 = роблокс
+
 accent-ohio-words-36 = не
 accent-ohio-words-replace-36 = нах
+
 accent-ohio-words-37 = странный
 accent-ohio-words-replace-37 = сасси
+
 accent-ohio-words-38 = брат
 accent-ohio-words-replace-38 = бро
+
 accent-ohio-words-39 = человек
 accent-ohio-words-replace-39 = бро
+
 accent-ohio-words-40 = марихуана
 accent-ohio-words-replace-40 = 420 листок
+
 accent-ohio-words-41 = травка
 accent-ohio-words-replace-41 = 420 листок
+
 accent-ohio-words-42 = лучший
 accent-ohio-words-replace-42 = ГОООЛ!!
+
 accent-ohio-words-43 = проиграли
 accent-ohio-words-replace-43 = залузили
+
 accent-ohio-words-44 = поражение
 accent-ohio-words-replace-44 = луз
+
 accent-ohio-words-45 = проиграл
 accent-ohio-words-replace-45 = залузил
+
 accent-ohio-words-46 = глупый
 accent-ohio-words-replace-46 = гуффи
+
 accent-ohio-words-47 = клоун
 accent-ohio-words-replace-47 = гуффи бро
+
 accent-ohio-words-48 = смешной
 accent-ohio-words-replace-48 = гуффи
+
 accent-ohio-words-49 = шутка
 accent-ohio-words-replace-49 = мем
+
 accent-ohio-words-50 = идиот
 accent-ohio-words-replace-50 = бака
+
 accent-ohio-words-51 = урод
 accent-ohio-words-replace-51 = нет ризза
+
 accent-ohio-words-52 = засранец
 accent-ohio-words-replace-52 = задрот
+
 accent-ohio-words-53 = умн
 accent-ohio-words-replace-53 = задрот
+
 accent-ohio-words-54 = учёный
 accent-ohio-words-replace-54 = учёный-капчёный
+
 accent-ohio-words-55 = ученый
 accent-ohio-words-replace-55 = ученый-капчёный
+
 accent-ohio-words-56 = история
 accent-ohio-words-replace-56 = лор
+
 accent-ohio-words-57 = лузер
 accent-ohio-words-replace-57 = L и минус реп, лох
+
 accent-ohio-words-58 = хорошо
 accent-ohio-words-replace-58 = риззово
+
 accent-ohio-words-59 = кредитов
 accent-ohio-words-replace-59 = риззбаксов
+
 accent-ohio-words-60 = долларов
 accent-ohio-words-replace-60 = риззбаксов
+
 accent-ohio-words-61 = доллары
 accent-ohio-words-replace-61 = риззбаксы
+
 accent-ohio-words-62 = кредиты
 accent-ohio-words-replace-62 = риззбаксы
+
 accent-ohio-words-63 = деньги
 accent-ohio-words-replace-63 = риззбаксы
+
 accent-ohio-words-64 = убью тебя
 accent-ohio-words-replace-64 = отправлю тебя в Бразилию
+
 accent-ohio-words-65 = хуй
 accent-ohio-words-replace-65 = ссисочка
+
 accent-ohio-words-66 = хот дог
 accent-ohio-words-replace-66 = ссисочка
+
 accent-ohio-words-67 = попа
 accent-ohio-words-replace-67 = эсс
+
 accent-ohio-words-68 = попы
 accent-ohio-words-replace-68 = эссы
+
 accent-ohio-words-69 = жопа
 accent-ohio-words-replace-69 = эсс
+
 accent-ohio-words-70 = убейся
 accent-ohio-words-replace-70 = отправь себя в Бразилию тупой типикал Саратов житель
+
 accent-ohio-words-71 = фелинид
 accent-ohio-words-replace-71 = жируха
+
 accent-ohio-words-72 = кот
 accent-ohio-words-replace-72 = жируха
+
 accent-ohio-words-73 = котёнок
 accent-ohio-words-replace-73 = жируха
+
 accent-ohio-words-74 = иан
 accent-ohio-words-replace-74 = жируха
+
 accent-ohio-words-75 = собака
 accent-ohio-words-replace-75 = жируха
+
 accent-ohio-words-76 = цербер
 accent-ohio-words-replace-76 = жируха
+
 accent-ohio-words-77 = щенок
 accent-ohio-words-replace-77 = жируха
+
 accent-ohio-words-78 = песик
 accent-ohio-words-replace-78 = жируха
+
 accent-ohio-words-79 = tesla
 accent-ohio-words-replace-79 = колючий ризз-шар
+
 accent-ohio-words-80 = сингулярность
 accent-ohio-words-replace-80 = ссаси дырка
+
 accent-ohio-words-81 = singu
 accent-ohio-words-replace-81 = ссаси дырка
+
 accent-ohio-words-82 = singulo
 accent-ohio-words-replace-82 = ссаси дырка
+
 accent-ohio-words-83 = тесла убежала
 accent-ohio-words-replace-83 = КОЛЮЧИЙ РИЗЗ-ШАР СБЕЖАЛО БЕЗ РОФЛОВ
+
 accent-ohio-words-84 = тесла сбежала
 accent-ohio-words-replace-84 = КОЛЮЧИЙ РИЗЗ-ШАР СБЕЖАЛО БЕЗ РОФЛОВ
+
 accent-ohio-words-85 = взлом
 accent-ohio-words-replace-85 = взлом типо видеогигра
+
 accent-ohio-words-86 = робаст
 accent-ohio-words-replace-86 = сигма-энергия
+
 accent-ohio-words-87 = смерть
 accent-ohio-words-replace-87 = разживление
+
 accent-ohio-words-88 = умер
 accent-ohio-words-replace-88 = разживился
+
 accent-ohio-words-89 = чёрт
 accent-ohio-words-replace-89 = чьортбля
+
 accent-ohio-words-90 = черт
 accent-ohio-words-replace-90 = чьортбля
+
 accent-ohio-words-91 = пиздец
 accent-ohio-words-replace-91 = овер
+
 accent-ohio-words-92 = писец
 accent-ohio-words-replace-92 = овер
+
 accent-ohio-words-93 = блять
 accent-ohio-words-replace-93 = скибиди
+
 accent-ohio-words-94 = сука
 accent-ohio-words-replace-94 = скибиди
 accent-ohio-words-95 = приход
@@ -349,3 +445,4 @@ accent-ohio-words-164 = класс
 accent-ohio-words-replace-164 = уютненько
 accent-ohio-words-165 = мда
 accent-ohio-words-replace-165 = пипяо
+

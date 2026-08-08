@@ -16,3 +16,8 @@ ghost-role-information-inteq-vanguard-leader-SIZO-description = You have been as
 ghost-role-information-inteq-vanguard-SIZO-description = Your squad has been assigned to Sizo-37. Maintain the facility and ensure its integrity.
 
 ghost-role-information-inteq-SIZO-rules = You must NOT leave lavaland without the permission of the administration, or a decent reason. You CAN conflict with the miners to a reasonable extent. Transfer of any equipment and belongings from Sizo-37 is PROHIBITED. Violation of the rules entails permanent blocking of access to Intec roles.
+ghost-role-information-giant-spider-vampire-name = Гигантский паук-вампир
+ghost-role-information-giant-spider-vampire-description = Стрёмный, старшный и даже паук, а ещё и кровь всасывать может.
+ghost-role-information-giant-spider-vampire-rules = Никаких ограничений для антагонистов. Только не говорите эмоционально; у вас есть телепатический чат.
+ghost-role-information-BloodCrystalSoul-name = кровавый кристалл души
+ghost-role-information-BloodCrystalSoul-description = Повинуйтесь вашему вампирскому хозяину, пусть он вас поместит в конструкт голема.

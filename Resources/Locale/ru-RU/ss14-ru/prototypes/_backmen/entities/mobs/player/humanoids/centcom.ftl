@@ -1,0 +1,12 @@
+ent-MobHumanCentComCorvax = Представитель ЦК
+    .desc = { ent-MobHuman.desc }
+    .suffix = CentCom
+ent-MobHumanCentComOperatorCorvax = Оператор ЦК
+    .desc = { ent-MobHuman.desc }
+    .suffix = CentCom
+ent-MobHumanSFOfficer = Офицер специальный операций
+    .desc = { ent-MobHumanCombine.desc }
+    .suffix = CentCom
+ent-MobHumanCentComOfficerSesurityGavna = Начальник Безопасности ЦК
+    .desc = { ent-MobHuman.desc }
+    .suffix = CentCom

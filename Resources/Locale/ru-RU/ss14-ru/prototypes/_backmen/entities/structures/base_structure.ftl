@@ -1,0 +1,2 @@
+ent-BaseStructureDisableToolUse = { "" }
+    .desc = { "" }

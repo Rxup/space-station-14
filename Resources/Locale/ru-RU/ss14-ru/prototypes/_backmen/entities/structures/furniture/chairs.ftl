@@ -1,2 +1,2 @@
 ent-ComfyDarkChair = удобное темное кресло
-    .desc = Quite a comfortable dark chair.
+    .desc = Довольно удобный тёмный стул.

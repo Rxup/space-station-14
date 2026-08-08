@@ -1,55 +1,65 @@
 # UI
 
-
 ## Window
 
 air-alarm-ui-title = Аэратор
+
 air-alarm-ui-access-denied = Недостаточный уровень доступа!
+
 air-alarm-ui-window-pressure-label = Давление
 air-alarm-ui-window-temperature-label = Температура
 air-alarm-ui-window-alarm-state-label = Статус
+
 air-alarm-ui-window-address-label = Адрес
 air-alarm-ui-window-device-count-label = Кол-во устройств
 air-alarm-ui-window-resync-devices-label = Пересинхронизировать устройства
+
 air-alarm-ui-window-mode-label = Режим
 air-alarm-ui-window-mode-select-locked-label = [bold][color=red] Ошибка выбора режима! [/color][/bold]
 air-alarm-ui-window-auto-mode-label = Авто-режим
--air-alarm-state-name =
-    { $state ->
-        [normal] Нормально
-        [warning] Предупреждение
-        [danger] Опасно
-        [emagged] Взломано
-       *[invalid] Невалидно
-    }
-air-alarm-ui-window-listing-title = {$address} : {-air-alarm-state-name(state:$state)}
+
+-air-alarm-state-name = { $state ->
+    [normal] Нормально
+    [warning] Предупреждение
+    [danger] Опасно
+    [emagged] Взломано
+    *[invalid] Невалидно
+}
+
+air-alarm-ui-window-listing-title = { $address } : { -air-alarm-state-name(state:$state) }
 air-alarm-ui-window-pressure = { $pressure } кПа
-air-alarm-ui-window-pressure-indicator = Давление: [color={$color}]{$pressure} кПа[/color]
+air-alarm-ui-window-pressure-indicator = Давление: [color={ $color }]{ $pressure } кПа[/color]
 air-alarm-ui-window-temperature = { $tempC } °C ({ $temperature } К)
-air-alarm-ui-window-temperature-indicator = Температура: [color={$color}]{$tempC} °C ({$temperature} К)[/color]
-air-alarm-ui-window-alarm-state = [color={ $color }]{-air-alarm-state-name(state:$state)}[/color]
-air-alarm-ui-window-alarm-state-indicator = Статус: [color={ $color }]{-air-alarm-state-name(state:$state)}[/color]
+air-alarm-ui-window-temperature-indicator = Температура: [color={ $color }]{ $tempC } °C ({ $temperature } К)[/color]
+air-alarm-ui-window-alarm-state = [color={ $color }]{ -air-alarm-state-name(state:$state) }[/color]
+air-alarm-ui-window-alarm-state-indicator = Статус: [color={ $color }]{ -air-alarm-state-name(state:$state) }[/color]
+
 air-alarm-ui-window-tab-vents = Вентиляции
 air-alarm-ui-window-tab-scrubbers = Скрубберы
 air-alarm-ui-window-tab-sensors = Сенсоры
+
 air-alarm-ui-gases = { $gas }: { $amount } моль ({ $percentage }%)
 air-alarm-ui-gases-indicator = { $gas }: [color={ $color }]{ $amount } моль ({ $percentage }%)[/color]
+
 air-alarm-ui-mode-filtering = Фильтрация
 air-alarm-ui-mode-wide-filtering = Фильтрация (широкая)
 air-alarm-ui-mode-fill = Заполнение
 air-alarm-ui-mode-panic = Паника
 air-alarm-ui-mode-none = Нет
+
+
 air-alarm-ui-pump-direction-siphoning = Откачка
 air-alarm-ui-pump-direction-scrubbing = Очистка
 air-alarm-ui-pump-direction-releasing = Выпуск
+
 air-alarm-ui-pressure-bound-nobound = Без ограничений
 air-alarm-ui-pressure-bound-internalbound = Внутреннее ограничение
 air-alarm-ui-pressure-bound-externalbound = Внешнее ограничение
 air-alarm-ui-pressure-bound-both = Оба
+
 air-alarm-ui-widget-gas-filters = Газовые фильтры
 
 ## Widgets
-
 
 ### General
 
@@ -57,7 +67,7 @@ air-alarm-ui-widget-enable = Включено
 air-alarm-ui-widget-copy = Копировать настройки на похожие устройства
 air-alarm-ui-widget-copy-tooltip = Копирует настройки данного устройства на все устройства данной вкладки воздушной сигнализации.
 air-alarm-ui-widget-ignore = Игнорировать
-air-alarm-ui-atmos-net-device-label = Адрес: {$address}
+air-alarm-ui-atmos-net-device-label = Адрес: { $address }
 
 ### Vent pumps
 

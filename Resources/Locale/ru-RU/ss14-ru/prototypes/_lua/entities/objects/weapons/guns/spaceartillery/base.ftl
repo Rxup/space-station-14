@@ -1,0 +1,15 @@
+ent-BaseWeaponShipsArtillery = базовое оружие
+    .desc = базовое оружие
+    .suffix = Фронтир
+ent-BaseWeaponNavalEnergy = базовое энергетическое оружие
+    .desc = базовое энергетическое оружие
+    .suffix = Фронтир
+ent-BaseWeaponNavalBallisctic = базовое баллистическое оружие
+    .desc = базовое баллистическое оружие
+    .suffix = Фронтир
+ent-BaseWeaponMissile = базовое ракетное оружие
+    .desc = базовое ракетное оружие
+    .suffix = Фронтир
+ent-BaseMissile = missile
+    .desc = Ракета, предназначенная для запуска из ракетных установок.
+    .suffix = Фронтир

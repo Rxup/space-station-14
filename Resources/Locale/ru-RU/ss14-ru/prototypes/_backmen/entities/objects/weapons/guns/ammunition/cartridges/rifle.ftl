@@ -1,3 +1,13 @@
+ent-CartridgeRifleFire = патрон (.20 винтовочно-зажигательные)
+    .desc = { ent-BaseCartridgeRifle.desc }
+ent-BaseCartridgeRifleHeavy = патрон (.62 винтовочный)
+    .desc = { ent-BaseCartridge.desc }
+ent-CartridgeRifleHeavy = патрон (.62 винтовочный)
+    .desc = { ent-BaseCartridgeRifleHeavy.desc }
+ent-BaseCartridgeRifleRocket20 = патрон (рельсотрон)
+    .desc = { ent-BaseCartridge.desc }
+ent-CartridgeRifleRocket20 = патрон (рельсотрон)
+    .desc = { ent-BaseCartridgeRifleRocket20.desc }
 ent-BaseCartridgeRifleLightSniper = патрон (7,62 rifle)
     .desc = { ent-BaseCartridge.desc }
 ent-CartridgeRifleLight762x39 = патрон (7,62x39)

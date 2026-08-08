@@ -1,2 +1,4 @@
+ent-BankCartridge = пустой картридж
+    .desc = Программа для управления банковским счетом
 ent-GlimmerMonitorCartridge = картридж монитора бликов
-    .desc = A cartridge that keeps track of glimmer.
+    .desc = Картридж, отслеживающий уровень сияния.

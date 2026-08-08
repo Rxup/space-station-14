@@ -1,12 +1,12 @@
 markings-used = Используемые черты
--markings-selection =
-    { $selectable ->
-        [0] You have no markings remaining.
-        [one] You can select one more marking.
-       *[other] You can select { $selectable } more markings.
-    }
+-markings-selection = { $selectable ->
+    [0] Вы больше не можете выбрать черту.
+    [one] Вы можете выбрать еще одну черту.
+    *[other] Вы можете выбрать ещё { $selectable } черты.
+}
 markings-unused = Неиспользуемые черты
 markings-add = Добавить черту
+
 humanoid-marking-modifier-respect-limits = Учитывать ограничения
 humanoid-marking-modifier-respect-group-sex = Учитывать ограничение расы и пола
 markings-remove = Убрать черту
@@ -42,6 +42,9 @@ markings-category-Arms = Руки
 markings-category-Legs = Ноги
 markings-category-Tail = Хвост
 markings-category-Overlay = Наложение
+
+# Categories
+
 markings-organ-Torso = Туловище
 markings-organ-Head = Голова
 markings-organ-ArmLeft = Левая рука
@@ -53,6 +56,7 @@ markings-organ-LegRight = Правая нога
 markings-organ-FootLeft = Левая стопа
 markings-organ-FootRight = Правая стопа
 markings-organ-Eyes = Глаза
+
 markings-layer-Special = Особое
 markings-layer-Tail = Хвост
 markings-layer-Tail-Moth = Крылья
@@ -79,3 +83,4 @@ markings-layer-Overlay = Наложение
 markings-layer-TailOverlay = Наложение
 markings-reorder = Изменить порядок
 markings-limits = Достигнут лимит разметок для этого слоя.
+

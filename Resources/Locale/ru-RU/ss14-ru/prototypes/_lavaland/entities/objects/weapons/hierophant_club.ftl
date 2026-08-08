@@ -1,2 +1,2 @@
 ent-LavalandHierophantClub = дубина иерофанта
-    .desc = Get item'ed lol
+    .desc = Получил предмет, лол

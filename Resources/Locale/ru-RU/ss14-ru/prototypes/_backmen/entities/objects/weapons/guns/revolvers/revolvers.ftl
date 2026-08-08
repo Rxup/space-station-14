@@ -1,8 +1,11 @@
+ent-WeaponRevolverMatebaNew = Матеба
+    .desc = Культовое оружие ужасных эскадронов смерти. Использует патроны .44 Magnum.
+    .suffix = Револьвер
 ent-WeaponRevolverCMB = CMB авторевольвер
-    .desc = An automatic revolver chambered in .45 magnum. Commonly issued to Nanotrasen security. It has a burst mode. Currently in trial with other revolvers across Terra and other colonies.
+    .desc = Автоматический револьвер под .45 magnum. Обычно выдаётся службе безопасности Nanotrasen. Имеет режим очереди. Сейчас проходит испытания вместе с другими револьверами на Терре и в колониях.
 ent-WeaponRevolverR44 = R-44 SAA револьвер
-    .desc = A uncommon revolver occasionally carried by civilian law enforcement that's very clearly based off a modernized Single Action Army. Has to be manully primed with each shot. Uses .45 Magnum rounds.
+    .desc = Необычный револьвер, иногда носимый гражданской полицией, явно основанный на модернизированном Single Action Army. Нужно вручную взводить перед каждым выстрелом. Использует патроны .45 Magnum.
 ent-WeaponRevolverNY = N-Y револьвер
-    .desc = The Nagant-Yamasaki is an efficient killing machine developed by an old generation country, namely Russia. It can often be found in the hands of criminals or mercenaries.
+    .desc = Nagant-Yamasaki — эффективная машина убийства, разработанная в старой стране, а именно в России. Часто встречается у преступников или наёмников.
 ent-WeaponRevolverRebota = FFA револьвер "Ребота"
-    .desc = Uses .45 magnum. Timeless design, from antiquity to the future. This one is well known among the police as a versatile and unpretentious weapon.
+    .desc = Использует .45 magnum. Вневременной дизайн — от древности до будущего. Хорошо известен среди полиции как универсальное и неприхотливое оружие.

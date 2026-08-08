@@ -6,9 +6,9 @@ forensic-scanner-interface-residues = Остатки
 forensic-scanner-interface-no-data = Нет данных для сканирования
 forensic-scanner-interface-print = Распечатать
 forensic-scanner-interface-clear = Очистить
-forensic-scanner-report-title = Заключение криминалистической экспертизы: {$entity}
+forensic-scanner-report-title = Заключение криминалистической экспертизы: { $entity }
 forensic-pad-unused = Она ещё не использовалась
-forensic-pad-sample = Она содержит образец: {$sample}
+forensic-pad-sample = Она содержит образец: { $sample }
 forensic-pad-no-access-due = Нельзя получить доступ к отпечаткам из-за { THE($entity) }.
 forensic-pad-no-access = Нельзя получить доступ к отпечаткам.
 forensic-pad-gloves = { CAPITALIZE($target) } носит перчатки.
@@ -23,8 +23,11 @@ forensic-scanner-verb-text = Сканировать
 forensic-scanner-verb-message = Выполняется криминалистическое сканирование
 forensic-pad-fingerprint-name = владелец отпечатков: { $entity }
 forensic-pad-gloves-name = источник волокон: { $entity }
+
 forensics-dna-unknown = неизвестная ДНК
+
 forensics-verb-text = Счистить улики
 forensics-verb-message = Счистить отпечатки пальцев и остатки ДНК с объекта!
 forensics-cleaning = Вы начинаете счищать улики с { $target }...
+
 forensics-cleaning-cannot-clean = Ничего нельзя счистить с { $target }!

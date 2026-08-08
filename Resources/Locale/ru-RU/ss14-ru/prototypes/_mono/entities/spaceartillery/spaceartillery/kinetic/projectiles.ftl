@@ -1,0 +1,9 @@
+ent-20mmBulletBase = { ent-BaseBullet }
+    .desc = { ent-BaseBullet.desc }
+    .suffix = Фронтир
+ent-90mmBulletBase = shell
+    .desc = { ent-BaseBulletTrigger.desc }
+    .suffix = Фронтир
+ent-90mmBulletExplosiveBase = { ent-90mmBulletBase }
+    .desc = { ent-90mmBulletBase.desc }
+    .suffix = Фронтир

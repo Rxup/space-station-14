@@ -4,8 +4,8 @@ ent-BaseDoAfterAction = { ent-BaseAction }
     .desc = { ent-BaseAction.desc }
 ent-BaseMentalAction = { ent-BaseAction }
     .desc = { ent-BaseAction.desc }
-ent-BaseSuicideAction = { "" }
-    .desc = { "" }
+ent-BaseSuicideAction = { ent-BaseMentalAction }
+    .desc = { ent-BaseMentalAction.desc }
 ent-BaseImplantAction = { ent-BaseAction }
     .desc = { ent-BaseAction.desc }
 ent-BaseToggleAction = { ent-BaseAction }
@@ -36,8 +36,8 @@ ent-ActionToggleSuitPiece = Переключить элементы костюм
     .desc = Не забудьте экипировать важные части костюма, прежде чем приступать к действиям.
 ent-ActionCombatModeToggle = [color=red]Боевой режим[/color]
     .desc = Войти в боевой режим
-ent-ActionCombatModeToggleOff = [color=red]Боевой режим[/color]
-    .desc = Войти в боевой режим
+ent-ActionCombatModeToggleOff = { ent-ActionCombatModeToggle }
+    .desc = { ent-ActionCombatModeToggle.desc }
 ent-ActionChangeVoiceMask = Изменить имя
     .desc = Измените имя, которое все слышат, на другое.
 ent-ActionShootWater = Распылить воду!

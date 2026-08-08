@@ -1,11 +1,10 @@
-ent-HeadcrabSalvageStatue = статуя хедкраба
-    .desc = Потрескавшаяся каменная статуя, изображающая хедкраба.
-
-ent-HeadcrabZombieSalvageStatue = статуя зомбированного
-    .desc = Потрескавшаяся каменная статуя, изображающая заражённого гуманоида.
-
-ent-BlackOpsSalvageStatue = кристалл на пьедестале
-    .desc = На потрескавшемся каменном пьедестале покоится тёмный кристалл.
-
-ent-VortigauntSalvageStatue = статуя вортигонта
-    .desc = Потрескавшаяся каменная статуя, изображающая вортигонта.
+ent-BlackMesaSalvageStatueBase = { ent-CarpStatue }
+    .desc = { ent-CarpStatue.desc }
+ent-HeadcrabSalvageStatue = { ent-BlackMesaSalvageStatueBase }
+    .desc = { ent-BlackMesaSalvageStatueBase.desc }
+ent-HeadcrabZombieSalvageStatue = { ent-BlackMesaSalvageStatueBase }
+    .desc = { ent-BlackMesaSalvageStatueBase.desc }
+ent-BlackOpsSalvageStatue = { ent-BlackMesaSalvageStatueBase }
+    .desc = { ent-BlackMesaSalvageStatueBase.desc }
+ent-VortigauntSalvageStatue = { ent-BlackMesaSalvageStatueBase }
+    .desc = { ent-BlackMesaSalvageStatueBase.desc }

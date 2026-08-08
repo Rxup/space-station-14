@@ -1,2 +1,4 @@
-ent-CommsComputerCircuitboardCentComm = communications computer board
-    .desc = A computer printed circuit board for a communications console.
+ent-ShipyardComputerCircuitboard = компьютерная плата верфи
+    .desc = Компьютерная печатная плата для компьютера верфи.
+ent-CommsComputerCircuitboardCentComm = плата консоли связи
+    .desc = Печатная плата компьютера для консоли связи.

@@ -1,2 +1,2 @@
 ent-BulletPlasmaCutter = болт резака
-    .desc = Not too bad, but you still don't want to get hit by it.
+    .desc = Не так уж плохо, но всё равно не хочется под него попасть.

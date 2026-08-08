@@ -14,3 +14,8 @@ item-component-size-Normal = medium
 item-component-size-Large = large
 item-component-size-Huge = huge
 item-component-size-Ginormous = ginormous
+# backmen
+pseudoitem-contained = Кто-то запихал это в сумку!
+pseudoitem-not-contained = Вы можете это запихнуть в сумку!
+item-component-size-Felinid = кошка?!
+item-component-size-HeavyMachineGun = тяжелое вооружение

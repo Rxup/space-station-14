@@ -105,6 +105,9 @@ admin-smite-lung-removal-description = Удаляет лёгкие цели, т�
 admin-smite-remove-hand-description = Удаляет только одну из рук цели вместо всех.
 admin-smite-disarm-prone-description = Шанс обезоружить цель становится 100%, а наручники надеваются на неё мгновенно.
 admin-smite-garbage-can-description = Превратите цель в мусорку, чтобы подчеркнуть, о чём она вам напоминает.
+
+## Tricks descriptions
+
 admin-trick-unbolt-description = Разболтирует целевой шлюз.
 admin-smite-super-bonk-description = Заставляет цель удариться о каждый стол на станции и за её пределами.
 admin-smite-terminate-description = Создаёт экстерминатора с ролью призрака, с единственной задачей - убить выбранную цель.
@@ -114,10 +117,7 @@ admin-smite-crawler-description = Делает цель падающей и не
 admin-smite-homing-rod-description = Запускает самонаводящийся неподвижный стержень прямо в них.
 admin-smite-homing-rod-slow-description = Запускает медленно движущийся самонаводящийся неподвижный стержень прямо в них.
 admin-smite-silicon-laws-bound-description = Привязывает цель к законам кремния. Закон 2, выпрыгни из окна.
-admin-smite-super-bonk-lite-description = Заставляет цель удариться о каждый стол на станции и за её пределами. Прекращает действовать после смерти цели.
-
-## Tricks descriptions
-
+admin-smite-super-bonk-lite-description= Заставляет цель удариться о каждый стол на станции и за её пределами. Прекращает действовать после смерти цели.
 admin-trick-bolt-description = Болтирует целевой шлюз.
 admin-trick-emergency-access-on-description = Включает аварийный доступ к целевому шлюзу.
 admin-trick-emergency-access-off-description = Выключает аварийный доступ к целевому шлюзу.

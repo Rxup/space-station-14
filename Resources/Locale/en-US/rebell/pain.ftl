@@ -1,0 +1,10 @@
+screams-and-flinches-pain = ““0”” screams and twitches in pain!
+screams-in-agony = ““0”” screams in pain and nervously twitches in agony!
+screams-and-falls-pain = "0" screams in pain and falls to the floor, twitching!
+screams-in-pain = ““0”” screams in pain and twitches nervously!
+passes-out-pain = "0" runs out of steam and faints!
+woundable-dodged = ""0"" is evading!
+user-began-cpr = ""0"" began performing CPR ""1"".
+cpr-cant-perform-dead = The target is dead and CPR cannot be performed.
+cpr-cant-perform-not-crit = The victim's condition is not critical and CPR is not possible.
+user-finished-cpr-successfully = "0" successfully completed CPR "1".

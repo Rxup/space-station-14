@@ -43,3 +43,4 @@ flesh-cult-role-greeting-leader = You are the leader of the Flesh Cult.
     Your objectives and fellow cultists are specified in the character menu.
     Consume flesh beings to gain new abilities, stay in the shadows, and prepare for the arrival of the Flesh on the station.
     Make sure none of the members of your cult perish in vain.
+objective-issuer-flesh-cult = [color=crimson]Культ плоти[/color]

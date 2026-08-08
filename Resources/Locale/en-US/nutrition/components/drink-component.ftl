@@ -1,0 +1,23 @@
+drink-component-on-use-is-empty = ""0"" is empty!
+drink-component-on-examine-is-empty = [color=gray]Пусто[/color]
+drink-component-on-examine-is-opened = ""0""Open""1""
+drink-component-on-examine-is-sealed = The seal is not damaged.
+drink-component-on-examine-is-unsealed = The seal is broken.
+drink-component-on-examine-is-full = Full
+drink-component-on-examine-is-mostly-full = Almost full
+drink-component-on-examine-is-half-full = Наполовину полон
+drink-component-on-examine-is-half-empty = Half empty
+drink-component-on-examine-is-mostly-empty = Almost empty
+drink-component-on-examine-exact-volume = Полон на { $amount } ед.
+drink-component-try-use-drink-not-open = Open "0" first!
+drink-component-try-use-drink-is-empty = ""0"" is empty!
+drink-component-try-use-drink-cannot-drink = You can't drink anything!
+drink-component-try-use-drink-had-enough = You can't drink more!
+drink-component-try-use-drink-cannot-drink-other = They can't drink anything!
+drink-component-try-use-drink-had-enough-other = They can't drink anymore!
+drink-component-try-use-drink-success-slurp = Serb
+drink-component-try-use-drink-success-slurp-taste = Serb. ""0""
+drink-component-force-feed = "0" is trying to give you something to drink!
+drink-component-force-feed-success = ""0"""1"" you with something! ""2""
+drink-component-force-feed-success-user = You have successfully drunk ""0""
+drink-system-verb-drink = Drink

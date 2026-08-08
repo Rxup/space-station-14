@@ -1,28 +1,37 @@
 # Components
-spray-painter-ammo-on-examine = Содержит {$charges} {$charges}.
+spray-painter-ammo-on-examine = Содержит { $charges } { $charges }.
 spray-painter-ammo-after-interact-full = Краскопульт уже полон!
 spray-painter-ammo-after-interact-refilled = Вы заправили краскопульт.
+
 spray-painter-interact-no-charges = Недостаточно краски.
 spray-painter-interact-nothing-to-remove = Нечего удалять!
 spray-painter-interact-no-color-pick = Нет цвета для взятия!
-spray-painter-interact-color-picked = Взят цвет из '{$id}'.
+spray-painter-interact-color-picked = Взят цвет из '{ $id }'.
+
 spray-painter-on-examined-painted-message = Кажется, его недавно покрасили.
 spray-painter-style-not-available = Невозможно применить выбранный стиль к этому объекту.
+
 spray-painter-verb-toggle-decals = Переключить рисование декалей
-spray-painter-item-status-label = Декали: {$mode}
+
+spray-painter-item-status-label = Декали: { $mode }
 spray-painter-item-status-add = [color=green]Добавление[/color]
 spray-painter-item-status-remove = [color=red]Удаление[/color]
 spray-painter-item-status-off = [color=gray]Выкл[/color]
+
 # UI
 spray-painter-window-title = Краскопульт
+
 spray-painter-selected-style = Выбранный стиль:
+
 spray-painter-selected-decals = Выбранная декаль:
 spray-painter-use-custom-color = Использовать свой цвет
 spray-painter-use-snap-to-tile = Привязка к тайлу
+
 spray-painter-angle-rotation = Поворот:
 spray-painter-angle-rotation-90-sub = -90°
 spray-painter-angle-rotation-reset = 0°
 spray-painter-angle-rotation-90-add = +90°
+
 spray-painter-selected-color = Выбранный цвет:
 spray-painter-color-red = красный
 spray-painter-color-yellow = жёлтый
@@ -32,6 +41,7 @@ spray-painter-color-cyan = бирюзовый
 spray-painter-color-blue = синий
 spray-painter-color-white = белый
 spray-painter-color-black = чёрный
+
 # Categories (tabs)
 spray-painter-tab-category-airlocks = Шлюзы
 spray-painter-tab-category-canisters = Баллоны
@@ -39,16 +49,20 @@ spray-painter-tab-category-crates = Ящики
 spray-painter-tab-category-lockers = Шкафы
 spray-painter-tab-category-pipes = Трубы
 spray-painter-tab-category-decals = Декали
+
 # Groups (subtabs)
 spray-painter-tab-group-airlockstandard = Стандартные
 spray-painter-tab-group-airlockglass = Стеклянные
+
 spray-painter-tab-group-cratesteel = Стальные
 spray-painter-tab-group-crateplastic = Пластиковые
 spray-painter-tab-group-cratesecure = Защищённые
+
 spray-painter-tab-group-closet = Обычные
 spray-painter-tab-group-locker = Защищённые
 spray-painter-tab-group-wallcloset = Настенные (обычные)
 spray-painter-tab-group-walllocker = Настенные (защищённые)
+
 # Airlocks
 spray-painter-style-airlockstandard-atmospherics = Атмосферный
 spray-painter-style-airlockstandard-basic = Базовый
@@ -64,6 +78,7 @@ spray-painter-style-airlockstandard-salvage = Утилизация
 spray-painter-style-airlockstandard-science = Научный
 spray-painter-style-airlockstandard-security = Охрана
 spray-painter-style-airlockstandard-virology = Вирусология
+
 spray-painter-style-airlockglass-atmospherics = Атмосферный
 spray-painter-style-airlockglass-basic = Базовый
 spray-painter-style-airlockglass-cargo = Снабжение
@@ -77,6 +92,7 @@ spray-painter-style-airlockglass-salvage = Утилизация
 spray-painter-style-airlockglass-science = Научный
 spray-painter-style-airlockglass-security = Охрана
 spray-painter-style-airlockglass-virology = Вирусология
+
 # Lockers
 spray-painter-style-locker-atmospherics = Атмосферный
 spray-painter-style-locker-basic = Базовый
@@ -103,6 +119,7 @@ spray-painter-style-locker-salvage = Утилизация
 spray-painter-style-locker-scientist = Учёный
 spray-painter-style-locker-security = Охрана
 spray-painter-style-locker-welding = Сварщик
+
 spray-painter-style-closet-basic = Базовый
 spray-painter-style-closet-biohazard = Биоопасность
 spray-painter-style-closet-biohazard-science = Биоопасность (наука)
@@ -119,6 +136,7 @@ spray-painter-style-closet-nitrogen = СИЗ (азот)
 spray-painter-style-closet-oxygen = СИЗ (кислород)
 spray-painter-style-closet-radiation = Радиационный
 spray-painter-style-closet-tool = Инструменты
+
 spray-painter-style-wallcloset-atmospherics = Атмосферный
 spray-painter-style-wallcloset-basic = Базовый
 spray-painter-style-wallcloset-black = Чёрный
@@ -133,8 +151,10 @@ spray-painter-style-wallcloset-oxygen = СИЗ (кислород)
 spray-painter-style-wallcloset-pink = Розовый
 spray-painter-style-wallcloset-white = Белый
 spray-painter-style-wallcloset-yellow = Жёлтый
+
 spray-painter-style-walllocker-evac = Эвакуационный ремонт
 spray-painter-style-walllocker-medical = Медицинский
+
 # Crates
 spray-painter-style-cratesteel-basic = Базовый
 spray-painter-style-cratesteel-electrical = Электрика
@@ -142,12 +162,14 @@ spray-painter-style-cratesteel-engineering = Инженерия
 spray-painter-style-cratesteel-radiation = Радиация
 spray-painter-style-cratesteel-science = Наука
 spray-painter-style-cratesteel-surgery = Хирургия
+
 spray-painter-style-crateplastic-basic = Базовый
 spray-painter-style-crateplastic-chemistry = Химия
 spray-painter-style-crateplastic-command = Командование
 spray-painter-style-crateplastic-hydroponics = Гидропоника
 spray-painter-style-crateplastic-medical = Медицина
 spray-painter-style-crateplastic-oxygen = Кислород
+
 spray-painter-style-cratesecure-basic = Базовый
 spray-painter-style-cratesecure-chemistry = Химия
 spray-painter-style-cratesecure-command = Командование
@@ -159,6 +181,7 @@ spray-painter-style-cratesecure-private = Личный
 spray-painter-style-cratesecure-science = Наука
 spray-painter-style-cratesecure-secgear = Снаряжение охраны
 spray-painter-style-cratesecure-weapon = Оружие
+
 # Canisters
 spray-painter-style-canisters-air = Воздух
 spray-painter-style-canisters-ammonia = Аммиак

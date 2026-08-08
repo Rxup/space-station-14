@@ -1,6 +1,6 @@
 ent-FrostyTintedWindow = тонированное окно
-    .suffix = Light Frosty
     .desc = { ent-TintedWindow.desc }
+    .suffix = Светлый морозный
 ent-IndestructibleFrostyTintedWindow = тонированное окно
-    .suffix = indestructible Light Frosty
     .desc = { ent-BaseWall.desc }
+    .suffix = неразрушимый, светлый морозный

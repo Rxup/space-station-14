@@ -1,9 +1,9 @@
 supermatter-self = Суперматерия
-supermatter-danger-message = Danger! Crystal hyperstructure integrity faltering! Integrity: { $integrity }%
-supermatter-warning-message = WARNING! Crystal hyperstructure integrity reaching critical levels! Integrity: { $integrity }%
+supermatter-danger-message = Опасность! Целостность гиперструктуры кристалла падает! Целостность: { $integrity }%
+supermatter-warning-message = ВНИМАНИЕ! Целостность гиперструктуры кристалла достигает критического уровня! Целостность: { $integrity }%
 supermatter-emergency = Опасность! Целостность гиперструктуры кристалла нарушена! Целостность: { $integrity }%
-supermatter-delamination-overmass = The Supermatter has Reached Critical Mass Falure. Singularity formation Imminent
-supermatter-delamination-default = The Supermatter has Reached Critical Integrity Falure. Emergency Causality Destabilization Field has been Activated.
+supermatter-delamination-overmass = Суперматерия достигла критического массового сбоя. Формирование сингулярности неизбежно
+supermatter-delamination-default = Суперматерия достигла критического сбоя целостности. Активировано аварийное поле дестабилизации причинности.
 supermatter-warning = ВНИМАНИЕ! Целостность гиперструктуры кристалла приближается к критическому уровню! Целостность: { $integrity }%
 supermatter-safe-alert = Целостность гиперструктуры кристалла возвращается к безопасным рабочим параметрам. Аварийная блокировка отключена. Целостность: { $integrity }%
 supermatter-examine-integrity = Его целостность равна [color=yellow]{ $integrity }%[/color].
@@ -16,3 +16,12 @@ supermatter-delam-tesla = ДЕЛАМИНАЦИЯ КРИСТАЛЛА НЕИЗБЕ
 supermatter-delam-cascade = ДЕЛАМИНАЦИЯ КРИСТАЛЛА НЕИЗБЕЖНА! Превышены пределы гармонической частоты, поле дестабилизации причинности не может быть активировано!
 supermatter-delam-cancel = Гиперструктура кристалла возвращается к безопасным рабочим параметрам. Предохранитель деактивирован. Целостность: { $integrity }%.
 supermatter-seconds-before-delam = Ожидаемое время до деламинации: { $seconds } секунд.
+
+ent-Reflector = отражатель
+    .desc = Угловое зеркало, перенаправляющее болты эмиттера с тыла и боков через лицевую сторону. Говорят что первые версии были сделаны из холодильника СССП.
+
+ent-ReflectorFrame = каркас отражателя
+    .desc = Незавершённая сборка отражателя. Закрепите на полу, затем добавьте алмаз и укреплённое стекло.
+
+construction-reflector = отражатель
+    .desc = Угловое зеркало для перенаправления болтов эмиттера. Требуется 15 стали, 1 алмаз и 5 листов укреплённого стекла.

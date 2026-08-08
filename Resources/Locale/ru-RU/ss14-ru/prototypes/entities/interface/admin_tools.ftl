@@ -1,2 +1,2 @@
 ent-AdminCamera = админская камера
-    .desc = We are watching you.
+    .desc = Мы смотрим за тобой.

@@ -50,3 +50,18 @@ injector-component-spray-injecting-target = {CAPITALIZE(THE($user))} is trying t
 
 ## Target Popup Success messages
 injector-component-feel-prick-message = You feel a tiny prick!
+injector-draw-text = Забор
+injector-inject-text = Введение
+injector-invalid-injector-toggle-mode = Неверный режим
+
+## Entity
+
+injector-component-drawing-text = Содержимое набирается
+injector-component-injecting-text = Содержимое вводится
+
+## mob-inject doafter messages
+
+injector-component-drawing-user = Вы начинаете набирать шприц.
+injector-component-injecting-user = Вы начинаете вводить содержимое шприца.
+injector-component-drawing-target = { CAPITALIZE($user) } начинает набирать шприц из вас!
+injector-component-injecting-target = { CAPITALIZE($user) } начинает вводить содержимое шприца в вас!

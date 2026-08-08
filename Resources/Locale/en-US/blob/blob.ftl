@@ -1,4 +1,4 @@
-﻿# Popups
+# Popups
 blob-target-normal-blob-invalid = Wrong blob type, select a normal blob.
 blob-target-factory-blob-invalid = Wrong blob type, select a factory blob.
 blob-target-node-blob-invalid = Wrong blob type, select a node blob.
@@ -105,8 +105,8 @@ blob-zombie-greeting = You were infected and raised by a blob spore. Now you mus
 
 # End round
 blob-round-end-result = {$blobCount ->
-[one] There was one blob.
-*[other] There were {$blobCount} blobs.
+    [one] There was one blob.
+    *[other] There were {$blobCount} blobs.
 }
 
 blob-user-was-a-blob = [color=gray]{$user}[/color] was a blob.
@@ -127,3 +127,15 @@ blob-was-a-blob-with-objectives-named = [color=White]{$name}[/color] was a blob:
 # Objectivies
 objective-condition-blob-capture-title = Take over the station
 objective-condition-blob-capture-description = Your only goal is to take over the whole station. You need to have at least {$count} blob tiles.
+blob-target-close-to-tile = Слишком близко к другой клетке данного типа.
+blob-target-already-connected = К узлу уже привязан блоб данного типа.
+blob-create-storage-action-name = Создать блоб хранилище (50)
+blob-create-storage-action-desc = Превращает выбраного нормального блоба в хранилище, которое расширяет максимальное количество ресурсов которое может иметь блоб.
+blob-create-turret-action-name = Создать блоб турель (75)
+blob-create-turret-action-desc = Превращает выбраного нормального блоба в турель, которая стреляет по врагам своими мелкими спорами, расходуя очки.
+blob-downgrade-action-name = Сбросить блоба (0)
+blob-downgrade-action-desc = Превращает выбранную клетку обратно в обычного блоба для установки других видов клеток.
+blob-no-using-guns-popup = Большая палка?! БИТЬ!
+blob-carrier-role-greeting = Вы носитель Блоба. Найдите укромное место на станции и превратитесь в Блоба. Превратите станцию в массу, а ее обитателей в ваших слуг. Все мы Блоб.
+objective-condition-success = { $condition } | [color={ $markupColor }]Успех![/color]
+objective-condition-fail = { $condition } | [color={ $markupColor }]Провал![/color] ({ $progress }%)

@@ -1,2 +1,2 @@
 ent-ExplosionInstant = мгновенный взрыв
-    .desc = KA BOOOOM!
+    .desc = КА БУУУМ!

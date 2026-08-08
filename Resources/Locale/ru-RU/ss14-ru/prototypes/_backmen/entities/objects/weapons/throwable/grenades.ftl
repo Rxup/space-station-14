@@ -31,4 +31,6 @@ ent-HeliumGrenade = граната с гелием
 
 ent-AntiNobliumGrenade = граната с анти-ноблием
     .desc = Граната, которая распыляет газ анти-ноблий. КРАЙНЕ ОПАСНА!
+ent-ConfettiGrenade = конфетти граната
+    .desc = Граната, создающая небольшой но разрушительный взрыв из конфетти.
 # ADT-Gas Grenades Localization End

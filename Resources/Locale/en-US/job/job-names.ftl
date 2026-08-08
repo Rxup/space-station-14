@@ -124,3 +124,6 @@ JobStationEngineer = Station Engineer
 JobTechnicalAssistant = Technical Assistant
 JobVisitor = Visitor
 JobWarden = Warden
+job-name-centcomoff = представитель Центком
+JobBoxer = боксёр
+JobZookeeper = зоотехник

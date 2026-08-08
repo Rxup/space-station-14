@@ -1,0 +1,9 @@
+ent-VendingMachineWallMedicalShipwreck = { ent-VendingMachineWallMedical }
+    .desc = { ent-VendingMachineWallMedical.desc }
+    .suffix = Shipwreck
+ent-filingCabinetDrawerShipwreckFilled = { ent-filingCabinetDrawer }
+    .desc = { ent-filingCabinetDrawer.desc }
+    .suffix = Кораблекрушение, Заполненный
+ent-WashingMachineShipwreckFilled = { ent-WashingMachine }
+    .desc = { ent-WashingMachine.desc }
+    .suffix = Кораблекрушение, Заполненный

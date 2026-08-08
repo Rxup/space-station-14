@@ -1,8 +1,8 @@
 ent-WeaponLaserCarabinCell = лазерный карабин EarthGov
-    .desc = A Earth Government standard issue laser carbine, use by army and police. Thanks to the short barrel it has better maneuverability in narrow spaces.
+    .desc = Стандартный лазерный карабин правительства Земли, используемый армией и полицией. Благодаря короткому стволу лучше подходит для узких пространств.
     .suffix = Rifle
 ent-WeaponEarthGovLaserSniperCell = тяжелая лазерная винтовка EarthGov
-    .desc = A Earth Government heavy sniper rifle for a extended combat situation.
+    .desc = Тяжёлая снайперская винтовка правительства Земли для затяжных боевых ситуаций.
     .suffix = Винтовка
 ent-WeaponPulseRifleSpetnaz = импульсная винтовка
-    .desc = A weapon that is almost as infamous as its users.
+    .desc = Оружие, почти столь же печально известное, как и его владельцы.

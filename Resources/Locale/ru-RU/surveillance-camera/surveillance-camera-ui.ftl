@@ -13,6 +13,8 @@ surveillance-camera-monitor-ui-legend-active = Активна
 surveillance-camera-monitor-ui-legend-inactive = Неактивна
 surveillance-camera-monitor-ui-legend-selected = Выбрана
 surveillance-camera-monitor-ui-legend-invalid = Ошибка
+
 surveillance-camera-setup = Настроить
 surveillance-camera-setup-ui-set = Установить
+
 wire-name-camera-map = КРТ

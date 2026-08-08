@@ -1,0 +1,10 @@
+examine-trigger-voice = The display shows: """0"""
+trigger-voice-uninitialized = The display shows: Not initialized...
+verb-trigger-voice-record = Record
+verb-trigger-voice-stop = Stop
+verb-trigger-voice-clear = Erase entry
+popup-trigger-voice-start-recording = Start recording
+popup-trigger-voice-stop-recording = End of recording
+popup-trigger-voice-record-failed-too-long = Message too long, try again
+popup-trigger-voice-record-failed-too-short = Message too short, try again
+popup-trigger-voice-recorded = Successfully recorded

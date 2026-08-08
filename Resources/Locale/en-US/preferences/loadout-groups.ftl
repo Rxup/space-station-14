@@ -207,3 +207,8 @@ loadout-group-reporter-head = Reporter hat
 loadout-group-reporter-outerclothing = Reporter vest
 
 loadout-group-psychologist-jumpsuit = Psychologist jumpsuit
+# Medical
+loadout-group-medical-gloves = Перчатки
+loadout-group-medical-glasses = Очки
+loadout-group-boxer-jumpsuit = Униформа
+loadout-group-boxer-gloves = Перчатки

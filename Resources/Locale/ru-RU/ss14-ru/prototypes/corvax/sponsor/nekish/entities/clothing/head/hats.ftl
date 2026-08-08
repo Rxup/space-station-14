@@ -1,3 +1,3 @@
 ent-ClothingHeadHatCapHoS = кожаная фуражка главы охраны
-    .desc = Pretty old stuff for these times, bringing back old memories...
+    .desc = Прочная форменная фуражка начальника службы безопасности. Напоминает рядовым офицерам, кто здесь главный.
     .suffix = { "" }

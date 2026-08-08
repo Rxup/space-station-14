@@ -1,7 +1,7 @@
 ent-BaseBorgChassisNotIonStormable = киборг
     .desc = Гибрид человека и машины, который помогает в работе станции. Они любят, когда их просят повторять свои законы снова и снова.
-ent-BaseBorgChassis = киборг
-    .desc = Гибрид машины и человека, помогающий в работе станции. Они обожают, когда их снова и снова просят назвать свои законы.
+ent-BaseBorgChassis = { ent-BaseBorgChassisNotIonStormable }
+    .desc = { ent-BaseBorgChassisNotIonStormable.desc }
 ent-BaseBorgTransponder = { "" }
     .desc = { "" }
 ent-BaseXenoborgTransponder = { ent-BaseBorgTransponder }

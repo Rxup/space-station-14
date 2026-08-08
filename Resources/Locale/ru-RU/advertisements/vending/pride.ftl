@@ -1,4 +1,4 @@
-advertisement-pride-1 = Be gay do crime!
+advertisement-pride-1 = Будь геем, нарушай закон!
 advertisement-pride-2 = Полный цветов!
 advertisement-pride-3 = Вы валидны!
 advertisement-pride-4 = Первый прайд-парад был бунтом!

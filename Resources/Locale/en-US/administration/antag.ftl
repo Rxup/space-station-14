@@ -25,3 +25,8 @@ admin-verb-text-make-space-ninja = Make Ninja
 admin-verb-text-make-changeling = Make Changeling (WIP)
 
 admin-overlay-antag-classic = ANTAG
+admin-verb-make-eviltwin = Сделать цели злого близнеца.
+admin-verb-text-make-blob = Сделать цель блобом.
+admin-verb-text-make-vampire = Сделать цель вампиром.
+admin-verb-text-make-flesh-leader-cultist = Сделать лидером культа плоти
+admin-verb-text-make-flesh-cultist = Сделать культистом плоти

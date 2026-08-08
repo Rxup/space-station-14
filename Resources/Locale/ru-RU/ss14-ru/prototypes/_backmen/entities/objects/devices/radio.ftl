@@ -7,5 +7,5 @@ ent-RadioBlueShieldSupplyPod = рация вызова снабжения
 ent-RadioBlueShieldSupplyPodAirDrop = Радио Синий Щит Поставка Под Сброс
     .desc = { "" }
 ent-AirDropSecurityPilot = { "" }
-    .suffix = SecurityPilot, supply
     .desc = { "" }
+    .suffix = Пилот СБ, снабжение

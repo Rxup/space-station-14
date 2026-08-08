@@ -1,3 +1,9 @@
+ent-MobHumanSpecialReAgent = Спецназ
+    .desc = Жалкая кучка спецназа.
+    .suffix = corvax
+ent-MobHumanSpecialReAgentCOM = СпецназКомандир
+    .desc = Жалкая кучка спецназа.
+    .suffix = corvax
 ent-MobHumanSpecialReAgentHeavy = Спецназ Тяжелое Оружие Парень
     .desc = Жалкая кучка спецназа.
     .suffix = Vova

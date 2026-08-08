@@ -1,4 +1,4 @@
-﻿supermatter-examine-integrity = Its integrity is [color=yellow]{ $integrity }%[/color].
+supermatter-examine-integrity = Its integrity is [color=yellow]{ $integrity }%[/color].
 supermatter-examine-immune-clothing = Protects the wearer from [color=yellow]supermatter[/color] disintegration when worn.
 supermatter-examine-immune-entity = Won't be disintegrated by [color=yellow]supermatter[/color].
 supermatter-danger-message = Danger! Crystal hyperstructure integrity faltering! Integrity: { $integrity }%
@@ -16,3 +16,12 @@ ent-ReflectorFrame = reflector frame
 
 construction-reflector = reflector
     .desc = An angled mirror for redirecting emitter bolts. Requires 15 steel, 1 diamond, and 5 reinforced glass.
+supermatter-self = Суперматерия
+supermatter-emergency = Опасность! Целостность гиперструктуры кристалла нарушена! Целостность: { $integrity }%
+supermatter-warning = ВНИМАНИЕ! Целостность гиперструктуры кристалла приближается к критическому уровню! Целостность: { $integrity }%
+supermatter-announcer = Автоматический Суперматериальный Реактор
+supermatter-delam-explosion = ДЕЛАМИНАЦИЯ КРИСТАЛЛА НЕИЗБЕЖНА! Кристалл достиг критической потери целостности! Активировано поле дестабилизации причинности.
+supermatter-delam-overmass = ДЕЛАМИНАЦИЯ КРИСТАЛЛА НЕИЗБЕЖНА! Гиперструктура кристалла достигла критического уровня массы! Образование сингулярности неизбежно!
+supermatter-delam-tesla = ДЕЛАМИНАЦИЯ КРИСТАЛЛА НЕИЗБЕЖНА! Гиперструктура кристалла достигла критической мощности скачка! Образование энергетического шара неизбежно!
+supermatter-delam-cascade = ДЕЛАМИНАЦИЯ КРИСТАЛЛА НЕИЗБЕЖНА! Превышены пределы гармонической частоты, поле дестабилизации причинности не может быть активировано!
+supermatter-delam-cancel = Гиперструктура кристалла возвращается к безопасным рабочим параметрам. Предохранитель деактивирован. Целостность: { $integrity }%.

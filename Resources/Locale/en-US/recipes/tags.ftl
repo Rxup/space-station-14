@@ -157,3 +157,5 @@ construction-graph-tag-backpack = backpack
 
 # chemistry
 construction-graph-tag-centrifuge-compatible = centrifugable container
+# materials
+construction-graph-tag-capacitor = конденсатор

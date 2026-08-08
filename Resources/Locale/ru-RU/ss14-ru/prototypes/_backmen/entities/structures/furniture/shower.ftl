@@ -1,2 +1,2 @@
 ent-Shower = душ
-    .desc = A shower, complete with bluespace water.
+    .desc = Душ с блюспейс-водой в комплекте.

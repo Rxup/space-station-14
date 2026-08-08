@@ -15,3 +15,7 @@ cmd-weather-error-no-weather = This weather does not exist on the selected map!
 cmd-weather-hint-map-id = Map Id
 cmd-weather-hint-prototype = Weather entity prototype
 cmd-weather-hint-time = Duration in seconds (leave empty for infinite duration)
+cmd-weather-desc = Устанавливает погоду для текущей карты.
+cmd-weather-help = weather <mapId> <prototype / null>
+cmd-weather-hint = Прототип погоды
+cmd-weather-null = Очищает погоду

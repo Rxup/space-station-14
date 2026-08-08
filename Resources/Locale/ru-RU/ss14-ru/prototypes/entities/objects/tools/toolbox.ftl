@@ -16,4 +16,4 @@ ent-ToolboxSyndicate = подозрительный ящик для инстру
 ent-ToolboxGolden = золотой ящик для инструментов
     .desc = Ящик для инструментов из чистого золота. Рэперы убили бы за него.
 ent-Foolbox = ящик для дураков
-    .desc = A toolbox for fools, stocked with clowning equipment.
+    .desc = Шутовской ящик для инструментов, наполненный клоунским снаряжением.

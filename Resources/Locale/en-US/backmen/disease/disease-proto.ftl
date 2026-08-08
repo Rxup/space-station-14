@@ -1,4 +1,4 @@
-﻿# Noninfectious
+# Noninfectious
 disease-proto-ultragigacancer = ultragigacancer
 disease-proto-spectral-tiredness = spectral tiredness
 disease-proto-lung-cancer = Stage IIIA Lung Cancer
@@ -23,3 +23,6 @@ disease-proto-xenodrone = XenoVirus
 
 # Wet Hands
 disease-proto-wet-hands = Wet Hands
+disease-proto-furry-virus = Фуррфуиррус
+disease-meow = МЯУ!
+disease-proto-tongue-greenflue = зеленый грипп

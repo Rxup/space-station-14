@@ -1,6 +1,6 @@
 ent-DrinkSlermGlass = { ent-DrinkGlass }
+    .desc = { ent-DrinkGlass.desc }
     .suffix = Slerm
-    .desc = { ent-DrinkGlass.desc }
 ent-DrinkSlermPlusGlass = { ent-DrinkGlass }
-    .suffix = Slerm Plus
     .desc = { ent-DrinkGlass.desc }
+    .suffix = Слерм Плюс

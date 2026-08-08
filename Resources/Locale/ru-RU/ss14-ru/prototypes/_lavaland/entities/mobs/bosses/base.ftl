@@ -1,9 +1,9 @@
 ent-BaseBossMob = { ent-BaseSimpleMob }
     .desc = { ent-BaseSimpleMob.desc }
+    .suffix = { ent-BaseSimpleMob.suffix }
 ent-BaseJohninator = { ent-BaseBossMob }
     .desc = { ent-BaseBossMob.desc }
-ent-BigJohnFightMusic = { ent-BaseItem }
-    .desc = { ent-BaseItem.desc }
+    .suffix = { ent-BaseBossMob.suffix }
 ent-HolyLightAnim = священный свет
     .desc = { "" }
 ent-HolyLight = священный свет
@@ -14,3 +14,5 @@ ent-Baseholypentagram = { ent-BaseMob }
     .desc = { ent-BaseMob.desc }
 ent-BaseAngelWisp = ангельский огонек
     .desc = { ent-BaseMob.desc }
+ent-BigJohnFightMusic = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }

@@ -1,9 +1,13 @@
 ent-mantisImplant = имплант
-    .desc = This implant gives the user blades, thanks to which he can kill his victim without leaving evidence.
+    .desc = Этот имплант даёт пользователю клинки, которыми он может убивать жертву, не оставляя улик.
+ent-ActionToggleMantis = Активировать клинки богомола
+    .desc = Не забудьте экипировать важные части костюма перед боем.
+ent-RadioImplantInteQ = радиоимплант
+    .desc = Этот имплант даёт доступ к радиочастоте Интек без гарнитуры.
+ent-DeathRattleImplantInteQ = имплант предсмертного хрипа InteQ
+    .desc = Этот имплант сообщит по радиоканалу Интек, если пользователь окажется в критическом состоянии или умрёт.
 ent-CombatTrainingImplant = имплант боевой подготовки
     .desc = Повышает точность стрельбы по выбранной части тела до уровня СБ.
 ent-CombatTrainingImplantAdmeme = имплант меткой стрельбы
-    .suffix = Admeme
     .desc = Админский имплант — 100% попадание в прицеленную часть тела.
-ent-ActionToggleMantis = Активировать клинки богомола
-    .desc = Remember to equip the important pieces of your suit before going into action.
+    .suffix = Admeme

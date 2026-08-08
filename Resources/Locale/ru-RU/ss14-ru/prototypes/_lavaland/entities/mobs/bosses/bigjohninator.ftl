@@ -1,7 +1,6 @@
 ent-MobBigJohninator = Большой Джонинатор
     .desc = Большой Джонни уже тут! Ха-ха!
-ent-ProjectilePolyboltFly = { "" }
-    .desc = { "" }
+    .suffix = { ent-BaseJohninator.suffix }
 ent-BulletRifleBigJohn = пуля
     .desc = { ent-BaseBullet.desc }
 ent-ActionSpawnMine = [color=red]Спавн мин[/color]
@@ -10,12 +9,15 @@ ent-MissileDropMarkerBigJohn = { "" }
     .desc = { "" }
 ent-MobJohninatorSwoop = Полёт
     .desc = { ent-BaseJohninator.desc }
+    .suffix = { ent-BaseJohninator.suffix }
 ent-ActivatedGrenadeBigJohn = граната
-    .suffix = Activated
     .desc = { ent-BaseItem.desc }
+    .suffix = Activated
 ent-ExplosionBigJohn = { ent-AdminInstantEffectBase }
     .desc = { ent-AdminInstantEffectBase.desc }
 ent-ExplosionInstantBigJohn = мгновенный взрыв
-    .desc = KA BOOOOM!
+    .desc = КА БУУУМ!
 ent-ShockWaveBigJohn = { "" }
+    .desc = { "" }
+ent-ProjectilePolyboltFly = { "" }
     .desc = { "" }

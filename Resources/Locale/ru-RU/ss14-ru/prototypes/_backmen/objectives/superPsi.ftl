@@ -1,13 +1,13 @@
 ent-BaseSuperPsiObjective = { ent-BaseObjective }
     .desc = { ent-BaseObjective.desc }
 ent-EscapeSuperPsiShuttleObjective = Сбежать в центком живым и без ограничений.
-    .desc = You don't want your illegal activities to be discovered by anyone, do you?
+    .desc = Вы же не хотите, чтобы вашу незаконную деятельность кто-нибудь обнаружил?
 ent-HijackSuperPsiShuttleObjective = Захватить аварийный шаттл
-    .desc = Leave on the shuttle free and clear of the loyal Nanotrasen crew on board. Use ANY methods available to you. Syndicate agents, Nanotrasen enemies, and handcuffed hostages may remain alive on the shuttle. Ignore assistance from anyone other than a support agent.
+    .desc = Улетите на шаттле, очистив его от лояльного экипажа Nanotrasen. Используйте ЛЮБЫЕ доступные методы. Агенты Синдиката, враги Nanotrasen и закованные заложники могут остаться живыми на шаттле. Игнорируйте помощь от кого угодно, кроме агента поддержки.
 ent-KillRandomPersonSuperPsiObjective = { ent-BaseSuperPsiObjective }
-    .desc = Do it however you like, just make sure they don't make it to centcomm.
+    .desc = Делайте как угодно — главное, чтобы они не добрались до ЦентКома.
 ent-KillRandomHeadSuperPsiObjective = { ent-BaseSuperPsiObjective }
-    .desc = We need this head gone and you probably know why. Good luck, agent.
+    .desc = Нам нужно убрать этого главу, и вы, вероятно, знаете почему. Удачи, агент.
 ent-BaseSuperPsiStealObjective = { ent-BaseSuperPsiObjective }
     .desc = { ent-BaseSuperPsiObjective.desc }
 ent-FireAxeStealSuperPsiObjective = { ent-BaseSuperPsiStealObjective }

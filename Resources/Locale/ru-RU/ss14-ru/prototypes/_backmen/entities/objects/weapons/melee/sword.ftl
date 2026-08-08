@@ -1,4 +1,12 @@
+ent-OrdenSabre = Сабля лидера Красного Ордена
+    .desc = Необычная сабля. Вместо клинка это оружие использует зубы космического дракона, которые режут и цепляются за плоть жертвы, разрывая раны. Оружие кошмаров.
+ent-SolutionToolBackmenChainsword = { ent-SolutionWelder }
+    .desc = { ent-SolutionWelder.desc }
 ent-Chainsword = цепной меч
-    .desc = The chainsword is the preferred close combat melee weapon of many of the military forces of the Imperium of Man.
+    .desc = Цепной меч — предпочтительное оружие ближнего боя многих военных сил Империума Человечества.
+ent-Wakizashi = wakizashi
+    .desc = Короткий многоцелевой меч из пластали.
+ent-EnergySwordDedSad = энергетический меч спецназа
+    .desc = Энергетический меч спецвойск NanoTrasen, используеться для веселой нарезки экипажа.
 ent-YamatoSabre = Ямато
     .desc = Личное оружие Вергилия, выкованное из тёмного сплава. Найдено в секторе "Бекман"

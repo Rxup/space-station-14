@@ -9,23 +9,29 @@ construction-graph-tag-clowne-horn = сломанный велосипедный
 construction-graph-tag-happy-honk-meal = счастливый обед с гудком
 construction-graph-tag-woeful-cluwne-meal = грустный обед клоуна
 construction-graph-tag-boxhug = коробка объятий
+
 # mime
 construction-graph-tag-suspenders = подтяжки
 construction-graph-tag-mime-meal = обед мима с счастливым гудком
+
 # crayon
 construction-graph-tag-purple-crayon = фиолетовый мелок
 construction-graph-tag-red-crayon = красный мелок
 construction-graph-tag-yellow-crayon = желтый мелок
 construction-graph-tag-black-crayon = черный мелок
+
 # eva
 construction-graph-tag-eva-suit = скафандр ЭВА
 construction-graph-tag-eva-helmet = шлем ЭВА
+
 # hud
 construction-graph-tag-security-hud = защитный HUD
 construction-graph-tag-medical-hud = медицинский HUD
+
 # security
 construction-graph-tag-sun-glasses = солнечные очки
 construction-graph-tag-security-helmet = защитный шлем
+
 # materials
 construction-graph-tag-manipulator = модульная часть машины
 # materials
@@ -48,6 +54,7 @@ construction-graph-tag-power-cell-small = маленький аккумулят�
 construction-graph-tag-power-cell = аккумулятор
 construction-graph-tag-potato-battery = картофельная батарея
 construction-graph-tag-super-compact-ai-chip = суперкомпактный чип ИИ
+
 # other
 construction-graph-tag-light-bulb = лампочка
 construction-graph-tag-radio = радио
@@ -70,11 +77,13 @@ construction-graph-tag-mop-basic = протига
 construction-graph-tag-paper = офисная бумага
 construction-graph-tag-core-pinpointer-piece = часть пинпоинтера ядра
 construction-graph-tag-corgi-hide = шкура корги
+
 # toys
 construction-graph-tag-rubber-ducky = резиновая уточка
 construction-graph-tag-ghost = мягкая игрушка-призрак
 construction-graph-tag-ectoplasm = эксцептоплазма
 construction-graph-tag-lizard-plushie = плюшевая ящерица
+
 # carpet
 construction-graph-tag-black-carpet = черный ковер
 construction-graph-tag-blue-carpet = синий ковер
@@ -85,6 +94,7 @@ construction-graph-tag-pink-carpet = розовый ковер
 construction-graph-tag-purple-carpet = фиолетовый ковер
 construction-graph-tag-red-carpet = красный ковер
 construction-graph-tag-white-carpet = белый ковер
+
 # mechs
 construction-graph-tag-hamtr-central-control-module = центральный модуль управления ХАМЯК
 construction-graph-tag-hamtr-peripherals-control-module = модуль управления периферией ХАМЯК
@@ -93,14 +103,17 @@ construction-graph-tag-honk-peripherals-control-module = управляющий 
 construction-graph-tag-honk-weapon-control-and-targeting-module = модуль управления оружием и прицеливанием H.O.N.K.
 construction-graph-tag-ripley-central-control-module = центральный модуль управления Рипли
 construction-graph-tag-ripley-peripherals-control-module = модуль управления периферией Рипли
+
 # structures
 construction-graph-tag-door-electronics-circuit-board = платка электроники дверей
 construction-graph-tag-firelock-electronics-circuit-board = платка электроники огнезапора
 construction-graph-tag-station-ai-core-electronics = электроника ядра ИИ станции
 construction-graph-tag-conveyor-belt-assembly = сборка конвейерного пояса
+
 # tools
 construction-graph-tag-multitool = мультитул
 construction-graph-tag-health-analyzer = анализатор здоровья
+
 # utils
 construction-graph-tag-air-alarm-electronics = электроника воздушной сигнализации
 construction-graph-tag-fire-alarm-electronics = электроника пожарной сигнализации
@@ -119,6 +132,7 @@ construction-graph-tag-surveillance-camera-monitor-board = плата монит
 construction-graph-tag-television-board = плата телевизора
 construction-graph-tag-turret-control-electronics = электроника панели управления охранной турелью
 construction-graph-tag-freezer-electronics = электроника морозильной камеры
+
 # crystals
 construction-graph-tag-cyan-crystal-shard = циановый осколок кристалла
 construction-graph-tag-blue-crystal-shard = синий осколок кристалла
@@ -128,15 +142,20 @@ construction-graph-tag-red-crystal-shard = красный осколок кри�
 construction-graph-tag-green-crystal-shard = зеленый осколок кристалла
 construction-graph-tag-yellow-crystal-shard = желтый осколок кристалла
 construction-graph-tag-black-crystal-shard = черный осколок кристалла
+
 # unknown
 construction-graph-tag-weapon-pistol-chimp-upgrade-kit = чип улучшения револьвера МАРТЫХ
 construction-graph-tag-torch = факел
+
 # atmos
 construction-graph-tag-fire-extinguisher = огнетушитель
 construction-graph-tag-fire-helmet = пожарный шлем
+
 # clothing
 construction-graph-tag-backpack = рюкзак
+
 # chemistry
 construction-graph-tag-centrifuge-compatible = пробирка
+
 # salvage
 construction-graph-tag-spationaut-hardsuit = скафандр утилизатора

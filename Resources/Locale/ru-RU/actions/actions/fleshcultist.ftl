@@ -29,6 +29,7 @@ flesh-cultist-devour-target = { $Entity } пожирает { $Target }.
 flesh-cultist-not-find-puddles = Поблизости нет луж.
 flesh-cultist-throw-worm = Вас вырвало червяком.
 flesh-cultist-throw-worm-others = { $Entity } из вылез червь.
+
 flesh-cultist-blade-evolution-name = Способность: { ent-FleshCultistBlade }
 flesh-cultist-blade-evolution-desc = Получите способность превращать свою руку в смертоносный клинок из плоти и костей.
 flesh-cultist-claw-evolution-name = Способность: { ent-FleshCultistClaw }
@@ -51,9 +52,10 @@ flesh-cultist-acid-spit-evolution-name = Способность: { ent-FleshCult
 flesh-cultist-acid-spit-evolution-desc = Получите способность плеваться кислотой в своих врагов.
 flesh-cultist-create-flesh-heart-evolution-name = Способность: { ent-FleshCultistCreateFleshHeart }
 flesh-cultist-create-flesh-heart-evolution-desc = Получите способность создавать сердце из плоти.
-    Создавать и пробуждать его - ваша ключевая задача на станции.
-    Чтобы пробудить его, вам понадобятся три тела эволюционировавших существ из плоти.
-    Будьте готовы защитить его от любых угроз после активации.
+                                                Создавать и пробуждать его — ваша ключевая задача на станции.
+                                                Чтобы пробудить его, вам понадобятся три тела эволюционировавших существ из плоти.
+                                                Будьте готовы защитить его от любых угроз после активации.
+
 flesh-cultist-insulated-immunity-evolution-name = Эволюция: Изоляция
 flesh-cultist-insulated-immunity-evolution-desc = Вы сможете работать с электричеством, не опасаясь пострадать от напряжения.
 flesh-cultist-pressure-immunity-evolution-name = Эволюция: Давление

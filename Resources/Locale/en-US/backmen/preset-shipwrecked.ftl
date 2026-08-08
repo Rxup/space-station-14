@@ -1,4 +1,4 @@
-﻿## Gamemode
+## Gamemode
 
 shipwrecked-title = Shipwrecked
 shipwrecked-description = A group of travellers set out, only to meet certain doom...
@@ -142,3 +142,7 @@ shipwrecked-hecate-launch = We're about to launch. Everyone, buckle up!
 
 shipwrecked-shuttle-popup-preparing = You hear the sound of a shuttle's engines warming up!
 shipwrecked-shuttle-popup-left-behind = You see a shuttle blast off from the surface and head into the sky...
+department-Shipwrecked = мини игры
+hecate-response-sorry-4 = К сожалению, я не могу найти достаточно информации, чтобы ответить на этот вопрос.
+hecate-response-sorry-5 = Простите, но я не обладаю достаточным уровнем знаний, чтобы ответить на этот вопрос.
+hecate-response-sorry-6 = Мне очень жаль, но я не могу найти подходящий ответ на данный вопрос.

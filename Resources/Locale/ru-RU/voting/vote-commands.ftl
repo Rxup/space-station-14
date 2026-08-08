@@ -1,6 +1,5 @@
 ### Voting system related console commands
 
-
 ## 'createvote' command
 
 cmd-createvote-desc = Создаёт голосование
@@ -13,8 +12,8 @@ cmd-createvote-arg-vote-type = <vote type>
 
 cmd-customvote-desc = Создаёт настраиваемое голосование
 cmd-customvote-help = Использование: customvote <title> <option1> <option2> [option3...]
-cmd-customvote-on-finished-tie = Голосование "{$title}" закончилось: ничья между {$ties}!
-cmd-customvote-on-finished-win = Голосование "{$title}" закончилось: {$winner} побеждает!
+cmd-customvote-on-finished-tie = Голосование "{ $title }" закончилось: ничья между { $ties }!
+cmd-customvote-on-finished-win = Голосование "{ $title }" закончилось: { $winner } побеждает!
 cmd-customvote-arg-title = <title>
 cmd-customvote-arg-option-n = <option{ $n }>
 
@@ -38,7 +37,7 @@ cmd-listvotes-help = Использование: listvotes
 
 cmd-cancelvote-desc = Отменяет текущее голосование
 cmd-cancelvote-help = Использование: cancelvote <id>
-    Вы можете найти ID с помощью команды listvotes.
+                      Вы можете найти ID с помощью команды listvotes.
 cmd-cancelvote-error-invalid-vote-id = Неверный ID голосования
 cmd-cancelvote-error-missing-vote-id = Отсутствует ID
 cmd-cancelvote-arg-id = <id>

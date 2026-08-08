@@ -1,0 +1,10 @@
+ent-CrystalNormality = кристалл нормальности
+    .desc = Это выглядит... нормально.
+ent-CrystalNormality1 = кристалл нормальности
+    .desc = { ent-CrystalNormality.desc }
+    .suffix = 1
+ent-CrystalNormality10 = кристалл нормальности
+    .desc = { ent-CrystalNormality.desc }
+    .suffix = 10
+ent-CrystalSoul = кристалл души
+    .desc = Содержит душу. Спрайт-заполнитель.

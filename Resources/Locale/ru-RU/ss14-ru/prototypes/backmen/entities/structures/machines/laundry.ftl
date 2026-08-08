@@ -4,5 +4,5 @@ ent-WashingMachineBroken = { ent-WashingMachine }
     .desc = Разбитое вдребезги месиво из стекла и стали, которое в ближайшее время ничем не отмоешь. Он выглядит пыльным.
     .suffix = broken
 ent-WashingMachineFilledClothes = { ent-WashingMachine }
-    .suffix = random clothes
+    .suffix = случайная одежда
     .desc = { ent-WashingMachine.desc }

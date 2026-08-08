@@ -1,6 +1,13 @@
+ent-ClothingHeadHatCargoPostalsoft = почтовая кепка
+    .desc = Бейсболка, окрашенная в почтовые цвета отдела снабжения.
+ent-ClothingHeadHatCargoPostalsoftFlipped = почтовая кепка (вывернута)
+    .desc = Бейсболка, окрашенная в почтовые цвета отдела снабжения. Вывернута.
+    .suffix = { ent-ClothingHeadHeadHatBaseFlipped.suffix }
 ent-ClothingHeadHatPilotkaSec = пилотка СБ
     .desc = Пилотка сотрудников СБ НТ, в основном используется силами космической обороны. Имеет двойную окантовку и кокарду НТ.
-ent-ClothingHeadHatEgovCap = marine navy cap
-    .desc = Cap made of thick camouflage fabric.
+ent-ClothingHeadHatEgovCap = кепка морской пехоты
+    .desc = Кепка из плотной камуфляжной ткани.
 ent-ClothingHeadHatMVDCap = кепка полиции ОПЗ
     .desc = Кепка полиции ОПЗ, имеет какарду министерства внутренних дел ОПЗ.
+ent-ClothingHeadHatInteQSoft = кепка Интек
+    .desc = Реально ебанутый.

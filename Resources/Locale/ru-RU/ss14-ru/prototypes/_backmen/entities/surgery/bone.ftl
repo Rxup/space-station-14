@@ -1,2 +1,2 @@
 ent-Bone = кость
-    .desc = A real bone. Contains calcium, a lot of calcium.
+    .desc = Настоящая кость. Содержит кальций, очень много кальция.

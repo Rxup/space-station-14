@@ -1,2 +1,3 @@
 ent-JanitorServiceLight = свет уборочной службы
     .desc = Настенная табличка уборщика. Если индикатор мигает, требуется услуга уборщика.
+    .suffix = { ent-Poweredlight.suffix }

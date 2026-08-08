@@ -1,3 +1,9 @@
-ent-MobGiantSpiderVampireBoss = Чёрная вдова
-    .suffix = Big Fat Boss
+ent-MobGiantSpiderVampire = Чёрная вдова
+    .desc = Паук-"пожиратель снов", по слухам, является одним из потенциальных генетических источников арахны.
+    .suffix = { ent-SimpleMobBase.suffix }
+ent-MobGiantSpiderVampireAngry = Чёрная вдова
     .desc = { ent-MobGiantSpiderVampire.desc }
+    .suffix = Злой
+ent-MobGiantSpiderVampireBoss = Чёрная вдова
+    .desc = { ent-MobGiantSpiderVampire.desc }
+    .suffix = Большой Толстый Босс

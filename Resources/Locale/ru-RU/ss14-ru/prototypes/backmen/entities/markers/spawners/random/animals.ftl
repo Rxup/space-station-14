@@ -1,3 +1,3 @@
 ent-RandomAnimalSpawner = Случайный спавнер животного
-    .suffix = No Mice
+    .suffix = Без мышей
     .desc = { ent-MarkerBase.desc }

@@ -1,8 +1,10 @@
 ent-IndoorEarthGovertment = Внутренний флаг EarthGov
-    .desc = A Flag displaying the EarthGov logo. It looks rather cheap.
+    .desc = Флаг с логотипом EarthGov. Выглядит довольно дешёвым.
 ent-BannerEarthGovertment = баннер EarthGov
-    .desc = A banner displaying the EarthGov logo. It looks rather cheap.
+    .desc = Знамя с логотипом EarthGov. Выглядит довольно дешёвым.
 ent-EGovWallBanner = настенный баннер EarthGov
-    .desc = Glory to EarthGov! All hail to Earth Govertment! For the humanity!
+    .desc = Слава EarthGov! Да здравствует правительство Земли! За человечество!
 ent-BannerBroken = сломанный баннер
-    .desc = You can't make out anything from the banner's original print. It's ruined.
+    .desc = По исходному рисунку знамени уже ничего не разобрать. Оно испорчено.
+ent-BannerInteQ = знамя Интек
+    .desc = Знамя показывающее лого Интек.

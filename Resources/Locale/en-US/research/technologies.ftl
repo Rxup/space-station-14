@@ -87,3 +87,6 @@ research-technology-bluespace-cargo-transport = Bluespace Cargo Transport
 research-technology-clowning-utilities = Clowning Utilities
 research-technology-quantum-fiber-weaving = Quantum Fiber Weaving
 research-technology-bluespace-chemistry = Bluespace Chemistry
+research-technology-portable-fission = Портативный распад
+research-technology-excavation-borg = Массовые раскопки(борг)
+research-technology-jewelry-case = Ювелирное дело

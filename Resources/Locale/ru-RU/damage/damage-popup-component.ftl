@@ -4,6 +4,7 @@
         [total] Общий
         [delta] Дельта
         [hit] Попадание
-       *[other] Неизвестно
+        *[other] Неизвестно
     }
+
 damage-popup-component-switched = Цель установлена на тип: { -damage-popup-component-type(setting: $setting) }

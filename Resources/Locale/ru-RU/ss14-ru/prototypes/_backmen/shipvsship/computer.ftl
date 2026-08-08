@@ -1,6 +1,6 @@
 ent-ComputerShipyardTeamA = консоль верфи
-    .desc = Used to purchase and sell shuttles
-    .suffix = Team A
+    .desc = Используется для покупки и продажи шаттлов
+    .suffix = Команда A
 ent-ComputerShipyardTeamB = консоль верфи
-    .desc = Used to purchase and sell shuttles
-    .suffix = Team B
+    .desc = Используется для покупки и продажи шаттлов
+    .suffix = Команда B

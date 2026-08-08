@@ -78,7 +78,7 @@ guide-entry-chemist = Химик
 guide-entry-brute = Продвинутое лечение
     Продвинутое лечение
     механических повреждений
-guide-entry-botanical = Ботанические
+guide-entry-botanicals = Ботаника
 guide-entry-cloning = Клонирование
 guide-entry-cryogenics = Криогеника
 guide-entry-science = Научный отдел
@@ -100,16 +100,19 @@ guide-entry-defusal = Обезвреживание крупной бомбы
 guide-entry-criminal-records = Криминальные записи
 guide-entry-command = Командование
 guide-entry-service = Сервис
+
 guide-entry-newplayer = Новичок? Вам сюда!
 guide-entry-charactercreation = Создание персонажа
 guide-entry-species = Расы
 guide-entry-yourfirstcharacter = Ваш первый персонаж
 guide-entry-controls = Управление
 guide-entry-radio = Радиосвязь
+
 guide-entry-references = Таблицы и референсы
 guide-entry-chemicals = Химические вещества
 guide-entry-drinks = Напитки
 guide-entry-foodrecipes = Рецепты еды
+
 guide-entry-elements = Элементы
 guide-entry-medicine = Медицина
 guide-entry-narcotics = Наркотики
@@ -117,9 +120,10 @@ guide-entry-pyrotechnics = Пиротехника
 guide-entry-toxins = Токсины
 guide-entry-foods = Пищевые
 guide-entry-biological = Биологические
-guide-entry-botanicals = Ботаника
+guide-entry-botanical = Ботанические
 guide-entry-special = Специальное
 guide-entry-others = Другие
+
 guide-entry-pizza-recipes = Пиццы
 guide-entry-savory-recipes = Солёно-пряное
 guide-entry-bread-recipes = Хлеба
@@ -136,6 +140,7 @@ guide-entry-medicinal-recipes = Лечебные
 guide-entry-other-recipes = Другие
 guide-entry-secret-recipes = Секретные
 guide-entry-lawsets = Наборы законов синтетиков
+
 guide-entry-antagonists = Антагонисты
 guide-entry-nuclear-operatives = Ядерные оперативники
 guide-entry-traitors = Предатели
@@ -146,6 +151,7 @@ guide-entry-space-ninja = Космический ниндзя
 guide-entry-thieves = Воры
 guide-entry-wizard = Волшебник
 guide-entry-xenoborgs = Ксеноборги
+
 guide-entry-rules = Правила сервера
 guide-entry-rules-core-only = Только основные правила
 guide-entry-rules-lrp = Стандартные правила
@@ -204,5 +210,6 @@ guide-entry-rules-sl-restricted-gear = Ограниченное снаряжен
 guide-entry-rules-sl-restricted-weapons = Ограниченное оружие
 guide-entry-rules-ban-types = Виды банов
 guide-entry-rules-ban-durations = Длительности банов
+
 guide-entry-writing = Разметка письма
 guide-entry-glossary = Словарь терминов

@@ -1,4 +1,4 @@
-﻿sponsor-win-manager-title = Sponsor panel
+sponsor-win-manager-title = Sponsor panel
 sponsor-win-manager-tier = Your level:
 
 
@@ -23,3 +23,15 @@ sponsor-win-manager-tier-12 = Priority Login
 sponsor-win-manager-tier-23 = Administration
 sponsor-win-manager-tier-24 = Senior Team
 sponsor-win-manager-tier-25 = Advice
+sponsor-win-manager-ghost-drgon = Дракон
+sponsor-win-manager-ghost-ifrit = Ифрит
+sponsor-win-manager-ghost-mujik = Мужик
+sponsor-win-manager-ghost-angel = Серафим
+sponsor-win-manager-ghost-Luna = Луна
+sponsor-win-manager-ghost-p03 = p03
+sponsor-win-manager-ghost-astronaut = Астронавт
+sponsor-win-manager-ghost-Veta = Вета
+sponsor-win-manager-ghost-Boroven = Кор
+sponsor-win-manager-ghost-Memes = Memes
+sponsor-win-manager-ghost-Wisdom = Nelle
+sponsor-win-manager-ghost-Wendor = Wendor

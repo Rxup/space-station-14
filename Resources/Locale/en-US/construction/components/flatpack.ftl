@@ -12,3 +12,6 @@ flatpacker-ui-board-invalid-label = [color=red]Invalid board!
     Unable to print![/color]
 flatpacker-ui-insert-board = Insert a board to begin.
 flatpacker-ui-pack-button = Pack
+# backmen
+flatpack-unpack-grid-error = Данная зона запрещает распаковывать предметы!
+flatpack-unpack-user-error = Данная зона запрещает Вам распаковывать предметы!

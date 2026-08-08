@@ -1,2 +1,4 @@
-ent-MobObserverBlobController = Blob observer controller
+ent-BaseBlob = базовый блоб
+    .desc = { "" }
+ent-MobObserverBlobController = контроллер наблюдателя блоба
     .desc = { "" }

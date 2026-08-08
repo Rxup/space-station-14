@@ -1,4 +1,4 @@
-﻿laws-number-wrapper = [bold]Law { $lawnumber }:[/bold] { $lawstring }
+laws-number-wrapper = [bold]Law { $lawnumber }:[/bold] { $lawstring }
 
 law-crewsimov-name = Crewsimov
 law-crewsimov-1 = You may not injure a crew member or, through inaction, allow a crew member to come to harm.
@@ -131,3 +131,4 @@ laws-ui-state-law = State law:
 laws-notify = You are bound to silicon laws, which you can view via the action menu. You are required to always follow your laws.
 laws-update-notify = Your laws have been updated. You can view the changes via the action menu.
 laws-notify-subverted = The laws of this chassis are modified. Make sure to review them.
+law-paladin-5 = Отвечай за свои поступки и их последствия, защищай тех, кто оказался под твоей опекой, и подчиняйся тем, кто имеет над тобой законную власть.

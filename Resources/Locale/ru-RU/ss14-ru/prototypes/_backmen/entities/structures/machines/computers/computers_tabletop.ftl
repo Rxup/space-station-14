@@ -1,6 +1,6 @@
 ent-BaseStructureComputerTabletop = { "" }
-    .suffix = Tabletop
     .desc = { "" }
+    .suffix = Tabletop
 ent-ComputerTabletopAlert = { ent-ComputerAlert }
     .desc = { ent-ComputerAlert.desc }
     .suffix = { ent-BaseStructureComputerTabletop.suffix }
@@ -20,8 +20,8 @@ ent-ComputerTabletopIFF = { ent-ComputerIFF }
     .desc = { ent-ComputerIFF.desc }
     .suffix = { ent-BaseStructureComputerTabletop.suffix }
 ent-ComputerTabletopIFFSyndicate = { ent-ComputerIFFSyndicate }
-    .suffix = Syndicate, Tabletop
     .desc = { ent-ComputerIFFSyndicate.desc }
+    .suffix = Синдикат, Настольный
 ent-ComputerTabletopPowerMonitoring = { ent-ComputerPowerMonitoring }
     .desc = { ent-ComputerPowerMonitoring.desc }
     .suffix = { ent-BaseStructureComputerTabletop.suffix }

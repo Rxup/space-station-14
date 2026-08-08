@@ -10,3 +10,5 @@ golem-base-desc = An artificial construct imitating life. This one has no soul i
 golem-installed-desc = An artificial construct imitating life, although it contains a mortal soul.
 
 golem-no-using-guns-popup = You are unable to work this weapon!
+golem-soul-have = В кристалле есть душа! Вы можете вставить её в голема!
+golem-soul-no-have = В кристалле нет души! Подождите пока не появится душа!

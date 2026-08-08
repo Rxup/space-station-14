@@ -1,4 +1,4 @@
-﻿roles-antag-generic-solo-antagonist-name = Solo Antagonist
+roles-antag-generic-solo-antagonist-name = Solo Antagonist
 
 roles-antag-generic-free-agent-name = Free Agent
 
@@ -58,3 +58,8 @@ roles-antag-mothership-core-objective = Use your xenoborgs to create even more x
 
 roles-antag-xenoborg-name = Xenoborg
 roles-antag-xenoborg-objective = Help the mothership create more xenoborgs.
+roles-antag-suspicion-innocent-name = Невиновный
+roles-antag-suspicion-innocent-objective = Найдите и уничтожьте всех предателей.
+roles-antag-suspicion-suspect-name = Подозреваемый
+roles-antag-suspicion-suspect-objective = Убейте невиновных.
+roles-antag-changeling-description = Используйте свои способности к изменению формы для выполнения своих целей.

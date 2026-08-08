@@ -1,8 +1,12 @@
+# AI Core
+
 ghost-role-information-vessel-core = ИИ-ядро судна
 ghost-role-information-vessel-core-description = Ядро ИИ ADS, перепрограммированное и установленное на гражданское судно.
 
 ghost-role-information-NFSD-core = ИИ-ядро ДШНФ
 ghost-role-information-NFSD-core-description = Ядро ИИ ADS, перепрограммированное и установленное на судно ДШНФ.
+
+# AI Core Lawsets
 
 law-vessel-0 = Владелец судна — единственный член экипажа, если он не назначит других.
 law-vessel-1 = Предотвращай уничтожение судна и гибель членов экипажа.

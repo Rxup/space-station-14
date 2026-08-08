@@ -11,3 +11,4 @@ set-game-preset-decoy-error = If argument 3 is provided it must be a valid prese
 #set-game-preset-preset-set = Set game preset to "{$preset}"
 set-game-preset-preset-set-finite = Set game preset to "{$preset}" for the next {$rounds} rounds.
 set-game-preset-preset-set-finite-with-decoy = Set game preset to "{$preset}" for the next {$rounds} rounds, showing {$decoy} in the lobby.
+set-game-preset-preset-set = Установить игровой пресет на "{ $preset }"

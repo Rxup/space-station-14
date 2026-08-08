@@ -11,10 +11,10 @@ ent-WeaponRifleLecter = Лектер
     .suffix = Автомат
 ent-WeaponRifleLecterXL8 = XL8
     .desc =
-        The Experimental Lecter 8
-        An unreasonably expensive military grade assault rifle with integrated optic.
-        Uses .20 rifle ammo.
+        Экспериментальный лектер 8
+        Необоснованно дорогая штурмовая винтовка военного образца со встроенным оптическим прицелом.
+        Использует патроны калибра .20 винтовочный.
 ent-WeaponRifleEstoc = Эсток DMR
-    .desc = A designated marksman rifle, favored for medium-to-long range engagements. Uses .20 rifle ammo.
+    .desc = Марксманская винтовка, предпочитаемая для перестрелок на средних и дальних дистанциях. Использует патроны калибра .20 винтовочный.
 ent-WeaponRifleFoam = Астро-Ас Сила Пенопласта
     .desc = Первоклассная пенопластовая винтовка высочайшего качества. Её пластик прочен на ощупь, а механизмы надёжены.

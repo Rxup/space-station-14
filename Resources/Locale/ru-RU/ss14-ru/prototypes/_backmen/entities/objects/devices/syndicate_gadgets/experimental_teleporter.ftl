@@ -1,2 +1,2 @@
-ent-ExperimentalSyndicateTeleporter = experimental syndicate teleporter
-    .desc = Syndicate teleporter, when used, moves 3-8 meters forward. In case of teleportation into a wall, uses emergency teleportation. Has 4 charge.
+ent-ExperimentalSyndicateTeleporter = экспериментальный телепортер Синдиката
+    .desc = Телепортер Синдиката: при использовании перемещает на 3–8 метров вперёд. При телепортации в стену использует аварийную телепортацию. Имеет 4 заряда.

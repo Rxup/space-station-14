@@ -1,2 +1,2 @@
-ent-ClothingNeckMPBand = military police band
-    .desc = Damn, it feels good to be a law.
+ent-ClothingNeckMPBand = повязка военной полиции
+    .desc = Чёрт, как же приятно быть законом.

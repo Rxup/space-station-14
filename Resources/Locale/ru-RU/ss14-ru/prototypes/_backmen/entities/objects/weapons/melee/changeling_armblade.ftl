@@ -1,5 +1,6 @@
 ent-ArmBladeChangeling = { ent-ArmBlade }
-    .suffix = Unremoveable
     .desc = { ent-ArmBlade.desc }
+    .suffix = Unremoveable
 ent-FakeArmBladeChangeling = { ent-ArmBladeChangeling }
     .desc = { ent-ArmBladeChangeling.desc }
+    .suffix = { ent-ArmBladeChangeling.suffix }

@@ -28,4 +28,5 @@ lavaland-ruin-bmc-oblom-met = Black Mesa Ruined Chemistery
 lavaland-ruin-bmc-research-station = Black Mesa Station
 lavaland-ruin-bmc-military-shuttle = Black Mesa Shuttle
 lavaland-ruin-bmc-evacuation-shuttle = Black Mesa Evacuation
+lavaland-ruin-chapel = Часовня
 # backmen-edit-end = бакмен редактирование конец

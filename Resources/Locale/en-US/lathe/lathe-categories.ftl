@@ -56,3 +56,10 @@ lathe-category-command = Command
 lathe-category-hats = Hats
 lathe-category-jumpsuits = Jumpsuits
 lathe-category-neck = Neck
+# Cutter
+lathe-category-concrete = Бетон
+lathe-category-dark = Тёмный
+lathe-category-maints = Сервисные
+lathe-category-steel = Сталь
+lathe-category-white = Белый
+lathe-category-wood = Дерево
