@@ -133,9 +133,9 @@ public sealed partial class SpreaderFleshSystem : EntitySystem
             if (tileRef.Tile.IsEmpty || _robustRandom.Prob(1 - spreader.Chance))
                 continue;
 
-            var ents =  _mapSystem.GetLocal(transform.GridUid.Value, grid, coords);
+            var ents = _mapSystem.GetLocal(transform.GridUid.Value, grid, coords);
 
-            var entityUids = ents as EntityUid[] ?? ents.ToArray();
+            var entityUids = ents.ToArray();
             if (entityUids.Any(HasSpreaderFlesh))
                 continue;
 

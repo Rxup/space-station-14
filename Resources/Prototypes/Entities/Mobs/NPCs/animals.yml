@@ -1487,6 +1487,7 @@
     - Monkey
     understands:
     - Monkey
+    - TauCetiBasic # backmen: ghost-role-understand-galactic
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
@@ -1529,6 +1530,7 @@
     - Monkey
     understands:
     - Monkey
+    - TauCetiBasic # backmen: ghost-role-understand-galactic
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
   - type: Speech
