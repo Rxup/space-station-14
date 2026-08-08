@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Client.Graphics;
 using Content.Shared.Interaction;
 using Content.Shared.Whitelist;
 using Robust.Client.GameObjects;
@@ -28,6 +29,7 @@ public sealed partial class TargetOutlineSystem : EntitySystem
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private bool _enabled = false;
 
@@ -155,9 +157,9 @@ public sealed partial class TargetOutlineSystem : EntitySystem
             if (!valid)
             {
                 // was this previously valid?
-                if (_highlightedSprites.Remove(sprite) && (sprite.PostShader == _shaderTargetValid || sprite.PostShader == _shaderTargetInvalid))
+                if (_highlightedSprites.Remove(sprite))
                 {
-                    sprite.PostShader = null;
+                    _sprite.RemovePostShader(sprite, ContentPostShaderIds.TargetOutline);
                     sprite.RenderOrder = 0;
                 }
 
@@ -174,13 +176,11 @@ public sealed partial class TargetOutlineSystem : EntitySystem
                 valid = (origin - target).LengthSquared() <= Range;
             }
 
-            if (sprite.PostShader != null &&
-                sprite.PostShader != _shaderTargetValid &&
-                sprite.PostShader != _shaderTargetInvalid)
-                return;
-
             // highlight depending on whether its in or out of range
-            sprite.PostShader = valid ? _shaderTargetValid : _shaderTargetInvalid;
+            _sprite.SetPostShader(sprite, new SpriteComponent.PostShaderArgs(ContentPostShaderIds.TargetOutline, valid ? _shaderTargetValid! : _shaderTargetInvalid!)
+            {
+                After = ContentPostShaderIds.AfterBaseEffects,
+            });
             sprite.RenderOrder = EntityManager.CurrentTick.Value;
             _highlightedSprites.Add(sprite);
         }
@@ -190,10 +190,7 @@ public sealed partial class TargetOutlineSystem : EntitySystem
     {
         foreach (var sprite in _highlightedSprites)
         {
-            if (sprite.PostShader != _shaderTargetValid && sprite.PostShader != _shaderTargetInvalid)
-                continue;
-
-            sprite.PostShader = null;
+            _sprite.RemovePostShader(sprite, ContentPostShaderIds.TargetOutline);
             sprite.RenderOrder = 0;
         }
 
