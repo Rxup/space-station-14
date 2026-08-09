@@ -1,0 +1,264 @@
+# Frontier ship weapon flatpacks — unpack with a multitool on a free grid tile.
+
+- type: entity
+  parent: BaseFlatpack
+  id: BaseShipWeaponFlatpack
+  abstract: true
+  suffix: Фронтир
+  components:
+  - type: Sprite
+    sprite: _Lua/Flatpack/flatpack.rsi
+    layers:
+    - state: ship_weapon
+  - type: StaticPrice
+    price: 25000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretASM220FlatPack
+  name: ASM-220 torpedo VLS flatpack
+  description: A flatpack for an ASM-220 heavy torpedo vertical launch system.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretASM220
+  - type: StaticPrice
+    price: 45000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretLightMunitionsBayFlatPack
+  name: GPOB-L light munitions bay flatpack
+  description: A flatpack for a light fighter munitions bay (Zenith / Quasar / GPOL).
+  components:
+  - type: Flatpack
+    entity: WeaponTurretLightMunitionsBay
+  - type: StaticPrice
+    price: 35000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretTarnyxReloadFlatPack
+  name: TARNYX 150mm cannon flatpack
+  description: A flatpack for an ADBX-31 TARNYX 150mm EMP cannon (manual reload).
+  components:
+  - type: Flatpack
+    entity: WeaponTurretTarnyxReload
+  - type: StaticPrice
+    price: 40000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretCharonetteFlatPack
+  name: CHARONETTE mass driver flatpack
+  description: A flatpack for an M194 CHARONETTE compact railgun.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretCharonette
+  - type: StaticPrice
+    price: 55000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretCharonReloadFlatPack
+  name: CHARON mass driver flatpack
+  description: A flatpack for an M381 CHARON capital mass driver (manual reload).
+  components:
+  - type: Flatpack
+    entity: WeaponTurretCharonReload
+  - type: StaticPrice
+    price: 90000
+
+# --- Autocannons / light kinetic ---
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretL85AutocannonFlatPack
+  name: L85 20mm autocannon flatpack
+  description: A flatpack for an L85 20mm light autocannon.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretL85Autocannon
+  - type: StaticPrice
+    price: 20000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretDravonFlatPack
+  name: Dravon autocannon flatpack
+  description: A flatpack for a Dravon autocannon.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretDravon
+  - type: StaticPrice
+    price: 28000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretAK570FlatPack
+  name: AK570 autocannon flatpack
+  description: A flatpack for an AK570 autocannon.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretAK570
+  - type: StaticPrice
+    price: 30000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretRAC30FlatPack
+  name: RAC-30 Draupnir flatpack
+  description: A flatpack for a RAC-30 Draupnir rotary cannon.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretRAC30
+  - type: StaticPrice
+    price: 28000
+
+# --- Heavy kinetic ---
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretBoforsFlatPack
+  name: Bofors 255mm cannon flatpack
+  description: A flatpack for a Bofors 255mm heavy artillery cannon.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretBofors
+  - type: StaticPrice
+    price: 50000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretKargilFlatPack
+  name: Kargil 203mm cannon flatpack
+  description: A flatpack for a Kargil 203mm medium-heavy artillery cannon.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretKargil
+  - type: StaticPrice
+    price: 45000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretCyrexaFlatPack
+  name: Cyrexa cannon flatpack
+  description: A flatpack for a Cyrexa heavy cannon.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretCyrexa
+  - type: StaticPrice
+    price: 48000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretHadesFlatPack
+  name: HADES 305mm cannon flatpack
+  description: A flatpack for a HADES 305mm heavy kinetic cannon.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretHades
+  - type: StaticPrice
+    price: 70000
+
+# --- Energy ---
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretType35FlatPack
+  name: Type-35 energy turret flatpack
+  description: A flatpack for a Type-35 energy turret.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretType35
+  - type: StaticPrice
+    price: 30000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponLaserTurretL1PhalanxFlatPack
+  name: L-1 Phalanx flatpack
+  description: A flatpack for an L-1 Phalanx laser emplacement.
+  components:
+  - type: Flatpack
+    entity: WeaponLaserTurretL1Phalanx
+  - type: StaticPrice
+    price: 32000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretType54FlatPack
+  name: Type-54 energy turret flatpack
+  description: A flatpack for a Type-54 energy turret.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretType54
+  - type: StaticPrice
+    price: 50000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponLaserTurretApolloFlatPack
+  name: Apollo laser turret flatpack
+  description: A flatpack for an Apollo heavy laser turret.
+  components:
+  - type: Flatpack
+    entity: WeaponLaserTurretApollo
+  - type: StaticPrice
+    price: 65000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretType241FlatPack
+  name: Type-241 capital energy turret flatpack
+  description: A flatpack for a Type-241 capital-class energy turret.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretType241
+  - type: StaticPrice
+    price: 150000
+
+# --- Missile pods ---
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretVanykFlatPack
+  name: Vanyk missile pod flatpack
+  description: A flatpack for a Vanyk missile pod.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretVanyk
+  - type: StaticPrice
+    price: 35000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretVesperaFlatPack
+  name: VESPERA rapid-fire pod flatpack
+  description: A flatpack for an ADMP-27 VESPERA swarm missile pod.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretVespera
+  - type: StaticPrice
+    price: 40000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretASM501FlatPack
+  name: ASM-501 missile launcher flatpack
+  description: A flatpack for an ASM-501 missile launcher.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretASM501
+  - type: StaticPrice
+    price: 42000
+
+- type: entity
+  parent: BaseShipWeaponFlatpack
+  id: WeaponTurretTovekFlatPack
+  name: Tovek missile launcher flatpack
+  description: A flatpack for a Tovek missile launcher.
+  components:
+  - type: Flatpack
+    entity: WeaponTurretTovek
+  - type: StaticPrice
+    price: 45000

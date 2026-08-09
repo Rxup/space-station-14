@@ -48,6 +48,47 @@
       prob: 0.4
       maxAmount: 2
 
+- type: shipwreckFaction
+  id: BlackOps
+  objectiveDefender: MobBlackOpsBossShipwreck
+  active:
+    - id: MobBlackOpsOperatorMeleeShipwreck
+      prob: 0.3
+    - id: MobBlackOpsOperatorShipwreck
+      prob: 0.15
+  inactive:
+    - id: RandomHumanoidSpawnerUnaffiliatedDead
+      prob: 0.4
+      maxAmount: 2
+
+- type: shipwreckFaction
+  id: HeadcrabInfected
+  objectiveDefender: MobHeadcrabZombieBossShipwreck
+  active:
+    - id: MobHeadcrabZombieScienceShipwreck
+      prob: 0.35
+      orGroup: infected
+    - id: MobHeadcrabZombieSecurityShipwreck
+      prob: 0.3
+      orGroup: infected
+  inactive:
+    - id: RandomHumanoidSpawnerUnaffiliatedDead
+      prob: 0.4
+      maxAmount: 2
+
+- type: shipwreckFaction
+  id: XenCreatures
+  objectiveDefender: MobVortigauntBossShipwreck
+  active:
+    - id: MobBullSquidShipwreck
+      prob: 0.4
+    - id: MobVortigauntShipwreck
+      prob: 0.2
+  inactive:
+    - id: RandomHumanoidSpawnerUnaffiliatedDead
+      prob: 0.35
+      maxAmount: 2
+
 - type: entity
   id: AnomalyFleshStatic
   parent: AnomalyFlesh

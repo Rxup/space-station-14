@@ -401,89 +401,88 @@ public sealed partial class FleshCultistSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        if (args.Args.Target == null)
+        if (args.Args.Target is not { } target || TerminatingOrDeleted(target))
             return;
 
-        if (!TryComp<BloodstreamComponent>(args.Args.Target.Value, out var bloodstream))
+        if (!TryComp<BloodstreamComponent>(target, out var bloodstream))
             return;
 
         Entity<SolutionComponent>? bloodSolEnt = bloodstream.BloodSolution;
-        if (!_solution.ResolveSolution(args.Args.Target.Value, bloodstream.BloodSolutionName, ref bloodSolEnt, out var bloodSolution))
+        if (!_solution.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodSolEnt, out var bloodSolution))
             return;
+
+        args.Handled = true;
 
         var hasAppearance = false;
 
-        var xform = Transform(args.Args.Target.Value);
+        var xform = Transform(target);
         var coordinates = xform.Coordinates;
         var audio = AudioParams.Default.WithVariation(0.025f);
-        _audio.PlayPvs(component.DevourSound, args.Args.Target.Value, audio);
+        _audio.PlayPvs(component.DevourSound, target, audio);
         _popupSystem.PopupEntity(Loc.GetString("flesh-cultist-devour-target",
-                ("Entity", uid), ("Target", args.Args.Target)), uid);
+                ("Entity", uid), ("Target", target)), uid);
 
-        if (TryComp<HumanoidProfileComponent>(args.Args.Target, out var HumanoidProfileComponent))
+        if (HasComp<HumanoidProfileComponent>(target))
         {
-            if (TryComp<ContainerManagerComponent>(args.Args.Target.Value, out var container))
+            if (TryComp<ContainerManagerComponent>(target, out var container))
             {
-                foreach (var cont in _container.GetAllContainers(args.Args.Target.Value,container).ToArray())
+                foreach (var cont in _container.GetAllContainers(target, container).ToArray())
                 {
                     foreach (var ent in cont.ContainedEntities.ToArray())
                     {
-                        if (HasComp<BodyPartComponent>(ent))
-                        {
+                        // Body organs must be removed via StripBodyForSkeleton, not container dump.
+                        if (HasComp<OrganComponent>(ent) || HasComp<BodyPartComponent>(ent))
                             continue;
-                        }
 
                         _container.Remove(ent, cont, force: true, destination: coordinates);
-                        //cont.Remove(ent, EntityManager, force: true);
-                        //_transformSystem.SetCoordinates(ent, coordinates);
                         _randomHelper.RandomOffset(ent, 0.25f);
                     }
                 }
             }
 
-            if (TryComp<BodyComponent>(args.Args.Target, out var bodyComponent))
-                _body.StripBodyForSkeleton(args.Args.Target.Value, bodyComponent);
+            if (TryComp<BodyComponent>(target, out var bodyComponent))
+                _body.StripBodyForSkeleton(target, bodyComponent);
 
-            _bloodstreamSystem.TryModifyBloodLevel(args.Args.Target.Value, -300);
+            if (!TerminatingOrDeleted(target))
+                _bloodstreamSystem.TryModifyBloodLevel(target, -300);
 
-            // nubody: skeleton visual overlay deferred
-            if (TryComp<FixturesComponent>(args.Args.Target, out var fixturesComponent) &&
+            if (TryComp<FixturesComponent>(target, out var fixturesComponent) &&
                 fixturesComponent.Fixtures.TryGetValue("fix1", out var fixture))
             {
-                _physics.SetDensity(args.Args.Target.Value, "fix1", fixture, DevouredBodyDensity);
+                _physics.SetDensity(target, "fix1", fixture, DevouredBodyDensity);
             }
 
-            if (TryComp<AppearanceComponent>(args.Args.Target, out var appComponent))
+            if (TryComp<AppearanceComponent>(target, out var appComponent))
             {
-                _sharedAppearance.SetData(args.Args.Target.Value, DamageVisualizerKeys.Disabled, true, appComponent);
-                _damageableSystem.TryChangeDamage(args.Args.Target.Value, new DamageSpecifier(){DamageDict = {{"Slash", 100}}});
+                _sharedAppearance.SetData(target, DamageVisualizerKeys.Disabled, true, appComponent);
+                _damageableSystem.TryChangeDamage(target, new DamageSpecifier { DamageDict = { { "Slash", 100 } } });
             }
 
             hasAppearance = true;
         }
 
-        var saturation = MatchSaturation(bloodSolution.MaxVolume.Value / 100, hasAppearance);
-        var evolutionPoint = MatchEvolutionPoint(bloodSolution.MaxVolume.Value / 100, hasAppearance);
-        var healPoint = MatchHealPoint(bloodSolution.MaxVolume.Value / 100, hasAppearance);
+        var volumeBuckets = bloodSolution.MaxVolume.Value / 100;
+        var saturation = MatchSaturation(volumeBuckets, hasAppearance);
+        var evolutionPoint = MatchEvolutionPoint(volumeBuckets, hasAppearance);
+        var healPoint = MatchHealPoint(volumeBuckets, hasAppearance);
         var tempSol = new Solution() { MaxVolume = 5 };
 
         var bloodstreamSol = bloodSolEnt ?? bloodstream.TemporarySolution;
-        if(bloodstreamSol != null)
+        if (bloodstreamSol != null)
             tempSol.AddSolution(bloodstreamSol.Value.Comp.Solution, _proto);
 
-        if (_puddleSystem.TrySpillAt(args.Args.Target.Value, tempSol.SplitSolution(50), out var puddleUid))
+        if (!TerminatingOrDeleted(target) &&
+            _puddleSystem.TrySpillAt(target, tempSol.SplitSolution(50), out var puddleUid))
         {
-            if (TryComp<DnaComponent>(args.Args.Target.Value, out var dna) && !string.IsNullOrEmpty(dna.DNA))
+            if (TryComp<DnaComponent>(target, out var dna) && !string.IsNullOrEmpty(dna.DNA))
             {
                 var comp = EnsureComp<ForensicsComponent>(puddleUid);
                 comp.DNAs.Add(dna.DNA);
             }
         }
 
-        if (!hasAppearance)
-        {
-            QueueDel(args.Args.Target.Value);
-        }
+        if (!hasAppearance && !TerminatingOrDeleted(target))
+            QueueDel(target);
 
         if (_solution.TryGetInjectableSolution(uid, out var injectableSolution, out _))
         {
@@ -496,8 +495,9 @@ public sealed partial class FleshCultistSystem : EntitySystem
         }
 
         component.Hunger += saturation;
+        EnsureComp<StoreComponent>(uid);
         _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
-            { {component.StolenCurrencyPrototype, evolutionPoint} }, uid);
+            { { component.StolenCurrencyPrototype, evolutionPoint } }, uid);
     }
 
     private int MatchSaturation(int bloodVolume, bool hasAppearance)

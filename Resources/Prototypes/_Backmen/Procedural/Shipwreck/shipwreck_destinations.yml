@@ -23,6 +23,9 @@
     - ZombieOutbreak
     - FleshMonsterInvasion
     - MalfunctioningRobots
+    - BlackOps
+    - HeadcrabInfected
+    - XenCreatures
   markerLayers:
     - ShipwreckWildlifeSnow
     - ShipwreckSpaceCarps
@@ -59,6 +62,9 @@
   - ZombieOutbreak
   - FleshMonsterInvasion
   - MalfunctioningRobots
+  - BlackOps
+  - HeadcrabInfected
+  - XenCreatures
   markerLayers:
     - ShipwreckWildlifeDesert
     - ShipwreckSpaceCarps
@@ -95,6 +101,9 @@
   - ZombieOutbreak
   - FleshMonsterInvasion
   - MalfunctioningRobots
+  - BlackOps
+  - HeadcrabInfected
+  - XenCreatures
   markerLayers:
     - ShipwreckWildlifeJungle
     - ShipwreckSpaceCarps
@@ -131,6 +140,9 @@
   - ZombieOutbreak
   - FleshMonsterInvasion
   - MalfunctioningRobots
+  - BlackOps
+  - HeadcrabInfected
+  - XenCreatures
   markerLayers:
     - ShipwreckWildlife
     - ShipwreckSpaceCarps
@@ -167,6 +179,9 @@
   - ZombieOutbreak
   - FleshMonsterInvasion
   - MalfunctioningRobots
+  - BlackOps
+  - HeadcrabInfected
+  - XenCreatures
   markerLayers:
     - ShipwreckSpaceCarps
   atmosphere:
@@ -202,6 +217,9 @@
   - ZombieOutbreak
   - FleshMonsterInvasion
   - MalfunctioningRobots
+  - BlackOps
+  - HeadcrabInfected
+  - XenCreatures
   markerLayers:
     - ShipwreckWildlife
   atmosphere:
@@ -210,4 +228,41 @@
     moles:
     - 21.94724
     - 77.05276
+
+- type: shipwreckDestination
+  id: ShadowVoid
+  biome: Shadow
+  components:
+  - type: MapLight
+    ambientLightColor: "#1a1520"
+  - type: LightCycle
+    duration: 720
+    offset: 0
+    minLightLevel: 0.25
+    maxLightLevel: 1.4
+    clipLight: 1.0
+    clipLevel: "#8866aa"
+    minLevel: "#0a0812"
+    maxLevel: "#3a3050"
+    initialOffset: false
+  - type: SunShadow
+  structures:
+    RuinedDwellings: 1
+    RuinedHospital: 1
+    RuinedShop: 3
+  factions:
+  - ZombieOutbreak
+  - FleshMonsterInvasion
+  - MalfunctioningRobots
+  - BlackOps
+  - HeadcrabInfected
+  - XenCreatures
+  markerLayers:
+  - ShipwreckSpaceCarps
+  atmosphere:
+    volume: 2400
+    temperature: 251
+    moles:
+    - 20.61979
+    - 77.56971
 

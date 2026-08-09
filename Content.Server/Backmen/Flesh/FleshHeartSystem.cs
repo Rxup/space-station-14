@@ -267,15 +267,12 @@ public sealed partial class FleshHeartSystem : EntitySystem
             {
                 foreach (var ent in cont.ContainedEntities.ToArray())
                 {
-                    {
-                        if (HasComp<BodyPartComponent>(ent))
-                        {
-                            continue;
-                        }
+                    // Body organs must be removed via StripBodyForSkeleton, not container dump.
+                    if (HasComp<OrganComponent>(ent) || HasComp<BodyPartComponent>(ent))
+                        continue;
 
-                        _containerSystem.Remove(ent, cont, force: true, destination: xform.Coordinates);
-                        _randomHelper.RandomOffset(ent, 0.25f);
-                    }
+                    _containerSystem.Remove(ent, cont, force: true, destination: xform.Coordinates);
+                    _randomHelper.RandomOffset(ent, 0.25f);
                 }
             }
         }

@@ -1,0 +1,317 @@
+# Expensive Frontier ship weapon flatpacks (Security techfab / research unlocks).
+
+- type: latheRecipe
+  id: ShipWeaponFlatpackBase
+  abstract: true
+  completetime: 20
+  categories:
+  - ShipAmmo
+  materials:
+    Steel: 8000
+    Plasteel: 1500
+    Glass: 2000
+    Plastic: 1200
+    Gold: 500
+    Silver: 350
+
+- type: latheRecipe
+  id: ShipWeaponHeavyFlatpackBase
+  parent: ShipWeaponFlatpackBase
+  abstract: true
+  completetime: 30
+
+- type: latheRecipe
+  id: ShipWeaponCapitalFlatpackBase
+  parent: ShipWeaponHeavyFlatpackBase
+  abstract: true
+  completetime: 45
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretASM220FlatPack
+  result: WeaponTurretASM220FlatPack
+  materials:
+    Steel: 15000
+    Plasteel: 2500
+    Glass: 4500
+    Plastic: 2500
+    Gold: 1200
+    Silver: 900
+    Plasma: 800
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretLightMunitionsBayFlatPack
+  result: WeaponTurretLightMunitionsBayFlatPack
+  materials:
+    Steel: 12000
+    Plasteel: 1800
+    Glass: 3500
+    Plastic: 2000
+    Gold: 900
+    Silver: 700
+    Plasma: 600
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretTarnyxReloadFlatPack
+  result: WeaponTurretTarnyxReloadFlatPack
+  materials:
+    Steel: 14000
+    Plasteel: 2200
+    Glass: 4000
+    Plastic: 2200
+    Gold: 1100
+    Silver: 800
+    Plasma: 700
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretCharonetteFlatPack
+  result: WeaponTurretCharonetteFlatPack
+  materials:
+    Steel: 18000
+    Plasteel: 3000
+    Glass: 5000
+    Plastic: 2800
+    Gold: 1400
+    Silver: 1000
+    Plasma: 1200
+
+- type: latheRecipe
+  parent: ShipWeaponCapitalFlatpackBase
+  id: WeaponTurretCharonReloadFlatPack
+  result: WeaponTurretCharonReloadFlatPack
+  materials:
+    Steel: 25000
+    Plasteel: 5000
+    Glass: 8000
+    Plastic: 4500
+    Gold: 2200
+    Silver: 1600
+    Plasma: 2000
+    Uranium: 800
+
+# Autocannons
+- type: latheRecipe
+  parent: ShipWeaponFlatpackBase
+  id: WeaponTurretL85AutocannonFlatPack
+  result: WeaponTurretL85AutocannonFlatPack
+  materials:
+    Steel: 6000
+    Plasteel: 800
+    Glass: 1800
+    Plastic: 1000
+    Gold: 400
+    Silver: 250
+
+- type: latheRecipe
+  parent: ShipWeaponFlatpackBase
+  id: WeaponTurretDravonFlatPack
+  result: WeaponTurretDravonFlatPack
+  materials:
+    Steel: 8000
+    Plasteel: 1200
+    Glass: 2500
+    Plastic: 1400
+    Gold: 550
+    Silver: 350
+
+- type: latheRecipe
+  parent: ShipWeaponFlatpackBase
+  id: WeaponTurretAK570FlatPack
+  result: WeaponTurretAK570FlatPack
+  materials:
+    Steel: 8500
+    Plasteel: 1300
+    Glass: 2500
+    Plastic: 1400
+    Gold: 550
+    Silver: 350
+
+- type: latheRecipe
+  parent: ShipWeaponFlatpackBase
+  id: WeaponTurretRAC30FlatPack
+  result: WeaponTurretRAC30FlatPack
+  materials:
+    Steel: 7800
+    Plasteel: 1100
+    Glass: 2300
+    Plastic: 1300
+    Gold: 500
+    Silver: 320
+
+# Heavy kinetic
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretBoforsFlatPack
+  result: WeaponTurretBoforsFlatPack
+  materials:
+    Steel: 16000
+    Plasteel: 2800
+    Glass: 4500
+    Plastic: 2400
+    Gold: 1100
+    Silver: 800
+    Plasma: 700
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretKargilFlatPack
+  result: WeaponTurretKargilFlatPack
+  materials:
+    Steel: 14500
+    Plasteel: 2400
+    Glass: 4000
+    Plastic: 2200
+    Gold: 1000
+    Silver: 700
+    Plasma: 600
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretCyrexaFlatPack
+  result: WeaponTurretCyrexaFlatPack
+  materials:
+    Steel: 15000
+    Plasteel: 2600
+    Glass: 4200
+    Plastic: 2300
+    Gold: 1050
+    Silver: 750
+    Plasma: 650
+
+- type: latheRecipe
+  parent: ShipWeaponCapitalFlatpackBase
+  id: WeaponTurretHadesFlatPack
+  result: WeaponTurretHadesFlatPack
+  materials:
+    Steel: 22000
+    Plasteel: 4000
+    Glass: 6500
+    Plastic: 3500
+    Gold: 1800
+    Silver: 1200
+    Plasma: 1500
+    Uranium: 400
+
+# Energy
+- type: latheRecipe
+  parent: ShipWeaponFlatpackBase
+  id: WeaponTurretType35FlatPack
+  result: WeaponTurretType35FlatPack
+  materials:
+    Steel: 7500
+    Plasteel: 1200
+    Glass: 3000
+    Plastic: 1600
+    Gold: 650
+    Silver: 400
+    Plasma: 600
+
+- type: latheRecipe
+  parent: ShipWeaponFlatpackBase
+  id: WeaponLaserTurretL1PhalanxFlatPack
+  result: WeaponLaserTurretL1PhalanxFlatPack
+  materials:
+    Steel: 7000
+    Plasteel: 1000
+    Glass: 3500
+    Plastic: 1600
+    Gold: 700
+    Silver: 450
+    Plasma: 500
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretType54FlatPack
+  result: WeaponTurretType54FlatPack
+  materials:
+    Steel: 12000
+    Plasteel: 2200
+    Glass: 5000
+    Plastic: 2400
+    Gold: 1200
+    Silver: 800
+    Plasma: 1200
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponLaserTurretApolloFlatPack
+  result: WeaponLaserTurretApolloFlatPack
+  materials:
+    Steel: 18000
+    Plasteel: 3200
+    Glass: 7500
+    Plastic: 3500
+    Gold: 1800
+    Silver: 1200
+    Plasma: 2200
+
+- type: latheRecipe
+  parent: ShipWeaponCapitalFlatpackBase
+  id: WeaponTurretType241FlatPack
+  result: WeaponTurretType241FlatPack
+  materials:
+    Steel: 55000
+    Plasteel: 12000
+    Glass: 22000
+    Plastic: 12000
+    Gold: 9000
+    Silver: 6000
+    Plasma: 16000
+    Bluespace: 3500
+    Uranium: 2000
+
+# Missile pods
+- type: latheRecipe
+  parent: ShipWeaponFlatpackBase
+  id: WeaponTurretVanykFlatPack
+  result: WeaponTurretVanykFlatPack
+  materials:
+    Steel: 9000
+    Plasteel: 1400
+    Glass: 2800
+    Plastic: 1800
+    Gold: 700
+    Silver: 450
+    Plasma: 400
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretVesperaFlatPack
+  result: WeaponTurretVesperaFlatPack
+  materials:
+    Steel: 11000
+    Plasteel: 1800
+    Glass: 3200
+    Plastic: 2000
+    Gold: 850
+    Silver: 550
+    Plasma: 500
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretASM501FlatPack
+  result: WeaponTurretASM501FlatPack
+  materials:
+    Steel: 12500
+    Plasteel: 2000
+    Glass: 3600
+    Plastic: 2200
+    Gold: 950
+    Silver: 650
+    Plasma: 700
+
+- type: latheRecipe
+  parent: ShipWeaponHeavyFlatpackBase
+  id: WeaponTurretTovekFlatPack
+  result: WeaponTurretTovekFlatPack
+  materials:
+    Steel: 13000
+    Plasteel: 2200
+    Glass: 3800
+    Plastic: 2300
+    Gold: 1000
+    Silver: 700
+    Plasma: 750

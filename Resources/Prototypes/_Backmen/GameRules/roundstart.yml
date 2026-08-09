@@ -162,6 +162,7 @@
         - Continental
         #- Lava
         - RuinedMegacity
+        - ShadowVoid
       spawnPointHecate: SpawnPointShipwreckHecate
       hecatePrototype: MobQuestHecateShipwrecked
       eventSchedule:
