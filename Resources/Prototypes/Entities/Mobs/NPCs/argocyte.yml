@@ -18,7 +18,7 @@
 #  - type: ReplacementAccent
 #    accent: xeno
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Argocyte
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - SpaceMob
@@ -26,6 +26,7 @@
     understands:
     - SpaceMob
     - Argocyte
+    - TauCetiBasic
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:

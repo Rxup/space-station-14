@@ -53,7 +53,7 @@
 #  - type: ReplacementAccent
 #    accent: cat
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Cat
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Cat

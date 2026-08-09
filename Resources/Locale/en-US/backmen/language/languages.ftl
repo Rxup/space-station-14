@@ -91,6 +91,9 @@ language-Cow-description = Moooo!
 language-Sheep-name = Sheep
 language-Sheep-description = Baaah!
 
+language-Goat-name = Goat
+language-Goat-description = Meeeh!
+
 language-Kangaroo-name = Kangaroo
 language-Kangaroo-description = Chuu!
 

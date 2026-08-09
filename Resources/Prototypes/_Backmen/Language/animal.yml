@@ -148,6 +148,21 @@
     - аа
 
 - type: language
+  id: Goat
+  speech:
+    fontId: Tolkiencyr
+    color: "#FFA07A"
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - ме
+    - бе
+    - бее
+    - аа
+
+- type: language
   id: Kangaroo
   speech:
     fontId: Tolkiencyr

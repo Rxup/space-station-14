@@ -54,8 +54,18 @@
       reagents:
       - ReagentId: Blood
         Quantity: 50
-  - type: ReplacementAccent
-    accent: mouse
+  # start-backmen: mouse-language
+  # - type: ReplacementAccent
+  #   accent: mouse
+  - type: LanguageSpeaker
+    currentLanguage: Mouse
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
+    - TauCetiBasic
+  # end-backmen: mouse-language
   - type: MeleeWeapon
     soundHit:
         path: /Audio/Effects/bite.ogg
@@ -277,8 +287,18 @@
     eggSpawn:
     - id: FoodEgg
   - type: ExaminableHunger
-  - type: ReplacementAccent
-    accent: chicken
+  # start-backmen: chicken-language
+  # - type: ReplacementAccent
+  #   accent: chicken
+  - type: LanguageSpeaker
+    currentLanguage: Chicken
+  - type: LanguageKnowledge
+    speaks:
+    - Chicken
+    understands:
+    - Chicken
+    - TauCetiBasic
+  # end-backmen: chicken-language
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
@@ -726,8 +746,18 @@
     eggSpawn:
     - id: FoodEgg
   - type: ExaminableHunger
-  - type: ReplacementAccent
-    accent: duck
+  # start-backmen: duck-language
+  # - type: ReplacementAccent
+  #   accent: duck
+  - type: LanguageSpeaker
+    currentLanguage: Duck
+  - type: LanguageKnowledge
+    speaks:
+    - Duck
+    understands:
+    - Duck
+    - TauCetiBasic
+  # end-backmen: duck-language
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember
@@ -947,6 +977,16 @@
     guides:
     - Chef
     - FoodRecipes
+  # start-backmen: cow-language
+  - type: LanguageSpeaker
+    currentLanguage: Cow
+  - type: LanguageKnowledge
+    speaks:
+    - Cow
+    understands:
+    - Cow
+    - TauCetiBasic
+  # end-backmen: cow-language
 
 - type: entity
   name: crab
@@ -1002,8 +1042,18 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Voice/Arachnid/arachnid_chitter.ogg
-  - type: ReplacementAccent
-    accent: crab
+  # start-backmen: crab-language
+  # - type: ReplacementAccent
+  #   accent: crab
+  - type: LanguageSpeaker
+    currentLanguage: Crab
+  - type: LanguageKnowledge
+    speaks:
+    - Crab
+    understands:
+    - Crab
+    - TauCetiBasic
+  # end-backmen: crab-language
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -1100,6 +1150,16 @@
       Male: Goat
       Unsexed: Goat
   - type: BleatingAccent
+  # start-backmen: goat-language
+  - type: LanguageSpeaker
+    currentLanguage: Goat
+  - type: LanguageKnowledge
+    speaks:
+    - Goat
+    understands:
+    - Goat
+    - TauCetiBasic
+  # end-backmen: goat-language
   - type: InteractionPopup
     successChance: 0.2
     interactSuccessString: petting-success-goat
@@ -1282,8 +1342,18 @@
   - type: Inventory
     speciesId: kangaroo
     templateId: kangaroo
-  - type: ReplacementAccent
-    accent: kangaroo
+  # start-backmen: kangaroo-language
+  # - type: ReplacementAccent
+  #   accent: kangaroo
+  - type: LanguageSpeaker
+    currentLanguage: Kangaroo
+  - type: LanguageKnowledge
+    speaks:
+    - Kangaroo
+    understands:
+    - Kangaroo
+    - TauCetiBasic
+  # end-backmen: kangaroo-language
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -1580,8 +1650,18 @@
   - type: NameIdentifier
     group: Kobold
   - type: LizardAccent
-  - type: ReplacementAccent
-    accent: kobold
+  # start-backmen: kobold-language
+  # - type: ReplacementAccent
+  #   accent: kobold
+  - type: LanguageSpeaker
+    currentLanguage: Kobold
+  - type: LanguageKnowledge
+    speaks:
+    - Kobold
+    understands:
+    - Kobold
+    - TauCetiBasic
+  # end-backmen: kobold-language
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian
@@ -1824,8 +1904,18 @@
     spawned:
     - id: FoodMeatRat
       amount: 1
-  - type: ReplacementAccent
-    accent: mouse
+  # start-backmen: mouse-language
+  # - type: ReplacementAccent
+  #   accent: mouse
+  - type: LanguageSpeaker
+    currentLanguage: Mouse
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
+    - TauCetiBasic
+  # end-backmen: mouse-language
   - type: Tag
     tags:
     - Trash
@@ -2914,6 +3004,16 @@
   - type: Tag
     tags:
     - VimPilot
+  # start-backmen: fox-language
+  - type: LanguageSpeaker
+    currentLanguage: Fox
+  - type: LanguageKnowledge
+    speaks:
+    - Fox
+    understands:
+    - Fox
+    - TauCetiBasic
+  # end-backmen: fox-language
 
 - type: entity
   abstract: true
@@ -2958,6 +3058,16 @@
   - type: MobPrice
     price: 200
   - type: MessyDrinker
+  # start-backmen: dog-language
+  - type: LanguageSpeaker
+    currentLanguage: Dog
+  - type: LanguageKnowledge
+    speaks:
+    - Dog
+    understands:
+    - Dog
+    - TauCetiBasic
+  # end-backmen: dog-language
 
 - type: entity
   parent: MobCorgiBase
@@ -2975,8 +3085,10 @@
     spawned:
     - id: FoodMeat
       amount: 2
-  - type: ReplacementAccent
-    accent: dog
+  # start-backmen: dog-language
+  # - type: ReplacementAccent
+  #   accent: dog
+  # end-backmen: dog-language
   - type: Tag
     tags:
     - VimPilot
@@ -3116,8 +3228,18 @@
     spawned:
     - id: FoodMeat
       amount: 3
-  - type: ReplacementAccent
-    accent: cat
+  # start-backmen: cat-language
+  # - type: ReplacementAccent
+  #   accent: cat
+  - type: LanguageSpeaker
+    currentLanguage: Cat
+  - type: LanguageKnowledge
+    speaks:
+    - Cat
+    understands:
+    - Cat
+    - TauCetiBasic
+  # end-backmen: cat-language
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-cat
@@ -3516,8 +3638,18 @@
     spawned:
     - id: FoodMeat
       amount: 1
-  - type: ReplacementAccent
-    accent: mouse
+  # start-backmen: mouse-language
+  # - type: ReplacementAccent
+  #   accent: mouse
+  - type: LanguageSpeaker
+    currentLanguage: Mouse
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
+    - TauCetiBasic
+  # end-backmen: mouse-language
   - type: Tag
     tags:
     - VimPilot
@@ -3635,8 +3767,18 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/pig_oink.ogg
-  - type: ReplacementAccent
-    accent: pig
+  # start-backmen: pig-language
+  # - type: ReplacementAccent
+  #   accent: pig
+  - type: LanguageSpeaker
+    currentLanguage: Pig
+  - type: LanguageKnowledge
+    speaks:
+    - Pig
+    understands:
+    - Pig
+    - TauCetiBasic
+  # end-backmen: pig-language
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: NpcFactionMember

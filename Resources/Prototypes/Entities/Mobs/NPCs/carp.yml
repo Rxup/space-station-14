@@ -80,7 +80,7 @@
 #      accent: genericAggressive
         - CannotSuicide
     - type: LanguageSpeaker
-      currentLanguage: TauCetiBasic
+      currentLanguage: Carp
     - type: LanguageKnowledge #backmen: languages
       speaks:
       - SpaceMob

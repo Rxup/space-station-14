@@ -19,6 +19,14 @@
     speechSounds: Squeak
     speechVerb: SmallMob
     allowedEmotes: [ 'Squeak' ]
+  - type: LanguageSpeaker
+    currentLanguage: Mouse
+  - type: LanguageKnowledge
+    speaks:
+    - Mouse
+    understands:
+    - Mouse
+    - TauCetiBasic
   - type: MeleeWeapon
     soundHit:
       path: /Audio/Effects/bite.ogg
