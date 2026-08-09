@@ -159,6 +159,7 @@
     - id: RCD
     - id: RCDAmmo
     - id: AirGrenade
+    - id: InsulatedGlovesAtmos 
 
 - type: entityTable
   id: FillAtmosphericsHardsuit
@@ -167,6 +168,7 @@
     - id: ClothingOuterHardsuitAtmos
     - id: OxygenTankFilled
     - id: ClothingMaskBreath
+    - id: ClothingShoesBootsMagAtmos 
 
 - type: entity
   id: LockerEngineerFilledHardsuit
