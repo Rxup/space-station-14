@@ -14,6 +14,8 @@ admin-verb-text-make-flesh-cultist = Сделать культистом пло�
 admin-verb-make-space-ninja = Сделать цель космическим ниндзя.
 admin-verb-make-thief = Сделать цель вором.
 admin-verb-make-paradox-clone = Создать роль призрака парадоксального клона цели.
+
+
 admin-verb-text-make-traitor = Сделать предателем
 admin-verb-text-make-initial-infected = Сделать нулевым пациентом
 admin-verb-text-make-changeling = Сделать генокрадом
@@ -26,4 +28,5 @@ admin-verb-make-head-rev = Превратите цель в Лидера Рев�
 admin-verb-text-make-head-rev = Сделать Главой революции
 admin-verb-text-make-thief = Сделать вором
 admin-verb-text-make-paradox-clone = Создать парадокс клона
+
 admin-overlay-antag-classic = АНТАГ

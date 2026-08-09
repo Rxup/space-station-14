@@ -1,6 +1,12 @@
-﻿job-name-fugitive = fugitive
+job-name-fugitive = fugitive
 job-name-BkmVirologist = Virologist
 job-name-surgeon = Surgeon
 job-title-nuclear-operative = Nuclear Operative
 job-title-nuclear-operative-agent = Nuclear Operative Corpsman
 job-title-nuclear-operative-commander = Nuclear Operative Commander
+job-name-blueshield = офицер "Синий Щит"
+job-name-rxbzzleader = лидер РХБЗЗ
+job-name-rxbzz = оперативник РХБЗЗ
+job-name-sfo = офицер специальных операций
+job-title-vanguard-leader = Коммандер Авангарда
+job-title-vanguard = Авангард

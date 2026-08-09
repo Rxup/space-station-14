@@ -1,5 +1,7 @@
+# Emergency
 cargoproduct-description-emergencyinflatablewall = Три стопки надувных стен на случай, когда металлические стены станции больше не держат атмосферу.
 
+# Materials
 cargoproduct-name-material-gold = золотые слитки
 cargoproduct-description-material-gold = 30 золотых слитков.
 

@@ -1,14 +1,19 @@
-using System.Diagnostics.CodeAnalysis;
 using Content.Shared.ActionBlocker;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
+using Content.Shared.Ghost;
 using Content.Shared.HealthExaminable;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Content.Shared.Strip;
+using Content.Shared.Tag;
 using Content.Shared.Verbs;
+using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Backmen.Flesh;
 
@@ -20,6 +25,10 @@ public abstract partial class SharedFleshWormSystem : EntitySystem
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private TagSystem _tag = default!;
+
+    private static readonly ProtoId<TagPrototype> BackpackTag = "Backpack";
 
     public override void Initialize()
     {
@@ -32,6 +41,53 @@ public abstract partial class SharedFleshWormSystem : EntitySystem
 
         SubscribeLocalEvent<InventoryComponent, ExaminedEvent>(OnWearersExamined);
         SubscribeLocalEvent<InventoryComponent, HealthBeingExaminedEvent>(OnWearersHealthExamined);
+
+        SubscribeLocalEvent<FleshWormComponent, ContainerGettingInsertedAttemptEvent>(OnGettingInsertedIntoContainer);
+    }
+
+    private void OnGettingInsertedIntoContainer(Entity<FleshWormComponent> ent, ref ContainerGettingInsertedAttemptEvent args)
+    {
+        var storage = args.Container.Owner;
+        if (!IsWearableBag(storage))
+            return;
+
+        if (!TryGetInsertUser(ent.Owner, out var user))
+        {
+            args.Cancel();
+            return;
+        }
+
+        if (CanStoreWormInBag(user))
+            return;
+
+        args.Cancel();
+        _popup.PopupClient(Loc.GetString("flesh-worm-storage-denied"), user, user, PopupType.SmallCaution);
+    }
+
+    private bool IsWearableBag(EntityUid storage)
+    {
+        if (_tag.HasTag(storage, BackpackTag))
+            return true;
+
+        if (!TryComp<ClothingComponent>(storage, out var clothing))
+            return false;
+
+        return (clothing.Slots & (SlotFlags.BACK | SlotFlags.BELT)) != 0;
+    }
+
+    private bool TryGetInsertUser(EntityUid item, [NotNullWhen(true)] out EntityUid user)
+    {
+        user = default;
+        if (!_container.TryGetContainingContainer(item, out var container))
+            return false;
+
+        user = container.Owner;
+        return true;
+    }
+
+    protected virtual bool CanStoreWormInBag(EntityUid user)
+    {
+        return HasComp<GhostComponent>(user) || HasComp<FleshCultistComponent>(user);
     }
 
     private void OnWearersExamined(Entity<InventoryComponent> ent, ref ExaminedEvent args)

@@ -1,2 +1,3 @@
 ent-MobMaidXeno = горничная ксеноморфа
     .desc = Это чертовски мило, пока она сытная.
+    .suffix = { ent-MobXeno.suffix }

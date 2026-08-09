@@ -1,2 +1,2 @@
 ent-VendingMachineMiningDrobe = Шахтерский гардероб
-    .desc = A highly advanced vending machine for buying mining related clothing for free. Please do not mine Bitcoin with it.
+    .desc = Высокотехнологичный торговый автомат для бесплатной покупки шахтёрской одежды. Пожалуйста, не майните на нём биткоин.

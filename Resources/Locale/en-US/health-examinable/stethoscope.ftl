@@ -13,3 +13,4 @@ stethoscope-delta-improving = It's improving.
 stethoscope-delta-worsening = It's getting worse.
 
 stethoscope-combined-status = {$absolute} {$delta}
+stethoscope-dead = Вы не слышите ничего.

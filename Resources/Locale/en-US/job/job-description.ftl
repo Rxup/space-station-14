@@ -45,3 +45,6 @@ job-description-serviceworker = Learn the basics of bartending, cooking, and gro
 job-description-station-ai = Follow your laws, serve the crew.
 job-description-visitor = Enjoy your visit to the station.
 job-description-warden = Patrol the Security department, ensure that no one is stealing from the armory, and make sure that all prisoners are processed and let out when their time is up.
+job-description-boxer = Пробейтесь на вершину! Бросьте вызов главе персонала и будьте арестованы когда выиграете. Эта должность доступна на станциях Core, Avrite и Convex.
+job-description-centcomoff = Выступайте в роли посла на новейшей ультрасовременной космической станции в составе флота Nanotrasen.
+job-description-zookeeper = Устройте весёлое шоу с милыми животными и космическими карпами, чтобы все члены экипажа могли ими полюбоваться. Эта должность доступна на станции Oasis и Avrite.

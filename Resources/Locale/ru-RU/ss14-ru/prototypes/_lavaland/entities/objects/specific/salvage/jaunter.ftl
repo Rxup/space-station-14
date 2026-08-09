@@ -1,2 +1,2 @@
 ent-LavalandJaunter = джаунтер
-    .desc = A complex device running on bluespace technology, that can teleport you out of danger spaces. You should have this on you when walking near a chasm.
+    .desc = Сложное устройство на блюспейс-технологии, способное телепортировать вас из опасных мест. Держите его при себе, гуляя у пропастей.

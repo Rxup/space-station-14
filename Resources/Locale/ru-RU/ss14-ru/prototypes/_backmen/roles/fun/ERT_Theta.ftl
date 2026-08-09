@@ -1,0 +1,15 @@
+ent-MobHumanERTLeaderEVAV2_1 = лидер ОБР
+    .desc = { ent-MobHuman.desc }
+    .suffix = corvax
+ent-MobHumanERTEngineerEVAV2_1 = инженер ОБР
+    .desc = { ent-MobHuman.desc }
+    .suffix = corvax
+ent-MobHumanERTSecurityEVAV2_1 = офицер безопасности ОБР
+    .desc = { ent-MobHuman.desc }
+    .suffix = corvax
+ent-MobHumanERTMedicalEVAV2_1 = медик ОБР
+    .desc = { ent-MobHuman.desc }
+    .suffix = corvax
+ent-MobHumanERTJunitorEVAV2_1 = уборщик ОБР
+    .desc = { ent-MobHuman.desc }
+    .suffix = corvax

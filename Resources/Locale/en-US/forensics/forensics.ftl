@@ -28,3 +28,6 @@ forensics-verb-message = Remove fingerprints and DNA residues from the object!
 forensics-cleaning = You begin cleaning the evidence off of {THE($target)}...
 
 forensics-cleaning-cannot-clean = There is nothing cleanable on {THE($target)}!
+forensic-pad-gloves = { CAPITALIZE($target) } носит перчатки.
+forensic-pad-fingerprint-name = владелец отпечатков: { $entity }
+forensic-pad-gloves-name = источник волокон: { $entity }

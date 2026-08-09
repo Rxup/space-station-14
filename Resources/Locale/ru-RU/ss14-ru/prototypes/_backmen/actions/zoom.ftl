@@ -1,2 +1,2 @@
 ent-ActionOpticZoom = Орлиный взор
-    .desc = Приближает или отдаляет камеру.
+    .desc = { ent-BaseAction.desc }

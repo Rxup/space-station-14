@@ -1,11 +1,12 @@
-player-panel-title = информация о {$player}
-player-panel-username = Имя пользователя: {$player}
+player-panel-title = информация о { $player }
+player-panel-username = Имя пользователя: { $player }
 player-panel-whitelisted = В вайтлисте?:
-player-panel-bans = Всего банов: {$totalBans}
-player-panel-rolebans = Всего банов ролей: {$totalRoleBans}
-player-panel-notes = Всего заметок: {$totalNotes}
-player-panel-playtime = Наиграно времени: {$days}д:{$hours}ч:{$minutes}м
-player-panel-shared-connections = Общие соединения: {$sharedConnections}
+player-panel-bans = Всего банов: { $totalBans }
+player-panel-rolebans = Всего банов ролей: { $totalRoleBans }
+player-panel-notes = Всего заметок: { $totalNotes }
+player-panel-playtime = Наиграно времени: { $days }д:{ $hours }ч:{ $minutes }м
+player-panel-shared-connections = Общие соединения: { $sharedConnections }
+
 player-panel-copy-username = Копировать
 player-panel-show-notes = Заметки
 player-panel-show-bans = Показать баны

@@ -1,2 +1,2 @@
 ent-LavalandCrateNecropolis = сундук некрополя
-    .desc = Steel and strong.
+    .desc = Стальной и прочный.

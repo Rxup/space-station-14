@@ -1,2 +1,3 @@
 ent-CrateSecurityGrenadeBarrier = ящик барьерных гранат
-    .desc = Contains four barrier grenades. Requires Security access to open.
+    .desc = Содержит четыре барьерные гранаты. Для открытия требуется доступ службы безопасности.
+    .suffix = { ent-CrateSecgear.suffix }

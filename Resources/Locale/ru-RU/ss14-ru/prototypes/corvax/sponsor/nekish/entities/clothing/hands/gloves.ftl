@@ -1,3 +1,3 @@
 ent-ClothingHandsGlovesLeatherHoS = кожаные перчатки
-    .desc = Stylish, black leather gloves
+    .desc = Стильные чёрные кожаные перчатки
     .suffix = { "" }

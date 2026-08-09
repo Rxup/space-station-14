@@ -1,5 +1,5 @@
-ent-WeaponPistolRivet = 711-MarkCL Rivet Gun
-    .desc = The 711-MarkCL Rivet Gun is the latest refinement from Timson Tools' long line of friendly tools. Useful for rapid repairs at a distance!
+ent-WeaponPistolRivet = клёпочный пистолет 711-MarkCL
+    .desc = Клёпочный пистолет 711-MarkCL — последнее усовершенствование из длинной линейки дружелюбных инструментов Timson Tools. Полезен для быстрых ремонтов на расстоянии!
 ent-MagazinePistolNail = магазин гвоздей (.nail)
     .desc = { ent-BaseMagazinePistol.desc }
 ent-CartridgeNail = гвоздь
@@ -7,6 +7,6 @@ ent-CartridgeNail = гвоздь
 ent-BulletNail = гвоздь
     .desc = { ent-BaseBullet.desc }
 ent-TeslaAmmoEnergyBall = мини шаровая молния
-    .desc = The cub of a destructive energy cage. Not as dangerous, but still not worth touching with bare hands.
-ent-WeaponBFG900 = BFG - 900
+    .desc = Детёныш разрушительной энергетической клетки. Не так опасен, но всё равно не стоит трогать голыми руками.
+ent-WeaponBFG900 = BFG — 900
     .desc = Экспериментальнре оружие правительства земли, BlueSpaceGun.

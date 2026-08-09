@@ -1,6 +1,6 @@
 ent-AirlockExternalGlassShuttleMining = { ent-AirlockGlassShuttle }
-    .suffix = External, Mining, Glass, Docking, Locked
     .desc = { ent-AirlockGlassShuttle.desc }
+    .suffix = Внешний, Шахтёрский, Стекло, Стыковочный, Закрыт
 ent-AirlockExternalGlassShuttleMiningFilled = { ent-AirlockExternalGlassShuttleMining }
-    .suffix = Mining, Filled, Locked
     .desc = { ent-AirlockExternalGlassShuttleMining.desc }
+    .suffix = Шахтёрский, Заполненный, Закрыт

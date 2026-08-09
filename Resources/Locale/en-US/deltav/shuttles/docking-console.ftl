@@ -13,3 +13,4 @@ docking-console-ftl-message-NoSelection = Select one of the destinations.
 docking-console-ftl-message-NoAccess = ERROR: Access denied.
 docking-console-ftl-message-RechargingFtl = WARNING: FTL System is not ready.
 docking-console-ftl-message-InFtl = FTL is launched!
+shuttle-destination-glacier = Айсмун

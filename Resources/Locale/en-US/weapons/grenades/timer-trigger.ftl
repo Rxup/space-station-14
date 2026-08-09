@@ -1,0 +1,10 @@
+verb-trigger-timer-set = ""0"" seconds
+verb-trigger-timer-set-current = ""0"" seconds (now)
+verb-trigger-timer-cycle = Delay cycling
+examine-trigger-timer = The timer is set to "0" seconds.
+popup-trigger-timer-set = The timer is set to "0" seconds.
+verb-start-detonation = Start detonation
+verb-toggle-start-on-stick = Toggle auto activation
+popup-start-on-stick-off = The device will NOT be automatically activated after installation
+popup-start-on-stick-on = The device will be automatically activated after installation
+trigger-activated = You have activated "0".

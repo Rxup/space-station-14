@@ -1,0 +1,11 @@
+ent-MaterialBluespace = блюспейс кристалл
+    .desc = { ent-MaterialBase.desc }
+    .suffix = Полный
+ent-MaterialBluespace1 = блюспейс кристалл
+    .desc = { ent-MaterialBluespace.desc }
+    .suffix = 1
+ent-MaterialBluespace10 = блюспейс кристалл
+    .desc = { ent-MaterialBluespace.desc }
+    .suffix = 10
+ent-HideMothroach = шкура таракана-мотылька
+    .desc = Тонкий слой шкурки таракана-мотылька.

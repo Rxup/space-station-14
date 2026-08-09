@@ -1,5 +1,6 @@
 # Errors
 loadout-group-species-restriction = Этот предмет недоступен для вашей текущей расы.
+
 # Miscellaneous
 loadout-group-trinkets = Безделушки
 loadout-group-jobtrinkets = Безделушки должностей
@@ -19,17 +20,20 @@ loadout-group-EVA-tank = Расозависимый газовый баллон
 loadout-group-vox-tank = Газовый баллон для воксов
 loadout-group-pocket-tank-double = Расозависимый двойной аварийный газовый баллон в кармане
 loadout-group-survival-mime = Мимский аварийный запас
+
 # Command
 loadout-group-captain-head = Головной убор
 loadout-group-captain-jumpsuit = Униформа
 loadout-group-captain-neck = Шея
 loadout-group-captain-backpack = Рюкзак
 loadout-group-captain-outerclothing = Верхняя одежда
+
 loadout-group-hop-head = Головной убор
 loadout-group-hop-jumpsuit = Униформа
 loadout-group-hop-neck = Шея
 loadout-group-hop-backpack = Рюкзак
 loadout-group-hop-outerclothing = Верхняя одежда
+
 # Civilian
 loadout-group-passenger-jumpsuit = Униформа
 loadout-group-passenger-mask = Маска
@@ -37,83 +41,102 @@ loadout-group-passenger-gloves = Перчатки
 loadout-group-passenger-outerclothing = Верхняя одежда
 loadout-group-passenger-shoes = Ботинки
 loadout-group-passenger-neck = Шея
+
 loadout-group-bartender-head = Головной убор
 loadout-group-bartender-jumpsuit = Униформа
 loadout-group-bartender-outerclothing = Верхняя одежда
 loadout-group-bartender-shaker = Шейкер
+
 loadout-group-chef-head = Головной убор
 loadout-group-chef-mask = Маска
 loadout-group-chef-jumpsuit = Униформа
 loadout-group-chef-outerclothing = Верхняя одежда
+
 loadout-group-librarian-jumpsuit = Униформа
+
 loadout-group-lawyer-jumpsuit = Униформа
 loadout-group-lawyer-neck = Шея
+
 loadout-group-chaplain-head = Головной убор
 loadout-group-chaplain-mask = Маска
 loadout-group-chaplain-jumpsuit = Униформа
 loadout-group-chaplain-outerclothing = Верхняя одежда
 loadout-group-chaplain-neck = Шея
 loadout-group-chaplain-bible = Святая книга
+
 loadout-group-janitor-head = Головной убор
 loadout-group-janitor-jumpsuit = Униформа
 loadout-group-janitor-gloves = Перчатки
 loadout-group-janitor-outerclothing = Верхняя одежда
 loadout-group-janitor-plunger = Плюшки
+
 loadout-group-botanist-head = Головной убор
 loadout-group-botanist-jumpsuit = Униформа
 loadout-group-botanist-backpack = Рюкзак
 loadout-group-botanist-outerclothing = Верхняя одежда
+
 loadout-group-clown-head = Головной убор
 loadout-group-clown-jumpsuit = Униформа
 loadout-group-clown-backpack = Рюкзак
 loadout-group-clown-outerclothing = Верхняя одежда
 loadout-group-clown-shoes = Ботники
+
 loadout-group-mime-head = Головной убор
 loadout-group-mime-mask = Маска
 loadout-group-mime-jumpsuit = Униформа
 loadout-group-mime-backpack = Рюкзак
 loadout-group-mime-outerclothing = Верхняя одежда
 loadout-group-mime-belt = Пояс
+
 loadout-group-musician-jumpsuit = Униформа
 loadout-group-musician-outerclothing = Верхняя одежда
+
 # Cargo
 loadout-group-quartermaster-head = Головной убор
 loadout-group-quartermaster-jumpsuit = Униформа
 loadout-group-quartermaster-neck = Шея
 loadout-group-quartermaster-outerclothing = Верхняя одежда
 loadout-group-quartermaster-shoes = Ботинки
+
 loadout-group-cargo-technician-head = Головной убор
 loadout-group-cargo-technician-jumpsuit = Униформа
 loadout-group-cargo-technician-backpack = Рюкзак
 loadout-group-cargo-technician-outerclothing = Верхняя одежда
 loadout-group-cargo-technician-shoes = Ботинки
 loadout-group-cargo-technician-id = ID карта
+
 loadout-group-salvage-specialist-backpack = Рюкзак
 loadout-group-salvage-specialist-outerclothing = Верхняя одежда
 loadout-group-salvage-specialist-shoes = Ботинки
+
 # Engineering
 loadout-group-chief-engineer-head = Головной убор
 loadout-group-chief-engineer-jumpsuit = Униформа
 loadout-group-chief-engineer-outerclothing = Верхняя одежда
 loadout-group-chief-engineer-neck = Шея
 loadout-group-chief-engineer-shoes = Ботинки
+
 loadout-group-technical-assistant-jumpsuit = Униформа
+
 loadout-group-station-engineer-head = Головной убор
 loadout-group-station-engineer-jumpsuit = Униформа
 loadout-group-station-engineer-backpack = Рюкзак
 loadout-group-station-engineer-outerclothing = Верхняя одежда
 loadout-group-station-engineer-shoes = Ботинки
 loadout-group-station-engineer-id = ID карта
+
 loadout-group-atmospheric-technician-jumpsuit = Униформа
 loadout-group-atmospheric-technician-backpack = Рюкзак
 loadout-group-atmospheric-technician-outerclothing = Верхняя одежда
 loadout-group-atmospheric-technician-shoes = Ботинки
+
 # Science
 loadout-group-research-director-head = Головной убор
 loadout-group-research-director-neck = Шея
 loadout-group-research-director-jumpsuit = Униформа
 loadout-group-research-director-outerclothing = Верхняя одежда
 loadout-group-research-director-shoes = Ботинки
+
 loadout-group-scientist-head = Головной убор
 loadout-group-scientist-neck = Шея
 loadout-group-scientist-jumpsuit = Униформа
@@ -122,15 +145,19 @@ loadout-group-scientist-outerclothing = Верхняя одежда
 loadout-group-scientist-gloves = Перчатки
 loadout-group-scientist-shoes = Ботинки
 loadout-group-scientist-id = ID карта
+
 loadout-group-research-assistant-jumpsuit = Униформа
+
 # Security
 loadout-group-head-of-security-head = Головной убор
 loadout-group-head-of-security-jumpsuit = Униформа
 loadout-group-head-of-security-neck = Шея
 loadout-group-head-of-security-outerclothing = Верхняя одежда
+
 loadout-group-warden-head = Головной убор
 loadout-group-warden-jumpsuit = Униформа
 loadout-group-warden-outerclothing = Верхняя одежда
+
 loadout-group-security-head = Головной убор
 loadout-group-security-jumpsuit = Униформа
 loadout-group-security-backpack = Рюкзак
@@ -138,30 +165,39 @@ loadout-group-security-belt = Пояс
 loadout-group-security-outerclothing = Верхняя одежда
 loadout-group-security-shoes = Ботинки
 loadout-group-security-id = ID карта
+
 loadout-group-detective-head = Головной убор
 loadout-group-detective-neck = Шея
 loadout-group-detective-jumpsuit = Униформа
 loadout-group-detective-outerclothing = Верхняя одежда
+
 loadout-group-security-cadet-jumpsuit = Униформа
 loadout-group-security-star = Плюшки
 # Medical
 loadout-group-medical-gloves = Перчатки
+
+# Medical
 loadout-group-medical-mask = Маска
+
 loadout-group-chief-medical-officer-head = Головной убор
 loadout-group-chief-medical-officer-jumpsuit = Униформа
 loadout-group-chief-medical-officer-outerclothing = Верхняя одежда
 loadout-group-chief-medical-officer-shoes = Ботинки
 loadout-group-chief-medical-officer-neck = Шея
+
 loadout-group-medical-doctor-head = Головной убор
 loadout-group-medical-doctor-jumpsuit = Униформа
 loadout-group-medical-doctor-outerclothing = Верхняя одежда
 loadout-group-medical-doctor-backpack = Рюкзак
 loadout-group-medical-doctor-shoes = Ботинки
 loadout-group-medical-doctor-id = ID карта
+
 loadout-group-medical-intern-jumpsuit = Униформа
+
 loadout-group-chemist-jumpsuit = Униформа
 loadout-group-chemist-outerclothing = Верхняя одежда
 loadout-group-chemist-backpack = Рюкзак
+
 loadout-group-paramedic-head = Головной убор
 loadout-group-paramedic-jumpsuit = Униформа
 loadout-group-paramedic-outerclothing = Верхняя одежда
@@ -169,8 +205,10 @@ loadout-group-paramedic-shoes = Ботинки
 loadout-group-reporter-head = Репортёр, голова
 loadout-group-reporter-outerclothing = Репортёр, верхняя одежда
 loadout-group-medical-glasses = Очки
+
 # Wildcards
 loadout-group-reporter-jumpsuit = Униформа
+
 loadout-group-psychologist-jumpsuit = Униформа
 loadout-group-boxer-jumpsuit = Униформа
 loadout-group-boxer-gloves = Перчатки

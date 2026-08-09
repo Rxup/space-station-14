@@ -11,10 +11,12 @@ revenant-exorcise-success = Энергия { $revenant } рассеиваетс�
 revenant-revealed-default = { $revealer } ослабляет ваш эфирный покров!
 revenant-revealed-salt = Лужа соли ослабляет ваш эфирный покров!
 revenant-already-haunted = Вы уже напугали эту душу.
+
 revenant-blood-writing-name = Кровавые письмена
 revenant-blood-writing-desc = Рисуйте кровью. Каждый штрих стоит эссенции.
 revenant-animate-name = Оживление
 revenant-animate-desc = Оживляет предмет, он будет враждебен недолго.
+
 alerts-revenant-stasis-name = Стазис
 alerts-revenant-stasis-desc = Ваш дух восстанавливается в эктоплазме.
 alerts-revenant-essence-regen-name = Усиление регенерации

@@ -105,7 +105,7 @@
 #  - type: ReplacementAccent
 #    accent: genericAggressive
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Bear
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - SpaceMob
@@ -113,6 +113,7 @@
     understands:
     - SpaceMob
     - Bear
+    - TauCetiBasic
   - type: Vocal
     sounds:
       Unsexed: Bear
@@ -191,6 +192,7 @@
     - Kangaroo
     understands:
     - Kangaroo
+    - TauCetiBasic # backmen: ghost-role-understand-galactic
   - type: Fauna # Lavaland Change
   - type: MobThresholds
     thresholds:
@@ -276,7 +278,7 @@
 #  - type: ReplacementAccent
 #    accent: xeno
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Spider
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - SpaceMob
@@ -284,6 +286,7 @@
     understands:
     - SpaceMob
     - Spider
+    - TauCetiBasic
   - type: InteractionPopup
     successChance: 0.20
     interactSuccessString: petting-success-tarantula
@@ -392,7 +395,7 @@
 #    - type: ReplacementAccent
 #      accent: xeno
     - type: LanguageSpeaker
-      currentLanguage: TauCetiBasic
+      currentLanguage: Snake
     - type: LanguageKnowledge #backmen: languages
       speaks:
       - SpaceMob
@@ -400,6 +403,7 @@
       understands:
       - SpaceMob
       - Snake
+      - TauCetiBasic
     - type: InteractionPopup
       successChance: 0.2
       interactSuccessString: petting-success-snake

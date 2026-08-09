@@ -1,3 +1,9 @@
+ent-ClothingBackpackDuffelInteQ = боевой вещмешок
+    .desc = Просторный вещмешок для оружия и припасов.
+ent-ClothingBackpackDuffelInteQAmmo = боевой вещмешок
+    .desc = Просторный вещмешок для оружия и патронов.
+ent-ClothingBackpackDuffelInteQMedical = боевой вещмешок
+    .desc = Просторный вещмешок для оружия и медикаментов.
 ent-ClothingBackpackDuffelBlueshield = вещмешок офицера "Синий Щит"
     .desc = Большой вещмешок для хранения дополнительных припасов усиленной охраны.
 ent-ClothingBackpackDuffelWhiteCaptain = белый вещмешок капитана

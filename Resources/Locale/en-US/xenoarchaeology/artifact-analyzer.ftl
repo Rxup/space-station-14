@@ -38,3 +38,23 @@ analysis-console-extract-none = [font="Monospace" size=11][color=orange] No unlo
 analysis-console-extract-sum = [font="Monospace" size=11][color=orange]Total Research: {$value}[/color][/font]
 
 analyzer-artifact-extract-popup = Energy shimmers on the artifact's surface!
+analysis-console-scan-button = Сканировать
+analysis-console-scan-tooltip-info = Сканируйте артефакты, чтобы получить данные об их структуре.
+analysis-console-print-button = Печать
+analysis-console-print-tooltip-info = Распечатать актуальную информацию об артефакте.
+analysis-console-extract-button-info = Извлечь очки исследований из артефакта, пропорциональные количеству исследованных узлов.
+analysis-console-bias-up = Вверх
+analysis-console-bias-down = Вниз
+analysis-console-bias-button-info-up = Переключает смещение артефакта при перемещении между его узлами. К поверхности - в сторону нулевой глубины.
+analysis-console-bias-button-info-down = Переключает смещение артефакта при перемещении между его узлами. В глубину - к поздним и более опасным эффектам.
+analysis-console-info-depth = ГЛУБИНА: { $depth }
+analysis-console-info-triggered-true = АКТИВИРОВАН: ДА
+analysis-console-info-triggered-false = АКТИВИРОВАН: НЕТ
+analysis-console-info-edges = СОЕДИНЕНИЯ: { $edges }
+analysis-console-info-value = НЕИЗВЛЕЧЁННЫЕ_О.И.: { $value }
+analysis-console-no-server-connected = Невозможно извлечь О.И. Сервер не подключен.
+analysis-console-no-artifact-placed = На сканере нет артефактов.
+analysis-console-no-points-to-extract = Отсутствуют очки для извлечения.
+analyzer-artifact-component-upgrade-analysis = длительность анализа
+analysis-console-print-popup = Консоль печатает отчёт.
+analysis-report-title = Отчёт об артефакте: УЗЕЛ { $id }

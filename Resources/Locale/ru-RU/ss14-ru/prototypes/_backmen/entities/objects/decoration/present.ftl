@@ -1,9 +1,9 @@
 ent-FlatpackOracle = пакет пандоры
+    .desc = { ent-BaseFlatpack.desc }
     .suffix = Оракул
-    .desc = { ent-BaseFlatpack.desc }
 ent-FlatpackSophie = пакет пандоры
+    .desc = { ent-BaseFlatpack.desc }
     .suffix = София
-    .desc = { ent-BaseFlatpack.desc }
 ent-FlatpackMetempsychoticMachine = пакет пандоры
-    .suffix = КлонеркаСпешел
     .desc = { ent-BaseFlatpack.desc }
+    .suffix = КлонеркаСпешел

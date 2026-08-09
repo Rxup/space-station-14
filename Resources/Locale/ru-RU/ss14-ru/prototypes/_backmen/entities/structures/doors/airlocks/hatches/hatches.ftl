@@ -1,2 +1,12 @@
 ent-AirlockHatchBasik = герметичный люк
     .desc = { ent-Airlock.desc }
+ent-AirlockHatchMaint = Технический Шлюз ЦК
+    .desc = Защищает Тех.Тонели в безопасности.
+ent-AirlockHatchCentcomm = Шлюз ЦК
+    .desc = Удерживает плохих снаружи, а хороших внутри.
+ent-AirlockHatchInteQ = коричневый люк
+    .desc = Защищает, довольно неплохо.
+    .suffix = Интек
+ent-AirlockHatchInteQGlass = коричневый стеклянный люк
+    .desc = Защищает, довольно неплохо.
+    .suffix = Интек

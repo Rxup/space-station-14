@@ -1,4 +1,4 @@
 ent-ActionXenoSpitMaidAcid = Плюнуть слизистой кислотой
-    .desc = Spit the violet acid on your enemies.
+    .desc = Плюньте фиолетовой кислотой во врагов.
 ent-BulletSplashMaidAcid = слизистая кислота
     .desc = { ent-BaseBulletTrigger.desc }

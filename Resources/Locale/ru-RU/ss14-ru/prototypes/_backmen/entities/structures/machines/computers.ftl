@@ -1,3 +1,8 @@
+ent-ComputerShipyard = консоль верфи
+    .desc = Используется для покупки и продажи шаттлов
+ent-ComputerCommssCentComm = Коммуникационный компьютер ЦК
+    .desc = Это может быть использовано для различных важных функций. Все еще находится на стадии разработки.
+    .suffix = CentCom
 ent-ComputerShuttleMTF = консоль управления шаттлом
     .desc = Используется для пилотирования корабля Мобильно Оперативной Группы.
 ent-ComputerShuttleEarthGov = { ent-BaseComputerShuttle }

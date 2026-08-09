@@ -156,3 +156,9 @@ reagent-desc-haloperidol = Removes most stimulating and hallucinogenic drugs. Re
 
 reagent-name-heparin = heparin
 reagent-desc-heparin = Commonly used as an anticoagulant medication. Causes blood to have difficulty forming clots. Can cause internal bleeding when overdosed.
+reagent-name-necrosol = некрозол
+reagent-desc-necrosol = Некротическое вещество, которое, похоже, способно излечивать обмороженные трупы. В небольших дозах он способен лечить и оживлять растения.
+reagent-name-warfarin = варфарин
+reagent-desc-warfarin = Обычно используется как антикоагулянтное лекарство. Затрудняет свёртывание крови. Может вызвать внутреннее кровотечение при передозировке.
+reagent-name-traumoxadone = травмаксадон
+reagent-desc-traumoxadone = Криогенный химикат, используется для лечения мельчайших и самых серьёзных механических травм. Работает и на мёртвых и на живых телах.

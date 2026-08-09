@@ -7,3 +7,4 @@ mopping-system-no-hands = You have no hands!
 
 mopping-system-full = { CAPITALIZE(THE($used)) } is full!
 mopping-system-empty = { CAPITALIZE(THE($used)) } is empty!
+mopping-system-puddle-evaporate = { CAPITALIZE($target) } испаряется

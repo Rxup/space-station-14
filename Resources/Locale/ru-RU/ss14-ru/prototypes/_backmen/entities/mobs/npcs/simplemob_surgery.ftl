@@ -1,0 +1,9 @@
+ent-BaseSimpleMobSurgery = { ent-BaseSimpleMobCore }
+    .desc = { ent-BaseSimpleMobCore.desc }
+    .suffix = AI
+ent-SimpleSpaceMobBaseSurgery = { ent-SimpleSpaceMobBaseCore }
+    .desc = { ent-SimpleSpaceMobBaseCore.desc }
+    .suffix = AI
+ent-SimpleMobBaseSurgery = { ent-SimpleMobBaseCore }
+    .desc = { ent-SimpleMobBaseCore.desc }
+    .suffix = AI

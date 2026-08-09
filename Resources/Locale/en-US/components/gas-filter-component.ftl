@@ -7,3 +7,6 @@ comp-gas-filter-ui-filter-gas-confirm = Set Gas
 comp-gas-filter-ui-filter-gas-none = None
 
 comp-gas-filter-ui-needs-anchor = Anchor it first!
+comp-gas-filter-ui-filter-status = Статус:
+comp-gas-filter-ui-status-enabled = Вкл
+comp-gas-filter-ui-status-disabled = Выкл

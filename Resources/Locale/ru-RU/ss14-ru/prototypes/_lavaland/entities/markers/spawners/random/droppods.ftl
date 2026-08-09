@@ -1,9 +1,9 @@
 ent-TriggerSpawnerGutterDroppop = { ent-TriggerSpawnerXEN }
-    .suffix = Marker Random Gutters
     .desc = { ent-TriggerSpawnerXEN.desc }
+    .suffix = Маркер случайных гаттеров
 ent-TriggerSpawnerRocketDroppop = { ent-TriggerSpawnerXEN }
-    .suffix = Marker Rocket Area Spawner
     .desc = { ent-TriggerSpawnerXEN.desc }
+    .suffix = Маркер ракетного спавнера зоны
 ent-RandomDroppodSpawner = случайный генератор гуттеров
     .desc = { ent-MarkerBase.desc }
 ent-DropPodLauncherGutter = { ent-Baseholypentagram }

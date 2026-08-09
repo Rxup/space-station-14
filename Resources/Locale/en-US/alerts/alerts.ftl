@@ -132,3 +132,5 @@ alerts-stealthy-desc = Whether you are currently pickpocketing. Click to toggle.
 
 alerts-prying-name = Prying
 alerts-prying-desc = You can innately pry doors open using alternative interaction.
+alerts-offer-name = передать
+alerts-offer-desc = кто-то передаёт вам предмет

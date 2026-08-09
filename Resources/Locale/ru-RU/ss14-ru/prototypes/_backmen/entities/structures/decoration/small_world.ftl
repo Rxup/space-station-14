@@ -1,0 +1,16 @@
+ent-SmallWorldRoadFourWay = дорога перекрёсток
+    .desc = Для твоих ног?...
+ent-SmallWorldRoadStraight = дорога прямая
+    .desc = Для ваших ног?...
+ent-SmallWorldRoadThreeWay = дорога развилка
+    .desc = Для ваших ног?...
+ent-SmallWorldRoadTurn = дорога поворот
+    .desc = Для ваших ног?...
+ent-SmallWorldBuildingSmallBusiness = маленькое здание бизнеса
+    .desc = НЕ для твоих твоих ног!!!
+ent-SmallWorldBuildingSmallHouses = маленькое здание домики
+    .desc = НЕ для ваших ног!!!
+ent-SmallWorldBuildingSmallMuseum = маленькое здание музея
+    .desc = НЕ для ваших ног!!!
+ent-SmallWorldBuildingSmallWarehouse = маленькое здание склада
+    .desc = НЕ для ваших ног!!!

@@ -3,4 +3,4 @@ ent-ChangelingAbsorbObjective = { ent-BaseChangelingObjective }
 ent-ChangelingStealDNAObjective = { ent-BaseChangelingObjective }
     .desc = { ent-BaseChangelingObjective.desc }
 ent-EscapeIdentityObjective = { ent-BaseChangelingObjective }
-    .desc = I need to escape on the evacuation shuttle. Undercover.
+    .desc = Мне нужно сбежать на эвакуационном шаттле. Под прикрытием.

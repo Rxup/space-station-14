@@ -21,42 +21,44 @@ cargo-console-menu-search-bar-placeholder = Поиск
 cargo-console-menu-requests-label = Запросы
 cargo-console-menu-orders-label = Заказы
 cargo-console-menu-order-reason-description = Причина: { $reason }
-cargo-console-menu-order-row-title = { $productName } (x{ $orderAmount } for { $orderPrice }$)
+cargo-console-menu-order-row-title = { $productName } (x{ $orderAmount } за { $orderPrice }$)
 cargo-console-menu-populate-categories-all-text = Все
-cargo-console-menu-order-row-product-description = Причина: {$orderReason}
+cargo-console-menu-order-row-product-description = Причина: { $orderReason }
 cargo-console-menu-order-row-button-approve = Одобрить
 cargo-console-menu-order-row-button-cancel = Отменить
 cargo-console-menu-order-row-alerts-reason-absent = Причина не указана
 cargo-console-menu-order-row-alerts-requester-unknown = Неизвестно
-cargo-console-menu-populate-orders-cargo-order-row-product-name-text = Заказчик: {$orderRequester} со счета [color={$accountColor}]{$account}[/color]
+cargo-console-menu-populate-orders-cargo-order-row-product-name-text = Заказчик: { $orderRequester } со счета [color={ $accountColor }]{ $account }[/color]
 cargo-console-menu-cargo-order-row-approve-button = Одобрить
 cargo-console-menu-cargo-order-row-cancel-button = Отменить
 cargo-console-menu-tab-title-orders = Заказы
 cargo-console-menu-tab-title-funds = Переводы
-cargo-console-menu-account-action-transfer-limit = [bold]Лимит перевода:[/bold] ${$limit}
+cargo-console-menu-account-action-transfer-limit = [bold]Лимит перевода:[/bold] ${ $limit }
 cargo-console-menu-account-action-transfer-limit-unlimited-notifier = [color=gold](Безлимитно)[/color]
 cargo-console-menu-account-action-select = [bold]Действие аккаунта:[/bold]
 cargo-console-menu-account-action-amount = [bold]Сумма:[/bold] $
 cargo-console-menu-account-action-button = Перевести
 cargo-console-menu-toggle-account-lock-button = Переключить Лимит Переводов
 cargo-console-menu-account-action-option-withdraw = Вывести Средства
-cargo-console-menu-account-action-option-transfer = Перевести деньги на {$code}
+cargo-console-menu-account-action-option-transfer = Перевести деньги на { $code }
+
 # Orders
 cargo-console-order-not-allowed = Доступ запрещён
 cargo-console-station-not-found = Нет доступной станции
 cargo-console-invalid-product = Неверный ID продукта
 cargo-console-too-many = Слишком много одобренных заказов
 cargo-console-snip-snip = Заказ урезан до вместимости
-cargo-console-insufficient-funds = Недостаточно средств (требуется {$cost})
+cargo-console-insufficient-funds = Недостаточно средств (требуется { $cost })
 cargo-console-unfulfilled = Нет места для выполнения заказа
-cargo-console-trade-station = Отправлено на {$destination}
-cargo-console-unlock-approved-order-broadcast = [bold]Заказ на {$productName} x{$orderAmount}[/bold], стоимостью [bold]{$cost}[/bold], был одобрен [bold]{$approver}[/bold]
-cargo-console-fund-withdraw-broadcast = [bold]{$name} снял {$amount} кредитов с {$name1} \[{$code1}\]
-cargo-console-fund-transfer-broadcast = [bold]{$name} перевёл {$amount} кредитов {$name1} \[{$code1}\] на {$name2} \[{$code2}\][/bold]
+cargo-console-trade-station = Отправлено на { $destination }
+cargo-console-unlock-approved-order-broadcast = [bold]Заказ на { $productName } x{ $orderAmount }[/bold], стоимостью [bold]{ $cost }[/bold], был одобрен [bold]{ $approver }[/bold]
+cargo-console-fund-withdraw-broadcast = [bold]{ $name } снял { $amount } кредитов с { $name1 } \[{ $code1 }\]
+cargo-console-fund-transfer-broadcast = [bold]{ $name } перевёл { $amount } кредитов { $name1 } \[{ $code1 }\] на { $name2 } \[{ $code2 }\][/bold]
 cargo-console-fund-transfer-user-unknown = Неизвестно
+
 cargo-console-paper-reason-default = Отсутствует
 cargo-console-paper-approver-default = Вы
-cargo-console-paper-print-name = Заказ #{$orderNumber}
+cargo-console-paper-print-name = Заказ #{ $orderNumber }
 cargo-console-paper-print-text = Заказ #{ $orderNumber }
     Заказ #{ $orderNumber }
     Товар: { $itemName }
@@ -64,36 +66,39 @@ cargo-console-paper-print-text = Заказ #{ $orderNumber }
     Запросил: { $requester }
     Причина: { $reason }
     Одобрил: { $approver }
+
 # Cargo shuttle console
 cargo-shuttle-console-menu-title = Консоль вызова грузового шаттла
 cargo-shuttle-console-station-unknown = Неизвестно
 cargo-shuttle-console-shuttle-not-found = Не найден
 cargo-no-shuttle = Грузовой шаттл не найден!
 cargo-shuttle-console-organics = На шаттле обнаружены органические формы жизни
+
 # Funding allocation console
 cargo-funding-alloc-console-menu-title = Консоль Финансирования
 cargo-funding-alloc-console-label-account = [bold]Аккаунт[/bold]
 cargo-funding-alloc-console-label-code = [bold] Код [/bold]
 cargo-funding-alloc-console-label-balance = [bold] Баланс [/bold]
 cargo-funding-alloc-console-label-cut = [bold] Разделение дохода (%) [/bold]
+
 cargo-funding-alloc-console-label-primary-cut = Срез заработка карго от заработка иными путями (%):
 cargo-funding-alloc-console-label-lockbox-cut = Срез заработка карго от продажи лок-боксов (%):
-cargo-funding-alloc-console-label-help-non-adjustible = Отдел снабжения получает {$percent}% от всех доходов, кроме ящиков с замком. Остаток распределяется следующим образом:
+
+cargo-funding-alloc-console-label-help-non-adjustible = Отдел снабжения получает { $percent }% от всех доходов, кроме ящиков с замком. Остаток распределяется следующим образом:
 cargo-funding-alloc-console-label-help-adjustible = Оставшиеся средства полученные не от продажи лок-боксов распределяются так:
 cargo-funding-alloc-console-button-save = Сохранить изменения
 cargo-funding-alloc-console-label-save-fail = [bold]Разделение выручки невалидно![/bold] [color=red]({$pos ->
     [1] +
     *[-1] -
-}{$val}%)[/color]
+}{ $val }%)[/color]
 
 # Slip template
-cargo-acquisition-slip-body = [head=3]Детали актива[/head]
-    {"[bold]Товар:[/bold]"} {$product}
-    {"[bold]Описание:[/bold]"} {$description}
-    {"[bold]Цена за единицу:[/bold]"} ${$unit}
-    {"[bold]Количество:[/bold]"} {$amount}
-    {"[bold]Стоимость:[/bold]"} ${$cost}
+cargo-acquisition-slip-body = [head=3]Детали актива[/head] { "[bold]Товар:[/bold]" } { $product }
+    { "[bold]Описание:[/bold]" } { $description }
+    { "[bold]Цена за единицу:[/bold]" } ${ $unit }
+    { "[bold]Количество:[/bold]" } { $amount }
+    { "[bold]Стоимость:[/bold]" } ${ $cost }
 
-    {"[head=3]Детали заказа[/head]"}
-    {"[bold]Заказчик:[/bold]"} {$orderer}
-    {"[bold]Причина:[/bold]"} {$reason}
+    { "[head=3]Детали заказа[/head]" }
+    { "[bold]Заказчик:[/bold]" } { $orderer }
+    { "[bold]Причина:[/bold]" } { $reason }

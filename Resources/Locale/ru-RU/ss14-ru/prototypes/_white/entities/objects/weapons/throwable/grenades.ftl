@@ -1,2 +1,2 @@
 ent-GrenadeBarrier = барьерная граната
-    .desc = Instant cover.
+    .desc = Мгновенное укрытие.

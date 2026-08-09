@@ -1,2 +1,2 @@
 ent-Hairball = комок шерсти
-    .desc = Felinids, man... Placeholder sprite.
+    .desc = Фелиниды, блин... Временный спрайт.

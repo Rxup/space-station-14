@@ -1,11 +1,11 @@
 ent-PKAUpgradeLight = модкит PKA (легкий)
     .desc = { ent-BasePKAUpgrade.desc }
 ent-PKAUpgradeDamageTier2 = модкит PKA (урон t2)
-    .suffix = Tier 2
     .desc = { ent-PKAUpgradeDamage.desc }
+    .suffix = Уровень 2
 ent-PKAUpgradeRangeTier2 = модкит PKA (дальность t2)
-    .suffix = Tier 2
     .desc = { ent-PKAUpgradeRange.desc }
+    .suffix = Уровень 2
 ent-PKAUpgradeFireRateTier2 = модкит PKA (скорострельность t2)
-    .suffix = Tier 2
     .desc = { ent-PKAUpgradeFireRate.desc }
+    .suffix = Уровень 2

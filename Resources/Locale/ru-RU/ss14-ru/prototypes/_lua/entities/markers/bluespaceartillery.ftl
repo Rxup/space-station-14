@@ -1,0 +1,12 @@
+ent-AdminInstantEffectBSA = мгновенный эффект
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Удар BSA
+ent-AdminInstantEffectBSATarget = мгновенный эффект
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Наведение BSA
+ent-AdminInstantEffectBSAShot = мгновенный эффект
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Залп BSA
+ent-AdminInstantEffectBSAHit = мгновенный эффект
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Попадание BSA

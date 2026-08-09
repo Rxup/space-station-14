@@ -1,3 +1,3 @@
 ent-ClothingBeltHoS = кожаный пояс охраны
-    .desc = Stylish, leather black belt
+    .desc = Стильный кожаный чёрный пояс
     .suffix = { "" }

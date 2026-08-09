@@ -1,7 +1,9 @@
 ent-MobHivebot = ульевой бот
     .desc = Раздражающие, механизированные вредители.
+    .suffix = { ent-BaseSimpleMob.suffix }
 ent-MobHivebotRanged = ульевой бот
     .desc = Раздражающие, механизированные вредители. У этого есть оружие.
-    .suffix = Ranged
-ent-MobHivebotStrong = strong hivebot
+    .suffix = Дальний бой
+ent-MobHivebotStrong = сильный ройбот
     .desc = Раздражающие, механизированные вредители. Этот выглядит намного сильнее обычного.
+    .suffix = { ent-MobHivebotRanged.suffix }

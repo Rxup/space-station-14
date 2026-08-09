@@ -1,4 +1,5 @@
 ent-TelescopicBaton = телескопическая дубинка
-    .desc = A compact yet reliable personal defense weapon.
+    .desc = Компактное, но надёжное оружие самообороны.
+
 comp-telebaton-examined-on = Дубинка разложена.
 comp-telebaton-examined-off = Дубинка сложена.

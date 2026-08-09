@@ -1,2 +1,2 @@
 ent-GuidebookChangelingFluff = руководство оборотня
-    .desc = you shouldn't be seeing this normally.
+    .desc = в обычных условиях вы не должны этого видеть.

@@ -1,9 +1,9 @@
 ent-WeaponTurretLaserTeamA = { ent-WeaponTurretBaseLaser }
-    .suffix = TeamA
     .desc = { ent-WeaponTurretBaseLaser.desc }
+    .suffix = TeamA
 ent-WeaponTurretLaserTeamB = { ent-WeaponTurretBaseLaser }
+    .desc = { ent-WeaponTurretBaseLaser.desc }
     .suffix = TeamA
-    .desc = { ent-WeaponTurretBaseLaser.desc }
 ent-WeaponTurretLaserTeamNeutral = { ent-WeaponTurretBaseLaser }
-    .suffix = Team Neutral
     .desc = { ent-WeaponTurretBaseLaser.desc }
+    .suffix = Команда нейтральная

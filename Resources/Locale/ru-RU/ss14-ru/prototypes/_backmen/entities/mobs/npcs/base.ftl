@@ -1,4 +1,9 @@
 ent-MobBaseNpc = Базированная База НПЦ
-    .desc = Just a body, be calm.
+    .desc = Просто тело, сохраняйте спокойствие.
+    .suffix = { ent-SimpleSpaceMobBase.suffix }
+ent-MobBaseNpcHumanoid = Базированная База НПЦ (гуманоид)
+    .desc = { ent-MobBaseNpc.desc }
+    .suffix = { ent-MobBaseNpc.suffix }
 ent-MobBaseNpcSalvage = { ent-MobBaseNpc }
     .desc = { ent-MobBaseNpc.desc }
+    .suffix = { ent-MobBaseNpc.suffix }

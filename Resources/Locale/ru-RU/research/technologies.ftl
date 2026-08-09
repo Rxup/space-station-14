@@ -13,6 +13,7 @@ research-discipline-robotics = Робототехника
 research-discipline-medical = Медицина
 research-discipline-service = Сервис
 # end-backmen: rnd-disciplines
+
 research-technology-fulton = Фултоны
 research-technology-salvage-equipment = Снаряжение для утилизации
 research-technology-advanced-powercells = Продвинутые батареи
@@ -35,6 +36,7 @@ research-technology-excavation-borg = Массовые раскопки(борг
 research-technology-biochemical-stasis = Биохимический стазис
 research-technology-mechanized-treatment = Механизированная подготовка
 research-technology-bluespace-chemistry = Блюспейс-химия
+
 research-technology-salvage-weapons = Утилизаторское оружие
 research-technology-special-means = Специальные средства
 research-technology-draconic-munitions = Драконьи боеприпасы
@@ -53,6 +55,7 @@ research-technology-portable-microfusion-weaponry = Оруженый порта�
 research-technology-experimental-battery-ammo = Экспериментальные батарейные боеприпасы
 research-technology-basic-shuttle-armament = Базовое корабельное вооружение
 research-technology-advanced-shuttle-weapon = Продвинутое корабельное оружие
+
 research-technology-basic-robotics = Основы робототехники
 research-technology-basic-anomalous-research = Основы исследования аномалий
 research-technology-basic-xenoarcheology = Основы ксеноархеологии
@@ -68,6 +71,7 @@ research-technology-advanced-anomaly-research = Продвинутое изуч�
 research-technology-rped = Быстрая замена компонентов
 research-technology-super-parts = Суперкомпоненты
 research-technology-deterrence = Технология сдерживания
+
 research-technology-janitorial-equipment = Уборочное оборудование
 research-technology-laundry-tech = Прачечная технология
 research-technology-critter-mechs = Мехи для животных

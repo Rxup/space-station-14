@@ -1,0 +1,269 @@
+# Shipwrecked-balanced Black Mesa / Xen faction mobs (not used on salvage expeditions).
+
+# region BlackOps
+
+- type: entity
+  id: MobBlackOpsOperatorMeleeShipwreck
+  parent: MobBlackOpsOperatorMelee
+  suffix: Shipwreck
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - ShipwreckBlackOps
+  - type: Damageable
+    damageModifierSet: Metallic
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.8
+
+- type: entity
+  id: MobBlackOpsOperatorShipwreck
+  parent: MobBlackOpsOperator
+  suffix: Shipwreck
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - ShipwreckBlackOps
+  - type: Damageable
+    damageModifierSet: Metallic
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Dead
+  - type: BasicEntityAmmoProvider
+    proto: BulletRifle
+    capacity: 2
+    count: 2
+  - type: Gun
+    minAngle: 8
+    maxAngle: 28
+    angleIncrease: 14
+    angleDecay: 18
+    fireRate: 1.75
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns64/Rifles/m16.ogg
+
+- type: entity
+  id: MobBlackOpsBossShipwreck
+  parent: MobBlackOpsOperatorShipwreck
+  suffix: Shipwreck Boss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    scale: 1.3, 1.3
+    layers:
+    - state: blackops_ranged
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    - state: blackops_ranged
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      color: "#FF3333AA"
+      shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      165: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.8
+    baseSprintSpeed: 5.3
+  - type: BasicEntityAmmoProvider
+    proto: BulletRifle
+    capacity: 3
+    count: 3
+  - type: Gun
+    minAngle: 4
+    maxAngle: 24
+    angleIncrease: 12
+    angleDecay: 18
+    fireRate: 2.2
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Guns64/Rifles/m16.ogg
+  - type: Tag
+    tags:
+    - CannotSuicide
+
+# endregion
+
+# region Headcrab infected (science / security only)
+
+- type: entity
+  id: MobHeadcrabZombieScienceShipwreck
+  parent: MobHeadcrabZombieScience
+  suffix: Shipwreck
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - ShipwreckHeadcrabInfected
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Dead
+
+- type: entity
+  id: MobHeadcrabZombieSecurityShipwreck
+  parent: MobHeadcrabZombieSecurity
+  suffix: Shipwreck
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - ShipwreckHeadcrabInfected
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: Dead
+  - type: Damageable
+    damageModifierSet: Metallic
+
+- type: entity
+  id: MobHeadcrabZombieBossShipwreck
+  parent: MobHeadcrabZombieSecurityShipwreck
+  suffix: Shipwreck Boss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    scale: 1.3, 1.3
+    layers:
+    - state: male_template
+      sprite: Backmen/Mobs/Npc/Base.rsi
+    - state: equipped-INNERCLOTHING
+      sprite: Clothing/Uniforms/Jumpsuit/security_blue.rsi
+    - state: equipped-HAND
+      sprite: Clothing/Hands/Gloves/Color/black.rsi
+    - state: equipped-FEET
+      sprite: Clothing/Shoes/Boots/combatboots.rsi
+    - state: equipped-OUTERCLOTHING
+      sprite: Clothing/OuterClothing/Armor/security.rsi
+    - state: headcrab_zombie
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    - state: headcrab_zombie
+      sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+      color: "#FF3333AA"
+      shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      160: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 3.6
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 14
+        Piercing: 6
+  - type: Tag
+    tags:
+    - CannotSuicide
+
+# endregion
+
+# region Xen creatures
+
+- type: entity
+  id: MobVortigauntShipwreck
+  parent: MobVortigauntGhostless
+  suffix: Shipwreck
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - ShipwreckXenCreatures
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Dead
+  - type: Gun
+    fireRate: 0.32
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      collection: VortigauntShot
+  - type: BatterySelfRecharger
+    autoRechargeRate: 40
+
+- type: entity
+  id: MobVortigauntBossShipwreck
+  parent: MobVortigauntShipwreck
+  suffix: Shipwreck Boss
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    scale: 1.3, 1.3
+    sprite: Backmen/Mobs/Npc/blackmesa/mobs.rsi
+    layers:
+    - state: vortigaunt
+      map: [ "enum.DamageStateVisualLayers.Base" ]
+    - state: vortigaunt
+      color: "#FF3333AA"
+      shader: unshaded
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      165: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.8
+    baseSprintSpeed: 4.2
+  - type: Gun
+    fireRate: 0.45
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      collection: VortigauntShot
+  - type: BatterySelfRecharger
+    autoRechargeRate: 55
+  - type: Tag
+    tags:
+    - CannotSuicide
+
+- type: entity
+  id: MobBullSquidShipwreck
+  parent: MobBullSquidGhostless
+  suffix: Shipwreck
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: NpcFactionMember
+    factions:
+    - ShipwreckXenCreatures
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    soundHit:
+      path: /Audio/Backmen/test/base/ogg/blackmesa/bullsquid/attack1.ogg
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 7
+        Slash: 7
+        Piercing: 7
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.4
+  - type: BasicEntityAmmoProvider
+    proto: BulletAcid
+    capacity: 1
+    count: 1
+
+# endregion

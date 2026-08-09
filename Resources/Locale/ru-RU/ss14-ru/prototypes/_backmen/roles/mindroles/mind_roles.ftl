@@ -40,3 +40,5 @@ ent-MindRoleCBURN = РХБЗЗ
     .desc = { ent-BaseJobMindRole.desc }
 ent-MindRoleDeathSquad = Деды
     .desc = { ent-BaseJobMindRole.desc }
+ent-MindRoleSpecialOperationsOfficer = Офицер спецопераций
+    .desc = { ent-BaseJobMindRole.desc }

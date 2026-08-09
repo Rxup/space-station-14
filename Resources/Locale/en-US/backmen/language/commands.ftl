@@ -32,3 +32,7 @@ command-description-translator-lsrequired = Lists all required languages for the
 
 command-language-error-this-will-not-work = This will not work.
 command-language-error-not-a-translator = Entity {$entity} is not a translator.
+
+# toolshed
+
+command-description-language-set = Установить текущий выбранный язык цели

@@ -1,0 +1,11 @@
+ent-RandomHumanoidSpawnerZombie = Случайный зомби
+    .desc = { "" }
+    .suffix = мёртвый
+ent-RandomHumanoidSpawnerZombieSurprise = Случайный зомби
+    .desc = { "" }
+    .suffix = сюрприз
+ent-RandomHumanoidSpawnerZombieBrute = Случайный зомби
+    .desc = { "" }
+    .suffix = босс
+ent-ZombieSurpriseDetector = { "" }
+    .desc = { "" }

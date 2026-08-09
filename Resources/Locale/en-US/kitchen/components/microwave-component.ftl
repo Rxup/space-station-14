@@ -24,3 +24,5 @@ microwave-menu-eject-all-tooltip = This vaporizes all reagents, but ejects any s
 microwave-menu-instant-button = INSTANT
 microwave-menu-footer-flavor-left = Do not insert any electronic, metallic or living objects.
 microwave-menu-footer-flavor-right = v1.5
+microwave-component-suicide-multi-head-others-message = { $victim } пытается зажарить свои головы!
+microwave-component-suicide-multi-head-message = Вы зажариваете свои головы!

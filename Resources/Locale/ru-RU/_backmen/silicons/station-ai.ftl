@@ -27,5 +27,6 @@ station-ai-icon-toodeep = Слишком глубоко
 station-ai-icon-triumvirate = Триумвират
 station-ai-icon-triumvirate-malf = Триумвират (Сбойный)
 station-ai-icon-weird = Странный
+
 station-ai-hologram-horror = Ужасающий
 station-ai-hologram-xenomorph-queen = Королева ксеноморфов

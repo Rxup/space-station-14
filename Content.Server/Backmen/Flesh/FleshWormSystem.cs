@@ -65,6 +65,11 @@ public sealed partial class FleshWormSystem : SharedFleshWormSystem
 
     private static readonly SlotFlags FaceSlots = SlotFlags.HEAD | SlotFlags.MASK;
 
+    protected override bool CanStoreWormInBag(EntityUid user)
+    {
+        return base.CanStoreWormInBag(user) || HasComp<FleshPudgeComponent>(user);
+    }
+
     public override void Initialize()
     {
         base.Initialize();

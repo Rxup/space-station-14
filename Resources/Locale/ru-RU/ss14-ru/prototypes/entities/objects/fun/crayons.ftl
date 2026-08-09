@@ -1,5 +1,5 @@
 ent-CrayonInedible = карандаш
-    .desc = A colourful crayon. Looks tasty. Mmmm...
+    .desc = Красочный мелок. Выглядит аппетитно. Мммм...
 ent-Crayon = мелок
     .desc = Красочный мелок. Выглядит аппетитно. Мммм...
 ent-CrayonWhite = белый мелок
@@ -11,7 +11,7 @@ ent-CrayonRainbow = радужный мелок
 ent-CrayonInfinite = бесконечный карандаш
     .desc = { ent-CrayonRainbow.desc }
 ent-CrayonBorg = электрический карандаш
-    .desc = Supposedly the most delicious crayon type in all the universes; unfortunately, you cannot eat.
+    .desc = Вероятно вкуснейший тип мелков во всех вселенных. К сожалению, их нельзя есть.
 ent-CrayonBlack = чёрный мелок
     .desc = { ent-Crayon.desc }
 ent-CrayonRed = красный мелок

@@ -13,6 +13,7 @@ gas-pressure-regulator-ui-target = Цель
 gas-pressure-regulator-ui-flow = Поток
 gas-pressure-regulator-ui-outlet = Вытяжка
 gas-pressure-regulator-ui-inlet = Вход
+
 # Units
 gas-pressure-regulator-ui-flow-rate-unit = л/с
 gas-pressure-regulator-ui-pressure-unit = кПа

@@ -14,16 +14,20 @@ store-category-job = Работа
 store-category-pointless = Безделушки
 store-category-objective = Цель
 store-discounted-items = Скидки
+
 # Revenant
 store-category-abilities = Способности
+
 # Wizard
 store-caregory-spellbook-offensive = Атакующие заклинания
 store-caregory-spellbook-defensive = Защитные заклинания
 store-caregory-spellbook-utility = Вспомогательные заклинания
 store-caregory-spellbook-equipment = Волшебное снаряжение
 store-caregory-spellbook-events = Заклинания событий
+
 # Nukie Delivery
 store-category-nukie-delivery = Предложения
+
 # Changeling
 store-category-combat = Боевые
 store-category-utility = Вспомогательные

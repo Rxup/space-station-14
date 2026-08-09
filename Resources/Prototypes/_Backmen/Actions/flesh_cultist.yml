@@ -175,7 +175,11 @@
     - type: Action
       icon: Interface/Actions/fleshCultistDevour.png
       useDelay: 15
+    - type: TargetAction
+      checkCanAccess: true
+      range: 2
     - type: EntityTargetAction
+      canTargetSelf: false
       event: !type:FleshCultistDevourActionEvent
       whitelist:
         components:

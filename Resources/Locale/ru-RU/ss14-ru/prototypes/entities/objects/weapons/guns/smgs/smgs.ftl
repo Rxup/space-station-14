@@ -12,5 +12,5 @@ ent-WeaponSubMachineGunWt550 = WT550
     .desc = Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра .35 авто.
     .suffix = Пистолет-пулемёт
 ent-WeaponSubMachineGunDrozdRubber = Дрозд
-    .suffix = Нелетальный
     .desc = { ent-WeaponSubMachineGunDrozd.desc }
+    .suffix = Нелетальный

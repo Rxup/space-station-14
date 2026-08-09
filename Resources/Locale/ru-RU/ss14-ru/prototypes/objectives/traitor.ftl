@@ -30,8 +30,6 @@ ent-HandTeleporterStealObjective = { ent-BaseRDStealObjective }
     .desc = { ent-BaseRDStealObjective.desc }
 ent-EnergyMagnumStealObjective = { ent-BaseTraitorStealObjective }
     .desc = { ent-BaseTraitorStealObjective.desc }
-ent-EnergyShotgunStealObjective = { ent-BaseTraitorStealObjective }
-    .desc = { ent-BaseTraitorStealObjective.desc }
 ent-MagbootsStealObjective = { ent-BaseTraitorStealObjective }
     .desc = { ent-BaseTraitorStealObjective.desc }
 ent-ClipboardStealObjective = { ent-BaseTraitorStealObjective }
@@ -48,6 +46,8 @@ ent-CaptainJetpackStealObjective = { ent-BaseCaptainObjective }
     .desc = { ent-BaseCaptainObjective.desc }
 ent-CaptainGunStealObjective = { ent-BaseCaptainObjective }
     .desc = { ent-BaseCaptainObjective.desc }
+ent-EnergyShotgunStealObjective = { ent-BaseTraitorStealObjective }
+    .desc = { ent-BaseTraitorStealObjective.desc }
 
 # ent-NukeDiskStealObjective = { ent-BaseCaptainObjective }
 #     .desc = { ent-BaseCaptainObjective.desc }

@@ -11,4 +11,4 @@ ent-ArrowImprovisedUranium = стрела из осколка уранового
 ent-ArrowImprovisedCarp = стрела из зуба карпа
     .desc = Предпочтительная стрела утилизатора. Убивайте своих врагов зубами их семьи.
 ent-ArrowCard = картонная стрела
-    .desc = Careful, you'll poke an eye out!
+    .desc = Осторожно, глаз себе выколешь!

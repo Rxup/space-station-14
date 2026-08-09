@@ -1,5 +1,5 @@
 ent-LavalandCursedHeart = сердце
-    .desc = I feel bad for the heartless bastard who lost this.
+    .desc = Жаль того бессердечного ублюдка, который это потерял.
 ent-LavalandVampirismCrystal = красный кристалл
     .desc = { ent-BasePKAUpgrade.desc }
 ent-PaperNecropolis = официальное заявление

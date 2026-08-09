@@ -1,4 +1,4 @@
 ent-VmpShop = Магазин эволюции
-    .desc = Here you can purchase active skills and passive enhancements.
+    .desc = Здесь можно приобрести активные навыки и пассивные улучшения.
 ent-ActionConvertToVampier = обратить в вампира
-    .desc = Обращает чистокровную жертву в вампира, с незначительным негативным эффектом.
+    .desc = { ent-BaseAction.desc }

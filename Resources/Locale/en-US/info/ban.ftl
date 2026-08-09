@@ -86,3 +86,4 @@ server-ban-string-never = never
 
 # Kick on ban
 ban-kick-reason = You have been banned
+cmd-banlistF-hint = <name/user ID>

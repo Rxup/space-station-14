@@ -532,3 +532,11 @@ uplink-energycrossbow-desc = The go-to sidearm of any operative who prefers thei
 #Objective items
 uplink-hijack-beacon-name = Hijack Beacon
 uplink-hijack-beacon-desc = A syndicate-brand hijack beacon designed to get around the firewalls of Nanotrasen-brand Automated Trade Stations. They take 200 seconds to work and Trade Stations will announce they are being hacked, so prepare accordingly.
+uplink-voice-mask-name = Голосовая маска
+uplink-voice-mask-desc = Противогаз, позволяющий подстраивать свой голос под кого угодно.
+uplink-dart-syringe-gun-name = Шприцемёт
+uplink-dart-syringe-gun-desc = Оружие, которое принимает шприцы в качестве снарядов, и вводит их содержимое в своих жертв. Может проходить сквозь броню.
+uplink-buldog-bundle-name = Набор "Бульдог"
+uplink-buldog-bundle-desc = Простой и надёжный: Содержит популярный дробовик Бульдог и 4 барабана дроби.
+uplink-clothing-thieving-gloves-name = Воровские перчатки
+uplink-clothing-thieving-gloves-desc = Незаметно обчищайте карманы и улучшайте свой навык воровства с помощью этих новых модных перчаток. Они даже выглядят как обычные!

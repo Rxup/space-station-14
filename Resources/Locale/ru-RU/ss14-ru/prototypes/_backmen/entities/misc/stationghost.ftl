@@ -1,6 +1,6 @@
 ent-effectStationGhostHoloBee = ???
-    .suffix = station ghost, holo bee
     .desc = { "" }
+    .suffix = станционный призрак, голо-пчела
 ent-timetSoawnerEffectHoloBee = Голографическая пчела Таймер Спавнер
-    .suffix = station ghost
     .desc = { ent-MarkerBase.desc }
+    .suffix = станционный призрак

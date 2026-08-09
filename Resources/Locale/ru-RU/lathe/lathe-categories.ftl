@@ -1,17 +1,25 @@
-# Generic
+
+# Security TechFab
 lathe-category-ammo = Боеприпасы
 lathe-category-clothing = Одежда
+# Generic
 lathe-category-circuitry = Электроника
 lathe-category-machines = Машины
 lathe-category-lights = Лампы
+
+# Cutter
 lathe-category-tiles = Плитки
+
+# Science
 lathe-category-mechs = Мехи
 lathe-category-parts = Компоненты
 lathe-category-robotics = Робототехника
 lathe-category-tools = Инструменты
 lathe-category-weapons = Вооружение
+
 # Biogen
 lathe-category-food = Пища
+
 # Circuit imprinter
 lathe-category-computers = Компьютеры
 lathe-category-engineering = Инженерное
@@ -46,6 +54,7 @@ lathe-category-chemicals = Химикаты
 lathe-category-materials = Материалы
 lathe-category-boxes = Коробки
 lathe-category-magazines = Магазины
+
 # Uniform
 lathe-category-bedsheets = Одеяла
 lathe-category-carpets = Ковры

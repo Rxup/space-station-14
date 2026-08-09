@@ -1,0 +1,10 @@
+atmos-plaque-component-desc-zum = Эта табличка увековечивает подъём отдела атмосферы ZUM. Пусть они пронесут факел, оставленный отделами ZAS, LINDA и FEA.
+atmos-plaque-component-desc-fea = Эта табличка увековечивает падение отдела атмосферы FEA. В память обо всех обугленных, одурманенных и хрупких людях, погибших от его рук.
+atmos-plaque-component-desc-linda = Эта табличка увековечивает падение отдела атмосферы LINDA. В память обо всех обугленных, одурманенных и хрупких людях, погибших от его рук.
+atmos-plaque-component-desc-zas = Эта табличка увековечивает падение отдела атмосферы ZAS. В память обо всех обугленных, одурманенных и хрупких людях, погибших от его рук.
+atmos-plaque-component-desc-unset = Uhm
+atmos-plaque-component-name-zum = Табличка отдела атмосферы ZUM
+atmos-plaque-component-name-fea = Табличка отдела атмосферы FEA
+atmos-plaque-component-name-linda = Табличка отдела атмосферы LINDA
+atmos-plaque-component-name-zas = Табличка отдела атмосферы ZAS
+atmos-plaque-component-name-unset = Uhm

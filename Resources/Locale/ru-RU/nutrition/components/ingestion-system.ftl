@@ -1,20 +1,20 @@
 ### Interaction Messages
 
-
 # System
 
-
 ## When trying to ingest without the required utensil... but you gotta hold it
+ingestion-you-need-to-hold-utensil = Вам нужна { $utensil }, чтобы есть это!
 
-ingestion-you-need-to-hold-utensil = Вам нужна {$utensil}, чтобы есть это!
 ingestion-try-use-is-empty = { CAPITALIZE(THE($entity)) } пуст!
 ingestion-try-use-wrong-utensil = Вы не можете { $verb } { THE($food) } с помощью { INDEFINITE($utensil) } { $utensil }.
-ingestion-remove-mask = Сперва снимите {$entity}.
+
+ingestion-remove-mask = Сперва снимите { $entity }.
 
 ## Failed Ingestion
 
-ingestion-you-cannot-ingest-any-more = Вы не можете больше {$verb}!
+ingestion-you-cannot-ingest-any-more = Вы не можете больше { $verb }!
 ingestion-other-cannot-ingest-any-more = { CAPITALIZE(SUBJECT($target)) } больше не может { $verb }!
+
 ingestion-cant-digest = Вы не можете переварить { THE($entity) }!
 ingestion-cant-digest-other = { CAPITALIZE(SUBJECT($target)) } не может переварить { THE($entity) }!
 
@@ -25,18 +25,19 @@ ingestion-verb-drink = Пить
 
 # Edible Component
 
--edible-satiated =
-    { $satiated ->
-        [true] { " " }You don't feel like you could { $verb } any more.
-       *[false] { "" }
-    }
+-edible-satiated = { $satiated ->
+    [true] { " " }Вам кажется вы не можете больше { $verb }.
+    *[false] { "" }
+}
+
 edible-nom = Ням. { $flavors }
 edible-nom-other = Ням.
 edible-slurp = Хлюп. { $flavors }
 edible-slurp-other = Хлюп.
 edible-swallow = Вы проглатываете { THE($food) }
-edible-gulp = Глоть. {$flavors}
+edible-gulp = Глоть. { $flavors }
 edible-gulp-other = Глоток.
+
 edible-has-used-storage = Вы не можете { $verb } { THE($food) } с предметом внутри.
 
 ## Nouns

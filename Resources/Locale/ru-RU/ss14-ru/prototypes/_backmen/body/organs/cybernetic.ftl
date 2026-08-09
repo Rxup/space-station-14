@@ -1,2 +1,12 @@
 ent-BaseCyberneticEyes = { ent-OrganHumanEyes }
     .desc = { ent-OrganHumanEyes.desc }
+    .suffix = { ent-OrganHumanEyes.suffix }
+ent-BasicCyberneticEyes = кибернетические глаза
+    .desc = Пара кибернетических глаз, усиливающих ваше зрение и защищающих от повреждений глаз.
+    .suffix = { ent-BaseCyberneticEyes.suffix }
+ent-SecurityCyberneticEyes = кибернетические глаза безопасности
+    .desc = Пара кибернетических глаз, усиливающих ваше зрение, со встроенным SecHUD.
+    .suffix = { ent-BaseCyberneticEyes.suffix }
+ent-MedicalCyberneticEyes = кибернетические диагностические глаза
+    .desc = Пара кибернетических глаз, усиливающих ваше зрение, со встроенным MedHUD.
+    .suffix = { ent-BaseCyberneticEyes.suffix }

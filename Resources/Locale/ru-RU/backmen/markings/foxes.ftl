@@ -1,20 +1,27 @@
 marking-PawSocks-pawsocks = Пальчатые носки
 marking-PawSocks = Пальчатые носки
+
 marking-FoxTail-vulp_tail = Лисий хвост
 marking-FoxTail = Лисий хвост
+
 marking-FoxEar-vulp_ear = Ухо лисы (наружное)
 marking-FoxEar-vulp_ear_inner = Ухо лисы (внутреннее)
 marking-FoxEar = Ухо лисы (внутреннее)
+
 marking-WolfTail-wolf_tail = Волчий хвост (база)
 marking-WolfTail-wolf_tail_inner = Волчий хвост (кончик)
 marking-WolfTail = Волчий хвост (кончик)
+
 marking-FoxBelly-vulp_belly-torso = Лисий живот
 marking-FoxBelly = Лисий живот
+
 marking-FoxSnout-vulp_face = Лисья морда
 marking-FoxSnout = Лисья морда
+
 marking-FoxTailinner = Лисий хвост (многослойный)
 marking-FoxTailinner-vulp_tail = Лисий хвост (основа)
 marking-FoxTailinner-vulp_tail_inner = Лисий хвост (внутренний слой)
+
 marking-FoxTailinnerAnimated = Лисий хвост (анимированный)
 marking-FoxTailinnerAnimated-tail_fox_waggin = Лисий хвост (анимированный)
 marking-FoxTailinnerAnimated-tail_fox_inner_waggin = Лисий хвост (анимированный кончик)
@@ -41,3 +48,4 @@ marking-FoxesPointsFadeLegs = Лисьи ноги (Плавный Переход
 marking-FoxesPointsSharpLegs = Лисьи ноги (Затемнение)
 marking-FoxesPointsFeet = Лисьи ноги
 marking-FoxesPointsHands = Лисьи лапы
+

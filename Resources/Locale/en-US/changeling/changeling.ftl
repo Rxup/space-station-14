@@ -47,3 +47,4 @@ changeling-sting-success = We silently sting {THE($target)}!
 
 # other
 changeling-paused-map-name = Changeling identity storage map
+changeling-devour-consume-failed-not-dead = Это тело ещё живо! Мы не можем поглотить его живым!

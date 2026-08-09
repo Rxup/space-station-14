@@ -27,6 +27,7 @@ flesh-mob-cant-atack-flesh-mob = You cannot attack flesh mobs.
 flesh-mob-cant-atack-flesh-cultist = You cannot attack flesh cultists.
 flesh-worm-jump-name = Jump
 flesh-worm-jump-desc = Allows you to jump in the chosen direction. If you hit a humanoid without a mask, you will latch onto their face.
+flesh-worm-storage-denied = Only flesh cultists can put the worm in a bag.
 mob-flesh-ghost-role-rules = Do not attack flesh cultists, do not break DAMs, servers, consoles, and so on. Do not cause breaches.
 mob-flesh-abom-ghost-role-name = Flesh Abomination
 mob-flesh-abom-ghost-role-decs = You are sentient flesh. Cooperate with other flesh creatures to take control of the station.

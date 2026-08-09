@@ -1,5 +1,7 @@
 ent-EgovShield = штурмовой башенный щит
-    .desc = A shield that covers the wearer from head to toe, not everyone can lift this.
+    .desc = Щит, закрывающий носителя с головы до пят — не каждый сможет его поднять.
+ent-InteQLaserShield = противолазерный щит Интек
+    .desc = Щит Интек для отражения лазеров, наверное.
 ent-ChangelingShield = органический щит
-    .desc = A large, fleshy shield.
+    .desc = Большой мясистый щит.
     .suffix = Unremoveable

@@ -1,8 +1,11 @@
 disease-proto-furry-virus = Фуррфуиррус
 disease-meow = МЯУ!
+# Noninfectious
 disease-proto-ultragigacancer = УЛЬТРАГИГАрак
 disease-proto-spectral-tiredness = фантомная усталость
 disease-proto-lung-cancer = Рак легких стадии IIIA
+
+# Infectious
 disease-proto-space-cold = космическая изморозь
 disease-proto-vent-cough = вентиляционный кашель
 disease-proto-space-flu = космогрип
@@ -16,7 +19,10 @@ disease-proto-owonavirus = OwOнавирус
 disease-proto-xeno-slerm = Альфа-вирус Слерм
 disease-proto-tongue-twister = Языковой Твистер
 disease-proto-tongue-greenflue = зеленый грипп
+
+# XenoVirus
 disease-proto-xeno = Ксеновирус
 disease-proto-xenodrone = Ксеновирус
+
 # Wet Hands
 disease-proto-wet-hands = Мокрые руки

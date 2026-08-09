@@ -1,0 +1,14 @@
+ent-BaseLightning_Backmen = lightning
+    .desc = { "" }
+ent-Lightning_Backmen = lightning
+    .desc = { ent-BaseLightning_Backmen.desc }
+ent-LightningRevenant_Backmen = жуткая молния
+    .desc = { ent-BaseLightning_Backmen.desc }
+ent-ChargedLightning_Backmen = заряженная молния
+    .desc = { ent-BaseLightning_Backmen.desc }
+ent-SuperchargedLightning_Backmen = сверхзаряженная молния
+    .desc = { ent-ChargedLightning_Backmen.desc }
+ent-HyperchargedLightning_Backmen = гиперзаряженная молния
+    .desc = { ent-ChargedLightning_Backmen.desc }
+ent-LightningNoospheric = ноосферная молния
+    .desc = { ent-BaseLightning.desc }

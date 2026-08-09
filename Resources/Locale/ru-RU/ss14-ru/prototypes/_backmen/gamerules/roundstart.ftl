@@ -1,3 +1,5 @@
+ent-FleshCult = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
 ent-BlobRule = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-BlobGameMode = { ent-BaseGameRule }
@@ -10,6 +12,8 @@ ent-VampiresGameRule = { ent-BaseVampiresGameRule }
     .desc = { ent-BaseVampiresGameRule.desc }
 ent-VampireOutbreak = { ent-BaseVampiresGameRule }
     .desc = { ent-BaseVampiresGameRule.desc }
+ent-Shipwrecked = { ent-BaseGameRule }
+    .desc = { ent-BaseGameRule.desc }
 ent-ExtendedThief = { ent-BaseGameRule }
     .desc = { ent-BaseGameRule.desc }
 ent-BabelTower = { ent-BaseGameRule }

@@ -16,3 +16,4 @@ apc-menu-power-state-label-tripped = OVERLOAD
 
 apc-menu-flavor-left = Contact an engineer for assistance.
 apc-menu-flavor-right = v1.2
+apc-menu-breaker-button = Переключить

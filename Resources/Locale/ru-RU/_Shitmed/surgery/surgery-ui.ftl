@@ -1,8 +1,8 @@
 surgery-verb-text = Начать операцию
 surgery-verb-message = Начинает хирургическую операцию на этой сущности.
 surgery-ui-window-title = Хирургия
-surgery-ui-window-title-part = { $title } - { $part }
-surgery-ui-window-title-detail = { $title } - { $part }, { $surgery }
+surgery-ui-window-title-part = { $title } — { $part }
+surgery-ui-window-title-detail = { $title } — { $part }, { $surgery }
 surgery-ui-window-require = Требуется
 surgery-ui-window-parts = < Части
 surgery-ui-window-surgeries = < Операции

@@ -68,3 +68,10 @@ action-description-psychokinesis = Bend the fabric of space to instantly move ac
 
 action-name-rf-sensitivity = Toggle RF Sensitivity
 action-desc-rf-sensitivity = Toggle your ability to interpret radio waves on and off.
+metapsionic-pulse-shadowkin-success = Вы чувствуете присутствие чего-то в тени поблизости
+glimmer-change-notification = Уровень сияния изменился с { $last } до { $now } ( { $delta } )
+glimmer-event-breaker = В одном из ЛКП произошло срабатывание предохранителя из-за псионического разряда, вызвавшего перегрузку сети. Электропитание в зоне поражения отключено. Требуется вмешательство инженера для переключения предохранителя — система не восстановится самостоятельно. Пожалуйста, избегайте использования оборудования в этой зоне до восстановления питания.
+telegnostic-extract-brain = Извлечь мозг
+psionic-actions-off = [color=red]В данный момент вы не можете использовать способности из-за псионической изоляции.[/color]
+cant-use-in-invisible = невозможно использовать из невидимости
+cant-use-in-insulation = невозможно использовать во время псионической изоляции

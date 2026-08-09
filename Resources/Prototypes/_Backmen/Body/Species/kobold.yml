@@ -83,6 +83,7 @@
     - Kobold
     understands:
     - Kobold
+    - TauCetiBasic
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian

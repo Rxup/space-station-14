@@ -93,6 +93,7 @@
   recipeUnlocks:
   - ASM220TorpedoHEUniversal
   - ASM220TorpedoECMUniversal
+  - WeaponTurretASM220FlatPack
   technologyPrerequisites:
   - FrontierGunneryMachines
 
@@ -123,6 +124,8 @@
   - CharonSlugUniversal
   - 150mmApShellUniversal
   - 150mmEmpShellUniversal
+  - WeaponTurretTarnyxReloadFlatPack
+  - WeaponTurretCharonetteFlatPack
   technologyPrerequisites:
   - FrontierGunneryMachines
 
@@ -137,6 +140,7 @@
   cost: 750000
   recipeUnlocks:
   - CharonSubnuclearSlugUniversal
+  - WeaponTurretCharonReloadFlatPack
   technologyPrerequisites:
   - FrontierKineticOrdnance
 
@@ -152,6 +156,7 @@
   recipeUnlocks:
   - GPOL50BombUniversal
   - ZenithRocketUniversal
+  - WeaponTurretLightMunitionsBayFlatPack
   technologyPrerequisites:
   - FrontierGunneryMachines
 
@@ -168,3 +173,113 @@
   - QuasarAcceleratorUniversal
   technologyPrerequisites:
   - FrontierFighterOrdnance
+
+# --- Additional Frontier turret families (new branches) ---
+
+- type: technology
+  id: FrontierAutocannonTurrets
+  name: research-technology-frontier-autocannon-turrets
+  icon:
+    sprite: _Mono/Objects/ShuttleWeapons/50cal.rsi
+    state: space_artillery
+  discipline: Arsenal
+  tier: 3
+  cost: 450000
+  recipeUnlocks:
+  - WeaponTurretL85AutocannonFlatPack
+  - WeaponTurretDravonFlatPack
+  - WeaponTurretAK570FlatPack
+  - WeaponTurretRAC30FlatPack
+  technologyPrerequisites:
+  - FrontierGunneryMachines
+
+- type: technology
+  id: FrontierHeavyKineticTurrets
+  name: research-technology-frontier-heavy-kinetic-turrets
+  icon:
+    sprite: _Mono/Objects/ShuttleWeapons/hades.rsi
+    state: space_artillery
+  discipline: Arsenal
+  tier: 3
+  cost: 700000
+  recipeUnlocks:
+  - WeaponTurretBoforsFlatPack
+  - WeaponTurretKargilFlatPack
+  - WeaponTurretCyrexaFlatPack
+  - WeaponTurretHadesFlatPack
+  technologyPrerequisites:
+  - FrontierAutocannonTurrets
+
+- type: technology
+  id: FrontierEnergyTurrets
+  name: research-technology-frontier-energy-turrets
+  icon:
+    sprite: _Mono/Objects/ShuttleWeapons/t35.rsi
+    state: space_artillery
+  discipline: Arsenal
+  tier: 3
+  cost: 500000
+  recipeUnlocks:
+  - WeaponTurretType35FlatPack
+  - WeaponLaserTurretL1PhalanxFlatPack
+  technologyPrerequisites:
+  - FrontierGunneryMachines
+
+- type: technology
+  id: FrontierEnergyAdvancedTurrets
+  name: research-technology-frontier-energy-advanced-turrets
+  icon:
+    sprite: _Mono/Objects/ShuttleWeapons/apollo.rsi
+    state: space_artillery
+  discipline: Arsenal
+  tier: 3
+  cost: 750000
+  recipeUnlocks:
+  - WeaponTurretType54FlatPack
+  - WeaponLaserTurretApolloFlatPack
+  technologyPrerequisites:
+  - FrontierEnergyTurrets
+
+- type: technology
+  id: FrontierEnergyCapitalTurrets
+  name: research-technology-frontier-energy-capital-turrets
+  icon:
+    sprite: _Mono/Objects/ShuttleWeapons/t241.rsi
+    state: space_artillery
+  discipline: Arsenal
+  tier: 3
+  cost: 1200000
+  recipeUnlocks:
+  - WeaponTurretType241FlatPack
+  technologyPrerequisites:
+  - FrontierEnergyAdvancedTurrets
+
+- type: technology
+  id: FrontierMissilePods
+  name: research-technology-frontier-missile-pods
+  icon:
+    sprite: _Mono/Objects/ShuttleWeapons/vespera.rsi
+    state: space_artillery
+  discipline: Arsenal
+  tier: 3
+  cost: 450000
+  recipeUnlocks:
+  - WeaponTurretVanykFlatPack
+  - WeaponTurretVesperaFlatPack
+  technologyPrerequisites:
+  - FrontierGunneryMachines
+
+- type: technology
+  id: FrontierMissileAdvancedPods
+  name: research-technology-frontier-missile-advanced-pods
+  icon:
+    sprite: _Mono/Objects/ShuttleWeapons/tovek.rsi
+    state: space_artillery
+  discipline: Arsenal
+  tier: 3
+  cost: 650000
+  recipeUnlocks:
+  - WeaponTurretASM501FlatPack
+  - WeaponTurretTovekFlatPack
+  technologyPrerequisites:
+  - FrontierMissilePods

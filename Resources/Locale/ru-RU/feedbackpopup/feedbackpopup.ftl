@@ -3,14 +3,15 @@ feedbackpopup-window-name = Запрос обратной связи
 feedbackpopup-control-button-text = Открыть ссылку
 
 feedbackpopup-control-total-surveys = {$num ->
-    [one] {$num} запись
-    [few] {$num} записи
-    [many] {$num} записей
-   *[other] {$num} записей
+    [one] { $num } запись
+    [few] { $num } записи
+    [many] { $num } записей
+    *[other] { $num } записей
 }
 feedbackpopup-control-no-entries= Нет записей
 feedbackpopup-control-ui-footer = Расскажите нам, что вы думаете!
 
+# Command strings
 command-description-openfeedbackpopup = Открывает окно обратной связи.
 command-description-feedback-show = Открывает окно обратной связи для указанных сессий.
 command-description-feedback-add = Добавляет прототип обратной связи указанным клиентам и открывает окно, если у клиента ещё нет этого прототипа.

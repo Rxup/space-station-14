@@ -1,3 +1,8 @@
+ent-ClothingEyesVision = очки ночного видения
+    .desc = Прибор ночного видения, или же ПНВ, позволяет видеть в темноте.
+ent-ClothingEyesVisionNuki = { ent-ClothingEyesVision }
+    .desc = { ent-ClothingEyesVision.desc }
+    .suffix = Ядерные Оперативники
 ent-NVToggleAction = Переключение ПНВ
     .desc = Переключает ваше ПНВ
 ent-SwitchNightVision = Переключение ночного зрения

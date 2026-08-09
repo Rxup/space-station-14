@@ -1,0 +1,9 @@
+ent-OrganAnthroAnimalStomach = { ent-OrganHumanStomach }
+    .desc = { ent-OrganHumanStomach.desc }
+    .suffix = { ent-OrganHumanStomach.suffix }
+ent-OrganAnthroAnimalLiver = { ent-OrganHumanLiver }
+    .desc = { ent-OrganHumanLiver.desc }
+    .suffix = { ent-OrganHumanLiver.suffix }
+ent-OrganAnthroAnimalHeart = { ent-OrganHumanHeart }
+    .desc = { ent-OrganHumanHeart.desc }
+    .suffix = { ent-OrganHumanHeart.suffix }

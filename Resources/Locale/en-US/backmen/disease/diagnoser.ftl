@@ -1,4 +1,4 @@
-﻿diagnoser-cant-use-swab = {CAPITALIZE(THE($machine))} rejects {THE($swab)}.
+diagnoser-cant-use-swab = {CAPITALIZE(THE($machine))} rejects {THE($swab)}.
 diagnoser-insert-swab = You insert {THE($swab)} into {THE($machine)}.
 diagnoser-disease-report = Disease Report: {CAPITALIZE($disease)}
 diagnoser-disease-report-none = Bill of Good Health
@@ -18,3 +18,4 @@ diagnoser-cure-wait = It will go away on its own after {$time} seconds.
 diagnoser-cure-temp = Reach a body temperature below {$max}°K or above {$min}°K.
 diagnoser-cure-temp-min = Reach a body temperature above {$min}°K.
 diagnoser-cure-temp-max = Reach a body temperature below {$max}°K.
+diagnoser-chat-error = ОШИБКА: НЕХВАТКА БИОМАССЫ. ТРЕБУЕТ { $units } ЕДИНИЦ БИОМАССЫ.

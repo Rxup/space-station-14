@@ -1,10 +1,10 @@
 ent-BoxBodyBagBluespace = коробка блюспейс мешков для тел
-    .desc = { ent-BoxBodyBag.desc }
+    .desc = Содержит мешки для тел.
 ent-BoxBodyBagNanoTrasen = коробка синих мешков для тел
-    .desc = { ent-BoxBodyBag.desc }
+    .desc = Содержит мешки для тел.
 ent-BoxBodyBagPrisoner = коробка тюремных мешков для тел
-    .desc = { ent-BoxBodyBag.desc }
+    .desc = Содержит мешки для тел.
 ent-BoxBodyBagRadiation = коробка противорадиационных мешков для тел
-    .desc = { ent-BoxBodyBag.desc }
+    .desc = Содержит мешки для тел.
 ent-BoxBodyBagSyndicate = коробка красных мешков для тел
-    .desc = { ent-BoxBodyBag.desc }
+    .desc = Содержит мешки для тел.

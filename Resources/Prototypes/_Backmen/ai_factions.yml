@@ -347,3 +347,73 @@
   - InteQHostile
   - Dragon
   - Xenoborg
+
+- type: npcFaction
+  id: ShipwreckBlackOps
+  hostile:
+  - Dragon
+  - NanoTrasen
+  - Spanish
+  - SimpleHostile
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Blob
+  - Flesh
+  - MalfunctioningRobot
+  - Revolutionary
+  - Britan
+  - SuperZloy
+  - CombineForce
+  - CentralCommand
+  - InteQ
+  - InteQHostile
+
+- type: npcFaction
+  id: ShipwreckHeadcrabInfected
+  hostile:
+  - NanoTrasen
+  - SimpleNeutral
+  - SimpleHostile
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Blob
+  - Flesh
+  - SuperZloy
+  - Revolutionary
+  - Spanish
+  - Britan
+  - SpecialForce
+  - CombineForce
+  - CentralCommand
+  - AllHostile
+  - Wizard
+  - InteQ
+  - InteQHostile
+  - Dragon
+  - Xenoborg
+
+- type: npcFaction
+  id: ShipwreckXenCreatures
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Passive
+  - PetsNT
+  - Zombie
+  - Blob
+  - Flesh
+  - Revolutionary
+  - SuperZloy
+  - Spanish
+  - Britan
+  - SpecialForce
+  - CombineForce
+  - CentralCommand
+  - AllHostile
+  - Wizard
+  - InteQ
+  - InteQHostile
+  - Dragon
+  - Xenoborg

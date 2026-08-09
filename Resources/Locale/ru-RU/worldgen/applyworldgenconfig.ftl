@@ -1,4 +1,4 @@
-cmd-applyworldgenconfig-description = Applies the given worldgen configuration to a map, setting it up for chunk loading/etc.
+cmd-applyworldgenconfig-description = Применяет указанную конфигурацию worldgen к карте, подготавливая её к загрузке чанков и т.п.
 cmd-applyworldgenconfig-help = applyworldgenconfig <mapid> <prototype>
-cmd-applyworldgenconfig-prototype = worldgen config prototype
-cmd-applyworldgenconfig-success = Config applied successfully. Do not rerun this command on this map.
+cmd-applyworldgenconfig-prototype = прототип конфигурации worldgen
+cmd-applyworldgenconfig-success = Конфигурация успешно применена. Не запускайте эту команду на этой карте повторно.

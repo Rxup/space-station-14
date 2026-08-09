@@ -63,3 +63,5 @@ flesh-cultist-cold-teml-immunity-evolution-name = Evolution: Thermo-Synthesis
 flesh-cultist-cold-teml-immunity-evolution-desc = You will be able to maintain a stable body temperature in cold space conditions.
 flesh-cultist-flash-immunity-evolution-name = Evolution: Eye Protection
 flesh-cultist-flash-immunity-evolution-desc = Bright flashes will no longer blind you.
+flesh-cultist-hunger-name = голод паразита
+flesh-cultist-hunger-desc = Когда паразит проголодается - кто знает что с вами будет...

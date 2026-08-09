@@ -1,67 +1,51 @@
 ent-MobHeadcrabNPCSalvage = { ent-MobHeadcrabNPC }
-    .suffix = Salvage
     .desc = { ent-MobHeadcrabNPC.desc }
-
+    .suffix = Salvage
 ent-MobHeadcrabZombieSalvage = { ent-MobHeadcrabZombie }
-    .suffix = Salvage
     .desc = { ent-MobHeadcrabZombie.desc }
-
+    .suffix = Salvage
 ent-MobHeadcrabZombieCivilianOldSalvage = { ent-MobHeadcrabZombieCivilianOld }
-    .suffix = Salvage
     .desc = { ent-MobHeadcrabZombieCivilianOld.desc }
-
+    .suffix = Salvage
 ent-MobHeadcrabZombieScienceSalvage = { ent-MobHeadcrabZombieScience }
-    .suffix = Salvage
     .desc = { ent-MobHeadcrabZombieScience.desc }
-
+    .suffix = Salvage
 ent-MobHeadcrabZombieSecuritySalvage = { ent-MobHeadcrabZombieSecurity }
-    .suffix = Salvage
     .desc = { ent-MobHeadcrabZombieSecurity.desc }
-
+    .suffix = Salvage
 ent-MobHeadcrabZombieSecurityRangerSalvage = { ent-MobHeadcrabZombieSecurityRanger }
-    .suffix = Salvage
     .desc = { ent-MobHeadcrabZombieSecurityRanger.desc }
-
+    .suffix = Salvage
 ent-MobHeadcrabZombieSecurityHeavySalvage = { ent-MobHeadcrabZombieSecurityHeavy }
-    .suffix = Salvage
     .desc = { ent-MobHeadcrabZombieSecurityHeavy.desc }
-
+    .suffix = Salvage
 ent-MobHeadcrabZombieHecuSalvage = { ent-MobHeadcrabZombieHecu }
-    .suffix = Salvage
     .desc = { ent-MobHeadcrabZombieHecu.desc }
-
+    .suffix = Salvage
 ent-MobHeadcrabZombieHEVSalvage = { ent-MobHeadcrabZombieHEV }
-    .suffix = Salvage
     .desc = { ent-MobHeadcrabZombieHEV.desc }
-
+    .suffix = Salvage
 ent-MobBlackOpsOperatorMeleeSalvage = { ent-MobBlackOpsOperatorMelee }
-    .suffix = Salvage
     .desc = { ent-MobBlackOpsOperatorMelee.desc }
-
+    .suffix = Salvage
 ent-MobBlackOpsOperatorSalvage = { ent-MobBlackOpsOperator }
-    .suffix = Salvage
     .desc = { ent-MobBlackOpsOperator.desc }
-
+    .suffix = Salvage
 ent-MobBullSquidGhostlessSalvage = { ent-MobBullSquidGhostless }
-    .suffix = Salvage
     .desc = { ent-MobBullSquidGhostless.desc }
-
-ent-MobVortigauntGhostlessSalvage = { ent-MobVortigauntGhostless }
     .suffix = Salvage
+ent-MobVortigauntGhostlessSalvage = { ent-MobVortigauntGhostless }
     .desc = { ent-MobVortigauntGhostless.desc }
-
-ent-MobHeadcrabBossSalvage = альфа-хедкраб
-    .suffix = Salvage Boss
-    .desc = Необычно крупный и агрессивный хедкраб. В брифинге экспедиции об этом не упоминалось.
-
-ent-MobHeadcrabZombieHEVBossSalvage = H.E.V. аномалия
-    .suffix = Salvage Boss
-    .desc = Тяжело бронированный заражённый, всё ещё защищённый костюмом HEV. Здесь явно что-то пошло не так.
-
-ent-MobBlackOpsBossSalvage = командир Black Ops
-    .suffix = Salvage Boss
-    .desc = Тяжеловооружённый оперативник, которого точно не было в манифесте миссии.
-
-ent-MobVortigauntBossSalvage = старший вортигонт
-    .suffix = Salvage Boss
-    .desc = Вортигонт, искрящий гораздо сильнее своих сородичей. Они в основном приходят ночью. В основном.
+    .suffix = Salvage
+ent-MobHeadcrabBossSalvage = { ent-MobHeadcrabNPCSalvage }
+    .desc = { ent-MobHeadcrabNPCSalvage.desc }
+    .suffix = Босс утилизации
+ent-MobHeadcrabZombieHEVBossSalvage = { ent-MobHeadcrabZombieHEVSalvage }
+    .desc = { ent-MobHeadcrabZombieHEVSalvage.desc }
+    .suffix = Босс утилизации
+ent-MobBlackOpsBossSalvage = { ent-MobBlackOpsOperatorSalvage }
+    .desc = { ent-MobBlackOpsOperatorSalvage.desc }
+    .suffix = Босс утилизации
+ent-MobVortigauntBossSalvage = { ent-MobVortigauntGhostlessSalvage }
+    .desc = { ent-MobVortigauntGhostlessSalvage.desc }
+    .suffix = Босс утилизации

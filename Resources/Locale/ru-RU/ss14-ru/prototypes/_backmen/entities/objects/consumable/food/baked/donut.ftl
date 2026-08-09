@@ -1,0 +1,16 @@
+ent-FoodJellySlugCreek = желе-слаг Крик
+    .desc = Выглядит мокрым.
+ent-JellySlugArtificer = желе-слаг Искусник
+    .desc = Внутри что-то шипит.
+ent-JellySlugGourmet = желе-слаг Гурман
+    .desc = Кажется тяжёлым.
+ent-JellySlugHunter = желе-слаг Охотник
+    .desc = Кажется гнилым.
+ent-JellySlugMonk = желе-слаг Монах
+    .desc = Выглядит дружелюбно.
+ent-FoodJellySlugSaint = желе-слаг Святой
+    .desc = Вознесение в одном пончике.
+ent-FoodJellySlugSpearMaster = желе-слаг Мастер копья
+    .desc = У него есть иголки?
+ent-FoodJellySlugUwU = желе-слаг UwU
+    .desc = ???

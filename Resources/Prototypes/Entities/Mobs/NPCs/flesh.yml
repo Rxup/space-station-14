@@ -64,7 +64,7 @@
 #  - type: ReplacementAccent
 #    accent: genericAggressive
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Flesh
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Flesh
@@ -72,6 +72,7 @@
     understands:
     - Flesh
     - SpaceMob
+    - TauCetiBasic
   - type: Fauna # Lavaland Change
 
 - type: entity
@@ -276,7 +277,7 @@
 #  - type: ReplacementAccent
 #    accent: genericAggressive
   - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
+    currentLanguage: Flesh
   - type: LanguageKnowledge #backmen: languages
     speaks:
     - Flesh
@@ -284,6 +285,7 @@
     understands:
     - Flesh
     - SpaceMob
+    - TauCetiBasic
   - type: SalvageMobRestrictions
 
 - type: entity

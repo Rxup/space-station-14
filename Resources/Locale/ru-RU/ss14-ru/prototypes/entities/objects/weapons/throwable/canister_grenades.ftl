@@ -1,10 +1,10 @@
 ent-SmokeGrenade = дымовая граната
-    .desc = A tactical grenade that releases a large, long-lasting cloud of smoke when used.
+    .desc = Граната тактического применения, при использовании выпускающая большое и продолжительное облако дыма.
 ent-CleanerGrenade = чистящая граната
-    .desc = Special grenade for janitors, releasing large cloud of space cleaner foam.
+    .desc = Специальная граната для уборщиков, выпускающая большое облако пены для чистки помещений.
 ent-TearGasGrenade = граната со слезоточивым газом
-    .desc = A riot control tear gas grenade. Causes irritation, pain and makes you cry your eyes out.
+    .desc = Граната со слезоточивым газом для борьбы с беспорядками. Вызывает раздражение, боль и заставляет вас выплакать глаза.
 ent-MetalFoamGrenade = граната с металлической пеной
-    .desc = An emergency tool used for patching hull breaches with special quick-set metal foam. Almost as good as real floors!
+    .desc = Аварийное приспособление, используемое для заделывания пробоин обшивки с помощью специальной быстрозастывающей мателлической пены. Почти так же надёжно, как настоящий пол!
 ent-AirGrenade = воздушная граната
-    .desc = A special solid state chemical grenade used for quickly releasing standard air into a spaced area. Fills up to 30 tiles!
+    .desc = Специальная твердотельная химическая граната, используемая для быстрого выпуска стандартного воздуха в пространство. Заполняет до 30 клеток!

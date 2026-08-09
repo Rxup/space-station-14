@@ -18,73 +18,74 @@ stack-cardboard = картон
 
 stack-bones = { $amount ->
     [1] кость
-   *[other] кости
+    *[other] кости
 }
 stack-cloth = { $amount ->
     [1] ткань
-   *[other] ткани
+    *[other] ткани
 }
 stack-lv-cable = { $amount ->
     [1] кабель НН
-   *[other] кабели НН
+    *[other] кабели НН
 }
 stack-mv-cable = { $amount ->
     [1] кабель СН
-   *[other] кабели СН
+    *[other] кабели СН
 }
 stack-hv-cable = { $amount ->
     [1] кабель ВН
-   *[other] кабели ВН
+    *[other] кабели ВН
 }
 stack-explosive-cord = { $amount ->
     [1] взрывной шнур
-   *[other] взрывные шнуры
+    *[other] взрывные шнуры
 }
 stack-wood-plank = { $amount ->
     [1] деревянная доска
-   *[other] деревянные доски
+    *[other] деревянные доски
 }
 stack-durathread = { $amount ->
     [1] дюратред
-   *[other] дюратреды
+    *[other] дюратреды
 }
 stack-rods = { $amount ->
     [1] стержень
-   *[other] стержни
+    *[other] стержни
 }
 stack-meat-sheet = { $amount ->
     [1] лист мяса
-   *[other] листы мяса
+    *[other] листы мяса
 }
 stack-space-carp-tooth = космический карп { $amount ->
     [1] зуб
-   *[other] зубы
+    *[other] зубы
 }
 stack-paper = { $amount ->
     [1] бумага
-   *[other] бумаги
+    *[other] бумаги
 }
 stack-diamond = { $amount ->
     [1] алмаз
-   *[other] алмазы
+    *[other] алмазы
 }
 stack-silk = { $amount ->
     [1] шёлк
-   *[other] шёлк
+    *[other] шёлк
 }
 stack-cotton = { $amount ->
     [1] хлопок
-   *[other] хлопок
+    *[other] хлопок
 }
 stack-artifact-fragment = артефакт { $amount ->
     [1] фрагмент
-   *[other] фрагменты
+    *[other] фрагменты
 }
 stack-conveyor-belt = { $amount ->
     [1] конвейерная лента
-   *[other] конвейерные ленты
+    *[other] конвейерные ленты
 }
 
+# best materials
 stack-ground-tobacco = измельчённый табак
 stack-ground-cannabis = измельчённая конопля
 stack-ground-rainbow-cannabis = измельчённая радужная конопля
@@ -94,11 +95,11 @@ stack-dried-rainbow-cannabis-leaves = сушёные листья радужно
 
 stack-cigarette-filter = сигаретный { $amount ->
     [1] фильтр
-   *[other] фильтры
+    *[other] фильтры
 }
 stack-rolling-paper = бумага для самокруток { $amount ->
     [1] лист
-   *[other] листы
+    *[other] листы
 }
 
 stack-fulton = фултон

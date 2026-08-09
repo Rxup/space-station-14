@@ -4,3 +4,4 @@ ent-CrateCargoParcelWrap = ящик упаковочной пленки
     .desc = Все ваши потребности в упаковке посылок в одном ящике, содержащем три рулона упаковочной пленки.
 ent-CrateCargoGambling = грандиозная лотерея $$$
     .desc = Ящик с сокровищами, не поддающимися воображению!
+    .suffix = { ent-CratePrivateSecure.suffix }

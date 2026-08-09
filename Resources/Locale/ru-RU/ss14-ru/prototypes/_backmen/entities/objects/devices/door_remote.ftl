@@ -1,8 +1,14 @@
+ent-DoorRemoteCC = Пульт ЦК
+    .desc = { ent-DoorRemoteDefault.desc }
+    .suffix = Cenctom
+ent-DoorRemoteFull = Пульт от всех дверей
+    .desc = { ent-DoorRemoteDefault.desc }
+    .suffix = Адмемы
 ent-DoorRemoteAIBase = пульт управления дверями ИИ
     .desc = { ent-DoorRemoteDefault.desc }
 ent-DoorRemoteAIOpenClose = пульт управления дверями ИИ
-    .desc = Opens or closes a door.
+    .desc = Открывает или закрывает дверь.
 ent-DoorRemoteAIToggleBolts = пульт управления дверями ИИ
-    .desc = Bolts a door.
+    .desc = Болтирует дверь.
 ent-DoorRemoteAIToggleEmergencyAccess = пульт управления дверями ИИ
-    .desc = Toggles emergency access on a door.
+    .desc = Переключает аварийный доступ двери.

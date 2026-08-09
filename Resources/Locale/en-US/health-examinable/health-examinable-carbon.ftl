@@ -60,3 +60,9 @@ health-examinable-carbon-Caustic-200 = [color=#FF5993]Most of { POSS-ADJ($target
 
 health-examinable-carbon-Radiation-50 = [color=#C6834B]{ CAPITALIZE(POSS-ADJ($target)) } skin has formed large blisters.[/color]
 health-examinable-carbon-Radiation-100 = [color=#E26804]{ CAPITALIZE(POSS-ADJ($target)) } skin is covered in lesions and is peeling off in chunks.[/color]
+health-examinable-carbon-Blunt-25 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } небольшие ушибы на теле.[/color]
+health-examinable-carbon-Slash-10 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } несколько лёгких порезов.[/color]
+health-examinable-carbon-Slash-25 = [color=red]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } серьёзные порезы на теле.[/color]
+health-examinable-carbon-Heat-25 = [color=orange]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } лёгкие ожоги на теле.[/color]
+health-examinable-carbon-Cold-25 = [color=lightblue]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } лёгкие обморожения на теле.[/color]
+health-examinable-carbon-Caustic-25 = [color=yellowgreen]{ CAPITALIZE(SUBJECT($target)) } { CONJUGATE-HAVE($target) } лёгкие химические ожоги.[/color]

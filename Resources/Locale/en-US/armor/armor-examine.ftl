@@ -19,3 +19,13 @@ armor-damage-type-poison = Poison
 armor-damage-type-shock = Shock
 armor-damage-type-structural = Structural
 armor-damage-type-holy = Holy
+armor-coverage-value = - [color=yellow]Этот элемент брони уменьшает входящий урон по { $type } части тела.[/color]
+armor-coverage-type-arm = руки
+armor-coverage-type-hand = ладонь
+armor-coverage-type-foot = стопа
+armor-coverage-type-leg = нога
+armor-coverage-type-chest = грудь
+armor-coverage-type-groin = пах
+armor-coverage-type-head = голова
+armor-coverage-type-tail = хвост
+armor-coverage-type-other = прочее

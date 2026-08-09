@@ -1,0 +1,12 @@
+ent-BioSynthHeart = биосинтетическое сердце
+    .desc = Это сердце можно пересадить любому живому организму — оно адаптируется к реципиенту.
+    .suffix = { ent-OrganHumanHeart.suffix }
+ent-BioSynthLiver = биосинтетическая печень
+    .desc = Эту печень можно пересадить любому живому организму — она адаптируется к реципиенту.
+    .suffix = { ent-OrganHumanLiver.suffix }
+ent-BioSynthLungs = биосинтетические лёгкие
+    .desc = Эти лёгкие можно пересадить любому живому организму — они адаптируются к реципиенту.
+    .suffix = { ent-OrganHumanLungs.suffix }
+ent-BioSynthEyes = биосинтетические глаза
+    .desc = Эти глаза можно пересадить любому живому организму — они адаптируются к реципиенту.
+    .suffix = { ent-OrganHumanEyes.suffix }

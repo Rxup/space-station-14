@@ -8,7 +8,9 @@ flesh-pudge-throw-worm-hit-others = { CAPITALIZE(THE($worm)) } вцепился 
 flesh-pudge-throw-worm-hit-mob = Вы ухватились за лицо { CAPITALIZE(THE($entity)) }!
 flesh-pudge-throw-worm-hit-user = { CAPITALIZE(THE($worm)) } вцепился вам в лицо!
 flesh-pudge-throw-worm-desc = Вырвите червя из своей плоти и держите его в руке, чтобы швырнуть во врагов.
+
 flesh-worm-wearer-examine = [color=red]{ CAPITALIZE(THE($ent)) } вцепился в лицо { DAT-GEN($target) }![/color]
+
 flesh-worm-verb-remove = Сорвать червя
 flesh-worm-remove-start-user = Вы начинаете срывать { THE($worm) }.
 flesh-worm-remove-start-wearer = { CAPITALIZE(THE($user)) } пытается сорвать с вашего лица червя!
@@ -25,16 +27,17 @@ flesh-mob-cant-atack-flesh-mob = Вы не можете атаковать мо�
 flesh-mob-cant-atack-flesh-cultist = Вы не можете нападать на культистов плоти.
 flesh-worm-jump-name = Прыгать
 flesh-worm-jump-desc = Позволяет вам совершить прыжок в выбранном направлении. Если вы ударите гуманоида без маски, вы вцепитесь ему в лицо.
+flesh-worm-storage-denied = Класть червя в сумку могут только культисты плоти.
 mob-flesh-ghost-role-rules = Не нападайте на культистов плоти, не разрушайте плотины, серверы, консоли и так далее. Не приводите к нарушениям.
 mob-flesh-abom-ghost-role-name = Мерзость плоти
-mob-flesh-abom-ghost-role-decs = Ты - разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
+mob-flesh-abom-ghost-role-decs = Ты — разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
 mob-flesh-pudge-ghost-role-name = Мясной пудинг
-mob-flesh-pudge-ghost-role-decs = Ты - разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
+mob-flesh-pudge-ghost-role-decs = Ты — разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
 mob-flesh-spider-ghost-role-name = Паук из плоти
-mob-flesh-spider-ghost-role-decs = Ты - разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
+mob-flesh-spider-ghost-role-decs = Ты — разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
 mob-flesh-ball-ghost-role-name = Шарик из плоти
-mob-flesh-ball-ghost-role-decs = Ты - разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
+mob-flesh-ball-ghost-role-decs = Ты — разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
 mob-flesh-bat-ghost-role-name = Летучая мышь из плоти
-mob-flesh-bat-ghost-role-decs = Ты - разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
+mob-flesh-bat-ghost-role-decs = Ты — разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
 mob-flesh-worm-ghost-role-name = Мясной червь
-mob-flesh-worm-ghost-role-decs = Ты - разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.
+mob-flesh-worm-ghost-role-decs = Ты — разумная плоть. Сотрудничайте с другими существами из плоти, чтобы взять станцию под контроль.

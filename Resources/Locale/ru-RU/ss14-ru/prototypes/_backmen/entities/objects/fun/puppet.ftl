@@ -1,8 +1,12 @@
 ent-BasePetRock = камень-питомец
-    .desc = Your new and only best friend!
+    .desc = Ваш новый и единственный лучший друг!
+    .suffix = { ent-MrChips.suffix }
 ent-PetRock = { ent-BasePetRock }
     .desc = { ent-BasePetRock.desc }
+    .suffix = { ent-BasePetRock.suffix }
 ent-PetRockFred = Фред
     .desc = { ent-BasePetRock.desc }
+    .suffix = { ent-BasePetRock.suffix }
 ent-PetRockRoxie = Рокси
     .desc = { ent-BasePetRock.desc }
+    .suffix = { ent-BasePetRock.suffix }

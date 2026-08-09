@@ -1,4 +1,5 @@
 admin-explosion-eui-title = Создание взрывов
+
 admin-explosion-eui-label-type = Тип взрыва
 admin-explosion-eui-label-mapid = ID карты
 admin-explosion-eui-label-xmap = X (Карты)
@@ -13,14 +14,16 @@ admin-explosion-eui-label-angle = Угол
 admin-explosion-eui-label-spread = Радиус
 admin-explosion-eui-label-distance = Дистанция
 admin-explosion-eui-label-spawn = Бабах!
+
 cmd-explosionui-desc = Открывает окно для простого доступа к разрушению станции.
 cmd-explosionui-help = Использование: explosionui
+
 cmd-explosion-desc = Поезд взрывается
 cmd-explosion-help = Использование: explosion [intensity] [slope] [maxIntensity] [x y] [mapId] [prototypeId]
-cmd-explosion-failed-to-parse-intensity = Не удалось спарсить интенсивность: {$value}
-cmd-explosion-failed-to-parse-float = Не удалось спарсить float: {$value}
+cmd-explosion-failed-to-parse-intensity = Не удалось спарсить интенсивность: { $value }
+cmd-explosion-failed-to-parse-float = Не удалось спарсить float: { $value }
 cmd-explosion-failed-to-parse-coords = Не удалось разобрать координаты: { $value1 } { $value2 }
-cmd-explosion-failed-to-parse-map-id = Не удалось спарсить map ID: {$value}
+cmd-explosion-failed-to-parse-map-id = Не удалось спарсить map ID: { $value }
 cmd-explosion-need-coords-explicit = Не удалось получить координаты/карту по умолчанию через трансформ игрока. Требуется указать явно.
-cmd-explosion-unknown-prototype = Неизвестный прототип взрыва: {$value}
+cmd-explosion-unknown-prototype = Неизвестный прототип взрыва: { $value }
 cmd-explosion-no-prototypes = У менеджера прототипов нет прототипов взрывов?

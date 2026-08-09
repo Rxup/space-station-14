@@ -5,5 +5,6 @@ mopping-system-puddle-already-mopped = { CAPITALIZE(THE($target)) } уже пр�
 mopping-system-puddle-evaporate = { CAPITALIZE($target) } испаряется
 mopping-system-no-water = В { $used } нет воды!
 mopping-system-no-hands = У вас нет рук!
+
 mopping-system-full = { CAPITALIZE($used) } заполнена!
 mopping-system-empty = { CAPITALIZE($used) } пуста!

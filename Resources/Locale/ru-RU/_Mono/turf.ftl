@@ -6,6 +6,7 @@ tiles-techmaint-floor-mechanical = механический техобслужи
 tiles-grey-floor-commercial = коммерческая серая плитка
 tiles-grey-floor-mono-commercial = коммерческая серая mono-плитка
 
+
 tiles-techmaint-floor-sterile = стерильная техобслуживаемая плитка
 tiles-maint-floor-sterile = стерильный обслуживаемый пол
 tiles-maint-floor-sterile-mono = стерильный обслуживаемый mono-пол

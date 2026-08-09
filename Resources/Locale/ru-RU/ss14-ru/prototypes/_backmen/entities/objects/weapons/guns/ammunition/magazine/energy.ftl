@@ -1,6 +1,6 @@
-ent-MagazinePulseRifleSWS = pulse rifle magazine
-    .desc = Standart EarthGov type of impulse magazines
-ent-EnergyMag = energy magazine
-    .desc = Standart EarthGov type of energys magazines.
-ent-PulseMag = pulse magazine
-    .desc = Special mag for NanoTrasen special force, using pulse energy.
+ent-MagazinePulseRifleSWS = магазин импульсной винтовки
+    .desc = Стандартный тип импульсных магазинов EarthGov.
+ent-EnergyMag = энергетический магазин
+    .desc = Стандартный тип энергетических магазинов EarthGov.
+ent-PulseMag = импульсный магазин
+    .desc = Особый магазин для спецназа NanoTrasen, использующий импульсную энергию.

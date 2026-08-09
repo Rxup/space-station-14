@@ -360,3 +360,5 @@ reagent-desc-zombiecocktail = It gets in your head. Your he-eyeh-ead.
 
 reagent-name-bacchus-blessing = bacchus's blessing
 reagent-desc-bacchus-blessing = You didn't think it was possible for a liquid to be so utterly revolting. Are you sure about this...?
+reagent-name-kira-special = Кира спешл
+reagent-desc-kira-special = Да здравствует парень, которого все принимали за девушку. Бака!

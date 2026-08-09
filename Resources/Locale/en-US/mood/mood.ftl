@@ -1,4 +1,4 @@
-﻿mood-show-effects-start = [font size=12]Mood:[/font]
+mood-show-effects-start = [font size=12]Mood:[/font]
 
 mood-effect-HungerOverfed = I ate so much, I feel as though I'm about to burst!
 mood-effect-HungerOkay = I am feeling full.
@@ -65,3 +65,16 @@ mood-effect-NicotineBenefit =
     I feel as if I have been standing my entire life and I just sat down.
 mood-effect-NicotineWithdrawal =
     I could really go for a smoke right now.
+mood-effect-HealthOkayDamage = Я чувствую неслабую боль.
+mood-effect-TraitFortitude = Мне уже на всё плевать.
+mood-effect-WokeUp = Я проснулся после неплохого сна.
+mood-effect-GotSavedLife = Мою жизнь спасли! Моя вера в людей стала крепче!
+mood-effect-NukeopsFocused = Я должен взорвать станцию любой ценой, даже ценой своей жизни.
+mood-effect-SurgeryNoLeg = Я не чувствую своей ноги!
+mood-effect-SurgeryNoHand = Я не чувствую своей руки!
+mood-effect-SurgeryNoTorso = Я не чувствую своего тела!
+mood-effect-SurgeryPain = В моём теле проводят операцию, я чувствую сильнейшую боль!
+mood-effect-SpaceDrugsBenefit = Я так... Расслаблен...
+mood-effect-SpaceDrugsWithdrawal = Я снова хочу расплыться в удовольствии и окунуться в Космический Мираж!
+mood-effect-HappinessBenefit = ВУХУУУУУУ СЧААААСТЬЕЕЕЕЕЕЕЕ
+mood-effect-HappinessWithdrawal = После приступа истерики мне так грустно...

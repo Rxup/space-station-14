@@ -1,2 +1,14 @@
+ent-SolutionPlasma = { ent-Solution }
+    .desc = { ent-Solution.desc }
+ent-SolutionToolPlasmaSword = { ent-SolutionPlasma }
+    .desc = { ent-SolutionPlasma.desc }
+ent-SolutionToolPlasmaScythe = { ent-SolutionPlasma }
+    .desc = { ent-SolutionPlasma.desc }
 ent-BaseMeleeWeaponPlasma = { ent-BaseMeleeWeaponEnergy }
     .desc = { ent-BaseMeleeWeaponEnergy.desc }
+ent-PlasmaSword = плазменный меч
+    .desc = Лезвие изготовлено из чистой плазмы, нагретой до температуры от двух до девяти тысяч градусов по желанию владельца. Модуль питания, выполненный в форме рукоятки, нагревает газ и поддерживает его форму с помощью сильного магнитного поля. Похоже, что такие лезвия не производились с момента изобретения световых мечей.
+ent-PlasmaSwordAlt = плазменный меч
+    .desc = Клинок из чистой плазмы, нагретой от двух до девяти тысяч градусов по желанию владельца. Силовой модуль в форме рукояти нагревает газ и удерживает его форму сильным магнитным полем. Кажется, такие клинки не производят с момента открытия световых мечей.
+ent-PlasmaScythe = плазменная коса
+    .desc = Может уместится в карман.

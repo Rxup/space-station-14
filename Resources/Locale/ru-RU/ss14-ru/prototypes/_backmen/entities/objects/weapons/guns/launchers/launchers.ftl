@@ -1,3 +1,9 @@
-ent-WeaponLauncherM81 = M-81
-    .desc = A lightweight single-shot grenade launcher used by the UEG for area blockades and large explosions or riot police units.
+ent-WeaponLauncherGL70 = GL-79
+    .desc = GL-79 — стандартный гранатомёт, используемый армией Земли для зачистки территорий и проведения крупных взрывов.
     .suffix = Гранатомёт
+ent-WeaponLauncherM81 = M-81
+    .desc = Лёгкий однозарядный гранатомёт UEG для блокирования зон и крупных взрывов или для подразделений подавления беспорядков.
+    .suffix = Гранатомёт
+ent-WeaponLauncherRL5 = RL-5
+    .desc = RL-5 — это основная противоброневая ракетная установка, используемая по всей галактике. Используемая для уничтожения легких танков и вражеских сооружений, ракетная установка RL-5 является опасным оружием с разнообразным боевым применением.
+    .suffix = Ракетомёт

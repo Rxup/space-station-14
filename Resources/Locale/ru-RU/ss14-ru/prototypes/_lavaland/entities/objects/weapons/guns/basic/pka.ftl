@@ -1,10 +1,10 @@
 ent-WeaponProtoKineticShotgun = протокинетический дробовик
-    .desc = Fires a spread of low-damage kinetic bolts.
+    .desc = Стреляет веером слабоуронных кинетических болтов.
 ent-WeaponProtoKineticRepeater = протокинетический репитер
-    .desc = Fires a barrage of kinetic bolts at a short range.
+    .desc = Выпускает залп кинетических болтов на короткой дистанции.
 ent-WeaponProtoKineticPistol = протокинетический пистолет
-    .desc = Fires low-damage kinetic bolts, has a higher mod capacity.
+    .desc = Стреляет слабоуронными кинетическими болтами, имеет повышенную вместимость модов.
 ent-ActionTogglePKALight = Переключить фонарик ПКУ
     .desc = { ent-BaseAction.desc }
 ent-WeaponProtoKineticAcceleratorHoly = протокинетический ускоритель "Возмездие"
-    .desc = Fires low-damage kinetic bolts at a short range.
+    .desc = Стреляет слабоуронными кинетическими болтами на короткой дистанции.

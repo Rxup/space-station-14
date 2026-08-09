@@ -1,2 +1,2 @@
 ent-StainedWindowGabriel = витражное окно
-    .desc = Stained window depicting Gabriel.
+    .desc = Витраж с изображением Гавриила.

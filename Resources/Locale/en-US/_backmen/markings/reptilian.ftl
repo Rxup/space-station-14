@@ -119,3 +119,12 @@ marking-LizardChestSpinesShortWithoutTail-spines_short = Spikes
 
 marking-LizardChestSpinesShortMembraneWithoutTail = Lizard, chest, spines (Short, Membrane, without tail)
 marking-LizardChestSpinesShortMembraneWithoutTail-spines_short = Spikes
+marking-LizardShoutEasternDragon-cobra_hood_with_ears = Внешняя часть
+marking-LizardShoutEasternDragon-cobra_hood_with_ears_overlay = Внутреняя часть
+# ЯЗЫК
+marking-ReptilianTongue = Ящер, язык
+marking-ReptilianTongue-reptilian_tongue = Язык
+marking-ReptilianTongueFast = Ящер, язык (Быстрый)
+marking-ReptilianTongueFast-reptilian_tongue_fast = Язык
+marking-ReptilianTongueSlow = Ящер, язык (Медленный)
+marking-ReptilianTongueSlow-reptilian_tongue_slow = Язык

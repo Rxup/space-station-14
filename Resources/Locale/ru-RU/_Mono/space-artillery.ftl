@@ -1,14 +1,14 @@
 # _Mono ship gunnery
 
-ent-150mmApShell = 150mm AP shell
-    .desc = A chemically-propelled AP shell for 150mm cannons. Its not very good, as most 150mm cannons are optimized for EMP shells. Its a crude method, and it certainly wouldn't pass a TSFN inspection.
+ent-150mmApShell = 150-мм бронебойный снаряд
+    .desc = Химически метаемый бронебойный снаряд для 150-мм орудий. Не особо хорош — большинство 150-мм пушек заточены под ЭМИ-снаряды. Грубый метод, инспекцию TSFN он точно не пройдёт.
     .suffix = Фронтир
 
-ent-150mmEmpShell = 150mm EMP shell
-    .desc = A chemically-propelled EMP shell, used in 150mm cannons such as the TARNYX. Nothing fancy.
+ent-150mmEmpShell = 150-мм ЭМИ-снаряд
+    .desc = Химически метаемый ЭМИ-снаряд для 150-мм орудий вроде TARNYX. Ничего особенного.
     .suffix = Фронтир
 
-ent-20mmBulletArmorPiercing = 20mm AP bullet
+ent-20mmBulletArmorPiercing = 20-мм бронебойная пуля
     .desc = { ent-20mmBulletBase.desc }
     .suffix = Фронтир
 
@@ -28,28 +28,28 @@ ent-ApolloLaser = ApolloLaser
     .desc = { ent-BasicHitscan.desc }
     .suffix = Фронтир
 
-ent-Asm220TorpedoECM = ASM-220 ECM torpedo
-    .desc = Compared to a standard HE torpedo, this one is much more destructive to electronics due to an EMP payload installed inside, though it's almost completely harmless to the hull.
+ent-Asm220TorpedoECM = Торпеда ASM-220 ЭМИ
+    .desc = По сравнению с обычной фугасной торпедой куда сильнее бьёт по электронике благодаря ЭМИ-заряду, но почти безобидна для корпуса.
     .suffix = Фронтир
 
-ent-Asm220TorpedoHE = ASM-220 high-explosive torpedo
-    .desc = Contains a large explosive payload. High-Explosive is an understatement.
+ent-Asm220TorpedoHE = Фугасная торпеда ASM-220
+    .desc = Содержит огромный взрывной заряд. «Фугасная» — это ещё мягко сказано.
     .suffix = Фронтир
 
-ent-Asm220TorpedoLOSAT = ASM-220 LOSAT missile
-    .desc = Effectively a large synthalloy hyper-penetrator. Tears through hull with ease.
+ent-Asm220TorpedoLOSAT = Ракета ASM-220 LOSAT
+    .desc = По сути крупный синталлойный гиперпенетратор. С лёгкостью рвёт корпус.
     .suffix = Фронтир
 
-ent-CerberusSpread = cerberus spread
+ent-CerberusSpread = залп Цербера
     .desc = { ent-ShipMediumPlasmaProjectile.desc }
     .suffix = Фронтир
 
-ent-CharonSlugAmmo = M381 CHARON 280mm 26.5kg slug cartridge
-    .desc = A all-in-one package containing the plasma gas for ionization in the linear accelerator and the slug itself.
+ent-CharonSlugAmmo = Картридж M381 CHARON 280 мм, 26,5 кг сердечник
+    .desc = Универсальный комплект: плазменный газ для ионизации в линейном ускорителе и сам сердечник.
     .suffix = Фронтир
 
-ent-CharonSubnuclearSlugAmmo = M381 CHARON 280mm 26.5kg subnuclear slug cartridge
-    .desc = A all-in-one package containing the plasma gas for ionization in the linear accelerator and the slug itself. This one carries a subnuclear payload.
+ent-CharonSubnuclearSlugAmmo = Картридж M381 CHARON 280 мм, 26,5 кг субъядерный сердечник
+    .desc = Универсальный комплект: плазменный газ для ионизации в линейном ускорителе и сам сердечник. В этом — субъядерный заряд.
     .suffix = Фронтир
 
 ent-ComputerGunneryConsole = консоль управления вооружением
@@ -92,27 +92,27 @@ ent-GunneryServerUltra = Ультра-Высокомощный сервер во
     .desc = { "" }
     .suffix = 96, Фронтир
 
-ent-LightFighterOrdinanceGPOItem = GPO-L 50kg Unguided Bomb
-    .desc = A fairly durable and relatively high yield explosive payload. Rarely seen in conventional space combat and a remnant of ground-based warfare, bombs can deal devastating damage... if they manage to hit their target. It can fit in a light GPOL housing.
+ent-LightFighterOrdinanceGPOItem = Неуправляемая бомба GPO-L 50 кг
+    .desc = Довольно прочный и относительно мощный взрывной заряд. Редко встречается в обычном космическом бою — пережиток наземной войны. Бомбы наносят опустошительный урон... если попадут. Помещается в лёгкий контейнер GPOL.
     .suffix = Фронтир
 
-ent-LightFighterOrdinanceGPOProjectile = GPO-L 50kg Unguided Bomb
-    .desc = Just passing by.
+ent-LightFighterOrdinanceGPOProjectile = Неуправляемая бомба GPO-L 50 кг
+    .desc = Просто пролетаю мимо.
     .suffix = Фронтир
 
-ent-LightFighterOrdinanceQuasarItem = AD-901 "QUASAR" disposable hyperpenetrator
-    .desc = A costly and experimental foray into the minification of hyperaccelerator technologies for use on smaller spaceframes, the QUASAR hyperpenetrator is a relatively weak, but fast-moving munition impervious to most anti-munition weapons. It can fit in a light GPOL housing.
+ent-LightFighterOrdinanceQuasarItem = Одноразовый гиперпенетратор AD-901 "QUASAR"
+    .desc = Дорогой экспериментальный шаг к миниатюризации технологий гиперускорителя для малых корпусов. Гиперпенетратор QUASAR относительно слаб, но быстр и почти неуязвим для большинства средств ПВО. Помещается в лёгкий контейнер GPOL.
     .suffix = Фронтир
 
-ent-LightFighterOrdinanceQuasarProjectile = QUASAR hyperpenetrator
+ent-LightFighterOrdinanceQuasarProjectile = гиперпенетратор QUASAR
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-LightFighterOrdinanceZenithItem = ASM(LF)5 "Zenith" Anti-Ship Warhead
-    .desc = A military-grade guided missile usually deployed by light spacecraft. Capable of significant damage and more easy to hit targets with than a bomb, the Zenith is accurate and fast, but not durable. It can fit in a light GPOL housing.
+ent-LightFighterOrdinanceZenithItem = Противокорабельная боеголовка ASM(LF)5 "Zenith"
+    .desc = Военная управляемая ракета, обычно с лёгких кораблей. Наносит серьёзный урон и попадает легче, чем бомба: Zenith точен и быстр, но хрупок. Помещается в лёгкий контейнер GPOL.
     .suffix = Фронтир
 
-ent-LightFighterOrdinanceZenithProjectile = ASM(LF) "Zenith" Anti-Ship Warhead
+ent-LightFighterOrdinanceZenithProjectile = Противокорабельная боеголовка ASM(LF) "Zenith"
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
@@ -148,7 +148,7 @@ ent-MuzzleFlashEffectTempCold = MuzzleFlashEffectTempCold
     .desc = { ent-MuzzleFlashEffectHeavyLaser.desc }
     .suffix = Фронтир
 
-ent-PeacekeeperSpread = peacekeeper spread
+ent-PeacekeeperSpread = залп Миротворца
     .desc = { ent-ShipDravonProjectile.desc }
     .suffix = Фронтир
 
@@ -156,87 +156,87 @@ ent-PhalanxLaser = PhalanxLaser
     .desc = { ent-BasicHitscan.desc }
     .suffix = Фронтир
 
-ent-RocketMk248 = MPSSM Mk.248 HEAT rocket
+ent-RocketMk248 = Кумулятивная ракета MPSSM Mk.248
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ScyllaSpread = Scylla spread
+ent-ScyllaSpread = залп Сциллы
     .desc = { ent-ShipMediumPlasmaProjectile.desc }
     .suffix = Фронтир
 
-ent-ShipAutopulserPlasmaProjectile = plasma projectile
+ent-ShipAutopulserPlasmaProjectile = плазменный снаряд
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipBoforsProjectile = Bofors 255mm projectile
+ent-ShipBoforsProjectile = снаряд Bofors 255 мм
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipCyrexaProjectile = CYREXA 220mm projectile
+ent-ShipCyrexaProjectile = снаряд CYREXA 220 мм
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipDravonProjectile = DRAVON 57mm projectile
+ent-ShipDravonProjectile = снаряд DRAVON 57 мм
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipDymereProjectile = Ionized Gas Projectile
+ent-ShipDymereProjectile = снаряд ионизированного газа
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipGlassingBeamPlasmaProjectile = plasma projectile
+ent-ShipGlassingBeamPlasmaProjectile = плазменный снаряд
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipHadesProjectile = HADES 305mm projectile
-    .desc = I feel a primal fear. The omen comes for me.
+ent-ShipHadesProjectile = снаряд HADES 305 мм
+    .desc = Я чувствую первобытный страх. Знамение идёт за мной.
     .suffix = Фронтир
 
-ent-ShipKargilProjectile = Kargil 203mm projectile
+ent-ShipKargilProjectile = снаряд Kargil 203 мм
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipM25Projectile = M25 projectile
+ent-ShipM25Projectile = снаряд M25
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipMediumPlasmaProjectile = plasma projectile
+ent-ShipMediumPlasmaProjectile = плазменный снаряд
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipMiniRailgunProjectile = M194 CHARONETTE 280mm 10.25 kg slug
+ent-ShipMiniRailgunProjectile = сердечник M194 CHARONETTE 280 мм, 10,25 кг
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipMissileASM19 = MPSSM ASM-19 man-portable anti-ship missile
+ent-ShipMissileASM19 = Переносная противокорабельная ракета MPSSM ASM-19
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipMissileASM220ECM = ASM-220 torpedo (ECM)
-    .desc = If you can see this you're probably dead!
+ent-ShipMissileASM220ECM = Торпеда ASM-220 (ЭМИ)
+    .desc = Если вы это видите — вы, скорее всего, уже мертвы!
     .suffix = Фронтир
 
-ent-ShipMissileASM220HE = ASM-220 torpedo (HE)
-    .desc = If you can see this you're probably dead!
+ent-ShipMissileASM220HE = Торпеда ASM-220 (фугас)
+    .desc = Если вы это видите — вы, скорее всего, уже мертвы!
     .suffix = Фронтир
 
-ent-ShipMissileASM220LOSAT = ASM-220 LOSAT hyper-penetrator
-    .desc = If you can see this you're probably dead!
+ent-ShipMissileASM220LOSAT = Гиперпенетратор ASM-220 LOSAT
+    .desc = Если вы это видите — вы, скорее всего, уже мертвы!
     .suffix = Фронтир
 
-ent-ShipMissileASM302 = ASM-302 missile
+ent-ShipMissileASM302 = Ракета ASM-302
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipMissileASM417 = ASM-417 Mini Missile
+ent-ShipMissileASM417 = Мини-ракета ASM-417
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipMissileASM501 = ASM-501 missile
+ent-ShipMissileASM501 = Ракета ASM-501
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipMissileASM557 = ASM-557 Hybrid EMP Missile
+ent-ShipMissileASM557 = Гибридная ЭМИ-ракета ASM-557
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
@@ -244,15 +244,15 @@ ent-ShipPinholeProjectile = ShipPinholeProjectile
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipRailgunProjectile = M381 CHARON 280mm 26.5 kg slug
+ent-ShipRailgunProjectile = сердечник M381 CHARON 280 мм, 26,5 кг
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipRailgunProjectileSubnuclear = M381 CHARON 280mm 26.5 kg slug
+ent-ShipRailgunProjectileSubnuclear = сердечник M381 CHARON 280 мм, 26,5 кг
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipRubiconProjectile = EMP projectile
+ent-ShipRubiconProjectile = ЭМИ-снаряд
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
@@ -260,28 +260,28 @@ ent-ShipShardProjectile = ShipShardProjectile
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipTarnyxApProjectile = TARNYX 150mm AP projectile
+ent-ShipTarnyxApProjectile = бронебойный снаряд TARNYX 150 мм
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-ShipTarnyxProjectile = TARNYX 150mm EMP projectile
+ent-ShipTarnyxProjectile = ЭМИ-снаряд TARNYX 150 мм
     .desc = { ent-BaseBulletTrigger.desc }
     .suffix = Фронтир
 
-ent-WeaponLaserTurretApollo = L-20 Apollo Heavy Laser Cannon
-    .desc = One of the Pantheon Collective's top weapons, the Apollo is aptly named for its beams heating surfaces to beyond the temperature of nearby stars.
+ent-WeaponLaserTurretApollo = Тяжёлая лазерная пушка L-20 Apollo
+    .desc = Одно из лучших орудий Pantheon Collective. Apollo назван так не зря: лучи нагревают поверхности сильнее, чем у ближайших звёзд.
     .suffix = Фронтир
 
 ent-WeaponLaserTurretL1Phalanx = L-1 Phalanx
-    .desc = A light laser emplactment designed by the Pantheon Collective, used to shred threats of all types
+    .desc = Лёгкая лазерная установка Pantheon Collective, рвущая угрозы любого типа.
     .suffix = Фронтир
 
 ent-WeaponTurretAK570 = "AK570" 90мм тяжёлая автопушка
     .desc = Двуствольная тяжёлая 90мм автопушка, стреляющая универсальными бронебойно-фугасными снарядами, эффективна для продолжительного огня по средним целям.
     .suffix = 6
 
-ent-WeaponTurretASM220 = ASM-220 torpedo VLS
-    .desc = A heavy torpedo VLS relying on manual loading to work, usually done at harbor. However, it has high-yield missiles for its size.
+ent-WeaponTurretASM220 = Торпедная УВП ASM-220
+    .desc = Тяжёлая торпедная УВП с ручной перезарядкой, обычно в порту. Зато для своих размеров несёт очень мощные ракеты.
     .suffix = Фронтир
 
 ent-WeaponTurretASM501 = ASM-501 Торпедная установка
@@ -320,8 +320,8 @@ ent-WeaponTurretHades = HADES 305мм орудие
     .desc = Одно из самых крупных химических кинетических орудий в секторе. Его мощь сопоставима только с масс-драйверами вроде M381.
     .suffix = 12
 
-ent-WeaponTurretHydra = Hydra 220mm cannon
-    .desc = A main battery with trial barrels, delivering rapid, punishing salvos at extreme range. Fires 220mm auto shells with slightly reduced brute strength. Can be remotely activated or linked up to a GCS.
+ent-WeaponTurretHydra = Орудие Hydra 220 мм
+    .desc = Главная батарея с опытными стволами: быстрые и жестокие залпы на экстремальной дистанции. Стреляет 220-мм автоснарядами с чуть сниженным ушибом. Можно активировать удалённо или подключить к СУО.
     .suffix = Фронтир
 
 ent-WeaponTurretKargil = "Kargil" 203мм орудие
@@ -332,8 +332,8 @@ ent-WeaponTurretL85Autocannon = L85 20мм автопушка
     .desc = Лёгкая 20мм баллистическая автопушка, предназначенная для скорострельной стрельбы и подавления мелких целей на близкой дистанции. Дешёвая, лёгкая.
     .suffix = 3
 
-ent-WeaponTurretLightMunitionsBay = GPOB-L Light Munitions Bay
-    .desc = A relatively small, armored munitions bay capable of holding up to two lightweight ordinance packages. Typically found on light spacecraft, particularly bombers, and provide a limited use method of damaging targets far above the user's weight class.
+ent-WeaponTurretLightMunitionsBay = Лёгкий боезапасный отсек GPOB-L
+    .desc = Относительно небольшой бронированный отсек на два лёгких боеприпаса. Обычно на лёгких кораблях, особенно бомбардировщиках: ограниченный способ бить цели куда тяжелее своего класса.
     .suffix = Фронтир
 
 ent-WeaponTurretM220 = M220 "RUBICON" ЭМП-установка
@@ -344,56 +344,56 @@ ent-WeaponTurretM25 = M25 горный импульсер
     .desc = Использует механизмы для запуска... чего-то. Легко разрушает породу.
     .suffix = 1
 
-ent-WeaponTurretPeacekeeper = Peacekeeper class salvo gun
-    .desc = Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+ent-WeaponTurretPeacekeeper = Залповое орудие класса Миротворец
+    .desc = Запускает магнитно-удерживаемые шары плазмы по целям. Можно активировать удалённо или подключить к СУО.
     .suffix = Фронтир
 
-ent-WeaponTurretPinhole = Pinhole-class railgun
-    .desc = Mass driver weapon of unknown origin. Reverse engineering attempts have indicated extremely high projectile velocity and high-mass projectiles with unresolved ship-pushing payload.
+ent-WeaponTurretPinhole = Рельсотрон класса Pinhole
+    .desc = Масс-драйвер неизвестного происхождения. Реверс-инжиниринг показал экстремальную скорость и массу снарядов с неизученным эффектом отдачи на корабль.
     .suffix = DRONE ONLY, Фронтир
 
-ent-WeaponTurretRAC30 = RAC-30 Draupnir Autocannon
-    .desc = A more heavy duty rapid rife autocannon, firing a hail of rounds much like its namesake became a hail of spears.
+ent-WeaponTurretRAC30 = Автопушка RAC-30 Draupnir
+    .desc = Более тяжёлая скорострельная автопушка, осыпающая цель градом снарядов — как тёзка некогда осыпал градом копий.
     .suffix = Фронтир
 
-ent-WeaponTurretScylla = PASM "Scylla" Plasma accelerator system of magnet
-    .desc = Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+ent-WeaponTurretScylla = Плазменный магнитный ускоритель PASM "Scylla"
+    .desc = Запускает магнитно-удерживаемые шары плазмы по целям. Можно активировать удалённо или подключить к СУО.
     .suffix = Фронтир
 
-ent-WeaponTurretShard = Light mass driver "Shard"
-    .desc = Ultralight mass driver weapon of unknown origin, designated "Shard" during initial reverse engineering attempts. Light damage, but long range and little upkeep to mount on ships.
+ent-WeaponTurretShard = Лёгкий масс-драйвер "Shard"
+    .desc = Ультралёгкий масс-драйвер неизвестного происхождения; при реверс-инжиниринге назван "Shard". Слабый урон, зато большая дальность и почти нулевое обслуживание при установке.
     .suffix = DRONE ONLY, Фронтир
 
-ent-WeaponTurretTarnyx = ADBX-31 TARNYX 150mm EMP Cannon
-    .desc = A heavy EMP cannon made by Aetherion Dynamics, designed to disable large sections of enemy ships with a single, powerful shot. Effective in asymmetric combat. Can be remotely activated or linked up to a GCS.
+ent-WeaponTurretTarnyx = ЭМИ-пушка ADBX-31 TARNYX 150 мм
+    .desc = Тяжёлая ЭМИ-пушка Aetherion Dynamics: одним мощным выстрелом выводит из строя большие участки вражеских кораблей. Эффективна в асимметричном бою. Можно активировать удалённо или подключить к СУО.
     .suffix = Station, Recharging Ammo, EMP, Фронтир
 
-ent-WeaponTurretTarnyxReload = ADBX-31 TARNYX 150mm EMP Cannon
-    .desc = A heavy EMP cannon made by Aetherion Dynamics, designed to disable large sections of enemy ships with a single, powerful shot. Effective in asymmetric combat. Can be remotely activated or linked up to a GCS.
+ent-WeaponTurretTarnyxReload = ЭМИ-пушка ADBX-31 TARNYX 150 мм
+    .desc = Тяжёлая ЭМИ-пушка Aetherion Dynamics: одним мощным выстрелом выводит из строя большие участки вражеских кораблей. Эффективна в асимметричном бою. Можно активировать удалённо или подключить к СУО.
     .suffix = Ship, Manual Reload, Фронтир
 
-ent-WeaponTurretThanatos = THANATOS twin mass driver
-    .desc = The charon's mean older brother, the Thanatos is a force to be reckoned with. It can be remotely activated or linked up to a GCS. This one feeds from an autoloader somewhere, and doesn't need manual reloads.
+ent-WeaponTurretThanatos = Сдвоенный масс-драйвер THANATOS
+    .desc = Злой старший брат Харона — с Танатосом лучше не шутить. Можно активировать удалённо или подключить к СУО. Питается от автозагрузчика и не требует ручной перезарядки.
     .suffix = STATION ONLY, Recharging Ammo, Фронтир
 
 ent-WeaponTurretTovek = ADMX-23 "TOVEK" Гибридная EMP-установка
     .desc = Гибридная EMP-ракетная установка от "Атерион". Выпускает EMPHE-боеголовки для выведения из строя и ослабления вражеских кораблей на дальних дистанциях.
     .suffix = 6
 
-ent-WeaponTurretType2048 = Type-2048 scattershot canon
-    .desc = Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+ent-WeaponTurretType2048 = Дробовое орудие Type-2048
+    .desc = Запускает магнитно-удерживаемые шары плазмы по целям. Можно активировать удалённо или подключить к СУО.
     .suffix = Фронтир
 
-ent-WeaponTurretType241 = Type-241 plasma lance
-    .desc = A devastating weapon, usually used for large scale fire support and strategic destruction.
+ent-WeaponTurretType241 = Плазменное копьё Type-241
+    .desc = Опустошительное оружие, обычно для крупномасштабной огневой поддержки и стратегического уничтожения.
     .suffix = TSF ONLY, ADS ONLY, Фронтир
 
 ent-WeaponTurretType35 = Плазменное орудие типа MARAUDER
     .desc = Запускает магнитно-сдерживаемые шары плазмы по целям.
     .suffix = 6
 
-ent-WeaponTurretType54 = Type-54C plasma autopulser
-    .desc = A rapidly firing energy weapon, dealing a large amount of damage to its targets. Takes a long time to recharge.
+ent-WeaponTurretType54 = Плазменный автоимпульсёр Type-54C
+    .desc = Скорострельное энергетическое оружие с большим уроном. Долго перезаряжается.
     .suffix = TSF ONLY, ADS ONLY, Фронтир
 
 ent-WeaponTurretVanyk = ASM-302 "VANYK" Пусковая установка
@@ -404,10 +404,10 @@ ent-WeaponTurretVespera = ADMP-27 "VESPERA" Ракетная установка
     .desc = Быстрострельный ракетный контейнер, произведённый компанией "Атерион". Насыщает цели управляемыми боеголовками, чтобы перегрузить системы ПВО.
     .suffix = 6
 
-ent-WeaponTurretplasmaaccelerator = Type-1008 Plasma Accelerator
-    .desc = Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+ent-WeaponTurretplasmaaccelerator = Плазменный ускоритель Type-1008
+    .desc = Запускает магнитно-удерживаемые шары плазмы по целям. Можно активировать удалённо или подключить к СУО.
     .suffix = Фронтир
 
-ent-WeaponTurretplasmaacceleratorHuge = Type-1984 Plasma Accelerator
-    .desc = Launches magnetically contained balls of plasma at targets. Can be remotely activated, or linked up to a GCS.
+ent-WeaponTurretplasmaacceleratorHuge = Плазменный ускоритель Type-1984
+    .desc = Запускает магнитно-удерживаемые шары плазмы по целям. Можно активировать удалённо или подключить к СУО.
     .suffix = TSF ONLY, ADS ONLY, Фронтир

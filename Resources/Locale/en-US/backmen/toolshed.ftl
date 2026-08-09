@@ -1,4 +1,4 @@
-﻿command-description-adddisease = Add disease
+command-description-adddisease = Add disease
 command-description-changesex-setMale = Make male
 command-description-changesex-setFemale = Set to female
 command-description-changesex-setUnsexed = Make unsexed
@@ -41,3 +41,6 @@ command-description-changeaccessreader-rmGroupAccessReader = Clear access groups
 command-description-changeaccessreader-setJobAccessReader = Set access according to JobPrototype
 command-description-changeaccessreader-addJobAccessReader = Add access according to JobPrototype
 command-description-changeaccessreader-rmJobAccessReader = Remove accesses according to JobPrototype
+command-description-changeaccess-rmGroupAccessLevel = Удалить группу доступов
+command-description-laws-set = Установить законы по прототипу
+command-description-laws-override = Изменить закон по индексу, новый закон пишется строкой

@@ -1,2 +1,2 @@
 ent-ActionHeadcrabJump = Прыжок
-    .desc = Do super jump.
+    .desc = Сделайте суперпрыжок.

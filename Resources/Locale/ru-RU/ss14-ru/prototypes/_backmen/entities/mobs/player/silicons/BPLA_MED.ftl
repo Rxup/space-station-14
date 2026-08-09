@@ -1,0 +1,13 @@
+ent-BSSClothingBackpackSatchelDroneMED = сумка БСС Дрона Медицинского Направления
+    .desc = { ent-BSSClothingBackpackSatchelDrone.desc }
+ent-HandheldHealthAnalyzerINF = { ent-HandheldHealthAnalyzer }
+    .desc = { ent-HandheldHealthAnalyzer.desc }
+    .suffix = Backmen, INF
+ent-OmnimedToolINF = { ent-OmnimedTool }
+    .desc = { ent-OmnimedTool.desc }
+    .suffix = Backmen, INF
+ent-DefibrillatorINF = defibrillator
+    .desc = ОЧИСТИТЬ! Ззззат!
+    .suffix = Backmen, INF
+ent-DroneBPLAMED = медицинский блюспейс дрон
+    .desc = Разработан в НИИ Космических технологий с использованием Блюспейс технологий.

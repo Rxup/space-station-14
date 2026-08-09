@@ -1,7 +1,7 @@
 ent-WeaponSwordJustice = меч "Правосудие"
     .desc = Меч одного из архангелов, даже стоя рядом с ним, проникаишься искуплением перед неудержимой мощью.
 ent-ActionDashJustice = священный рывок
-    .desc = Dash with power of ANGELS.
+    .desc = Рывок силой АНГЕЛОВ.
 ent-WeaponSwordJusticeAndSplendor = мечи "Правосудие" и "Великолепие"
     .desc = сдвоенные мечи архангела, он излучает неописуемое чувство страха, гнева и ярости. Одновременно.
 ent-WeaponSwordSplendor = меч "Великолепие"

@@ -1,3 +1,14 @@
+ent-SpawnPointEvilTwin = спавнер ролей призраков
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Злой двойник
+ent-SpawnPointGhostFugitive = точка появления роли призрака
+    .desc = { ent-MarkerBase.desc }
+ent-SpawnPointGhostIfrit = точка появления роли призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Ифрит
+ent-SpawnPointGhostVampSpider = точка появления роли призрака
+    .desc = { ent-MarkerBase.desc }
+    .suffix = Паук-Вампир
 ent-SpawnPointGhostBlobRat = точка спавна мыши блоба
-    .suffix = Блоб, роль призрак
     .desc = { ent-BaseAntagSpawner.desc }
+    .suffix = Блоб, роль призрак
