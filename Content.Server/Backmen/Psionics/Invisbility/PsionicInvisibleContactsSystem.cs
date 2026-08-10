@@ -1,10 +1,12 @@
 using Content.Shared.Backmen.Psionics;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Psionics.Invisbility;
@@ -14,15 +16,16 @@ namespace Content.Server.Backmen.Psionics.Invisbility;
 /// </summary>
 public sealed partial class PsionicInvisibleContactsSystem : EntitySystem
 {
-    private const float WebStealthVisibility = 0.33f;
     private static readonly TimeSpan TileCheckInterval = TimeSpan.FromSeconds(0.25);
+    private static readonly EntProtoId StatusEffectPsionicWebCamouflage = "StatusEffectPsionicWebCamouflage";
+    private static readonly EntProtoId StatusEffectPsionicInvisibility = "StatusEffectPsionicInvisibility";
 
     [Dependency] private SharedStealthSystem _stealth = default!;
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
-    private EntityQuery<PsionicallyInvisibleComponent> _psiInvisible;
     private TimeSpan _nextTileCheck;
 
     public override void Initialize()
@@ -31,9 +34,10 @@ public sealed partial class PsionicInvisibleContactsSystem : EntitySystem
         SubscribeLocalEvent<PsionicInvisibleContactsComponent, StartCollideEvent>(OnEntityEnter);
         SubscribeLocalEvent<PsionicInvisibleContactsComponent, EndCollideEvent>(OnEntityExit);
 
-        UpdatesAfter.Add(typeof(SharedPhysicsSystem));
+        SubscribeLocalEvent<PsionicWebCamouflageComponent, StatusEffectAppliedEvent>(OnWebCamouflageApplied);
+        SubscribeLocalEvent<PsionicWebCamouflageComponent, StatusEffectRemovedEvent>(OnWebCamouflageRemoved);
 
-        _psiInvisible = GetEntityQuery<PsionicallyInvisibleComponent>();
+        UpdatesAfter.Add(typeof(SharedPhysicsSystem));
     }
 
     public override void Update(float frameTime)
@@ -48,18 +52,13 @@ public sealed partial class PsionicInvisibleContactsSystem : EntitySystem
         var query = EntityQueryEnumerator<PsionicInvisibleContactsComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
         {
-            if (!comp.TileBased)
-                continue;
+            var onContact = comp.Stages > 0;
+            if (comp.TileBased)
+                onContact |= IsIntersectingWhitelisted(uid, comp, xform.Coordinates);
 
-            var onWeb = IsIntersectingWhitelisted(uid, comp, xform.Coordinates);
-
-            if (onWeb)
-            {
+            if (onContact)
                 ApplyCamouflage(uid);
-                continue;
-            }
-
-            if (comp.Stages == 0)
+            else
                 RemoveCamouflage(uid);
         }
     }
@@ -87,9 +86,6 @@ public sealed partial class PsionicInvisibleContactsSystem : EntitySystem
         if (!_whitelist.IsValid(component.Whitelist, otherUid))
             return;
 
-        if (!_psiInvisible.HasComp(ourEntity))
-            return;
-
         if (--component.Stages > 0)
             return;
 
@@ -113,24 +109,49 @@ public sealed partial class PsionicInvisibleContactsSystem : EntitySystem
         return false;
     }
 
+    private bool IsWebCamouflaged(EntityUid uid)
+    {
+        return _statusEffects.HasStatusEffect(uid, StatusEffectPsionicWebCamouflage);
+    }
+
+    private bool AlreadyPsionicallyInvisible(EntityUid uid)
+    {
+        return HasComp<PsionicallyInvisibleComponent>(uid) ||
+               _statusEffects.HasEffectComp<PsionicallyInvisibleComponent>(uid);
+    }
+
     private void ApplyCamouflage(EntityUid uid)
     {
-        if (_psiInvisible.HasComp(uid))
+        if (IsWebCamouflaged(uid) || AlreadyPsionicallyInvisible(uid))
             return;
 
-        EnsureComp<PsionicallyInvisibleComponent>(uid);
-        var stealth = EnsureComp<StealthComponent>(uid);
-        _stealth.SetVisibility(uid, WebStealthVisibility, stealth);
+        _statusEffects.TrySetStatusEffectDuration(uid, StatusEffectPsionicWebCamouflage);
     }
 
     private void RemoveCamouflage(EntityUid uid)
     {
-        if (!_psiInvisible.HasComp(uid))
+        if (!IsWebCamouflaged(uid))
             return;
 
-        RemComp<PsionicallyInvisibleComponent>(uid);
-        var stealth = EnsureComp<StealthComponent>(uid);
-        _stealth.SetVisibility(uid, 1f, stealth);
-        RemComp<StealthComponent>(uid);
+        _statusEffects.TryRemoveStatusEffect(uid, StatusEffectPsionicWebCamouflage);
+    }
+
+    private void OnWebCamouflageApplied(Entity<PsionicWebCamouflageComponent> ent, ref StatusEffectAppliedEvent args)
+    {
+        var stealth = EnsureComp<StealthComponent>(args.Target);
+        _stealth.SetVisibility(args.Target, ent.Comp.StealthVisibility, stealth);
+    }
+
+    private void OnWebCamouflageRemoved(Entity<PsionicWebCamouflageComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        // Don't strip stealth from active power invisibility.
+        if (_statusEffects.HasStatusEffect(args.Target, StatusEffectPsionicInvisibility))
+            return;
+
+        if (!TryComp<StealthComponent>(args.Target, out var stealth))
+            return;
+
+        _stealth.SetVisibility(args.Target, 1f, stealth);
+        RemComp<StealthComponent>(args.Target);
     }
 }

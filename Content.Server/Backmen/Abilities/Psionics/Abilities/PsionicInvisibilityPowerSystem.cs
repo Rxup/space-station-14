@@ -8,7 +8,10 @@ using Content.Shared.Backmen.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Damage.Systems;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Abilities.Psionics;
 
@@ -20,10 +23,21 @@ public sealed partial class PsionicInvisibilityPowerSystem : StatusEffectGranted
     [Dependency] private SharedPsionicAbilitiesSystem _psionics = default!;
     [Dependency] private SharedStealthSystem _stealth = default!;
 
+    private static readonly EntProtoId StatusEffectPsionicInvisibility = "StatusEffectPsionicInvisibility";
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<PsionicInvisibilityPowerOffActionEvent>(OnPowerOff);
+        SubscribeLocalEvent<CancelPsionicInvisibilityAlertEvent>(OnAlertCancel);
+
+        // Status-effect path (component lives on the effect entity)
+        SubscribeLocalEvent<PsionicInvisibilityUsedComponent, StatusEffectAppliedEvent>(OnApplied);
+        SubscribeLocalEvent<PsionicInvisibilityUsedComponent, StatusEffectRemovedEvent>(OnRemoved);
+        SubscribeLocalEvent<PsionicInvisibilityUsedComponent, StatusEffectRelayedEvent<DamageChangedEvent>>(OnDamageRelayed);
+        SubscribeLocalEvent<PsionicInvisibilityUsedComponent, StatusEffectRelayedEvent<WoundsChangedEvent>>(OnWoundRelayed);
+
+        // Fallback: component placed directly on a mob (maps / legacy)
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentInit>(OnStart);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, ComponentShutdown>(OnEnd);
         SubscribeLocalEvent<PsionicInvisibilityUsedComponent, DamageChangedEvent>(OnDamageChanged);
@@ -53,10 +67,12 @@ public sealed partial class PsionicInvisibilityPowerSystem : StatusEffectGranted
         if (args.Handled)
             return;
 
-        if (HasComp<PsionicInvisibilityUsedComponent>(args.Performer))
+        if (StatusEffects.HasStatusEffect(args.Performer, StatusEffectPsionicInvisibility) ||
+            HasComp<PsionicInvisibilityUsedComponent>(args.Performer))
             return;
 
-        ToggleInvisibility(args.Performer);
+        if (!StatusEffects.TrySetStatusEffectDuration(args.Performer, StatusEffectPsionicInvisibility))
+            return;
 
         _actions.AddAction(args.Performer, ref component.PsionicInvisibilityPowerActionOff, component.ActionPsionicInvisibilityOff);
 
@@ -66,32 +82,134 @@ public sealed partial class PsionicInvisibilityPowerSystem : StatusEffectGranted
 
     private void OnPowerOff(PsionicInvisibilityPowerOffActionEvent args)
     {
-        if (!HasComp<PsionicInvisibilityUsedComponent>(args.Performer))
+        if (!TryCancelInvisibility(args.Performer))
             return;
 
-        ToggleInvisibility(args.Performer);
         args.Handled = true;
+    }
+
+    private void OnAlertCancel(CancelPsionicInvisibilityAlertEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryCancelInvisibility(args.User))
+            return;
+
+        args.Handled = true;
+    }
+
+    private void OnApplied(Entity<PsionicInvisibilityUsedComponent> ent, ref StatusEffectAppliedEvent args)
+    {
+        StartInvisibility(args.Target, ent.Comp);
+    }
+
+    private void OnRemoved(Entity<PsionicInvisibilityUsedComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        EndInvisibility(args.Target, ent.Comp);
     }
 
     private void OnStart(EntityUid uid, PsionicInvisibilityUsedComponent component, ComponentInit args)
     {
-        component.Pacify = HasComp<PacifiedComponent>(uid);
-        EnsureComp<PsionicallyInvisibleComponent>(uid);
-        EnsureComp<PacifiedComponent>(uid);
-        var stealth = EnsureComp<StealthComponent>(uid);
-        _stealth.SetVisibility(uid, 0.66f, stealth);
-        _audio.PlayPvs("/Audio/Effects/toss.ogg", uid);
+        // Status-effect entity: StatusEffectApplied handles the real target.
+        if (HasComp<StatusEffectComponent>(uid))
+            return;
 
+        StartInvisibility(uid, component);
     }
 
     private void OnEnd(EntityUid uid, PsionicInvisibilityUsedComponent component, ComponentShutdown args)
     {
+        if (HasComp<StatusEffectComponent>(uid))
+            return;
+
+        EndInvisibility(uid, component);
+    }
+
+    private void OnDamageRelayed(Entity<PsionicInvisibilityUsedComponent> ent, ref StatusEffectRelayedEvent<DamageChangedEvent> args)
+    {
+        if (!args.Args.DamageIncreased)
+            return;
+
+        if (TryComp<StatusEffectComponent>(ent.Owner, out var status) && status.AppliedTo is { } target)
+            TryCancelInvisibility(target);
+    }
+
+    private void OnWoundRelayed(Entity<PsionicInvisibilityUsedComponent> ent, ref StatusEffectRelayedEvent<WoundsChangedEvent> args)
+    {
+        if (!args.Args.DamageIncreased)
+            return;
+
+        if (TryComp<StatusEffectComponent>(ent.Owner, out var status) && status.AppliedTo is { } target)
+            TryCancelInvisibility(target);
+    }
+
+    private void OnDamageChanged(EntityUid uid, PsionicInvisibilityUsedComponent component, DamageChangedEvent args)
+    {
+        if (HasComp<StatusEffectComponent>(uid) || !args.DamageIncreased)
+            return;
+
+        TryCancelInvisibility(uid);
+    }
+
+    private void OnWoundDamage(EntityUid uid, PsionicInvisibilityUsedComponent component, WoundsChangedEvent args)
+    {
+        if (HasComp<StatusEffectComponent>(uid) || !args.DamageIncreased)
+            return;
+
+        TryCancelInvisibility(uid);
+    }
+
+    /// <summary>
+    /// Cancels active power invisibility (status effect and/or legacy direct component).
+    /// </summary>
+    public bool TryCancelInvisibility(EntityUid uid)
+    {
+        var removed = false;
+
+        if (StatusEffects.HasStatusEffect(uid, StatusEffectPsionicInvisibility))
+            removed |= StatusEffects.TryRemoveStatusEffect(uid, StatusEffectPsionicInvisibility);
+
+        // Legacy / map: component on the mob itself
+        if (HasComp<PsionicInvisibilityUsedComponent>(uid) && !HasComp<StatusEffectComponent>(uid))
+        {
+            RemCompDeferred<PsionicInvisibilityUsedComponent>(uid);
+            removed = true;
+        }
+
+        return removed;
+    }
+
+    public void ToggleInvisibility(EntityUid uid)
+    {
+        if (StatusEffects.HasStatusEffect(uid, StatusEffectPsionicInvisibility) ||
+            HasComp<PsionicInvisibilityUsedComponent>(uid))
+        {
+            TryCancelInvisibility(uid);
+            return;
+        }
+
+        StatusEffects.TrySetStatusEffectDuration(uid, StatusEffectPsionicInvisibility);
+    }
+
+    private void StartInvisibility(EntityUid uid, PsionicInvisibilityUsedComponent component)
+    {
+        component.Pacify = HasComp<PacifiedComponent>(uid);
+        // PsionicallyInvisible lives on the status-effect entity; layer is applied via StatusEffectApplied → Target.
+        EnsureComp<PacifiedComponent>(uid);
+        var stealth = EnsureComp<StealthComponent>(uid);
+        _stealth.SetVisibility(uid, 0.66f, stealth);
+        _audio.PlayPvs("/Audio/Effects/toss.ogg", uid);
+    }
+
+    private void EndInvisibility(EntityUid uid, PsionicInvisibilityUsedComponent component)
+    {
         if (TerminatingOrDeleted(uid))
             return;
 
-        RemCompDeferred<PsionicallyInvisibleComponent>(uid);
+        // Layer removal is handled by PsionicallyInvisible StatusEffectRemoved → Target.
 
-        if(!component.Pacify)
+        if (!component.Pacify)
             RemComp<PacifiedComponent>(uid);
 
         RemCompDeferred<StealthComponent>(uid);
@@ -101,34 +219,6 @@ public sealed partial class PsionicInvisibilityPowerSystem : StatusEffectGranted
         TryRemoveAttachedAction(uid, invisibilityPowerComponent?.PsionicInvisibilityPowerActionOff);
         _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(invisibilityPowerComponent?.StunSecond ?? 8));
         DirtyEntity(uid);
-    }
-
-    private void OnDamageChanged(EntityUid uid, PsionicInvisibilityUsedComponent component, DamageChangedEvent args)
-    {
-        if (!args.DamageIncreased)
-            return;
-
-        RemCompDeferred<PsionicInvisibilityUsedComponent>(uid);
-    }
-
-    private void OnWoundDamage(EntityUid uid, PsionicInvisibilityUsedComponent component, WoundsChangedEvent args)
-    {
-        if (!args.DamageIncreased)
-            return;
-
-        RemCompDeferred<PsionicInvisibilityUsedComponent>(uid);
-    }
-
-    public void ToggleInvisibility(EntityUid uid)
-    {
-        if (!HasComp<PsionicInvisibilityUsedComponent>(uid))
-        {
-            EnsureComp<PsionicInvisibilityUsedComponent>(uid);
-        }
-        else
-        {
-            RemCompDeferred<PsionicInvisibilityUsedComponent>(uid);
-        }
     }
 
     private bool TryGetInvisibilityPowerComponent(EntityUid uid, out PsionicInvisibilityPowerComponent? powerComponent)
