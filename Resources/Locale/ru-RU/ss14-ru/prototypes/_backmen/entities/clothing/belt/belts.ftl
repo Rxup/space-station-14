@@ -1,7 +1,3 @@
-ent-ClothingBeltOrden = ножны Красного ордена
-    .desc = Особые ножны, созданные исключительно для сабель Красного ордена.
-ent-ClothingBeltKatanaSheath = ножны для катаны
-    .desc = Изящный пояс, предназначенный для пары самурайских клинков, или дайсё.
 ent-ClothingBeltUtilityFilledUnremoveable = { ent-ClothingBeltUtilityFilled }
     .desc = { ent-ClothingBeltUtilityFilled.desc }
     .suffix = Unremoveable

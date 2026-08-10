@@ -1,9 +1,3 @@
-ent-SuitStorageCentcomCarporatHardsuit = { ent-SuitStorageBase }
-    .desc = { ent-SuitStorageBase.desc }
-    .suffix = ЦентКом, Корпорат
-ent-SuitStorageCargoEVAHardsuit = { ent-SuitStorageBase }
-    .desc = { ent-SuitStorageBase.desc }
-    .suffix = EVA карго
 ent-SuitStorageInteQEVA = { ent-SuitStorageBase }
     .desc = { ent-SuitStorageBase.desc }
     .suffix = ВКД Интек

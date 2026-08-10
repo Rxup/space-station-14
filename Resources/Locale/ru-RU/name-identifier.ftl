@@ -1,5 +1,3 @@
-name-identifier-format-append = { $baseName } { $identifier }
-name-identifier-format-full = { $identifier }
 name-identifier-format-monkey = ОБ-{ $number }
 name-identifier-format-kobold = КБ-{ $number }
 name-identifier-format-holoparasite = ГОЛО-{ $number }

@@ -1,11 +1,3 @@
-ent-ClothingHeadsetFleetAdmiral = флотская гарнитура
-    .desc = Гарнитура, используемая высшими эшелонами Nanotrasen.
-ent-ClothingHeadsetFleet = флотская гарнитура
-    .desc = Гарнитура, используемая высшими эшелонами Nanotrasen.
-ent-ClothingHeadsetUEG = Гарнитура ОПЗ
-    .desc = Гарнитура используемая представителями ОПЗ
-ent-ClothingHeadsetUEGofficer = Гарнитура охраны ОПЗ
-    .desc = Гарнитура используемая офицерами ОПЗ
 ent-ClothingHeadsetEarthGov = Гарнитура EarthGov
     .desc = Стандартная гарнитура EarthGov.
 ent-ClothingHeadsetRebels = Гарнитура Повстанца

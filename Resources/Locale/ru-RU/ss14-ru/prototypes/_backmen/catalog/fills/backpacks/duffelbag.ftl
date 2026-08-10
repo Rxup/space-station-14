@@ -1,10 +1,3 @@
-ent-ClothingBackpackDuffelSyndicateCostumeMime = { ent-ClothingBackpackDuffelMime }
-    .desc = { ent-ClothingBackpackDuffelMime.desc }
-    .suffix = syndicate
-ent-ClothingBackpackDuffelSyndicatePsiGrenadeBundle = набор пси-гранат Синдиката
-    .desc = Полон пси-газовых гранат!
-ent-ClothingBackpackDuffelSyndicateAntiPsiGrenadeBundle = набор анти-пси гранат Синдиката
-    .desc = Содержит множество анти-пси газовых гранат!
 ent-ClothingBackpackDuffelSyndicateBZGrenadeBundle = набор гранат BZ Синдиката
     .desc = Содержит 5 газовых гранат BZ.
 ent-ClothingBackpackDuffelSyndicatePluoxiumGrenadeBundle = набор гранат плуоксиума Синдиката

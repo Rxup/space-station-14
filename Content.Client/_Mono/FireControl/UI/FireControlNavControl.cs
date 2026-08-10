@@ -11,8 +11,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
-using System.Linq; // Lua
-using System.Numerics; // Lua
+using System.Linq;
+using System.Numerics;
 
 namespace Content.Client._Mono.FireControl.UI;
 
@@ -27,10 +27,9 @@ public sealed partial class FireControlNavControl : ShuttleNavControl
     private FireControllableEntry[]? _controllables;
     private HashSet<NetEntity> _selectedWeapons = new();
 
-    // Add a limit to how often we update the cursor position to prevent network spam
-    private float _lastCursorUpdateTime = 0f;
-    private float _lastFireTime = 0f;
-    private const float CursorUpdateInterval = 0.1f; // 10 updates per second
+    private float _lastCursorUpdateTime;
+    private float _lastFireTime;
+    private const float CursorUpdateInterval = 0.1f;
     private const float FireRateLimit = 0.1f;
 
     public FireControlNavControl()
@@ -54,8 +53,9 @@ public sealed partial class FireControlNavControl : ShuttleNavControl
             return;
 
         _isMouseDown = true;
-        _lastMousePos = args.RelativePosition;
-        TryFireAtPosition(args.RelativePosition);
+        // Pixel space matches DrawingHandleScreen + MidPoint/shuttleToView draw coords.
+        _lastMousePos = args.RelativePixelPosition;
+        TryFireAtPosition(_lastMousePos);
     }
 
     protected override void KeyBindUp(GUIBoundKeyEventArgs args)
@@ -77,17 +77,15 @@ public sealed partial class FireControlNavControl : ShuttleNavControl
         if (currentTime - _lastFireTime < FireRateLimit)
             return;
 
-        var mousePos = UserInterfaceManager.MousePositionScaled;
-        var relativePos = mousePos.Position - GlobalPosition;
-        _lastMousePos = relativePos;
-        TryFireAtPosition(relativePos);
+        _lastMousePos = GetLocalPosition(_input.MouseScreenPosition);
+        TryFireAtPosition(_lastMousePos);
         _lastFireTime = (float)currentTime;
     }
 
     protected override void MouseMove(GUIMouseMoveEventArgs args)
     {
         base.MouseMove(args);
-        _lastMousePos = args.RelativePosition;
+        _lastMousePos = args.RelativePixelPosition;
         if (_isMouseInside)
             TryUpdateCursorPosition(_lastMousePos);
     }
@@ -113,8 +111,7 @@ public sealed partial class FireControlNavControl : ShuttleNavControl
         Matrix3x2.Invert(shuttleToWorld, out var worldToShuttle);
         var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale))
             * Matrix3x2.CreateTranslation(MidPointVector);
-        var worldToView = worldToShuttle * shuttleToView;
-        Matrix3x2.Invert(worldToView, out var viewToWorld);
+        Matrix3x2.Invert(worldToShuttle * shuttleToView, out var viewToWorld);
 
         var blips = _blips.GetCurrentBlips();
         var colors = new Dictionary<NetEntity, Color>();
@@ -124,8 +121,9 @@ public sealed partial class FireControlNavControl : ShuttleNavControl
         if (_controllables == null || !_isMouseInside)
             return;
 
-        // Same as ShuttleMapControl FTL preview: physical pixel mouse position on the control.
-        var mouseLocalPos = GetLocalPosition(_input.MouseScreenPosition);
+        // Keep live cursor in pixel space so the line tracks the OS cursor at UIScale ≠ 1.
+        var mousePixelPos = GetLocalPosition(_input.MouseScreenPosition);
+        _lastMousePos = mousePixelPos;
 
         foreach (var controllable in _controllables)
         {
@@ -135,9 +133,14 @@ public sealed partial class FireControlNavControl : ShuttleNavControl
             var coords = EntManager.GetCoordinates(controllable.Coordinates);
             var worldPos = _transform.ToMapCoordinates(coords).Position;
 
-            var cursorWorldPos = Vector2.Transform(_lastMousePos, viewToWorld);
+            // mousePixelPos is in the same numeric space as shuttleToView draw output
+            // (MidPoint already includes UIScale; draw uses those values as pixels).
+            var cursorWorldPos = Vector2.Transform(mousePixelPos, viewToWorld);
 
             var direction = cursorWorldPos - worldPos;
+            if (direction.LengthSquared() < float.Epsilon)
+                continue;
+
             var ray = new CollisionRay(worldPos, direction.Normalized(), (int)CollisionGroup.Impassable);
 
             var results = _physics.IntersectRay(xform.MapID, ray, direction.Length(), ignoredEnt: _coordinates?.EntityId);
@@ -146,7 +149,7 @@ public sealed partial class FireControlNavControl : ShuttleNavControl
             {
                 var weaponViewPos = TryGetBlipViewPosition(controllable.NetEntity, blips, worldToShuttle, shuttleToView)
                     ?? WorldToViewPosition(worldPos, worldToShuttle, shuttleToView);
-                handle.DrawLine(weaponViewPos, mouseLocalPos, color.WithAlpha(0.3f));
+                handle.DrawLine(weaponViewPos, mousePixelPos, color.WithAlpha(0.3f));
             }
         }
     }
@@ -180,36 +183,32 @@ public sealed partial class FireControlNavControl : ShuttleNavControl
         _selectedWeapons = selectedWeapons;
     }
 
-    private void TryUpdateCursorPosition(Vector2 relativePosition)
+    private void TryUpdateCursorPosition(Vector2 pixelPosition)
     {
         var currentTime = IoCManager.Resolve<IGameTiming>().CurTime.TotalSeconds;
         if (currentTime - _lastCursorUpdateTime < CursorUpdateInterval)
             return;
 
         _lastCursorUpdateTime = (float)currentTime;
-
-        if (_coordinates == null || _rotation == null || OnRadarClick == null)
-            return;
-
-        var a = InverseScalePosition(relativePosition);
-        var relativeWorldPos = new Vector2(a.X, -a.Y);
-        relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
-        var coords = _coordinates.Value.Offset(relativeWorldPos);
-
-        OnRadarClick?.Invoke(coords);
+        TryFireAtPosition(pixelPosition);
     }
 
-    private void TryFireAtPosition(Vector2 relativePosition)
+    /// <summary>
+    /// <paramref name="pixelPosition"/> must be control-relative real pixels
+    /// (<see cref="GUIBoundKeyEventArgs.RelativePixelPosition"/> / <see cref="Control.GetLocalPosition"/>),
+    /// matching DrawingHandleScreen and MidPoint/shuttleToView draw coordinates.
+    /// </summary>
+    private void TryFireAtPosition(Vector2 pixelPosition)
     {
         if (_coordinates == null || _rotation == null || OnRadarClick == null)
             return;
 
-        var a = InverseScalePosition(relativePosition);
+        var a = InverseScalePosition(pixelPosition);
         var relativeWorldPos = new Vector2(a.X, -a.Y);
         relativeWorldPos = _rotation.Value.RotateVec(relativeWorldPos);
         var coords = _coordinates.Value.Offset(relativeWorldPos);
 
-        OnRadarClick?.Invoke(coords);
+        OnRadarClick.Invoke(coords);
     }
 
     public bool IsMouseDown() => _isMouseDown;

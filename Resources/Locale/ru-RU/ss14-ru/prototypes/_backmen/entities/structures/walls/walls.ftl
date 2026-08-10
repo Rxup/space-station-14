@@ -3,5 +3,3 @@ ent-WallDrywall = гипсокартон
 ent-WallRivetedIndestructible = клепаная стена
     .desc = { ent-BaseWall.desc }
     .suffix = indestructible
-ent-WallPaper = бумажная стена
-    .desc = Помогает сдерживать повторяющиеся крики мастеров боевых искусств.

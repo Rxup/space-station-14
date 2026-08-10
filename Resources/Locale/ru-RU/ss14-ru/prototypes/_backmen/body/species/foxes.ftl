@@ -1,9 +1,5 @@
 ent-AppearanceHumanoidFox = внешность гуманоидной лисы
     .desc = { ent-BaseSpeciesAppearance.desc }
-ent-MobHumanoidFox = Urist McFox
-    .desc = { ent-AppearanceHumanoidFox.desc }
-ent-MobHumanoidFoxDummy = Urist McHands
-    .desc = Манекен лисы для настройки персонажа.
 ent-OrganHumanoidFox = { ent-OrganBaseOrganic }
     .desc = { ent-OrganBaseOrganic.desc }
     .suffix = гуманоидная лиса

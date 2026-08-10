@@ -457,7 +457,13 @@ public partial class ShuttleNavControl : BaseShuttleControl
     }
 
     /// <summary>
-    /// Converts world map coordinates to minimap view coordinates, matching <see cref="ShuttleMapControl"/>.
+    /// Converts world map coordinates to minimap draw coordinates (same space as
+    /// <see cref="MidPointVector"/> / grid drawing on <see cref="DrawingHandleScreen"/>).
+    /// Pair aiming with <see cref="GUIBoundKeyEventArgs.RelativePixelPosition"/> or
+    /// <see cref="Control.GetLocalPosition"/> — not virtual <c>RelativePosition</c>
+    /// (at UIScale ≠ 1 those diverge from the drawn radar and OS cursor).
+    /// Do not multiply by <see cref="Control.UIScale"/> again; it is already baked into
+    /// <see cref="MinimapScale"/> / <see cref="MidPoint"/>.
     /// </summary>
     protected Vector2 WorldToViewPosition(Vector2 worldPosition, Matrix3x2 worldToShuttle, Matrix3x2 shuttleToView)
     {

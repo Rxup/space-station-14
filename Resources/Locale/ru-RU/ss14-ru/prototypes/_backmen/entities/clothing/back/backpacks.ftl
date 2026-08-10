@@ -1,7 +1,3 @@
-ent-ClothingOrderBackpack = Рюкзак Красного Ордена
-    .desc = Рюкзак эскадрона смерти, взятый как трофей и переделанный Орденом под свои нужды!
-ent-ClothingNinjaSatchel = Сумка ниндзя
-    .desc = Рюкзак космического ниндзя
 ent-ClothingBackpackMVD = сумка
     .desc = { ent-ClothingBackpackSatchel.desc }
 ent-ClothingCentcomBackpack = рюкзак Центком

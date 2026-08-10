@@ -1,9 +1,3 @@
-ent-EncryptionKeyCSH = ключ шифрования CSH
-    .desc = { ent-EncryptionKey.desc }
-ent-EncryptionKeyFleet = ключ шифрования Флота
-    .desc = { ent-EncryptionKey.desc }
-ent-EncryptionKeyUEG = Ключ шифрования ОПЗ
-    .desc = { ent-EncryptionKey.desc }
 ent-EncryptionKeyEarthGov = ключ шифрования EarthGov
     .desc = Ключ шифрования, используемый начальством капитана.
 ent-EncryptionKeyCentComOfficer = ключ шифрования Центрального Офицера

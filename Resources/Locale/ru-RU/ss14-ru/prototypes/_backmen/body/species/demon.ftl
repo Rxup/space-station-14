@@ -1,9 +1,5 @@
 ent-AppearanceDemon = внешность демона
     .desc = { ent-BaseSpeciesAppearance.desc }
-ent-MobDemon = Урист МакДемон
-    .desc = { ent-AppearanceDemon.desc }
-ent-MobDemonDummy = Урист МакДемон
-    .desc = Манекен демона, используемый при создании персонажа.
 ent-OrganDemon = { ent-OrganBaseOrganic }
     .desc = { ent-OrganBaseOrganic.desc }
     .suffix = demon

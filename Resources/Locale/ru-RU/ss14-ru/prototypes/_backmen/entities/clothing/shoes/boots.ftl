@@ -1,5 +1,3 @@
-ent-ClothingShoesBootsIHScombat = Боевая обувь IHS
-    .desc = Удобная обувь наемников IHS, защищает от взрывов
 ent-ClothingShoesBootsSpetsnaz = обувь спецназа
     .desc = Обувь спецназа Nanotrasen, для боевых операций или боевых действий. Борьба — всё, борьба — всегда.
     .suffix = noslip

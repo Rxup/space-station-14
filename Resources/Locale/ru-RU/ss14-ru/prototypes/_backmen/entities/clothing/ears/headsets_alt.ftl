@@ -1,5 +1,3 @@
-ent-ClothingHeadsetAltBrigmedic = гарнитура бригмедика
-    .desc = Гарнитура, которая помогает слышать предсмертные крики.
 ent-ClothingHeadsetCentComCCAltDeath = Гарнитура Эскадрона Смерти
     .desc = Стандартная гарнитура ЦК.
     .suffix = CentCom

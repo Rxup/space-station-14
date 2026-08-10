@@ -1,5 +1,3 @@
-ent-WeaponPistolMakarovsssp = Пистолет Макарова
-    .desc = Пистолет Макарова, популярен среди офицерского состава СССП, использует .35 калибр
 ent-WeaponPistolACP14 = ACP-14
     .desc = ACP-14 производства Earth Armories. Надёжное боковое оружие, заряжаемое патронами .45 Auto.
     .suffix = Пистолет

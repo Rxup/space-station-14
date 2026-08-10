@@ -1,7 +1,3 @@
-ent-HumanCannedClown = Консервированный клоун
-    .desc = { ent-MobHuman.desc }
-ent-MobHumanFugitive = Fugitive
-    .desc = { ent-MobHuman.desc }
 ent-UristMcWizardBase = Урист МакВолшебник
     .desc = { ent-MobHuman.desc }
     .suffix = base

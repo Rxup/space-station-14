@@ -1,9 +1,5 @@
 ent-AppearanceShadowkin = внешность теневика
     .desc = { ent-BaseSpeciesAppearance.desc }
-ent-MobShadowkin = Урист МакФлуф
-    .desc = { ent-AppearanceShadowkin.desc }
-ent-MobShadowkinDummy = { ent-MobShadowkin }
-    .desc = Манекен теневика для настройки персонажа.
 ent-OrganShadowkinPart = { ent-OrganBaseOrganic }
     .desc = { ent-OrganBaseOrganic.desc }
     .suffix = shadowkin

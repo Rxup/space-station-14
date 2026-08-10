@@ -8,6 +8,8 @@ using Content.Shared.Power;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Maths;
 using System.Linq;
 
 namespace Content.Server._Mono.FireControl;
@@ -201,10 +203,16 @@ public sealed partial class FireControlSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        NavInterfaceState navState = _shuttleConsoleSystem.GetNavState(
+        // Ignore console LocalRotation so gunnery radar/aim stay ship-relative
+        // regardless of which way the console was placed relative to helm.
+        var xform = Transform(uid);
+        var navState = _shuttleConsoleSystem.GetNavState(
             uid,
             _shuttleConsoleSystem.GetAllDocks(),
-            _shuttleConsoleSystem.GetAllDetectables(uid).ToList());
+            _shuttleConsoleSystem.GetAllDetectables(uid).ToList(),
+            xform.Coordinates,
+            Angle.Zero);
+        navState.RotateWithEntity = true;
 
         List<FireControllableEntry> controllables = new();
         if (component.ConnectedServer != null && TryComp<FireControlServerComponent>(component.ConnectedServer, out var server))

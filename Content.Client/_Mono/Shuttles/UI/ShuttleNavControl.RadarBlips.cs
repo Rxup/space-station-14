@@ -45,6 +45,9 @@ public partial class ShuttleNavControl
         Matrix3x2 worldToShuttle,
         Matrix3x2 shuttleToView)
     {
+        // Draw coords match MidPoint/shuttleToView (UIScale already in MinimapScale/MidPoint).
+        // Aiming must use RelativePixelPosition / GetLocalPosition — not RelativePosition —
+        // or the OS cursor diverges from the aim line at UIScale ≠ 1.
         var rawBlips = _blips.GetCurrentBlips();
         const int maxBlipsDraw = 320;
         var blipStride = Math.Max(1, rawBlips.Count / maxBlipsDraw);

@@ -58,6 +58,4 @@ health-analyzer-window-patient-thirsty = Patient is thirsty
 health-analyzer-window-pain-help-button = Help
 
 health-analyzer-popup-scan-target = {CAPITALIZE(THE($user))} is trying to scan you!
-health-analyzer-window-organ-damage-present = В организме присутствуют травмы органов!
-health-analyzer-window-bone-damage-present = В организме присутствуют травмы костей!
 health-analyzer-window-malnutrition = Тяжёлое недоедание

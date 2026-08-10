@@ -1,9 +1,3 @@
-ent-ClothingUniformJumpskirtCargoPostal = юбка-комбинезон почтальона
-    .desc = Прочная юбка-комбинезон, выдаваемая сотрудникам отдела снабжения для почтовой работы.
-ent-ClothingUniformJumpskirttCentcomVeryOfficial = Официальная юбка сотрудника ЦК
-    .desc = Вот прелесть карпоративной жизни, стильные костюмы с юбкой в тему!
-ent-ClothingUniformJumpsuitDeliverygirl = Костюм доставщицы
-    .desc = Пахнет пиццей
 ent-ClothingSkirtEGovOffice = офисная юбка
     .desc = { ent-ClothingUniformSkirtBase.desc }
 ent-ClothingSkirtEGovShtab = юбка штабного офицера

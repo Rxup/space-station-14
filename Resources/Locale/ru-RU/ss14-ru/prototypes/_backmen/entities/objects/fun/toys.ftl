@@ -1,9 +1,5 @@
 ent-BasePlushieBk = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
-ent-RubberPig = резиновая свинья
-    .desc = Дементий, гони свиней!
-ent-DoubleToySword = двухклинковый игрушечный меч
-    .desc = Новый пластиковый меч Sandy-Cat! Теперь с двумя клинками!
 ent-PlushieArachne = арахна плюш
     .desc = Плюш арахны, существа наполовину человека, наполовину паука. Почему он выглядит знакомым?
 ent-PlushieJester = шут плюш

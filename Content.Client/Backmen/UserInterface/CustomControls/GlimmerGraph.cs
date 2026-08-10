@@ -26,7 +26,9 @@ public sealed class GlimmerGraph : Control
     protected override void Draw(DrawingHandleScreen handle)
     {
         base.Draw(handle);
-        var box = new UIBox2(new Vector2(XOffset, YOffset), new Vector2(XOffset + Length, YOffsetTop));
+        // Top-left then bottom-right (Y grows down). Old order inverted Y and
+        // collapsed to zero height after Robust #6668 UIBox2 validation.
+        var box = new UIBox2(new Vector2(XOffset, YOffsetTop), new Vector2(XOffset + Length, YOffset));
         handle.DrawRect(box, Color.FromHex("#424245"));
         var texture = _resourceCache.GetTexture("/Textures/Backmen/Interface/glimmerGraph.png");
         handle.DrawTexture(texture, new Vector2(XOffset, YOffsetTop));

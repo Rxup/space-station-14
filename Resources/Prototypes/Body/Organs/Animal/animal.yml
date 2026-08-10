@@ -90,4 +90,10 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
+  # OrganBaseEyes only sets layers; species eyes get group via External parent.
+  - type: VisualOrganMarkings
+    markingData:
+      group: None
+      layers:
+      - Eyes
   # end-backmen: animal-eyes-nubody

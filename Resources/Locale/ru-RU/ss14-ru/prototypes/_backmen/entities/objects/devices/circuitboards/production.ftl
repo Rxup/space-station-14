@@ -1,9 +1,6 @@
 ent-MetempsychoticMachineCircuitboard = метемпсихотическая машина (машинная плата)
     .desc = Печатная плата машины для клонирующей капсулы.
     .suffix = { ent-BaseMachineCircuitboard.suffix }
-ent-MedicalBiofabMachineBoard = плата медицинского биофаба
-    .desc = Печатная плата машины для медицинского биофаба.
-    .suffix = { ent-BaseMachineCircuitboard.suffix }
 ent-GunsmithTechFabCircuitboard = плата оружейного техфаба
     .desc = Печатная плата машины для оружейного техфаба.
     .suffix = { ent-BaseMachineCircuitboard.suffix }

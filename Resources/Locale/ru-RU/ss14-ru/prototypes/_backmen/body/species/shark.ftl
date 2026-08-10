@@ -1,9 +1,5 @@
 ent-AppearanceShark = внешность акулы
     .desc = { ent-BaseSpeciesAppearance.desc }
-ent-MobPlaf = Урист МакАкула
-    .desc = { ent-AppearanceShark.desc }
-ent-MobPlafDummy = Урист МакАкула
-    .desc = Манекен акулы, используемый при создании персонажа.
 ent-OrganShark = { ent-OrganBaseOrganic }
     .desc = { ent-OrganBaseOrganic.desc }
     .suffix = shark
