@@ -79,11 +79,15 @@ public abstract partial class SharedPsionicAbilitiesSystem : EntitySystem
     private void OnRemoved(Entity<PsionicInsulationComponent> ent, ref StatusEffectRemovedEvent args)
     {
         SetPsionicsThroughEligibility(args.Target);
+        var ev = new PsionicInsulationStatusChangedEvent(args.Target, ent.Owner, false);
+        RaiseLocalEvent(args.Target, ref ev, true);
     }
 
     private void OnApplied(Entity<PsionicInsulationComponent> ent, ref StatusEffectAppliedEvent args)
     {
         SetPsionicsThroughEligibility(args.Target);
+        var ev = new PsionicInsulationStatusChangedEvent(args.Target, ent.Owner, true);
+        RaiseLocalEvent(args.Target, ref ev, true);
     }
 
     private void OnTryUsePower(Entity<PsiActionComponent> ent, ref ActionAttemptEvent args)

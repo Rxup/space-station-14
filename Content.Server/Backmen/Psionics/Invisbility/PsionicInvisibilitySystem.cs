@@ -31,9 +31,9 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
         base.Initialize();
         // Masking
         SubscribeLocalEvent<PotentialPsionicComponent, ComponentInit>(OnInit);
-        // Primary path: insulation is on the status-effect entity, Applied/Removed carry the real mob.
-        SubscribeLocalEvent<PsionicInsulationComponent, StatusEffectAppliedEvent>(OnInsulApplied);
-        SubscribeLocalEvent<PsionicInsulationComponent, StatusEffectRemovedEvent>(OnInsulRemoved);
+        // StatusEffect Applied/Removed for insulation are owned by SharedPsionicAbilitiesSystem —
+        // react via PsionicInsulationStatusChangedEvent to avoid duplicate (Comp, Event) subscriptions.
+        SubscribeLocalEvent<PsionicInsulationStatusChangedEvent>(OnInsulStatusChanged);
         // Fallback: direct component on a mob, or AppliedTo already set at ComponentInit.
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentInit>(OnInsulInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentShutdown>(OnInsulShutdown);
@@ -88,11 +88,15 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
         }
 
         // Entities with PsionicInsulationComponent can see psionic invisibility
-        if (_statusEffects.TryEffectsWithComp<PsionicInsulationComponent>(args.Entity, out var insul))
+        // (status-effect entity and/or component placed directly on the mob — admin abuse fallback).
+        if (_statusEffects.TryEffectsWithComp<PsionicInsulationComponent>(args.Entity, out var insul) &&
+            !insul.All(effect => effect.Comp1.LifeStage >= ComponentLifeStage.Stopping))
         {
-            if (insul.All(effect => effect.Comp1.LifeStage >= ComponentLifeStage.Stopping))
-                return;
-
+            args.VisibilityMask |= (int)VisibilityFlags.PsionicInvisibility;
+        }
+        else if (TryComp(args.Entity, out PsionicInsulationComponent? directInsul) &&
+                 directInsul.LifeStage < ComponentLifeStage.Stopping)
+        {
             args.VisibilityMask |= (int)VisibilityFlags.PsionicInvisibility;
         }
     }
@@ -105,15 +109,15 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
     private static readonly ProtoId<NpcFactionPrototype> PsionicInterloper = "PsionicInterloper";
     private static readonly ProtoId<NpcFactionPrototype> GlimmerMonster = "GlimmerMonster";
 
-    private void OnInsulApplied(Entity<PsionicInsulationComponent> ent, ref StatusEffectAppliedEvent args)
+    private void OnInsulStatusChanged(ref PsionicInsulationStatusChangedEvent args)
     {
-        ApplyInsulation(args.Target, ent.Comp);
-    }
+        if (!TryComp(args.Effect, out PsionicInsulationComponent? insul))
+            return;
 
-    private void OnInsulRemoved(Entity<PsionicInsulationComponent> ent, ref StatusEffectRemovedEvent args)
-    {
-        // Clears stale PsionicInvisibility eye bit after QueueDel (tinfoil unequip / cryptobiolin / anti-psi).
-        RemoveInsulation(args.Target, ent.Comp);
+        if (args.Applied)
+            ApplyInsulation(args.Target, insul);
+        else
+            RemoveInsulation(args.Target, insul);
     }
 
     private void OnInsulInit(EntityUid uid, PsionicInsulationComponent component, ComponentInit args)
@@ -209,6 +213,10 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
 
     private void OnInvisRemoved(Entity<PsionicallyInvisibleComponent> ent, ref StatusEffectRemovedEvent args)
     {
+        // Another status effect (e.g. web camouflage vs power invis) may still carry the component.
+        if (_statusEffects.HasEffectComp<PsionicallyInvisibleComponent>(args.Target))
+            return;
+
         RemovePsionicInvisLayer(args.Target);
     }
 

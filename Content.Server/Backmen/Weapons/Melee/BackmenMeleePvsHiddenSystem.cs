@@ -24,7 +24,10 @@ public sealed partial class BackmenMeleePvsHiddenSystem : EntitySystem
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private EntityQuery<MetaDataComponent> _metaQuery = default!;
+
+    private readonly HashSet<Entity<VisibilityComponent>> _nearbyVis = new();
 
     public override void Initialize()
     {
@@ -49,6 +52,10 @@ public sealed partial class BackmenMeleePvsHiddenSystem : EntitySystem
             if (args.Entities.Contains(hit))
                 continue;
 
+            if (!_metaQuery.TryGetComponent(hit, out var meta) ||
+                (meta.VisibilityMask & HiddenVisMask) == 0)
+                continue;
+
             if (args.Entities.Count >= SharedMeleeWeaponSystem.MaxTargets)
                 break;
 
@@ -58,15 +65,16 @@ public sealed partial class BackmenMeleePvsHiddenSystem : EntitySystem
 
     private bool AnyHiddenNearby(EntityUid user, float range)
     {
-        foreach (var ent in _lookup.GetEntitiesInRange(user, range))
+        _nearbyVis.Clear();
+        var mapPos = _transform.GetMapCoordinates(user);
+        _lookup.GetEntitiesInRange(mapPos, range, _nearbyVis);
+
+        foreach (var (ent, vis) in _nearbyVis)
         {
             if (ent == user)
                 continue;
 
-            if (!_metaQuery.TryGetComponent(ent, out var meta))
-                continue;
-
-            if ((meta.VisibilityMask & HiddenVisMask) != 0)
+            if ((vis.Layer & HiddenVisMask) != 0)
                 return true;
         }
 
