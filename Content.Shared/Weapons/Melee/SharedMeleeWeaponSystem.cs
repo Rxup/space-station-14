@@ -5,6 +5,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Events;
 using Content.Shared.Administration.Components;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Backmen.Weapons.Melee; // backmen: melee-pvs-hidden
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -600,6 +601,24 @@ public abstract partial class SharedMeleeWeaponSystem : EntitySystem
         var damage = GetDamage(meleeUid, user, component);
         var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
         var entities = GetEntityList(ev.Entities);
+
+        // start-backmen: melee-pvs-hidden
+        if (_netMan.IsServer)
+        {
+            var resolveEv = new MeleeResolveHeavyTargetsEvent(
+                user,
+                meleeUid,
+                GetCoordinates(ev.Coordinates),
+                component.Range,
+                component.Angle,
+                userPos,
+                direction,
+                userXform.MapID,
+                session,
+                entities);
+            RaiseLocalEvent(user, ref resolveEv, true);
+        }
+        // end-backmen: melee-pvs-hidden
 
         if (entities.Count == 0)
         {

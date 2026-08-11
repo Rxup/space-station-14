@@ -28,6 +28,41 @@
   - type: StatusEffectAlert
     alert: PsionicAllSee
 
+- type: alert
+  id: PsionicInvisibility
+  icons: [ /Textures/Backmen/Interface/VerbIcons/psionic_invisibility.png ]
+  name: alerts-PsionicInvisibility-name
+  description: alerts-PsionicInvisibility-desc
+  clickEvent: !type:CancelPsionicInvisibilityAlertEvent
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectPsionicInvisibility
+  name: psionic invisibility
+  components:
+  - type: PsionicInvisibilityUsed
+  - type: PsionicallyInvisible
+  - type: StatusEffectAlert
+    alert: PsionicInvisibility
+    showDuration: false
+
+- type: alert
+  id: PsionicWebCamouflage
+  icons: [ /Textures/Backmen/Interface/VerbIcons/psionic_invisibility.png ]
+  name: alerts-PsionicWebCamouflage-name
+  description: alerts-PsionicWebCamouflage-desc
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectPsionicWebCamouflage
+  name: psionic web camouflage
+  components:
+  - type: PsionicallyInvisible
+  - type: PsionicWebCamouflage
+  - type: StatusEffectAlert
+    alert: PsionicWebCamouflage
+    showDuration: false
+
 - type: entity
   parent: MobStatusEffectBase
   id: StatusEffectGrantMetapsionicPower

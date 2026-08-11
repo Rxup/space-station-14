@@ -1,5 +1,7 @@
 using Content.Shared.Backmen.Eye.NightVision.Systems;
 using Content.Shared.Body.Events;
+using Content.Shared.Backmen.Surgery.Wounds;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Eye.Blinding.Systems;
@@ -43,6 +45,8 @@ public sealed partial class StatusEffectsSystem
 
         SubscribeLocalEvent<StatusEffectContainerComponent, BleedModifierEvent>(RefRelayStatusEffectEvent);
         SubscribeLocalEvent<StatusEffectContainerComponent, DamageModifyEvent>(RelayStatusEffectEvent);
+        SubscribeLocalEvent<StatusEffectContainerComponent, DamageChangedEvent>(RelayStatusEffectEvent); // backmen: psionic invis
+        SubscribeLocalEvent<StatusEffectContainerComponent, WoundsChangedEvent>(RefRelayStatusEffectEvent); // backmen: psionic invis
 
         SubscribeLocalEvent<StatusEffectContainerComponent, CanVisionAttemptEvent>(RelayStatusEffectEvent); // backmen
         SubscribeLocalEvent<StatusEffectContainerComponent, MobStateChangedEvent>(RefRelayStatusEffectEvent); // backmen

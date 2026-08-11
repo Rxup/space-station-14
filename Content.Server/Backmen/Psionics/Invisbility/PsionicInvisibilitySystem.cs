@@ -8,6 +8,8 @@ using Content.Shared.Ghost;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
@@ -20,30 +22,42 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
     [Dependency] private PsionicInvisibilityPowerSystem _invisSystem = default!;
     [Dependency] private NpcFactionSystem _npcFactonSystem = default!;
     [Dependency] private SharedEyeSystem _sharedEyeSystem = default!;
-    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+
+    private static readonly EntProtoId StatusEffectPsionicInvisibility = "StatusEffectPsionicInvisibility";
 
     public override void Initialize()
     {
         base.Initialize();
         // Masking
         SubscribeLocalEvent<PotentialPsionicComponent, ComponentInit>(OnInit);
+        // StatusEffect Applied/Removed for insulation are owned by SharedPsionicAbilitiesSystem —
+        // react via PsionicInsulationStatusChangedEvent to avoid duplicate (Comp, Event) subscriptions.
+        SubscribeLocalEvent<PsionicInsulationStatusChangedEvent>(OnInsulStatusChanged);
+        // Fallback: direct component on a mob, or AppliedTo already set at ComponentInit.
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentInit>(OnInsulInit);
         SubscribeLocalEvent<PsionicInsulationComponent, ComponentShutdown>(OnInsulShutdown);
 
         // Visibility mask event
         SubscribeLocalEvent<GetVisMaskEvent>(OnGetVisMask);
-        SubscribeLocalEvent<PsionicallyInvisibleComponent, GetVisMaskEvent>(OnGetVisMask2);
+        // Fallback: component directly on the mob (admin abuse / web contacts)
+        SubscribeLocalEvent<PsionicallyInvisibleComponent, GetVisMaskEvent>(OnGetVisMaskDirect);
 
-        // Layer
+        // Layer: primary path applies to StatusEffect AppliedTo; fallback keeps ComponentInit/Shutdown.
+        SubscribeLocalEvent<PsionicallyInvisibleComponent, StatusEffectAppliedEvent>(OnInvisApplied);
+        SubscribeLocalEvent<PsionicallyInvisibleComponent, StatusEffectRemovedEvent>(OnInvisRemoved);
         SubscribeLocalEvent<PsionicallyInvisibleComponent, ComponentInit>(OnInvisInit);
         SubscribeLocalEvent<PsionicallyInvisibleComponent, ComponentShutdown>(OnInvisShutdown);
 
-        // PVS Stuff
-        SubscribeLocalEvent<PsionicallyInvisibleComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
-        SubscribeLocalEvent<PsionicallyInvisibleComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
+        // PVS: dirty inserted/removed entities when the container owner is psionically invisible
+        SubscribeLocalEvent<EntInsertedIntoContainerMessage>(OnEntInserted);
+        SubscribeLocalEvent<EntRemovedFromContainerMessage>(OnEntRemoved);
     }
 
-    private void OnGetVisMask2(Entity<PsionicallyInvisibleComponent> ent, ref GetVisMaskEvent args)
+    /// <summary>
+    /// Fallback when <see cref="PsionicallyInvisibleComponent"/> is on the eye entity itself.
+    /// </summary>
+    private void OnGetVisMaskDirect(Entity<PsionicallyInvisibleComponent> ent, ref GetVisMaskEvent args)
     {
         if (ent.Comp.LifeStage > ComponentLifeStage.Running)
             return;
@@ -66,14 +80,23 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
             return;
         }
 
-        // Entities with PsionicInsulationComponent can see psionic invisibility
-        if (_statusEffects.TryEffectsWithComp<PsionicInsulationComponent>(args.Entity, out var insul))
+        // Self is invisible via status effect (component lives on the effect entity)
+        if (_statusEffects.HasEffectComp<PsionicallyInvisibleComponent>(args.Entity))
         {
-            if (insul.Any(effect => effect.Comp1.LifeStage >= ComponentLifeStage.Stopping))
-            {
-                return;
-            }
+            args.VisibilityMask |= (int)VisibilityFlags.PsionicInvisibility;
+            return;
+        }
 
+        // Entities with PsionicInsulationComponent can see psionic invisibility
+        // (status-effect entity and/or component placed directly on the mob — admin abuse fallback).
+        if (_statusEffects.TryEffectsWithComp<PsionicInsulationComponent>(args.Entity, out var insul) &&
+            !insul.All(effect => effect.Comp1.LifeStage >= ComponentLifeStage.Stopping))
+        {
+            args.VisibilityMask |= (int)VisibilityFlags.PsionicInvisibility;
+        }
+        else if (TryComp(args.Entity, out PsionicInsulationComponent? directInsul) &&
+                 directInsul.LifeStage < ComponentLifeStage.Stopping)
+        {
             args.VisibilityMask |= (int)VisibilityFlags.PsionicInvisibility;
         }
     }
@@ -86,34 +109,84 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
     private static readonly ProtoId<NpcFactionPrototype> PsionicInterloper = "PsionicInterloper";
     private static readonly ProtoId<NpcFactionPrototype> GlimmerMonster = "GlimmerMonster";
 
+    private void OnInsulStatusChanged(ref PsionicInsulationStatusChangedEvent args)
+    {
+        if (!TryComp(args.Effect, out PsionicInsulationComponent? insul))
+            return;
+
+        if (args.Applied)
+            ApplyInsulation(args.Target, insul);
+        else
+            RemoveInsulation(args.Target, insul);
+    }
+
     private void OnInsulInit(EntityUid uid, PsionicInsulationComponent component, ComponentInit args)
+    {
+        // Status-effect spawn usually has AppliedTo unset yet — StatusEffectApplied handles that.
+        if (!TryResolveInsulationTarget(uid, out var target))
+            return;
+
+        ApplyInsulation(target, component);
+    }
+
+    private void OnInsulShutdown(EntityUid uid, PsionicInsulationComponent component, ComponentShutdown args)
+    {
+        if (!TryResolveInsulationTarget(uid, out var target))
+            return;
+
+        RemoveInsulation(target, component);
+    }
+
+    /// <summary>
+    /// Status-effect entity → AppliedTo mob. Direct component on a mob → uid itself.
+    /// </summary>
+    private bool TryResolveInsulationTarget(EntityUid uid, out EntityUid target)
+    {
+        if (TryComp<StatusEffectComponent>(uid, out var status))
+        {
+            if (status.AppliedTo is not { } applied)
+            {
+                target = default;
+                return false;
+            }
+
+            target = applied;
+            return true;
+        }
+
+        target = uid;
+        return true;
+    }
+
+    private void ApplyInsulation(EntityUid uid, PsionicInsulationComponent component)
     {
         if (!HasComp<PotentialPsionicComponent>(uid))
             return;
 
-        if (HasComp<PsionicInvisibilityUsedComponent>(uid))
-            RemCompDeferred<PsionicInvisibilityUsedComponent>(uid);
+        if (HasComp<PsionicInvisibilityUsedComponent>(uid) ||
+            _statusEffects.HasStatusEffect(uid, StatusEffectPsionicInvisibility))
+            _invisSystem.TryCancelInvisibility(uid);
 
         if (TryComp<NpcFactionMemberComponent>(uid, out var npcFactionMemberComponent))
         {
-            Entity<NpcFactionMemberComponent?> ent = (uid, npcFactionMemberComponent);
-            if (_npcFactonSystem.IsMember(ent, PsionicInterloper))
+            Entity<NpcFactionMemberComponent?> factionEnt = (uid, npcFactionMemberComponent);
+            if (_npcFactonSystem.IsMember(factionEnt, PsionicInterloper))
             {
                 component.SuppressedFactions.Add(PsionicInterloper);
-                _npcFactonSystem.RemoveFaction(ent, PsionicInterloper);
+                _npcFactonSystem.RemoveFaction(factionEnt, PsionicInterloper);
             }
 
-            if (_npcFactonSystem.IsMember(ent, GlimmerMonster))
+            if (_npcFactonSystem.IsMember(factionEnt, GlimmerMonster))
             {
                 component.SuppressedFactions.Add(GlimmerMonster);
-                _npcFactonSystem.RemoveFaction(ent, GlimmerMonster);
+                _npcFactonSystem.RemoveFaction(factionEnt, GlimmerMonster);
             }
         }
 
         _sharedEyeSystem.RefreshVisibilityMask(uid);
     }
 
-    private void OnInsulShutdown(EntityUid uid, PsionicInsulationComponent component, ComponentShutdown args)
+    private void RemoveInsulation(EntityUid uid, PsionicInsulationComponent component)
     {
         if (!HasComp<PotentialPsionicComponent>(uid))
             return;
@@ -133,7 +206,39 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
         component.SuppressedFactions.Clear();
     }
 
+    private void OnInvisApplied(Entity<PsionicallyInvisibleComponent> ent, ref StatusEffectAppliedEvent args)
+    {
+        ApplyPsionicInvisLayer(args.Target);
+    }
+
+    private void OnInvisRemoved(Entity<PsionicallyInvisibleComponent> ent, ref StatusEffectRemovedEvent args)
+    {
+        // Another status effect (e.g. web camouflage vs power invis) may still carry the component.
+        if (_statusEffects.HasEffectComp<PsionicallyInvisibleComponent>(args.Target))
+            return;
+
+        RemovePsionicInvisLayer(args.Target);
+    }
+
     private void OnInvisInit(EntityUid uid, PsionicallyInvisibleComponent component, ComponentInit args)
+    {
+        // Status-effect spawn: AppliedTo may be unset; StatusEffectApplied handles the real target.
+        if (HasComp<StatusEffectComponent>(uid))
+            return;
+
+        // Fallback: admin abuse / spider-web contacts / map prototypes put the component on the mob.
+        ApplyPsionicInvisLayer(uid);
+    }
+
+    private void OnInvisShutdown(EntityUid uid, PsionicallyInvisibleComponent component, ComponentShutdown args)
+    {
+        if (HasComp<StatusEffectComponent>(uid))
+            return;
+
+        RemovePsionicInvisLayer(uid);
+    }
+
+    private void ApplyPsionicInvisLayer(EntityUid uid)
     {
         Entity<VisibilityComponent?> vis = (uid, EnsureComp<VisibilityComponent>(uid));
         _visibilitySystem.AddLayer(vis, (int) VisibilityFlags.PsionicInvisibility, false);
@@ -143,8 +248,7 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
         _sharedEyeSystem.RefreshVisibilityMask(uid);
     }
 
-
-    private void OnInvisShutdown(EntityUid uid, PsionicallyInvisibleComponent component, ComponentShutdown args)
+    private void RemovePsionicInvisLayer(EntityUid uid)
     {
         if (TryComp<VisibilityComponent>(uid, out var visibility))
         {
@@ -153,15 +257,29 @@ public sealed partial class PsionicInvisibilitySystem : EntitySystem
             _visibilitySystem.AddLayer(vis, (int) VisibilityFlags.Normal, false);
             _visibilitySystem.RefreshVisibility(uid, visibilityComponent: visibility);
         }
+
         _sharedEyeSystem.RefreshVisibilityMask(uid);
     }
-    private void OnEntInserted(EntityUid uid, PsionicallyInvisibleComponent component, EntInsertedIntoContainerMessage args)
+
+    private bool IsPsionicallyInvisible(EntityUid uid)
     {
+        return HasComp<PsionicallyInvisibleComponent>(uid) ||
+               _statusEffects.HasEffectComp<PsionicallyInvisibleComponent>(uid);
+    }
+
+    private void OnEntInserted(EntInsertedIntoContainerMessage args)
+    {
+        if (!IsPsionicallyInvisible(args.Container.Owner))
+            return;
+
         DirtyEntity(args.Entity);
     }
 
-    private void OnEntRemoved(EntityUid uid, PsionicallyInvisibleComponent component, EntRemovedFromContainerMessage args)
+    private void OnEntRemoved(EntRemovedFromContainerMessage args)
     {
+        if (!IsPsionicallyInvisible(args.Container.Owner))
+            return;
+
         DirtyEntity(args.Entity);
     }
 }

@@ -4,6 +4,7 @@ using Content.Shared.Backmen.Psionics.Events;
 using Content.Shared.Backmen.Species.Shadowkin.Components;
 using Content.Shared.Eye;
 using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 
@@ -51,14 +52,19 @@ public sealed partial class MetapsionicPowerSystem : StatusEffectGrantedPowerSys
 
     private void OnRemoveCanSeeAll(Entity<MetapsionicVisibleComponent> ent, ref ComponentShutdown args)
     {
-        // Visibility mask will be recalculated automatically by GetVisMaskEvent handler
-        _eye.RefreshVisibilityMask(ent.Owner);
+        // Component may live on the status-effect entity; refresh the affected mob's eye.
+        if (TryComp<StatusEffectComponent>(ent.Owner, out var status) && status.AppliedTo is { } target)
+            _eye.RefreshVisibilityMask(target);
+        else
+            _eye.RefreshVisibilityMask(ent.Owner);
     }
 
     private void OnAddCanSeeAll(Entity<MetapsionicVisibleComponent> ent, ref ComponentStartup args)
     {
-        // Visibility mask will be recalculated automatically by GetVisMaskEvent handler
-        _eye.RefreshVisibilityMask(ent.Owner);
+        if (TryComp<StatusEffectComponent>(ent.Owner, out var status) && status.AppliedTo is { } target)
+            _eye.RefreshVisibilityMask(target);
+        else
+            _eye.RefreshVisibilityMask(ent.Owner);
     }
 
     private static readonly EntProtoId ActionMetapsionicPulse = "ActionMetapsionicPulse";
