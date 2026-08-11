@@ -1,8 +1,9 @@
 - type: entity
-  name: sink
+  parent: [SolutionTank, SolutionHuge]
   id: SinkEmpty
-  suffix: Empty
+  name: sink
   description: The faucets have been tightened to the maximum possible torque but are still known to drip.
+  suffix: Empty
   placement:
     mode: SnapgridCenter
   components:
@@ -20,12 +21,9 @@
     maxFillLevels: 1
     fillBaseName: sink-fill-
     solutionName: drainBuffer
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      drainBuffer:
-        maxVol: 100
-      tank:
-        maxVol: 500
+    - SolutionDrainNormal
   - type: SolutionRegeneration
     generated:
       reagents:
@@ -46,12 +44,6 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 80
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
         damage: 40
       behaviors:
       - !type:DoActsBehavior
@@ -68,36 +60,32 @@
 
 
 - type: entity
-  name: sink
-  id: Sink
   parent: SinkEmpty
+  id: Sink
   suffix: Water
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drainBuffer:
-        maxVol: 200
-      tank:
-        reagents:
-        - ReagentId: Water
-          Quantity: 500
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Water
+        Quantity: 480
 
 - type: entity
-  name: wide sink
-  id: SinkWide
   parent: Sink
+  id: SinkWide
+  name: wide sink
   components:
-  - type: Sprite
-    sprite: Structures/Furniture/sink.rsi
-    layers:
-    - state: sink_wide
-    - map: [ "enum.SolutionContainerLayers.Fill" ]
-      state: sink_wide-fill-1
-      visible: false
-  - type: SolutionContainerVisuals
-    maxFillLevels: 1
-    fillBaseName: sink_wide-fill-
-    solutionName: drainBuffer
+    - type: Sprite
+      sprite: Structures/Furniture/sink.rsi
+      layers:
+        - state: sink_wide
+        - map: [ "enum.SolutionContainerLayers.Fill" ]
+          state: sink_wide-fill-1
+          visible: false
+    - type: SolutionContainerVisuals
+      maxFillLevels: 1
+      fillBaseName: sink_wide-fill-
+      solutionName: drainBuffer
 
 #Stemless Sink
 
@@ -109,10 +97,10 @@
   - type: Sprite
     sprite: Structures/Furniture/sink.rsi
     layers:
-    - state: sink
-    - map: [ "enum.SolutionContainerLayers.Fill" ]
-      state: sink-fill-1
-      visible: false
+      - state: sink
+      - map: [ "enum.SolutionContainerLayers.Fill" ]
+        state: sink-fill-1
+        visible: false
 
 - type: entity
   name: sink
@@ -120,11 +108,8 @@
   parent: SinkStemless
   suffix: Water
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drainBuffer:
-        maxVol: 100
-      tank:
-        reagents:
-        - ReagentId: Water
-          Quantity: 500
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Water
+        Quantity: 480

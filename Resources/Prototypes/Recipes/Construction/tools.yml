@@ -7,6 +7,14 @@
   objectType: Item
 
 - type: construction
+  id: MakeshiftCentrifuge
+  graph: MakeshiftCentrifuge
+  startNode: start
+  targetNode: makeshiftCentrifuge
+  category: construction-category-tools
+  objectType: Item
+
+- type: construction
   id: LogicGate
   graph: LogicGate
   startNode: start

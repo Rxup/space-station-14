@@ -10,4 +10,5 @@ public static class RevenantStatusEffects
     public static readonly EntProtoId Corporeal = "StatusEffectCorporeal";
     public static readonly EntProtoId Stasis = "StatusEffectStasis";
     public static readonly EntProtoId EssenceRegen = "StatusEffectEssenceRegen";
+    public static readonly EntProtoId Haunted = "StatusEffectHaunted";
 }

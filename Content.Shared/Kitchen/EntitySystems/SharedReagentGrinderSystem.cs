@@ -296,6 +296,16 @@ public abstract partial class SharedReagentGrinderSystem : EntitySystem
             if (solution is null)
                 continue;
 
+            // start-backmen: revenant-grind
+            if (program == GrinderProgram.Grind)
+            {
+                var grindEv = new GrindAttemptEvent(ent.Owner, ent.Comp.InputContainer.ContainedEntities.ToList());
+                RaiseLocalEvent(item, grindEv);
+                if (grindEv.Cancelled)
+                    continue;
+            }
+            // end-backmen: revenant-grind
+
             // Delete the item or reduce its stack size.
             if (TryComp<StackComponent>(item, out var stack))
             {
@@ -401,3 +411,15 @@ public abstract partial class SharedReagentGrinderSystem : EntitySystem
         return ent.Comp.JuiceSolution is not null;
     }
 }
+
+// start-backmen: revenant-grind
+/// <summary>
+/// Raised on a grindable item before it is destroyed by a reagent grinder.
+/// Cancel to skip grinding that item (e.g. revenant ectoplasm without salt).
+/// </summary>
+public sealed class GrindAttemptEvent(EntityUid grinder, IReadOnlyList<EntityUid> contents) : CancellableEntityEventArgs
+{
+    public EntityUid Grinder = grinder;
+    public IReadOnlyList<EntityUid> Contents = contents;
+}
+// end-backmen: revenant-grind

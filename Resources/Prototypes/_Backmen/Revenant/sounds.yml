@@ -6,6 +6,8 @@
   - /Audio/_Backmen/Effects/Revenant/haunt2.ogg
   - /Audio/_Backmen/Effects/Revenant/haunt3.ogg
   - /Audio/_Backmen/Effects/Revenant/haunt4.ogg
+  - /Audio/_Backmen/Effects/Revenant/screamer0.ogg
+  - /Audio/_Backmen/Effects/Revenant/screamer1.ogg
 
 - type: speechSounds
   id: Plushie

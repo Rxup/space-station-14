@@ -146,6 +146,16 @@
       reagents:
       - ReagentId: Fresium
         Quantity: 15
+  # start-backmen: revenant-stasis
+  # Prevent scoop/spike kill bypass — only grind with salt (or bible/craft) should destroy stasis ectoplasm.
+  - type: ScoopableSolution
+    solution: food
+    delete: false
+  - type: SolutionSpiker
+    sourceSolution: food
+    ignoreEmpty: true
+    delete: false
+  # end-backmen: revenant-stasis
   - type: GuideHelp
     guides:
     - MinorAntagonists

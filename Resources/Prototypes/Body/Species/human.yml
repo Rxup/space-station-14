@@ -51,6 +51,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceHuman
+  categories: [ HideSpawnMenu ]
   name: human appearance
   components:
   - type: Inventory
@@ -99,7 +100,7 @@
 - type: entity
   parent:
   - AppearanceHuman
-  - BaseSpeciesMobSurgery
+  - BaseSpeciesMobSurgery # backmen: surgery
   id: MobHuman
   name: Urist McHands
   components:
@@ -116,12 +117,6 @@
     spawned:
     - id: FoodMeatHuman
       amount: 5
-
-- type: entity
-  parent: MobHuman
-  id: MobHumanDummy
-  categories: [ HideSpawnMenu ]
-  description: A dummy human meant to be used in character setup.
 
 - type: entity
   parent: OrganBaseOrganic
@@ -167,19 +162,10 @@
   id: OrganHumanHead
   components:
   - type: VisualOrganMarkings
-    markingData:
-      group: Human
-      layers:
-      - Head
-      - Hair
-      - FacialHair
-      - Snout
-      - SnoutCover
-      - HeadSide
-      - HeadTop
     hideableLayers:
     - enum.HumanoidVisualLayers.Hair
     - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.FacialHair
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganHumanExternal ]

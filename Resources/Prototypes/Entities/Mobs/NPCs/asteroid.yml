@@ -19,8 +19,6 @@
   - type: StatusEffects
     allowed:
     - Electrocution
-    - TemporaryBlindness
-    - RadiationProtection
     - Adrenaline
   - type: StandingState
   - type: Tag
@@ -29,7 +27,7 @@
 
 - type: entity
   id: MobGoliath
-  parent: [ BaseMobAsteroid, MobBloodstream ]
+  parent: [ BaseMobAsteroid, MobBloodstream, BaseSlicingRefinable, BaseMobDestructible ]
   name: goliath
   description: A massive beast that uses long tentacles to ensnare its prey, threatening them is not advised under any conditions.
   components:
@@ -55,7 +53,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      350: Dead # Goob - 9 PKA shots, 4 crusher destabilised hits
+      150: Dead
   - type: MeleeWeapon
     soundHit:
       path: "/Audio/Weapons/smash.ogg"
@@ -64,9 +62,8 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Blunt: 35
-        Slash: 15
-    range: 1.12 # Goob - Allows kinetic crushers to fight them without taking guaranteed damage.
+        Slash: 10
+        Piercing: 10
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -89,14 +86,13 @@
     - Goliath
     - FootstepSound
   - type: NoSlip
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatGoliath
       amount: 3
     - id: MaterialGoliathHide1
-      amount: 1
+      amount: 3
   - type: Fauna # Lavaland Change
-
 - type: entity
   parent: BaseAction
   id: ActionGoliathTentacle
@@ -105,15 +101,17 @@
   components:
   - type: Action
     raiseOnUser: true
-    icon:
-      sprite: Mobs/Aliens/Asteroid/goliath.rsi
-      state: goliath_tentacle_spawn
-    iconOn:
-      sprite: Mobs/Aliens/Asteroid/goliath.rsi
-      state: goliath_tentacle_wiggle
     sound:
       path: "/Audio/Weapons/slash.ogg"
     useDelay: 8
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/goliath.rsi
+    layers:
+    - state: goliath_tentacle_spawn
+      map: ["enum.ActionVisuals.Icon"]
+    - state: goliath_tentacle_wiggle
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
   - type: TargetAction
     range: 10
   - type: WorldTargetAction
@@ -133,10 +131,10 @@
     sprite: Mobs/Aliens/Asteroid/goliath.rsi
     layers:
     - state: goliath_tentacle_wiggle
-  - type: StunOnContact
-    blacklist:
-      tags:
-      - Goliath
+  - type: StunOnCollide
+    stunAmount: 1
+    knockdownAmount: 5
+    fixture: fix
   - type: Fixtures
     fixtures:
       fix:
@@ -193,7 +191,7 @@
 
 - type: entity
   id: MobHivelord
-  parent: [ BaseMobAsteroid, FlyingMobBase ]
+  parent: [ BaseMobAsteroid, FlyingMobBase, BaseSlicingRefinable, BaseMobDestructible ]
   name: hivelord
   description: A truly alien creature, it is a mass of unknown organic material, constantly fluctuating. When attacking, pieces of it split off and attack in tandem with the original.
   components:
@@ -247,11 +245,10 @@
         9
       NavSmash: !type:Bool
         true
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodHivelordRemains
   - type: Fauna # Lavaland Change
-
 - type: entity
   id: MobHivelordBrood
   parent: [ BaseMobAsteroid, FlyingMobBase ]
@@ -311,13 +308,11 @@
   name: hivelord remains
   description: All that remains of a hivelord, it seems to be what allows it to break pieces of itself off without being hurt... its healing properties will soon become inert if not used quickly. Try not to think about what you're eating.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: Rororium
-          Quantity: 5
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Rororium
+        Quantity: 5
   - type: Sprite
     sprite: Objects/Consumable/Food/rorocore.rsi
     state: boiled
@@ -361,7 +356,7 @@
 
 - type: entity
   id: MobBasilisk
-  parent: [ BaseMobAsteroid, MobBloodstream ]
+  parent: [ BaseMobAsteroid, MobBloodstream, BaseSlicingRefinable, BaseMobDestructible ]
   name: basilisk
   description: A territorial beast, covered in a thick shell that absorbs energy. Its stare causes victims to freeze from the inside.
   components:
@@ -429,8 +424,8 @@
     reflectProb: 1
     reflects:
     - Energy
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: DiamondOre1
       amount: 1
       maxAmount: 3

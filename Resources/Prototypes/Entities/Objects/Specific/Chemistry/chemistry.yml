@@ -315,7 +315,7 @@
 
 - type: entity
   name: bluespace beaker
-  parent: [SolutionGinormous, BaseBeakerMetallic]
+  parent: [SolutionGinormous, BaseBeakerMetallic] # Bluespace items hold 8x the solution of regular items (240u a tile)
   description: Powered by experimental bluespace technology.
   id: BluespaceBeaker
   components:
@@ -327,6 +327,8 @@
       - state: beakerbluespace
   - type: SolutionContainerVisuals
     maxFillLevels: 0
+  - type: Item
+    size: Normal
 
 - type: entity
   name: dropper
@@ -392,15 +394,11 @@
 
 - type: entity
   name: syringe
-  parent: BaseItem
+  parent: [SolutionInjector, SolutionToolTiny, BaseItem]
   description: Used to draw blood samples from mobs, or to inject them with reagents.
   id: BaseSyringe
   abstract: true
   components:
-  - type: Solution
-    id: injector
-    solution:
-      maxVol: 15
   - type: Sprite
     sprite: Objects/Specific/Chemistry/syringe.rsi
     layers:
@@ -448,14 +446,10 @@
 
 - type: entity
   name: mini syringe
-  parent: Syringe
+  parent: [SolutionToolVeryTiny, Syringe]
   description: A regular syringe, reshaped to fit inside of a gun.
   id: MiniSyringe
   components:
-  - type: Solution
-    id: injector
-    solution:
-      maxVol: 7.5
   - type: Sprite
     sprite: Objects/Specific/Chemistry/syringe.rsi
     layers:
@@ -520,14 +514,10 @@
 
 - type: entity
   id: SyringeBluespace
-  parent: BaseSyringe
+  parent: [SolutionToolLarge, BaseSyringe]
   name: bluespace syringe
   description: Injecting with advanced bluespace technology.
   components:
-  - type: Solution
-    id: injector
-    solution:
-      maxVol: 120
   - type: Sprite
     layers:
     - state: syringe1
@@ -553,14 +543,10 @@
 
 - type: entity
   id: SyringeCryostasis
-  parent: BaseSyringe
+  parent: [SolutionCryo, BaseSyringe]
   name: cryostasis syringe
   description: A syringe used to contain chemicals or solutions without reactions.
   components:
-  - type: Solution
-    id: injector
-    solution:
-      canReact: false
   - type: Sprite
     layers:
     - state: syringe1
@@ -578,15 +564,10 @@
 
 - type: entity
   name: pill
-  parent: BaseItem
+  parent: [SolutionPill, BaseItem]
   id: Pill
   description: It's not a suppository.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        canReact: false
   - type: Sprite
     sprite: Objects/Specific/Chemistry/pills.rsi
     state: pill
@@ -626,6 +607,16 @@
   - type: Tag
     tags:
     - Pill
+
+- type: entity
+  abstract: true
+  parent: [SolutionFood, SolutionTiny]
+  id: SolutionPill
+  components:
+  - type: Solution
+    solution:
+      canReact: false
+      maxVol: 20
 
 - type: entity
   name: pill canister

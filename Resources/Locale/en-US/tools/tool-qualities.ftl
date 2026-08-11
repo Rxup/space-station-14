@@ -41,3 +41,6 @@ tool-quality-advanced-prying-tool-name = Axe
 
 tool-quality-brushing-name = Brushing
 tool-quality-brushing-tool-name = Wire Brush
+
+tool-quality-shearing-name = Shearing
+tool-quality-shearing-tool-name = Wirecutter

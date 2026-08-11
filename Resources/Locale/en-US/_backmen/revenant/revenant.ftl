@@ -11,6 +11,7 @@ revenant-exorcise-success = {$revenant}'s energy fades away as {$user} finishes 
 revenant-revealed-default = {$revealer} weakens your ethereal cloak!
 revenant-revealed-salt = The salt puddle weakens your ethereal cloak!
 revenant-already-haunted = You have already haunted this soul.
+revenant-can-haunt = This soul can still be haunted.
 
 revenant-blood-writing-name = Blood Writing
 revenant-blood-writing-desc = Draw glyphs in blood. Costs essence per stroke.
@@ -21,3 +22,5 @@ alerts-revenant-stasis-name = Stasis
 alerts-revenant-stasis-desc = Your spirit is recovering in ectoplasm.
 alerts-revenant-essence-regen-name = Essence Surge
 alerts-revenant-essence-regen-desc = Bonus essence regeneration from Haunt witnesses.
+alerts-revenant-haunted-name = Haunted
+alerts-revenant-haunted-desc = You were recently haunted. Another scare won't work yet.

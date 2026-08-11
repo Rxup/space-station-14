@@ -57,3 +57,15 @@
           True: {state: "icon-open"}
           False: {state: "icon"}
   - type: Openable
+
+- type: entity
+  abstract: true
+  parent: FoodBase
+  id: FoodBaseTrash
+  components:
+  - type: SpaceGarbage
+
+# This base type is used to cover all of the "obvious" things that should be doable to open-package food.
+# Practically this means injection.
+# But it might in future also mean drawing with a syringe, so this is a base prototype just in case.
+

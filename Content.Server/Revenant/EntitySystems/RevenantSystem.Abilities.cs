@@ -13,6 +13,20 @@ using Content.Shared.Item;
 using Content.Shared.Bed.Sleep;
 using System.Linq;
 using System.Numerics;
+// start-backmen: revenant-abilities
+using Content.Server._Impstation.Revenant.Components;
+using Content.Server._Impstation.Revenant.EntitySystems;
+using Content.Shared._Impstation.Revenant;
+using Content.Shared._Impstation.Revenant.Components;
+using Content.Shared.Flash;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Movement.Components;
+using Content.Shared.StatusEffectNew;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
+using Robust.Server.Player;
+// end-backmen: revenant-abilities
 using Content.Server.Revenant.Components;
 using Content.Shared.Physics;
 using Content.Shared.DoAfter;
@@ -43,8 +57,14 @@ public sealed partial class RevenantSystem
     [Dependency] private GhostSystem _ghost = default!;
     [Dependency] private TileSystem _tile = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
+    // start-backmen: revenant-abilities
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private RevenantAnimatedSystem _revenantAnimated = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedFlashSystem _flashSystem = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    // end-backmen: revenant-abilities
 
     [Dependency] private EntityQuery<TagComponent> _tagQuery = default!;
     [Dependency] private EntityQuery<EntityStorageComponent> _entityStorageQuery = default!;
@@ -64,6 +84,11 @@ public sealed partial class RevenantSystem
         SubscribeLocalEvent<RevenantComponent, RevenantOverloadLightsActionEvent>(OnOverloadLightsAction);
         SubscribeLocalEvent<RevenantComponent, RevenantBlightActionEvent>(OnBlightAction);
         SubscribeLocalEvent<RevenantComponent, RevenantMalfunctionActionEvent>(OnMalfunctionAction);
+        // start-backmen: revenant-abilities
+        SubscribeLocalEvent<RevenantComponent, RevenantBloodWritingEvent>(OnBloodWritingAction);
+        SubscribeLocalEvent<RevenantComponent, RevenantAnimateEvent>(OnAnimateAction);
+        SubscribeLocalEvent<RevenantComponent, RevenantHauntActionEvent>(OnHauntAction);
+        // end-backmen: revenant-abilities
     }
 
     private void OnInteract(EntityUid uid, RevenantComponent component, UserActivateInWorldEvent args)
@@ -346,4 +371,107 @@ public sealed partial class RevenantSystem
             _emagSystem.TryEmagEffect(uid, uid, ent);
         }
     }
+
+    // start-backmen: revenant-abilities
+    private void OnHauntAction(EntityUid uid, RevenantComponent comp, RevenantHauntActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryUseAbility(uid, comp, 0, comp.HauntDebuffs))
+            return;
+
+        args.Handled = true;
+
+        var witnessFilter = Filter.Pvs(uid).RemoveWhere(player =>
+        {
+            if (player.AttachedEntity == null)
+                return true;
+
+            var ent = player.AttachedEntity.Value;
+
+            if (!HasComp<MobStateComponent>(ent) || !HasComp<MobMoverComponent>(ent) || HasComp<RevenantComponent>(ent))
+                return true;
+
+            return !_interact.InRangeUnobstructed(uid, ent, -1, collisionMask: CollisionGroup.Impassable);
+        });
+
+        var witnesses = new HashSet<NetEntity>(
+            witnessFilter.RemovePlayerByAttachedEntity(uid).Recipients
+                .Select(ply => GetNetEntity(ply.AttachedEntity!.Value)));
+
+        _audioSystem.PlayGlobal(comp.HauntSound, witnessFilter, true);
+
+        var newHaunts = 0;
+
+        foreach (var witness in witnesses)
+        {
+            var witnessEnt = GetEntity(witness);
+            _flashSystem.Flash(witnessEnt, uid, uid, comp.HauntFlashDuration, slowTo: 1f);
+
+            if (!_status.HasStatusEffect(witnessEnt, RevenantStatusEffects.Haunted))
+            {
+                _status.TryAddStatusEffectDuration(witnessEnt, RevenantStatusEffects.Haunted, comp.HauntHauntedDuration);
+                newHaunts++;
+            }
+        }
+
+        if (newHaunts > 0
+            && _status.TryAddStatusEffectDuration(uid, RevenantStatusEffects.EssenceRegen, out var regenEnt, comp.HauntEssenceRegenDuration))
+        {
+            var regen = EnsureComp<RevenantRegenModifierStatusEffectComponent>(regenEnt.Value);
+            regen.Witnesses = witnesses;
+            regen.NewHaunts = newHaunts;
+            Dirty(regenEnt.Value, regen);
+
+            if (_mind.TryGetMind(uid, out _, out var mind)
+                && mind.UserId != null
+                && _players.TryGetSessionById(mind.UserId.Value, out var session))
+                RaiseNetworkEvent(new RevenantHauntWitnessEvent(witnesses), session);
+
+            _store.TryAddCurrency(
+                new Dictionary<string, FixedPoint2> { { comp.StolenEssenceCurrencyPrototype, comp.HauntStolenEssencePerWitness * newHaunts } },
+                uid);
+        }
+    }
+
+    private void OnBloodWritingAction(EntityUid uid, RevenantComponent component, RevenantBloodWritingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryComp<HandsComponent>(uid, out var hands))
+            return;
+
+        if (component.BloodCrayon != null)
+        {
+            _handsSystem.RemoveHand((uid, hands), "crayon");
+            QueueDel(component.BloodCrayon);
+            component.BloodCrayon = null;
+        }
+        else
+        {
+            _handsSystem.AddHand((uid, hands), "crayon", HandLocation.Middle);
+            var crayon = Spawn("CrayonBlood");
+            component.BloodCrayon = crayon;
+            _handsSystem.DoPickup(uid, "crayon", crayon, hands);
+            EnsureComp<BloodCrayonComponent>(crayon);
+        }
+
+        args.Handled = true;
+    }
+
+    private void OnAnimateAction(EntityUid uid, RevenantComponent comp, RevenantAnimateEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (_revenantAnimated.CanAnimateObject(args.Target)
+            && TryUseAbility(uid, comp, comp.AnimateCost, comp.AnimateDebuffs))
+        {
+            _revenantAnimated.TryAnimateObject(args.Target, comp.AnimateTime, (uid, comp));
+            args.Handled = true;
+        }
+    }
+    // end-backmen: revenant-abilities
 }

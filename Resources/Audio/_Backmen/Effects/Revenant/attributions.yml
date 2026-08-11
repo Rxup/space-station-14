@@ -22,3 +22,13 @@
   license: "CC-BY-SA-3.0"
   copyright: "Sound originally derived from SCP: Containment breach. Edited down to a shorter length by TGRCDev."
   source: "https://github.com/Regalis11/scpcb/blob/edb8fe0840b78f14d1aef3a0bf6174630e7be296/SFX/Horror/Horror12.ogg"
+
+- files: ["screamer0.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Jumpscare edit of haunt4.ogg (SCP: Containment Breach Horror12). Loudness/limiter pass for Revenant Haunt."
+  source: "https://github.com/Regalis11/scpcb/blob/edb8fe0840b78f14d1aef3a0bf6174630e7be296/SFX/Horror/Horror12.ogg"
+
+- files: ["screamer1.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Jumpscare edit of haunt0.ogg (SCP: Containment Breach Horror0). Pitch/volume pass for Revenant Haunt."
+  source: "https://github.com/Regalis11/scpcb/blob/edb8fe0840b78f14d1aef3a0bf6174630e7be296/SFX/Horror/Horror0.ogg"

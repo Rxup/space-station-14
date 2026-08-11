@@ -175,7 +175,9 @@
       - DeviceMonitoringAndControl
 
 - type: entity
-  parent: GasUnaryBase
+  # start-backmen: vent-crawler
+  parent: [GasUnaryBase, BkmVentCrawlerVentBase]
+  # end-backmen: vent-crawler
   id: GasOutletInjector
   name: air injector
   description: Has a valve and pump attached to it.
@@ -219,7 +221,7 @@
       - AirInjector
 
 - type: entity
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  parent: [ BaseMachinePowered, ConstructibleMachine, BaseConstructibleMachineDestructible ]
   id: BaseGasThermoMachine
   name: thermomachine
   abstract: true
@@ -250,8 +252,8 @@
       key: enum.ThermomachineUiKey.Key
     - type: WiresPanel
     - type: WiresVisuals
-  # backmen - Allow device-on-pipe stacking
-  # - type: PipeRestrictOverlap
+    # backmen - Allow device-on-pipe stacking
+    # - type: PipeRestrictOverlap
     - type: NodeContainer
       nodes:
         pipe:
@@ -395,7 +397,7 @@
     board: HellfireHeaterMachineCircuitBoard
 
 - type: entity
-  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
+  parent: [ SolutionTank, SolutionHuge, BaseMachinePowered, SmallConstructibleMachine, BaseSmallConstructibleMachineDestructible ]
   id: BaseGasCondenser
   name: condenser
   description: Condenses gases into liquids. Now we just need some plumbing.
@@ -451,16 +453,8 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
         damage: 100
       behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
       - !type:SpillBehavior
         solution: tank
       - !type:PlaySoundBehavior
@@ -474,10 +468,6 @@
         pipeDirection: South
   - type: Transform
     noRot: false
-  - type: SolutionContainerManager
-    solutions:
-      tank:
-        maxVol: 400
   - type: MixableSolution
     solution: tank
   - type: DrainableSolution
@@ -490,4 +480,3 @@
   - type: GuideHelp
     guides:
     - GasCondensing
-

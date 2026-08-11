@@ -158,6 +158,8 @@ food-sequence-cotton-burger-content-plushie-human = уристо
 food-sequence-cotton-burger-content-plushie-moth = моле
 food-sequence-cotton-burger-content-plushie-vulp = вульпо
 food-sequence-cotton-burger-content-plushie-ian = корго
+food-sequence-cotton-burger-content-plushie-sheep = шерстя
+food-sequence-cotton-burger-content-plushie-sheepspace = космошерстя
 food-sequence-cotton-burger-content-among-pequeno = амонго
 
 # TACO
