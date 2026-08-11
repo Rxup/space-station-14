@@ -157,9 +157,10 @@
   components:
   - type: Action
     itemIconStyle: BigAction
-    icon:
-      sprite: Backmen/Clothing/Back/RIGs/chrono.rsi
-      state: icon
     useDelay: 2
+  - type: Sprite
+    sprite: Backmen/Clothing/Back/RIGs/chrono.rsi
+    layers:
+      - state: icon
   - type: InstantAction
     event: !type:PsionicInvisibilityPowerActionEvent

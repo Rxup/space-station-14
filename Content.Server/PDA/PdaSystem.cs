@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.AlertLevel;
 using Content.Server.CartridgeLoader;
@@ -7,6 +8,7 @@ using Content.Server.Instruments;
 using Content.Server.PDA.Ringer;
 using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
+using Content.Server.Traitor.Uplink;
 using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Chat;
@@ -201,7 +203,7 @@ namespace Content.Server.PDA
             if (!TryComp(uid, out CartridgeLoaderComponent? loader))
                 return;
 
-            var programs = _cartridgeLoader.GetAvailablePrograms(uid, loader);
+            var programs = GetNetEntityList(_cartridgeLoader.GetAllPrograms(uid).ToList());
             var id = CompOrNull<IdCardComponent>(pda.ContainedId);
             var state = new PdaUpdateState(
                 programs,

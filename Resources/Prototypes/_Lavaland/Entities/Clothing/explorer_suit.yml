@@ -353,11 +353,12 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: Action
-      icon:
-        sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi
-        state: icon
       itemIconStyle: NoItem
       useDelay: 5
+    - type: Sprite
+      sprite: Backmen/test/base/rsi/Textures/Suits/blackmesa/hev.rsi
+      layers:
+        - state: icon
     - type: WorldTargetAction
       event: !type:FleshWormJumpActionEvent
     - type: TargetAction

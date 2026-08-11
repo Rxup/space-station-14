@@ -80,6 +80,44 @@
   - type: Damageable
   - type: Injurable
     damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 400
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
   - type: RadiationReceiver
   - type: Stamina
   - type: StunVisuals
@@ -95,7 +133,6 @@
       - ActionCritSuccumb
       - ActionCritFakeDeath
       - ActionCritLastWords
-  - type: StoreDamageTakenOnMind
   - type: Deathgasp
   - type: HealthExaminable
     examinableTypes:
@@ -118,52 +155,6 @@
   - type: LightningTarget
     priority: 2
     lightningExplode: false
-  - type: GhostOnMove
-    mustBeDead: true
-
-# Used as a simple default for mob destruction
-- type: entity
-  abstract: true
-  id: BaseMobDestructible
-  components:
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
-        damage: 400
-      behaviors:
-      - !type:GibBehavior { }
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Heat
-        damage: 1500
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawnInContainer: true
-        spawn:
-          Ash:
-            min: 1
-            max: 1
-      - !type:BurnBodyBehavior
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MeatLaserImpact
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Radiation
-        damage: 15
-      behaviors:
-      - !type:PopupBehavior
-        popup: mouth-taste-metal
-        popupType: LargeCaution
-        targetOnly: true
-    - trigger:
-        !type:DamageTypeTrigger
-        damageType: Radiation
-        damage: 40
-      behaviors:
-      - !type:VomitBehavior
 
 # Used for mobs that can enter combat mode and can attack.
 - type: entity
@@ -178,8 +169,10 @@
       collection: MetalThud
     damage:
       types:
-        Blunt: 5
-
+        Blunt: 1.25
+        Slash: 1.25
+        Piercing: 1.25
+        ArmorPiercing: 1.25
 # Used for mobs that are affected by atmospherics, pressure, and heat
 - type: entity
   save: false
@@ -188,6 +181,8 @@
   components:
   - type: AtmosExposed
   - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
   - type: TemperatureDamage
     heatDamageThreshold: 325
     coldDamageThreshold: 0
@@ -221,6 +216,9 @@
     shiveringHeatRegulation: 500
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 2
+  - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
   - type: TemperatureDamage
     heatDamageThreshold: 325
     coldDamageThreshold: 260
@@ -233,8 +231,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.15 #per second, scales with pressure and other constants.
-
+        Blunt: 0.15
 # Used for mobs that can be set on fire
 - type: entity
   save: false
@@ -272,7 +269,7 @@
   id: MobBloodstream
   abstract: true
   components:
-  - type: SolutionManager
+  - type: SolutionContainerManager
   - type: InjectableSolution
     solution: bloodstream
   - type: Bloodstream
@@ -282,14 +279,3 @@
     bloodlossHealDamage:
       types:
         Bloodloss: -1
-
-# Used for mobs that should slightly see in the dark
-- type: entity
-  save: false
-  id: MobNightVision
-  abstract: true
-  components:
-  - type: NightVision
-    # start-backmen: night-vision-fields
-    color: '#FFFFFF15' # Nearly transparent white — avoids pitch black while staying dark.
-    # end-backmen: night-vision-fields

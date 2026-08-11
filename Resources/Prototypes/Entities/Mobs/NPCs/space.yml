@@ -1,7 +1,7 @@
 - type: entity
   name: basic
   id: MobSpaceBasic
-  parent: [ SimpleSpaceMobBase, MobNightVision ]
+  parent: SimpleSpaceMobBase
   abstract: true
   description: It looks friendly. Why don't you give it a hug?
   components:
@@ -74,7 +74,7 @@
 - type: entity
   name: space bear
   id: MobBearSpace
-  parent: [MobSpaceBasic, BaseSlicingRefinable, BaseMobDestructible]
+  parent: MobSpaceBasic
   description: It looks friendly. Why don't you give it a hug?
   components:
   - type: Sprite
@@ -95,8 +95,8 @@
         Base: bear_dead
       Dead:
         Base: bear_dead
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: FoodMeatBear
       amount: 3
     - id: MaterialHideBear
@@ -124,6 +124,7 @@
     interactSuccessSound:
       path: /Audio/Animals/sloth_squeak.ogg
   - type: Fauna # Lavaland Change
+
 - type: entity
   id: MobBearSpaceSalvage
   parent: MobBearSpace
@@ -134,7 +135,7 @@
 - type: entity
   name: space kangaroo
   id: MobKangarooSpace
-  parent: [MobSpaceBasic, StripableInventoryBase, BaseSlicingRefinable, BaseMobDestructible]
+  parent: [MobSpaceBasic, StripableInventoryBase]
   description: It looks friendly. Why don't you give it a hug?
   components:
   - type: Sprite
@@ -175,10 +176,13 @@
   - type: Vocal
     sounds:
       Unsexed: Kangaroo
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBounce
 #  - type: ReplacementAccent # Backmen-Remove
 #    accent: kangaroo
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: FoodMeat
       amount: 1
   - type: LanguageSpeaker # Backmen
@@ -205,7 +209,7 @@
 - type: entity
   name: space spider
   id: MobSpiderSpace
-  parent: [MobSpaceBasic, BaseSlicingRefinable, BaseMobDestructible]
+  parent: MobSpaceBasic
   description: It's so glowing, it looks dangerous.
   components:
   - type: Sprite
@@ -230,8 +234,8 @@
         BaseUnshaded: glow
       Dead:
         Base: spacespider_dead
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: FoodMeatSpider
       amount: 2
     - id: EggSpider
@@ -262,9 +266,12 @@
       types:
         Piercing: 6
         Poison: 4
-  - type: SolutionManager
+  - type: SolutionContainerManager
     solutions:
-    - SolutionVenomSpiderSpace
+      melee:
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 80
   - type: MeleeChemicalInjector
     solution: melee
     transferAmount: 4
@@ -296,20 +303,12 @@
     allowedEmotes: ['Click', 'Chitter']
   - type: Vocal
     sounds:
+      Male: UnisexArachnid
+      Female: UnisexArachnid
       Unsexed: UnisexArachnid
   - type: TypingIndicator
     proto: spider
   - type: Fauna # Lavaland Change
-- type: entity
-  parent: [SolutionWeapon, SolutionTiny]
-  id: SolutionVenomSpiderSpace
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: ChloralHydrate
-        Quantity: 30
 
 - type: entity
   id: MobSpiderSpaceSalvage
@@ -321,7 +320,7 @@
 - type: entity
   name: space cobra
   id: MobCobraSpace
-  parent: [MobSpaceBasic, BaseSlicingRefinable, BaseMobDestructible]
+  parent: MobSpaceBasic
   description: Long fangs and a glowing hood, and the alluring look begs to come closer.
   components:
     - type: Sprite
@@ -349,15 +348,15 @@
           BaseUnshaded: glow
         Dead:
           Base: dead_spacecobra
-    - type: ToolRefinable
-      refineResult:
-      - id: FoodMeatSnake
-        amount: 2
-      - id: UraniumOre1
-        amount: 1
-      - id: ClothingShoesSnakeskinBoots
-        amount: 1
-        prob: 0.3
+    - type: Butcherable
+      spawned:
+        - id: FoodMeatSnake
+          amount: 2
+        - id: UraniumOre1
+          amount: 1
+        - id: ClothingShoesSnakeskinBoots
+          amount: 1
+          prob: 0.3
     - type: Bloodstream
       bloodReferenceSolution:
         reagents:
@@ -384,9 +383,12 @@
         types:
           Piercing: 6
           Poison: 4
-    - type: SolutionManager
+    - type: SolutionContainerManager
       solutions:
-      - SolutionVenomCobraSpace
+        melee:
+          reagents:
+          - ReagentId: NorepinephricAcid
+            Quantity: 90
     - type: MeleeChemicalInjector
       solution: melee
       transferAmount: 6
@@ -419,17 +421,6 @@
     - type: Fauna # Lavaland Change
 
 - type: entity
-  parent: [SolutionWeapon, SolutionTiny]
-  id: SolutionVenomCobraSpace
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: NorepinephricAcid
-        Quantity: 30
-
-- type: entity
   id: MobCobraSpaceSalvage
   parent: MobCobraSpace
   suffix: "Salvage Ruleset"
@@ -437,99 +428,9 @@
     - type: SalvageMobRestrictions
 
 - type: entity
-  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobSheepBase, BaseMobDestructible ]
-  id: MobSheepSpace
-  name: space sheep
-  description: A sheep... in space!
-  components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - state: space_sheep_bare
-      map: [ "enum.DamageStateVisualLayers.Base" ]
-      visible: true
-      sprite: Mobs/Animals/sheep.rsi
-    - state: space_sheep_wool_glowmask
-      map: [ "wooly" ]
-      visible: true
-      sprite: Mobs/Animals/sheep.rsi
-  - type: GenericVisualizer
-    visuals:
-      enum.ShearableVisuals.Shearable:
-        wooly:
-          True: {visible: true}
-          False: {visible: false}
-      enum.MobStateVisuals.State:
-        wooly:
-          Alive: {state: space_sheep_wool_glowmask}
-          Dead: {state: space_sheep_wool_dead}
-          Critical: {state: space_sheep_wool_dead}
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PhysShapeCircle
-          radius: 0.35
-        density: 150
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
-  - type: Reproductive
-    partnerWhitelist:
-      tags:
-      - Sheep
-    offspring:
-    - id: MobSheep
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: space_sheep_harvested
-      Critical:
-        Base: space_sheep_dead
-      Dead:
-        Base: space_sheep_dead
-  - type: Shearable
-    targetSolutionName: wool
-    shearedProductId: MaterialDurathread1
-    solutionPerProduct: 10
-    toolQuality: Shearing
-    shearableMarkupText: space-sheep-shearable-examine-markup
-    unShearableMarkupText: space-sheep-not-shearable-examine-markup
-    # Caused problems (SAD), to be re-implemented when we get a real particle system.
-  # - type: ActiveJetpack # Pretty particles
-  #   effectCooldown: 4
-  #   maxDistance: 0.3
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 0.6
-    baseSprintSpeed: 2.0
-  - type: PointLight # Glows a little bit to see better in deep space.
-    radius: 2.0
-    energy: 1.0
-    color: "#4795ff" # Light blue colour.
-  - type: InteractionPopup
-    successChance: 0.8 #SHEEP so FRIEND!!! HUG! SQUISHY! SOFT!
-    interactDelay: 1
-    interactSuccessString: petting-success-sheep
-    interactFailureString: petting-failure-sheep
-    interactSuccessSpawn: EffectHearts #🥰
-    interactSuccessSound:
-      collection: SheepSpace
-      params:
-        variation: 0.05
-  - type: MobPrice
-    price: 600
-  - type: Wooly
-    quantity: 10
-    growthDelay: 120 #2 minutes
-  - type: Speech
-    speechSounds: SheepSpace
-    speechVerb: Sheep
-  - type: Vocal
-    sounds:
-      Unsexed: SheepSpace
-
-- type: entity
-  parent: [SimpleSpaceMobBase, BaseMobAnimal, SolutionVermin, MobNightVision]
+  parent:
+  - SimpleSpaceMobBase
+  - BaseMobAnimal
   id: MobSnail
   name: snail
   description: Revolting unless you're french.
@@ -606,15 +507,6 @@
       Dead:
         Base: dead
   - type: Edible
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 8
-      - ReagentId: Fat
-        Quantity: 3
-      - ReagentId: Water
-        Quantity: 4 #It makes saline if you add salt!
   - type: Thirst
     startingThirst: 25  # spawn with Okay thirst state
     thresholds:
@@ -634,6 +526,16 @@
     baseDecayRate: 0.1
   - type: Extractable
     grindableSolutionName: food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatSnail
+      amount: 1
   - type: Tag
     tags:
     - Trash

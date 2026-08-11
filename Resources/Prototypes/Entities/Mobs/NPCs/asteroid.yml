@@ -92,7 +92,7 @@
       amount: 3
     - id: MaterialGoliathHide1
       amount: 3
-  - type: Fauna # Lavaland Change
+
 - type: entity
   parent: BaseAction
   id: ActionGoliathTentacle
@@ -131,10 +131,10 @@
     sprite: Mobs/Aliens/Asteroid/goliath.rsi
     layers:
     - state: goliath_tentacle_wiggle
-  - type: StunOnCollide
-    stunAmount: 1
-    knockdownAmount: 5
-    fixture: fix
+  - type: StunOnContact
+    blacklist:
+      tags:
+      - Goliath
   - type: Fixtures
     fixtures:
       fix:
@@ -248,7 +248,7 @@
   - type: ToolRefinable
     refineResult:
     - id: FoodHivelordRemains
-  - type: Fauna # Lavaland Change
+
 - type: entity
   id: MobHivelordBrood
   parent: [ BaseMobAsteroid, FlyingMobBase ]

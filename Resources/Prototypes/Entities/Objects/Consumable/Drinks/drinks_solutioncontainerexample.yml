@@ -3,16 +3,18 @@
 # With cut-out
 
 - type: entity
-  parent: [SolutionTiny, DrinkBaseCup]
+  parent: DrinkBaseCup
   id: DrinkVisualizerTestCut
   name: solution container vis cut-out
   description: A stainless steel insulated pitcher. Everyone's best friend in the morning.
   components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: JuiceWatermelon
-        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: JuiceWatermelon
+          Quantity: 30
   - type: Sprite
     sprite: Objects/Consumable/Drinks/pitcher.rsi
     layers:
@@ -29,16 +31,18 @@
 # Without (For food, non cut-out stuff)
 
 - type: entity
-  parent: [SolutionTiny, DrinkBaseCup]
+  parent: DrinkBaseCup
   id: DrinkVisualizerTestNot
   name: solution container vis cut-not
   description: A stainless steel insulated pitcher. Everyone's best friend in the morning.
   components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: JuiceWatermelon
-        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: JuiceWatermelon
+          Quantity: 30
   - type: Sprite
     sprite: Objects/Consumable/Drinks/pitcher.rsi
     layers:

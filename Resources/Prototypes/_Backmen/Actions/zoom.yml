@@ -5,6 +5,8 @@
   components:
   - type: Action
     useDelay: 10
-    icon: Backmen/Interface/VerbIcons/telegnosis.png
+  - type: Sprite
+    layers:
+      - texture: Backmen/Interface/VerbIcons/telegnosis.png
   - type: InstantAction
     event: !type:OpticZoomEffectActionEvent

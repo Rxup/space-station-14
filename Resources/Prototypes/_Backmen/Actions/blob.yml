@@ -9,11 +9,12 @@
   name: blob create factory
   components:
     - type: Action
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobFactory
       itemIconStyle: BigAction
       useDelay: 0.5
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobFactory
     - type: WorldTargetAction
       event: !type:BlobTransformTileActionEvent
         transformFrom: Normal
@@ -29,11 +30,12 @@
   name: blob create resource
   components:
     - type: Action
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobResource
       itemIconStyle: BigAction
       useDelay: 0.5
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobResource
     - type: WorldTargetAction
       event: !type:BlobTransformTileActionEvent
         transformFrom: Normal
@@ -51,9 +53,10 @@
     - type: Action
       useDelay: 0.5
       itemIconStyle: BigAction
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobStorage
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobStorage
     - type: WorldTargetAction
       event: !type:BlobTransformTileActionEvent
         transformFrom: Normal
@@ -70,9 +73,10 @@
     - type: Action
       useDelay: 0.5
       itemIconStyle: BigAction
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobNode
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobNode
     - type: WorldTargetAction
       event: !type:BlobTransformTileActionEvent
         transformFrom: Normal
@@ -87,11 +91,12 @@
   name: blob produce blobbernaut
   components:
     - type: Action
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobBlobbernaut
       itemIconStyle: BigAction
       useDelay: 0.5
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobBlobbernaut
     - type: WorldTargetAction
       event: !type:BlobCreateBlobbernautActionEvent
     - type: TargetAction
@@ -103,11 +108,12 @@
   name: blob split core
   components:
     - type: Action
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobSplit
       itemIconStyle: BigAction
       useDelay: 0.5
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobSplit
     - type: WorldTargetAction
       event: !type:BlobSplitCoreActionEvent
     - type: TargetAction
@@ -119,11 +125,12 @@
   name: swap core
   components:
     - type: Action
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobSwap
       itemIconStyle: BigAction
       useDelay: 0.5
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobSwap
     - type: WorldTargetAction
       event: !type:BlobSwapCoreActionEvent
     - type: TargetAction
@@ -137,9 +144,10 @@
     - type: Action
       useDelay: 0.5
       itemIconStyle: BigAction
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobToCore
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobToCore
     - type: InstantAction
       event: !type:BlobToCoreActionEvent
 
@@ -149,9 +157,10 @@
   name: blob swap chem
   components:
     - type: Action
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobChemSwap
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobChemSwap
     - type: InstantAction
       event: !type:BlobSwapChemActionEvent
 
@@ -162,9 +171,10 @@
   description: Мгновенно разрывает ваше тело и создает ядро блоба. Учтите что если под вами не будет тайлов - вы исчезнете.
   components:
     - type: Action
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobToCore
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobToCore
     - type: InstantAction
       event: !type:TransformToBlobActionEvent
 
@@ -176,9 +186,10 @@
     - type: Action
       useDelay: 0.5
       itemIconStyle: BigAction
-      icon:
-        sprite: Backmen/Interface/Actions/blob.rsi
-        state: blobDowngrade
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/blob.rsi
+      layers:
+        - state: blobDowngrade
     - type: WorldTargetAction
       event: !type:BlobTransformTileActionEvent
         transformFrom: Invalid

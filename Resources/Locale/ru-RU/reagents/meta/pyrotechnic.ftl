@@ -16,8 +16,5 @@ reagent-desc-foaming-agent = Делает пену, подобную той, ч�
 reagent-name-welding-fuel = сварочное топливо
 reagent-desc-welding-fuel = Используется сварщиками для сварки.
 
-reagent-name-xenoborg-oil = масло ксеноборга
-reagent-desc-xenoborg-oil = Лёгкое масло, которым можно скользить и жечь органику.
-
 reagent-name-fluorosurfactant = фторсурфактант
 reagent-desc-fluorosurfactant = Перфторированная сульфоновая кислота, образующая пену при смешивании с водой.

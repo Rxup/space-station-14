@@ -34,6 +34,10 @@
           2: { state: alert-1 }
           3: { state: alert-2 }
           4: { state: alert-2 }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
   - type: AtmosAlertsComputer
   - type: ActivatableUI
     singleUser: true
@@ -48,6 +52,7 @@
     guides:
     - AtmosphericAlertsComputer
     - DeviceMonitoringAndControl
+  - type: AmbientMusicMarkerEngineering
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -126,8 +131,6 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: RadarConsole
-  - type: WorldLoader
-    radius: 256
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -196,8 +199,6 @@
       - Syndicate
   - type: RadarConsole
     maxRange: 384
-  - type: WorldLoader
-    radius: 1536
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -279,6 +280,7 @@
     allowedFlags:
       - Hide
       - HideLabel
+    hideOnInit: true
   - type: ActivatableUI
     key: enum.IFFConsoleUiKey.Key
   - type: UserInterface
@@ -331,6 +333,7 @@
         type: PowerMonitoringConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: AmbientMusicMarkerEngineering
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -356,6 +359,7 @@
     color: "#1f8c28"
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -459,6 +463,7 @@
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 1200
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -501,16 +506,8 @@
     workingPowerDraw: 1000
   - type: Computer
     board: ResearchComputerCircuitboard
-#  - type: AccessReader # Backmen-REMOVE
-#    access: [["Research"]]
-  - type: Speech # Backmen
-    speechSounds: Tenor
-  - type: TTS # Backmen
-    voice: TrainingRobot
-  - type: Grammar # Backmen
-    attributes:
-      gender: female
-      proper: true
+  - type: AccessReader
+    access: [["Research"]]
   - type: PointLight
     radius: 1.5
     energy: 4.0
@@ -646,6 +643,7 @@
     radius: 1.5
     energy: 4.0
     color: "#1f8c28"
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -688,9 +686,9 @@
     color: "#3c5eb5"
   - type: Damageable
     damageModifierSet: StructuralMetallicStrong
-
   - type: Injurable
     damageContainer: StructuralInorganic
+
 - type: entity
   parent: ComputerComms
   id: SyndicateComputerComms
@@ -864,46 +862,6 @@
     color: "#e6e227"
 
 - type: entity
-  id: ComputerCargoShuttle
-  parent: BaseComputerAiAccess
-  categories: [ HideSpawnMenu ] # backmen: salvage
-  name: cargo shuttle computer
-  description: Used to order the shuttle.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: supply
-    - map: ["computerLayerKeys"]
-      state: tech_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-#  - type: CargoShuttleConsole
-  - type: ActivatableUI
-    key: enum.CargoConsoleUiKey.Shuttle
-  - type: UserInterface
-    interfaces:
-      enum.CargoConsoleUiKey.Shuttle:
-        type: CargoShuttleConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Computer
-    board: CargoShuttleConsoleCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#b89f25"
-  - type: AccessReader
-    access: [["Cargo"]]
-  - type: GuideHelp
-    guides:
-    - Cargo
-
-- type: entity
   id: ComputerCargoOrders
   parent: BaseComputerAiAccess
   name: cargo request computer
@@ -922,7 +880,6 @@
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: CargoOrderConsole
-    cashType: BillOfExchange
     removeLimitAccess: [ "Quartermaster" ]
   - type: ActiveRadio
     channels:
@@ -989,6 +946,7 @@
     color: "#c9c042"
   - type: AccessReader
     access: [["Engineering"]]
+  - type: AmbientMusicMarkerEngineering
 
 - type: entity
   id: ComputerCargoOrdersMedical
@@ -1022,6 +980,7 @@
     color: "#41e0fc"
   - type: AccessReader
     access: [["Medical"]]
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   id: ComputerCargoOrdersScience
@@ -1314,6 +1273,10 @@
             False: { visible: false }
           computerLayerKeys:
             True: { visible: true, shader: unshaded }
+            False: { visible: true }
+        enum.WiresVisuals.MaintenancePanelState:
+          enum.WiresVisualLayers.MaintenancePanel:
+            True: { visible: false }
             False: { visible: true }
     - type: SalvageExpeditionConsole
     - type: ActivatableUI
@@ -1740,6 +1703,10 @@
           Occupied: { state: ai-fixer-full }
           Rebooting: { state: ai-fixer-404 }
           Dead: { state: ai-fixer-404 }
+      enum.WiresVisuals.MaintenancePanelState:
+        enum.WiresVisualLayers.MaintenancePanel:
+          True: { visible: false }
+          False: { visible: true }
   - type: ApcPowerReceiver
     powerLoad: 50
   - type: PowerState
@@ -1798,6 +1765,8 @@
       state: syndie_generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
+  # - type: Computer
+  #   board: SyndicateCommsComputerCircuitboard
   - type: Anchorable
     flags:
     - Anchorable # No taking the console along!

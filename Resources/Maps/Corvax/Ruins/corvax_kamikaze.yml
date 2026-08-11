@@ -7265,7 +7265,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 10.697028,-6.3328047
       parent: 1
-- proto: BluntCigar # backmen: blunt-wound-id-conflict
+- proto: Blunt
   entities:
   - uid: 1226
     components:

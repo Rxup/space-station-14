@@ -63,14 +63,6 @@
   - type: StunnedStatusEffect
   - type: KnockdownStatusEffect
 
-# Makes the creature immune to pressure damage.
-- type: entity
-  parent: MobStatusEffectBase
-  id: StatusEffectPressureImmunity
-  name: pressure immunity
-  components:
-  - type: PressureImmunityStatusEffect
-
 # Prevents speaking and vocal emotes.
 - type: entity
   abstract: true
@@ -144,4 +136,19 @@
       components:
       - MobState
       - Blindable
+      requireAll: true
   - type: BlindnessStatusEffect
+
+# Obstructs the target's vision with the flash overlay.
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectFlashed
+  name: flashed
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+      - Blindable
+      requireAll: true
+  - type: FlashedStatusEffect

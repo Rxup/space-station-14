@@ -7,10 +7,11 @@
   components:
   - type: Action
     useDelay: 30
-    icon:
-      sprite: _Lavaland/Objects/Weapons/hierophant_club.rsi
-      state: icon
     itemIconStyle: NoItem
+  - type: Sprite
+    sprite: _Lavaland/Objects/Weapons/hierophant_club.rsi
+    layers:
+      - state: icon
   - type: InstantAction
     event: !type:HierophantClubPlaceMarkerEvent
 
@@ -23,9 +24,10 @@
   - type: Action
     useDelay: 60
     itemIconStyle: NoItem
-    icon:
-      sprite: _Lavaland/Objects/Weapons/hierophant_club.rsi
-      state: icon
+  - type: Sprite
+    sprite: _Lavaland/Objects/Weapons/hierophant_club.rsi
+    layers:
+      - state: icon
   - type: InstantAction
     event: !type:HierophantClubTeleportToMarkerEvent
 
@@ -37,10 +39,11 @@
   - type: Action
     priority: -21
     useDelay: 1
-    icon:
-      sprite: _Lavaland/Objects/Weapons/hierophant_club.rsi
-      state: icon
     itemIconStyle: NoItem
+  - type: Sprite
+    sprite: _Lavaland/Objects/Weapons/hierophant_club.rsi
+    layers:
+      - state: icon
   - type: WorldTargetAction
     event: !type:HierophantClubActivateCrossEvent
   - type: TargetAction

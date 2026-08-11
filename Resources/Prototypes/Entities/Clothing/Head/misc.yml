@@ -71,7 +71,7 @@
     enabled: false
     radius: 3
     energy: 1
-    lightMask: ConeSingle
+    mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     color: "#cc6600"
     netsync: false
@@ -202,7 +202,8 @@
     proto: regal
   - type: StaticPrice
     price: 3000
-  - type: MobsterAccent
+  - type: AddAccentClothing
+    accent: MobsterAccent
 
 - type: entity
   parent: [ ClothingHeadBase, BaseSyndicateContraband ]
@@ -217,7 +218,8 @@
     sprite: Clothing/Head/Hats/catears.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/catears.rsi
-  - type: OwOAccent
+  - type: AddAccentClothing
+    accent: OwOAccent
   - type: StaticPrice
     price: 15000
 
@@ -240,7 +242,8 @@
     sprite: Clothing/Head/Hats/catears.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/catears.rsi
-  - type: OwOAccent
+  - type: AddAccentClothing
+    accent: OwOAccent
 
 - type: entity
   parent: BaseToggleAction
@@ -259,7 +262,8 @@
     sprite: Clothing/Head/Hats/dogears.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/dogears.rsi
-  - type: BarkAccent
+  - type: AddAccentClothing
+    accent: BarkAccent
 
 - type: entity
   parent: ClothingHeadBase
@@ -298,7 +302,7 @@
     - FacialHair
 
 - type: entity
-  parent: [SolutionDrink, Clothing]
+  parent: Clothing
   id: WaterDropletHat
   name: water droplet
   description: Makes 8-eyed friends 8 times more adorable!
@@ -324,12 +328,13 @@
       - water
   - type: DrainableSolution
     solution: drink
-  - type: Solution
-    solution:
-      maxVol: 2 # Droplets are pretty small.
-      reagents:
-      - ReagentId: Water
-        Quantity: 2
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 2
+        reagents:
+        - ReagentId: Water
+          Quantity: 2
   - type: DamageOnHighSpeedImpact
     minimumSpeed: 0.1
     damage:

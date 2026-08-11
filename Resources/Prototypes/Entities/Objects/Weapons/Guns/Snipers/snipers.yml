@@ -48,13 +48,14 @@
   - type: EmitSoundOnLand
     sound:
       collection: SnipersDrop
-  # backmen edit end
+  # backmen edit start
 
 - type: entity
   name: Kardashev-Mosin
-  parent: [BaseWeaponSniper, BaseGunWieldable, SolutionDart, BaseMajorContraband]
+  parent: [BaseWeaponSniper, BaseGunWieldable, BaseMajorContraband]
   id: WeaponSniperMosin
   description: A true relic, the Kardashev-Mosin has served in nearly every armed conflict since its creation 670 years ago. The bolt-action design of the rifle remains virtually identical to its original design, whether used for hunting, sniping, or endless trench warfare. Loads 10 rounds of .30 rifle.
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Snipers/bolt_gun_wood.rsi
@@ -83,6 +84,10 @@
   - type: MeleeRequiresWield
   - type: AltFireMelee
     attackType: Heavy
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 2
   - type: MeleeChemicalInjector
     solution: melee
   - type: RefillableSolution
@@ -91,9 +96,8 @@
     solution: melee
   - type: SolutionTransfer
     maxTransferAmount: 2
-  - type: Tool
-    qualities: Slicing
-    speedModifier: 0.5 #It's a bayonet
+  - type: Sharp
+    butcherDelayModifier: 2 #It's a bayonet
   - type: GunRequiresWield
   - type: StaticPrice
     price: 500
@@ -102,8 +106,8 @@
   name: Hristov
   parent: [BaseWeaponSniper, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponSniperHristov
-  categories: [ HideSpawnMenu ] #Backmen-weapons
   description: For when you absolutely, positively need to make someone regret their life choices from a safe distance. Uses .60 anti-materiel ammo.
+  categories: [ HideSpawnMenu ] #Backmen-weapons
   components:
   - type: Item
     size: Huge
@@ -121,7 +125,6 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
-  - type: AmmoCounter
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -144,9 +147,7 @@
   id: Musket
   description: This should've been in a museum long before you were born. Uses .60 anti-materiel ammo.
   components:
-  - type: Tool
-    qualities:
-    - Slicing
+  - type: Sharp
   - type: Item
     size: Large
   - type: Sprite

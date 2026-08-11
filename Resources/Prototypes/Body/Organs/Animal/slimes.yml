@@ -21,10 +21,10 @@
       stages: [ Digestion, Bloodstream, Metabolites ]
       maxReagents: 3
       metabolizerTypes: [ Slime ]
-    - type: Solution
-      id: stomach
-      solution:
-        maxVol: 30
+    - type: SolutionContainerManager
+      solutions:
+        stomach:
+          maxVol: 30.0
 
 - type: entity
   id: OrganSlimesLungs
@@ -51,10 +51,14 @@
     - type: Metabolizer
       stages: [ Respiration ]
       metabolizerTypes: [ Slime ]
-    - type: Solution
-      solution:
-        reagents:
-        - ReagentId: Slime
-          Quantity: 5
-        - ReagentId: Nutriment
-          Quantity: 10
+    - type: SolutionContainerManager
+      solutions:
+        organ:
+          reagents:
+          - ReagentId: Nutriment
+            Quantity: 10
+        food:
+          maxVol: 5
+          reagents:
+          - ReagentId: Slime
+            Quantity: 5

@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [SolutionFood, SolutionToolNormal, Clothing]
+  parent: Clothing
   id: ClothingShoesBase
   components:
   - type: Armor  # backmen: armor coverage
@@ -38,11 +38,13 @@
     size: Normal
   - type: Edible
     requiresSpecialDigestion: true
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
   - type: Tag
     tags:
     - ClothMade
@@ -52,11 +54,12 @@
 
 - type: entity
   abstract: true
-  parent: [ClothingShoesBase, BaseSlicingRefinable]
+  parent: ClothingShoesBase
   id: ClothingShoesBaseButcherable
   components:
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
     - id: MaterialCloth1
       amount: 1
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
@@ -88,7 +91,6 @@
         Blunt: 0.40
         Slash: 0.40
 
-
 - type: entity
   abstract: true
   id: ClothingShoesBootsSecFilled
@@ -101,6 +103,10 @@
 
 - type: entity
   abstract: true
-  parent: [ ClothingShoesBaseButcherable, TemperatureProtectionMinimal ]
+  parent: ClothingShoesBaseButcherable
   id: ClothingShoesBaseWinterBoots
   description: Fluffy boots to help survive even the coldest of winters.
+  components:
+  - type: TemperatureProtection
+    heatingCoefficient: 1.025
+    coolingCoefficient: 0.5

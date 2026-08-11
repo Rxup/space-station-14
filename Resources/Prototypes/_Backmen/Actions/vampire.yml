@@ -5,7 +5,9 @@
   description: Here you can purchase active skills and passive enhancements.
   components:
   - type: Action
-    icon: Interface/Actions/fleshCultistShop.png
+  - type: Sprite
+    layers:
+      - texture: Interface/Actions/fleshCultistShop.png
   - type: InstantAction
     event: !type:VampireShopActionEvent
 
@@ -17,10 +19,11 @@
   - type: Action
     priority: -1
     useDelay: 120
-    icon:
-      sprite: Backmen/Interface/Actions/vampire.rsi
-      state: bat
     checkCanInteract: true
+  - type: Sprite
+    sprite: Backmen/Interface/Actions/vampire.rsi
+    layers:
+      - state: bat
   - type: EntityTargetAction
     event: !type:InnateNewVampierActionEvent
   - type: TargetAction

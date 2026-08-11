@@ -41,6 +41,3 @@ tool-quality-advanced-prying-tool-name = Топор
 
 tool-quality-brushing-name = Оттирание
 tool-quality-brushing-tool-name = Проволочная щётка
-
-tool-quality-shearing-name = Стрижка
-tool-quality-shearing-tool-name = Кусачки

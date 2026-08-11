@@ -2,6 +2,7 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
+using Content.Shared.StatusEffectNew.Components;
 
 namespace Content.Shared.Speech.Muting;
 
@@ -37,11 +38,13 @@ public sealed partial class MutedStatusEffectSystem : EntitySystem
         if (args.Args.Handled)
             return;
 
-        // start-backmen: muted-status-relay
-        // Local StatusEffectRelayedEvent only carries Args; target is the Performer of the action.
-        var target = args.Args.Performer;
+        if (!TryComp<StatusEffectComponent>(ent, out var statusEffect))
+            return;
+
+        if (statusEffect.AppliedTo is not { } target)
+            return;
+
         _popup.PopupEntity(Loc.GetString(ent.Comp.ActionPopup), target, target);
-        // end-backmen: muted-status-relay
         args.Args.Handled = true;
     }
 

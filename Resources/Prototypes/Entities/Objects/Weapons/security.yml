@@ -12,7 +12,7 @@
   - type: Stunbaton
     energyPerUse: 50
   - type: ItemToggle
-    onActivate: false
+    predictable: false
     soundActivate:
       collection: sparks
       params:
@@ -41,10 +41,10 @@
     angle: 60
     animation: WeaponArcThrust
   - type: StaminaDamageOnHit
-    damage: 35
+    damage: 42
     sound: /Audio/Weapons/egloves.ogg
   - type: StaminaDamageOnCollide
-    damage: 35
+    damage: 42
     sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
   - type: Battery
@@ -71,9 +71,10 @@
   - type: StaticPrice
     price: 80
   - type: Riggable
-  - type: SolutionManager
+  - type: SolutionContainerManager
     solutions:
-    - SolutionRiggable
+      battery:
+        maxVol: 5
   - type: InjectableSolution
     solution: battery
   - type: DrawableSolution
@@ -155,7 +156,6 @@
         visible: false
         shader: unshaded
     - type: Flash
-    - type: RevolutionaryConverter
     - type: LimitedCharges
       maxCharges: 5
     - type: MeleeWeapon
@@ -198,7 +198,7 @@
 
 - type: entity
   name: portable flasher
-  parent: [BaseMachine, BaseSecurityContraband, BaseMachineDestructible]
+  parent: [BaseMachine, BaseSecurityContraband]
   id: PortableFlasher
   description: An ultrabright flashbulb with a proximity trigger, useful for making an area security-only.
   components:
@@ -242,11 +242,3 @@
       guides:
       - Security
       - Antagonists
-    - type: Destructible
-      thresholds:
-      - trigger: !type:DamageTrigger
-          damage: 175
-        behaviors:
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalGlassBreak

@@ -1,7 +1,7 @@
 - type: entity
   name: space tick
   id: MobTick
-  parent: [SimpleSpaceMobBase, BaseSlicingRefinable]
+  parent: SimpleSpaceMobBase
   description: It's a space tick, watch out for its nasty bite. CentComm reports that 90 percent of cargo leg amputations are due to space tick bites.
   components:
   - type: InputMover
@@ -61,9 +61,10 @@
         Base: alive
       Dead:
         Base: dead
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: FoodMeatXeno
+      amount: 1
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
@@ -77,29 +78,23 @@
     animation: WeaponArcBite
     damage:
       types:
-        Piercing: 2
-  - type: SolutionManager
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        ArmorPiercing: 0.5
+  - type: SolutionContainerManager
     solutions:
-    - SolutionVenomTick
+      melee:
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 5
   - type: MeleeChemicalInjector
     solution: melee
-  - type: ReplacementAccent
-    accent: genericAggressive
+#  - type: ReplacementAccent
+#    accent: genericAggressive
   - type: Speech
     speechVerb: SmallMob
   - type: NonSpreaderZombie
-
-- type: entity
-  parent: Solution
-  id: SolutionVenomTick
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: melee
-    solution:
-      reagents:
-      - ReagentId: Toxin
-        Quantity: 5
 
 - type: entity
   id: MobTickSalvage

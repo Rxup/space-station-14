@@ -57,15 +57,16 @@
   description: Dash with power of ANGELS.
   components:
   - type: Action
-    icon:
-      sprite: Objects/Magic/magicactions.rsi
-      state: blink
     itemIconStyle: NoItem
     sound:
       path: /Audio/Backmen/Bosses/Portal3.ogg
       params:
         volume: 5
     useDelay: 1
+  - type: Sprite
+    sprite: Objects/Magic/magicactions.rsi
+    layers:
+      - state: blink
   - type: WorldTargetAction
     event: !type:DashEvent
   - type: TargetAction

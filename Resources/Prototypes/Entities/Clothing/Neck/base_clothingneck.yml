@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [SolutionFood, SolutionToolSmall, Clothing, BaseSlicingRefinable]
+  parent: Clothing
   id: ClothingNeckBase
   components:
   - type: Item
@@ -11,8 +11,9 @@
     - neck
   - type: Sprite
     state: icon
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
     - id: MaterialCloth1
       amount: 2
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
@@ -20,20 +21,25 @@
       Cloth: 100
   - type: Edible
     requiresSpecialDigestion: true
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 15
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
   - type: Tag
     tags:
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+  - type: Armor
+    coverage: []
+    modifiers: {}
 
 - type: entity
   abstract: true
-  parent: [ TemperatureProtectionMinimal, ClothingNeckBase ]
+  parent: ClothingNeckBase
   id: ClothingScarfBase
   components:
   - type: Tag

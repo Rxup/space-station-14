@@ -7,8 +7,9 @@
   components:
   - type: Action
     priority: 1
-    icon:
-      sprite: Structures/Piping/Atmospherics/vent.rsi
-      state: vent_off
+  - type: Sprite
+    sprite: Structures/Piping/Atmospherics/vent.rsi
+    layers:
+      - state: vent_off
   - type: InstantAction
     event: !type:VentCrawlerExitActionEvent

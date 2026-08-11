@@ -10,10 +10,10 @@
     sprite: Clothing/OuterClothing/Coats/bomber.rsi
 
 - type: entity
-  parent: [ ClothingOuterArmorBase, ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSecurityContraband ]
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, ClothingOuterArmorBase]
   id: ClothingOuterCoatDetective
-  name: detective's armored trenchcoat
-  description: An 20th-century trenchcoat with an armored underlay. Someone who wears this means serious business.
+  name: detective trenchcoat
+  description: An 18th-century multi-purpose trenchcoat. Someone who wears this means serious business.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Coats/detective.rsi
@@ -25,11 +25,13 @@
         children:
         - id: SmokingPipeFilledTobacco
         - id: FlippoEngravedLighter
+  - type: ExplosionResistance
+    damageCoefficient: 1 #its a coat. it doesnt do shit
 
 - type: entity
   parent: [ClothingOuterCoatDetectiveLoadout]
   id: ClothingOuterCoatDetectiveLoadoutGrey
-  name: noir armored trenchcoat
+  name: noir trenchcoat
   description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
   components:
   - type: Sprite
@@ -62,23 +64,31 @@
 
 - type: entity
   abstract: true
-  parent: [ ClothingOuterArmorBase, ClothingOuterStorageBase ]
+  parent: AllowSuitStorageClothing
   id: ClothingOuterArmorHoS
   components:
+  - type: StaminaResistance
+    damageCoefficient: 0.88
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.65
         Slash: 0.65
         Piercing: 0.6
+        ArmorPiercing: 0.6
         Heat: 0.7
+
         Caustic: 0.75 # not the full 90% from ss13 because of the head
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
 
 - type: entity
   abstract: true
-  parent: [ ClothingOuterArmorBase, ClothingOuterStorageBase ]
+  parent: AllowSuitStorageClothing
   id: ClothingOuterArmorWarden
   components:
+  - type: StaminaResistance
+    damageCoefficient: 0.92
   - type: Armor
     modifiers:
       coefficients:
@@ -88,8 +98,11 @@
         Heat: 0.7
         Caustic: 0.9
 
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
 - type: entity
-  parent: [BaseSecurityCommandContraband, ClothingOuterArmorHoS]
+  parent: [ClothingOuterArmorHoS, ClothingOuterStorageBase, BaseSecurityCommandContraband]
   id: ClothingOuterCoatHoSTrench
   name: head of security's armored trenchcoat
   description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence.
@@ -100,7 +113,7 @@
     sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
 
 - type: entity
-  parent: ClothingOuterJacketToggleableBase
+  parent: ClothingOuterStorageToggleableBase
   id: ClothingOuterCoatJensen
   name: jensen coat
   description: A jensen coat.
@@ -113,17 +126,7 @@
     clothingPrototype: ClothingHeadHatHoodChaplainHood
 
 - type: entity
-  parent: ClothingOuterCoatJensen
-  id: ClothingOuterCoatJensenSyndie
-  suffix: Syndie
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase:
-        id: SyndieHandyFlag
-
-- type: entity
-  parent: ClothingOuterJacketBase
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatTrench
   name: trench coat
   description: A comfy trench coat.
@@ -132,10 +135,22 @@
     sprite: Clothing/OuterClothing/Coats/trenchcoat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/trenchcoat.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 0.1
+    coolingCoefficient: 0.1
   - type: Armor
     modifiers:
       coefficients:
         Slash: 0.95
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 20
 
 - type: entity
   parent: ClothingOuterStorageFoldableBase
@@ -312,7 +327,7 @@
     sprite: Clothing/OuterClothing/Coats/pirate.rsi
 
 - type: entity
-  parent: [ClothingOuterArmorWarden, BaseSecurityContraband]
+  parent: [ClothingOuterArmorWarden, ClothingOuterStorageBase, BaseSecurityContraband]
   id: ClothingOuterCoatWarden
   name: warden's armored jacket
   description: A sturdy, utilitarian jacket designed to protect a warden from any brig-bound threats.
@@ -336,7 +351,7 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterClownPriest
-  name: honkmother coat
+  name: robes of the honkmother
   description: Meant for a clown of the cloth.
   components:
   - type: Sprite

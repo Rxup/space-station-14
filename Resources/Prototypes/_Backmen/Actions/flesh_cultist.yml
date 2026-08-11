@@ -11,7 +11,9 @@
   description: Here you can purchase active skills and passive enhancements.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistShop.png
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistShop.png
     - type: InstantAction
       event: !type:FleshCultistShopActionEvent
 
@@ -22,8 +24,10 @@
   description: Transforms the active hand into a deadly blade made of flesh and bones.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistBlade.png
       useDelay: 10
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistBlade.png
     - type: InstantAction
       event: !type:FleshCultistBladeActionEvent
 
@@ -36,11 +40,12 @@
     - type: Action
       itemIconStyle: BigAction
       priority: -20
-      icon:
-        sprite: Actions/Implants/implants.rsi
-        state: freedom
       useDelay: 10
       checkCanInteract: false
+    - type: Sprite
+      sprite: Actions/Implants/implants.rsi
+      layers:
+        - state: freedom
     - type: InstantAction
       event: !type:FleshCultistBreakCuffsActionEvent
 
@@ -51,8 +56,10 @@
   description: The parasite synthesizes and injects a dose of adrenaline into you, increasing your speed and stun resistance.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistAdrenalin.png
       useDelay: 150
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistAdrenalin.png
     - type: InstantAction
       event: !type:FleshCultistAdrenalinActionEvent
 
@@ -63,8 +70,10 @@
   description: Creates a flesh heart in front of you. It is your key objective on the station. To activate it, you need to use 3 bodies of evolved flesh creatures. After activation, be prepared to defend it against security personnel.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistFleshHeart.png
       useDelay: 360
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistFleshHeart.png
     - type: InstantAction
       event: !type:FleshCultistCreateFleshHeartActionEvent
 
@@ -75,8 +84,10 @@
   description: Vomits a flesh worm to throw at enemy faces.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistThrowWorm.png
       useDelay: 60
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistThrowWorm.png
     - type: InstantAction
       event: !type:FleshCultistThrowWormActionEvent
 
@@ -87,8 +98,10 @@
   description: Spit acid at your enemies.
   components:
     - type: Action
-      icon: Interface/Actions/fleshAcidSpit.png
       useDelay: 60
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshAcidSpit.png
     - type: WorldTargetAction
       event: !type:FleshCultistAcidSpitActionEvent
     - type: TargetAction
@@ -101,8 +114,10 @@
   description: Transforms the active hand into a functional claw made of flesh and bones.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistClaw.png
       useDelay: 10
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistClaw.png
     - type: InstantAction
       event: !type:FleshCultistClawActionEvent
 
@@ -113,8 +128,10 @@
   description: Transforms the active hand into a massive flesh fist that can easily break through any structures.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistFist.png
       useDelay: 10
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistFist.png
     - type: InstantAction
       event: !type:FleshCultistFistActionEvent
 
@@ -126,7 +143,9 @@
   components:
     - type: Action
       useDelay: 10
-      icon: Interface/Actions/fleshCultistSpikeGun.png
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistSpikeGun.png
     - type: InstantAction
       event: !type:FleshCultistSpikeHandGunActionEvent
 
@@ -137,8 +156,10 @@
   description: Covers you in armor made of flesh and bones.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistArmor.png
       useDelay: 30
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistArmor.png
     - type: InstantAction
       event: !type:FleshCultistArmorActionEvent
 
@@ -149,8 +170,10 @@
   description: Transforms a part of your body into a spider-like form, providing moderate protection and a significant increase in speed.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistSpiderLegs.png
       useDelay: 30
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistSpiderLegs.png
     - type: InstantAction
       event: !type:FleshCultistSpiderLegsActionEvent
 
@@ -161,8 +184,10 @@
   description: Allows you to absorb clean blood puddles for healing.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistAbsorbBloodPool.png
       useDelay: 10
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistAbsorbBloodPool.png
     - type: InstantAction
       event: !type:FleshCultistAbsorbBloodPoolActionEvent
 
@@ -173,8 +198,10 @@
   description: You can devour any flesh creature to gain evolution points and heal wounds.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistDevour.png
       useDelay: 15
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistDevour.png
     - type: TargetAction
       checkCanAccess: true
       range: 2
@@ -192,9 +219,11 @@
   description: Jump into mouse target
   components:
     - type: Action
-      icon: Interface/Actions/fleshPudgeThrowWorm.png
       itemIconStyle: NoItem
       useDelay: 10
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshPudgeThrowWorm.png
     - type: WorldTargetAction
       event: !type:FleshWormJumpActionEvent
     - type: TargetAction
@@ -207,9 +236,11 @@
   description: Jump into mouse target
   components:
     - type: Action
-      icon: Interface/Actions/fleshPudgeThrowWorm.png
       itemIconStyle: NoItem
       useDelay: 120
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshPudgeThrowWorm.png
     - type: WorldTargetAction
       event: !type:FleshPudgeThrowWormActionEvent
     - type: TargetAction
@@ -222,9 +253,11 @@
   description: Spit acid at your enemies.
   components:
     - type: Action
-      icon: Interface/Actions/fleshAcidSpit.png
       itemIconStyle: NoItem
       useDelay: 20
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshAcidSpit.png
     - type: WorldTargetAction
       event: !type:FleshPudgeAcidSpitActionEvent
     - type: TargetAction
@@ -237,7 +270,9 @@
   description: Allows you to absorb clean blood puddles for healing.
   components:
     - type: Action
-      icon: Interface/Actions/fleshCultistAbsorbBloodPool.png
       useDelay: 15
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshCultistAbsorbBloodPool.png
     - type: InstantAction
       event: !type:FleshPudgeAbsorbBloodPoolActionEvent

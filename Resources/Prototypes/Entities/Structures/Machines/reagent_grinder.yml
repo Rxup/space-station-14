@@ -1,20 +1,11 @@
 - type: entity
   id: KitchenReagentGrinder
-  parent: [ BaseMachinePowered, SmallConstructibleMachine, BaseSmallConstructibleMachineDestructible ]
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
   name: reagent grinder
   description: From BlenderTech. Will It Blend? Let's find out!
+  suffix: grinder/juicer
   components:
   - type: ReagentGrinder
-    grindSound:
-      params:
-        volume: -2.5
-        rolloffFactor: 2
-      path: /Audio/Machines/blender.ogg
-    juiceSound:
-      params:
-        volume: -2.5
-        rolloffFactor: 2
-      path: /Audio/Machines/juicer.ogg
   - type: ActivatableUI
     key: enum.ReagentGrinderUiKey.Key
   - type: UserInterface
@@ -39,14 +30,6 @@
         - TabletopMachineMask
         layer:
         - TabletopMachineLayer
-  - type: Destructible
-    thresholds:
-    - trigger: !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
   - type: Sprite
     sprite: Structures/Machines/grinder.rsi
     drawdepth: LargeObjects
@@ -96,11 +79,15 @@
       - LargeBeaker
 
 - type: entity
-  parent: [SolutionToolGinormous, Recycler] #too different so different parent
+  parent: Recycler #too different so different parent
   id: ReagentGrinderIndustrial
   name: industrial reagent grinder
   description: An industrial reagent grinder.
   components:
+  - type: SolutionContainerManager
+    solutions:
+      output:
+        maxVol: 400 #*slaps roof of machine* This baby can fit so much omnizine in it
   - type: MaterialReclaimer
     whitelist:
       components:
@@ -111,20 +98,20 @@
     efficiency: 0.9
     reclaimMaterials: false # Materials have ExtractableComponent, which is whitelisted, so we have to avoid infinite recycling loops
     onlyReclaimDrainable: false
-    solutionContainerId: solution
+    solutionContainerId: output
   - type: Sprite
-    sprite: Structures/Machines/industrial_reagent_grinder.rsi
+    sprite: Structures/Machines/recycling.rsi
     layers:
-      - state: industrial-reagent-grinder-off
+      - state: grinder-b0
   - type: Machine
     board: ReagentGrinderIndustrialMachineCircuitboard
   - type: GenericVisualizer
     visuals:
       enum.ConveyorVisuals.State:
         enum.ConveyorState.Off:
-          Forward: { state: industrial-reagent-grinder-on }
-          Reverse: { state: industrial-reagent-grinder-on }
-          Off: { state: industrial-reagent-grinder-off }
+          Forward: { state: grinder-b1 }
+          Reverse: { state: grinder-b1 }
+          Off: { state: grinder-b0 }
   - type: ContainerContainer
     containers:
       machine_board: !type:Container
@@ -136,6 +123,6 @@
     - machine_parts
     - machine_board
   - type: DrainableSolution
-    solution: solution
+    solution: output
   - type: ExaminableSolution
-    solution: solution
+    solution: output

@@ -1,6 +1,6 @@
 - type: entity
   id: BaseAnimalOrganUnGibbable
-  parent: [SolutionFood, SolutionVeryTiny, BaseItem]
+  parent: BaseItem
   abstract: true
   components:
   - type: Organ
@@ -16,11 +16,13 @@
     sprite: Mobs/Species/Human/organs.rsi
   - type: StaticPrice
     price: 50
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: UncookedAnimalProteins
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
   - type: FlavorProfile
     flavors:
       - chicken # everything kinda tastes like chicken

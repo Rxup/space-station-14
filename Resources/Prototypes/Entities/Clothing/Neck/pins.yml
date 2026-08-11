@@ -35,9 +35,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckLGBTPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: LGBT pin
   description: Be gay do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: lgbt
@@ -49,9 +49,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckAllyPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: straight ally pin
   description: Be ally do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: ally
@@ -63,9 +63,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckAromanticPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: aromantic pin
   description: Be aro do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: aro
@@ -77,9 +77,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckAroacePin
-  categories: [ HideSpawnMenu ] # Backmen
   name: aroace pin
   description: Be aroace do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: aroace
@@ -91,9 +91,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckAsexualPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: asexual pin
   description: Be ace do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: asex
@@ -105,9 +105,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckBisexualPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: bisexual pin
   description: Be bi do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: bi
@@ -119,9 +119,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckGayPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: gay pin
   description: Be gay~ do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: gay
@@ -133,9 +133,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckIntersexPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: intersex pin
   description: Be intersex do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: inter
@@ -147,9 +147,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckLesbianPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: lesbian pin
   description: Be lesbian do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: les
@@ -161,9 +161,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckNonBinaryPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: non-binary pin
   description: "01100010 01100101 00100000 01100101 01101110 01100010 01111001 00100000 01100100 01101111 00100000 01100011 01110010 01101001 01101101 01100101"
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: non
@@ -175,9 +175,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckPansexualPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: pansexual pin
   description: Be pan do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: pan
@@ -189,9 +189,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckPluralPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: plural pin
   description: Be plural, do crimes.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: plural
@@ -203,9 +203,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckOmnisexualPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: omnisexual pin
   description: Be omni do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: omni
@@ -217,9 +217,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckGenderqueerPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: genderqueer pin
   description: be crime, do gender
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: gender
@@ -231,9 +231,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckGenderfluidPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: genderfluid pin
   description: be gender, be fluid
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: fluid
@@ -245,9 +245,9 @@
 - type: entity
   parent: ClothingGenderPinBase
   id: ClothingNeckTransPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: transgender pin
   description: Be trans do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: trans
@@ -259,9 +259,9 @@
 - type: entity
   parent: ClothingNeckPinBase
   id: ClothingNeckAutismPin
-  categories: [ HideSpawnMenu ] # Backmen
   name: neurodivergent pin
   description: Be neurodivergent, do crime.
+  categories: [ HideSpawnMenu ] # Backmen
   components:
   - type: Sprite
     state: autism
@@ -280,7 +280,7 @@
     equippedPrefix: goldautism
 
 - type: entity
-  parent: [SolutionSpray, SolutionTiny, BaseItem]
+  parent: BaseItem
   id: SprayFlowerPin
   name: flower pin
   description: A cute flower pin. Something seems off with it...
@@ -298,11 +298,13 @@
     - neck
   - type: EquipSpray
     verbLocId: equip-spray-verb-press
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Water
-        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 30
+        reagents:
+        - ReagentId: Water
+          Quantity: 30
   - type: RefillableSolution
     solution: spray
   - type: DrainableSolution

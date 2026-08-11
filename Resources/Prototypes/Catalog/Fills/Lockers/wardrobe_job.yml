@@ -70,7 +70,7 @@
       children:
       - id: CigPackBlack
       - id: Joint
-      - id: BluntCigar # backmen: blunt-wound-id-conflict
+      - id: Blunt
       - id: PackPaperRolling
       - id: Cigarette
         amount: !type:RangeNumberSelector

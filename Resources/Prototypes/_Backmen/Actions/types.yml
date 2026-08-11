@@ -12,7 +12,9 @@
     - type: Action
       useDelay: 10
       startDelay: true
-      icon: Backmen/Icons/verbiconfangs.png
+    - type: Sprite
+      layers:
+        - texture: Backmen/Icons/verbiconfangs.png
     - type: InstantAction
       event: !type:EatMouseActionEvent
 
@@ -24,7 +26,9 @@
     - type: Action
       useDelay: 45
       startDelay: true
-      icon: Backmen/Interface/VerbIcons/metapsionic.png
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/metapsionic.png
     - type: InstantAction
       event: !type:MetapsionicPowerActionEvent
 
@@ -37,7 +41,9 @@
       useDelay: 45
       startDelay: true
       itemIconStyle: BigAction
-      icon: Backmen/Interface/VerbIcons/dispel.png
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/dispel.png
     - type: EntityTargetAction
       canTargetSelf: false
       event: !type:DispelPowerActionEvent
@@ -54,8 +60,10 @@
     - type: Action
       itemIconStyle: BigAction
       useDelay: 60
-      icon: Backmen/Interface/VerbIcons/mass_sleep.png
       startDelay: true
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/mass_sleep.png
     - type: WorldTargetAction
       event: !type:MassSleepPowerActionEvent
     - type: TargetAction
@@ -71,7 +79,9 @@
     - type: Action
       useDelay: 120
       startDelay: true
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/psionic_invisibility.png
     - type: InstantAction
       event: !type:PsionicInvisibilityPowerActionEvent
 
@@ -83,8 +93,10 @@
     - type: Action
       useDelay: 3
       startDelay: true
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
       #temporary: true
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
     - type: InstantAction
       event: !type:PsionicInvisibilityPowerOffActionEvent
 
@@ -96,7 +108,9 @@
     - type: Action
       itemIconStyle: BigAction
       useDelay: 240
-      icon: Backmen/Interface/VerbIcons/mind_swap.png
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/mind_swap.png
     - type: EntityTargetAction
       event: !type:MindSwapPowerActionEvent
     - type: TargetAction
@@ -112,9 +126,11 @@
     - type: Action
       #temporary: true
       useDelay: 20
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
       startDelay: true
       checkCanInteract: false
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
     - type: InstantAction
       event: !type:MindSwapPowerReturnActionEvent
 
@@ -124,8 +140,10 @@
   name: action telegnosis
   components:
     - type: Action
-      icon: Backmen/Interface/VerbIcons/telegnosis.png
       useDelay: 150
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/telegnosis.png
     - type: InstantAction
       event: !type:TelegnosisPowerActionEvent
 
@@ -135,11 +153,13 @@
   name: action telegnosis
   components:
     - type: Action
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
       useDelay: 20
       startDelay: true
       #temporary: true
       checkCanInteract: false
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/psionic_invisibility_off.png
     - type: InstantAction
       event: !type:TelegnosisPowerReturnActionEvent
 
@@ -149,8 +169,10 @@
   name: action regeneration
   components:
     - type: Action
-      icon: Backmen/Interface/VerbIcons/psionic_regeneration.png
       useDelay: 120
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/psionic_regeneration.png
     - type: InstantAction
       event: !type:PsionicRegenerationPowerActionEvent
 
@@ -161,8 +183,10 @@
   components:
     - type: Action
       itemIconStyle: BigAction
-      icon: Backmen/Interface/VerbIcons/noospheric_zap.png
       useDelay: 100
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/noospheric_zap.png
     - type: EntityTargetAction
       event: !type:NoosphericZapPowerActionEvent
     - type: TargetAction
@@ -177,7 +201,9 @@
     - type: Action
       itemIconStyle: BigAction
       useDelay: 50
-      icon: Backmen/Interface/VerbIcons/pyrokinesis.png
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/pyrokinesis.png
     - type: EntityTargetAction
       event: !type:PyrokinesisPowerActionEvent
     - type: TargetAction
@@ -193,7 +219,10 @@
     - type: Action
       useDelay: 20
       itemIconStyle: BigAction
-      icon: { sprite: Objects/Misc/guardian_info.rsi, state: icon}
+    - type: Sprite
+      sprite: Objects/Misc/guardian_info.rsi
+      layers:
+        - state: icon
     - type: WorldTargetAction
       event: !type:PsychokinesisPowerActionEvent
     - type: TargetAction
@@ -222,8 +251,11 @@
   name: spin web
   components:
     - type: Action
-      icon: { sprite: Backmen/Structures/web.rsi, state: web1 }
       itemIconStyle: BigAction
+    - type: Sprite
+      sprite: Backmen/Structures/web.rsi
+      layers:
+        - state: web1
     - type: WorldTargetAction
       event: !type:SpinWebActionEvent
     - type: TargetAction
@@ -251,6 +283,9 @@
   description: Turn the energy barrier on or off.
   components:
   - type: Action
-    icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_shield.rsi
+    layers:
+      - state: eshield-on
   - type: InstantAction
     event: !type:ToggleActionEvent

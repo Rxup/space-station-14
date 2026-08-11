@@ -17,6 +17,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Administration;
 using Content.Shared.Backmen.Economy;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -37,6 +38,7 @@ public sealed partial class EconomySystem : EntitySystem
 {
     [Dependency] private WageManagerSystem _wageManagerSystem = default!;
     [Dependency] private BankCartridgeSystem _bankCartridgeSystem = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private InventorySystem _inventorySystem = default!;
     [Dependency] private IdCardSystem _cardSystem = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
@@ -249,7 +251,7 @@ public sealed partial class EconomySystem : EntitySystem
         if (!TryComp(idUid, out CartridgeLoaderComponent? cartrdigeLoaderComponent))
             return;
 
-        foreach (var uid in cartrdigeLoaderComponent.BackgroundPrograms)
+        foreach (var uid in _cartridgeLoader.GetAllPrograms(idUid.Value))
         {
             if (!TryComp<BankCartridgeComponent>(uid, out var bankCartrdigeComponent))
                 continue;

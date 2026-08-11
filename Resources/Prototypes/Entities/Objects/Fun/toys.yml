@@ -172,8 +172,6 @@
     - StatusEffectVentriloquistPuppetMuted
   - type: TypingIndicator
     proto: robot
-  - type: TTS # Corvax-TTS
-    voice: Aidar
   - type: Actions
   - type: MobState
     allowedStates:
@@ -194,8 +192,6 @@
   components:
   - type: Sprite
     sprite: Objects/Fun/mrdips.rsi
-  - type: TTS # Corvax-TTS
-    voice: Aidar
 
 - type: entity
   parent: [ SolutionFood, SolutionSmall, BaseItem ]

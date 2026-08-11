@@ -1,7 +1,7 @@
 - type: entity
-  parent: SolutionLarge
-  abstract: true
-  id: BaseHydroponicsSoil
+  id: hydroponicsSoil
+  name: soil
+  description: A mix of organic matter and minerals creating a soil to grow your plant in space. Seems to be dry.
   placement:
     mode: SnapgridCenter
   components:
@@ -21,34 +21,6 @@
         - FullTileMask
         layer:
         - FullTileMask
-  - type: Sprite
-    noRot: true
-  - type: PlantHolder
-    drawWarnings: false
-  - type: Solution
-    id: soil
-  - type: RefillableSolution
-    solution: soil
-    maxRefill: 50
-  - type: Transform
-    anchored: true
-  - type: Reactive
-    reactions:
-    - reagents: [Water]
-      methods: [Touch, Ingestion, Injection]
-      effects:
-      - !type:AddReagentToSolution
-        reagent: Water
-        solution: soil
-  - type: Appearance
-  - type: PlantHolderVisuals
-
-- type: entity
-  parent: BaseHydroponicsSoil
-  id: hydroponicsSoil
-  name: soil
-  description: A mix of organic matter and minerals creating a soil to grow your plant in space. Seems to be dry.
-  components:
   - type: Damageable
     damageModifierSet: Metallic
   - type: Injurable
@@ -64,6 +36,28 @@
   - type: Sprite
     sprite: Structures/Hydroponics/misc.rsi
     state: soil
+    noRot: true
+  - type: PlantHolder
+    drawWarnings: false
+  - type: SolutionContainerManager
+    solutions:
+      soil:
+        maxVol: 200
+  - type: RefillableSolution
+    solution: soil
+    maxRefill: 50
+  - type: Transform
+    anchored: true
+  - type: Reactive
+    reactions:
+    - reagents: [Water]
+      methods: [Touch, Ingestion, Injection]
+      effects:
+      - !type:AddReagentToSolution
+        reagent: Water
+        solution: soil
+  - type: Appearance
+  - type: PlantHolderVisuals
 
 - type: entity
   parent: hydroponicsSoil

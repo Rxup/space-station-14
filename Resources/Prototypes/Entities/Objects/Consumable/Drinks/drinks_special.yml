@@ -4,9 +4,10 @@
   name: shot glass
   description: Perfect for slamming down onto the table angrily.
   components:
-  - type: Solution
-    solution:
-      maxVol: 5 # Shot glass translates to about 5.3u so we round down because Nanotrasen is cheap.
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 5 # Shot glass translates to about 5.3u so we round down because Nanotrasen is cheap.
   - type: Item
     size: Tiny
   - type: Sprite
@@ -16,32 +17,22 @@
     inHandsMaxFillLevels: 1
   - type: FitsInDispenser
     solution: drink
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 5
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ShardGlass:
-            min: 0
-            max: 1
-        transferForensics: true
 
 - type: entity
-  parent: [DrinkBaseMaterialMetal, SolutionLarge, DrinkBase]
+  parent: [DrinkBaseMaterialMetal, DrinkBase]
   id: DrinkIceBucket
   name: ice bucket
   description: A special bucket of refreshy ice. Prohibited use for challenge with the same name!
   components:
   - type: Item
     size: Large
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Ice
-        Quantity: 240
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 240
+        reagents:
+        - ReagentId: Ice
+          Quantity: 240
   - type: Sprite
     sprite: Objects/Consumable/Drinks/icebucket.rsi
     state: icon
@@ -50,18 +41,20 @@
       Steel: 75
 
 - type: entity
-  parent: [DrinkBaseMaterialPorcelain, SolutionNormal, DrinkBase]
+  parent: [DrinkBaseMaterialPorcelain, DrinkBase]
   id: DrinkTeapot
   name: teapot  # short and stout
   description: An elegant teapot. It simply oozes class.
   components:
   - type: Item
     size: Normal
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Tea
-        Quantity: 120
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 120
+        reagents:
+        - ReagentId: Tea
+          Quantity: 120
   - type: Sprite
     sprite: Objects/Consumable/Drinks/teapot.rsi
   - type: FitsInDispenser
@@ -120,14 +113,15 @@
 # Bartender tools
 
 - type: entity
-  parent: [DrinkBaseMaterialStrongMetal, SolutionSmall, DrinkBase]
+  parent: [DrinkBaseMaterialStrongMetal, DrinkBase]
   id: DrinkShaker
   name: shaker
   description: The trusty mixing buddy of the bartender.
   components:
-  - type: Solution
-    solution:
-      maxVol: 90 # Shakers are often about 700ml give or take and I like weird sizes so.
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 90 # Shakers are often about 700ml give or take and I like weird sizes so.
   - type: FitsInDispenser
     solution: drink
   - type: ExaminableSolution
@@ -171,9 +165,10 @@
   components:
   - type: Item
     size: Tiny
-  - type: Solution
-    solution:
-      maxVol: 10 # Two shot glasses in size
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 10 # Two shot glasses in size
   - type: SolutionTransfer
     canChangeTransferAmount: true
     minTransferAmount: 1
@@ -191,11 +186,15 @@
       Steel: 20
 
 - type: entity
-  parent: [DrinkBaseMaterialStrongMetal, SolutionNormal, DrinkBase, DrinkVisualsFill]
+  parent: [DrinkBaseMaterialStrongMetal, DrinkBase, DrinkVisualsFill]
   id: Pitcher
   name: metal pitcher
   description: A stainless steel insulated pitcher. Everyone's best friend in the morning.
   components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 120
   - type: Item
     size: Normal
   - type: Sprite
@@ -218,18 +217,6 @@
     solution: drink
   - type: FitsInDispenser
     solution: drink
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 5
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ShardGlass:
-            min: 1
-            max: 1
-        transferForensics: true
 
 - type: entity
   parent: DrinkShakeBase

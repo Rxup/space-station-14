@@ -6,7 +6,8 @@ using Content.Server.Backmen.Cloning;
 using Content.Server.Backmen.Economy;
 using Content.Shared.Backmen.Economy;
 using Content.Server.Backmen.Fugitive;
-using Content.Server.CartridgeLoader.Cartridges;
+using Content.Shared.CartridgeLoader;
+using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
 using Content.Server.Prayer;
@@ -35,6 +36,7 @@ using Content.Server.Objectives.Systems;
 using Content.Server.Roles;
 using Content.Server.Station.Components;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.DetailExaminable;
@@ -190,20 +192,13 @@ public sealed partial class EvilTwinSystem : EntitySystem
                                 TryComp<CartridgeLoaderComponent>(targetPda, out var targetPdaComp) &&
                                 TryComp<CartridgeLoaderComponent>(twinPda, out var twinPdaComp))
                             {
-                                var twinProgram =
-                                    twinPdaComp.BackgroundPrograms.FirstOrDefault(
-                                        HasComp<NotekeeperCartridgeComponent>);
-                                var targetProgram =
-                                    targetPdaComp.BackgroundPrograms.FirstOrDefault(
-                                        HasComp<NotekeeperCartridgeComponent>);
-                                if (twinProgram.Valid &&
-                                    targetProgram.Valid &&
-                                    TryComp<NotekeeperCartridgeComponent>(targetProgram, out var targetNotesComp) &&
-                                    TryComp<NotekeeperCartridgeComponent>(twinProgram, out var twinNotesComp))
+                                var twinProgram = _cartridgeLoader.TryGetProgram<NotekeeperCartridgeComponent>((twinPda.Value, twinPdaComp));
+                                var targetProgram = _cartridgeLoader.TryGetProgram<NotekeeperCartridgeComponent>((targetPda.Value, targetPdaComp));
+                                if (twinProgram != null && targetProgram != null)
                                 {
-                                    foreach (var note in targetNotesComp.Notes)
+                                    foreach (var note in targetProgram.Value.Comp.Notes)
                                     {
-                                        twinNotesComp.Notes.Add(note);
+                                        twinProgram.Value.Comp.Notes.Add(note);
                                     }
                                 }
                             }
@@ -661,6 +656,7 @@ public sealed partial class EvilTwinSystem : EntitySystem
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private IdentitySystem _identity = default!;
     [Dependency] private EconomySystem _economySystem = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
     [Dependency] private ForensicsSystem _forensicsSystem = default!;
     [Dependency] private SuitSensorSystem _sensor = default!;
 

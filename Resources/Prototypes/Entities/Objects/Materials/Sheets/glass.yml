@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseSheet
+  parent: BaseItem
   id: SheetGlassBase
   name: glass
   description: A sheet of glass, used often on the station in various applications.
@@ -9,8 +9,47 @@
     sprite: Objects/Materials/Sheets/glass.rsi
   - type: Item
     sprite: Objects/Materials/Sheets/glass.rsi
+    size: Normal
+  - type: StaticPrice
+    price: 0
+  - type: Tag
+    tags:
+    - Sheet
+    - ConstructionMaterial
+  - type: Material
   - type: Damageable
     damageModifierSet: Glass
+  - type: Injurable
+    damageContainer: Inorganic
+  - type: Appearance
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SolutionContainerManager
+    solutions:
+      glass:
+        canReact: false
 
 - type: entity
   parent: SheetGlassBase
@@ -40,27 +79,14 @@
   - type: Construction
     graph: Glass
     node: SheetGlass
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Silicon
-        Quantity: 10
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-          params:
-            volume: -4
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ShardGlass:
-            min: 1
-            max: 1
+  - type: Extractable
+    grindableSolutionName: glass
+  - type: SolutionContainerManager
+    solutions:
+      glass:
+        reagents:
+        - ReagentId: Silicon
+          Quantity: 10
 
 - type: entity
   parent: SheetGlass
@@ -118,6 +144,12 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
         damage: 50
       behaviors:
       - !type:PlaySoundBehavior
@@ -130,16 +162,8 @@
           ShardGlassReinforced:
             min: 1
             max: 1
-  - type: Solution
-    solution:
-      maxVol: 15
-      reagents:
-      - ReagentId: Silicon
-        Quantity: 10
-      - ReagentId: Iron
-        Quantity: 4.5
-      - ReagentId: Carbon
-        Quantity: 0.5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: SheetRGlass
@@ -152,6 +176,19 @@
   - type: Stack
     stackType: ReinforcedGlass
     count: 1
+  - type: Extractable
+    grindableSolutionName: rglass
+  - type: SolutionContainerManager
+    solutions:
+      rglass:
+        reagents:
+        - ReagentId: Silicon
+          Quantity: 10
+        - ReagentId: Iron
+          Quantity: 4.5
+        - ReagentId: Carbon
+          Quantity: 0.5
+        canReact: false
 
 - type: entity
   parent: SheetGlassBase
@@ -184,6 +221,12 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
         damage: 50
       behaviors:
       - !type:PlaySoundBehavior
@@ -196,14 +239,8 @@
           ShardGlassPlasma:
             min: 1
             max: 1
-  - type: Solution
-    solution:
-      maxVol: 20
-      reagents:
-      - ReagentId: Silicon
-        Quantity: 10
-      - ReagentId: Plasma
-        Quantity: 10
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: SheetPGlass
@@ -216,6 +253,17 @@
   - type: Stack
     stackType: PlasmaGlass
     count: 1
+  - type: Extractable
+    grindableSolutionName: pglass
+  - type: SolutionContainerManager
+    solutions:
+      pglass:
+        reagents:
+        - ReagentId: Silicon
+          Quantity: 10
+        - ReagentId: Plasma
+          Quantity: 10
+        canReact: false
 
 - type: entity
   parent: SheetPGlass
@@ -244,18 +292,21 @@
   - type: Construction
     graph: Glass
     node: SheetRPGlass
-  - type: Solution
-    solution:
-      maxVol: 25
-      reagents:
-      - ReagentId: Silicon
-        Quantity: 10
-      - ReagentId: Plasma
-        Quantity: 10
-      - ReagentId: Iron
-        Quantity: 4.5
-      - ReagentId: Carbon
-        Quantity: 0.5
+  - type: Extractable
+    grindableSolutionName: rpglass
+  - type: SolutionContainerManager
+    solutions:
+      rpglass:
+        reagents:
+        - ReagentId: Silicon
+          Quantity: 10
+        - ReagentId: Plasma
+          Quantity: 10
+        - ReagentId: Iron
+          Quantity: 4.5
+        - ReagentId: Carbon
+          Quantity: 0.5
+        canReact: false
 
 - type: entity
   parent: SheetRPGlass
@@ -300,6 +351,12 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
         damage: 50
       behaviors:
       - !type:PlaySoundBehavior
@@ -312,14 +369,19 @@
           ShardGlassUranium:
             min: 1
             max: 1
-  - type: Solution
-    solution:
-      maxVol: 20
-      reagents:
-      - ReagentId: Silicon
-        Quantity: 10
-      - ReagentId: Uranium
-        Quantity: 10
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Extractable
+    grindableSolutionName: uglass
+  - type: SolutionContainerManager
+    solutions:
+      uglass:
+        reagents:
+        - ReagentId: Silicon
+          Quantity: 10
+        - ReagentId: Uranium
+          Quantity: 10
+        canReact: false
 
 - type: entity
   parent: SheetUGlass
@@ -359,18 +421,21 @@
   - type: Construction
     graph: Glass
     node: SheetRUGlass
-  - type: Solution
-    solution:
-      maxVol: 25
-      reagents:
-      - ReagentId: Silicon
-        Quantity: 10
-      - ReagentId: Uranium
-        Quantity: 10
-      - ReagentId: Iron
-        Quantity: 4.5
-      - ReagentId: Carbon
-        Quantity: 0.5
+  - type: Extractable
+    grindableSolutionName: ruglass
+  - type: SolutionContainerManager
+    solutions:
+      ruglass:
+        reagents:
+        - ReagentId: Silicon
+          Quantity: 10
+        - ReagentId: Uranium
+          Quantity: 10
+        - ReagentId: Iron
+          Quantity: 4.5
+        - ReagentId: Carbon
+          Quantity: 0.5
+        canReact: false
 
 - type: entity
   parent: SheetRUGlass
@@ -415,6 +480,12 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
         damage: 50
       behaviors:
       - !type:PlaySoundBehavior
@@ -427,14 +498,21 @@
           ShardGlassClockwork:
             min: 1
             max: 1
-  - type: Solution
-    solution:
-      maxVol: 20
-      reagents:
-      - ReagentId: Silicon
-        Quantity: 10
-      - ReagentId: Brass
-        Quantity: 10
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Extractable
+    grindableSolutionName: brassglass
+  - type: SolutionContainerManager
+    solutions:
+      cglass:
+        reagents:
+        - ReagentId: Silicon
+          Quantity: 10
+        - ReagentId: Zinc
+          Quantity: 3.3
+        - ReagentId: Copper
+          Quantity: 6.7
+        canReact: false
 
 - type: entity
   parent: SheetClockworkGlass

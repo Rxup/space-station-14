@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ TemperatureProtection, ClothingOuterJacketBase ]
+  parent: ClothingOuterStorageBase
   id: ClothingOuterWinterCoat
   name: winter coat
   description: A heavy jacket made from 'synthetic' animal furs.
@@ -8,6 +8,11 @@
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+  - type: Item
+    size: Normal
   - type: Armor
     coverage:
     - Chest
@@ -47,7 +52,6 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterDefault
     slot: head
-    verbText: toggle-clothing-verb-hood
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
@@ -75,7 +79,7 @@
       outerClothing:
       - state: ATMOS-equipped-OUTERCLOTHING
   - type: Armor
-    coverage: # backmen: armour coverage
+    coverage:
     - Chest
     - Groin
     - Arm
@@ -406,11 +410,6 @@
     sprite: Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterHOS
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot { }
-      storagebase: !type:Container
-        ents: [ ]
 ##########################################################
 
 - type: entity
@@ -474,7 +473,7 @@
       left:
       - state: JANI-inhand-left
       right:
-      - state: JANI-inhand-right
+      - state: CHEF-inhand-right
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
     clothingVisuals:
@@ -812,11 +811,6 @@
     sprite: Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWarden
-  - type: ContainerContainer
-    containers:
-      toggleable-clothing: !type:ContainerSlot { }
-      storagebase: !type:Container
-        ents: [ ]
 ################################################################
 
 - type: entity
@@ -918,7 +912,7 @@
     sprite: Clothing/OuterClothing/WinterCoats/coatnomi.rsi
 
 - type: entity
-  parent: [ClothingOuterWinterCoatToggleable, BaseSlicingRefinable]
+  parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterWeb
   name: web winter coat
   description: Feels like the inside of a cocoon, not that this would make you less afraid of being in one.
@@ -941,8 +935,8 @@
   - type: Construction
     graph: WebObjects
     node: coat
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: MaterialWebSilk1
       amount: 5
   - type: FlavorProfile
@@ -950,11 +944,13 @@
       - cobwebs
     ignoreReagents:
       - Fiber
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 50 # 50 (10 (fiber count of web) * 5 (to craft))
+  - type: SolutionContainerManager
+    solutions: # 15 (3 (fiber count of web) * 5 (to craft)) + 5 (magical crafting bonus)
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 20
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWeb
 

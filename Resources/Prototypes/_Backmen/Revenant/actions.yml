@@ -5,8 +5,11 @@
   description: Frighten nearby souls to steal essence and boost regeneration.
   components:
   - type: Action
-    icon: Interface/Actions/scream.png
     useDelay: 30
+    itemIconStyle: BigAction
+  - type: Sprite
+    layers:
+    - texture: Interface/Actions/scream.png
   - type: InstantAction
     event: !type:RevenantHauntActionEvent
 
@@ -17,8 +20,11 @@
   description: Draw with blood at the cost of essence.
   components:
   - type: Action
-    icon: Interface/Actions/blood-writing.png
     useDelay: 0
+    itemIconStyle: BigAction
+  - type: Sprite
+    layers:
+    - texture: Interface/Actions/blood-writing.png
   - type: InstantAction
     event: !type:RevenantBloodWritingEvent
 
@@ -29,8 +35,11 @@
   description: Animate an object to fight for you.
   components:
   - type: Action
-    icon: Interface/Actions/animate.png
     useDelay: 0
+    itemIconStyle: BigAction
+  - type: Sprite
+    layers:
+    - texture: Interface/Actions/animate.png
   - type: TargetAction
     range: 8
   - type: EntityTargetAction

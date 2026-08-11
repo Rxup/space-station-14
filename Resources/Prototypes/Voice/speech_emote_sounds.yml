@@ -649,22 +649,6 @@
     Salute:
       collection: Salutes
 
-- type: emoteSounds
-  id: MothBodyEmotes
-  sounds:
-    Flap:
-      path: /Audio/Voice/Moth/moth_flap.ogg
-    Clap:
-      collection: Claps
-    ClapSingle:
-      collection: ClapSingle
-    Snap:
-      collection: Snaps
-      params:
-        volume: -6
-    Salute:
-      collection: Salutes
-
 # mobs
 - type: emoteSounds
   id: Zombie
@@ -757,20 +741,6 @@
       path: /Audio/Corvax/Effects/Growl/growl1.ogg
   params:
     variation: 0.125
-
-- type: emoteSounds
-  id: Sheep
-  sound:
-    collection: Sheep
-    params:
-      variation: 0.05
-
-- type: emoteSounds
-  id: SheepSpace
-  sound:
-    collection: SheepSpace
-    params:
-      variation: 0.05
 
 - type: emoteSounds
   id: Scurret

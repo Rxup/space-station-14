@@ -1,8 +1,8 @@
 - type: entity
-  parent: [BaseItem, SolutionDart]
-  id: Dart
   name: dart
   description: Light throwing dart for playing darts. Don't get in the eye!
+  parent: BaseItem
+  id: Dart
   components:
   - type: EmbeddableProjectile
     minimumSpeed: 3
@@ -44,6 +44,10 @@
   - type: Item
     size: Tiny
     sprite: Objects/Fun/Darts/dart_red.rsi
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 2
   - type: MeleeChemicalInjector
     solution: melee
   - type: RefillableSolution
@@ -63,6 +67,12 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
+        damage: 30 #excess damage avoids cost of spawning entities.
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
         damage: 20
       behaviors:
       - !type:PlaySoundBehavior
@@ -76,16 +86,6 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: BalloonPopper
-
-- type: entity
-  parent: Solution
-  id: SolutionDart
-  categories: [ HideSpawnMenu ] # Not abstract so weapons with multiple solutions can exist
-  components:
-  - type: Solution
-    id: melee
-    solution:
-      maxVol: 2
 
 - type: entity
   parent: Dart
@@ -119,15 +119,16 @@
   id: HypoDart
   suffix: HypoDart
   components:
-  - type: Solution
-    solution:
-      maxVol: 10
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 7
   - type: SolutionInjectOnEmbed
-    transferAmount: 10
+    transferAmount: 7
     blockSlots: NONE
     solution: melee
   - type: SolutionTransfer
-    maxTransferAmount: 10
+    maxTransferAmount: 7
 # Corvax-HiddenDesc-Start
   - type: HiddenDescription
     entries:
@@ -169,6 +170,7 @@
   - type: Physics
   - type: Damageable
   - type: Injurable
+    damageContainer: StructuralInorganic
   - type: DamageRandomPopup
     popups:
       - darts-popup-bullseye
@@ -185,6 +187,12 @@
       - darts-popup-miss
   - type: Destructible
     thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
         damage: 300

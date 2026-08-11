@@ -21,7 +21,6 @@
     - type: GhostTakeoverAvailable
     - type: Input
       context: "human"
-    - type: DoAfter
     - type: MobMover
     - type: InputMover
     - type: MovementSpeedModifier
@@ -113,6 +112,9 @@
     - type: Tag
       tags:
         - CannotSuicide
+        - StunImmune
+        - SlowImmune
+    # start-backmen: languages
     - type: LanguageSpeaker
       currentLanguage: Nekomimetic
     - type: LanguageKnowledge #backmen: languages
@@ -122,6 +124,7 @@
       understands:
       - TauCetiBasic
       - Nekomimetic
+    # end-backmen: languages
 
 # From the uplink injector
 - type: entity
@@ -152,9 +155,6 @@
           map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
           color: "#40a7d7"
           shader: unshaded
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
@@ -248,15 +248,6 @@
         Hand:
           location: Left
     - type: ComplexInteraction
-    - type: Clumsy
-      gunShootFailDamage:
-        types:
-          Blunt: 5
-          Piercing: 4
-          Heat: 3
-      catchingFailDamage:
-        types:
-          Blunt: 1
     - type: MeleeWeapon
       angle: 30
       animation: WeaponArcFist
@@ -271,9 +262,6 @@
     - type: RandomMetadata
       nameSegments:
       - NamesClown
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
     - type: HTN
       rootTask:
         task: SimpleHumanoidHostileCompound
@@ -285,7 +273,9 @@
   description: Either manifests the guardian or recalls it back into your body
   components:
   - type: Action
-    icon: Interface/Actions/manifest.png
     useDelay: 2
+  - type: Sprite
+    layers:
+    - texture: Interface/Actions/manifest.png
   - type: InstantAction
     event: !type:GuardianToggleActionEvent

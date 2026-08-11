@@ -54,8 +54,7 @@ public sealed partial class MimePowersComponent : Component
     [DataField, AutoNetworkedField]
     public TimeSpan VowCooldown = TimeSpan.FromMinutes(5);
 
-    [DataField]
-    public ProtoId<AlertPrototype> VowAlert = "VowOfSilence";
+    // VowAlert removed — mute is StatusEffectMimeMuted // backmen: muted-status-effects
 
     [DataField]
     public ProtoId<AlertPrototype> VowBrokenAlert = "VowBroken";
