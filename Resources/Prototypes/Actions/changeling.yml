@@ -12,6 +12,7 @@
     sprite: Interface/Actions/changeling.rsi
     layers:
     - state: armblade
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:OnRetractableItemActionEvent
   - type: RetractableItemAction
@@ -35,6 +36,7 @@
     sprite: Interface/Actions/changeling2.rsi
     layers:
     - state: biodegrade
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:ChangelingBiodegradeActionEvent
   - type: ChangelingBiodegradeAbility
@@ -50,12 +52,11 @@
   - type: Sprite
     sprite: Interface/Actions/changeling.rsi
     layers:
-    - state: "devour"
+    - state: devour
       map: ["enum.ActionVisuals.Icon"]
-    - state: "devour_on"
+    - state: devour_on
       map: ["enum.ActionVisuals.IconToggled"]
       visible: false
-  - type: ActionRequireMouthUncovered
   - type: TargetAction
   - type: EntityTargetAction
     event: !type:ChangelingDevourActionEvent
@@ -69,7 +70,8 @@
   - type: Sprite
     sprite: Interface/Actions/changeling.rsi
     layers:
-    - state: "transform"
+    - state: transform
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:ChangelingTransformActionEvent
 
@@ -83,7 +85,8 @@
   - type: Sprite
     sprite: Interface/Actions/changeling2.rsi
     layers:
-    - state: "shop"
+    - state: shop
+      map: ["enum.ActionVisuals.Icon"]
 
 - type: entity
   parent: BaseAction
@@ -97,6 +100,7 @@
     sprite: Interface/Actions/changeling2.rsi
     layers:
     - state: mimicry
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:VoiceMaskSetNameEvent
 
@@ -114,9 +118,9 @@
   - type: Sprite
     sprite: Interface/Actions/changeling2.rsi
     layers:
-    - state: "extract_dna_off"
+    - state: extract_dna_off
       map: ["enum.ActionVisuals.Icon"]
-    - state: "extract_dna_on"
+    - state: extract_dna_on
       map: ["enum.ActionVisuals.IconToggled"]
       visible: false
   - type: TargetAction
@@ -160,6 +164,7 @@
     sprite: Interface/Actions/changeling2.rsi
     layers:
     - state: blind_sting
+      map: ["enum.ActionVisuals.Icon"]
   - type: EntityEffectAction
     effects:
     - !type:AddReagentToBloodstream
@@ -180,6 +185,7 @@
     sprite: Interface/Actions/changeling2.rsi
     layers:
     - state: cryogenic_sting
+      map: ["enum.ActionVisuals.Icon"]
   - type: EntityEffectAction
     effects:
     - !type:AddReagentToBloodstream
@@ -200,6 +206,7 @@
     sprite: Interface/Actions/changeling2.rsi
     layers:
     - state: lethal_sting
+      map: ["enum.ActionVisuals.Icon"]
   - type: EntityEffectAction
     effects:
     - !type:AddReagentToBloodstream
@@ -220,6 +227,7 @@
     sprite: Interface/Actions/changeling2.rsi
     layers:
     - state: hallucination_sting
+      map: ["enum.ActionVisuals.Icon"]
   - type: EntityEffectAction
     effects:
     - !type:AddReagentToBloodstream
@@ -246,6 +254,7 @@
     sprite: Interface/Actions/changeling2.rsi
     layers:
     - state: last_resort
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:ChangelingLastResortActionEvent
   - type: ChangelingLastResortAbility
@@ -263,44 +272,7 @@
     sprite: Interface/Actions/changeling2.rsi
     layers:
     - state: take_over_corpse
+      map: ["enum.ActionVisuals.Icon"]
   - type: EntityTargetAction
     event: !type:ChangelingTakeOverCorpseActionEvent
   - type: TargetAction
-
-- type: entity
-  parent: ActionToggleNightVision
-  id: ActionChangelingNightVision
-  name: Toggle Night Vision
-  description: Turns our night vision on/off.
-  components:
-  - type: Action
-    itemIconStyle: BigAction
-  - type: Sprite
-    sprite: Interface/Actions/changeling2.rsi
-    layers:
-    - state: nv_on
-
-- type: entity
-  parent: BaseAction
-  id: ActionChangelingScreech
-  name: Screech
-  description: We produce a deafening screech that weakens those around us.
-  components:
-  - type: Sprite
-    sprite: Interface/Actions/changeling2.rsi
-    layers:
-    - state: screech
-  - type: Action
-    useDelay: 60 # unbalanced :godo:
-    raiseOnAction: true
-  - type: ScreechAction
-    effects:
-    - !type:MovementSpeedModifier
-      walkSpeedModifier: 0.5
-      sprintSpeedModifier: 0.5
-      time: 5
-    - !type:Disarm
-    - !type:ModifyKnockdown
-      probability: 0.5
-  - type: InstantAction
-    event: !type:ScreechActionEvent

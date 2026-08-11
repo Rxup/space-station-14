@@ -6,13 +6,15 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    icon:
-      sprite: _White/Interface/Actions/headcrab.rsi
-      state: jump-off
-    iconOn:
-      sprite: _White/Interface/Actions/headcrab.rsi
-      state: jump-on
     useDelay: 30
+  - type: Sprite
+    sprite: _White/Interface/Actions/headcrab.rsi
+    layers:
+    - state: jump-off
+      map: ["enum.ActionVisuals.Icon"]
+    - state: jump-on
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
   - type: WorldTargetAction
     event: !type:FleshWormJumpActionEvent
   - type: TargetAction

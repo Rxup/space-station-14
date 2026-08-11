@@ -110,7 +110,8 @@
         - SecretStash
         - WrappedParcel
   - type: Vocal
-    emoteSounds: UnisexSilicon
+    sounds:
+      Unsexed: UnisexSilicon
   - type: Tag
     tags:
     - SiliconEmotes
@@ -151,7 +152,8 @@
   - type: StaticPrice
     price: 500
   - type: Vocal
-    emoteSounds: UnisexSiliconSyndicate
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
 
 - type: entity
   parent: PersonalAI

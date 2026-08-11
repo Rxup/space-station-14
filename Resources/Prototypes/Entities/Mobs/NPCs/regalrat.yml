@@ -308,7 +308,10 @@
     - id: FoodMeatRat
       amount: 1
   - type: Vocal
-    emoteSounds: Mouse
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
     wilhelmProbability: 0.001
   - type: Tag
     tags:

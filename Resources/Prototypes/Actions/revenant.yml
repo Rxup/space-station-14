@@ -41,8 +41,11 @@
 #  description: Costs 50 Essence.
 #  components:
 #  - type: Action
-#    icon: Interface/Actions/blight.png
 #    useDelay: 20
+#  - type: Sprite
+#    layers:
+#    - texture: Interface/Actions/blight.png
+#      map: ["enum.ActionVisuals.Icon"]
 #  - type: InstantAction
 #    event: !type:RevenantBlightActionEvent
 

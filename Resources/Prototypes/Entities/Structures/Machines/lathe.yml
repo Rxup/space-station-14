@@ -693,15 +693,10 @@
     - FloorSteelTilesStatic
     - FloorWhiteTilesStatic
     - FloorMaintsTilesStatic
-    - FloorIndustrialTilesStatic
     - FloorWoodTilesStatic
     - FloorConcreteTilesStatic
     - CircuitFloorsStatic
     - FloorMarbleTilesStatic
-    - FloorShuttleTilesStatic
-    - PlasticTilesStatic
-    - CarpetTilesStatic
-    - PreciousTilesStatic
     dynamicPacks:
     - FauxTiles
   - type: MaterialStorage

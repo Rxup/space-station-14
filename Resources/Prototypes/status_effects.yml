@@ -35,7 +35,16 @@
   alert: Corporeal
 
 - type: statusEffect
+  id: TemporaryBlindness
+
+- type: statusEffect
   id: Pacified #cannot attack
+
+- type: statusEffect
+  id: RatvarianLanguage #Praise him
+
+- type: statusEffect
+  id: Flashed
 
 - type: statusEffect
   id: Adrenaline

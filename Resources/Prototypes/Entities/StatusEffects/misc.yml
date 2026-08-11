@@ -63,7 +63,7 @@
   - type: StunnedStatusEffect
   - type: KnockdownStatusEffect
 
-# Prevents speaking and vocal emotes.
+# start-backmen: muted-status-effects
 - type: entity
   abstract: true
   parent: MobStatusEffectBase
@@ -94,6 +94,7 @@
   components:
   - type: MutedStatusEffect
     speakPopup: ventriloquist-puppet-cant-speak
+# end-backmen: muted-status-effects
 
 # Blurs your vision and makes you randomly fall asleep
 - type: entity

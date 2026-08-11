@@ -1,33 +1,14 @@
 # base actions
 
 # base prototype for all action entities
+
 - type: entity
   abstract: true
   id: BaseAction
   components:
   - type: Action
-  - type: Sprite
-    layers:
-    - map: ["enum.ActionVisuals.Icon"]
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ActionState.Toggled:
-        enum.ActionVisuals.Icon:
-          True: { visible: false }
-          False: { visible: true }
-        enum.ActionVisuals.IconToggled:
-          True: { visible: true }
-          False: { visible: false }
-      enum.LimitedChargesState.HasCharges:
-        enum.ActionVisuals.Icon:
-          True: { color: White }
-          False: { color: DimGray }
-        enum.ActionVisuals.IconToggled:
-          True: { color: White }
-          False: { color: DimGray }
-
 # base proto for an action that requires a DoAfter
+
 - type: entity
   abstract: true
   parent: BaseAction
@@ -36,6 +17,7 @@
   - type: DoAfterArgs
 
 # an action that is done all in le head and cant be prevented by any means
+
 - type: entity
   abstract: true
   parent: BaseAction
@@ -83,6 +65,7 @@
   - type: Sprite
     layers:
     - texture: Interface/Actions/scream.png
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:EmoteActionEvent
       emote: Scream
@@ -97,6 +80,7 @@
   - type: Sprite
     layers:
     - texture: Interface/Actions/zombie-turn.png
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:ZombifySelfActionEvent
 
@@ -131,6 +115,7 @@
     sprite: Clothing/Back/Backpacks/backpack.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:OpenStorageImplantEvent
 
@@ -148,6 +133,7 @@
     sprite: Actions/Implants/implants.rsi
     layers:
     - state: explosive
+      map: ["enum.ActionVisuals.Icon"]
 
 - type: entity
   parent: [BaseSuicideAction, BaseImplantAction]
@@ -162,6 +148,7 @@
     sprite: Objects/Magic/magicactions.rsi
     layers:
     - state: gib
+      map: ["enum.ActionVisuals.Icon"]
 
 - type: entity
   parent: BaseImplantAction
@@ -194,6 +181,7 @@
     sprite: Objects/Devices/communication.rsi
     layers:
     - state: old-radio
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:OpenUplinkImplantEvent
 
@@ -303,6 +291,7 @@
     sprite: Interface/Actions/voice-mask.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:VoiceMaskSetNameEvent
 
@@ -317,6 +306,7 @@
     sprite: Clothing/Neck/Misc/pins.rsi
     layers:
     - state: flower
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:SprayLiquidEvent
 
@@ -360,6 +350,7 @@
     sprite: Objects/Tools/multitool.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:ClearAllOverlaysEvent
 
@@ -375,6 +366,7 @@
     sprite: Objects/Consumable/Food/egg.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:EggLayInstantActionEvent
 
@@ -389,6 +381,7 @@
     sprite: Clothing/Head/Hats/pyjamasyndicatered.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:SleepActionEvent
 
@@ -405,6 +398,7 @@
     sprite: Clothing/Head/Hats/pyjamasyndicatered.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:WakeActionEvent
 
@@ -420,6 +414,7 @@
     sprite: Objects/Fun/bikehorn.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]
 
 - type: entity
   parent: BaseAction
@@ -433,6 +428,7 @@
   - type: Sprite
     layers:
     - texture: Interface/Actions/firestarter.png
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:FireStarterActionEvent
 
@@ -468,6 +464,10 @@
     sprite: Mobs/Customization/reptilian_parts.rsi
     layers:
     - state: tail_smooth_behind
+      map: ["enum.ActionVisuals.Icon"]
+    - state: tail_smooth_behind
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
 
 - type: entity
   parent: BaseAction
@@ -506,6 +506,7 @@
     sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
     layers:
     - state: icon-siren
+      map: ["enum.ActionVisuals.Icon"]
 
 - type: entity
   parent: BaseAction
@@ -519,8 +520,9 @@
     sprite: Interface/Actions/night_vision.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
-    event: !type:ToggleNightVisionEvent {}
+    event: !type:NVInstantActionEvent
 
 - type: entity
   parent: ActionToggleWagging
@@ -533,6 +535,10 @@
     sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
     layers:
     - state: tail-wag-icon
+      map: ["enum.ActionVisuals.Icon"]
+    - state: tail-wag-icon
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
 
 - type: entity
   parent: BaseAction
@@ -546,6 +552,7 @@
     sprite: Interface/Actions/jump.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:GravityJumpEvent {}
 
@@ -560,6 +567,7 @@
     sprite: Interface/Actions/actions_borg.rsi
     layers:
     - state: xenoborg-jump-module
+      map: ["enum.ActionVisuals.Icon"]
 
 - type: entity
   parent: BaseAction
@@ -573,6 +581,7 @@
     sprite: Interface/Actions/jump.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:GravityJumpEvent {}
 
@@ -588,6 +597,10 @@
   - type: Sprite
     layers:
     - texture: Interface/Actions/rooting.png
+      map: ["enum.ActionVisuals.Icon"]
+    - texture: Interface/Actions/rooting.png
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
 
 - type: entity
   id: ActionChameleonController
@@ -601,6 +614,7 @@
     sprite: Actions/Implants/implants.rsi
     layers:
     - state: chameleon
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:ChameleonControllerOpenMenuEvent
 
@@ -614,6 +628,7 @@
   - type: Sprite
     layers:
     - texture: Interface/Actions/shop.png
+      map: ["enum.ActionVisuals.Icon"]
   - type: InstantAction
     event: !type:IntrinsicStoreActionEvent
 
@@ -627,3 +642,4 @@
     sprite: Interface/Actions/voice-mask.rsi
     layers:
     - state: icon
+      map: ["enum.ActionVisuals.Icon"]

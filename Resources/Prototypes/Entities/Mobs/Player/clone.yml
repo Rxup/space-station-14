@@ -21,6 +21,7 @@
   - Narcolepsy
   - ImpairedMobility
   # - LegsParalyzed (you get healed)
+  - Muted
   - PermanentBlindness
   - Snoring
   - Unrevivable
@@ -153,7 +154,6 @@
   - Sericulture # arachnids
   - MovementSpeedModifier # moths when weightless
   - JumpAbility # vulp leaping
-  - Bloodstream # blood reagents
   copyInternalStorage: false
   copyImplants: false
   raiseEntityRenamedEvent: false

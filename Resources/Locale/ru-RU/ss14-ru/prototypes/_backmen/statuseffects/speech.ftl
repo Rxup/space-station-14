@@ -1,6 +1,6 @@
 ent-StatusEffectSpeechOhio = акцент Огайо
     .desc = { ent-MobStatusEffectBase.desc }
-ent-StatusEffectLangRatvarian = ратварианский язык
+ent-StatusEffectRatvarianLanguage = ратварианский язык
     .desc = { ent-MobStatusEffectBase.desc }
 ent-StatusEffectLangFleshAccent = языковой акцент плоти
     .desc = { ent-MobStatusEffectBase.desc }

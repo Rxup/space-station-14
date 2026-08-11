@@ -12,14 +12,11 @@
     - CanPilot
     - BypassInteractionRangeChecks
     - BypassDropChecks
-    - BypassOpenStorageLimit
     - NoConsoleSound
     - SilentStorageUser
     - PreventAccessLogging
     - AllowBiomeLoading
     - NotGhostnadoWarpable
-    - AllowPortalTraversal
-    - PreventPortalCollision
   - type: Input
     context: "aghost"
   - type: Ghost
@@ -155,6 +152,10 @@
     sprite: Interface/Actions/actions_ai.rsi
     layers:
     - state: comms_console
+      map: ["enum.ActionVisuals.Icon"]
+    - state: comms_console
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.CommunicationsConsoleUiKey.Key }
 
@@ -200,6 +201,10 @@
     sprite: Interface/Actions/actions_ai.rsi
     layers:
     - state: crew_monitor
+      map: ["enum.ActionVisuals.Icon"]
+    - state: crew_monitor
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.CrewMonitoringUIKey.Key }
 
@@ -216,5 +221,9 @@
     sprite: Interface/Actions/actions_ai.rsi
     layers:
     - state: station_records
+      map: ["enum.ActionVisuals.Icon"]
+    - state: station_records
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.GeneralStationRecordConsoleKey.Key }

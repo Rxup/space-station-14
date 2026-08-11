@@ -7,7 +7,7 @@
 
 - type: entity
   parent: MobStatusEffectBase
-  id: StatusEffectLangRatvarian
+  id: StatusEffectRatvarianLanguage
   name: ratvarian language
   components:
   - type: RatvarianLanguage

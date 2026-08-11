@@ -150,7 +150,8 @@
     allowedEmotes:
     - Laugh
   - type: Vocal
-    emoteSounds: UnisexSiliconXenoborg
+    sounds:
+      Unsexed: UnisexSiliconXenoborg
     wilhelmProbability: 0
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter
