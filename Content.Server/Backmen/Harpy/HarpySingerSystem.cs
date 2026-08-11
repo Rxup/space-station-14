@@ -9,7 +9,8 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
-using Content.Shared.StatusEffect;
+using Content.Shared.Speech.Muting;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Stunnable;
 using Content.Shared.UserInterface;
 using Content.Shared.Zombies;
@@ -40,7 +41,7 @@ namespace Content.Server.Backmen.Harpy
             SubscribeLocalEvent<InstrumentComponent, KnockedDownEvent>(OnKnockedDown);
             SubscribeLocalEvent<InstrumentComponent, StunnedEvent>(OnStunned);
             SubscribeLocalEvent<InstrumentComponent, SleepStateChangedEvent>(OnSleep);
-            SubscribeLocalEvent<InstrumentComponent, StatusEffectAddedEvent>(OnStatusEffect);
+            SubscribeLocalEvent<MutedStatusEffectComponent, StatusEffectAppliedEvent>(OnMutedApplied);
             SubscribeLocalEvent<InstrumentComponent, DamageChangedEvent>(OnDamageChanged);
             SubscribeLocalEvent<HarpySingerComponent, BoundUIClosedEvent>(OnBoundUIClosed);
             SubscribeLocalEvent<HarpySingerComponent, BoundUIOpenedEvent>(OnBoundUIOpened);
@@ -89,10 +90,9 @@ namespace Content.Server.Backmen.Harpy
                 CloseMidiUi(uid);
         }
 
-        private void OnStatusEffect(EntityUid uid, InstrumentComponent component, StatusEffectAddedEvent args)
+        private void OnMutedApplied(Entity<MutedStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
         {
-            if (args.Key == "Muted")
-                CloseMidiUi(uid);
+            CloseMidiUi(args.Target);
         }
 
         /// <summary>

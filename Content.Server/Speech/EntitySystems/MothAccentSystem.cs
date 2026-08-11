@@ -2,11 +2,12 @@
 using Content.Server.Speech.Components;
 using Robust.Shared.Random;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class MothAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class MothAccentSystem : RelayAccentSystem<MothAccentComponent>
 {
     [Dependency] private IRobustRandom _random = default!; // Corvax-Localization
 
@@ -20,23 +21,6 @@ public sealed partial class MothAccentSystem : EntitySystem
 
     private static readonly Regex RegexLowerBuzz = new Regex("z{1,3}");
     private static readonly Regex RegexUpperBuzz = new Regex("Z{1,3}");
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<MothAccentComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<MothAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-    }
-
-    private void OnAccentRelayed(Entity<MothAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-    {
-        args.Args.Message = Accentuate(args.Args.Message);
-    }
-
-    private void OnAccent(Entity<MothAccentComponent> ent, ref AccentGetEvent args)
-    {
-        args.Message = Accentuate(args.Message);
-    }
 
     public string Accentuate(string message)
     {
@@ -70,4 +54,10 @@ public sealed partial class MothAccentSystem : EntitySystem
 
         return message;
     }
+
+    protected override string AccentuateInternal(EntityUid uid, MothAccentComponent comp, string message)
+    {
+        return Accentuate(message);
+    }
 }
+// end-backmen: relay-accents

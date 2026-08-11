@@ -6,7 +6,7 @@
   - type: OhioAccent
 
 - type: entity
-  parent: MobStatusEffectBase
+  parent: SpeechStatusEffectBase
   id: StatusEffectRatvarianLanguage
   name: ratvarian language
   components:

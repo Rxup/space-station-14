@@ -16,7 +16,6 @@
       - Stutter
       - Electrocution
       - ForcedSleep
-      - TemporaryBlindness
       - StaminaModifier
   - type: ZombieImmune
   - type: Rotatable

@@ -19,7 +19,6 @@
   - type: StatusEffects
     allowed:
     - SlowedDown
-    - TemporaryBlindness
     - RadiationProtection
   - type: Tag
     tags:

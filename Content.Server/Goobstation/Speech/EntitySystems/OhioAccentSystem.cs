@@ -1,31 +1,15 @@
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class OhioAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class OhioAccentSystem : RelayAccentSystem<OhioAccentComponent>
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ReplacementAccentSystem _replacement = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<OhioAccentComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<OhioAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-    }
-
-    private void OnAccentRelayed(Entity<OhioAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-    {
-        args.Args.Message = Accentuate(args.Args.Message);
-    }
-
-    private void OnAccent(Entity<OhioAccentComponent> ent, ref AccentGetEvent args)
-    {
-        args.Message = Accentuate(args.Message);
-    }
 
     public string Accentuate(string message)
     {
@@ -53,4 +37,10 @@ public sealed partial class OhioAccentSystem : EntitySystem
 
         return message;
     }
+
+    protected override string AccentuateInternal(EntityUid uid, OhioAccentComponent comp, string message)
+    {
+        return Accentuate(message);
+    }
 };
+// end-backmen: relay-accents

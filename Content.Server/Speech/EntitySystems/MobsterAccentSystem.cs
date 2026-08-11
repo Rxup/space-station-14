@@ -2,11 +2,13 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class MobsterAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class MobsterAccentSystem : RelayAccentSystem<MobsterAccentComponent>
 {
     private static readonly Regex RegexIng = new(@"(?<=\w\w)(in)g(?!\w)", RegexOptions.IgnoreCase);
     private static readonly Regex RegexLowerOr = new(@"(?<=\w)o[Rr](?=\w)");
@@ -18,13 +20,6 @@ public sealed partial class MobsterAccentSystem : EntitySystem
     private static readonly Regex RegexLastPunctuation = new(@"([.!?]+$)(?!.*[.!?])|(?<![.!?])$");
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ReplacementAccentSystem _replacement = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<MobsterAccentComponent, AccentGetEvent>(OnAccentGet);
-    }
 
     public string Accentuate(string message, MobsterAccentComponent component)
     {
@@ -91,8 +86,9 @@ public sealed partial class MobsterAccentSystem : EntitySystem
         return msg;
     }
 
-    private void OnAccentGet(EntityUid uid, MobsterAccentComponent component, AccentGetEvent args)
+    protected override string AccentuateInternal(EntityUid uid, MobsterAccentComponent comp, string message)
     {
-        args.Message = Accentuate(args.Message, component);
+        return Accentuate(message, comp);
     }
 }
+// end-backmen: relay-accents

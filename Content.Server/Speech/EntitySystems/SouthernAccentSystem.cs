@@ -1,11 +1,12 @@
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class SouthernAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class SouthernAccentSystem : RelayAccentSystem<SouthernAccentComponent>
 {
     private static readonly Regex RegexLowerIng = new(@"ing\b");
     private static readonly Regex RegexUpperIng = new(@"ING\b");
@@ -15,23 +16,6 @@ public sealed partial class SouthernAccentSystem : EntitySystem
     private static readonly Regex RegexUpperDve = new(@"D'VE\b");
 
     [Dependency] private ReplacementAccentSystem _replacement = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<SouthernAccentComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<SouthernAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-    }
-
-    private void OnAccentRelayed(Entity<SouthernAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-    {
-        args.Args.Message = Accentuate(args.Args.Message);
-    }
-
-    private void OnAccent(Entity<SouthernAccentComponent> ent, ref AccentGetEvent args)
-    {
-        args.Message = Accentuate(args.Message);
-    }
 
     public string Accentuate(string message)
     {
@@ -46,4 +30,10 @@ public sealed partial class SouthernAccentSystem : EntitySystem
         message = RegexUpperDve.Replace(message, "DA");
         return message;
     }
+
+    protected override string AccentuateInternal(EntityUid uid, SouthernAccentComponent comp, string message)
+    {
+        return Accentuate(message);
+    }
 };
+// end-backmen: relay-accents

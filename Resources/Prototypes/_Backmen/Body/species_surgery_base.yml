@@ -166,12 +166,8 @@
   - type: StatusEffects
     allowed:
     - Electrocution
-    - RatvarianLanguage
     - PressureImmunity
-    - Muted
-    - TemporaryBlindness
     - Pacified
-    - Flashed
     - RadiationProtection
     - Adrenaline
   - type: Identity

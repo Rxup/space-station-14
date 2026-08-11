@@ -43,7 +43,6 @@
       - SlowedDown
       - Stutter
       - Electrocution
-      - Flashed
     - type: NoSlip
     - type: Tool
       speedModifier: 2.0

@@ -1,15 +1,16 @@
 using Content.Server.Actions;
-using Content.Shared.Damage;
-using Content.Shared.Revenant.Components;
-using Content.Server.Guardian;
 using Content.Server.Bible.Components;
+using Content.Server.Guardian;
 using Content.Server.Popups;
+using Content.Server.Revenant.EntitySystems;
 using Content.Shared.Backmen.Abilities.Psionics;
 using Content.Shared.Backmen.Psionics.Events;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Revenant.Components;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -17,7 +18,6 @@ namespace Content.Server.Backmen.Abilities.Psionics;
 
 public sealed partial class DispelPowerSystem : SharedDispelPowerSystem
 {
-    [Dependency] private Content.Shared.StatusEffect.StatusEffectsSystem _statusEffects = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;
     [Dependency] private GuardianSystem _guardianSystem = default!;
@@ -26,6 +26,7 @@ public sealed partial class DispelPowerSystem : SharedDispelPowerSystem
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private RevenantSystem _revenant = default!;
 
 
     public override void Initialize()
@@ -117,8 +118,11 @@ public sealed partial class DispelPowerSystem : SharedDispelPowerSystem
 
     private void OnRevenantDispelled(EntityUid uid, RevenantComponent component, DispelledEvent args)
     {
-        DealDispelDamage(uid);
-        _statusEffects.TryAddStatusEffect(uid, "Corporeal", TimeSpan.FromSeconds(30), false, "Corporeal");
+        _popupSystem.PopupCoordinates(Loc.GetString("psionic-burn-resist", ("item", uid)), Transform(uid).Coordinates, Filter.Pvs(uid), true, Shared.Popups.PopupType.SmallCaution);
+        _audioSystem.PlayPvs("/Audio/Effects/lightburn.ogg", uid);
+
+        // Drain essence to force the revenant-stasis path instead of killing the mob with blunt damage.
+        _revenant.ChangeEssenceAmount(uid, -component.Essence, component);
         args.Handled = true;
     }
 

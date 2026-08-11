@@ -349,9 +349,7 @@
         # - Drunk
         - SlurredSpeech
         - PressureImmunity
-        - Muted
         # - ForcedSleep
-        - TemporaryBlindness
         - Pacified
         # - PsionicsDisabled
         # - PsionicallyInsulated

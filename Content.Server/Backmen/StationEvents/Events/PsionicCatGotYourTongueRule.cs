@@ -5,9 +5,10 @@ using Content.Shared.Backmen.Psionics.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.StationEvents.Events;
@@ -18,12 +19,11 @@ namespace Content.Server.Backmen.StationEvents.Events;
 internal sealed partial class PsionicCatGotYourTongueRule : StationEventSystem<PsionicCatGotYourTongueRuleComponent>
 {
     [Dependency] private MobStateSystem _mobStateSystem = default!;
-    [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
     [Dependency] private IRobustRandom _robustRandom = default!;
     [Dependency] private SharedAudioSystem _sharedAudioSystem = default!;
-    [Dependency] private Shared.StatusEffectNew.StatusEffectsSystem _statusEffects = default!;
 
-
+    private static readonly EntProtoId MutedEffect = "StatusEffectMuted";
 
     protected override void Started(EntityUid uid, PsionicCatGotYourTongueRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -42,11 +42,7 @@ internal sealed partial class PsionicCatGotYourTongueRule : StationEventSystem<P
         {
             var duration = _robustRandom.Next(component.MinDuration, component.MaxDuration);
 
-            _statusEffectsSystem.TryAddStatusEffect(psion,
-                "Muted",
-                duration,
-                false,
-                "Muted");
+            _statusEffects.TrySetStatusEffectDuration(psion, MutedEffect, duration);
 
             _sharedAudioSystem.PlayGlobal(component.Sound, Filter.Entities(psion), false);
         }

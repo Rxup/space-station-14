@@ -1,24 +1,19 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class SkeletonAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class SkeletonAccentSystem : RelayAccentSystem<SkeletonAccentComponent>
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     [GeneratedRegex(@"(?<!\w)[^aeiou]one", RegexOptions.IgnoreCase, "en-US")]
     private static partial Regex BoneRegex();
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<SkeletonAccentComponent, AccentGetEvent>(OnAccentGet);
-    }
 
     public string Accentuate(string message, SkeletonAccentComponent component)
     {
@@ -44,8 +39,9 @@ public sealed partial class SkeletonAccentSystem : EntitySystem
         return msg;
     }
 
-    private void OnAccentGet(EntityUid uid, SkeletonAccentComponent component, AccentGetEvent args)
+    protected override string AccentuateInternal(EntityUid uid, SkeletonAccentComponent comp, string message)
     {
-        args.Message = Accentuate(args.Message, component);
+        return Accentuate(message, comp);
     }
 }
+// end-backmen: relay-accents
