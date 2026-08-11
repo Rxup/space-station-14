@@ -19,32 +19,11 @@
     tags:
     - Trash
     - CentrifugeCompatible # unique feature of vials
-  - type: DamageOnLand
-    ignoreResistances: true
-    damage:
-      types:
-        Blunt: 3 # can be thrown once without breaking
-
-- type: entity
-  abstract: true
-  parent: [ BaseItem, DrinkBaseMaterialGlass, DrinkBaseEmptyTrash, DrinkVisualsAll ]
-  id: BaseChemistryAmpoule # like a vial, but you can't open, you have to break it.
-  components:
-  - type: Item
-    size: Tiny
-  - type: Spillable
-    solution: drink
-  - type: ExaminableSolution
-    exactVolume: true # It's a chemistry tool
-  - type: Tag
-    tags:
-    - Trash
-    - CentrifugeCompatible # unique feature of vials
 
 ## Entities
 
 - type: entity
-  parent: [SolutionTiny, BaseChemistryVial]
+  parent: BaseChemistryVial
   id: ChemistryEmptyVial
   name: vial
   description: A small vial.
@@ -62,23 +41,39 @@
     price: 100
   - type: Destructible
     thresholds:
+    - trigger: &DamageTrigger100
+        !type:DamageTrigger
+        damage: 100
+      behaviors: &OverkillBehavior
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
     - trigger:
         !type:DamageTrigger
-        damage: 5
+        damage: 15 # stronger than base
       behaviors:
+      - &SoundGlassBreak !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpillBehavior { }
       - !type:SpawnEntitiesBehavior
         spawn:
-          ShardGlass:
+          ShardGlass: # less glass than base
             min: 0
             max: 1
         transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
-  parent: [SolutionVeryTiny, BaseChemistryVial]
+  parent: BaseChemistryVial
   id: ChemistryEmptyVialSmall
   name: mini vial
   description: A smaller vial.
   components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 15
   - type: Item
     sprite: Objects/Specific/Chemistry/vial_mini.rsi
   - type: Sprite
@@ -93,37 +88,18 @@
   - type: PhysicalComposition
     materialComposition:
       Glass: 10
-
-- type: entity
-  parent: [SolutionTiny, BaseChemistryAmpoule]
-  id: ChemistryEmptyAmpoule
-  name: ampoule
-  description: Break to open.
-  components:
-  - type: Item
-    sprite: Objects/Specific/Chemistry/ampoule.rsi
-  - type: Sprite
-    sprite: Objects/Specific/Chemistry/ampoule.rsi
-  - type: SolutionContainerVisuals
-    maxFillLevels: 6
-    inHandsMaxFillLevels: 4
-  - type: StaticPrice
-    price: 100
-  - type: PhysicalComposition
-    materialComposition:
-      Glass: 10
   - type: Destructible
     thresholds:
+    - trigger: *DamageTrigger100
+      behaviors: *OverkillBehavior
     - trigger:
         !type:DamageTrigger
-        damage: 5
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ShardGlass:
-            min: 0
-            max: 1
-        transferForensics: true
+        damage: 5 # smaller so weaker
+      behaviors: # remove glass shard spawn
+      - *SoundGlassBreak
+      - !type:SpillBehavior { }
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 ## Reagent filled
 
@@ -134,11 +110,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-vestine
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Vestine
-        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Vestine
+          Quantity: 30
   - type: Tag
     tags: &TagVial # Remove trash tag when we have a filled solution
     - CentrifugeCompatible
@@ -150,11 +127,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-radium
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Radium
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Radium
+          Quantity: 5
   - type: Tag
     tags: *TagVial
 
@@ -165,11 +143,12 @@
   components:
   - type: Label
     currentLabel: reagent-name-chlorine
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Chlorine
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Chlorine
+          Quantity: 5
   - type: Tag
     tags: *TagVial
 
@@ -180,28 +159,11 @@
   components:
   - type: Label
     currentLabel: reagent-name-plasma
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Plasma
-        Quantity: 15
-  - type: Tag
-    tags: *TagVial
-
-- type: entity
-  parent: ChemistryEmptyAmpoule
-  id: XenoborgOilChemistryAmpoule
-  suffix: xenoborg oil
-  components:
-  - type: Label
-    currentLabel: reagent-name-xenoborg-oil
-  - type: ThrowingAngle
-    angle: 90
-    angularVelocity: true
-  - type: Solution
-    solution:
-      reagents:
-        - ReagentId: XenoborgOil
-          Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Plasma
+          Quantity: 15
   - type: Tag
     tags: *TagVial

@@ -21,7 +21,7 @@
   - Narcolepsy
   - ImpairedMobility
   # - LegsParalyzed (you get healed)
-  - Muted
+  # Muted is TraitStatusEffectMuted (CloneableStatusEffect) # backmen: muted-status-effects
   - PermanentBlindness
   - Snoring
   - Unrevivable

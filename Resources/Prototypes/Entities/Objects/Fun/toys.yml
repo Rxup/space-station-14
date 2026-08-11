@@ -87,7 +87,7 @@
     - Banana
 
 - type: entity
-  parent: [SolutionSmall, DrinkBase]
+  parent: DrinkBase # backmen: keep SCM DrinkBase until drinks migrate off SolutionContainerManager
   id: CrazyGlue
   name: crazy glue
   description:  A bottle of crazy glue manufactured by Honk! Co.
@@ -109,11 +109,13 @@
     consumptionUnit: 10
   - type: Item
     sprite: Objects/Fun/glue.rsi
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: SpaceGlue
-        Quantity: 60
+  - type: SolutionContainerManager # backmen: scm-drinkbase
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: SpaceGlue
+          Quantity: 100
   - type: Openable
     sound:
       collection: packetOpenSounds
@@ -121,7 +123,7 @@
     solution: drink
 
 - type: entity
-  parent: [SolutionSmall, DrinkBase]
+  parent: DrinkBase # backmen: keep SCM DrinkBase until drinks migrate off SolutionContainerManager
   id: CrazyLube
   name: crazy lube
   description: A bottle of super slipery crazy lube manufactured by Honk! Co.
@@ -135,11 +137,13 @@
     - state: icon
       map: ["enum.OpenableVisuals.Layer"]
   - type: Appearance
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: SpaceLube
-        Quantity: 60
+  - type: SolutionContainerManager # backmen: scm-drinkbase
+    solutions:
+      drink:
+        maxVol: 100
+        reagents:
+        - ReagentId: SpaceLube
+          Quantity: 100
   - type: GenericVisualizer
     visuals:
       enum.OpenableVisuals.Opened:

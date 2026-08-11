@@ -12,3 +12,17 @@
     sprite: Structures/Furniture/Tables/optable.rsi
     state: operating_table
   - type: AmbientMusicMarkerMedical
+  # start-backmen: operating-table
+  - type: OperatingTable
+  - type: ItemSlots
+    slots:
+      gas_tank_slot:
+        name: comp-gas-canister-slot-name-gas-tank
+        priority: 1
+        whitelist:
+          components:
+          - GasTank
+  - type: ContainerContainer
+    containers:
+      gas_tank_slot: !type:ContainerSlot {}
+  # end-backmen: operating-table
