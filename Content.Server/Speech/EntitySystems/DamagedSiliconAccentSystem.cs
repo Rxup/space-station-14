@@ -8,7 +8,6 @@ using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Content.Shared.Speech;
 using Content.Shared.Speech.EntitySystems;
-using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems;
@@ -22,21 +21,7 @@ public sealed partial class DamagedSiliconAccentSystem : RelayAccentSystem<Damag
     [Dependency] private DestructibleSystem _destructibleSystem = default!;
     [Dependency] private DamageableSystem _damageable = default!;
 
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<DamagedSiliconAccentComponent, AccentGetEvent>(OnAccent, after: [typeof(ReplacementAccentSystem)]);
-        SubscribeLocalEvent<DamagedSiliconAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed, after: [typeof(ReplacementAccentSystem)]);
-    }
-
-    private void OnAccent(Entity<DamagedSiliconAccentComponent> ent, ref AccentGetEvent args)
-    {
-        args.Message = AccentuateInternal(args.Entity, ent.Comp, args.Message);
-    }
-
-    private void OnAccentRelayed(Entity<DamagedSiliconAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-    {
-        args.Args.Message = AccentuateInternal(args.Args.Entity, ent.Comp, args.Args.Message);
-    }
+    protected override Type[]? AccentAfter => [typeof(ReplacementAccentSystem)];
 
     protected override string AccentuateInternal(EntityUid uid, DamagedSiliconAccentComponent comp, string message)
     {

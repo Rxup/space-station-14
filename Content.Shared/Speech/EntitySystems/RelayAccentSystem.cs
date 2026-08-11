@@ -7,11 +7,25 @@ namespace Content.Shared.Speech.EntitySystems;
 /// </summary>
 public abstract class RelayAccentSystem<T> : EntitySystem where T : Component
 {
+    /// <summary>
+    /// Optional systems that accent handlers must run after.
+    /// </summary>
+    protected virtual Type[]? AccentAfter => null;
+
     /// <inheritdoc />
     public override void Initialize()
     {
-        SubscribeLocalEvent<T, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<T, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
+        base.Initialize();
+        SubscribeAccentEvents();
+    }
+
+    /// <summary>
+    /// Subscribes accent get/relay events. Override when custom subscription options are needed.
+    /// </summary>
+    protected virtual void SubscribeAccentEvents()
+    {
+        SubscribeLocalEvent<T, AccentGetEvent>(OnAccent, after: AccentAfter);
+        SubscribeLocalEvent<T, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed, after: AccentAfter);
     }
 
     private void OnAccent(Entity<T> ent, ref AccentGetEvent args)
