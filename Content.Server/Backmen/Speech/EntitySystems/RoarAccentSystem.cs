@@ -1,12 +1,12 @@
 using System.Text.RegularExpressions;
 using Content.Server.Backmen.Speech.Components;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Speech.EntitySystems;
 
-public sealed partial class RoarAccentSystem : EntitySystem
+public sealed partial class RoarAccentSystem : RelayAccentSystem<RoarAccentComponent>
 {
     [Dependency] private IRobustRandom _random = default!;
 
@@ -15,23 +15,6 @@ public sealed partial class RoarAccentSystem : EntitySystem
 
     private static readonly Regex R3 = new(@"р+", RegexOptions.Compiled | RegexOptions.IgnoreCase);
     private static readonly List<string> R3R = ["рр", "ррр"];
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<RoarAccentComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<RoarAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-    }
-
-    private void OnAccentRelayed(Entity<RoarAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-    {
-        args.Args.Message = Accentuate(args.Args.Message);
-    }
-
-    private void OnAccent(Entity<RoarAccentComponent> ent, ref AccentGetEvent args)
-    {
-        args.Message = Accentuate(args.Message);
-    }
 
     public string Accentuate(string message)
     {
@@ -45,5 +28,10 @@ public sealed partial class RoarAccentSystem : EntitySystem
         // ADT-Localization-End
 
         return message;
+    }
+
+    protected override string AccentuateInternal(EntityUid uid, RoarAccentComponent comp, string message)
+    {
+        return Accentuate(message);
     }
 }

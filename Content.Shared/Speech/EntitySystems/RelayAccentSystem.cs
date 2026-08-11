@@ -14,23 +14,27 @@ public abstract class RelayAccentSystem<T> : EntitySystem where T : Component
         SubscribeLocalEvent<T, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
     }
 
-    /// <summary>
-    /// Applies the accent transformation to the provided message.
-    /// </summary>
-    private string Accentuate(EntityUid uid, T comp, string message)
-    {
-        return AccentuateInternal(uid, comp, message);
-    }
-
-    protected abstract string AccentuateInternal(EntityUid uid, T comp, string message);
-
     private void OnAccent(Entity<T> ent, ref AccentGetEvent args)
     {
-        args.Message = Accentuate(args.Entity, ent.Comp, args.Message);
+        ApplyAccent(args.Entity, ent.Comp, args);
     }
 
     private void OnAccentRelayed(Entity<T> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
     {
-        args.Args.Message = Accentuate(args.Args.Entity, ent.Comp, args.Args.Message);
+        ApplyAccent(args.Args.Entity, ent.Comp, args.Args);
     }
+
+    /// <summary>
+    /// Applies the accent to <paramref name="args"/>. Default implementation only transforms the message text.
+    /// Override when the accent needs to mutate other <see cref="AccentGetEvent"/> fields.
+    /// </summary>
+    protected virtual void ApplyAccent(EntityUid speaker, T comp, AccentGetEvent args)
+    {
+        args.Message = AccentuateInternal(speaker, comp, args.Message);
+    }
+
+    /// <summary>
+    /// Transforms accented speech text.
+    /// </summary>
+    protected abstract string AccentuateInternal(EntityUid uid, T comp, string message);
 }

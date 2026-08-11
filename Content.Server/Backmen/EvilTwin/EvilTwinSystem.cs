@@ -35,8 +35,6 @@ using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Roles;
 using Content.Server.Station.Components;
-using Content.Shared.CartridgeLoader;
-using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.DetailExaminable;
