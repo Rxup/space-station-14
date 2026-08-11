@@ -14,18 +14,11 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: survivalpen_empty
-  - type: Injector
-    solutionName: pen
-    currentTransferAmount: null
-    activeModeProtoId: HyposprayInjectMode
-    allowedModes:
-    - HyposprayInjectMode
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 40
-        reagents:
-          - ReagentId: MinersSalve
-            Quantity: 20
-          - ReagentId: Leporazine
-            Quantity: 20
+  - type: Solution
+    solution:
+      maxVol: 40
+      reagents:
+      - ReagentId: MinersSalve
+        Quantity: 20
+      - ReagentId: Leporazine
+        Quantity: 20

@@ -4,13 +4,12 @@
   name: tokkuri
   description: Floral and full of osake!
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 100
-        reagents:
-        - ReagentId: Sake
-          Quantity: 100
+  - type: Solution
+    solution:
+      maxVol: 100
+      reagents:
+      - ReagentId: Sake
+        Quantity: 100
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Drinks/saketokkuri.rsi
 
@@ -20,11 +19,10 @@
   name: soju bottle
   description: It's like sake but if you're trying to get FUCKED. UP.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        reagents:
-        - ReagentId: Soju
-          Quantity: 100
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Soju
+        Quantity: 100
   - type: Sprite
     sprite: Backmen/Objects/Consumable/Drinks/sojubottle.rsi

@@ -89,13 +89,12 @@
   id: DrinkSlermGlass
   suffix: Slerm
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Slerm
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Slerm
+        Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/gsodaglass.rsi
     state: icon
@@ -105,13 +104,12 @@
   id: DrinkSlermPlusGlass
   suffix: Slerm Plus
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: SlermQueenPlus
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: SlermQueenPlus
+        Quantity: 30
   - type: Icon
     sprite: Objects/Consumable/Drinks/gsodaglass.rsi
     state: icon

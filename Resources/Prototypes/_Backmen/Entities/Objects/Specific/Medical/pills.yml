@@ -4,13 +4,12 @@
   id: PillMindbreakerToxin
   description: Removes psionics when ingested. Mildly poisonous.
   components:
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: MindbreakerToxin
-              Quantity: 20
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: MindbreakerToxin
+        Quantity: 20
 
 - type: entity
   name: криптобиолин
@@ -18,13 +17,12 @@
   id: PillCryptobiolin
   description: A long-lasting drug which causes mild confusion, but renders you psionically insulated.
   components:
-    - type: SolutionContainerManager
-      solutions:
-        food:
-          maxVol: 20
-          reagents:
-            - ReagentId: Cryptobiolin
-              Quantity: 20
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Cryptobiolin
+        Quantity: 20
 
 - type: entity
   name: pill
@@ -39,13 +37,12 @@
     state: pill6
   - type: Label
     currentLabel: antigrippin 10u
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20
-        reagents:
-        - ReagentId: Antigrippin
-          Quantity: 10
+  - type: Solution
+    solution:
+      maxVol: 20
+      reagents:
+      - ReagentId: Antigrippin
+        Quantity: 10
 
 - type: entity
   name: pill canister

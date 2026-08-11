@@ -217,8 +217,6 @@
   - type: Construction
     graph: BananaClownJumpsuit
     node: jumpsuit
-  - type: StaminaResistance
-    damageCoefficient: 1.1
   - type: Armor
     coverage: # backmen: armour coverage
     - Chest
@@ -834,7 +832,7 @@
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
   - type: StaticPrice
-    price: 25
+    price: 500
 
 - type: entity
   parent: ClothingUniformBase
@@ -866,7 +864,7 @@
   parent: UnsensoredClothingUniformBase
   id: ClothingUniformJumpsuitNinja
   name: ninja jumpsuit
-  description: A nano-enhanced jumpsuit designed for maximum comfort and tacticality.
+  description: Comfortable ninja suit, for convenience when relaxing and when you need to practice.
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/ninja.rsi
@@ -901,6 +899,17 @@
     sprite: Clothing/Uniforms/Jumpsuit/psychologist.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/psychologist.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitTramDriver
+  name: tram driver jumpsuit
+  description: Perfectly ironed, for well-prepared professionals.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/tramdriver.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/tramdriver.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -1068,8 +1077,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pirate.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/pirate.rsi
-  - type: AddAccentClothing
-    accent: PirateAccent
+  - type: PirateAccent
 
 - type: entity
   parent: ClothingUniformBase
@@ -1193,7 +1201,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/senior_officer.rsi
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: [ClothingUniformBase, BaseSlicingRefinable]
   id: ClothingUniformJumpsuitWeb
   name: web jumpsuit
   description: Makes it clear that you are one with the webs.
@@ -1202,9 +1210,8 @@
     sprite: Clothing/Uniforms/Jumpsuit/web.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/web.rsi
-  - type: Butcherable
-    butcheringType: Knife
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: MaterialWebSilk1
       amount: 8
   - type: FlavorProfile
@@ -1212,13 +1219,6 @@
       - cobwebs
     ignoreReagents:
       - Fiber
-  - type: SolutionContainerManager
-    solutions: # 24 (3 (fiber count of web) * 8 (to craft)) + 6 (magical crafting bonus)
-      food:
-        maxVol: 30
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 30
   - type: Construction
     graph: WebObjects
     node: jumpsuit

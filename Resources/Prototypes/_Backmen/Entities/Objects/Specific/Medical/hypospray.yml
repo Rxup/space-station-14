@@ -18,27 +18,20 @@
   save: false
   description: Боевой медипен для быстрого возращения в бой бойца, осторожно, после использования обратиться к настоящему врачу.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 55
-        reagents:
-        - ReagentId: Omnizine
-          Quantity: 20
-        - ReagentId: Epinephrine
-          Quantity: 12
-        - ReagentId: THC
-          Quantity: 10
-        - ReagentId: TranexamicAcid
-          Quantity: 3
-        - ReagentId: DexalinPlus
-          Quantity: 10
-  - type: Injector
-    solutionName: pen
-    currentTransferAmount: null
-    activeModeProtoId: HyposprayInjectMode
-    allowedModes:
-    - HyposprayInjectMode
+  - type: Solution
+    solution:
+      maxVol: 55
+      reagents:
+      - ReagentId: Omnizine
+        Quantity: 20
+      - ReagentId: Epinephrine
+        Quantity: 12
+      - ReagentId: THC
+        Quantity: 10
+      - ReagentId: TranexamicAcid
+        Quantity: 3
+      - ReagentId: DexalinPlus
+        Quantity: 10
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     netsync: false
@@ -53,21 +46,14 @@
   description: Боевой медипен для быстрого возращения в бой бойца, осторожно, после использования обратиться к настоящему врачу.
   save: false
   components:
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 80
-        reagents:
-        - ReagentId: AntlionGrubCore
-          Quantity: 40
-        - ReagentId: Stimulants
-          Quantity: 40
-  - type: Injector
-    solutionName: pen
-    currentTransferAmount: null
-    activeModeProtoId: HyposprayInjectMode
-    allowedModes:
-    - HyposprayInjectMode
+  - type: Solution
+    solution:
+      maxVol: 80
+      reagents:
+      - ReagentId: AntlionGrubCore
+        Quantity: 40
+      - ReagentId: Stimulants
+        Quantity: 40
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     netsync: false
@@ -82,19 +68,12 @@
   save: false
   description: Боевой медипен для более менее безопастного хождения по космосу без скафандра, осторожно, после использования обратиться к настоящему врачу.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 90
-        reagents:
-        - ReagentId: Baroleporazine
-          Quantity: 90
-  - type: Injector
-    solutionName: pen
-    currentTransferAmount: null
-    activeModeProtoId: HyposprayInjectMode
-    allowedModes:
-    - HyposprayInjectMode
+  - type: Solution
+    solution:
+      maxVol: 90
+      reagents:
+      - ReagentId: Baroleporazine
+        Quantity: 90
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     netsync: false
@@ -109,23 +88,16 @@
   save: false
   description: Боевой медипен для быстрого возращения в бой бойца, осторожно, после использования обратиться к настоящему врачу.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 40
-        reagents:
-        - ReagentId: Ultravasculine
-          Quantity: 20
-        - ReagentId: Epinephrine
-          Quantity: 10
-        - ReagentId: Ambuzol
-          Quantity: 10
-  - type: Injector
-    solutionName: pen
-    currentTransferAmount: null
-    activeModeProtoId: HyposprayInjectMode
-    allowedModes:
-    - HyposprayInjectMode
+  - type: Solution
+    solution:
+      maxVol: 40
+      reagents:
+      - ReagentId: Ultravasculine
+        Quantity: 20
+      - ReagentId: Epinephrine
+        Quantity: 10
+      - ReagentId: Ambuzol
+        Quantity: 10
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     netsync: false
