@@ -1,6 +1,7 @@
 name: Build & Test Backmen Integration
 
-# Heavy Backmen integration tests (namespace Tests.Backmen.*, PostMapInit Backmen maps, etc.)
+# Heavy Backmen integration tests (namespace Tests.Backmen.*, etc.)
+# Map loads (PostMapInitTest) live in build-test-maps.yml.
 # Split from Build & Test Debug so the main suite can finish.
 
 on:
@@ -46,9 +47,11 @@ jobs:
 
     - name: Run Content.IntegrationTests (Backmen only)
       shell: pwsh
+      timeout-minutes: 120
       run: |
         $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName~Backmen" -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results_backmen"
+        # Map loads live in build-test-maps.yml (PostMapInitTest includes Backmen map paths)
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName~Backmen&FullyQualifiedName!~PostMapInitTest" -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results_backmen"
 
     - name: Archive NUnit3 Backmen test results
       if: always()

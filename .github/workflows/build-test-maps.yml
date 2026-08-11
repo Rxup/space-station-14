@@ -1,4 +1,7 @@
-name: Build & Test Debug
+name: Build & Test Maps
+
+# Heavy map-load integration tests (PostMapInitTest: every GameMap + shuttle/grid load).
+# Split from Build & Test Debug so the main suite does not hang on map I/O.
 
 on:
   push:
@@ -7,15 +10,13 @@ on:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
     branches: [ master, staging, stable ]
+  workflow_dispatch:
 
 jobs:
   build:
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
 
     steps:
     - name: Checkout Master
@@ -41,35 +42,29 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
-#    - name: skip locale check
-#      run: |
-#        sed -i 's/_logSawmill.Error(sbErr.ToString());/_logSawmill.Warning(sbErr.ToString());/g' RobustToolbox/Robust.Shared/Localization/LocalizationManager.cs
-
     - name: Build Project
       run: dotnet build --configuration DebugOpt --no-restore /m
 
-    - name: Run Content.Tests
+    - name: Run Content.IntegrationTests (maps)
       shell: pwsh
-      run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0 NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results"
-
-    - name: Run Content.IntegrationTests
-      shell: pwsh
-      timeout-minutes: 90
+      timeout-minutes: 150
       run: |
         $env:DOTNET_gcServer=1
-        # Exclude Backmen (build-test-backmen.yml) and heavy map loads (build-test-maps.yml)
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName!~Backmen&FullyQualifiedName!~PostMapInitTest&FullyQualifiedName!~StationPowerTests&FullyQualifiedName!~SalvageTest" -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results"
+        # PostMapInitTest = GameMapsLoadable + NonGameMaps + shuttles/grids
+        # StationPowerTests / SalvageTest also load full station maps
+        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName~PostMapInitTest|FullyQualifiedName~StationPowerTests|FullyQualifiedName~SalvageTest" -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results_maps"
 
-    - name: Archive NUnit3 test results.
+    - name: Archive NUnit3 map test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: nunit3-results-${{ matrix.os }}
-        path: test_results/*
+        name: nunit3-results-maps
+        path: test_results_maps/*
         retention-days: 7
         compression-level: 9
+
   ci-success:
-    name: Build & Test Debug
+    name: Build & Test Maps
     needs:
       - build
     runs-on: ubuntu-latest
