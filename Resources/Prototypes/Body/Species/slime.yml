@@ -288,6 +288,13 @@
   parent: [ OrganBaseEyes, OrganSlimePersonInternal, OrganSlimePersonExternal ]
   id: OrganSlimePersonEyes
   components:
+  # OrganSlimePersonInternal points Sprite at Slime/organs.rsi; that RSI may lack eyeball
+  # states depending on pack age. Item sprite must resolve eyeball-l/r for client spawn.
+  - type: Sprite # backmen: slime-eyes-item-sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
   - type: VisualOrgan
     data:
       sprite: Mobs/Customization/eyes.rsi
