@@ -1,5 +1,4 @@
 using Content.Shared.Backmen.Spider.Components;
-using Robust.Shared.Prototypes;
 using Content.Server.Actions;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Mobs.Systems;
@@ -16,7 +15,6 @@ using Content.Server.Backmen.Vampiric;
 using Content.Shared.Database;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Backmen.Spider;
 
@@ -30,7 +28,6 @@ public sealed partial class SpiderVampireSystem : EntitySystem
     [Dependency] private HungerSystem _hunger = default!;
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private ChargesSystem _charges = default!;
     [Dependency] private BloodSuckerSystem _bloodSucker = default!;
     [Dependency] private ArachneSystem _arachne = default!;
@@ -44,26 +41,13 @@ public sealed partial class SpiderVampireSystem : EntitySystem
 
         SubscribeLocalEvent<SpiderVampireComponent, SpiderVampireEggActionEvent>(OnActionEggUsed);
         SubscribeLocalEvent<SpiderVampireComponent, SpiderVampireEggDoAfterEvent>(OnActionEggUsedAfter);
-
         SubscribeLocalEvent<SpiderVampireComponent, MapInitEvent>(OnMapInit);
     }
 
-    #region Добавить скилл
-
-    private readonly EntProtoId SpiderVampireEggAction = "ActionSpiderVampireEgg";
-
     private void OnMapInit(EntityUid uid, SpiderVampireComponent component, MapInitEvent args)
     {
-        _action.AddAction(uid, ref component.SpiderVampireEggAction, SpiderVampireEggAction);
-        //_action.SetCooldown(component.SpiderVampireEggAction, _gameTiming.CurTime,
-        //    _gameTiming.CurTime + (TimeSpan) component.InitCooldown);
-        //if (component.SpiderVampireEggAction.HasValue)
-        //   _charges.AddCharges(component.SpiderVampireEggAction.Value, component.Charges);
+        _action.AddAction(uid, ref component.SpiderVampireEggAction, component.EggAction);
     }
-
-    #endregion
-
-    #region Нажали на кнопку
 
     private static readonly SoundSpecifier HairballPlay =
         new SoundPathSpecifier("/Audio/Backmen/Effects/Species/hairball.ogg", AudioParams.Default.WithVariation(0.15f));
@@ -97,56 +81,65 @@ public sealed partial class SpiderVampireSystem : EntitySystem
             return;
         }
 
-        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component.UsingEggTime,
-            new SpiderVampireEggDoAfterEvent(), uid, used: uid)
+        // LimitedCharges on the action: ActionAttemptEvent already blocks empty;
+        // Handled=true below spends a charge via ActionPerformedEvent.
+        if (component.SpiderVampireEggAction is not { } eggAction || _charges.IsEmpty(eggAction))
         {
-            BreakOnMove = true,
-            BreakOnDamage = true,
-        });
+            _popupSystem.PopupEntity(Loc.GetString("spider-vampire-egg-no-charges"), uid, uid);
+            _action.SetEnabled(component.SpiderVampireEggAction, false);
+            return;
+        }
 
-        _audio.PlayPvs(HairballPlay, uid,
-            AudioParams.Default.WithVariation(0.025f));
+        if (!_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component.UsingEggTime,
+                new SpiderVampireEggDoAfterEvent(), uid, used: uid)
+            {
+                BreakOnMove = true,
+                BreakOnDamage = true,
+            }))
+            return;
+
+        _audio.PlayPvs(HairballPlay, uid, AudioParams.Default.WithVariation(0.025f));
         args.Handled = true;
     }
-
-    #endregion
-
-    #region После каста
 
     private void OnActionEggUsedAfter(EntityUid uid, SpiderVampireComponent component,
         SpiderVampireEggDoAfterEvent args)
     {
         if (args.Handled)
             return;
+
         if (args.Cancelled)
         {
-            if (_action.GetAction(component.SpiderVampireEggAction) is not { } data)
-                return;
+            // Charge was spent when the action was Handled / NPC TryUseCharge — refund.
+            if (component.SpiderVampireEggAction is { } cancelledAction)
+            {
+                _charges.AddCharges(cancelledAction, 1);
+                _action.SetCooldown(component.SpiderVampireEggAction, TimeSpan.FromSeconds(1));
+                _action.SetEnabled(component.SpiderVampireEggAction, true);
+            }
 
-            if (component.SpiderVampireEggAction.HasValue)
-                _charges.AddCharges(component.SpiderVampireEggAction.Value, 1);
-
-            _action.SetCooldown(component.SpiderVampireEggAction, TimeSpan.FromSeconds(1));
-            _action.SetEnabled(component.SpiderVampireEggAction, true);
             return;
         }
 
         var xform = Transform(uid);
         var offspring = Spawn(component.SpawnEgg, xform.Coordinates.Offset(_random.NextVector2(0.3f)));
         _hunger.ModifyHunger(uid, -component.HungerPerBirth);
-        if (component.Charges > 0)
-            component.Charges--;
+
+        if (component.SpiderVampireEggAction is { } action && _charges.IsEmpty(action))
+            _action.SetEnabled(component.SpiderVampireEggAction, false);
+
         _adminLog.Add(LogType.Action, $"{ToPrettyString(uid)} gave birth to {ToPrettyString(offspring)}.");
         _popupSystem.PopupEntity(
             Loc.GetString("reproductive-birth-popup", ("parent", Identity.Entity(uid, EntityManager))), uid);
         args.Handled = true;
     }
 
-    #endregion
-
     public bool CanLayEgg(EntityUid uid, SpiderVampireComponent? component = null)
     {
-        if (!Resolve(uid, ref component) || component.Charges <= 0)
+        if (!Resolve(uid, ref component))
+            return false;
+
+        if (component.SpiderVampireEggAction is not { } action || _charges.IsEmpty(action))
             return false;
 
         if (_mobState.IsCritical(uid) || _mobState.IsDead(uid))
@@ -169,18 +162,22 @@ public sealed partial class SpiderVampireSystem : EntitySystem
         if (!CanLayEgg(uid, component))
             return false;
 
-        if (!_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component!.UsingEggTime,
+        // NPC bypasses PerformAction — spend LimitedCharges the same way ActionPerformed would.
+        if (component!.SpiderVampireEggAction is not { } action || !_charges.TryUseCharge(action))
+            return false;
+
+        if (!_doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, component.UsingEggTime,
                 new SpiderVampireEggDoAfterEvent(), uid, used: uid)
             {
                 BreakOnMove = true,
                 BreakOnDamage = true,
             }))
         {
+            _charges.AddCharges(action, 1);
             return false;
         }
 
         _audio.PlayPvs(HairballPlay, uid, AudioParams.Default.WithVariation(0.025f));
         return true;
     }
-
 }

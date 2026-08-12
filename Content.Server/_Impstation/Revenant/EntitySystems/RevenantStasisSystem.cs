@@ -1,11 +1,9 @@
 using Content.Server.Bible;
 using Content.Server.Bible.Components;
-using Content.Server.Construction;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
-using Content.Server.Speech.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chat;
 using Content.Shared.DoAfter;
@@ -43,6 +41,7 @@ public sealed partial class RevenantStasisSystem : EntitySystem
     [Dependency] private FollowerSystem _followerSystem = default!;
 
     private static readonly ProtoId<TagPrototype> Salt = "Salt";
+    private static readonly ProtoId<TagPrototype> EctoplasmTag = "Ectoplasm";
 
     public override void Initialize()
     {
@@ -53,7 +52,6 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         SubscribeLocalEvent<RevenantStasisStatusEffectComponent, StatusEffectRemovedEvent>(OnStasisStatusRemoved);
         SubscribeLocalEvent<RevenantStasisComponent, ChangeDirectionAttemptEvent>(OnAttemptDirection);
         SubscribeLocalEvent<RevenantStasisComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<RevenantStasisComponent, ConstructionConsumedObjectEvent>(OnCrafted);
         SubscribeLocalEvent<RevenantStasisComponent, GrindAttemptEvent>(OnGrindAttempt);
         SubscribeLocalEvent<RevenantStasisComponent, TransformSpeakerNameEvent>(OnTransformName);
         SubscribeLocalEvent<RevenantStasisComponent, AfterInteractUsingEvent>(OnBibleInteract,
@@ -66,6 +64,9 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         // Block scoop/spike kill bypass (inherited from Ash).
         RemComp<ScoopableSolutionComponent>(uid);
         RemComp<SolutionSpikerComponent>(uid);
+
+        // Stasis ectoplasm is not craft material — only bible or salt grind can end a revenant.
+        _tags.RemoveTag(uid, EctoplasmTag);
 
         if (TryComp<FollowedComponent>(component.Revenant, out var followed))
         {
@@ -102,7 +103,7 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         if (component.Revived)
             return;
 
-        // Intentional kill: salt grind, bible, craft.
+        // Intentional kill: salt grind or bible exorcism only.
         if (component.PermanentlyDestroyed)
         {
             if (_mind.TryGetMind(uid, out var mindId, out _))
@@ -114,7 +115,6 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         }
 
         // Accidental ectoplasm deletion while still regenerating (e.g. blender exploded).
-        // Old code treated any shutdown during Stasis as a kill — that also wiped the revenant.
         if (_status.HasStatusEffect(uid, RevenantStatusEffects.Stasis)
             || (Exists(component.Revenant) && MetaData(component.Revenant).EntityPaused))
         {
@@ -169,18 +169,6 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         args.PushMarkup(Loc.GetString("revenant-stasis-regenerating"));
     }
 
-    private void OnCrafted(EntityUid uid, RevenantStasisComponent comp, ConstructionConsumedObjectEvent args)
-    {
-        comp.PermanentlyDestroyed = true;
-
-        var voice = EnsureComp<VoiceOverrideComponent>(args.New);
-        voice.SpeechVerbOverride = "Ghost";
-        voice.NameOverride = Name(comp.Revenant);
-
-        if (_mind.TryGetMind(uid, out var mindId, out _))
-            _mind.TransferTo(mindId, args.New);
-    }
-
     private void OnGrindAttempt(EntityUid uid, RevenantStasisComponent comp, GrindAttemptEvent args)
     {
         var hasSalt = false;
@@ -204,7 +192,6 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         }
 
         // No salt: cancel grind, blow up the blender, revive the revenant.
-        // Without this, blender destruction deleted ectoplasm and OnShutdown wiped the revenant.
         args.Cancel();
         _explosion.QueueExplosion(args.Grinder, "Default", 7.5f, 4f, 2f);
         TryReviveFromStasis(uid, comp);

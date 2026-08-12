@@ -12,7 +12,7 @@ public sealed partial class RevenantStasisComponent : Component
     public TimeSpan StasisDuration = TimeSpan.FromSeconds(120);
 
     /// <summary>
-    /// Set when ectoplasm is intentionally destroyed (salt grind, bible exorcism, crafting).
+    /// Set when ectoplasm is intentionally destroyed (salt grind or bible exorcism).
     /// If false and the ectoplasm is deleted anyway (broken blender, etc.), the revenant is revived.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]

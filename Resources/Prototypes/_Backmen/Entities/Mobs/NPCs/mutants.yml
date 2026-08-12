@@ -327,4 +327,4 @@
         task: SpiderVampireCompound
     - type: SpiderVampire
       spawnEgg: FoodEggSpiderVampire
-      charges: 10
+      eggAction: ActionSpiderVampireEggBoss

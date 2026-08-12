@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.CCVar;
 using Content.Shared.Revenant;
+using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Configuration;
@@ -72,8 +73,10 @@ public sealed partial class RevenantHauntJumpscareOverlay : Overlay
 {
     private static readonly ResPath RevenantRsi = new("/Textures/Mobs/Ghosts/revenant.rsi");
 
+    [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private Robust.Client.GameObjects.SpriteSystem _sprite = default!;
+
+    private readonly SpriteSystem _sprite;
 
     private TimeSpan _start;
     private TimeSpan _duration = TimeSpan.FromSeconds(1.1);
@@ -84,6 +87,7 @@ public sealed partial class RevenantHauntJumpscareOverlay : Overlay
     public RevenantHauntJumpscareOverlay()
     {
         IoCManager.InjectDependencies(this);
+        _sprite = _entManager.System<SpriteSystem>();
     }
 
     public void Begin(TimeSpan start, TimeSpan duration)

@@ -26,5 +26,14 @@
       sprite: Backmen/Objects/Misc/eggspider.rsi
       layers:
         - state: icon
+    - type: LimitedCharges
+      maxCharges: 1
     - type: InstantAction
       event: !type:SpiderVampireEggActionEvent
+
+- type: entity
+  id: ActionSpiderVampireEggBoss
+  parent: ActionSpiderVampireEgg
+  components:
+    - type: LimitedCharges
+      maxCharges: 10

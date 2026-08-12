@@ -1,4 +1,5 @@
-ent-SpiderWebArachneClassicAction = Сплести паутину
-    .desc = Вы сплетаете паутину под собой.
-ent-ActionSpiderVampireEgg = Снести яйцо
-    .desc = Снесите яйцо для продолжения потомства
+ent-SpiderWebArachneClassicAction = Spin Web
+    .desc = Spins a web under yourself.
+ent-ActionSpiderVampireEgg = Lay Egg
+    .desc = Lay an egg to continue your brood.
+spider-vampire-egg-no-charges = No eggs left.
