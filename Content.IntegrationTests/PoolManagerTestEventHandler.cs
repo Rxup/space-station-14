@@ -1,4 +1,7 @@
-﻿namespace Content.IntegrationTests;
+﻿using System.IO;
+using System.Threading;
+
+namespace Content.IntegrationTests;
 
 [SetUpFixture]
 public sealed class PoolManagerTestEventHandler
