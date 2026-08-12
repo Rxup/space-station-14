@@ -2,7 +2,7 @@ name: Build & Test Debug
 
 # Single workflow, sequential jobs (needs:): core → backmen → maps → heavy
 # Suites split via [Category("CiHeavy"|"CiMaps")] + ci-*.runsettings TestCaseFilter.
-# GNU timeout is the hang wall; swap mitigates OOM on hosted runners.
+# GNU timeout is the hang wall.
 
 on:
   push:
@@ -44,15 +44,6 @@ jobs:
     - uses: actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-
-    # Hosted runners ~7GiB; EntityTest/DamageAll without filter hit 15GiB → exit 137.
-    - name: Add swap space
-      run: |
-        sudo fallocate -l 8G /swapfile
-        sudo chmod 600 /swapfile
-        sudo mkswap /swapfile
-        sudo swapon /swapfile
-        free -h
 
     - run: dotnet restore
     - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
@@ -110,12 +101,6 @@ jobs:
     - uses: actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-    - name: Add swap space
-      run: |
-        sudo fallocate -l 8G /swapfile
-        sudo chmod 600 /swapfile
-        sudo mkswap /swapfile
-        sudo swapon /swapfile
     - run: dotnet restore
     - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
 
@@ -165,12 +150,6 @@ jobs:
     - uses: actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-    - name: Add swap space
-      run: |
-        sudo fallocate -l 10G /swapfile
-        sudo chmod 600 /swapfile
-        sudo mkswap /swapfile
-        sudo swapon /swapfile
     - run: dotnet restore
     - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
 
@@ -220,13 +199,6 @@ jobs:
     - uses: actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-    - name: Add swap space
-      run: |
-        sudo fallocate -l 12G /swapfile
-        sudo chmod 600 /swapfile
-        sudo mkswap /swapfile
-        sudo swapon /swapfile
-        free -h
     - run: dotnet restore
     - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
 
