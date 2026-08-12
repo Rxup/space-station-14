@@ -127,23 +127,27 @@
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
+    # start-backmen: lathe-packs — static packs listed under dynamicPacks so research unlocks match AllTechPrintableTest
     staticPacks:
+    - MaterialsStatic
+    - PaperworkStatic
+    - TowelsStatic
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ToolsStatic
     - PartsStatic
     - AtmosStatic
     - CablesStatic
-    - PaperworkStatic
-    - TowelsStatic
     - CargoStatic
-    - MaterialsStatic
     - BasicChemistryStatic
     - RollerBedsStatic
     - LightsStatic
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
+    # end-backmen: lathe-packs
   - type: EmagLatheRecipes
     emagStaticPacks:
+    - BackmenAmmoStatic # backmen
     - SecurityAmmoStatic
     - SyndicateAmmoStatic
   - type: BlueprintReceiver
@@ -199,10 +203,11 @@
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
-    staticPacks:
+    # start-backmen: lathe-packs
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ChemistryStatic
     - SurgeryStatic
-    dynamicPacks:
+    #    dynamicPacks: # Backmen-EDIT
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -216,8 +221,15 @@
     - Janitor
     - Instruments
     - Equipment
+    - BackmenTranslators # backmen
+    - BackmenProtolathe # backmen
+    - BackmenSurgery # backmen
+    - BackmenEngineerWeapon # backmen
+    - BackmenService # Backmen
+    # end-backmen: lathe-packs
   - type: EmagLatheRecipes
     emagDynamicPacks:
+    - BackmenAmmo # backmen
     - SecurityAmmo
     - SecurityExplosives
     - SecurityEquipment
@@ -257,13 +269,17 @@
     producingSound: /Audio/Machines/circuitprinter.ogg
     idleState: icon
     runningState: building
+    # start-backmen: lathe-packs
     staticPacks:
+    - CircuitFloorsStatic
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ScienceBoardsStatic
     - ServiceBoardsStatic
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    dynamicPacks:
+    - BackmenBoardsStatic # backmen
+    #    dynamicPacks: # Backmen-EDIT
     - EngineeringBoards
     - CargoBoards
     - MedicalBoards
@@ -272,6 +288,8 @@
     - CameraBoards
     - MechBoards
     - ShuttleBoards
+    - BackmenBoards # backmen
+    # end-backmen: lathe-packs
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityBoards
@@ -311,15 +329,19 @@
   - type: Lathe
     idleState: fab-idle
     runningState: fab-active
-    staticPacks:
+    # start-backmen: lathe-packs
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
-    dynamicPacks:
+    - BackmenShitmedModulesStatic # backmen
+    #    dynamicPacks: # Backmen-EDIT
     - Robotics
     - BorgModules
     - MechParts
     - MechEquipment
+    - BackmenShitmedModules # backmen
+    # end-backmen: lathe-packs
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -392,20 +414,25 @@
     runningState: icon
     unlitIdleState: unlit
     unlitRunningState: unlit-building
-    staticPacks:
+    # start-backmen: lathe-packs
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - SecurityEquipmentStatic
     - SecurityPracticeStatic
-    - SecurityAmmoStatic
+    - BackmenAmmoStatic # backmen
     - SecurityWeaponsStatic
-    dynamicPacks:
+    #    dynamicPacks: # Backmen-EDIT
     - SalvageSecurityBoards
     - SalvageSecurityWeapons
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives
+    - BackmenAmmo # backmen
+#    - SecurityWeapons #backmen-gumsmiths
     - SecurityAmmo
-    - SecurityWeapons
     - SecurityDisablers
+    - BackmenCircuboardArsenal #backmen-gumsmiths
+    - BackmenFrontierShipAmmo # backmen
+    # end-backmen: lathe-packs
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic
@@ -474,7 +501,8 @@
     runningState: icon
     unlitIdleState: unlit
     unlitRunningState: unlit-building
-    staticPacks:
+    # start-backmen: lathe-packs
+    dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - TopicalsStatic
     - ChemistryStatic
     - MedicalStatic
@@ -482,8 +510,13 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - SurgeryStatic
-    dynamicPacks:
+    - BackmenMedfabStatic # backmen
+    #    dynamicPacks: # Backmen-EDIT
     - Chemistry
+    - BackmenMedfab # backmen
+    - BackmenSurgery # backmen
+    - AdvancedBodybagsStatic # Backmen
+    # end-backmen: lathe-packs
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
