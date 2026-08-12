@@ -74,6 +74,11 @@
     maxZoom: 1.44,1.44
   - type: Eye
     drawFov: false
+    # start-backmen: ghost-vis
+    visMask:
+      - Normal
+      - Ghost
+    # end-backmen: ghost-vis
   - type: Input
     context: "ghost"
   - type: Examiner
@@ -97,8 +102,60 @@
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio
     receiveAllChannels: true
+    # start-backmen: ghost-radio
+    channels:
+    - Common
+    - CentCom
+    - Command
+    - Engineering
+    - Medical
+    - Science
+    - Security
+    - Service
+    - Supply
+    - Syndicate
+    - Handheld
+    - Binary
+    - Freelance
+    - CSH
+    - Fleet
+    - Flesh
+    - UEG
+    - AID
+    - AIMALF
+    - CentComOBR
+    - CentComOBREPS11
+    - CentComOBRSR6
+    - Rebels
+    - CentComDeath
+    - Hivemind
+    - Changeling
+    - GROUPS_1
+    - GROUPS_2
+    - GROUPS_3
+    - GROUPS_4
+    - GROUPS_5
+    - GROUPS_6
+    - GROUPS_7
+    - GROUPS_8
+    - GROUPS_9
+    - GROUPS_0
+    - InteQ
+    # end-backmen: ghost-radio
     globalReceive: true
+  # start-backmen: ghost-extras
+  - type: Tag
+    tags:
+    - BypassInteractionRangeChecks
+  # end-backmen: ghost-extras
   - type: UniversalLanguageSpeaker #backmen: languages
+  # start-backmen: ghost-light
+  - type: PointLight
+    netsync: false
+    radius: 6
+    castShadows: false
+    enabled: false
+  # end-backmen: ghost-light
 
 # proto for player ghosts specifically
 - type: entity
@@ -107,7 +164,7 @@
   components:
   - type: Spectral
   - type: Tag
-    tags:
+    tags: # BAD: Intentional removal of inherited tag
     - AllowGhostShownByEvent
 
 - type: entity

@@ -46,6 +46,12 @@
   - RandomPrice
   - TemperatureDamage
   - TemperatureSpeed
+  # start-backmen: clone-body
+  - Monolingual
+  - MoodModifyTrait
+  - LanguageKnowledge
+  - LanguageSpeaker
+  # end-backmen: clone-body
   # accents
   - Accentless
   - BackwardsAccent
@@ -74,6 +80,7 @@
   - SouthernAccent
   - SpanishAccent
   - StutteringAccent
+  - TTS # backmen: clone-tts
   eventComponents:
   - Puller
   - Vocal # voice sounds

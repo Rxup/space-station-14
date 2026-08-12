@@ -202,10 +202,10 @@
 
 # start-backmen: footsteps
 - type: entity
-  name: ╤Б╨╗╨╡╨┤
+  name: след
   id: Footstep
   save: false
-  description: ╨б╨╗╨╡╨┤ ╨╢╨╕╨┤╨║╨╛╤Б╤В╨╕
+  description: След жидкости
   components:
     - type: Slippery
     - type: StepTrigger

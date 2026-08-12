@@ -53,7 +53,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      350: Dead # Goob - 9 PKA shots, 4 crusher destabilised hits # backmen: goliath-hp
   - type: MeleeWeapon
     soundHit:
       path: "/Audio/Weapons/smash.ogg"
@@ -62,8 +62,9 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Slash: 10
-        Piercing: 10
+        Blunt: 35 # backmen: goliath-melee
+        Slash: 15 # backmen: goliath-melee
+    range: 1.12 # Goob - Allows kinetic crushers to fight them without taking guaranteed damage. # backmen: goliath-melee
   - type: NpcFactionMember
     factions:
     - SimpleHostile

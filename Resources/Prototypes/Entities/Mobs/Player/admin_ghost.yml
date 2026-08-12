@@ -40,12 +40,7 @@
     ignorePaused: true
   - type: Access
     groups:
-    - AllAccess
-    - Silicon
-    tags:
-    - NuclearOperative
-    - SyndicateAgent
-    - CentralCommand
+    - AdminAllAccess # backmen: admin-all-access
   - type: UserInterface
     interfaces:
       enum.SolarControlConsoleUiKey.Key:
@@ -108,10 +103,25 @@
   - type: Loadout
     prototypes: [ MobAghostGear ]
   - type: BypassInteractionChecks
+  - type: BkmSupermatterImmune # backmen: supermatter
+  # Corvax-Start
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 30
+  # Corvax-End
   - type: ExplosionResistance
     damageCoefficient: 0
   - type: GluedImmune
   - type: LubedImmune
+  # start-backmen: surgery
+  - type: SurgeryTarget
+    canOperate: true
+    canBeOperatedOn: false
+  # end-backmen: surgery
+  # start-backmen: combat-targeting
+  - type: Targeting
+  - type: CombatTargetOddsOverride
+    odds: Admin
+  # end-backmen: combat-targeting
 
 - type: entity
   abstract: true
@@ -136,6 +146,14 @@
   name: Solar Control Interface
   description: View a Solar Control Interface.
   components:
+  # Corvax-Resprite
+  - type: Sprite
+    layers:
+    - texture: Corvax/Interface/AdminActions/solar.png
+      map: ["enum.ActionVisuals.Icon"]
+    - texture: Corvax/Interface/AdminActions/solar.png
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.SolarControlConsoleUiKey.Key }
 
@@ -185,6 +203,14 @@
   name: Cargo Ordering Interface
   description: View a Cargo Ordering Interface.
   components:
+  # Corvax-Resprite
+  - type: Sprite
+    layers:
+    - texture: Corvax/Interface/AdminActions/cargo.png
+      map: ["enum.ActionVisuals.Icon"]
+    - texture: Corvax/Interface/AdminActions/cargo.png
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.CargoConsoleUiKey.Orders }
 
