@@ -3,7 +3,7 @@
 [SetUpFixture]
 public sealed class PoolManagerTestEventHandler
 {
-    // Keep under GitHub job timeout; FailFast kills the whole runner process (GHA: "lost communication").
+    // Keep under GitHub job timeout.
     // Override with SS14_TEST_POOL_MINUTES for long suites (maps).
     private static TimeSpan MaximumTotalTestingTimeLimit
     {
@@ -11,7 +11,7 @@ public sealed class PoolManagerTestEventHandler
         {
             if (int.TryParse(Environment.GetEnvironmentVariable("SS14_TEST_POOL_MINUTES"), out var mins) && mins > 0)
                 return TimeSpan.FromMinutes(mins);
-            return TimeSpan.FromMinutes(25);
+            return TimeSpan.FromMinutes(20);
         }
     }
 
@@ -25,48 +25,81 @@ public sealed class PoolManagerTestEventHandler
     public void Setup()
     {
         PoolManager.Startup();
-        // If the tests seem to be stuck, we try to end it semi-nicely
+
+        // Soft stop: ask the pool to shut down. Do not block the timer thread on this.
         _ = Task.Delay(MaximumTotalTestingTimeLimit).ContinueWith(_ =>
         {
-            // This can and probably will cause server/client pairs to shut down MID test, and will lead to really confusing test failures.
-            TestContext.Error.WriteLine($"\n\n{nameof(PoolManagerTestEventHandler)}: ERROR: Tests are taking too long. Shutting down all tests. This may lead to weird failures/exceptions.\n\n");
-            try
+            TestContext.Error.WriteLine(
+                $"\n\n{nameof(PoolManagerTestEventHandler)}: ERROR: Tests exceeded {MaximumTotalTestingTimeLimit}. Requesting pool shutdown.\n\n");
+            _ = Task.Run(() =>
             {
-                PoolManager.Shutdown();
-            }
-            catch (Exception e)
-            {
-                TestContext.Error.WriteLine($"{nameof(PoolManagerTestEventHandler)}: Shutdown threw: {e}");
-            }
+                try
+                {
+                    PoolManager.Shutdown();
+                }
+                catch (Exception e)
+                {
+                    TestContext.Error.WriteLine($"{nameof(PoolManagerTestEventHandler)}: Shutdown threw: {e}");
+                }
+            });
         });
 
-        // If ending it nicely doesn't work within a minute, force-exit the test host.
-        // On CI prefer Environment.Exit — FailFast terminates the GitHub runner agent itself.
+        // Hard stop: NEVER call DeathReport() before Exit — it can deadlock on borrowed pairs
+        // and leave the GitHub Actions step hung until job timeout ("lost communication" / cancel).
         _ = Task.Delay(HardStopTimeLimit).ContinueWith(_ =>
         {
-            string deathReport;
+            TestContext.Error.WriteLine(
+                $"\n\n{nameof(PoolManagerTestEventHandler)}: HARD STOP after {HardStopTimeLimit}. Forcing process exit.\n\n");
+
+            // Best-effort report on a background thread; do not wait for it.
+            _ = Task.Run(() =>
+            {
+                try
+                {
+                    var report = PoolManager.DeathReport();
+                    TestContext.Error.WriteLine($"Death Report:\n{report}");
+                    try
+                    {
+                        File.WriteAllText("pool-death-report.txt", report);
+                    }
+                    catch
+                    {
+                        // ignore
+                    }
+                }
+                catch (Exception e)
+                {
+                    TestContext.Error.WriteLine($"DeathReport failed: {e}");
+                }
+            });
+
+            // Give the report a brief moment, then always exit. Rely on OS `timeout` in CI as backup.
             try
             {
-                deathReport = PoolManager.DeathReport();
+                Thread.Sleep(2000);
             }
-            catch (Exception e)
+            catch
             {
-                deathReport = $"DeathReport failed: {e}";
+                // ignore
             }
-
-            var message = $"Tests took way too long.\n Death Report:\n{deathReport}";
-            TestContext.Error.WriteLine($"\n\n{nameof(PoolManagerTestEventHandler)}: HARD STOP: {message}\n\n");
 
             if (IsCi)
-                Environment.Exit(1);
+                Environment.Exit(124);
 
-            Environment.FailFast(message);
+            Environment.FailFast($"Tests took way too long (>{HardStopTimeLimit}).");
         });
     }
 
     [OneTimeTearDown]
     public void TearDown()
     {
-        PoolManager.Shutdown();
+        try
+        {
+            PoolManager.Shutdown();
+        }
+        catch
+        {
+            // ignore during teardown
+        }
     }
 }

@@ -1,7 +1,7 @@
 name: Build & Test Debug
 
-# Single workflow, sequential jobs (needs:) — avoids 4 parallel runners OOMing / fighting for slots.
-# Order: core → backmen → maps → heavy
+# Single workflow, sequential jobs (needs:): core → backmen → maps → heavy
+# Integration tests wrapped in GNU `timeout` so a hung pair cannot stall the runner.
 
 on:
   push:
@@ -19,13 +19,13 @@ concurrency:
 env:
   DOTNET_VERSION: 10.0.x
   CONFIG: DebugOpt
+  DOTNET_gcServer: "1"
 
 jobs:
-  # --- 1) unit + core integration (no Backmen / maps / heavy) ---
   core:
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 35
     steps:
     - uses: actions/checkout@v4.2.2
 
@@ -48,85 +48,96 @@ jobs:
     - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
 
     - name: Run Content.Tests
-      shell: pwsh
-      run: |
-        dotnet test --no-build --configuration $env:CONFIG Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0 NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results"
+      run: >
+        dotnet test --no-build --configuration ${{ env.CONFIG }}
+        Content.Tests/Content.Tests.csproj --
+        NUnit.ConsoleOut=0
+        NUnit.TestOutputXml=logs
+        NUnit.WorkDirectory=${{ github.workspace }}/test_results
 
     - name: Run Content.IntegrationTests (core)
-      shell: pwsh
-      timeout-minutes: 35
+      # Kill the whole process tree if anything hangs (pair deadlock / DeathReport stall).
+      # blame-hang dumps which test was stuck.
       run: |
-        $env:DOTNET_gcServer = 1
-        $filter = @(
-          'FullyQualifiedName!~Backmen',
-          'FullyQualifiedName!~PostMapInitTest',
-          'FullyQualifiedName!~StationPowerTests',
-          'FullyQualifiedName!~SalvageTest',
-          'FullyQualifiedName!~EntityTest',
-          'FullyQualifiedName!~PrototypeSaveTest',
-          'FullyQualifiedName!~DamageAllPrototypes',
-          'FullyQualifiedName!~ItemSpriteTest',
-          'FullyQualifiedName!~MagazineVisualsSpriteTest',
-          'FullyQualifiedName!~AllGamePresetsStartTest',
-          'FullyQualifiedName!~TryAllReactionsTest',
-          'FullyQualifiedName!~MaterialArbitrageTest'
-        ) -join '&'
-        dotnet test --no-build --configuration $env:CONFIG Content.IntegrationTests/Content.IntegrationTests.csproj --filter $filter -- NUnit.ConsoleOut=1 NUnit.NumberOfTestWorkers=2 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results"
+        set -euo pipefail
+        FILTER='FullyQualifiedName!~Backmen&FullyQualifiedName!~PostMapInitTest&FullyQualifiedName!~StationPowerTests&FullyQualifiedName!~SalvageTest&FullyQualifiedName!~EntityTest&FullyQualifiedName!~PrototypeSaveTest&FullyQualifiedName!~DamageAllPrototypes&FullyQualifiedName!~ItemSpriteTest&FullyQualifiedName!~MagazineVisualsSpriteTest&FullyQualifiedName!~AllGamePresetsStartTest&FullyQualifiedName!~TryAllReactionsTest&FullyQualifiedName!~MaterialArbitrageTest'
+        # 22m hard wall; in-process watchdog is 20+1. Exit 124 = timeout.
+        timeout --signal=KILL 22m \
+          dotnet test --no-build --configuration "${CONFIG}" \
+          Content.IntegrationTests/Content.IntegrationTests.csproj \
+          --filter "${FILTER}" \
+          --settings Content.IntegrationTests/ci.runsettings \
+          --blame-hang --blame-hang-timeout 5m --blame-hang-dump-type none \
+          -- \
+          NUnit.ConsoleOut=1 \
+          NUnit.MapWarningTo=Failed \
+          NUnit.TestOutputXml=logs \
+          NUnit.WorkDirectory="${GITHUB_WORKSPACE}/test_results"
 
     - name: Archive core test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: nunit3-results-core
-        path: test_results/*
+        path: |
+          test_results/**
+          **/TestResults/**
+          pool-death-report.txt
         retention-days: 7
+        if-no-files-found: ignore
         compression-level: 9
 
-  # --- 2) Backmen ---
   backmen:
     needs: core
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 35
     steps:
     - uses: actions/checkout@v4.2.2
-
     - name: Setup Submodule
       run: git submodule update --init --recursive
-
     - name: Pull engine updates
       uses: space-wizards/submodule-dependency@v0.1.5
-
     - name: Update Engine Submodules
       run: |
         cd RobustToolbox/
         git submodule update --init --recursive
-
     - uses: actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-
     - run: dotnet restore
     - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
 
     - name: Run Content.IntegrationTests (Backmen)
-      shell: pwsh
-      timeout-minutes: 35
+      env:
+        SS14_TEST_POOL_MINUTES: "25"
       run: |
-        $env:DOTNET_gcServer = 1
-        $env:SS14_TEST_POOL_MINUTES = "30"
-        dotnet test --no-build --configuration $env:CONFIG Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName~Backmen&FullyQualifiedName!~PostMapInitTest" -- NUnit.ConsoleOut=1 NUnit.NumberOfTestWorkers=2 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results_backmen"
+        set -euo pipefail
+        timeout --signal=KILL 28m \
+          dotnet test --no-build --configuration "${CONFIG}" \
+          Content.IntegrationTests/Content.IntegrationTests.csproj \
+          --filter 'FullyQualifiedName~Backmen&FullyQualifiedName!~PostMapInitTest' \
+          --settings Content.IntegrationTests/ci.runsettings \
+          --blame-hang --blame-hang-timeout 5m --blame-hang-dump-type none \
+          -- \
+          NUnit.ConsoleOut=1 \
+          NUnit.MapWarningTo=Failed \
+          NUnit.TestOutputXml=logs \
+          NUnit.WorkDirectory="${GITHUB_WORKSPACE}/test_results_backmen"
 
     - name: Archive Backmen test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: nunit3-results-backmen
-        path: test_results_backmen/*
+        path: |
+          test_results_backmen/**
+          **/TestResults/**
+          pool-death-report.txt
         retention-days: 7
+        if-no-files-found: ignore
         compression-level: 9
 
-  # --- 3) Maps ---
   maps:
     needs: backmen
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
@@ -134,87 +145,101 @@ jobs:
     timeout-minutes: 120
     steps:
     - uses: actions/checkout@v4.2.2
-
     - name: Setup Submodule
       run: git submodule update --init --recursive
-
     - name: Pull engine updates
       uses: space-wizards/submodule-dependency@v0.1.5
-
     - name: Update Engine Submodules
       run: |
         cd RobustToolbox/
         git submodule update --init --recursive
-
     - uses: actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-
     - run: dotnet restore
     - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
 
     - name: Run Content.IntegrationTests (maps)
-      shell: pwsh
-      timeout-minutes: 100
+      env:
+        SS14_TEST_POOL_MINUTES: "90"
       run: |
-        $env:DOTNET_gcServer = 1
-        $env:SS14_TEST_POOL_MINUTES = "90"
-        dotnet test --no-build --configuration $env:CONFIG Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName~PostMapInitTest|FullyQualifiedName~StationPowerTests|FullyQualifiedName~SalvageTest" -- NUnit.ConsoleOut=1 NUnit.NumberOfTestWorkers=1 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results_maps"
+        set -euo pipefail
+        timeout --signal=KILL 100m \
+          dotnet test --no-build --configuration "${CONFIG}" \
+          Content.IntegrationTests/Content.IntegrationTests.csproj \
+          --filter 'FullyQualifiedName~PostMapInitTest|FullyQualifiedName~StationPowerTests|FullyQualifiedName~SalvageTest' \
+          --settings Content.IntegrationTests/ci.runsettings \
+          --blame-hang --blame-hang-timeout 10m --blame-hang-dump-type none \
+          -- \
+          NUnit.ConsoleOut=1 \
+          NUnit.MapWarningTo=Failed \
+          NUnit.TestOutputXml=logs \
+          NUnit.WorkDirectory="${GITHUB_WORKSPACE}/test_results_maps"
 
     - name: Archive map test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: nunit3-results-maps
-        path: test_results_maps/*
+        path: |
+          test_results_maps/**
+          **/TestResults/**
+          pool-death-report.txt
         retention-days: 7
+        if-no-files-found: ignore
         compression-level: 9
 
-  # --- 4) Heavy (spawn-all / presets) ---
   heavy:
     needs: maps
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 50
     steps:
     - uses: actions/checkout@v4.2.2
-
     - name: Setup Submodule
       run: git submodule update --init --recursive
-
     - name: Pull engine updates
       uses: space-wizards/submodule-dependency@v0.1.5
-
     - name: Update Engine Submodules
       run: |
         cd RobustToolbox/
         git submodule update --init --recursive
-
     - uses: actions/setup-dotnet@v4.1.0
       with:
         dotnet-version: ${{ env.DOTNET_VERSION }}
-
     - run: dotnet restore
     - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
 
     - name: Run Content.IntegrationTests (heavy)
-      shell: pwsh
-      timeout-minutes: 50
+      env:
+        SS14_TEST_POOL_MINUTES: "35"
       run: |
-        $env:DOTNET_gcServer = 1
-        $env:SS14_TEST_POOL_MINUTES = "35"
-        dotnet test --no-build --configuration $env:CONFIG Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName~EntityTest|FullyQualifiedName~PrototypeSaveTest|FullyQualifiedName~DamageAllPrototypes|FullyQualifiedName~ItemSpriteTest|FullyQualifiedName~MagazineVisualsSpriteTest|FullyQualifiedName~AllGamePresetsStartTest|FullyQualifiedName~TryAllReactionsTest|FullyQualifiedName~MaterialArbitrageTest" -- NUnit.ConsoleOut=1 NUnit.NumberOfTestWorkers=1 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results_heavy"
+        set -euo pipefail
+        timeout --signal=KILL 40m \
+          dotnet test --no-build --configuration "${CONFIG}" \
+          Content.IntegrationTests/Content.IntegrationTests.csproj \
+          --filter 'FullyQualifiedName~EntityTest|FullyQualifiedName~PrototypeSaveTest|FullyQualifiedName~DamageAllPrototypes|FullyQualifiedName~ItemSpriteTest|FullyQualifiedName~MagazineVisualsSpriteTest|FullyQualifiedName~AllGamePresetsStartTest|FullyQualifiedName~TryAllReactionsTest|FullyQualifiedName~MaterialArbitrageTest' \
+          --settings Content.IntegrationTests/ci.runsettings \
+          --blame-hang --blame-hang-timeout 8m --blame-hang-dump-type none \
+          -- \
+          NUnit.ConsoleOut=1 \
+          NUnit.MapWarningTo=Failed \
+          NUnit.TestOutputXml=logs \
+          NUnit.WorkDirectory="${GITHUB_WORKSPACE}/test_results_heavy"
 
     - name: Archive heavy test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: nunit3-results-heavy
-        path: test_results_heavy/*
+        path: |
+          test_results_heavy/**
+          **/TestResults/**
+          pool-death-report.txt
         retention-days: 7
+        if-no-files-found: ignore
         compression-level: 9
 
-  # Required-check friendly gate (same display name as before)
   ci-success:
     name: Build & Test Debug
     needs: [core, backmen, maps, heavy]
