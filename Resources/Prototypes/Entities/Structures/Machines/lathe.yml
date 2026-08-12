@@ -561,6 +561,7 @@
     - Scarves
     - Carpets
     - Bedsheets
+    - CorvaxClothing # Corvax-Clothing # backmen
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ClothingCentComm
@@ -637,10 +638,19 @@
     - type: Machine
       board: OreProcessorMachineCircuitboard
     - type: MaterialStorage
+      # start-backmen: ore-silo
+      ignoreMaterialWhiteList: true # Goob edit
+      connectToSilo: true # Goob edit
+      disconnectSiloOffMap: true # Goob edit
+      disallowOreEjection: false # Goob edit
+      # end-backmen: ore-silo
       ignoreColor: true
       whitelist:
         tags:
           - Ore
+          - Sheet # backmen: ore-silo
+          - RawMaterial # backmen: ore-silo
+          - Ingot # backmen: ore-silo
     - type: Lathe
       idleState: icon
       runningState: building
@@ -648,6 +658,12 @@
       staticPacks:
       - OreSmelting
       - RGlassSmelting
+    # start-backmen: ore-processor
+    - type: MiningPoints # DeltaV - Source of mining points for miners
+    - type: MiningPointsLathe # DeltaV
+    - type: MaterialStorageMagnetPickup # Frontier
+    - type: NoLavalandUsage
+    # end-backmen: ore-processor
 
 - type: entity
   parent: OreProcessor

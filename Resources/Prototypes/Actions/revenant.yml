@@ -34,20 +34,22 @@
   - type: InstantAction
     event: !type:RevenantOverloadLightsActionEvent
 
-#- type: entity
-#  parent: BaseAction
-#  id: ActionRevenantBlight
-#  name: Blight
-#  description: Costs 50 Essence.
-#  components:
-#  - type: Action
-#    useDelay: 20
-#  - type: Sprite
-#    layers:
-#    - texture: Interface/Actions/blight.png
-#      map: ["enum.ActionVisuals.Icon"]
-#  - type: InstantAction
-#    event: !type:RevenantBlightActionEvent
+# start-backmen: revenant-blight
+- type: entity
+  parent: BaseAction
+  id: ActionRevenantBlight
+  name: Blight
+  description: Costs 50 Essence.
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: BigAction
+  - type: Sprite
+    layers:
+    - texture: Interface/Actions/blight.png
+  - type: InstantAction
+    event: !type:RevenantBlightActionEvent
+# end-backmen: revenant-blight
 
 - type: entity
   parent: BaseAction

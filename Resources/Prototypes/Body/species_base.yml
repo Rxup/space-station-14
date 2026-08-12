@@ -145,6 +145,16 @@
     deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
   - type: RandomPrice
     maxRandomPrice: 20000
+  # start-backmen: species-base
+  - type: PotentialPsionic
+  - type: LanguageSpeaker
+    currentLanguage: TauCetiBasic
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    understands:
+    - TauCetiBasic
+  # end-backmen: species-base
   - type: Tag
     tags:
     - CanPilot
@@ -165,7 +175,11 @@
   save: false
   components:
   - type: Hunger
+    # start-backmen: hunger-pain
+    baseDecayRate: 0.04166666665
+    # end-backmen: hunger-pain
   - type: Thirst
+  - type: Mood # backmen: mood
   - type: Barotrauma
     damage:
       types:

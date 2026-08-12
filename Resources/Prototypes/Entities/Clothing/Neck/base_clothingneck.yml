@@ -30,6 +30,9 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+  - type: Armor # backmen: armour coverage
+    coverage: []
+    modifiers: {}
 
 - type: entity
   abstract: true

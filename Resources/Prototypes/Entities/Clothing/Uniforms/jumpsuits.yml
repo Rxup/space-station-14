@@ -217,6 +217,8 @@
   - type: Construction
     graph: BananaClownJumpsuit
     node: jumpsuit
+  - type: StaminaResistance
+    damageCoefficient: 1.1
   - type: Armor
     coverage: # backmen: armour coverage
     - Chest

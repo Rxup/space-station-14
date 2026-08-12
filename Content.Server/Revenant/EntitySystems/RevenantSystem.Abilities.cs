@@ -16,8 +16,10 @@ using System.Numerics;
 // start-backmen: revenant-abilities
 using Content.Server._Impstation.Revenant.Components;
 using Content.Server._Impstation.Revenant.EntitySystems;
+using Content.Server.Backmen.Disease;
 using Content.Shared._Impstation.Revenant;
 using Content.Shared._Impstation.Revenant.Components;
+using Content.Shared.Backmen.Disease;
 using Content.Shared.Flash;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -64,6 +66,8 @@ public sealed partial class RevenantSystem
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private SharedFlashSystem _flashSystem = default!;
     [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private DiseaseSystem _disease = default!;
+    [Dependency] private EntityQuery<DiseaseCarrierComponent> _diseaseCarrierQuery = default!;
     // end-backmen: revenant-abilities
 
     [Dependency] private EntityQuery<TagComponent> _tagQuery = default!;
@@ -349,7 +353,13 @@ public sealed partial class RevenantSystem
             return;
 
         args.Handled = true;
-        // TODO: When disease refactor is in.
+        // start-backmen: revenant-blight
+        foreach (var ent in _lookup.GetEntitiesInRange(uid, component.BlightRadius))
+        {
+            if (_diseaseCarrierQuery.TryComp(ent, out var carrier))
+                _disease.TryAddDisease(ent, component.BlightDiseasePrototypeId, carrier);
+        }
+        // end-backmen: revenant-blight
     }
 
     private void OnMalfunctionAction(EntityUid uid, RevenantComponent component, RevenantMalfunctionActionEvent args)
