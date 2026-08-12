@@ -47,6 +47,7 @@ admin-verbs-pause-map = Приостановить карту
 admin-verbs-snap-joints = Сломать суставы
 admin-verbs-make-minigun = Сделать минитю
 admin-verbs-set-bullet-amount = Установить количество патронов
+admin-verbs-haunt-scare = Напугать (Haunt) # backmen: haunt-jumpscare-trick
 
 # Toggles verbs
 admin-verbs-bolt = Заблокировать

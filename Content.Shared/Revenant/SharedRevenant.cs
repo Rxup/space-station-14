@@ -79,6 +79,24 @@ public sealed class RevenantHauntWitnessEvent : EntityEventArgs
     }
 }
 
+/// <summary>
+/// Sent to a haunt witness so their client can show a fullscreen jumpscare.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class RevenantHauntJumpscareEvent : EntityEventArgs
+{
+    public TimeSpan Duration;
+
+    public RevenantHauntJumpscareEvent(TimeSpan duration)
+    {
+        Duration = duration;
+    }
+
+    public RevenantHauntJumpscareEvent() : this(TimeSpan.FromSeconds(1.1))
+    {
+    }
+}
+
 [Serializable, NetSerializable]
 public sealed partial class ExorciseRevenantDoAfterEvent : SimpleDoAfterEvent;
 

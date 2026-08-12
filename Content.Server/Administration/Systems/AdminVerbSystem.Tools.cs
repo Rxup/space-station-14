@@ -27,7 +27,11 @@ using Content.Shared.Stacks;
 using Content.Shared.Station.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Flash;
+using Content.Shared.Revenant;
 using Robust.Server.Physics;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -52,6 +56,13 @@ public sealed partial class AdminVerbSystem
     [Dependency] private SharedBatterySystem _batterySystem = default!;
     [Dependency] private MetaDataSystem _metaSystem = default!;
     [Dependency] private GunSystem _gun = default!;
+    // start-backmen: haunt-jumpscare-trick
+    [Dependency] private SharedFlashSystem _flashSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    // end-backmen: haunt-jumpscare-trick
+
+    private static readonly SoundSpecifier HauntScareSound =
+        new SoundCollectionSpecifier("RevenantHauntScreamer", AudioParams.Default.WithVolume(8f));
 
     private void AddTricksVerbs(GetVerbsEvent<Verb> args)
     {
@@ -730,6 +741,38 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(setCapacity);
         }
+
+        // start-backmen: haunt-jumpscare-trick
+        // Solo-test Haunt: flash + screamer + fullscreen jumpscare on a player target (incl. self).
+        if (TryComp(args.Target, out ActorComponent? scareActor))
+        {
+            Verb hauntScare = new()
+            {
+                Text = Loc.GetString("admin-verbs-haunt-scare"),
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/Actions/scream.png")),
+                Act = () =>
+                {
+                    var target = args.Target;
+                    _flashSystem.Flash(
+                        target,
+                        args.User,
+                        null,
+                        TimeSpan.FromSeconds(3),
+                        slowTo: 0.4f,
+                        displayPopup: true,
+                        stunDuration: TimeSpan.FromSeconds(1));
+
+                    _audioSystem.PlayGlobal(HauntScareSound, scareActor.PlayerSession);
+                    RaiseNetworkEvent(new RevenantHauntJumpscareEvent(TimeSpan.FromSeconds(1.1)), scareActor.PlayerSession);
+                },
+                Impact = LogImpact.Medium,
+                Message = Loc.GetString("admin-trick-haunt-scare-description"),
+                Priority = (int)TricksVerbPriorities.HauntScare,
+            };
+            args.Verbs.Add(hauntScare);
+        }
+        // end-backmen: haunt-jumpscare-trick
     }
 
     private void RefillEquippedTanks(EntityUid target, Gas gasType)
@@ -875,5 +918,6 @@ public sealed partial class AdminVerbSystem
         SnapJoints = -27,
         MakeMinigun = -28,
         SetBulletAmount = -29,
+        HauntScare = -30, // backmen: haunt-jumpscare-trick
     }
 }

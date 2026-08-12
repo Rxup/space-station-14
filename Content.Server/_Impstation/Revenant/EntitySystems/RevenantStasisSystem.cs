@@ -98,12 +98,27 @@ public sealed partial class RevenantStasisSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, RevenantStasisComponent component, ComponentShutdown args)
     {
-        if (_status.HasStatusEffect(uid, RevenantStatusEffects.Stasis))
+        // Already revived (failed grind / blender broke) — ectoplasm is just being cleaned up.
+        if (component.Revived)
+            return;
+
+        // Intentional kill: salt grind, bible, craft.
+        if (component.PermanentlyDestroyed)
         {
             if (_mind.TryGetMind(uid, out var mindId, out _))
                 _mind.TransferTo(mindId, null);
 
-            QueueDel(component.Revenant);
+            if (!TerminatingOrDeleted(component.Revenant))
+                QueueDel(component.Revenant);
+            return;
+        }
+
+        // Accidental ectoplasm deletion while still regenerating (e.g. blender exploded).
+        // Old code treated any shutdown during Stasis as a kill — that also wiped the revenant.
+        if (_status.HasStatusEffect(uid, RevenantStatusEffects.Stasis)
+            || (Exists(component.Revenant) && MetaData(component.Revenant).EntityPaused))
+        {
+            TryReviveFromStasis(uid, component);
         }
     }
 
@@ -113,22 +128,40 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         if (!TryComp<RevenantStasisComponent>(args.Target, out var stasis) || TerminatingOrDeleted(args.Target))
             return;
 
-        _transformSystem.SetCoordinates(stasis.Revenant, Transform(args.Target).Coordinates);
+        if (stasis.Revived || stasis.PermanentlyDestroyed)
+            return;
+
+        TryReviveFromStasis(args.Target, stasis);
+        QueueDel(args.Target);
+    }
+
+    /// <summary>
+    /// Returns the paused revenant to the ectoplasm's location and moves the mind back.
+    /// </summary>
+    private void TryReviveFromStasis(EntityUid ectoplasm, RevenantStasisComponent stasis)
+    {
+        if (stasis.Revived || TerminatingOrDeleted(stasis.Revenant))
+            return;
+
+        stasis.Revived = true;
+
+        var coords = Transform(ectoplasm).Coordinates;
+        _transformSystem.SetCoordinates(stasis.Revenant, coords);
         _transformSystem.AttachToGridOrMap(stasis.Revenant);
         _meta.SetEntityPaused(stasis.Revenant, false);
 
-        if (_mind.TryGetMind(args.Target, out var mindId, out _))
+        if (_mind.TryGetMind(ectoplasm, out var mindId, out _))
             _mind.TransferTo(mindId, stasis.Revenant);
 
-        if (TryComp<FollowedComponent>(args.Target, out var followed))
+        if (TryComp<FollowedComponent>(ectoplasm, out var followed))
         {
-            foreach (var follower in followed.Following)
+            foreach (var follower in new List<EntityUid>(followed.Following))
             {
                 _followerSystem.StartFollowingEntity(follower, stasis.Revenant);
             }
         }
 
-        QueueDel(args.Target);
+        _popup.PopupEntity(Loc.GetString("revenant-stasis-regenerating"), stasis.Revenant, PopupType.Medium);
     }
 
     private void OnExamine(Entity<RevenantStasisComponent> entity, ref ExaminedEvent args)
@@ -138,6 +171,8 @@ public sealed partial class RevenantStasisSystem : EntitySystem
 
     private void OnCrafted(EntityUid uid, RevenantStasisComponent comp, ConstructionConsumedObjectEvent args)
     {
+        comp.PermanentlyDestroyed = true;
+
         var voice = EnsureComp<VoiceOverrideComponent>(args.New);
         voice.SpeechVerbOverride = "Ghost";
         voice.NameOverride = Name(comp.Revenant);
@@ -148,17 +183,32 @@ public sealed partial class RevenantStasisSystem : EntitySystem
 
     private void OnGrindAttempt(EntityUid uid, RevenantStasisComponent comp, GrindAttemptEvent args)
     {
-        if (!TryComp<RevenantComponent>(comp.Revenant, out var revenant) || !revenant.GrindingRequiresSalt)
-            return;
-
+        var hasSalt = false;
         foreach (var content in args.Contents)
         {
             if (_tags.HasTag(content, Salt))
-                return;
+            {
+                hasSalt = true;
+                break;
+            }
         }
 
-        _explosion.QueueExplosion(args.Grinder, "Default", 7.5f, 4f, 2f);
+        var requiresSalt = !TryComp<RevenantComponent>(comp.Revenant, out var revenant)
+            || revenant.GrindingRequiresSalt;
+
+        // Salt (or salt not required): allow grind → DestroyEntity → permanent death.
+        if (hasSalt || !requiresSalt)
+        {
+            comp.PermanentlyDestroyed = true;
+            return;
+        }
+
+        // No salt: cancel grind, blow up the blender, revive the revenant.
+        // Without this, blender destruction deleted ectoplasm and OnShutdown wiped the revenant.
         args.Cancel();
+        _explosion.QueueExplosion(args.Grinder, "Default", 7.5f, 4f, 2f);
+        TryReviveFromStasis(uid, comp);
+        QueueDel(uid);
     }
 
     private void OnAttemptDirection(EntityUid uid, RevenantStasisComponent comp, ChangeDirectionAttemptEvent args)
@@ -246,6 +296,7 @@ public sealed partial class RevenantStasisSystem : EntitySystem
                 ("revenant", comp.Revenant)),
             args.Target.Value);
 
+        comp.PermanentlyDestroyed = true;
         RemComp<RevenantStasisComponent>(args.Target.Value);
     }
 }

@@ -47,6 +47,7 @@ admin-verbs-pause-map = Pause Map
 admin-verbs-snap-joints = Snap Joints
 admin-verbs-make-minigun = Make Minigun
 admin-verbs-set-bullet-amount = Set Bullet Amount
+admin-verbs-haunt-scare = Scare (Haunt) # backmen: haunt-jumpscare-trick
 
 # Toggles verbs
 admin-verbs-bolt = Bolt

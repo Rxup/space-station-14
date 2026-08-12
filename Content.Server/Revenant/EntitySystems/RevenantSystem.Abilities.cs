@@ -393,57 +393,71 @@ public sealed partial class RevenantSystem
 
         args.Handled = true;
 
-        var witnessFilter = Filter.Pvs(uid).RemoveWhere(player =>
-        {
-            if (player.AttachedEntity == null)
-                return true;
-
-            var ent = player.AttachedEntity.Value;
-
-            if (!HasComp<MobStateComponent>(ent) || !HasComp<MobMoverComponent>(ent) || HasComp<RevenantComponent>(ent))
-                return true;
-
-            return !_interact.InRangeUnobstructed(uid, ent, -1, collisionMask: CollisionGroup.Impassable);
-        });
-
-        var witnesses = new HashSet<NetEntity>(
-            witnessFilter.RemovePlayerByAttachedEntity(uid).Recipients
-                .Select(ply => GetNetEntity(ply.AttachedEntity!.Value)));
-
-        _audioSystem.PlayGlobal(comp.HauntSound, witnessFilter, true);
-
+        // Prefer range lookup over Filter.Pvs(revenant): ghost visibility can make PVS feel empty,
+        // and we need every nearby living player for flash + jumpscare.
+        var witnessFilter = Filter.Empty();
+        var witnessNets = new HashSet<NetEntity>();
         var newHaunts = 0;
 
-        foreach (var witness in witnesses)
+        foreach (var ent in _lookup.GetEntitiesInRange(uid, comp.HauntRange))
         {
-            var witnessEnt = GetEntity(witness);
-            _flashSystem.Flash(witnessEnt, uid, uid, comp.HauntFlashDuration, slowTo: 1f);
+            if (ent == uid)
+                continue;
 
-            if (!_status.HasStatusEffect(witnessEnt, RevenantStatusEffects.Haunted))
+            if (!HasComp<MobStateComponent>(ent) || !HasComp<MobMoverComponent>(ent) || HasComp<RevenantComponent>(ent))
+                continue;
+
+            if (!_interact.InRangeUnobstructed(uid, ent, -1, collisionMask: CollisionGroup.Impassable))
+                continue;
+
+            _flashSystem.Flash(
+                ent,
+                uid,
+                uid,
+                comp.HauntFlashDuration,
+                slowTo: 0.4f,
+                displayPopup: true,
+                stunDuration: comp.HauntStunDuration);
+
+            if (_players.TryGetSessionByEntity(ent, out var session))
             {
-                _status.TryAddStatusEffectDuration(witnessEnt, RevenantStatusEffects.Haunted, comp.HauntHauntedDuration);
+                witnessFilter.AddPlayer(session);
+                RaiseNetworkEvent(new RevenantHauntJumpscareEvent(comp.HauntJumpscareDuration), session);
+            }
+
+            witnessNets.Add(GetNetEntity(ent));
+
+            if (!_status.HasStatusEffect(ent, RevenantStatusEffects.Haunted))
+            {
+                _status.TryAddStatusEffectDuration(ent, RevenantStatusEffects.Haunted, comp.HauntHauntedDuration);
                 newHaunts++;
             }
         }
 
-        if (newHaunts > 0
-            && _status.TryAddStatusEffectDuration(uid, RevenantStatusEffects.EssenceRegen, out var regenEnt, comp.HauntEssenceRegenDuration))
+        if (witnessFilter.Count > 0)
+            _audioSystem.PlayGlobal(comp.HauntSound, witnessFilter, true);
+
+        if (newHaunts <= 0)
+            return;
+
+        if (_status.TryAddStatusEffectDuration(uid, RevenantStatusEffects.EssenceRegen, out var regenEnt, comp.HauntEssenceRegenDuration))
         {
             var regen = EnsureComp<RevenantRegenModifierStatusEffectComponent>(regenEnt.Value);
-            regen.Witnesses = witnesses;
+            regen.Witnesses = witnessNets;
             regen.NewHaunts = newHaunts;
             Dirty(regenEnt.Value, regen);
 
             if (_mind.TryGetMind(uid, out _, out var mind)
                 && mind.UserId != null
                 && _players.TryGetSessionById(mind.UserId.Value, out var session))
-                RaiseNetworkEvent(new RevenantHauntWitnessEvent(witnesses), session);
+                RaiseNetworkEvent(new RevenantHauntWitnessEvent(witnessNets), session);
 
             _store.TryAddCurrency(
                 new Dictionary<string, FixedPoint2> { { comp.StolenEssenceCurrencyPrototype, comp.HauntStolenEssencePerWitness * newHaunts } },
                 uid);
         }
     }
+    // end-backmen: revenant-abilities
 
     private void OnBloodWritingAction(EntityUid uid, RevenantComponent component, RevenantBloodWritingEvent args)
     {

@@ -9,6 +9,13 @@
   - /Audio/_Backmen/Effects/Revenant/screamer0.ogg
   - /Audio/_Backmen/Effects/Revenant/screamer1.ogg
 
+# Loud jumpscare-only pool for Haunt (quiet ambient haunts diluted the scare).
+- type: soundCollection
+  id: RevenantHauntScreamer
+  files:
+  - /Audio/_Backmen/Effects/Revenant/screamer0.ogg
+  - /Audio/_Backmen/Effects/Revenant/screamer1.ogg
+
 - type: speechSounds
   id: Plushie
   saySound:
