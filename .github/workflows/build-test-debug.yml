@@ -1,5 +1,8 @@
 name: Build & Test Debug
 
+# Single workflow, sequential jobs (needs:) — avoids 4 parallel runners OOMing / fighting for slots.
+# Order: core → backmen → maps → heavy
+
 on:
   push:
     branches: [ master, staging, stable ]
@@ -7,23 +10,27 @@ on:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
     branches: [ master, staging, stable ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'merge_group' }}
+
+env:
+  DOTNET_VERSION: 10.0.x
+  CONFIG: DebugOpt
 
 jobs:
-  build:
+  # --- 1) unit + core integration (no Backmen / maps / heavy) ---
+  core:
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
-
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
     steps:
-    - name: Checkout Master
-      uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v4.2.2
 
     - name: Setup Submodule
-      run: |
-        git submodule update --init --recursive
+      run: git submodule update --init --recursive
 
     - name: Pull engine updates
       uses: space-wizards/submodule-dependency@v0.1.5
@@ -33,46 +40,194 @@ jobs:
         cd RobustToolbox/
         git submodule update --init --recursive
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
+    - uses: actions/setup-dotnet@v4.1.0
       with:
-        dotnet-version: 10.0.x
+        dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: Install dependencies
-      run: dotnet restore
-
-#    - name: skip locale check
-#      run: |
-#        sed -i 's/_logSawmill.Error(sbErr.ToString());/_logSawmill.Warning(sbErr.ToString());/g' RobustToolbox/Robust.Shared/Localization/LocalizationManager.cs
-
-    - name: Build Project
-      run: dotnet build --configuration DebugOpt --no-restore /m
+    - run: dotnet restore
+    - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
 
     - name: Run Content.Tests
       shell: pwsh
-      run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0 NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results"
-
-    - name: Run Content.IntegrationTests
-      shell: pwsh
-      timeout-minutes: 90
       run: |
-        $env:DOTNET_gcServer=1
-        # Exclude Backmen (build-test-backmen.yml) and heavy map loads (build-test-maps.yml)
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName!~Backmen&FullyQualifiedName!~PostMapInitTest&FullyQualifiedName!~StationPowerTests&FullyQualifiedName!~SalvageTest" -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results"
+        dotnet test --no-build --configuration $env:CONFIG Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0 NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results"
 
-    - name: Archive NUnit3 test results.
+    - name: Run Content.IntegrationTests (core)
+      shell: pwsh
+      timeout-minutes: 35
+      run: |
+        $env:DOTNET_gcServer = 1
+        $filter = @(
+          'FullyQualifiedName!~Backmen',
+          'FullyQualifiedName!~PostMapInitTest',
+          'FullyQualifiedName!~StationPowerTests',
+          'FullyQualifiedName!~SalvageTest',
+          'FullyQualifiedName!~EntityTest',
+          'FullyQualifiedName!~PrototypeSaveTest',
+          'FullyQualifiedName!~DamageAllPrototypes',
+          'FullyQualifiedName!~ItemSpriteTest',
+          'FullyQualifiedName!~MagazineVisualsSpriteTest',
+          'FullyQualifiedName!~AllGamePresetsStartTest',
+          'FullyQualifiedName!~TryAllReactionsTest',
+          'FullyQualifiedName!~MaterialArbitrageTest'
+        ) -join '&'
+        dotnet test --no-build --configuration $env:CONFIG Content.IntegrationTests/Content.IntegrationTests.csproj --filter $filter -- NUnit.ConsoleOut=1 NUnit.NumberOfTestWorkers=2 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results"
+
+    - name: Archive core test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: nunit3-results-${{ matrix.os }}
+        name: nunit3-results-core
         path: test_results/*
         retention-days: 7
         compression-level: 9
+
+  # --- 2) Backmen ---
+  backmen:
+    needs: core
+    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+    - uses: actions/checkout@v4.2.2
+
+    - name: Setup Submodule
+      run: git submodule update --init --recursive
+
+    - name: Pull engine updates
+      uses: space-wizards/submodule-dependency@v0.1.5
+
+    - name: Update Engine Submodules
+      run: |
+        cd RobustToolbox/
+        git submodule update --init --recursive
+
+    - uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - run: dotnet restore
+    - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
+
+    - name: Run Content.IntegrationTests (Backmen)
+      shell: pwsh
+      timeout-minutes: 35
+      run: |
+        $env:DOTNET_gcServer = 1
+        $env:SS14_TEST_POOL_MINUTES = "30"
+        dotnet test --no-build --configuration $env:CONFIG Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName~Backmen&FullyQualifiedName!~PostMapInitTest" -- NUnit.ConsoleOut=1 NUnit.NumberOfTestWorkers=2 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results_backmen"
+
+    - name: Archive Backmen test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: nunit3-results-backmen
+        path: test_results_backmen/*
+        retention-days: 7
+        compression-level: 9
+
+  # --- 3) Maps ---
+  maps:
+    needs: backmen
+    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+    - uses: actions/checkout@v4.2.2
+
+    - name: Setup Submodule
+      run: git submodule update --init --recursive
+
+    - name: Pull engine updates
+      uses: space-wizards/submodule-dependency@v0.1.5
+
+    - name: Update Engine Submodules
+      run: |
+        cd RobustToolbox/
+        git submodule update --init --recursive
+
+    - uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - run: dotnet restore
+    - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
+
+    - name: Run Content.IntegrationTests (maps)
+      shell: pwsh
+      timeout-minutes: 100
+      run: |
+        $env:DOTNET_gcServer = 1
+        $env:SS14_TEST_POOL_MINUTES = "90"
+        dotnet test --no-build --configuration $env:CONFIG Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName~PostMapInitTest|FullyQualifiedName~StationPowerTests|FullyQualifiedName~SalvageTest" -- NUnit.ConsoleOut=1 NUnit.NumberOfTestWorkers=1 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results_maps"
+
+    - name: Archive map test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: nunit3-results-maps
+        path: test_results_maps/*
+        retention-days: 7
+        compression-level: 9
+
+  # --- 4) Heavy (spawn-all / presets) ---
+  heavy:
+    needs: maps
+    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+    - uses: actions/checkout@v4.2.2
+
+    - name: Setup Submodule
+      run: git submodule update --init --recursive
+
+    - name: Pull engine updates
+      uses: space-wizards/submodule-dependency@v0.1.5
+
+    - name: Update Engine Submodules
+      run: |
+        cd RobustToolbox/
+        git submodule update --init --recursive
+
+    - uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+
+    - run: dotnet restore
+    - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
+
+    - name: Run Content.IntegrationTests (heavy)
+      shell: pwsh
+      timeout-minutes: 50
+      run: |
+        $env:DOTNET_gcServer = 1
+        $env:SS14_TEST_POOL_MINUTES = "35"
+        dotnet test --no-build --configuration $env:CONFIG Content.IntegrationTests/Content.IntegrationTests.csproj --filter "FullyQualifiedName~EntityTest|FullyQualifiedName~PrototypeSaveTest|FullyQualifiedName~DamageAllPrototypes|FullyQualifiedName~ItemSpriteTest|FullyQualifiedName~MagazineVisualsSpriteTest|FullyQualifiedName~AllGamePresetsStartTest|FullyQualifiedName~TryAllReactionsTest|FullyQualifiedName~MaterialArbitrageTest" -- NUnit.ConsoleOut=1 NUnit.NumberOfTestWorkers=1 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results_heavy"
+
+    - name: Archive heavy test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: nunit3-results-heavy
+        path: test_results_heavy/*
+        retention-days: 7
+        compression-level: 9
+
+  # Required-check friendly gate (same display name as before)
   ci-success:
     name: Build & Test Debug
-    needs:
-      - build
+    needs: [core, backmen, maps, heavy]
+    if: always() && github.actor != 'PJBot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
-      - name: CI succeeded
-        run: exit 0
+      - name: Require all test jobs
+        run: |
+          echo "core=${{ needs.core.result }}"
+          echo "backmen=${{ needs.backmen.result }}"
+          echo "maps=${{ needs.maps.result }}"
+          echo "heavy=${{ needs.heavy.result }}"
+          test "${{ needs.core.result }}" = "success"
+          test "${{ needs.backmen.result }}" = "success"
+          test "${{ needs.maps.result }}" = "success"
+          test "${{ needs.heavy.result }}" = "success"
