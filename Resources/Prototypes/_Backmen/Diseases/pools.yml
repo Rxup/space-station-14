@@ -1,0 +1,35 @@
+# Rotating disease pools (miasma / cold exposure / mold, etc.)
+# ID must match SharedBkRottingSystem pool constants when used from C#.
+
+- type: diseasePool
+  id: Miasma
+  diseases:
+  - VentCough
+  - AMIV
+  - SpaceCold
+  - SpaceFlu
+  - BirdFlew
+  - VanAusdallsRobovirus
+  - BleedersBite
+  - Plague
+  - TongueTwister
+  - MemeticAmirmir
+
+- type: diseasePool
+  id: Cold
+  diseases:
+  - SpaceCold
+  - SpaceFlu
+  - VentCough
+  - BirdFlew
+
+- type: diseasePool
+  id: Mold
+  diseases:
+  - VentCough
+  - SpaceCold
+  - SpaceFlu
+  - BirdFlew
+  - Plague
+  - TongueTwister
+  - MemeticAmirmir

@@ -117,6 +117,15 @@
         damage:
           types:
             Poison: 1
+      # start-backmen: mold-disease
+      - !type:ChemCauseRandomDisease
+        scaling: false
+        pool: Mold
+        conditions:
+        - !type:ReagentCondition
+          reagent: Mold
+          min: 1
+      # end-backmen: mold-disease
 - type: reagent
   id: PolytrinicAcid
   name: reagent-name-polytrinic-acid
@@ -163,6 +172,11 @@
       - !type:Emote
         emote: Scream
         probability: 0.3
+      # start-backmen: polytrinic-vent-cough
+      - !type:ChemCauseDisease ## mostly from events; you won't ingest that much
+        probability: 0.6
+        disease: VentCough
+      # end-backmen: polytrinic-vent-cough
 
 - type: reagent
   id: FerrochromicAcid
@@ -481,7 +495,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox ]
+          type: [ Animal, Vox, Bloodsucker ] # backmen: bloodsucker
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -491,12 +505,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant ]
+          type: [ Animal, Vox, Plant, Bloodsucker ] # backmen: bloodsucker
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant ]
+          type: [ Animal, Vox, Plant, Bloodsucker ] # backmen: bloodsucker
           inverted: true
         damage:
           types:
@@ -520,6 +534,14 @@
           type: [ Vox ]
         reagent: Protein
         amount: 0.25
+      # start-backmen: bloodsucker-protein
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        reagent: Protein
+        amount: 1
+      # end-backmen: bloodsucker-protein
 
 - type: reagent
   id: Allicin
@@ -543,6 +565,29 @@
         damage:
           types:
             Poison: 0.06
+      # start-backmen: bloodsucker-allicin
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Allicin
+          min: 1
+        - !type:MetabolizerTypeCondition
+          type: [Bloodsucker]
+        damage:
+          types:
+            Poison: 3
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+        conditions:
+        - !type:ReagentCondition
+          reagent: Allicin
+          min: 1
+        - !type:MetabolizerTypeCondition
+          type: [Bloodsucker]
+      # end-backmen: bloodsucker-allicin
 - type: reagent
   id: Pax
   name: reagent-name-pax

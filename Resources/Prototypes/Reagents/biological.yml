@@ -25,6 +25,38 @@
           - !type:MetabolizerTypeCondition
             type: [ Human ]
             inverted: true
+      # start-backmen: bloodsucker-blood-omnizine
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        reagent: Omnizine
+        amount: 0.1
+      - !type:AdjustReagent # oneirophage spiders metabolize blood into more omnizine
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        - !type:TagCondition
+          tag: Oneirophage
+        reagent: Omnizine
+        amount: 0.4
+      - !type:SatiateThirst
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+      - !type:SatiateHunger
+        factor: 0.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+      - !type:SuppressPain
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Bloodsucker ]
+        amount: 10
+        time: 15
+      # end-backmen: bloodsucker-blood-omnizine
       - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition

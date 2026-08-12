@@ -23,6 +23,11 @@ reagent-effect-guidebook-chem-cause-disease = { $chance ->
     *[other] cause
 } the disease {$disease}
 
+reagent-effect-guidebook-chem-cause-random-disease = { $chance ->
+    [1] Causes
+    *[other] cause
+} the current miasma-pool disease (one at a time; pool rotates)
+
 reagent-effect-guidebook-chem-miasma-pool = { $chance ->
     [1] Causes
     *[other] cause

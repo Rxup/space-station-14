@@ -23,6 +23,11 @@ reagent-effect-guidebook-chem-cause-disease = { $chance ->
     *[other] вызывает
 } болезнь { $disease }
 
+reagent-effect-guidebook-chem-cause-random-disease = { $chance ->
+    [1] Вызывает
+    *[other] вызывает
+} текущую болезнь из пула миазмы (одна за раз; пул ротируется)
+
 reagent-effect-guidebook-chem-miasma-pool = { $chance ->
     [1] Вызывает
     *[other] вызывает

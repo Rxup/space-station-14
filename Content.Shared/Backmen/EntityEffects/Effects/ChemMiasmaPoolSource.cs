@@ -23,8 +23,15 @@ public sealed partial class ChemMiasmaPoolSourceEntityEffectSystem : EntityEffec
         if (args.Scale != 1f)
             return;
 
-        var disease = _rotting.RequestPoolDisease();
-        _disease.TryAddDisease(entity, disease);
+        // One active disease from gas/pool sources — do not stack every pool rotation.
+        if (HasComp<DiseasedComponent>(entity))
+            return;
+
+        var disease = _rotting.RequestPoolDisease(SharedBkRottingSystem.MiasmaPool);
+        if (disease is not { } diseaseId)
+            return;
+
+        _disease.TryAddDisease(entity, diseaseId);
     }
 }
 

@@ -129,6 +129,14 @@
       - !type:EvenHealthChange
         damage:
           Brute: -1.5
+      # start-backmen: trauma-heal
+      - !type:AdjustTraumas
+        traumaType: BoneDamage
+        amount: -1
+        identifier: "Bicaridine"
+        targetBodyParts: true
+        targetOrgans: false
+      # end-backmen: trauma-heal
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -273,6 +281,20 @@
           types:
             Asphyxiation: -1
             Bloodloss: -0.5
+      # start-backmen: trauma-pain
+      - !type:SuppressPain
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        amount: 4
+        time: 8
+      - !type:AdjustPainFeels
+        conditions:
+        - !type:ReagentCondition
+          reagent: Dexalin
+          min: 20
+        amount: 0.04
+      # end-backmen: trauma-pain
       - !type:HealthChange
         conditions:
           - !type:ReagentCondition
@@ -299,6 +321,21 @@
           types:
             Asphyxiation: -3.5
             Bloodloss: -3
+      # start-backmen: trauma-pain
+      - !type:SuppressPain
+        conditions:
+        - !type:MobStateCondition
+          mobstate: Critical
+        amount: 5
+        time: 30
+      - !type:AdjustPainFeels
+        conditions:
+        - !type:ReagentCondition
+          reagent: DexalinPlus
+          min: 25 # whoops overdose
+        amount: 0.1
+        randomise: false
+      # end-backmen: trauma-pain
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition
@@ -460,6 +497,15 @@
     Bloodstream:
       metabolismRate: 0.1 # Smaller doses stabilize critical people for longer. Gives it a specific usecase as to not be entirely outclassed by dex+
       effects:
+      # start-backmen: trauma-heal
+      - !type:AdjustTraumas
+        traumaType: OrganDamage
+        amount: -1
+        identifier: "Inaprovaline"
+        targetBodyParts: false
+        targetComponents:
+        - Lung
+      # end-backmen: trauma-heal
       - !type:HealthChange
         conditions:
           # they gotta be in crit first
@@ -641,6 +687,14 @@
         damage:
           Brute: -1.75
           Airloss: -1
+      # start-backmen: trauma-heal
+      - !type:AdjustTraumas
+        traumaType: BoneDamage
+        amount: -1.5
+        identifier: "PolypyryliumOligomers"
+        targetBodyParts: true
+        targetOrgans: false
+      # end-backmen: trauma-heal
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -743,6 +797,11 @@
   metabolisms:
     Bloodstream:
       effects:
+      # start-backmen: trauma-pain
+      - !type:AdjustPainFeels
+        amount: -0.03
+        randomise: false
+      # end-backmen: trauma-pain
       - !type:HealthChange
         damage:
           types:
@@ -843,6 +902,23 @@
         damage:
           Brute: -1
           Burn: -1
+      # start-backmen: trauma-heal
+      - !type:AdjustTraumas
+        traumaType: BoneDamage
+        amount: -0.6
+        identifier: "Tricordrazine"
+        targetBodyParts: true
+        targetOrgans: false
+      - !type:AdjustTraumas
+        traumaType: OrganDamage
+        amount: -0.5
+        identifier: "Tricordrazine"
+        targetBodyParts: false
+        targetComponents:
+        - Lung
+        - Liver
+        - Heart
+      # end-backmen: trauma-heal
       - !type:HealthChange
         conditions:
         - !type:MobStateCondition
@@ -888,12 +964,81 @@
   metabolisms:
     Bloodstream:
       effects:
+      # start-backmen: trauma-heal
+      - !type:SuppressPain
+        amount: 3
+        time: 4
+      # end-backmen: trauma-heal
       - !type:EvenHealthChange
         damage:
           Burn: -2
           Toxin: -2
           Airloss: -2
           Brute: -2
+      # start-backmen: trauma-heal-omnizine
+      - !type:AdjustTraumas
+        traumaType: BoneDamage
+        amount: -1.8
+        identifier: "Omnizine"
+        targetBodyParts: true
+        targetOrgans: false
+      - !type:AdjustTraumas
+        traumaType: OrganDamage
+        amount: -1.2
+        identifier: "Omnizine"
+        targetBodyParts: false
+        targetComponents:
+        - Lung
+        - Ears
+        - Liver
+        - Heart
+        - Stomach
+        - Brain
+        - Eyes
+      - !type:AdjustTraumas # oneirophage spiders heal wounds faster from omnizine
+        conditions:
+        - !type:TagCondition
+          tag: Oneirophage
+        traumaType: BoneDamage
+        amount: -4
+        identifier: "OmnizineOneirophage"
+        targetBodyParts: true
+        targetOrgans: false
+      - !type:AdjustTraumas
+        conditions:
+        - !type:TagCondition
+          tag: Oneirophage
+        traumaType: OrganDamage
+        amount: -2.5
+        identifier: "OmnizineOneirophage"
+        targetBodyParts: false
+        targetComponents:
+        - Lung
+        - Ears
+        - Liver
+        - Heart
+        - Stomach
+        - Brain
+        - Eyes
+      - !type:AdjustTraumas
+        conditions:
+        - !type:TagCondition
+          tag: Oneirophage
+        traumaType: VeinsDamage
+        amount: -2
+        identifier: "OmnizineOneirophage"
+        targetBodyParts: true
+        targetOrgans: false
+      - !type:AdjustTraumas
+        conditions:
+        - !type:TagCondition
+          tag: Oneirophage
+        traumaType: NerveDamage
+        amount: -2
+        identifier: "OmnizineOneirophage"
+        targetBodyParts: true
+        targetOrgans: false
+      # end-backmen: trauma-heal-omnizine
 
 - type: reagent
   id: Ultravasculine
@@ -977,6 +1122,18 @@
   metabolisms:
     Bloodstream:
       effects:
+      # start-backmen: trauma-heal
+      - !type:AdjustTraumas
+        traumaType: OrganDamage
+        amount: -1
+        identifier: "Cognizine"
+        targetBodyParts: false
+        targetComponents:
+        - Brain
+      - !type:SuppressPain
+        amount: 3
+        time: 4
+      # end-backmen: trauma-heal
       - !type:MakeSentient
         conditions:
         - !type:ReagentCondition
@@ -1167,6 +1324,14 @@
         damage:
           types:
             Blunt: -2.25 # 9 per u
+      # start-backmen: trauma-heal
+      - !type:AdjustTraumas
+        traumaType: BoneDamage
+        amount: -1.2
+        identifier: "Bruizine"
+        targetBodyParts: true
+        targetOrgans: false
+      # end-backmen: trauma-heal
       - !type:SatiateHunger
         factor: -1
       - !type:HealthChange

@@ -49,6 +49,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
     [Dependency] private IParallelManager _parallel = default!;
 
     [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private SharedBkRottingSystem _rotting = default!;
 
     public override void Initialize()
     {
@@ -66,38 +67,16 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         SubscribeLocalEvent<DiseaseCarrierComponent, ReagentMetabolised>(OnReagentMetabolised);
         SubscribeLocalEvent<DiseaseCarrierComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<DiseaseCarrierComponent, DamageDealtEvent>(OnColdDamageDealt);
-        SubscribeLocalEvent<DiseaseCarrierComponent, DamageChangedEvent>(OnColdDamageChanged);
+        // Not DamageChangedEvent: same hit would roll twice before DiseasedComponent is queued next tick.
 
         _cfg.OnValueChanged(CCVars.GameDiseaseEnabled, v => _enabled = v, true);
     }
 
     private static readonly ProtoId<DamageTypePrototype> ColdDamageType = "Cold";
 
-    /// <summary>
-    /// Cold-like diseases that can be contracted from cold damage (freezing, cryo weapons, etc.).
-    /// </summary>
-    private static readonly ProtoId<DiseasePrototype>[] ColdExposureDiseases =
-    [
-        "SpaceCold",
-        "SpaceFlu",
-        "VentCough",
-        "BirdFlew",
-    ];
-
     private void OnColdDamageDealt(Entity<DiseaseCarrierComponent> entity, ref DamageDealtEvent args)
     {
         if (!args.Damage.DamageDict.TryGetValue(ColdDamageType, out var cold) || cold <= 0)
-            return;
-
-        TryColdExposureInfection(entity);
-    }
-
-    private void OnColdDamageChanged(Entity<DiseaseCarrierComponent> entity, ref DamageChangedEvent args)
-    {
-        if (!args.DamageIncreased || args.DamageDelta == null)
-            return;
-
-        if (!args.DamageDelta.DamageDict.TryGetValue(ColdDamageType, out var cold) || cold <= 0)
             return;
 
         TryColdExposureInfection(entity);
@@ -108,6 +87,10 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         if (!_enabled)
             return;
 
+        // Diseases.Count is immediate; DiseasedComponent is only EnsureComp'd next Update.
+        if (carrier.Comp.Diseases.Count > 0 || HasComp<DiseasedComponent>(carrier))
+            return;
+
         if (TryComp<MobStateComponent>(carrier, out var mobState) && _mobStateSystem.IsDead(carrier, mobState))
             return;
 
@@ -115,17 +98,11 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
         if (!_random.Prob(0.005f))
             return;
 
-        var available = new List<ProtoId<DiseasePrototype>>();
-        foreach (var disease in ColdExposureDiseases)
-        {
-            if (!carrier.Comp.AllDiseases.Contains(disease))
-                available.Add(disease);
-        }
-
-        if (available.Count == 0)
+        var disease = _rotting.RequestPoolDisease(SharedBkRottingSystem.ColdPool);
+        if (disease is not { } diseaseId)
             return;
 
-        TryInfect(carrier, _random.Pick(available), 0.7f);
+        TryInfect(carrier, diseaseId, 0.7f);
     }
 
     private static readonly ProtoId<DiseasePrototype> WetHands = "WetHands";
