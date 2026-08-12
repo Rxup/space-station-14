@@ -20,6 +20,7 @@ using Robust.Shared.Player;
 namespace Content.IntegrationTests.Tests.GameRules;
 
 [TestFixture]
+[Category("CiHeavy")] // backmen: ci-split
 public sealed class AllGamePresetsStartTest : AntagTest
 {
     /// <summary>

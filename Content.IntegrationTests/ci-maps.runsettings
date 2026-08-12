@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Serial execution on CI — parallel pair reuse deadlocks / OOMs GitHub hosted runners. -->
-<!-- Job-specific TestCaseFilter is set in ci-*.runsettings; this file is the shared baseline. -->
+<!-- Map load / station power / salvage. -->
 <RunSettings>
   <NUnit>
     <NumberOfTestWorkers>1</NumberOfTestWorkers>
@@ -8,5 +7,6 @@
   </NUnit>
   <RunConfiguration>
     <MaxCpuCount>1</MaxCpuCount>
+    <TestCaseFilter>TestCategory=CiMaps</TestCaseFilter>
   </RunConfiguration>
 </RunSettings>

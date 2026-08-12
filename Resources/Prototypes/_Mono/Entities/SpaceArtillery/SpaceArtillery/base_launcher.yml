@@ -1,8 +1,7 @@
 # Base
 - type: entity
   id: BallisticArtilleryBase
-  save: false
-
+  # save must stay true — mappers need ship weapons to persist on grids/shuttles
   suffix: Фронтир
   abstract: true
   placement:
