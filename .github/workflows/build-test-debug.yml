@@ -1,5 +1,9 @@
 name: Build & Test Debug
 
+# Single workflow, sequential jobs (needs:): core → backmen → maps → heavy
+# Suites split via [Category("CiHeavy"|"CiMaps")] + ci-*.runsettings TestCaseFilter.
+# GNU timeout is the hang wall.
+
 on:
   push:
     branches: [ master, staging, stable ]
@@ -7,23 +11,27 @@ on:
   pull_request:
     types: [ opened, reopened, synchronize, ready_for_review ]
     branches: [ master, staging, stable ]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'merge_group' }}
+
+env:
+  DOTNET_VERSION: 10.0.x
+  CONFIG: DebugOpt
+  DOTNET_gcServer: "1"
 
 jobs:
-  build:
+  core:
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-
-    runs-on: ${{ matrix.os }}
-
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
     steps:
-    - name: Checkout Master
-      uses: actions/checkout@v4.2.2
+    - uses: actions/checkout@v4.2.2
 
     - name: Setup Submodule
-      run: |
-        git submodule update --init --recursive
+      run: git submodule update --init --recursive
 
     - name: Pull engine updates
       uses: space-wizards/submodule-dependency@v0.1.5
@@ -33,44 +41,208 @@ jobs:
         cd RobustToolbox/
         git submodule update --init --recursive
 
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v4.1.0
+    - uses: actions/setup-dotnet@v4.1.0
       with:
-        dotnet-version: 10.0.x
+        dotnet-version: ${{ env.DOTNET_VERSION }}
 
-    - name: Install dependencies
-      run: dotnet restore
-
-#    - name: skip locale check
-#      run: |
-#        sed -i 's/_logSawmill.Error(sbErr.ToString());/_logSawmill.Warning(sbErr.ToString());/g' RobustToolbox/Robust.Shared/Localization/LocalizationManager.cs
-
-    - name: Build Project
-      run: dotnet build --configuration DebugOpt --no-restore /m
+    - run: dotnet restore
+    - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
 
     - name: Run Content.Tests
-      shell: pwsh
-      run: dotnet test --no-build --configuration DebugOpt Content.Tests/Content.Tests.csproj -- NUnit.ConsoleOut=0 NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results"
+      run: >
+        dotnet test --no-build --configuration ${{ env.CONFIG }}
+        Content.Tests/Content.Tests.csproj --
+        NUnit.ConsoleOut=0
+        NUnit.TestOutputXml=logs
+        NUnit.WorkDirectory=${{ github.workspace }}/test_results
 
-    - name: Run Content.IntegrationTests
-      shell: pwsh
+    - name: Run Content.IntegrationTests (core)
       run: |
-        $env:DOTNET_gcServer=1
-        dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj -- NUnit.ConsoleOut=0 NUnit.MapWarningTo=Failed NUnit.TestOutputXml="logs" NUnit.WorkDirectory="$(pwd)/test_results"
+        set -euo pipefail
+        # TERM first → exit 124 on wall; OOM stays 137. Do not use --blame-hang (false + on teardown).
+        timeout -k 30s 30m \
+          dotnet test --no-build --configuration "${CONFIG}" \
+          Content.IntegrationTests/Content.IntegrationTests.csproj \
+          --settings Content.IntegrationTests/ci-core.runsettings \
+          -- \
+          NUnit.ConsoleOut=1 \
+          NUnit.MapWarningTo=Failed \
+          NUnit.TestOutputXml=logs \
+          NUnit.WorkDirectory="${GITHUB_WORKSPACE}/test_results"
 
-    - name: Archive NUnit3 test results.
+    - name: Archive core test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
-        name: nunit3-results-${{ matrix.os }}
-        path: test_results/*
+        name: nunit3-results-core
+        path: |
+          test_results/**
+          **/TestResults/**
+          pool-death-report.txt
         retention-days: 7
+        if-no-files-found: ignore
         compression-level: 9
+
+  backmen:
+    needs: core
+    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+    - uses: actions/checkout@v4.2.2
+    - name: Setup Submodule
+      run: git submodule update --init --recursive
+    - name: Pull engine updates
+      uses: space-wizards/submodule-dependency@v0.1.5
+    - name: Update Engine Submodules
+      run: |
+        cd RobustToolbox/
+        git submodule update --init --recursive
+    - uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - run: dotnet restore
+    - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
+
+    - name: Run Content.IntegrationTests (Backmen)
+      env:
+        SS14_TEST_POOL_MINUTES: "25"
+      run: |
+        set -euo pipefail
+        timeout -k 30s 28m \
+          dotnet test --no-build --configuration "${CONFIG}" \
+          Content.IntegrationTests/Content.IntegrationTests.csproj \
+          --settings Content.IntegrationTests/ci-backmen.runsettings \
+          -- \
+          NUnit.ConsoleOut=1 \
+          NUnit.MapWarningTo=Failed \
+          NUnit.TestOutputXml=logs \
+          NUnit.WorkDirectory="${GITHUB_WORKSPACE}/test_results_backmen"
+
+    - name: Archive Backmen test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: nunit3-results-backmen
+        path: |
+          test_results_backmen/**
+          **/TestResults/**
+          pool-death-report.txt
+        retention-days: 7
+        if-no-files-found: ignore
+        compression-level: 9
+
+  maps:
+    needs: backmen
+    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+    - uses: actions/checkout@v4.2.2
+    - name: Setup Submodule
+      run: git submodule update --init --recursive
+    - name: Pull engine updates
+      uses: space-wizards/submodule-dependency@v0.1.5
+    - name: Update Engine Submodules
+      run: |
+        cd RobustToolbox/
+        git submodule update --init --recursive
+    - uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - run: dotnet restore
+    - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
+
+    - name: Run Content.IntegrationTests (maps)
+      env:
+        SS14_TEST_POOL_MINUTES: "90"
+      run: |
+        set -euo pipefail
+        timeout -k 30s 100m \
+          dotnet test --no-build --configuration "${CONFIG}" \
+          Content.IntegrationTests/Content.IntegrationTests.csproj \
+          --settings Content.IntegrationTests/ci-maps.runsettings \
+          -- \
+          NUnit.ConsoleOut=1 \
+          NUnit.MapWarningTo=Failed \
+          NUnit.TestOutputXml=logs \
+          NUnit.WorkDirectory="${GITHUB_WORKSPACE}/test_results_maps"
+
+    - name: Archive map test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: nunit3-results-maps
+        path: |
+          test_results_maps/**
+          **/TestResults/**
+          pool-death-report.txt
+        retention-days: 7
+        if-no-files-found: ignore
+        compression-level: 9
+
+  heavy:
+    needs: maps
+    if: github.actor != 'PJBot' && github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+    - uses: actions/checkout@v4.2.2
+    - name: Setup Submodule
+      run: git submodule update --init --recursive
+    - name: Pull engine updates
+      uses: space-wizards/submodule-dependency@v0.1.5
+    - name: Update Engine Submodules
+      run: |
+        cd RobustToolbox/
+        git submodule update --init --recursive
+    - uses: actions/setup-dotnet@v4.1.0
+      with:
+        dotnet-version: ${{ env.DOTNET_VERSION }}
+    - run: dotnet restore
+    - run: dotnet build --configuration ${{ env.CONFIG }} --no-restore /m
+
+    - name: Run Content.IntegrationTests (heavy)
+      env:
+        SS14_TEST_POOL_MINUTES: "45"
+      run: |
+        set -euo pipefail
+        timeout -k 30s 50m \
+          dotnet test --no-build --configuration "${CONFIG}" \
+          Content.IntegrationTests/Content.IntegrationTests.csproj \
+          --settings Content.IntegrationTests/ci-heavy.runsettings \
+          -- \
+          NUnit.ConsoleOut=1 \
+          NUnit.MapWarningTo=Failed \
+          NUnit.TestOutputXml=logs \
+          NUnit.WorkDirectory="${GITHUB_WORKSPACE}/test_results_heavy"
+
+    - name: Archive heavy test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: nunit3-results-heavy
+        path: |
+          test_results_heavy/**
+          **/TestResults/**
+          pool-death-report.txt
+        retention-days: 7
+        if-no-files-found: ignore
+        compression-level: 9
+
   ci-success:
     name: Build & Test Debug
-    needs:
-      - build
+    needs: [core, backmen, maps, heavy]
+    if: always() && github.actor != 'PJBot' && github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
-      - name: CI succeeded
-        run: exit 0
+      - name: Require all test jobs
+        run: |
+          echo "core=${{ needs.core.result }}"
+          echo "backmen=${{ needs.backmen.result }}"
+          echo "maps=${{ needs.maps.result }}"
+          echo "heavy=${{ needs.heavy.result }}"
+          test "${{ needs.core.result }}" = "success"
+          test "${{ needs.backmen.result }}" = "success"
+          test "${{ needs.maps.result }}" = "success"
+          test "${{ needs.heavy.result }}" = "success"

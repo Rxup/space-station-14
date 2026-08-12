@@ -24,17 +24,16 @@
       map: ["enum.SolutionContainerLayers.Fill"]
   - type: Item
     sprite: Objects/Specific/Medical/medipen.rsi
-  - type: SolutionContainerManager
-    solutions:
-      pen:
-        maxVol: 2500
-        reagents:
-        - ReagentId: Nocturine
-          Quantity: 900
-        - ReagentId: LotophagoiOil
-          Quantity: 1500
+  - type: Solution
+    solution:
+      maxVol: 2500
+      reagents:
+      - ReagentId: Nocturine
+        Quantity: 900
+      - ReagentId: LotophagoiOil
+        Quantity: 1500
   - type: Injector
-    solutionName: pen
+    solutionName: hypospray
     currentTransferAmount: 25 # multi-use hypo; null dumps entire 2400u tank
     activeModeProtoId: HyposprayInjectMode
     allowedModes:

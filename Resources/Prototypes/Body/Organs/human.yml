@@ -3,7 +3,7 @@
 
 - type: entity
   id: BaseHumanOrgan
-  parent: BaseItem
+  parent: [SolutionFood, SolutionTiny, BaseItem]
   abstract: true
   components:
   - type: EmitSoundOnPickup
@@ -26,18 +26,14 @@
       Destroyed: 0
   - type: Edible
   - type: Extractable
-    grindableSolutionName: organ
-  - type: SolutionContainerManager
-    solutions:
-      organ:
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    grindableSolutionName: food
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 5
+      - ReagentId: Nutriment
+        Quantity: 10
   - type: FlavorProfile
     flavors:
     - people

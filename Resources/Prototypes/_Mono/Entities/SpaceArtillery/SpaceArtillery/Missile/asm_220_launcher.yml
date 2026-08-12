@@ -22,6 +22,8 @@
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: ApcPowerReceiver
+    powerLoad: 2500
   - type: SpaceArtillery
     powerChargeRate: 500
     powerUsePassive: 2500

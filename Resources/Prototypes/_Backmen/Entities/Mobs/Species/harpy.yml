@@ -9,7 +9,9 @@
   components:
   - type: Action
     checkCanInteract: false
-    icon: Backmen/Interface/Actions/Harpy/harpy_sing.png
+  - type: Sprite
+    layers:
+      - texture: Backmen/Interface/Actions/Harpy/harpy_sing.png
   - type: InstantAction
     event: !type:OpenUiActionEvent
       key: enum.InstrumentUiKey.Key
@@ -22,7 +24,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    icon: Backmen/Interface/Actions/Harpy/harpy_syrinx.png
     itemIconStyle: BigAction
+  - type: Sprite
+    layers:
+      - texture: Backmen/Interface/Actions/Harpy/harpy_syrinx.png
   - type: InstantAction
     event: !type:VoiceMaskSetNameEvent

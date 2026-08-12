@@ -6,6 +6,8 @@
   components:
     - type: Action
       useDelay: 180
-      icon: Backmen/Actions/CCAuth.png
+    - type: Sprite
+      layers:
+        - texture: Backmen/Actions/CCAuth.png
     - type: InstantAction
       event: !type:CentcomFtlAction

@@ -93,6 +93,7 @@
           Searching: { state: pai-searching-overlay }
           On: { state: pai-on-overlay }
   - type: StationMap
+  # start-backmen: languages
   - type: LanguageSpeaker #backmen: languages
     currentLanguage: TauCetiBasic
   - type: LanguageKnowledge
@@ -102,6 +103,7 @@
     understands:
     - Binary
     - TauCetiBasic
+  # end-backmen: languages
   - type: ChangeVoiceInContainer
     whitelist:
       components:
@@ -199,6 +201,8 @@
     graph: PotatoAI
     node: potatoai
 
+# PAI Actions
+
 - type: entity
   parent: ActionIntrinsicStore
   id: ActionPAIOpenShop
@@ -212,8 +216,11 @@
   description: View a mass scanner interface.
   components:
   - type: Action
-    icon: { sprite: Interface/Actions/actions_ai.rsi, state: mass_scanner }
     itemIconStyle: NoItem
+  - type: Sprite
+    sprite: Interface/Actions/actions_ai.rsi
+    layers:
+    - state: mass_scanner
   - type: InstantAction
     event: !type:OpenUiActionEvent
       key: enum.RadarConsoleUiKey.Key
@@ -225,8 +232,10 @@
   description: Open your portable MIDI interface to soothe your owner.
   components:
   - type: Action
-    icon: Interface/Actions/pai-midi.png
     itemIconStyle: NoItem
+  - type: Sprite
+    layers:
+    - texture: Interface/Actions/pai-midi.png
   - type: InstantAction
     event: !type:OpenUiActionEvent
       key: enum.InstrumentUiKey.Key
@@ -238,8 +247,11 @@
   description: Open your map interface and guide your owner.
   components:
   - type: Action
-    icon: { sprite: Interface/Actions/pai-map.rsi, state: icon }
     itemIconStyle: NoItem
+  - type: Sprite
+    sprite: Interface/Actions/pai-map.rsi
+    layers:
+    - state: icon
   - type: InstantAction
     event: !type:OpenUiActionEvent
       key: enum.StationMapUiKey.Key

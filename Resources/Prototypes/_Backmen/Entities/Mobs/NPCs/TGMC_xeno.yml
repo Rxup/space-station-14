@@ -300,8 +300,11 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    icon: { sprite: Backmen/test/base/rsi/Textures/Misc/Egg.rsi, state: icon }
     useDelay: 150
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Misc/Egg.rsi
+    layers:
+      - state: icon
   - type: InstantAction
     event: !type:EggLayInstantActionEvent
 
@@ -725,7 +728,9 @@
   components:
     - type: Action
       useDelay: 30
-      icon: Backmen/Interface/VerbIcons/psionic_invisibility.png
+    - type: Sprite
+      layers:
+        - texture: Backmen/Interface/VerbIcons/psionic_invisibility.png
     - type: InstantAction
       event: !type:PsionicInvisibilityPowerActionEvent
 
@@ -1409,10 +1414,11 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    icon:
-      sprite: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi
-      state: full
     useDelay: 1
+  - type: Sprite
+    sprite: Backmen/test/base/rsi/Textures/Structures/xeno/weeds.rsi
+    layers:
+      - state: full
   - type: InstantAction
     event: !type:SpiderWebActionEvent
 

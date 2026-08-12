@@ -17,6 +17,7 @@ using Robust.Shared.Serialization.Manager.Attributes;
 namespace Content.IntegrationTests.Tests
 {
     [TestFixture]
+    [Category("CiHeavy")] // backmen: ci-split
     [TestOf(typeof(EntityUid))]
     public sealed class EntityTest : GameTest
     {

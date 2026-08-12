@@ -1,12 +1,8 @@
 - type: entity
   abstract: true
-  parent: [ DrinkBaseMaterialPlastic, DrinkBase ]
+  parent: [ DrinkBaseMaterialPlastic, SolutionSmall, DrinkBase ]
   id: SprayBottleBase
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 60
   - type: Edible
     edible: Drink
     solution: drink
@@ -53,7 +49,7 @@
     inHandsMaxFillLevels: 4
 
 - type: entity
-  parent: SprayBottle
+  parent: [SolutionNormal, SprayBottle]
   id: MegaSprayBottle
   name: mega spray bottle
   suffix: Empty
@@ -78,10 +74,6 @@
     sprayDistance: 4.5
     spraySound:
       path: /Audio/Effects/spray2.ogg
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 120
 
 - type: entity
   parent: SprayBottle
@@ -92,13 +84,11 @@
   - type: Tag
     tags:
     - Spray
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 60
-        reagents:
-        - ReagentId: Water
-          Quantity: 60
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Water
+        Quantity: 60
 
 - type: entity
   parent: SprayBottle
@@ -106,15 +96,13 @@
   suffix: Space Cleaner
   description: BLAM!-brand non-foaming space cleaner!
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 60
-        reagents:
-        - ReagentId: SpaceCleaner
-          Quantity: 60
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 60
   - type: Label
-    currentLabel: space cleaner
+    currentLabel: spray-bottle-label-space-cleaner
   - type: Tag
     tags:
       - Spray
@@ -125,45 +113,39 @@
   suffix: Space Cleaner
   description: BLAM!-brand non-foaming space cleaner, now in a bigger package for those huge blood puddles!
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 120
-        reagents:
-        - ReagentId: SpaceCleaner
-          Quantity: 120
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 120
   - type: Label
-    currentLabel: space cleaner
+    currentLabel: spray-bottle-label-space-cleaner
 
 - type: entity
-  parent: SprayBottle
+  parent: [SolutionNormal, SprayBottle]
   id: BorgSprayBottle
   name: internal spray jet
   suffix: Filled
   description: A pressurized vessel for spraying reagents, installed directly into a custodial cyborg. Typically filled with space cleaner for dealing with those nasty spills.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 120
-        reagents:
-        - ReagentId: SpaceCleaner
-          Quantity: 120
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 120
 
 - type: entity
-  parent: MegaSprayBottle
+  parent: [SolutionLarge, MegaSprayBottle]
   id: BorgMegaSprayBottle
   name: adv. internal spray jet
   suffix: Filled
   description: An upgraded version of the integrated spray bottle, installed directly into a custodial cyborg. This one is capable of creating space cleaner from moisture in the air.
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 240
-        reagents:
-        - ReagentId: SpaceCleaner
-          Quantity: 240
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 240
   - type: SolutionTransfer
     canSend: false # No giving away infinite space cleaner!
   - type: SolutionRegeneration
@@ -205,6 +187,8 @@
         - ItemMask
   - type: Appearance
   - type: VaporVisuals
+  - type: TileFrictionModifier
+    modifier: 0
 
 - type: entity
   parent: Vapor

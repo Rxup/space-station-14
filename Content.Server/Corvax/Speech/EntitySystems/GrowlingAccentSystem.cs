@@ -1,12 +1,13 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Server.Corvax.Speech.Components;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Corvax.Speech.EntitySystems;
 
-public sealed partial class GrowlingAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class GrowlingAccentSystem : RelayAccentSystem<GrowlingAccentComponent>
 {
     [Dependency] private IRobustRandom _random = default!;
     private static readonly Regex LowerRRegex = new(@"r+", RegexOptions.Compiled);
@@ -18,23 +19,6 @@ public sealed partial class GrowlingAccentSystem : EntitySystem
     private static readonly List<string> UpperRReplacements = ["RR", "RRR"];
     private static readonly List<string> LowerRuRReplacements = ["рр", "ррр"];
     private static readonly List<string> UpperRuRReplacements = ["РР", "РРР"];
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<GrowlingAccentComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<GrowlingAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-    }
-
-    private void OnAccentRelayed(Entity<GrowlingAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-    {
-        args.Args.Message = Accentuate(args.Args.Message);
-    }
-
-    private void OnAccent(Entity<GrowlingAccentComponent> ent, ref AccentGetEvent args)
-    {
-        args.Message = Accentuate(args.Message);
-    }
 
     public string Accentuate(string message)
     {
@@ -52,4 +36,10 @@ public sealed partial class GrowlingAccentSystem : EntitySystem
 
         return message;
     }
+
+    protected override string AccentuateInternal(EntityUid uid, GrowlingAccentComponent comp, string message)
+    {
+        return Accentuate(message);
+    }
 }
+// end-backmen: relay-accents

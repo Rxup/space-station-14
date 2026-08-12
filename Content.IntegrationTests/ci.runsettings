@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Serial execution on CI — parallel pair reuse deadlocks / OOMs GitHub hosted runners. -->
+<!-- Job-specific TestCaseFilter is set in ci-*.runsettings; this file is the shared baseline. -->
+<RunSettings>
+  <NUnit>
+    <NumberOfTestWorkers>1</NumberOfTestWorkers>
+    <DefaultTestNamePattern>{m}{a}</DefaultTestNamePattern>
+  </NUnit>
+  <RunConfiguration>
+    <MaxCpuCount>1</MaxCpuCount>
+  </RunConfiguration>
+</RunSettings>

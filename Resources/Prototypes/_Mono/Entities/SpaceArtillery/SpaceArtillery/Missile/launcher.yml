@@ -30,6 +30,8 @@
       path: /Audio/Weapons/click.ogg
   - type: BatterySelfRecharger
     autoRechargeRate: 200
+  - type: ApcPowerReceiver
+    powerLoad: 750
   - type: SpaceArtillery
     powerChargeRate: 200
     powerUsePassive: 750
@@ -78,6 +80,8 @@
       path: /Audio/Weapons/Guns/Gunshots/rocket_launcher.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: ApcPowerReceiver
+    powerLoad: 200
   - type: SpaceArtillery
     powerChargeRate: 250
     powerUsePassive: 200
@@ -132,6 +136,8 @@
   - type: BatteryAmmoProvider
     proto: ShipMissileASM302
     fireCost: 300
+  - type: ApcPowerReceiver
+    powerLoad: 600
   - type: SpaceArtillery
     powerChargeRate: 350
     powerUsePassive: 600
@@ -188,6 +194,8 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
     autoRechargeRate: 500
+  - type: ApcPowerReceiver
+    powerLoad: 2500
   - type: SpaceArtillery
     powerChargeRate: 500
     powerUsePassive: 2500

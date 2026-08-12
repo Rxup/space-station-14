@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Entity spawn-all, prototype save, damage-all, reactions, presets, sprites. -->
+<RunSettings>
+  <NUnit>
+    <NumberOfTestWorkers>1</NumberOfTestWorkers>
+    <DefaultTestNamePattern>{m}{a}</DefaultTestNamePattern>
+  </NUnit>
+  <RunConfiguration>
+    <MaxCpuCount>1</MaxCpuCount>
+    <TestCaseFilter>TestCategory=CiHeavy</TestCaseFilter>
+  </RunConfiguration>
+</RunSettings>

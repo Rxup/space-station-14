@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Text;
-using Content.Client.Actions;
 using Content.Client.Message;
 using Content.Shared.FixedPoint;
 using Content.Shared.Store;
@@ -10,6 +9,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Graphics.RSI;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Store.Ui;
@@ -134,7 +134,7 @@ public sealed partial class StoreMenu : DefaultWindow
         if (!listing.Categories.Contains(CurrentCategory))
             return;
 
-        var hasBalance = listing.CanBuyWith(Balance) || CanBuyFromBank;
+        var hasBalance = listing.CanBuyWith(Balance) || CanBuyFromBank; // backmen: currency
 
         var spriteSys = _entityManager.EntitySysManager.GetEntitySystem<SpriteSystem>();
 
@@ -150,8 +150,8 @@ public sealed partial class StoreMenu : DefaultWindow
         else if (listing.ProductAction != null)
         {
             var actionId = _entityManager.Spawn(listing.ProductAction);
-            if (_entityManager.System<ActionsSystem>().GetAction(actionId)?.Comp?.Icon is {} icon)
-                texture = spriteSys.Frame0(icon);
+            if (_entityManager.TryGetComponent(actionId, out SpriteComponent? actionSprite))
+                texture = actionSprite.Icon?.GetFrame(RsiDirection.South, 0);
         }
 
         var listingInStock = GetListingPriceString(listing);

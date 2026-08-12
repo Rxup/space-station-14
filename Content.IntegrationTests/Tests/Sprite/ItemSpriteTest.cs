@@ -23,6 +23,7 @@ namespace Content.IntegrationTests.Tests.Sprite;
 /// <see cref="Ignored"/>
 /// </remarks>
 [TestFixture]
+[Category("CiHeavy")] // backmen: ci-split
 public sealed class PrototypeSaveTest : GameTest
 {
     private static readonly HashSet<string> Ignored = new()

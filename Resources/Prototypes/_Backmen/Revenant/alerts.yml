@@ -34,3 +34,11 @@
     state: ectoplasm
   name: alerts-revenant-stasis-name
   description: alerts-revenant-stasis-desc
+
+- type: alert
+  id: Haunted
+  icons:
+  - sprite: Mobs/Ghosts/revenant.rsi
+    state: ectoplasm
+  name: alerts-revenant-haunted-name
+  description: alerts-revenant-haunted-desc

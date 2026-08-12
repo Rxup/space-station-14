@@ -2,11 +2,12 @@
 using Content.Server.Speech.Components;
 using Robust.Shared.Random;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class LizardAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class LizardAccentSystem : RelayAccentSystem<LizardAccentComponent>
 {
     private static readonly Regex RegexLowerS = new("s+");
     private static readonly Regex RegexUpperS = new("S+");
@@ -28,23 +29,6 @@ public sealed partial class LizardAccentSystem : EntitySystem
     private static readonly Regex RegexLoc4_2 = new("Ч+");
     // Corvax-Localization-End
     [Dependency] private IRobustRandom _random = default!; // Corvax-Localization
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<LizardAccentComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<LizardAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-    }
-
-    private void OnAccentRelayed(Entity<LizardAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-    {
-        args.Args.Message = Accentuate(args.Args.Message);
-    }
-
-    private void OnAccent(Entity<LizardAccentComponent> ent, ref AccentGetEvent args)
-    {
-        args.Message = Accentuate(args.Message);
-    }
 
     public string Accentuate(string message)
     {
@@ -103,4 +87,10 @@ public sealed partial class LizardAccentSystem : EntitySystem
         // Corvax-Localization-End
         return message;
     }
+
+    protected override string AccentuateInternal(EntityUid uid, LizardAccentComponent comp, string message)
+    {
+        return Accentuate(message);
+    }
 }
+// end-backmen: relay-accents

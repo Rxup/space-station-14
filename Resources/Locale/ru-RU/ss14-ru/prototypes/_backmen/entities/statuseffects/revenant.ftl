@@ -4,3 +4,5 @@ ent-StatusEffectStasis = стазис ревенанта
     .desc = { ent-MobStatusEffectDebuff.desc }
 ent-StatusEffectEssenceRegen = усиление регенерации эссенции
     .desc = { ent-MobStatusEffectDebuff.desc }
+ent-StatusEffectHaunted = напуган
+    .desc = { ent-MobStatusEffectDebuff.desc }

@@ -6,7 +6,9 @@
   components:
     - type: Action
       useDelay: 180
-      icon: Interface/Actions/web.png
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/web.png
     - type: InstantAction
       event: !type:SpiderWebActionEvent
 
@@ -17,9 +19,12 @@
   description: description-Spider-Vampire-Egg
   components:
     - type: Action
-      icon: { sprite: Backmen/Objects/Misc/eggspider.rsi, state: icon }
       priority: -10
       useDelay: 30
       startDelay: true
+    - type: Sprite
+      sprite: Backmen/Objects/Misc/eggspider.rsi
+      layers:
+        - state: icon
     - type: InstantAction
       event: !type:SpiderVampireEggActionEvent

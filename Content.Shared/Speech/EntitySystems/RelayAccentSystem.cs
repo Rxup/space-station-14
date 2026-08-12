@@ -7,30 +7,48 @@ namespace Content.Shared.Speech.EntitySystems;
 /// </summary>
 public abstract class RelayAccentSystem<T> : EntitySystem where T : Component
 {
+    /// <summary>
+    /// Optional systems that accent handlers must run after.
+    /// </summary>
+    protected virtual Type[]? AccentAfter => null;
+
     /// <inheritdoc />
     public override void Initialize()
     {
-        SubscribeLocalEvent<T, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<T, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
+        base.Initialize();
+        SubscribeAccentEvents();
     }
 
     /// <summary>
-    /// Applies the accent transformation to the provided message.
+    /// Subscribes accent get/relay events. Override when custom subscription options are needed.
     /// </summary>
-    private string Accentuate(EntityUid uid, T comp, string message)
+    protected virtual void SubscribeAccentEvents()
     {
-        return AccentuateInternal(uid, comp, message);
+        SubscribeLocalEvent<T, AccentGetEvent>(OnAccent, after: AccentAfter);
+        SubscribeLocalEvent<T, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed, after: AccentAfter);
     }
-
-    protected abstract string AccentuateInternal(EntityUid uid, T comp, string message);
 
     private void OnAccent(Entity<T> ent, ref AccentGetEvent args)
     {
-        args.Message = Accentuate(args.Entity, ent.Comp, args.Message);
+        ApplyAccent(args.Entity, ent.Comp, args);
     }
 
     private void OnAccentRelayed(Entity<T> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
     {
-        args.Args.Message = Accentuate(args.Args.Entity, ent.Comp, args.Args.Message);
+        ApplyAccent(args.Args.Entity, ent.Comp, args.Args);
     }
+
+    /// <summary>
+    /// Applies the accent to <paramref name="args"/>. Default implementation only transforms the message text.
+    /// Override when the accent needs to mutate other <see cref="AccentGetEvent"/> fields.
+    /// </summary>
+    protected virtual void ApplyAccent(EntityUid speaker, T comp, AccentGetEvent args)
+    {
+        args.Message = AccentuateInternal(speaker, comp, args.Message);
+    }
+
+    /// <summary>
+    /// Transforms accented speech text.
+    /// </summary>
+    protected abstract string AccentuateInternal(EntityUid uid, T comp, string message);
 }

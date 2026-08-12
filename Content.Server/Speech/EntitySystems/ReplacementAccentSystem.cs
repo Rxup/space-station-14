@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.Prototypes;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -14,7 +14,8 @@ namespace Content.Server.Speech.EntitySystems
     /// <summary>
     /// Replaces text in messages, either with full replacements or word replacements.
     /// </summary>
-    public sealed partial class ReplacementAccentSystem : EntitySystem
+    // start-backmen: relay-accents
+    public sealed partial class ReplacementAccentSystem : RelayAccentSystem<ReplacementAccentComponent>
     {
         [Dependency] private IPrototypeManager _proto = default!;
         [Dependency] private IRobustRandom _random = default!;
@@ -25,8 +26,7 @@ namespace Content.Server.Speech.EntitySystems
 
         public override void Initialize()
         {
-            SubscribeLocalEvent<ReplacementAccentComponent, AccentGetEvent>(OnAccent);
-            SubscribeLocalEvent<ReplacementAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
+            base.Initialize();
 
             _proto.PrototypesReloaded += OnPrototypesReloaded;
         }
@@ -36,16 +36,6 @@ namespace Content.Server.Speech.EntitySystems
             base.Shutdown();
 
             _proto.PrototypesReloaded -= OnPrototypesReloaded;
-        }
-
-        private void OnAccentRelayed(Entity<ReplacementAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-        {
-            args.Args.Message = ApplyReplacements(args.Args.Message, ent.Comp.Accent);
-        }
-
-        private void OnAccent(Entity<ReplacementAccentComponent> ent, ref AccentGetEvent args)
-        {
-            args.Message = ApplyReplacements(args.Message, ent.Comp.Accent);
         }
 
         /// <summary>
@@ -113,6 +103,11 @@ namespace Content.Server.Speech.EntitySystems
             return message;
         }
 
+        protected override string AccentuateInternal(EntityUid uid, ReplacementAccentComponent comp, string message)
+        {
+            return ApplyReplacements(message, comp.Accent);
+        }
+
         private (Regex regex, string replacement)[] GetCachedReplacements(ReplacementAccentPrototype prototype)
         {
             if (!_cachedReplacements.TryGetValue(prototype.ID, out var replacements))
@@ -148,4 +143,5 @@ namespace Content.Server.Speech.EntitySystems
             _cachedReplacements.Clear();
         }
     }
+    // end-backmen: relay-accents
 }

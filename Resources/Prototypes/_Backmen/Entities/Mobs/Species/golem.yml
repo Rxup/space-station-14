@@ -131,9 +131,7 @@
       - Stun
       - KnockedDown
       - SlowedDown
-      - Muted
       - Pacified
-      - Flashed
   - type: Inventory
     templateId: golem
   - type: InventorySlots

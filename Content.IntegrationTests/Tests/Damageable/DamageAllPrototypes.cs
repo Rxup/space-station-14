@@ -17,6 +17,7 @@ using Robust.Shared.GameObjects;
 namespace Content.IntegrationTests.Tests.Damageable;
 
 [TestFixture]
+[Category("CiHeavy")] // backmen: ci-split
 [TestOf(typeof(DamageableComponent))]
 [TestOf(typeof(DamageableSystem))]
 public sealed class DamageAllPrototypesTest : GameTest

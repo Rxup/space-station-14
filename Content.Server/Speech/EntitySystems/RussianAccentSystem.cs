@@ -1,23 +1,14 @@
 using System.Text;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class RussianAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class RussianAccentSystem : RelayAccentSystem<RussianAccentComponent>
 {
     [Dependency] private ReplacementAccentSystem _replacement = default!;
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<RussianAccentComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<RussianAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-    }
-
-    private void OnAccentRelayed(Entity<RussianAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-    {
-        args.Args.Message = Accentuate(args.Args.Message);
-    }
 
     public string Accentuate(string message)
     {
@@ -50,8 +41,9 @@ public sealed partial class RussianAccentSystem : EntitySystem
         return accentedMessage.ToString();
     }
 
-    private void OnAccent(Entity<RussianAccentComponent> ent, ref AccentGetEvent args)
+    protected override string AccentuateInternal(EntityUid uid, RussianAccentComponent comp, string message)
     {
-        args.Message = Accentuate(args.Message);
+        return Accentuate(message);
     }
 }
+// end-backmen: relay-accents

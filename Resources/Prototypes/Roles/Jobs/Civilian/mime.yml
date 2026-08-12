@@ -18,12 +18,6 @@
     - type: MimePowers
       preventWriting: true
     - type: FrenchAccent
-  #start-backmen: currency
-  minBankBalance: 150
-  maxBankBalance: 250
-  wageDepartment: Civilian
-  wage: 50
-  #end-backmen: currency
 
 - type: startingGear
   id: MimeGear
@@ -46,9 +40,10 @@
   - type: Action
     priority: -1
     useDelay: 30
-    icon:
-      sprite: Structures/Walls/solid.rsi
-      state: full
+  - type: Sprite
+    sprite: Structures/Walls/solid.rsi
+    layers:
+    - state: full
   - type: InstantAction
     event: !type:InvisibleWallActionEvent
 

@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.ActionBlocker; // backmen: muted-status-effects
 using Content.Shared.Backmen.Body.Systems; // backmen: body
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
@@ -21,7 +22,6 @@ using Content.Shared.Mind;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
-using Content.Shared.Speech.Muting;
 using Content.Shared.Storage;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
@@ -51,6 +51,7 @@ public abstract partial class SharedMagicSystem : EntitySystem
     [Dependency] private ISerializationManager _seriMan = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
     [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!; // backmen: muted-status-effects
     [Dependency] private SharedGunSystem _gunSystem = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
@@ -113,7 +114,7 @@ public abstract partial class SharedMagicSystem : EntitySystem
             }
         }
 
-        if (comp.RequiresSpeech && HasComp<MutedComponent>(args.Performer))
+        if (comp.RequiresSpeech && !_actionBlocker.CanSpeak(args.Performer)) // backmen: muted-status-effects
             hasReqs = false;
 
         if (hasReqs)

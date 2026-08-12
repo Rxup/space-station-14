@@ -1,20 +1,11 @@
 - type: markingsGroup
   parent: Undergarments
   id: Slime
-  onlyGroupWhitelisted: true
   limits:
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
-      onlyGroupWhitelisted: false
     enum.HumanoidVisualLayers.FacialHair:
-      limit: 1
-      required: false
-      onlyGroupWhitelisted: false
-    enum.HumanoidVisualLayers.HeadTop:
-      limit: 2
-      required: false
-    enum.HumanoidVisualLayers.Tail:
       limit: 1
       required: false
     enum.HumanoidVisualLayers.Chest:
@@ -55,6 +46,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceSlimePerson
+  categories: [ HideSpawnMenu ]
   name: SlimePerson appearance
   components:
   - type: Inventory
@@ -88,6 +80,7 @@
       FootLeft: OrganSlimePersonFootLeft
       FootRight: OrganSlimePersonFootRight
       Brain: OrganSlimePersonCore
+      Eyes: OrganSlimePersonEyes
       Lungs: OrganSlimePersonLungs
   - type: HumanoidProfile
     species: SlimePerson
@@ -95,7 +88,7 @@
 - type: entity
   parent:
   - AppearanceSlimePerson
-  - BaseSpeciesMobSurgery
+  - BaseSpeciesMobSurgery # backmen: surgery
   id: MobSlimePerson
   name: Urist McWobble
   components:
@@ -148,11 +141,9 @@
     damage:
       types:
         Heat: -0.14
-        Blunt: -0.035
-        Slash: -0.035
-        Piercing: -0.035
-        ArmorPiercing: -0.035
-    damageCap: 65
+        Blunt: -0.05
+        Piercing: -0.05
+        Slash: -0.05
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -164,12 +155,12 @@
     bloodReferenceSolution: # TODO Color slime blood based on their slime color or smth
       reagents:
       - ReagentId: Slime
-        Quantity: 300
+        Quantity: 600
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.50
-        Heat: 0.2
+        Blunt: 0.50 #per second, scales with pressure and other constants.
+        Heat: 0.2 # 0.1 more than humans, i feel like low pressure would make slime boil more than blunt stretch them so i decided on this instead.
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -192,7 +183,6 @@
         messages: [ "slime-hurt-by-water-popup" ]
         probability: 0.25
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeatSlime
       amount: 5
@@ -243,29 +233,10 @@
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganSlimePersonExternal ]
   id: OrganSlimePersonTorso
-  components:
-  - type: VisualOrganMarkings
-    markingData:
-      group: Slime
-      layers:
-      - Chest
-      - Tail
-      - Overlay
-      - TailOverlay
-      - Special
 
 - type: entity
   parent: [ OrganBaseHead, OrganSlimePersonExternal ]
   id: OrganSlimePersonHead
-  components:
-  - type: VisualOrganMarkings
-    markingData:
-      group: Slime
-      layers:
-      - Head
-      - Hair
-      - FacialHair
-      - HeadTop
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganSlimePersonExternal ]
@@ -304,15 +275,29 @@
   id: OrganSlimePersonCore
   name: sentient slime core
   components:
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50.0
+    - SolutionStomach
   - type: Stomach
   - type: Metabolizer
     maxReagents: 6
     metabolizerTypes: [ Slime ]
     stages: [ Digestion, Bloodstream, Metabolites ]
+
+- type: entity
+  parent: [ OrganBaseEyes, OrganSlimePersonInternal, OrganSlimePersonExternal ]
+  id: OrganSlimePersonEyes
+  components:
+  # OrganSlimePersonInternal points Sprite at Slime/organs.rsi; that RSI may lack eyeball
+  # states depending on pack age. Item sprite must resolve eyeball-l/r for client spawn.
+  - type: Sprite # backmen: slime-eyes-item-sprite
+    sprite: Mobs/Species/Human/organs.rsi
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: VisualOrgan
+    data:
+      sprite: Mobs/Customization/eyes.rsi
 
 - type: entity
   parent: [ OrganBaseLungs, OrganSlimePersonInternal, OrganSlimePersonMetabolizer ]

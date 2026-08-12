@@ -27,9 +27,10 @@
     useDelay: 1 # equip noise spam.
     itemIconStyle: BigAction
     priority: -20
-    icon:
-      sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
-      state: icon
+  - type: Sprite
+    sprite: Backmen/Clothing/Hands/Gloves/mantis.rsi
+    layers:
+      - state: icon
   - type: InstantAction
     event: !type:ToggleClothingEvent
 

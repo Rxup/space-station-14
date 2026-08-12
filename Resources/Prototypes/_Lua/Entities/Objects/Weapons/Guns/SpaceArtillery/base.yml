@@ -6,7 +6,7 @@
 - type: entity
   parent: BaseStructure
   id: BaseWeaponShipsArtillery
-  save: false
+  # save must stay true — mappers need ship weapons to persist on grids/shuttles
   suffix: Фронтир
   name: base weapon
   description: base weapon
@@ -22,7 +22,7 @@
     - type: LightningTarget
       priority: 1
     - type: ApcPowerReceiver
-      powerLoad: 250
+      powerLoad: 600 # matches SpaceArtillery.PowerUsePassive default
     - type: FireControllable
     - type: InteractionOutline
     - type: Clickable

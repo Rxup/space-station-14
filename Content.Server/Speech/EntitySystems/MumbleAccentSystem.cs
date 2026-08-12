@@ -4,11 +4,13 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class MumbleAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class MumbleAccentSystem : RelayAccentSystem<MumbleAccentComponent>
 {
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private ReplacementAccentSystem _replacement = default!;
@@ -18,7 +20,6 @@ public sealed partial class MumbleAccentSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<MumbleAccentComponent, AccentGetEvent>(OnAccentGet);
         SubscribeLocalEvent<MumbleAccentComponent, EmoteEvent>(OnEmote, before: [typeof(VocalSystem)]);
     }
 
@@ -43,8 +44,9 @@ public sealed partial class MumbleAccentSystem : EntitySystem
         return _replacement.ApplyReplacements(message, "mumble");
     }
 
-    private void OnAccentGet(Entity<MumbleAccentComponent> ent, ref AccentGetEvent args)
+    protected override string AccentuateInternal(EntityUid uid, MumbleAccentComponent comp, string message)
     {
-        args.Message = Accentuate(args.Message, ent.Comp);
+        return Accentuate(message, comp);
     }
 }
+// end-backmen: relay-accents

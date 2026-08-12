@@ -695,7 +695,7 @@
     - type: Drill
     bodyStatusEffectAdd:
     - StatusEffectSpeechOhio
-    - StatusEffectLangRatvarian
+    - StatusEffectRatvarianLanguage
     - StatusEffectSlurred
     duration: 5
   - type: Sprite
@@ -721,7 +721,7 @@
     duration: 5
     bodyStatusEffectRemove:
     - StatusEffectSpeechOhio
-    - StatusEffectLangRatvarian
+    - StatusEffectRatvarianLanguage
     - StatusEffectSlurred
   - type: Sprite
     sprite: _Shitmed/Objects/Specific/Medical/Surgery/drill.rsi

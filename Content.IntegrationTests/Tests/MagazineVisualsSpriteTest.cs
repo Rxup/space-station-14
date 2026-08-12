@@ -10,6 +10,7 @@ namespace Content.IntegrationTests.Tests;
 /// Tests all entity prototypes with the MagazineVisualsComponent.
 /// </summary>
 [TestFixture]
+[Category("CiHeavy")] // backmen: ci-split
 public sealed class MagazineVisualsSpriteTest : GameTest
 {
     [Test]

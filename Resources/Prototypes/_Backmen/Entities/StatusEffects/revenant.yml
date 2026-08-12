@@ -39,3 +39,16 @@
   - type: StatusEffectAlert
     alert: EssenceRegen
   - type: RevenantRegenModifierStatusEffect
+
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectHaunted
+  name: haunted
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+  - type: StatusEffectAlert
+    alert: Haunted
+  - type: HauntedStatusEffect

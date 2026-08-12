@@ -214,6 +214,7 @@
   id: Changeling
   parent: [BaseGameRule, BaseRoundstartAntagRule]
   components:
+  - type: ChangelingRule
   - type: GameRule
     minPlayers: 25
   - type: AntagSelection
@@ -478,8 +479,7 @@
       prob: 0.50
       orGroup: monospaceDecals
 
-#backmen start
-
+# start-backmen: station-event-schedulers
 - type: entity
   id: StandardStationEventScheduler
   parent: BaseGameRule
@@ -499,5 +499,4 @@
       max: 960 # 16 min
     scheduledGameRules: !type:NestedSelector
       tableId: CalmGameRulesTableBackmen
-
-#backmen end
+# end-backmen: station-event-schedulers

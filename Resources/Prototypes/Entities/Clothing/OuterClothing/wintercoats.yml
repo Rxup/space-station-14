@@ -404,12 +404,21 @@
   name: head of security's armored winter coat
   description: A sturdy, utilitarian winter coat designed to protect a head of security from any brig-bound threats and hypothermic events.
   components:
+  # ArmorHoS → BaseMedium sets Huge; keep coat dresser-storable like other winter coats.
+  - type: Item # backmen: winter-hos-size
+    size: Normal
   - type: Sprite
     sprite: Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterHOS
+  # Armor parent ContainerContainer lacks hood slot; ToggleableClothing needs it for map-save.
+  - type: ContainerContainer # backmen: winter-hos-containers
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
 ##########################################################
 
 - type: entity
@@ -811,6 +820,12 @@
     sprite: Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWarden
+  # Armor parent ContainerContainer lacks hood slot; ToggleableClothing needs it for map-save.
+  - type: ContainerContainer # backmen: winter-warden-containers
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
 ################################################################
 
 - type: entity
@@ -874,6 +889,12 @@
     sprite: Clothing/OuterClothing/WinterCoats/syndicate/coatsyndiecaparmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSyndie
+  # Inherited armored coat ContainerContainer must include hood slot for map-save.
+  - type: ContainerContainer # backmen: winter-syndiecap-containers
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
 ##############################################################
 
 - type: entity

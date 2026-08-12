@@ -24,10 +24,8 @@
     allowed:
     - Stutter
     - Electrocution
-    - TemporaryBlindness
     - Pacified
     - SeeAll
-    - Flashed
     - RadiationProtection
     - Adrenaline
   - type: Buckle
@@ -124,10 +122,8 @@
     allowed:
     - Stutter
     - Electrocution
-    - TemporaryBlindness
     - Pacified
     - StaminaModifier
-    - Flashed
     - RadiationProtection
     - Adrenaline
     - PsionicsDisabled #backmen

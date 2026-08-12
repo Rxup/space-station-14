@@ -1,11 +1,10 @@
 using Content.Server.Chat.Systems;
+using Content.Shared.ActionBlocker;
 using Content.Shared.Actions.Events;
 using Content.Shared.Chat;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
 using Content.Shared.Speech.EntitySystems;
-using Content.Shared.Speech.Muting;
-
 
 namespace Content.Server.Speech.EntitySystems;
 
@@ -15,6 +14,7 @@ namespace Content.Server.Speech.EntitySystems;
 /// </summary>
 public sealed partial class SpeakOnActionSystem : SharedSpeakOnActionSystem
 {
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!; // backmen: muted-status-effects
     [Dependency] private ChatSystem _chat = default!;
 
     public override void Initialize()
@@ -29,8 +29,10 @@ public sealed partial class SpeakOnActionSystem : SharedSpeakOnActionSystem
         var user = args.Performer;
 
         // If we can't speak, we can't speak
-        if (!HasComp<SpeechComponent>(user) || HasComp<MutedComponent>(user))
+        // start-backmen: muted-status-effects
+        if (!HasComp<SpeechComponent>(user) || !_actionBlocker.CanSpeak(user))
             return;
+        // end-backmen: muted-status-effects
 
         if (string.IsNullOrWhiteSpace(ent.Comp.Sentence))
             return;

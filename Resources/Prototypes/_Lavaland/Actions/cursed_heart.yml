@@ -8,11 +8,12 @@
   - type: Action
     itemIconStyle: BigAction
     useDelay: 1
-    icon:
-      sprite: _Lavaland/Objects/Specific/Lavaland/loot.rsi
-      state: cursed_heart
     checkCanInteract: false
     checkConsciousness: false
+  - type: Sprite
+    sprite: _Lavaland/Objects/Specific/Lavaland/loot.rsi
+    layers:
+      - state: cursed_heart
   - type: InstantAction
     event: !type:PumpHeartActionEvent
 

@@ -167,3 +167,5 @@ food-sequence-taco-gen = taco with {$content}
 # SKEWER
 
 food-sequence-skewer-gen = {$content} kebab
+food-sequence-cotton-burger-content-plushie-sheep = wooly
+food-sequence-cotton-burger-content-plushie-sheepspace = cosmicwooly

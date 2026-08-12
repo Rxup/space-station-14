@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ SimpleSpaceMobBase, FlyingMobBase ]
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, BaseSlicingRefinable, MobNightVision, BaseMobDestructible ]
   id: BaseMobDragon
   suffix: ""
   name: space dragon
@@ -114,8 +114,8 @@
     updateInterval: 0.25
     metabolizerTypes: [ Dragon ]
     stages: [ Digestion, Bloodstream ]
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatDragon
       amount: 2
   - type: InteractionPopup
@@ -131,10 +131,8 @@
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
-        Blunt: 3
-        Slash: 3
-        Piercing: 3
-        ArmorPiercing: 3
+        Piercing: 15
+        Slash: 15
   - type: Devourer
     foodPreferenceWhitelist:
       components:
@@ -168,22 +166,9 @@
     speedModifier: 2.5 # fast because dragon strong
     useSound:
       path: /Audio/Items/crowbar.ogg
-
-- type: entity
-  parent: BaseMobDragon
-  id: MobDragon
-  components:
-  - type: Dragon
-    spawnRiftAction: ActionSpawnRift
-  - type: GhostRole
-    mindRoles:
-    - MindRoleDragon
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -207,6 +192,19 @@
 
 - type: entity
   parent: BaseMobDragon
+  id: MobDragon
+  components:
+  - type: Dragon
+    spawnRiftAction: ActionSpawnRift
+  - type: GhostRole
+    mindRoles:
+    - MindRoleDragon
+  - type: GuideHelp
+    guides:
+    - MinorAntagonists
+
+- type: entity
+  parent: BaseMobDragon
   id: MobDragonDungeon
   suffix: Dungeon
   components:
@@ -223,10 +221,9 @@
       0: Alive
       200: Dead
   # less meat spawned since it's a lot easier to kill
-  - type: Butcherable
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: FoodMeatDragon
-      amount: 1
   - type: MeleeWeapon
     damage:
       types:
@@ -239,11 +236,12 @@
   description: Summons a carp rift that will periodically spawns carps.
   components:
   - type: Action
-    icon:
-      sprite: Interface/Actions/carp_rift.rsi
-      state: icon
     useDelay: 1
     priority: 3
+  - type: Sprite
+    sprite: Interface/Actions/carp_rift.rsi
+    layers:
+    - state: icon
   - type: InstantAction
     event: !type:DragonSpawnRiftActionEvent
 
@@ -254,10 +252,16 @@
   description: Attempt to break a structure with your jaws or swallow a creature.
   components:
   - type: Action
-    icon: { sprite : Interface/Actions/devour.rsi, state: icon }
-    iconOn: { sprite : Interface/Actions/devour.rsi, state: icon-on }
     itemIconStyle: BigAction
     priority: 1
+  - type: Sprite
+    sprite: Interface/Actions/devour.rsi
+    layers:
+    - state: icon
+      map: ["enum.ActionVisuals.Icon"]
+    - state: icon-on
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
   - type: TargetAction
   - type: EntityTargetAction
     canTargetSelf: false
@@ -277,9 +281,12 @@
   components:
   - type: Action
     # TODO: actual sprite and iconOn
-    icon: { sprite : Objects/Weapons/Guns/Projectiles/magic.rsi, state: fireball }
     itemIconStyle: BigAction
     priority: 2
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: fireball
   - type: TargetAction
     checkCanAccess: false
     range: 0

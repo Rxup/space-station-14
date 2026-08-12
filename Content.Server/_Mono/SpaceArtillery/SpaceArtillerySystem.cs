@@ -41,8 +41,40 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
         SubscribeLocalEvent<SpaceArtilleryComponent, OnEmptyGunShotEvent>(OnEmptyShotEvent);
         SubscribeLocalEvent<SpaceArtilleryComponent, SignalReceivedEvent>(OnSignalReceived);
         SubscribeLocalEvent<SpaceArtilleryComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
+        SubscribeLocalEvent<SpaceArtilleryComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<ShipWeaponProjectileComponent, ProjectileHitEvent>(OnProjectileHit);
         SubscribeLocalEvent<ShipGunClassComponent, ExaminedEvent>(OnExamined);
+    }
+
+    private void OnMapInit(EntityUid uid, SpaceArtilleryComponent component, ref MapInitEvent args)
+    {
+        // Apply idle load after battery StartingCharge is in place (ChargeChanged can fire too early).
+        UpdateApcPowerLoad(uid, component);
+    }
+
+    private void OnBatteryChargeChanged(EntityUid uid, SpaceArtilleryComponent component, ref ChargeChangedEvent args)
+    {
+        UpdateApcPowerLoad(uid, component);
+    }
+
+    private void UpdateApcPowerLoad(EntityUid uid, SpaceArtilleryComponent component)
+    {
+        if (!TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerReceiver) ||
+            !TryComp<BatteryComponent>(uid, out var battery))
+            return;
+
+        // ChargeChanged can run before StartingCharge is applied (charge==0, max>0).
+        // Mutating Load then breaks PrototypeSaveTest / map-save; wait until the battery is real.
+        if (battery.MaxCharge <= 0)
+            return;
+
+        var charge = _battery.GetCharge((uid, battery));
+        if (charge <= 0)
+            return;
+
+        apcPowerReceiver.Load = charge >= battery.MaxCharge * 0.99f
+            ? component.PowerUsePassive
+            : component.PowerUsePassive + component.PowerChargeRate;
     }
 
 
@@ -78,17 +110,6 @@ public sealed partial class SpaceArtillerySystem : EntitySystem
 
         if (TryComp<BatteryComponent>(uid, out var battery))
             _battery.RefreshChargeRate((uid, battery));
-    }
-
-
-    private void OnBatteryChargeChanged(EntityUid uid, SpaceArtilleryComponent component, ref ChargeChangedEvent args)
-    {
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPowerReceiver) && TryComp<BatteryComponent>(uid, out var battery))
-        {
-            apcPowerReceiver.Load = _battery.GetCharge((uid, battery)) >= battery.MaxCharge * 0.99
-                ? component.PowerUsePassive
-                : component.PowerUsePassive + component.PowerChargeRate;
-        }
     }
 
     private void TryFireArtillery(EntityUid uid, TransformComponent xform, SpaceArtilleryComponent component)

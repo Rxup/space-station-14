@@ -97,9 +97,7 @@ entity-effect-guidebook-health-change =
                     [deals] deal
                     *[both] modify health by
                  }
-    } { $changes } { $targetPart ->
-       *[other]  on {$targetPart}
-    }
+    } { $changes }
 
 entity-effect-guidebook-even-health-change =
     { $chance ->
@@ -113,9 +111,7 @@ entity-effect-guidebook-even-health-change =
             [deals] evenly deal
             *[both] evenly modify health by
         }
-    } { $changes } { $targetPart ->
-       *[other]  on {$targetPart}
-    }
+    } { $changes }
 
 entity-effect-guidebook-status-effect-old =
     { $type ->
@@ -455,7 +451,7 @@ entity-effect-guidebook-reduce-rotting =
     { $chance ->
         [1] Regenerates
         *[other] regenerate
-    } {$time} {MANY("second", $time)} of rotting
+    } {NATURALFIXED($time, 3)} {MANY("second", $time)} of rotting
 
 entity-effect-guidebook-area-reaction =
     { $chance ->
@@ -534,3 +530,9 @@ entity-effect-guidebook-plant-mutate-chemicals =
         [1] Mutates
         *[other] mutate
     } a plant to produce {$name}
+
+entity-effect-guidebook-add-reagent-to-bloodstream =
+    { $chance ->
+        [1] Injects
+        *[other] inject
+    } {$quantity} of {$reagent} directly into the bloodstream

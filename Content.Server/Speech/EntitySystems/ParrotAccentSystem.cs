@@ -2,27 +2,17 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class ParrotAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class ParrotAccentSystem : RelayAccentSystem<ParrotAccentComponent>
 {
     private static readonly Regex WordCleanupRegex = new Regex("[^A-Za-z0-9 -]");
 
     [Dependency] private IRobustRandom _random = default!;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<ParrotAccentComponent, AccentGetEvent>(OnAccentGet);
-    }
-
-    private void OnAccentGet(Entity<ParrotAccentComponent> entity, ref AccentGetEvent args)
-    {
-        args.Message = Accentuate(entity, args.Message);
-    }
 
     public string Accentuate(Entity<ParrotAccentComponent> entity, string message)
     {
@@ -62,6 +52,11 @@ public sealed partial class ParrotAccentSystem : EntitySystem
         return message;
     }
 
+    protected override string AccentuateInternal(EntityUid uid, ParrotAccentComponent comp, string message)
+    {
+        return Accentuate((uid, comp), message);
+    }
+
     /// <summary>
     /// Adds a "!" to the end of the string, if there isn't already a sentence-ending punctuation mark.
     /// </summary>
@@ -80,3 +75,4 @@ public sealed partial class ParrotAccentSystem : EntitySystem
         return Loc.GetString(_random.Pick(entity.Comp.Squawks));
     }
 }
+// end-backmen: relay-accents

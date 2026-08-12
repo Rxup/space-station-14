@@ -4,10 +4,12 @@
   description: Spit the violet acid on your enemies.
   components:
     - type: Action
-      icon: Interface/Actions/fleshAcidSpit.png
       #itemIconStyle: NoItem
       useDelay: 60
       priority: -20
+    - type: Sprite
+      layers:
+        - texture: Interface/Actions/fleshAcidSpit.png
     - type: WorldTargetAction
       event: !type:XenoAcidSpitActionEvent
     - type: TargetAction

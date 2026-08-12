@@ -14,6 +14,8 @@ using Robust.Shared.EntitySerialization;
 
 namespace Content.IntegrationTests.Tests.Power;
 
+[TestFixture]
+[Category("CiMaps")] // backmen: ci-split
 public sealed class StationPowerTests : GameTest
 {
     /// <summary>

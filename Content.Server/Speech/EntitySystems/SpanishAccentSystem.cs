@@ -1,18 +1,13 @@
 using System.Text;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 
 namespace Content.Server.Speech.EntitySystems
 {
-    public sealed class SpanishAccentSystem : EntitySystem
+    // start-backmen: relay-accents
+    public sealed partial class SpanishAccentSystem : RelayAccentSystem<SpanishAccentComponent>
     {
-        public override void Initialize()
-        {
-            SubscribeLocalEvent<SpanishAccentComponent, AccentGetEvent>(OnAccent);
-            SubscribeLocalEvent<SpanishAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-        }
-
         public string Accentuate(string message)
         {
             // Insert E before every S
@@ -68,14 +63,10 @@ namespace Content.Server.Speech.EntitySystems
             return msg.ToString();
         }
 
-        private void OnAccentRelayed(Entity<SpanishAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
+        protected override string AccentuateInternal(EntityUid uid, SpanishAccentComponent comp, string message)
         {
-            args.Args.Message = Accentuate(args.Args.Message);
-        }
-
-        private void OnAccent(Entity<SpanishAccentComponent> ent, ref AccentGetEvent args)
-        {
-            args.Message = Accentuate(args.Message);
+            return Accentuate(message);
         }
     }
+    // end-backmen: relay-accents
 }

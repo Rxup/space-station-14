@@ -233,14 +233,15 @@
     sprite: _DeadSpace/Sponsor/Wisdom/pda.rsi
   - type: Sprite
     sprite: _DeadSpace/Sponsor/Wisdom/pda.rsi
-  - type: CartridgeLoader
-    uiKey: enum.PdaUiKey.Key
-    preinstalled:
-    - CrewManifestCartridge
-    - NotekeeperCartridge
-    - NewsReaderCartridge
-    - AstroNavCartridge
-    - MedTekCartridge
+  - type: EntityTableContainerFill
+    containers:
+      preinstalled-program-container: !type:AllSelector
+        children:
+        - id: CrewManifestCartridge
+        - id: NotekeeperCartridge
+        - id: NewsReaderCartridge
+        - id: AstroNavCartridge
+        - id: MedTekCartridge
   - type: PdaBorderColor
     borderColor: "#222227"
   - type: Tag

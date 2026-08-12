@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Core suite: no Backmen, no maps, no memory-heavy spawn-all suites. -->
+<RunSettings>
+  <NUnit>
+    <NumberOfTestWorkers>1</NumberOfTestWorkers>
+    <DefaultTestNamePattern>{m}{a}</DefaultTestNamePattern>
+  </NUnit>
+  <RunConfiguration>
+    <MaxCpuCount>1</MaxCpuCount>
+    <TestCaseFilter>TestCategory!=CiHeavy&amp;TestCategory!=CiMaps&amp;FullyQualifiedName!~Backmen</TestCaseFilter>
+  </RunConfiguration>
+</RunSettings>

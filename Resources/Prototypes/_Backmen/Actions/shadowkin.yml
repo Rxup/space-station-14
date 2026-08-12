@@ -6,9 +6,10 @@
       priority: -20
       itemIconStyle: NoItem
       useDelay: 15
-      icon:
-        sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
-        state: teleport
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
+      layers:
+        - state: teleport
     - type: WorldTargetAction
       event: !type:ShadowkinTeleportEvent
         powerCost: 40
@@ -27,9 +28,10 @@
       useDelay: 5
       itemIconStyle: NoItem
       priority: -21
-      icon:
-        sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
-        state: darkswap
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
+      layers:
+        - state: darkswap
     - type: InstantAction
       event: !type:ShadowkinDarkSwapEvent
         powerCostOn: 60
@@ -47,8 +49,9 @@
       useDelay: 60
       itemIconStyle: NoItem
       priority: -22
-      icon:
-        sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
-        state: rest
+    - type: Sprite
+      sprite: Backmen/Interface/Actions/shadowkin_icons.rsi
+      layers:
+        - state: rest
     - type: InstantAction
       event: !type:ShadowkinRestEvent

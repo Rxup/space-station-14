@@ -2,7 +2,7 @@
 - type: entity
   id: GunneryServerBase
   parent: BaseMachinePowered
-  save: false
+  # save must stay true — mappers need gunnery servers to persist on grids/shuttles
   name: gunnery control server
   description: Manages the remote operation of ship weapons.
   abstract: true

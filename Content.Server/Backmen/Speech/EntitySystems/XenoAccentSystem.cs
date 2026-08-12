@@ -1,20 +1,14 @@
 using System.Text;
 using Content.Server.Backmen.Speech.Components;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Speech.EntitySystems;
 
-public sealed partial class XenoAccentSystem : EntitySystem
+public sealed partial class XenoAccentSystem : RelayAccentSystem<XenoAccentComponent>
 {
     [Dependency] private IRobustRandom _random = default!;
-
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<XenoAccentComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<XenoAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-    }
 
     public string Accentuate(string message)
     {
@@ -63,13 +57,8 @@ public sealed partial class XenoAccentSystem : EntitySystem
         return accentedMessage.ToString();
     }
 
-    private void OnAccent(Entity<XenoAccentComponent> ent, ref AccentGetEvent args)
+    protected override string AccentuateInternal(EntityUid uid, XenoAccentComponent comp, string message)
     {
-        args.Message = Accentuate(args.Message);
-    }
-
-    private void OnAccentRelayed(Entity<XenoAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-    {
-        args.Args.Message = Accentuate(args.Args.Message);
+        return Accentuate(message);
     }
 }

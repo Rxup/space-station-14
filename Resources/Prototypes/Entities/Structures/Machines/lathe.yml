@@ -66,16 +66,20 @@
     modifiers:
       SpaceLube: 0.25
       SpaceGlue: 5
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      lube:
-        maxVol: 250
+    - SolutionLatheLube
   - type: Spillable
     solution: lube
   - type: RefillableSolution
     solution: lube
   - type: ExaminableSolution
     solution: lube
+
+- type: entity
+  parent: [SolutionLube, SolutionLarge]
+  id: SolutionLatheLube # Its own prototype since some lathes might interface with solutions in other ways
+  categories: [ HideSpawnMenu ]
 
 - type: entity
   abstract: true
@@ -123,6 +127,7 @@
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
+    # start-backmen: lathe-packs — static packs listed under dynamicPacks so research unlocks match AllTechPrintableTest
     staticPacks:
     - MaterialsStatic
     - PaperworkStatic
@@ -139,6 +144,7 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
+    # end-backmen: lathe-packs
   - type: EmagLatheRecipes
     emagStaticPacks:
     - BackmenAmmoStatic # backmen
@@ -197,6 +203,7 @@
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
+    # start-backmen: lathe-packs
     dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - ChemistryStatic
     - SurgeryStatic
@@ -214,12 +221,12 @@
     - Janitor
     - Instruments
     - Equipment
-    - FauxTiles
     - BackmenTranslators # backmen
     - BackmenProtolathe # backmen
     - BackmenSurgery # backmen
     - BackmenEngineerWeapon # backmen
     - BackmenService # Backmen
+    # end-backmen: lathe-packs
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - BackmenAmmo # backmen
@@ -262,6 +269,7 @@
     producingSound: /Audio/Machines/circuitprinter.ogg
     idleState: icon
     runningState: building
+    # start-backmen: lathe-packs
     staticPacks:
     - CircuitFloorsStatic
     dynamicPacks: # Static > Dynamic | Backmen-EDIT
@@ -281,6 +289,7 @@
     - MechBoards
     - ShuttleBoards
     - BackmenBoards # backmen
+    # end-backmen: lathe-packs
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityBoards
@@ -320,6 +329,7 @@
   - type: Lathe
     idleState: fab-idle
     runningState: fab-active
+    # start-backmen: lathe-packs
     dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - RoboticsStatic
     - BorgModulesStatic
@@ -331,6 +341,7 @@
     - MechParts
     - MechEquipment
     - BackmenShitmedModules # backmen
+    # end-backmen: lathe-packs
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient
@@ -401,6 +412,9 @@
   - type: Lathe
     idleState: icon
     runningState: icon
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    # start-backmen: lathe-packs
     dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - SecurityEquipmentStatic
     - SecurityPracticeStatic
@@ -418,6 +432,7 @@
     - SecurityDisablers
     - BackmenCircuboardArsenal #backmen-gumsmiths
     - BackmenFrontierShipAmmo # backmen
+    # end-backmen: lathe-packs
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic
@@ -451,6 +466,8 @@
     - type: Lathe
       idleState: icon
       runningState: icon
+      unlitIdleState: unlit
+      unlitRunningState: unlit-building
       staticPacks:
       - SecurityAmmoStatic
     - type: EmagLatheRecipes
@@ -482,6 +499,9 @@
   - type: Lathe
     idleState: icon
     runningState: icon
+    unlitIdleState: unlit
+    unlitRunningState: unlit-building
+    # start-backmen: lathe-packs
     dynamicPacks: # Static > Dynamic | Backmen-EDIT
     - TopicalsStatic
     - ChemistryStatic
@@ -496,6 +516,7 @@
     - BackmenMedfab # backmen
     - BackmenSurgery # backmen
     - AdvancedBodybagsStatic # Backmen
+    # end-backmen: lathe-packs
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -503,6 +524,7 @@
   - type: OreSiloClient
   - type: LatheAnnouncing
     channels: [Medical]
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   parent: BaseLathe
@@ -539,7 +561,6 @@
     - Scarves
     - Carpets
     - Bedsheets
-    - CorvaxClothing # Corvax-Clothing
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ClothingCentComm
@@ -616,17 +637,10 @@
     - type: Machine
       board: OreProcessorMachineCircuitboard
     - type: MaterialStorage
-      ignoreMaterialWhiteList: true # Goob edit
-      connectToSilo: true # Goob edit
-      disconnectSiloOffMap: true # Goob edit
-      disallowOreEjection: false # Goob edit
       ignoreColor: true
       whitelist:
         tags:
           - Ore
-          - Sheet
-          - RawMaterial
-          - Ingot
     - type: Lathe
       idleState: icon
       runningState: building
@@ -634,10 +648,6 @@
       staticPacks:
       - OreSmelting
       - RGlassSmelting
-    - type: MiningPoints # DeltaV - Source of mining points for miners
-    - type: MiningPointsLathe # DeltaV
-    - type: MaterialStorageMagnetPickup # Frontier
-    - type: NoLavalandUsage
 
 - type: entity
   parent: OreProcessor
@@ -694,8 +704,6 @@
   name: cutter machine
   description: This is a cutter. It cuts. Add variety to your station floor with eye-pleasing patterns! Don't stick your fingers in.
   components:
-  - type: Transform
-    noRot: false
   - type: Sprite
     sprite: Structures/Machines/cuttermachine.rsi
     snapCardinals: true

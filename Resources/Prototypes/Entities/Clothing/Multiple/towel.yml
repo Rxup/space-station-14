@@ -21,15 +21,9 @@
     spillWhenThrown: false
   - type: Absorbent
     pickupAmount: 15
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      food:
-        maxVol: 30
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 30
-      absorbed:
-        maxVol: 30
+    - SolutionTowelAbsorbed
   - type: UseDelay
     delay: 1
   - type: Fiber
@@ -37,6 +31,15 @@
   - type: DnaSubstanceTrace
   - type: Item
     size: Small
+
+- type: entity
+  parent: SolutionMop
+  id: SolutionTowelAbsorbed
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 30
 
 - type: entity
   id: TowelColorWhite

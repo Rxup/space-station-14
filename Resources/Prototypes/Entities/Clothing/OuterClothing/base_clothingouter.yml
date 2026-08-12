@@ -215,3 +215,37 @@
   components:
   - type: Item
     size: Huge
+
+# start-backmen: solution-jacket-edible
+- type: entity
+  abstract: true
+  parent: [SolutionFood, SolutionNormal, ClothingOuterStorageBase]
+  id: ClothingOuterStorageEdible
+  components:
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 60
+
+- type: entity
+  abstract: true
+  parent: [ ClothingOuterStorageEdible, TemperatureProtectionMinimal]
+  id: ClothingOuterJacketBase
+
+- type: entity
+  abstract: true
+  parent: ClothingOuterJacketBase
+  id: ClothingOuterJacketToggleableBase
+  components:
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterDefault
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
+# end-backmen: solution-jacket-edible

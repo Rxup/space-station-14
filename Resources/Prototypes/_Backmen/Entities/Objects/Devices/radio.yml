@@ -30,9 +30,10 @@
   - type: Action
     useDelay: 240
     itemIconStyle: BigAction
-    icon:
-      sprite: Backmen/Structures/Storage/supplypod.rsi
-      state: missilepod_falling
+  - type: Sprite
+    sprite: Backmen/Structures/Storage/supplypod.rsi
+    layers:
+      - state: missilepod_falling
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:

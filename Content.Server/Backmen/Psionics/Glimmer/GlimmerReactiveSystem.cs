@@ -1,5 +1,4 @@
 using Content.Server.Backmen.Audio;
-using Content.Server.CartridgeLoader.Cartridges;
 using Content.Server.Power.Components;
 using Content.Server.Electrocution;
 using Content.Server.Lightning;
@@ -7,6 +6,7 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.GameTicking;
 using Content.Shared.Audio;
 using Content.Shared.Backmen.Psionics.Glimmer;
+using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.GameTicking;
 using Content.Shared.Psionics.Glimmer;

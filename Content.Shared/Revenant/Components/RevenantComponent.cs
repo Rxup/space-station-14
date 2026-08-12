@@ -235,6 +235,12 @@ public sealed partial class RevenantComponent : Component
 
     [DataField]
     public TimeSpan HauntFlashDuration = TimeSpan.FromSeconds(2);
+
+    /// <summary>
+    /// How long the Haunted status effect lasts on a witness (blocks re-haunt essence).
+    /// </summary>
+    [DataField]
+    public TimeSpan HauntHauntedDuration = TimeSpan.FromMinutes(1); // backmen: haunt-status
     #endregion
 
     #region Blood Writing

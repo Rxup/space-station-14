@@ -8,9 +8,10 @@
   components:
     - type: Action
       useDelay: 90
-      icon:
-        sprite: Objects/Specific/Medical/medical.rsi
-        state: brutepack
+    - type: Sprite
+      sprite: Objects/Specific/Medical/medical.rsi
+      layers:
+        - state: brutepack
     - type: InstantAction
       event: !type:DroneCraftActionEvent
         craftedItem: Brutepack
@@ -24,9 +25,10 @@
   components:
     - type: Action
       useDelay: 90
-      icon:
-        sprite: Objects/Specific/Medical/medical.rsi
-        state: ointment
+    - type: Sprite
+      sprite: Objects/Specific/Medical/medical.rsi
+      layers:
+        - state: ointment
     - type: InstantAction
       event: !type:DroneCraftActionEvent
         craftedItem: Ointment
@@ -40,9 +42,10 @@
   components:
     - type: Action
       useDelay: 180
-      icon:
-        sprite: Objects/Specific/Medical/medical.rsi
-        state: bloodpack
+    - type: Sprite
+      sprite: Objects/Specific/Medical/medical.rsi
+      layers:
+        - state: bloodpack
     - type: InstantAction
       event: !type:DroneCraftActionEvent
         craftedItem: Bloodpack
@@ -57,9 +60,10 @@
   components:
   - type: Action
     useDelay: 120
-    icon:
-      sprite: Objects/Tools/cable-coils.rsi
-      state: coillv-30
+  - type: Sprite
+    sprite: Objects/Tools/cable-coils.rsi
+    layers:
+      - state: coillv-30
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: CableApcStack
@@ -72,9 +76,10 @@
   components:
   - type: Action
     useDelay: 120
-    icon:
-      sprite: Objects/Tools/cable-coils.rsi
-      state: coilmv-30
+  - type: Sprite
+    sprite: Objects/Tools/cable-coils.rsi
+    layers:
+      - state: coilmv-30
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: CableMVStack
@@ -87,9 +92,10 @@
   components:
   - type: Action
     useDelay: 120
-    icon:
-      sprite: Objects/Tools/cable-coils.rsi
-      state: coilhv-30
+  - type: Sprite
+    sprite: Objects/Tools/cable-coils.rsi
+    layers:
+      - state: coilhv-30
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: CableHVStack
@@ -102,9 +108,10 @@
   components:
   - type: Action
     useDelay: 90
-    icon:
-      sprite: Objects/Materials/Sheets/metal.rsi
-      state: steel_3
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/metal.rsi
+    layers:
+      - state: steel_3
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetSteel
@@ -117,9 +124,10 @@
   components:
   - type: Action
     useDelay: 120
-    icon:
-      sprite: Objects/Materials/Sheets/metal.rsi
-      state: plasteel_3
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/metal.rsi
+    layers:
+      - state: plasteel_3
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetPlasteel
@@ -132,9 +140,10 @@
   components:
   - type: Action
     useDelay: 90
-    icon:
-      sprite: Objects/Materials/Sheets/glass.rsi
-      state: glass_3
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/glass.rsi
+    layers:
+      - state: glass_3
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetGlass
@@ -147,9 +156,10 @@
   components:
   - type: Action
     useDelay: 120
-    icon:
-      sprite: Objects/Materials/Sheets/glass.rsi
-      state: rglass_3
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/glass.rsi
+    layers:
+      - state: rglass_3
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetRGlass
@@ -162,9 +172,10 @@
   components:
   - type: Action
     useDelay: 180
-    icon:
-      sprite: Objects/Materials/Sheets/other.rsi
-      state: plastic_3
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/other.rsi
+    layers:
+      - state: plastic_3
   - type: InstantAction
     event: !type:DroneCraftActionEvent
       craftedItem: SheetPlastic

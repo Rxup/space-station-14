@@ -9,15 +9,9 @@
   - type: Item
     size: Small
     heldPrefix: stomach
-  - type: SolutionContainerManager
+  - type: SolutionManager
     solutions:
-      stomach:
-        maxVol: 50
-      food:
-        maxVol: 5
-        reagents:
-        - ReagentId: UncookedAnimalProteins
-          Quantity: 5
+    - SolutionDemonStomach
   - type: Stomach
   - type: Organ # backmen: surgery
     slotId: stomach
@@ -29,3 +23,13 @@
     maxReagents: 3
     metabolizerTypes: [Human]
     stages: [ Digestion ]
+
+- type: entity
+  parent: Solution
+  id: SolutionDemonStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stomach
+    solution:
+      maxVol: 50

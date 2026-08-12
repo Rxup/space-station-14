@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   id: FloorChasmEntity
   name: chasm
   description: You can't even see the bottom.
@@ -47,17 +47,6 @@
   - type: Tag
     tags:
     - HideContextMenu
-  # backmen start
-  - type: Drain
-  - type: DumpableSolution
-    solution: drainBuffer
-  - type: SolutionContainerManager
-    solutions:
-      drainBuffer:
-        maxVol: 10000
-  - type: DrainableSolution
-    solution: drainBuffer
-  # backmen end
 
 - type: entity
   parent: FloorChasmEntity
@@ -88,3 +77,14 @@
     sprite: Tiles/Planet/Chasms/snow_chasm.rsi
   - type: Icon
     sprite: Tiles/Planet/Chasms/snow_chasm.rsi
+# backmen start
+  - type: Drain
+  - type: DumpableSolution
+    solution: drainBuffer
+  - type: SolutionContainerManager
+    solutions:
+      drainBuffer:
+        maxVol: 10000
+  - type: DrainableSolution
+    solution: drainBuffer
+  # backmen end

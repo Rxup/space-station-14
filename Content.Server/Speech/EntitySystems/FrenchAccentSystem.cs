@@ -1,26 +1,21 @@
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
+using Content.Shared.Speech.EntitySystems;
 
 namespace Content.Server.Speech.EntitySystems;
 
 /// <summary>
 /// System that gives the speaker a faux-French accent.
 /// </summary>
-public sealed partial class FrenchAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class FrenchAccentSystem : RelayAccentSystem<FrenchAccentComponent>
 {
     [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     private static readonly Regex RegexTh = new(@"th", RegexOptions.IgnoreCase);
     private static readonly Regex RegexStartH = new(@"(?<!\w)h", RegexOptions.IgnoreCase);
     private static readonly Regex RegexSpacePunctuation = new(@"(?<=\w\w)[!?;:](?!\w)", RegexOptions.IgnoreCase);
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        SubscribeLocalEvent<FrenchAccentComponent, AccentGetEvent>(OnAccentGet);
-    }
 
     public string Accentuate(string message, FrenchAccentComponent component)
     {
@@ -54,8 +49,9 @@ public sealed partial class FrenchAccentSystem : EntitySystem
         return msg;
     }
 
-    private void OnAccentGet(EntityUid uid, FrenchAccentComponent component, AccentGetEvent args)
+    protected override string AccentuateInternal(EntityUid uid, FrenchAccentComponent comp, string message)
     {
-        args.Message = Accentuate(args.Message, component);
+        return Accentuate(message, comp);
     }
 }
+// end-backmen: relay-accents

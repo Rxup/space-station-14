@@ -23,7 +23,6 @@
       - PressureImmunity
       - StaminaModifier
       - SeeAll
-      - Flashed
     - type: Reactive
       groups:
         Flammable: [Touch]

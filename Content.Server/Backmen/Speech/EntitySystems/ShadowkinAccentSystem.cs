@@ -2,12 +2,12 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Content.Server.Backmen.Speech.Components;
 using Content.Shared.Speech;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Backmen.Speech.EntitySystems;
 
-public sealed partial class ShadowkinAccentSystem : EntitySystem
+public sealed partial class ShadowkinAccentSystem : RelayAccentSystem<ShadowkinAccentComponent>
 {
     [Dependency] private IRobustRandom _random = default!;
 
@@ -20,17 +20,6 @@ public sealed partial class ShadowkinAccentSystem : EntitySystem
 
     private static readonly Regex ARegexRu = new(@"[аеёиоуыэюя]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
     private static readonly Regex RRegexRu = new(@"[р]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-
-    public override void Initialize()
-    {
-        SubscribeLocalEvent<ShadowkinAccentComponent, AccentGetEvent>(OnAccent);
-        SubscribeLocalEvent<ShadowkinAccentComponent, StatusEffectRelayedEvent<AccentGetEvent>>(OnAccentRelayed);
-    }
-
-    private void OnAccentRelayed(Entity<ShadowkinAccentComponent> ent, ref StatusEffectRelayedEvent<AccentGetEvent> args)
-    {
-        args.Args.Message = Accentuate(args.Args.Message);
-    }
 
     public string Accentuate(string message)
     {
@@ -61,8 +50,8 @@ public sealed partial class ShadowkinAccentSystem : EntitySystem
         return result.ToString().Trim();
     }
 
-    private void OnAccent(Entity<ShadowkinAccentComponent> ent, ref AccentGetEvent args)
+    protected override string AccentuateInternal(EntityUid uid, ShadowkinAccentComponent comp, string message)
     {
-        args.Message = Accentuate(args.Message);
+        return Accentuate(message);
     }
 }

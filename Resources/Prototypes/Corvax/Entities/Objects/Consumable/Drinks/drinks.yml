@@ -3,13 +3,12 @@
   id: DrinkAlexanderGlass
   suffix: alexander
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Alexander
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Alexander
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -21,13 +20,12 @@
   id: DrinkBadTouchGlass
   suffix: bad touch
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: BadTouch
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: BadTouch
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -39,13 +37,12 @@
   id: DrinkBoyarskyGlass
   suffix: boyarsky
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Boyarsky
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Boyarsky
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -57,13 +54,12 @@
   id: DrinkBrambleGlass
   suffix: bramble
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Bramble
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Bramble
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -75,13 +71,12 @@
   id: DrinkDaiquiriGlass
   suffix: daiquiri
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Daiquiri
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Daiquiri
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -93,13 +88,12 @@
   id: DrinkDarkAndStormyGlass
   suffix: dark and stormy
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: DarkAndStormy
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: DarkAndStormy
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -111,13 +105,12 @@
   id: DrinkEspressoMartiniGlass
   suffix: espresso martini
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: EspressoMartini
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: EspressoMartini
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -129,13 +122,12 @@
   id: DrinkKvassGlass
   suffix: kvass
   components:
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          maxVol: 30
-          reagents:
-            - ReagentId: Kvass
-              Quantity: 30
+    - type: Solution
+      solution:
+        maxVol: 30
+        reagents:
+          - ReagentId: Kvass
+            Quantity: 30
     - type: Sprite
       sprite: Corvax/Objects/Consumable/Drinks/kvass.rsi
 
@@ -144,13 +136,12 @@
   id: DrinkMaiTaiGlass
   suffix: mai tai
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: MaiTai
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: MaiTai
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -162,13 +153,12 @@
   id: DrinkMoscowMuleGlass
   suffix: moscow mule
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: MoscowMule
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: MoscowMule
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -180,13 +170,12 @@
   id: DrinkNegroniGlass
   suffix: negroni
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Negroni
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Negroni
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -198,13 +187,12 @@
   id: DrinkOldFashionedGlass
   suffix: old fashioned
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: OldFashioned
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: OldFashioned
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -216,13 +204,12 @@
   id: DrinkPalomaGlass
   suffix: paloma
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Paloma
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Paloma
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon
@@ -234,13 +221,12 @@
   id: DrinkYorshGlass
   suffix: yorsh
   components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Yorsh
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Yorsh
+        Quantity: 30
   - type: Edible
     edible: Drink
   - type: Icon

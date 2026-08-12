@@ -25,12 +25,6 @@
         color: "#FF0000"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
-  - type: GenericVisualizer
-    visuals:
-      enum.CreamPiedVisuals.Creamed:
-        clownedon:
-          True: { visible: true }
-          False: { visible: false }
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
   - type: JobStatus
@@ -78,13 +72,8 @@
   - type: StatusEffects
     allowed:
     - Electrocution
-    - RatvarianLanguage
     - PressureImmunity
-    - Muted
-    - TemporaryBlindness
     - Pacified
-    - Flashed
-    - RadiationProtection
     - Adrenaline
   - type: Identity
   - type: IdExaminable
@@ -114,6 +103,7 @@
   - type: Crawler
   - type: Dna
   - type: MindContainer
+  - type: MindExaminable
   - type: CanEnterCryostorage
   - type: InteractionPopup
     successChance: 1
@@ -132,15 +122,18 @@
     parcelPrototype: WrappedParcelHumanoid
     wrapDelay: 5
   - type: Stripping
+  - type: UserInterface
+    interfaces:
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
   - type: Puller
   - type: Speech
     speechSounds: Alto
   - type: DamageForceSay
   - type: Vocal
-    sounds:
-      Male: MaleHuman
-      Female: FemaleHuman
-      Unsexed: MaleHuman
+    emoteSounds: MaleHuman
   - type: Emoting
   - type: BodyEmotes
     soundsId: GeneralBodyEmotes
@@ -150,14 +143,8 @@
   - type: MobPrice
     price: 1500 # Kidnapping a living person and selling them for cred is a good move.
     deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
-  - type: PotentialPsionic
-  - type: LanguageSpeaker
-    currentLanguage: TauCetiBasic
-  - type: LanguageKnowledge
-    speaks:
-    - TauCetiBasic
-    understands:
-    - TauCetiBasic
+  - type: RandomPrice
+    maxRandomPrice: 20000
   - type: Tag
     tags:
     - CanPilot
@@ -173,15 +160,12 @@
   - MobAtmosStandard
   - MobFlammable
   - BaseSpeciesMob
+  - BaseMobDestructible
   id: BaseSpeciesMobOrganic
   save: false
   components:
   - type: Hunger
-    # start-backmen: hunger-pain
-    baseDecayRate: 0.04166666665
-    # end-backmen: hunger-pain
   - type: Thirst
-  - type: Mood # backmen: mood
   - type: Barotrauma
     damage:
       types:
@@ -193,19 +177,15 @@
     damage:
       types:
         Heat: -0.07
-        Blunt: -0.0175
-        Slash: -0.0175
-        Piercing: -0.0175
-        ArmorPiercing: -0.0175
-    damageCap: 20
+        Blunt: -0.05
+        Piercing: -0.05
+        Slash: -0.05
   - type: Fingerprint
   - type: Blindable
   - type: Temperature
-    currentTemperature: 310.15
-    specificHeat: 42
   - type: TemperatureDamage
     heatDamageThreshold: 325
-    coldDamageThreshold: 260
+    coldDamageThreshold: 273.15
     coldDamage:
       types:
         Cold: 0.1 #per second, scales with temperature & other constants
@@ -226,9 +206,7 @@
     normalBodyTemperature: 310.15
     thermalRegulationTemperatureThreshold: 2
   - type: Perishable
-  - type: DiseaseCarrier
   - type: Butcherable
-    butcheringType: Spike
     spawned:
     - id: FoodMeat
       amount: 5

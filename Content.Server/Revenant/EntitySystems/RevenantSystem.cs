@@ -1,6 +1,8 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.GameTicking;
+using Content.Server.Mind;
 using Content.Server.Store.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Systems;
@@ -13,13 +15,18 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+// start-backmen: revenant-status
+using Content.Shared._Impstation.Revenant;
+using Content.Shared._Impstation.Revenant.Components;
+// end-backmen: revenant-status
 using Content.Shared.Revenant;
 using Content.Shared.Revenant.Components;
-using Content.Shared.StatusEffect;
+using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.Store.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server.Revenant.EntitySystems;
@@ -36,7 +43,12 @@ public sealed partial class RevenantSystem : EntitySystem
     [Dependency] private PhysicsSystem _physics = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private SharedEyeSystem _eye = default!;
-    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    // start-backmen: revenant-status
+    [Dependency] private Content.Shared.StatusEffectNew.StatusEffectsSystem _status = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    // end-backmen: revenant-status
     [Dependency] private SharedInteractionSystem _interact = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedStunSystem _stun = default!;
@@ -44,6 +56,7 @@ public sealed partial class RevenantSystem : EntitySystem
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private VisibilitySystem _visibility = default!;
     [Dependency] private TurfSystem _turf = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -52,8 +65,6 @@ public sealed partial class RevenantSystem : EntitySystem
 
         SubscribeLocalEvent<RevenantComponent, DamageChangedEvent>(OnDamage);
         SubscribeLocalEvent<RevenantComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<RevenantComponent, StatusEffectAddedEvent>(OnStatusAdded);
-        SubscribeLocalEvent<RevenantComponent, StatusEffectEndedEvent>(OnStatusEnded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => MakeVisible(true));
 
         SubscribeLocalEvent<RevenantComponent, GetVisMaskEvent>(OnRevenantGetVis);
@@ -87,18 +98,6 @@ public sealed partial class RevenantSystem : EntitySystem
         _eye.RefreshVisibilityMask(uid);
     }
 
-    private void OnStatusAdded(EntityUid uid, RevenantComponent component, StatusEffectAddedEvent args)
-    {
-        if (args.Key == "Stun")
-            _appearance.SetData(uid, RevenantVisuals.Stunned, true);
-    }
-
-    private void OnStatusEnded(EntityUid uid, RevenantComponent component, StatusEffectEndedEvent args)
-    {
-        if (args.Key == "Stun")
-            _appearance.SetData(uid, RevenantVisuals.Stunned, false);
-    }
-
     private void OnExamine(EntityUid uid, RevenantComponent component, ExaminedEvent args)
     {
         if (args.Examiner == args.Examined)
@@ -126,10 +125,13 @@ public sealed partial class RevenantSystem : EntitySystem
             return false;
 
         component.Essence += amount;
-        Dirty(uid, component);
 
+        // start-backmen: revenant-regen-cap
         if (regenCap)
-            FixedPoint2.Min(component.Essence, component.EssenceRegenCap);
+            component.Essence = FixedPoint2.Min(component.Essence, component.EssenceRegenCap);
+        // end-backmen: revenant-regen-cap
+
+        Dirty(uid, component);
 
         if (TryComp<StoreComponent>(uid, out var store))
             _store.UpdateUserInterface(uid, uid, store);
@@ -138,11 +140,33 @@ public sealed partial class RevenantSystem : EntitySystem
 
         if (component.Essence <= 0)
         {
-            Spawn(component.SpawnOnDeathPrototype, Transform(uid).Coordinates);
-            QueueDel(uid);
+            // start-backmen: revenant-stasis
+            component.Essence = 0;
+            ClearStatusEffects(uid);
+
+            var stasisObj = Spawn(component.SpawnOnDeathPrototype, Transform(uid).Coordinates);
+            AddComp(stasisObj, new RevenantStasisComponent(component.StasisTime, uid));
+
+            if (_mind.TryGetMind(uid, out var mindId, out _))
+                _mind.TransferTo(mindId, stasisObj);
+
+            _transformSystem.DetachEntity(uid);
+            _meta.SetEntityPaused(uid, true);
+            // end-backmen: revenant-stasis
         }
         return true;
     }
+
+    // start-backmen: revenant-stasis
+    private void ClearStatusEffects(EntityUid uid)
+    {
+        if (!TryComp<StatusEffectContainerComponent>(uid, out var container) || container.ActiveStatusEffects == null)
+            return;
+
+        foreach (var effect in container.ActiveStatusEffects.ContainedEntities.ToArray())
+            Del(effect);
+    }
+    // end-backmen: revenant-stasis
 
     private bool TryUseAbility(EntityUid uid, RevenantComponent component, FixedPoint2 abilityCost, Vector2 debuffs)
     {
@@ -164,8 +188,13 @@ public sealed partial class RevenantSystem : EntitySystem
 
         ChangeEssenceAmount(uid, -abilityCost, component, false);
 
-        _statusEffects.TryAddStatusEffect<CorporealComponent>(uid, "Corporeal", TimeSpan.FromSeconds(debuffs.Y), false);
+        // start-backmen: revenant-corporeal
+        _status.TryAddStatusEffectDuration(uid, RevenantStatusEffects.Corporeal, TimeSpan.FromSeconds(debuffs.Y));
         _stun.TryAddStunDuration(uid, TimeSpan.FromSeconds(debuffs.X));
+
+        if (TryComp<PhysicsComponent>(uid, out var physics))
+            _physics.ResetDynamics(uid, physics);
+        // end-backmen: revenant-corporeal
 
         return true;
     }
@@ -221,8 +250,23 @@ public sealed partial class RevenantSystem : EntitySystem
 
             if (rev.Essence < rev.EssenceRegenCap)
             {
-                ChangeEssenceAmount(uid, rev.EssencePerSecond, rev, regenCap: true);
+                // start-backmen: revenant-haunt-regen
+                var essence = rev.EssencePerSecond;
+
+                if (_status.TryGetStatusEffect(uid, RevenantStatusEffects.EssenceRegen, out var regenEnt)
+                    && TryComp<RevenantRegenModifierStatusEffectComponent>(regenEnt, out var regen))
+                {
+                    essence += rev.HauntEssenceRegenPerWitness * regen.NewHaunts;
+                }
+
+                ChangeEssenceAmount(uid, essence, rev, regenCap: true);
+                // end-backmen: revenant-haunt-regen
             }
+
+            // start-backmen: revenant-stun-visuals
+            // Cannot subscribe StunnedComponent Startup/Shutdown (owned by SharedStunSystem).
+            _appearance.SetData(uid, RevenantVisuals.Stunned, HasComp<StunnedComponent>(uid));
+            // end-backmen: revenant-stun-visuals
 
             ChillArea((uid, rev));
         }

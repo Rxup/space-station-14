@@ -56,6 +56,8 @@
     - type: WirelessNetworkConnection
       range: 700
     - type: FireControllable
+    - type: ApcPowerReceiver
+      powerLoad: 2100
     - type: SpaceArtillery
       powerChargeRate: 100
       powerUseActive: 100

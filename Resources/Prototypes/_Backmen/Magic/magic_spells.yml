@@ -9,9 +9,10 @@
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/staff_healing.ogg
-    icon:
-      sprite: Objects/Magic/magicactions.rsi
-      state: magicmissile
+  - type: Sprite
+    sprite: Objects/Magic/magicactions.rsi
+    layers:
+      - state: magicmissile
 
   - type: EntityTargetAction
     whitelist:

@@ -121,8 +121,11 @@ public sealed partial class RadarBlipSystem : EntitySystem
                 if (blipXform.ParentUid != blipXform.MapUid && blipXform.ParentUid != blipGrid)
                     coord = _xform.WithEntityId(coord, blipGrid ?? blipXform.MapUid!.Value);
                 // we're parented to either the map or a grid and this is relative velocity so account for grid movement
-                if (blipGrid != null)
-                    blipVelocity -= _physics.GetLinearVelocity(blipGrid.Value, coord.Position);
+                // start-backmen: radar-grid-physics
+                // Grids without PhysicsComponent (e.g. mid-init/teardown) would Resolve-error in GetLinearVelocity.
+                if (blipGrid != null && TryComp<PhysicsComponent>(blipGrid.Value, out var gridPhysics))
+                    blipVelocity -= _physics.GetLinearVelocity(blipGrid.Value, coord.Position, gridPhysics);
+                // end-backmen: radar-grid-physics
 
                 var sonarEcho = HasComp<RadarSonarEchoComponent>(blipUid);
                 blips.Add((netBlipUid, GetNetCoordinates(coord), blipVelocity, blip.Scale, blip.RadarColor, blip.Shape, sonarEcho));

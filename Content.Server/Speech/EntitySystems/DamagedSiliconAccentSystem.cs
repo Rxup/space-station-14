@@ -7,11 +7,13 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Content.Shared.Speech;
+using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed partial class DamagedSiliconAccentSystem : EntitySystem
+// start-backmen: relay-accents
+public sealed partial class DamagedSiliconAccentSystem : RelayAccentSystem<DamagedSiliconAccentComponent>
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedBatterySystem _battery = default!;
@@ -19,22 +21,18 @@ public sealed partial class DamagedSiliconAccentSystem : EntitySystem
     [Dependency] private DestructibleSystem _destructibleSystem = default!;
     [Dependency] private DamageableSystem _damageable = default!;
 
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<DamagedSiliconAccentComponent, AccentGetEvent>(OnAccent, after: [typeof(ReplacementAccentSystem)]);
-    }
+    protected override Type[]? AccentAfter => [typeof(ReplacementAccentSystem)];
 
-    private void OnAccent(Entity<DamagedSiliconAccentComponent> ent, ref AccentGetEvent args)
+    protected override string AccentuateInternal(EntityUid uid, DamagedSiliconAccentComponent comp, string message)
     {
-        var uid = ent.Owner;
+        var ent = (uid, comp);
 
-        if (ent.Comp.EnableChargeCorruption)
+        if (comp.EnableChargeCorruption)
         {
             var currentChargeLevel = 0.0f;
-            if (ent.Comp.OverrideChargeLevel.HasValue)
+            if (comp.OverrideChargeLevel.HasValue)
             {
-                currentChargeLevel = ent.Comp.OverrideChargeLevel.Value;
+                currentChargeLevel = comp.OverrideChargeLevel.Value;
             }
             else if (_powerCell.TryGetBatteryFromSlot(uid, out var battery))
             {
@@ -42,23 +40,25 @@ public sealed partial class DamagedSiliconAccentSystem : EntitySystem
             }
             currentChargeLevel = Math.Clamp(currentChargeLevel, 0.0f, 1.0f);
             // Corrupt due to low power (drops characters on longer messages)
-            args.Message = CorruptPower(args.Message, currentChargeLevel, ent.Comp);
+            message = CorruptPower(message, currentChargeLevel, comp);
         }
 
-        if (ent.Comp.EnableDamageCorruption)
+        if (comp.EnableDamageCorruption)
         {
             var damage = FixedPoint2.Zero;
-            if (ent.Comp.OverrideTotalDamage.HasValue)
+            if (comp.OverrideTotalDamage.HasValue)
             {
-                damage = ent.Comp.OverrideTotalDamage.Value;
+                damage = comp.OverrideTotalDamage.Value;
             }
             else if (TryComp<DamageableComponent>(uid, out var damageable))
             {
                 damage = _damageable.GetTotalDamage((uid, damageable));
             }
             // Corrupt due to damage (drop, repeat, replace with symbols)
-            args.Message = CorruptDamage(args.Message, damage, ent);
+            message = CorruptDamage(message, damage, ent);
         }
+
+        return message;
     }
 
     public string CorruptPower(string message, float chargeLevel, DamagedSiliconAccentComponent comp)
@@ -190,3 +190,4 @@ public sealed partial class DamagedSiliconAccentSystem : EntitySystem
         return new string(letter, numRepeats);
     }
 }
+// end-backmen: relay-accents
