@@ -4,6 +4,9 @@
   id: MobHumanRXBZZBase
   categories: [ HideSpawnMenu ]
   components:
+  - type: ActionGrant
+    actions:
+    - ActionCentcomFtlAction
   - type: GhostTakeoverAvailable
   - type: AutoImplant
     implants:
