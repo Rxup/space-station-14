@@ -71,8 +71,8 @@
       range: 700
     - type: FireControllable
     - type: ApcPowerReceiver
-    powerLoad: 3100
-  - type: SpaceArtillery
+      powerLoad: 3100
+    - type: SpaceArtillery
       powerChargeRate: 50
       powerUseActive: 50
       powerUsePassive: 3100
