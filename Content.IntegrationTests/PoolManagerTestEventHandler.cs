@@ -96,13 +96,24 @@ public sealed class PoolManagerTestEventHandler
     [OneTimeTearDown]
     public void TearDown()
     {
-        try
+        // Pair Kill()/Dispose can stall silently; don't block NUnit exit (CI used to
+        // look "hung" then get blame-aborted after a fully green run).
+        var shutdown = Task.Run(() =>
         {
-            PoolManager.Shutdown();
-        }
-        catch
+            try
+            {
+                PoolManager.Shutdown();
+            }
+            catch
+            {
+                // ignore during teardown
+            }
+        });
+
+        if (!shutdown.Wait(TimeSpan.FromSeconds(IsCi ? 45 : 120)))
         {
-            // ignore during teardown
+            TestContext.Error.WriteLine(
+                $"{nameof(PoolManagerTestEventHandler)}: Pool shutdown timed out; abandoning pairs.");
         }
     }
 }

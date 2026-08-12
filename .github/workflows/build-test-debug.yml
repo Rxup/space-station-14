@@ -56,8 +56,8 @@ jobs:
         NUnit.WorkDirectory=${{ github.workspace }}/test_results
 
     - name: Run Content.IntegrationTests (core)
-      # Kill the whole process tree if anything hangs (pair deadlock / DeathReport stall).
-      # blame-hang dumps which test was stuck.
+      # GNU timeout kills hung hosts. Do NOT use --blame-hang: after all tests pass,
+      # pool Shutdown/Dispose is silent for >5m and Blame aborts a green run (exit 1).
       run: |
         set -euo pipefail
         FILTER='FullyQualifiedName!~Backmen&FullyQualifiedName!~PostMapInitTest&FullyQualifiedName!~StationPowerTests&FullyQualifiedName!~SalvageTest&FullyQualifiedName!~EntityTest&FullyQualifiedName!~PrototypeSaveTest&FullyQualifiedName!~DamageAllPrototypes&FullyQualifiedName!~ItemSpriteTest&FullyQualifiedName!~MagazineVisualsSpriteTest&FullyQualifiedName!~AllGamePresetsStartTest&FullyQualifiedName!~TryAllReactionsTest&FullyQualifiedName!~MaterialArbitrageTest'
@@ -67,7 +67,6 @@ jobs:
           Content.IntegrationTests/Content.IntegrationTests.csproj \
           --filter "${FILTER}" \
           --settings Content.IntegrationTests/ci.runsettings \
-          --blame-hang --blame-hang-timeout 5m --blame-hang-dump-type none \
           -- \
           NUnit.ConsoleOut=1 \
           NUnit.MapWarningTo=Failed \
@@ -118,7 +117,6 @@ jobs:
           Content.IntegrationTests/Content.IntegrationTests.csproj \
           --filter 'FullyQualifiedName~Backmen&FullyQualifiedName!~PostMapInitTest' \
           --settings Content.IntegrationTests/ci.runsettings \
-          --blame-hang --blame-hang-timeout 5m --blame-hang-dump-type none \
           -- \
           NUnit.ConsoleOut=1 \
           NUnit.MapWarningTo=Failed \
@@ -169,7 +167,6 @@ jobs:
           Content.IntegrationTests/Content.IntegrationTests.csproj \
           --filter 'FullyQualifiedName~PostMapInitTest|FullyQualifiedName~StationPowerTests|FullyQualifiedName~SalvageTest' \
           --settings Content.IntegrationTests/ci.runsettings \
-          --blame-hang --blame-hang-timeout 10m --blame-hang-dump-type none \
           -- \
           NUnit.ConsoleOut=1 \
           NUnit.MapWarningTo=Failed \
@@ -220,7 +217,6 @@ jobs:
           Content.IntegrationTests/Content.IntegrationTests.csproj \
           --filter 'FullyQualifiedName~EntityTest|FullyQualifiedName~PrototypeSaveTest|FullyQualifiedName~DamageAllPrototypes|FullyQualifiedName~ItemSpriteTest|FullyQualifiedName~MagazineVisualsSpriteTest|FullyQualifiedName~AllGamePresetsStartTest|FullyQualifiedName~TryAllReactionsTest|FullyQualifiedName~MaterialArbitrageTest' \
           --settings Content.IntegrationTests/ci.runsettings \
-          --blame-hang --blame-hang-timeout 8m --blame-hang-dump-type none \
           -- \
           NUnit.ConsoleOut=1 \
           NUnit.MapWarningTo=Failed \
