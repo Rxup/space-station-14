@@ -31,6 +31,8 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: BatterySelfRecharger
     autoRechargeRate: 214
+  - type: ApcPowerReceiver
+    powerLoad: 3500
   - type: SpaceArtillery
     powerChargeRate: 214
     powerUsePassive: 3500
@@ -76,6 +78,8 @@
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: ApcPowerReceiver
+    powerLoad: 3500
   - type: SpaceArtillery
     powerChargeRate: 200
     powerUsePassive: 3500

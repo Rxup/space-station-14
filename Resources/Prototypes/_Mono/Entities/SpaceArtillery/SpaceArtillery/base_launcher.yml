@@ -9,7 +9,7 @@
   components:
   - type: ExtensionCableReceiver
   - type: ApcPowerReceiver
-    powerLoad: 250
+    powerLoad: 600 # matches SpaceArtillery.PowerUsePassive default
   - type: Damageable
     damageModifierSet: StructuralMetallic
   - type: Injurable

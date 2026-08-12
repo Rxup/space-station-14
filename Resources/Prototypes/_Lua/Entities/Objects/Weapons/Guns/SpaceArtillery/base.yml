@@ -22,7 +22,7 @@
     - type: LightningTarget
       priority: 1
     - type: ApcPowerReceiver
-      powerLoad: 250
+      powerLoad: 600 # matches SpaceArtillery.PowerUsePassive default
     - type: FireControllable
     - type: InteractionOutline
     - type: Clickable

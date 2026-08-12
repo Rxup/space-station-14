@@ -44,7 +44,9 @@
     - type: BatteryAmmoProvider
       proto: BulletShuttleGrapplingHook
       fireCost: 200
-    - type: SpaceArtillery
+    - type: ApcPowerReceiver
+    powerLoad: 1100
+  - type: SpaceArtillery
       powerChargeRate: 100
       powerUseActive: 20
       powerUsePassive: 1100

@@ -30,6 +30,8 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
     autoRechargeRate: 350
+  - type: ApcPowerReceiver
+    powerLoad: 500
   - type: SpaceArtillery
     powerChargeRate: 350
     powerUsePassive: 500
@@ -101,6 +103,8 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
     autoRechargeRate: 350
+  - type: ApcPowerReceiver
+    powerLoad: 500
   - type: SpaceArtillery
     powerChargeRate: 350
     powerUsePassive: 500
@@ -179,6 +183,8 @@
   - type: BatterySelfRecharger
     autoRechargePauseTime: 60
     autoRechargeRate: 81600
+  - type: ApcPowerReceiver
+    powerLoad: 25000
   - type: SpaceArtillery
     powerChargeRate: 81600
     powerUsePassive: 25000
@@ -240,6 +246,8 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
     autoRechargeRate: 350
+  - type: ApcPowerReceiver
+    powerLoad: 500
   - type: SpaceArtillery
     powerChargeRate: 350
     powerUsePassive: 500
@@ -307,6 +315,8 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
     autoRechargeRate: 350
+  - type: ApcPowerReceiver
+    powerLoad: 500
   - type: SpaceArtillery
     powerChargeRate: 350
     powerUsePassive: 500
@@ -374,6 +384,8 @@
       path: /Audio/Weapons/click.ogg
   - type: BatterySelfRecharger
     autoRechargeRate: 300
+  - type: ApcPowerReceiver
+    powerLoad: 100
   - type: SpaceArtillery
     powerChargeRate: 700
     powerUsePassive: 100
@@ -458,6 +470,8 @@
   - type: BatterySelfRecharger
     autoRechargePauseTime: 60
     autoRechargeRate: 81600
+  - type: ApcPowerReceiver
+    powerLoad: 25000
   - type: SpaceArtillery
     powerChargeRate: 81600
     powerUsePassive: 25000
@@ -520,6 +534,8 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
     autoRechargeRate: 350
+  - type: ApcPowerReceiver
+    powerLoad: 500
   - type: SpaceArtillery
     powerChargeRate: 350
     powerUsePassive: 500
@@ -587,6 +603,8 @@
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
   - type: BatterySelfRecharger
     autoRechargeRate: 350
+  - type: ApcPowerReceiver
+    powerLoad: 1250
   - type: SpaceArtillery
     powerChargeRate: 350
     powerUsePassive: 1250
@@ -657,6 +675,8 @@
   - type: BatterySelfRecharger
     autoRechargePauseTime: 60
     autoRechargeRate: 81600
+  - type: ApcPowerReceiver
+    powerLoad: 25000
   - type: SpaceArtillery
     powerChargeRate: 81600
     powerUsePassive: 25000
@@ -719,6 +739,8 @@
       path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/EmptyAlarm/smg_empty_alarm.ogg
+  - type: ApcPowerReceiver
+    powerLoad: 300
   - type: SpaceArtillery
     powerChargeRate: 200
     powerUsePassive: 300

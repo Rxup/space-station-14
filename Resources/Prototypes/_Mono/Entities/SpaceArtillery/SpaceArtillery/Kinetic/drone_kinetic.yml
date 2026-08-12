@@ -95,6 +95,8 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon2.ogg
     soundEmpty:
       path: /Audio/Weapons/click.ogg
+  - type: ApcPowerReceiver
+    powerLoad: 5000
   - type: SpaceArtillery
     powerChargeRate: 5000
     powerUsePassive: 5000
