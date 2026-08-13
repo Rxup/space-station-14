@@ -23,5 +23,11 @@ namespace Content.Shared.Backmen.Explosion.Components
         /// </summary>
         [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
         public float Width = 0.8f;
+
+        /// <summary>
+        ///     How far from the epicenter a player must be to get the shock-wave overlay.
+        /// </summary>
+        [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+        public float Range = 16f;
     }
 }

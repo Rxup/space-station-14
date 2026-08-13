@@ -23,7 +23,7 @@
     solution:
       reagents:
       - ReagentId: Vomit
-        Quantity: 10
+        Quantity: 20 # backmen: vomit-slip
 
 - type: entity
   id: PuddleEgg

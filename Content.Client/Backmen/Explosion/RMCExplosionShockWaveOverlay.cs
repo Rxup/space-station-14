@@ -6,6 +6,9 @@ using System.Numerics;
 
 namespace Content.Client.Backmen.Explosion;
 
+/// <summary>
+/// Fullscreen shock-wave distortion. Added/removed by <see cref="RMCExplosionShockWaveOverlaySystem"/>.
+/// </summary>
 public sealed partial class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscriber
 {
     [Dependency] private IEntityManager _entMan = default!;

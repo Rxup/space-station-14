@@ -95,6 +95,10 @@ public sealed partial class VomitSystem : EntitySystem
 
         // It fully empties the stomach, this amount from the chem stream is relatively small
         var solutionSize = (MathF.Abs(thirstAdded) + MathF.Abs(hungerAdded)) / 6;
+        // start-backmen: vomit-slip
+        // Puddles only slip above OverflowVolume * LowThreshold (15u). A default vomit is ~13u.
+        solutionSize = MathF.Max(solutionSize, 20f);
+        // end-backmen: vomit-slip
 
         // Apply a bit of slowdown
         _movementMod.TryUpdateMovementSpeedModDuration(uid, MovementModStatusSystem.VomitingSlowdown, TimeSpan.FromSeconds(solutionSize), 0.5f);

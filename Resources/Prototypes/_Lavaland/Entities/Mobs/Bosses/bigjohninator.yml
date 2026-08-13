@@ -314,6 +314,7 @@
       layers:
         - state: NoId
     - type: RMCExplosionShockWave
+      range: 20 # backmen: shockwave-overlay
     - type: GravityWell
       baseRadialAcceleration: -100
       maxRange: 20

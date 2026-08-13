@@ -1,0 +1,10 @@
+- type: entity
+  parent: StatusEffectBase
+  id: StatusEffectShockWave
+  name: shock wave
+  components:
+  - type: StatusEffect
+    whitelist:
+      components:
+      - Actor
+  - type: ShockWaveStatusEffect

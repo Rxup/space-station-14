@@ -104,6 +104,8 @@ public sealed partial class CapturePointSystem : SharedCapturePointSystem
         {
             RaiseLocalEvent(ent, new BkmCaptureDoneEvent(args.Team), true);
         }
+
+        UpdateAppearance(ent, resetMoving: true);
     }
 
     private void OnStartup(Entity<BkmCapturePointComponent> ent, ref ComponentStartup args)
@@ -159,8 +161,13 @@ public sealed partial class CapturePointSystem : SharedCapturePointSystem
             _appearanceSystem.SetData(ent, BkmCPTVisualState.TeamBToNeutral, false, component);
             _appearanceSystem.SetData(ent, BkmCPTVisualState.TeamNeutralToA, false, component);
             _appearanceSystem.SetData(ent, BkmCPTVisualState.TeamNeutralToB, false, component);
+            UpdateAppearance(ent, resetMoving: false, component);
             return;
         }
+
+        _appearanceSystem.SetData(ent, BkmCPTVisualState.TeamNeutral, false, component);
+        _appearanceSystem.SetData(ent, BkmCPTVisualState.TeamA, false, component);
+        _appearanceSystem.SetData(ent, BkmCPTVisualState.TeamB, false, component);
         _appearanceSystem.SetData(ent, BkmCPTVisualState.TeamAToNeutral, from == StationTeamMarker.TeamA && to == StationTeamMarker.Neutral, component);
         _appearanceSystem.SetData(ent, BkmCPTVisualState.TeamBToNeutral, from == StationTeamMarker.TeamB && to == StationTeamMarker.Neutral, component);
         _appearanceSystem.SetData(ent, BkmCPTVisualState.TeamNeutralToA, from == StationTeamMarker.Neutral && to == StationTeamMarker.TeamA, component);

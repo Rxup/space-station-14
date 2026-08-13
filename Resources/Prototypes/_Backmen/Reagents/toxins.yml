@@ -25,9 +25,12 @@
   physicalDesc: reagent-physical-desc-bubbling
   flavor: bitter
   color: "#b428c9"
+  slipData:
+    requiredSlipSpeed: 2.5
+  friction: 0.3
   reactiveEffects:
     Acidic:
-      methods: [ Touch ]
+      methods: [ Touch, Ingestion ]
       effects:
       - !type:Emote
         emote: Scream

@@ -18,16 +18,22 @@
       map: ["TeamNeutral"]
     - state: captured_by_a
       map: ["TeamA"]
+      visible: false
     - state: captured_by_b
       map: ["TeamB"]
+      visible: false
     - state: n_capturing_by_a
       map: ["TeamNeutralToA"]
+      visible: false
     - state: n_capturing_by_b
       map: ["TeamNeutralToB"]
+      visible: false
     - state: a_capturing_by_b
       map: ["TeamAToNeutral"]
+      visible: false
     - state: b_capturing_by_a
       map: ["TeamBToNeutral"]
+      visible: false
   - type: GenericVisualizer
     visuals:
       enum.BkmCPTVisualState.TeamNeutral:
@@ -39,7 +45,7 @@
           True: { visible: true }
           False: { visible: false }
       enum.BkmCPTVisualState.TeamB:
-        TeamA:
+        TeamB:
           True: { visible: true }
           False: { visible: false }
       enum.BkmCPTVisualState.TeamNeutralToA:

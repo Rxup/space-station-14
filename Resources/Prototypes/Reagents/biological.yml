@@ -266,8 +266,8 @@
   color: "#87ab08"
   physicalDesc: reagent-physical-desc-pungent
   slipData:
-    requiredSlipSpeed: 4.0 #It's not as slippery as water
-  friction: 0.4
+    requiredSlipSpeed: 2.5 # backmen: vomit-slip
+  friction: 0.3 # backmen: vomit-slip
   metabolisms:
     Digestion:
       metabolites:
@@ -275,6 +275,18 @@
       effects:
       - !type:SatiateThirst
         factor: 0.5
+      # start-backmen: vomit-miasma-disease
+      - !type:ChemMiasmaPoolSource
+        scaling: false
+      # end-backmen: vomit-miasma-disease
+  # start-backmen: vomit-miasma-disease
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch, Ingestion ]
+      effects:
+      - !type:ChemMiasmaPoolSource
+        scaling: false
+  # end-backmen: vomit-miasma-disease
   footstepSound:
     collection: FootstepBlood
     params:

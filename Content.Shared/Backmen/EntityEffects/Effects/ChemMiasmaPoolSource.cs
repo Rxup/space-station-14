@@ -20,7 +20,8 @@ public sealed partial class ChemMiasmaPoolSourceEntityEffectSystem : EntityEffec
 
     protected override void Effect(Entity<MobStateComponent> entity, ref EntityEffectEvent<ChemMiasmaPoolSource> args)
     {
-        if (args.Scale != 1f)
+        // Touch/ingestion use reagent quantity as scale (often != 1). Skip only partial ticks.
+        if (args.Scale < 1f)
             return;
 
         // One active disease from gas/pool sources — do not stack every pool rotation.
