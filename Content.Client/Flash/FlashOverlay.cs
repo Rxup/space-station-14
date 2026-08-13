@@ -34,6 +34,7 @@ public sealed partial class FlashOverlay : Overlay
         IoCManager.InjectDependencies(this);
         _shader = _prototypeManager.Index(FlashedEffectShader).InstanceUnique();
         _statusSys = _entityManager.System<StatusEffectsSystem>();
+        ZIndex = 0; // backmen: below haunt jumpscare (ZIndex 50)
 
         _configManager.OnValueChanged(CCVars.ReducedMotion, (b) => { _reducedMotion = b; }, invokeImmediately: true);
     }

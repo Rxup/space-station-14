@@ -20,7 +20,6 @@ using Content.Server.Backmen.Disease;
 using Content.Shared._Impstation.Revenant;
 using Content.Shared._Impstation.Revenant.Components;
 using Content.Shared.Backmen.Disease;
-using Content.Shared.Flash;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Movement.Components;
@@ -64,7 +63,6 @@ public sealed partial class RevenantSystem
     [Dependency] private SharedHandsSystem _handsSystem = default!;
     [Dependency] private RevenantAnimatedSystem _revenantAnimated = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
-    [Dependency] private SharedFlashSystem _flashSystem = default!;
     [Dependency] private IPlayerManager _players = default!;
     [Dependency] private DiseaseSystem _disease = default!;
     [Dependency] private EntityQuery<DiseaseCarrierComponent> _diseaseCarrierQuery = default!;
@@ -410,14 +408,8 @@ public sealed partial class RevenantSystem
             if (!_interact.InRangeUnobstructed(uid, ent, -1, collisionMask: CollisionGroup.Impassable))
                 continue;
 
-            _flashSystem.Flash(
-                ent,
-                uid,
-                uid,
-                comp.HauntFlashDuration,
-                slowTo: 0.4f,
-                displayPopup: true,
-                stunDuration: comp.HauntStunDuration);
+            // Flash comes from FlashedStatusEffect on StatusEffectHaunted (YAML).
+            _stun.TryUpdateParalyzeDuration(ent, comp.HauntStunDuration);
 
             if (_players.TryGetSessionByEntity(ent, out var session))
             {
@@ -427,9 +419,14 @@ public sealed partial class RevenantSystem
 
             witnessNets.Add(GetNetEntity(ent));
 
-            if (!_status.HasStatusEffect(ent, RevenantStatusEffects.Haunted))
+            var alreadyHaunted = _status.HasStatusEffect(ent, RevenantStatusEffects.Haunted);
+            if (alreadyHaunted)
             {
-                _status.TryAddStatusEffectDuration(ent, RevenantStatusEffects.Haunted, comp.HauntHauntedDuration);
+                // Refresh so flash overlay duration tracks a new haunt scare.
+                _status.TrySetStatusEffectDuration(ent, RevenantStatusEffects.Haunted, comp.HauntHauntedDuration);
+            }
+            else if (_status.TryAddStatusEffectDuration(ent, RevenantStatusEffects.Haunted, comp.HauntHauntedDuration))
+            {
                 newHaunts++;
             }
         }

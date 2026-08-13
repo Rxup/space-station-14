@@ -164,6 +164,16 @@ public sealed partial class PlayerListControl : BoxContainer
         button.AddChild(entry);
         button.AddStyleClass(ListContainer.StyleClassListContainerButton);
     }
+
+    // start-backmen: ahelp-reconnect
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+
+        if (disposing)
+            _adminSystem.PlayerListChanged -= PopulateList;
+    }
+    // end-backmen: ahelp-reconnect
 }
 
 public record PlayerListData(PlayerInfo Info) : ListData;

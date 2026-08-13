@@ -52,3 +52,4 @@
   - type: StatusEffectAlert
     alert: Haunted
   - type: HauntedStatusEffect
+  - type: FlashedStatusEffect

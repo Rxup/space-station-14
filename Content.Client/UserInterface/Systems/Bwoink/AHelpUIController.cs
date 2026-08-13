@@ -57,9 +57,6 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<BwoinkDiscordRelayUpdated>(DiscordRelayUpdated);
-        SubscribeNetworkEvent<BwoinkPlayerTypingUpdated>(PeopleTypingUpdated);
-
         _adminManager.AdminStatusUpdated += OnAdminStatusUpdated;
         _config.OnValueChanged(CCVars.AHelpSound, v => _aHelpSound = v, true);
         _config.OnValueChanged(CCVars.BwoinkSoundEnabled, v => _bwoinkSoundEnabled = v, true);
@@ -101,6 +98,12 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
         _bwoinkSystem = system;
         _bwoinkSystem.OnBwoinkTextMessageRecieved += ReceivedBwoink;
 
+        // start-backmen: ahelp-reconnect
+        // Re-subscribe after EntityManager.Shutdown clears the event bus on disconnect.
+        SubscribeNetworkEvent<BwoinkDiscordRelayUpdated>(DiscordRelayUpdated);
+        SubscribeNetworkEvent<BwoinkPlayerTypingUpdated>(PeopleTypingUpdated);
+        // end-backmen: ahelp-reconnect
+
         _input.SetInputCommand(ContentKeyFunctions.OpenAHelp,
             InputCmdHandler.FromDelegate(_ => ToggleWindow()));
     }
@@ -112,6 +115,22 @@ public sealed partial class AHelpUIController: UIController, IOnSystemChanged<Bw
         DebugTools.Assert(_bwoinkSystem != null);
         _bwoinkSystem!.OnBwoinkTextMessageRecieved -= ReceivedBwoink;
         _bwoinkSystem = null;
+
+        // start-backmen: ahelp-reconnect
+        UnSubscribeNetworkEvent<BwoinkDiscordRelayUpdated>();
+        UnSubscribeNetworkEvent<BwoinkPlayerTypingUpdated>();
+
+        // Drop UI bound to the dying AdminSystem so reconnect creates a fresh PlayerListControl.
+        UIHelper?.Dispose();
+        UIHelper = null;
+        _discordRelayActive = false;
+
+        if (GameAHelpButton != null)
+            GameAHelpButton.Pressed = false;
+        if (LobbyAHelpButton != null)
+            LobbyAHelpButton.Pressed = false;
+        UnreadAHelpRead();
+        // end-backmen: ahelp-reconnect
     }
 
     private void SetAHelpPressed(bool pressed)
@@ -483,6 +502,16 @@ public sealed class AdminAHelpUIHandler : IAHelpUIHandler
 
     public void Dispose()
     {
+        // start-backmen: ahelp-reconnect
+        if (ClydeWindow != null)
+        {
+            ClydeWindow.RequestClosed -= OnRequestClosed;
+            ClydeWindow.Dispose();
+            ClydeWindow = null;
+            WindowRoot = null;
+        }
+        // end-backmen: ahelp-reconnect
+
         Window?.Dispose();
         Window = null;
         Control = null;

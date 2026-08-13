@@ -336,5 +336,15 @@ namespace Content.Client.Administration.UI.Bwoink
 
             UpdateButtons();
         }
+
+        // start-backmen: ahelp-reconnect
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+
+            if (disposing)
+                _adminManager.AdminStatusUpdated -= UpdateButtons;
+        }
+        // end-backmen: ahelp-reconnect
     }
 }

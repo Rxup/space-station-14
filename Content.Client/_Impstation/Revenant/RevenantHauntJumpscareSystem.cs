@@ -71,6 +71,11 @@ public sealed partial class RevenantHauntJumpscareSystem : EntitySystem
 
 public sealed partial class RevenantHauntJumpscareOverlay : Overlay
 {
+    /// <summary>
+    /// Above <see cref="Content.Client.Flash.FlashOverlay"/> (default ZIndex 0) so the scare is visible over the flash.
+    /// </summary>
+    public const int ContentZIndex = 50;
+
     private static readonly ResPath RevenantRsi = new("/Textures/Mobs/Ghosts/revenant.rsi");
 
     [Dependency] private IEntityManager _entManager = default!;
@@ -82,12 +87,14 @@ public sealed partial class RevenantHauntJumpscareOverlay : Overlay
     private TimeSpan _duration = TimeSpan.FromSeconds(1.1);
     private Texture? _face;
 
-    public override OverlaySpace Space => OverlaySpace.ScreenSpace;
+    // Same OverlaySpace as FlashOverlay so ZIndex ordering applies.
+    public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
     public RevenantHauntJumpscareOverlay()
     {
         IoCManager.InjectDependencies(this);
         _sprite = _entManager.System<SpriteSystem>();
+        ZIndex = ContentZIndex;
     }
 
     public void Begin(TimeSpan start, TimeSpan duration)
@@ -114,16 +121,16 @@ public sealed partial class RevenantHauntJumpscareOverlay : Overlay
             ? 1f
             : 1f - MathF.Pow((t - 0.35f) / 0.65f, 1.6f);
 
-        var handle = args.ScreenHandle;
-        UIBox2 viewport = args.ViewportBounds;
+        var worldHandle = args.WorldHandle;
+        var bounds = args.WorldBounds;
 
-        handle.DrawRect(viewport, Color.Black.WithAlpha(0.92f * alpha));
+        worldHandle.DrawRect(bounds, Color.Black.WithAlpha(0.92f * alpha));
 
         // Huge centered face (classic jumpscare framing).
-        var size = Math.Min(viewport.Width, viewport.Height) * 0.85f;
-        var center = viewport.Center;
-        var topLeft = center - new Vector2(size * 0.5f, size * 0.5f);
-        var box = UIBox2.FromDimensions(topLeft, new Vector2(size, size));
+        var box = bounds.CalcBoundingBox();
+        var size = Math.Min(box.Width, box.Height) * 0.85f;
+        var center = box.Center;
+        var faceBox = Box2.CenteredAround(center, new Vector2(size, size));
 
         // Slight shake early on.
         if (t < 0.45f)
@@ -131,9 +138,9 @@ public sealed partial class RevenantHauntJumpscareOverlay : Overlay
             var shake = (1f - t / 0.45f) * size * 0.03f;
             var ox = MathF.Sin((float)_timing.CurTime.TotalSeconds * 70f) * shake;
             var oy = MathF.Cos((float)_timing.CurTime.TotalSeconds * 85f) * shake;
-            box = box.Translated(new Vector2(ox, oy));
+            faceBox = faceBox.Translated(new Vector2(ox, oy));
         }
 
-        handle.DrawTextureRect(_face, box, Color.FromHex("#FF2020").WithAlpha(alpha));
+        worldHandle.DrawTextureRect(_face, faceBox, Color.FromHex("#FF2020").WithAlpha(alpha));
     }
 }

@@ -234,11 +234,9 @@ public sealed partial class RevenantComponent : Component
     [DataField]
     public SoundSpecifier? HauntSound = new SoundCollectionSpecifier("RevenantHauntScreamer", AudioParams.Default.WithVolume(8f));
 
-    [DataField]
-    public TimeSpan HauntFlashDuration = TimeSpan.FromSeconds(3);
-
     /// <summary>
-    /// Brief stun applied with the haunt flash so the scare is obvious.
+    /// Brief stun applied with Haunt so the scare is obvious.
+    /// Flash overlay comes from <c>FlashedStatusEffect</c> on <c>StatusEffectHaunted</c>.
     /// </summary>
     [DataField]
     public TimeSpan HauntStunDuration = TimeSpan.FromSeconds(1);
@@ -250,7 +248,7 @@ public sealed partial class RevenantComponent : Component
     public float HauntRange = 10f;
 
     /// <summary>
-    /// How long the Haunted status effect lasts on a witness (blocks re-haunt essence).
+    /// How long the Haunted status effect lasts on a witness (blocks re-haunt essence; includes flash overlay).
     /// </summary>
     [DataField]
     public TimeSpan HauntHauntedDuration = TimeSpan.FromMinutes(1);
