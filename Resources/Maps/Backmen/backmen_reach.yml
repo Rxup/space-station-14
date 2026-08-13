@@ -871,6 +871,7 @@ entities:
     - type: RadiationGridResistance
     - type: BecomesStation
       id: Reach
+    - type: PreventFTL
     - type: NavMap
 - proto: AcousticGuitarInstrument
   entities:

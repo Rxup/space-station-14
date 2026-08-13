@@ -114,6 +114,7 @@ entities:
       fixtures: {}
     - type: BecomesStation
       id: Reach
+    - type: PreventFTL # backmen: prevent-ftl
     - type: OccluderTree
     - type: Shuttle
       dampingModifier: 0.25
