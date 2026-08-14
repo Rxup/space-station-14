@@ -5,11 +5,15 @@ using Content.Server.Ghost.Roles;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Mind;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Chat;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Kitchen.Components;
 using Content.Shared.Kitchen.EntitySystems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
@@ -39,9 +43,12 @@ public sealed partial class RevenantStasisSystem : EntitySystem
     [Dependency] private TagSystem _tags = default!;
     [Dependency] private ExplosionSystem _explosion = default!;
     [Dependency] private FollowerSystem _followerSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
 
     private static readonly ProtoId<TagPrototype> Salt = "Salt";
     private static readonly ProtoId<TagPrototype> EctoplasmTag = "Ectoplasm";
+    private static readonly ProtoId<ReagentPrototype> TableSalt = "TableSalt";
 
     public override void Initialize()
     {
@@ -171,15 +178,7 @@ public sealed partial class RevenantStasisSystem : EntitySystem
 
     private void OnGrindAttempt(EntityUid uid, RevenantStasisComponent comp, GrindAttemptEvent args)
     {
-        var hasSalt = false;
-        foreach (var content in args.Contents)
-        {
-            if (_tags.HasTag(content, Salt))
-            {
-                hasSalt = true;
-                break;
-            }
-        }
+        var hasSalt = HasGrindSalt(args);
 
         var requiresSalt = !TryComp<RevenantComponent>(comp.Revenant, out var revenant)
             || revenant.GrindingRequiresSalt;
@@ -196,6 +195,32 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         _explosion.QueueExplosion(args.Grinder, "Default", 7.5f, 4f, 2f);
         TryReviveFromStasis(uid, comp);
         QueueDel(uid);
+    }
+
+    /// <summary>
+    /// Salt ore / salt packet (tag), TableSalt in hopper items, or TableSalt already in the grinder beaker.
+    /// </summary>
+    private bool HasGrindSalt(GrindAttemptEvent args)
+    {
+        foreach (var content in args.Contents)
+        {
+            if (_tags.HasTag(content, Salt) || EntityContainsTableSalt(content))
+                return true;
+        }
+
+        var beaker = _itemSlots.GetItemOrNull(args.Grinder, ReagentGrinderComponent.BeakerSlotId);
+        return beaker != null && EntityContainsTableSalt(beaker.Value);
+    }
+
+    private bool EntityContainsTableSalt(EntityUid uid)
+    {
+        foreach (var (_, soln) in _solution.EnumerateSolutions(uid))
+        {
+            if (soln.Comp.Solution.ContainsPrototype(TableSalt))
+                return true;
+        }
+
+        return false;
     }
 
     private void OnAttemptDirection(EntityUid uid, RevenantStasisComponent comp, ChangeDirectionAttemptEvent args)

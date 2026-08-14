@@ -236,7 +236,6 @@ public sealed partial class RevenantComponent : Component
 
     /// <summary>
     /// Brief stun applied with Haunt so the scare is obvious.
-    /// Flash overlay comes from <c>FlashedStatusEffect</c> on <c>StatusEffectHaunted</c>.
     /// </summary>
     [DataField]
     public TimeSpan HauntStunDuration = TimeSpan.FromSeconds(1);
@@ -248,10 +247,16 @@ public sealed partial class RevenantComponent : Component
     public float HauntRange = 10f;
 
     /// <summary>
-    /// How long the Haunted status effect lasts on a witness (blocks re-haunt scare and essence; includes flash overlay).
+    /// How long the Haunted status lasts (blocks re-haunt scare and essence). Flash is separate.
     /// </summary>
     [DataField]
     public TimeSpan HauntHauntedDuration = TimeSpan.FromMinutes(3);
+
+    /// <summary>
+    /// How long the flash overlay lasts. Must not use <c>StatusEffectHaunted</c> or blindness lasts the full immunity.
+    /// </summary>
+    [DataField]
+    public TimeSpan HauntFlashDuration = TimeSpan.FromSeconds(2);
 
     /// <summary>
     /// Client fullscreen jumpscare duration for haunted witnesses.

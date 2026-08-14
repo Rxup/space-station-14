@@ -24,6 +24,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Movement.Components;
 using Content.Shared.StatusEffectNew;
+using Content.Shared.Flash;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Server.Player;
@@ -412,8 +413,9 @@ public sealed partial class RevenantSystem
             if (_status.HasStatusEffect(ent, RevenantStatusEffects.Haunted))
                 continue;
 
-            // Flash comes from FlashedStatusEffect on StatusEffectHaunted (YAML).
+            // Flash is a separate short StatusEffectFlashed — not on Haunted, or blindness lasts 3 minutes.
             _stun.TryUpdateParalyzeDuration(ent, comp.HauntStunDuration);
+            _status.TryAddStatusEffectDuration(ent, SharedFlashSystem.FlashedKey, comp.HauntFlashDuration);
 
             if (_players.TryGetSessionByEntity(ent, out var session))
             {

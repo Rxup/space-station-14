@@ -298,6 +298,14 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 2
     fillBaseName: packet-solid-
+  # start-backmen: revenant-salt-grind
+  - type: Extractable
+    grindableSolutionName: food
+  - type: Tag
+    tags:
+    - Packet
+    - Salt
+  # end-backmen: revenant-salt-grind
 
 - type: entity
   parent: BaseFoodCondimentPacketDrink
