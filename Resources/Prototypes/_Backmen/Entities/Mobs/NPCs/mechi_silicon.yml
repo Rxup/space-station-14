@@ -139,6 +139,17 @@
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
   - type: Pullable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: MovementIgnoreGravity
   - type: Tag
     tags:

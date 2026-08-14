@@ -3912,6 +3912,14 @@ Entries:
     type: Tweak
   id: 264
   time: '2026-08-10T13:45:00.0000000+00:00'
+- author: Zack Backmen
+  changes:
+  - message: "Haunt ревенанта больше не пугает тех, у кого уже есть дебаф «Напуган»."
+    type: Tweak
+  - message: "Дебаф «Напуган» от Haunt теперь длится 3 минуты."
+    type: Tweak
+  id: 265
+  time: '2026-08-14T09:50:00.0000000+00:00'
 
 Name: ChangelogBkm
 Order: 0

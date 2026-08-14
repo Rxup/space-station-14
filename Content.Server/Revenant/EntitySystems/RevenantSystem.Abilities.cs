@@ -408,6 +408,10 @@ public sealed partial class RevenantSystem
             if (!_interact.InRangeUnobstructed(uid, ent, -1, collisionMask: CollisionGroup.Impassable))
                 continue;
 
+            // Already haunted: skip scare entirely until the debuff expires.
+            if (_status.HasStatusEffect(ent, RevenantStatusEffects.Haunted))
+                continue;
+
             // Flash comes from FlashedStatusEffect on StatusEffectHaunted (YAML).
             _stun.TryUpdateParalyzeDuration(ent, comp.HauntStunDuration);
 
@@ -419,16 +423,8 @@ public sealed partial class RevenantSystem
 
             witnessNets.Add(GetNetEntity(ent));
 
-            var alreadyHaunted = _status.HasStatusEffect(ent, RevenantStatusEffects.Haunted);
-            if (alreadyHaunted)
-            {
-                // Refresh so flash overlay duration tracks a new haunt scare.
-                _status.TrySetStatusEffectDuration(ent, RevenantStatusEffects.Haunted, comp.HauntHauntedDuration);
-            }
-            else if (_status.TryAddStatusEffectDuration(ent, RevenantStatusEffects.Haunted, comp.HauntHauntedDuration))
-            {
+            if (_status.TryAddStatusEffectDuration(ent, RevenantStatusEffects.Haunted, comp.HauntHauntedDuration))
                 newHaunts++;
-            }
         }
 
         if (witnessFilter.Count > 0)

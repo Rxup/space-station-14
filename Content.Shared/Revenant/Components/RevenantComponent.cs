@@ -248,10 +248,10 @@ public sealed partial class RevenantComponent : Component
     public float HauntRange = 10f;
 
     /// <summary>
-    /// How long the Haunted status effect lasts on a witness (blocks re-haunt essence; includes flash overlay).
+    /// How long the Haunted status effect lasts on a witness (blocks re-haunt scare and essence; includes flash overlay).
     /// </summary>
     [DataField]
-    public TimeSpan HauntHauntedDuration = TimeSpan.FromMinutes(1);
+    public TimeSpan HauntHauntedDuration = TimeSpan.FromMinutes(3);
 
     /// <summary>
     /// Client fullscreen jumpscare duration for haunted witnesses.
