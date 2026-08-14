@@ -51,6 +51,7 @@
   - RoleSurvivalNukie
   components:
   - type: NukeOperative
+  - type: PainImmune # backmen: pain
   - type: NpcFactionMember
     factions:
     - Syndicate

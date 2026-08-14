@@ -650,6 +650,7 @@
     - type: RandomHumanoidProfile
       randomizeName: false
     - type: NukeOperative
+    - type: PainImmune # backmen: pain
 
 - type: entity
   id: RandomHumanoidSpawnerCluwne

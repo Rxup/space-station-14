@@ -103,6 +103,7 @@
   - HeadRevolutionary
   - Revolutionary
   - NukeOperative
+  - PainImmune # backmen: pain
 
 - type: cloningSettings
   abstract: true
