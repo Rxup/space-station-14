@@ -22,6 +22,7 @@ using Content.Shared._Impstation.Revenant.Components;
 using Content.Shared.Backmen.Disease;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Flash;
@@ -76,6 +77,9 @@ public sealed partial class RevenantSystem
     [Dependency] private EntityQuery<MobStateComponent> _mobStateQuery = default!;
 
     private static readonly ProtoId<TagPrototype> WindowTag = "Window";
+    // start-backmen: revenant-blood-writing
+    private static readonly ProtoId<TagPrototype> BloodCrayonTag = "BloodCrayon";
+    // end-backmen: revenant-blood-writing
 
     private void InitializeAbilities()
     {
@@ -464,17 +468,23 @@ public sealed partial class RevenantSystem
 
         if (component.BloodCrayon != null)
         {
-            _handsSystem.RemoveHand((uid, hands), "crayon");
-            QueueDel(component.BloodCrayon);
+            var crayon = component.BloodCrayon.Value;
+            RemComp<UnremoveableComponent>(crayon);
             component.BloodCrayon = null;
+            QueueDel(crayon);
         }
         else
         {
-            _handsSystem.AddHand((uid, hands), "crayon", HandLocation.Middle);
+            _handsSystem.AddHand(
+                (uid, hands),
+                RevenantComponent.BloodWritingHand,
+                HandLocation.Middle,
+                whitelist: new EntityWhitelist { Tags = [BloodCrayonTag] });
             var crayon = Spawn("CrayonBlood");
             component.BloodCrayon = crayon;
-            _handsSystem.DoPickup(uid, "crayon", crayon, hands);
-            EnsureComp<BloodCrayonComponent>(crayon);
+            var bloodCrayon = EnsureComp<BloodCrayonComponent>(crayon);
+            bloodCrayon.Revenant = uid;
+            _handsSystem.DoPickup(uid, RevenantComponent.BloodWritingHand, crayon, hands);
         }
 
         args.Handled = true;

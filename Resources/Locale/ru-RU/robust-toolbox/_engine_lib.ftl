@@ -1,8 +1,7 @@
 # Used internally by the THE() function.
-zzzz-the = { PROPER($ent) ->
-       *[false] the { $ent }
-        [true] { $ent }
-    }
+# start-backmen: loc-the-nre
+zzzz-the = { $ent }
+# end-backmen: loc-the-nre
 # Used internally by the SUBJECT() function.
 zzzz-subject-pronoun = { GENDER($ent) ->
         [male] он
@@ -25,6 +24,15 @@ zzzz-dat-object = { GENDER($ent) ->
         [epicene] им
        *[neuter] ему
     }
+# start-backmen: loc-the-nre
+# Used internally by the GENITIVE() function.
+zzzz-genitive = { GENDER($ent) ->
+        [male] него
+        [female] неё
+        [epicene] них
+       *[neuter] него
+    }
+# end-backmen: loc-the-nre
 # Used internally by the POSS-PRONOUN() function.
 zzzz-possessive-pronoun = { GENDER($ent) ->
         [male] его

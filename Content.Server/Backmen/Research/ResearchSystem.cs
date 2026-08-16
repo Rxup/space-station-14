@@ -155,4 +155,12 @@ public sealed partial class ResearchSystem
 
         return true;
     }
+
+    /// <summary>
+    /// Whether the R&amp;D server is actually running (powered, has air, not overheated).
+    /// </summary>
+    public bool IsResearchServerOperating(EntityUid uid)
+    {
+        return CanRun(uid);
+    }
 }

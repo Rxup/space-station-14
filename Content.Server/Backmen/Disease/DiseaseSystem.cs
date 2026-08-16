@@ -51,6 +51,12 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private SharedBkRottingSystem _rotting = default!;
 
+    /// <summary>
+    /// Infected entities ticked this frame. Accumulators are updated in parallel;
+    /// cures/effects stay on the main thread (popups, puddles, loc, IoC).
+    /// </summary>
+    private readonly List<Entity<DiseaseCarrierComponent, MobStateComponent>> _diseasedTick = new();
+
     public override void Initialize()
     {
         base.Initialize();
@@ -237,6 +243,7 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
 
         _cureQueue.Clear();
 
+        _diseasedTick.Clear();
         var q =
             EntityQueryEnumerator<DiseasedComponent, DiseaseCarrierComponent, MobStateComponent, MetaDataComponent>();
         while (q.MoveNext(out var owner, out _, out var carrierComp, out var mobState, out var metaDataComponent))
@@ -245,47 +252,57 @@ public sealed partial class DiseaseSystem : SharedDiseaseSystem
                 continue;
 
             if (carrierComp.Diseases.Count == 0)
-            {
                 continue;
-            }
 
-            //DebugTools.Assert(carrierComp.Diseases.Count > 0);
-            /*
-            if (_mobStateSystem.IsDead(owner, mobState))
+            _diseasedTick.Add((owner, carrierComp, mobState));
+        }
+
+        // Parallelize across infected entities (the actual hot path), not diseases on one body.
+        // Worker threads only bump accumulators — no IoC, events, or entity spawns.
+        _parallel.ProcessNow(new DiseaseAccumulatorJob
             {
-                if (_random.Prob(0.005f * frameTime)) //Mean time to remove is 200 seconds per disease
-                    CureDisease((owner, carrierComp), _random.Pick(carrierComp.Diseases));
+                System = this,
+                Owners = _diseasedTick,
+                FrameTime = frameTime
+            },
+            _diseasedTick.Count);
 
-                continue;
+        foreach (var owner in _diseasedTick)
+        {
+            var diseaseCount = owner.Comp1.Diseases.Count;
+            for (var i = 0; i < diseaseCount; i++)
+            {
+                ProcessDue(owner, i);
             }
-*/
-            _parallel.ProcessNow(new DiseaseJob
-                {
-                    System = this,
-                    Owner = (owner, carrierComp, mobState),
-                    FrameTime = frameTime
-                },
-                carrierComp.Diseases.Count);
         }
     }
 
-    private record struct DiseaseJob : IParallelRobustJob
+    private record struct DiseaseAccumulatorJob : IParallelRobustJob
     {
+        public int BatchSize => 8;
+
         public DiseaseSystem System { get; init; }
-        public Entity<DiseaseCarrierComponent, MobStateComponent> Owner { get; init; }
+        public List<Entity<DiseaseCarrierComponent, MobStateComponent>> Owners { get; init; }
         public float FrameTime { get; init; }
 
         public void Execute(int index)
         {
-            System.Process(Owner, FrameTime, index);
+            System.AddAccumulators(Owners[index], FrameTime);
         }
     }
 
-    private void Process(Entity<DiseaseCarrierComponent, MobStateComponent> owner, float frameTime, int i)
+    private void AddAccumulators(Entity<DiseaseCarrierComponent, MobStateComponent> owner, float frameTime)
+    {
+        foreach (var disease in owner.Comp1.Diseases)
+        {
+            disease.Accumulator += frameTime;
+            disease.TotalAccumulator += frameTime;
+        }
+    }
+
+    private void ProcessDue(Entity<DiseaseCarrierComponent, MobStateComponent> owner, int i)
     {
         var disease = owner.Comp1.Diseases[i];
-        disease.Accumulator += frameTime;
-        disease.TotalAccumulator += frameTime;
 
         if (disease.Accumulator < disease.TickTime)
             return;

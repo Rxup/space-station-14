@@ -134,6 +134,11 @@ public sealed partial class VomitSystem : EntitySystem
         if (!_netManager.IsServer)
             return;
 
+        // start-backmen: loc-the-nre
+        if (!Exists(uid) || TerminatingOrDeleted(uid))
+            return;
+        // end-backmen: loc-the-nre
+
         // Force sound to play as spill doesn't work if solution is empty.
         _audio.PlayPvs(_vomitSound, uid);
         _popup.PopupEntity(Loc.GetString("disease-vomit", ("person", Identity.Entity(uid, EntityManager))), uid);

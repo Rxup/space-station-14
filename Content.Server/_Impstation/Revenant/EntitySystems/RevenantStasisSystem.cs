@@ -56,6 +56,9 @@ public sealed partial class RevenantStasisSystem : EntitySystem
 
         SubscribeLocalEvent<RevenantStasisComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<RevenantStasisComponent, ComponentShutdown>(OnShutdown);
+        // Before MindSystem ghosts the player on delete (crematorium, crusher, etc.).
+        SubscribeLocalEvent<RevenantStasisComponent, EntityTerminatingEvent>(OnTerminating,
+            before: [typeof(MindSystem)]);
         SubscribeLocalEvent<RevenantStasisStatusEffectComponent, StatusEffectRemovedEvent>(OnStasisStatusRemoved);
         SubscribeLocalEvent<RevenantStasisComponent, ChangeDirectionAttemptEvent>(OnAttemptDirection);
         SubscribeLocalEvent<RevenantStasisComponent, ExaminedEvent>(OnExamine);
@@ -104,6 +107,15 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         args.SpeechVerb = "Ghost";
     }
 
+    private void OnTerminating(EntityUid uid, RevenantStasisComponent component, ref EntityTerminatingEvent args)
+    {
+        if (component.Revived || component.PermanentlyDestroyed)
+            return;
+
+        // Accidental deletion (crematorium, crusher, disposals): return the mind before GhostOnShutdown.
+        TryReviveFromStasis(uid, component);
+    }
+
     private void OnShutdown(EntityUid uid, RevenantStasisComponent component, ComponentShutdown args)
     {
         // Already revived (failed grind / blender broke) — ectoplasm is just being cleaned up.
@@ -150,9 +162,19 @@ public sealed partial class RevenantStasisSystem : EntitySystem
         if (stasis.Revived || TerminatingOrDeleted(stasis.Revenant))
             return;
 
+        // Isolated ectoplasm delete (crematorium, crusher) should revive.
+        // Round wipe deletes the map first — do not re-parent the paused revenant onto it.
+        var ectoXform = Transform(ectoplasm);
+        if (ectoXform.MapUid is { } mapUid && TerminatingOrDeleted(mapUid)
+            || ectoXform.GridUid is { } gridUid && TerminatingOrDeleted(gridUid))
+        {
+            stasis.Revived = true;
+            return;
+        }
+
         stasis.Revived = true;
 
-        var coords = Transform(ectoplasm).Coordinates;
+        var coords = ectoXform.Coordinates;
         _transformSystem.SetCoordinates(stasis.Revenant, coords);
         _transformSystem.AttachToGridOrMap(stasis.Revenant);
         _meta.SetEntityPaused(stasis.Revenant, false);

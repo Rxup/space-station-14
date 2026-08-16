@@ -1,5 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Power.Components;
+using Content.Server.Research.Systems;
 using Content.Shared.Atmos;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
@@ -11,6 +12,7 @@ public sealed partial class ResearchServerHeatSystem : EntitySystem
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private ResearchSystem _research = default!;
 
     private readonly List<GasMixture> _environments = new();
 
@@ -19,7 +21,7 @@ public sealed partial class ResearchServerHeatSystem : EntitySystem
         var query = EntityQueryEnumerator<ResearchServerHeatProducingComponent, ApcPowerReceiverComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var heat, out var power, out var xform))
         {
-            if (!power.Powered || power.PowerReceived <= 0f)
+            if (!_research.IsResearchServerOperating(uid) || power.PowerReceived <= 0f)
                 continue;
 
             if (_timing.CurTime < heat.NextSecond)
