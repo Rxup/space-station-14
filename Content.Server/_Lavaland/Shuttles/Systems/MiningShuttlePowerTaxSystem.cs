@@ -1,6 +1,6 @@
 using Content.Server._Lavaland.Shuttles.Components;
 using Content.Server.Power.Components;
-using Content.Server.Power.EntitySystems;
+using Content.Shared._Lavaland.Shuttles;
 using Content.Shared._Lavaland.Shuttles.Components;
 using Content.Shared.Examine;
 using Content.Shared.Power.EntitySystems;
@@ -25,7 +25,7 @@ public sealed partial class MiningShuttlePowerTaxSystem : EntitySystem
         _trackerQuery = GetEntityQuery<MiningShuttlePowerTrackerComponent>();
 
         SubscribeLocalEvent<MiningShuttleComponent, MapInitEvent>(OnShuttleMapInit);
-        SubscribeLocalEvent<ApcPowerReceiverComponent, MapInitEvent>(OnReceiverMapInit, after: [typeof(PowerChargeSystem)]);
+        SubscribeLocalEvent<ApcPowerReceiverComponent, ApcPowerReceiverMapInitEvent>(OnReceiverMapInit);
         SubscribeLocalEvent<ApcPowerReceiverComponent, EntParentChangedMessage>(OnReceiverParentChanged);
         SubscribeLocalEvent<MiningShuttlePowerTaxComponent, ExaminedEvent>(OnTaxExamined);
     }
@@ -44,7 +44,7 @@ public sealed partial class MiningShuttlePowerTaxSystem : EntitySystem
         }
     }
 
-    private void OnReceiverMapInit(Entity<ApcPowerReceiverComponent> ent, ref MapInitEvent args)
+    private void OnReceiverMapInit(Entity<ApcPowerReceiverComponent> ent, ref ApcPowerReceiverMapInitEvent args)
     {
         TryApplyTax(ent);
     }
