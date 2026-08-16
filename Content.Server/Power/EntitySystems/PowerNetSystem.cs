@@ -7,6 +7,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Power.EntitySystems;
+using Content.Shared._Lavaland.Shuttles; // backmen: mining-shuttle-power-tax
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
@@ -76,6 +77,10 @@ namespace Content.Server.Power.EntitySystems
         private void ApcPowerReceiverMapInit(Entity<ApcPowerReceiverComponent> ent, ref MapInitEvent args)
         {
             _appearance.SetData(ent, PowerDeviceVisuals.Powered, ent.Comp.Powered);
+            // start-backmen: mining-shuttle-power-tax
+            var mapInit = new ApcPowerReceiverMapInitEvent();
+            RaiseLocalEvent(ent.Owner, ref mapInit);
+            // end-backmen: mining-shuttle-power-tax
         }
 
         private void ApcPowerReceiverInit(EntityUid uid, ApcPowerReceiverComponent component, ComponentInit args)

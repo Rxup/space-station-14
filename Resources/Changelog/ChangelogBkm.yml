@@ -3940,6 +3940,12 @@ Entries:
     type: Tweak
   id: 266
   time: '2026-08-16T11:37:00.0000000+00:00'
+- author: Rxup
+  changes:
+  - message: "Обновлён игровой движок до RobustToolbox 288.1.0."
+    type: Tweak
+  id: 267
+  time: '2026-08-16T11:45:00.0000000+00:00'
 
 Name: ChangelogBkm
 Order: 0
