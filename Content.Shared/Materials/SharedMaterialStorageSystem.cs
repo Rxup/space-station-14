@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Lavaland.LimitedUsage; // backmen: no-lavaland-usage
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Power.EntitySystems;
@@ -23,6 +24,7 @@ public abstract partial class SharedMaterialStorageSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!; // backmen: unpowered-material-insert
+    [Dependency] protected SharedNoLavalandUsageSystem _noLavaland = default!; // backmen: no-lavaland-usage
 
     /// <summary>
     /// Default volume for a sheet if the material's entity prototype has no material composition.
@@ -351,6 +353,11 @@ public abstract partial class SharedMaterialStorageSystem : EntitySystem
         if (!_powerReceiver.IsPowered(receiver))
             return false;
         // end-backmen: unpowered-material-insert
+
+        // start-backmen: no-lavaland-usage
+        if (_noLavaland.IsBlocked(receiver))
+            return false;
+        // end-backmen: no-lavaland-usage
 
         Logger.Debug($"Checking whitelist for {ToPrettyString(toInsert)} on {ToPrettyString(receiver)}");
         if (_whitelistSystem.IsWhitelistFail(storage.Whitelist, toInsert))

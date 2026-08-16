@@ -77,6 +77,13 @@ namespace Content.Shared.Lathe
         public float TimeMultiplier = 1;
 
         /// <summary>
+        /// Floor for print duration. Instant ore recipes otherwise finish in one tick
+        /// and never hold working power long enough to trip an APC.
+        /// </summary>
+        [DataField] // backmen: ore-processor-power
+        public TimeSpan MinProductionTime = TimeSpan.Zero;
+
+        /// <summary>
         /// A modifier that changes how much of a material is needed to print a recipe
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]

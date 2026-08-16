@@ -51,7 +51,13 @@
     - Security
     # Backmen-Edit-END
   - type: ApcPowerReceiver
-    powerLoad: 200
+    powerLoad: 15000 # backmen: rnd-server-power
+  # start-backmen: rnd-server-power
+  - type: ResearchServerScalingPower
+    baseLoad: 15000
+    loadPerTechnology: 100
+  - type: ResearchServerHeatProducing
+  # end-backmen: rnd-server-power
   - type: ExtensionCableReceiver
   - type: WiresPanel
   - type: WiresVisuals

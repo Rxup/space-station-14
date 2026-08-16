@@ -31,6 +31,8 @@ public sealed partial class ResearchSystem
 
     private void OnServerDatabaseModified(EntityUid uid, ResearchServerComponent component, ref TechnologyDatabaseModifiedEvent args)
     {
+        UpdateResearchServerPower(uid); // backmen: rnd-server-power
+
         foreach (var client in component.Clients)
         {
             RaiseLocalEvent(client, ref args);
@@ -39,7 +41,7 @@ public sealed partial class ResearchSystem
 
     private bool CanRun(EntityUid uid)
     {
-        return this.IsPowered(uid, EntityManager);
+        return this.IsPowered(uid, EntityManager) && HasResearchServerAtmosphere(uid); // backmen: rnd-server-power
     }
 
     private void UpdateServer(EntityUid uid, int time, ResearchServerComponent? component = null)

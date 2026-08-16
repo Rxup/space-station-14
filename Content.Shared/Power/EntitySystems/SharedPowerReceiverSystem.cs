@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Lavaland.Shuttles.Components; // backmen: mining-shuttle-power-tax
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Power.Components;
@@ -99,6 +100,11 @@ public abstract partial class SharedPowerReceiverSystem : EntitySystem
     {
         if (!ResolveApc(entity.Owner, ref entity.Comp))
             return;
+
+        // start-backmen: mining-shuttle-power-tax
+        if (TryComp<MiningShuttlePowerTaxComponent>(entity.Owner, out var tax))
+            load *= tax.Multiplier;
+        // end-backmen: mining-shuttle-power-tax
 
         entity.Comp.Load = load;
     }

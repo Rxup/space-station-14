@@ -1508,6 +1508,7 @@
     - MiningConscription
   - type: Wires # DeltaV: Use shop vendor wires layout
     layoutId: ShopVendor
+  - type: NoLavalandUsage
   # end-backmen: salvage-shop-vendor
   - type: AccessReader
     access: [["Salvage"]]

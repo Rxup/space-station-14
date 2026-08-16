@@ -655,10 +655,16 @@
       idleState: icon
       runningState: building
       defaultProductionAmount: 10
+      minProductionTime: 4 # backmen: ore-processor-power
       staticPacks:
       - OreSmelting
       - RGlassSmelting
     # start-backmen: ore-processor
+    - type: ApcPowerReceiver
+      powerLoad: 500
+    - type: PowerState
+      idlePowerDraw: 500
+      workingPowerDraw: 2500
     - type: MiningPoints # DeltaV - Source of mining points for miners
     - type: MiningPointsLathe # DeltaV
     - type: MaterialStorageMagnetPickup # Frontier
@@ -678,6 +684,7 @@
   - type: Lathe
     materialUseMultiplier: 0.75
     timeMultiplier: 0.5
+    minProductionTime: 2 # backmen: ore-processor-power
     staticPacks:
     - OreSmelting
     - RGlassSmelting

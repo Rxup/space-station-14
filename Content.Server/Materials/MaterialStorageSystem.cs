@@ -66,6 +66,11 @@ public sealed partial class MaterialStorageSystem : SharedMaterialStorageSystem
         if (!_actionBlocker.CanInteract(player, uid))
             return;
 
+        // start-backmen: no-lavaland-usage
+        if (_noLavaland.IsBlocked(uid))
+            return;
+        // end-backmen: no-lavaland-usage
+
         if (!component.CanEjectStoredMaterials || !_prototypeManager.TryIndex<MaterialPrototype>(msg.Material, out var material))
             return;
 

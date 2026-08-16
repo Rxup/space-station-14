@@ -3,6 +3,7 @@ using Content.Server.Audio;
 using Content.Server.Power.Components;
 using Content.Shared.Database;
 using Content.Shared.Power;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 
@@ -14,6 +15,7 @@ public sealed partial class PowerChargeSystem : EntitySystem
     [Dependency] private UserInterfaceSystem _uiSystem = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private AmbientSoundSystem _ambientSoundSystem = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!; // backmen: mining-shuttle-power-tax
 
     public override void Initialize()
     {
@@ -74,7 +76,7 @@ public sealed partial class PowerChargeSystem : EntitySystem
         if (!Resolve(ent, ref powerReceiver, false))
             return;
 
-        UpdatePowerState(ent, powerReceiver);
+        UpdatePowerState(ent, ent.Comp);
         UpdateState((ent, ent.Comp, powerReceiver));
     }
 
@@ -88,13 +90,15 @@ public sealed partial class PowerChargeSystem : EntitySystem
             _adminLogger.Add(LogType.Action, on ? LogImpact.Medium : LogImpact.High, $"{ToPrettyString(user):player} set {ToPrettyString(uid):target} to {(on ? "on" : "off")}");
 
         component.SwitchedOn = on;
-        UpdatePowerState(component, powerReceiver);
+        UpdatePowerState(uid, component);
         component.NeedUIUpdate = true;
     }
 
-    private static void UpdatePowerState(PowerChargeComponent component, ApcPowerReceiverComponent powerReceiver)
+    private void UpdatePowerState(EntityUid uid, PowerChargeComponent component)
     {
-        powerReceiver.Load = component.SwitchedOn ? component.ActivePowerUse : component.IdlePowerUse;
+        // start-backmen: mining-shuttle-power-tax
+        _powerReceiver.SetLoad(uid, component.SwitchedOn ? component.ActivePowerUse : component.IdlePowerUse);
+        // end-backmen: mining-shuttle-power-tax
     }
 
     public override void Update(float frameTime)

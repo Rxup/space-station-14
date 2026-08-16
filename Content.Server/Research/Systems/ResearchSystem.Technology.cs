@@ -158,6 +158,9 @@ public sealed partial class ResearchSystem
         if (technology.Cost > serverComp.Points)
             return false;
 
+        if (!CanRun(serverEnt.Value)) // backmen: rnd-server-power
+            return false;
+
         return true;
     }
 

@@ -450,8 +450,10 @@ namespace Content.Server.Construction
                 return;
             }
 
+            var location = GetCoordinates(ev.Location);
+
             // start-backmen: protection system
-            if (!CanBuild(user, constructionPrototype))
+            if (!CanBuild(user, constructionPrototype, location))
             {
                 _popup.PopupEntity(Loc.GetString("construction-system-protected"), user, user);
                 return;
@@ -476,8 +478,6 @@ namespace Content.Server.Construction
                 var newSet = new HashSet<int> {ev.Ack};
                 _beingBuilt[args.SenderSession] = newSet;
             }
-
-            var location = GetCoordinates(ev.Location);
 
             foreach (var condition in constructionPrototype.Conditions)
             {

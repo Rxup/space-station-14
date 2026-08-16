@@ -204,6 +204,10 @@ namespace Content.Server.Lathe
             var recipe = _proto.Index(batch.Recipe);
 
             var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
+            // start-backmen: ore-processor-power
+            if (component.MinProductionTime > TimeSpan.Zero && time < component.MinProductionTime)
+                time = component.MinProductionTime;
+            // end-backmen: ore-processor-power
 
             var lathe = EnsureComp<LatheProducingComponent>(uid);
             lathe.StartTime = _timing.CurTime;

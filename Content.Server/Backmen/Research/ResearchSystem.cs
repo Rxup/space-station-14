@@ -1,17 +1,26 @@
+using System.Diagnostics.CodeAnalysis;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Research.Components;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using System.Linq;
+using Content.Shared.Atmos;
 using Content.Shared.Backmen.Research;
+using Content.Shared.Examine;
+using Content.Shared.Power.EntitySystems;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
+    [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+
     private void InitializeBkm()
     {
         SubscribeLocalEvent<ResearchServerComponent, MapInitEvent>(OnServerInit);
+        SubscribeLocalEvent<ResearchServerScalingPowerComponent, ExaminedEvent>(OnServerPowerExamined);
     }
 
     private void UpdateFancyConsoleInterface(EntityUid uid,
@@ -72,5 +81,78 @@ public sealed partial class ResearchSystem
         {
             AddTechnology(ent, tech, techBase);
         }
+
+        UpdateResearchServerPower(ent);
+    }
+
+    private void OnServerPowerExamined(Entity<ResearchServerScalingPowerComponent> ent, ref ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        if (!TryGetResearchServerAtmosphere(ent, out var mix))
+            args.PushMarkup(Loc.GetString("research-server-no-atmosphere-examine"));
+        else if (mix.Temperature > ent.Comp.MaxTemperature)
+        {
+            args.PushMarkup(Loc.GetString("research-server-too-hot-examine",
+                ("temp", mix.Temperature),
+                ("max", ent.Comp.MaxTemperature)));
+        }
+
+        if (!TryComp<TechnologyDatabaseComponent>(ent, out var db))
+            return;
+
+        var techs = GetResearchedTechnologyCount(db, ent.Comp);
+        var load = GetResearchServerPowerLoad(ent.Comp, techs);
+        args.PushMarkup(Loc.GetString("research-server-power-examine", ("load", (int) load), ("techs", techs)));
+    }
+
+    private void UpdateResearchServerPower(EntityUid uid)
+    {
+        if (!TryComp<ResearchServerScalingPowerComponent>(uid, out var scaling) ||
+            !TryComp<TechnologyDatabaseComponent>(uid, out var db))
+            return;
+
+        var techs = GetResearchedTechnologyCount(db, scaling);
+        _powerReceiver.SetLoad(uid, GetResearchServerPowerLoad(scaling, techs));
+    }
+
+    private static int GetResearchedTechnologyCount(
+        TechnologyDatabaseComponent db,
+        ResearchServerScalingPowerComponent scaling)
+    {
+        if (!scaling.IgnoreRoundstart)
+            return db.UnlockedTechnologies.Distinct().Count();
+
+        var roundstart = db.RoundstartTechnologies.ToHashSet();
+        return db.UnlockedTechnologies.Distinct().Count(tech => !roundstart.Contains(tech));
+    }
+
+    private static float GetResearchServerPowerLoad(ResearchServerScalingPowerComponent scaling, int techs)
+    {
+        return scaling.BaseLoad + scaling.LoadPerTechnology * Math.Max(0, techs);
+    }
+
+    private bool HasResearchServerAtmosphere(EntityUid uid)
+    {
+        if (!TryGetResearchServerAtmosphere(uid, out var mix))
+            return false;
+
+        if (!TryComp<ResearchServerScalingPowerComponent>(uid, out var scaling))
+            return true;
+
+        return mix.Temperature <= scaling.MaxTemperature;
+    }
+
+    private bool TryGetResearchServerAtmosphere(EntityUid uid, [NotNullWhen(true)] out GasMixture? mix)
+    {
+        mix = _atmosphere.GetContainingMixture(uid, true);
+        if (mix == null || mix.TotalMoles <= 0f || mix.Pressure <= 0f)
+        {
+            mix = null;
+            return false;
+        }
+
+        return true;
     }
 }
