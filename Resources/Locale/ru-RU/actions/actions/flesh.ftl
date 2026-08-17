@@ -9,7 +9,8 @@ flesh-pudge-throw-worm-hit-mob = Вы ухватились за лицо { CAPIT
 flesh-pudge-throw-worm-hit-user = { CAPITALIZE(THE($worm)) } вцепился вам в лицо!
 flesh-pudge-throw-worm-desc = Вырвите червя из своей плоти и держите его в руке, чтобы швырнуть во врагов.
 
-flesh-worm-wearer-examine = [color=red]{ CAPITALIZE(THE($ent)) } вцепился в лицо { DAT-GEN($target) }![/color]
+# backmen: loc-the-nre
+flesh-worm-wearer-examine = [color=red]{ CAPITALIZE(THE($ent)) } вцепился в лицо { POSS-ADJ($target) }![/color]
 
 flesh-worm-verb-remove = Сорвать червя
 flesh-worm-remove-start-user = Вы начинаете срывать { THE($worm) }.

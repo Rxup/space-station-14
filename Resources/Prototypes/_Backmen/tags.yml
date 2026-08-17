@@ -285,3 +285,6 @@
 
 - type: Tag
   id: SmesSubstation # RoomFill whitelist for SmesSubstationRoomMarker
+
+- type: Tag
+  id: BloodCrayon

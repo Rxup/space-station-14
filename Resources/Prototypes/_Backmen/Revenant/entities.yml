@@ -13,3 +13,11 @@
   - type: LimitedCharges
     maxCharges: 50
   - type: BloodCrayon
+  - type: Unremoveable
+  - type: Tag
+    tags:
+    - Write
+    - Crayon
+    - Trash
+    - Recyclable
+    - BloodCrayon

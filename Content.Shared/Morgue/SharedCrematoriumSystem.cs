@@ -8,6 +8,7 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Verbs;
+using Content.Shared._Impstation.Revenant.Components; // backmen: revenant-stasis
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
@@ -138,13 +139,24 @@ public abstract partial class SharedCrematoriumSystem : EntitySystem
 
         if (ent.Comp2.Contents.ContainedEntities.Count > 0)
         {
+            var burnedAnything = false;
             for (var i = ent.Comp2.Contents.ContainedEntities.Count - 1; i >= 0; i--)
             {
                 var item = ent.Comp2.Contents.ContainedEntities[i];
                 _container.Remove(item, ent.Comp2.Contents);
+                // start-backmen: revenant-stasis
+                // Stasis ectoplasm cannot be burned — only bible or salt grind ends a revenant.
+                if (HasComp<RevenantStasisComponent>(item))
+                {
+                    Popup.PopupPredicted(Loc.GetString("revenant-stasis-regenerating"), item, null);
+                    continue;
+                }
+                // end-backmen: revenant-stasis
                 PredictedDel(item);
+                burnedAnything = true;
             }
-            PredictedTrySpawnInContainer(ent.Comp1.LeftOverProtoId, ent.Owner, ent.Comp2.Contents.ID, out _);
+            if (burnedAnything)
+                PredictedTrySpawnInContainer(ent.Comp1.LeftOverProtoId, ent.Owner, ent.Comp2.Contents.ID, out _);
         }
 
         EntityStorage.OpenStorage(ent.Owner, ent.Comp2);

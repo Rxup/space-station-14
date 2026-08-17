@@ -272,6 +272,8 @@ public sealed partial class RevenantComponent : Component
 
     [DataField]
     public EntityUid? BloodCrayon;
+
+    public const string BloodWritingHand = "crayon"; // backmen: revenant-blood-writing
     #endregion
 
     #region Animate
