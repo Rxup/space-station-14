@@ -1,11 +1,13 @@
 using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Shared.DoAfter;
+using Content.Shared.Backmen.Language;
 using Content.Shared.Backmen.Language.Events;
 using Content.Shared.Backmen.Language.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Backmen.Language;
 
@@ -19,7 +21,7 @@ public sealed partial class LanguageLearnSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<LanguageLearnComponent, UseInHandEvent>(OnUseInHand);
-        SubscribeLocalEvent<LanguageLearnComponent, LanguageLearnDoAfterEvent>(OnUsed, after: new []{typeof(DoAfterSystem)});
+        SubscribeLocalEvent<LanguageLearnComponent, LanguageLearnDoAfterEvent>(OnUsed, after: new[] { typeof(DoAfterSystem) });
         SubscribeLocalEvent<LanguageLearnComponent, ExaminedEvent>(OnExamine);
     }
 
@@ -28,25 +30,30 @@ public sealed partial class LanguageLearnSystem : EntitySystem
         if (args.Handled)
             return;
 
-        var usesRemaining = component.GetUsesRemaining();
-
-        if (usesRemaining <= 0)
+        if (component.GetUsesRemaining() <= 0)
         {
             _popup.PopupEntity(Loc.GetString("language-item-no-uses"), uid, args.User);
             return;
         }
 
+        if (KnowsAllLanguages(args.User, component))
+        {
+            _popup.PopupEntity(Loc.GetString("language-item-already-knows"), uid, args.User);
+            args.Handled = true;
+            return;
+        }
+
         args.Handled = true;
 
-        var Event = new LanguageLearnDoAfterEvent();
-        var Args = new DoAfterArgs(EntityManager, args.User, component.DoAfterDuration, Event, uid)
+        var ev = new LanguageLearnDoAfterEvent();
+        var doAfter = new DoAfterArgs(EntityManager, args.User, component.DoAfterDuration, ev, uid)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = true
         };
 
-        _doAfterSystem.TryStartDoAfter(Args);
+        _doAfterSystem.TryStartDoAfter(doAfter);
         _audio.PlayPvs(component.UseSound, uid);
     }
 
@@ -55,51 +62,31 @@ public sealed partial class LanguageLearnSystem : EntitySystem
         if (args.Cancelled)
             return;
 
-        if (!TryComp<LanguageKnowledgeComponent>(args.User, out var languageKnowledge))
-            return;
-
-        bool learnedSomething = false;
-
-        if (!HasComp<UniversalLanguageSpeakerComponent>(args.User) && component.Languages.Contains("Universal"))
-        {
-            EnsureComp<UniversalLanguageSpeakerComponent>(args.User);
-            learnedSomething = true;
-        }
+        var learnedSomething = false;
 
         foreach (var language in component.Languages)
         {
-            if (language == "Universal")
-            {
+            if (KnowsSpokenLanguage(args.User, language))
                 continue;
-            }
 
-            if (languageKnowledge.SpokenLanguages.Contains(language))
-            {
-                _popup.PopupEntity(Loc.GetString("language-item-already-knows"), uid, args.User);
-                continue;
-            }
-
-            languageKnowledge.SpokenLanguages.Add(language);
-            languageKnowledge.UnderstoodLanguages.Add(language);
+            _language.AddLanguage(args.User, language);
             learnedSomething = true;
         }
 
-        _language.UpdateEntityLanguages(args.User);
+        if (!learnedSomething)
+        {
+            _popup.PopupEntity(Loc.GetString("language-item-already-knows"), uid, args.User);
+            return;
+        }
+
         _audio.PlayPvs(component.UseSound, uid);
 
-        if (learnedSomething)
-        {
-            var usesRemaining = component.GetUsesRemaining();
-            usesRemaining--;
+        var usesRemaining = component.GetUsesRemaining() - 1;
+        component.UsesRemaining = usesRemaining;
+        DirtyField(uid, component, nameof(LanguageLearnComponent.UsesRemaining));
 
-            component.UsesRemaining = usesRemaining;
-            DirtyField(uid, component, nameof(LanguageLearnComponent.UsesRemaining));
-
-            if (component.DeleteAfterUse && usesRemaining <= 0)
-            {
-                QueueDel(uid);
-            }
-        }
+        if (component.DeleteAfterUse && usesRemaining <= 0)
+            QueueDel(uid);
     }
 
     private void OnExamine(EntityUid uid, LanguageLearnComponent component, ExaminedEvent args)
@@ -107,8 +94,26 @@ public sealed partial class LanguageLearnSystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        var usesRemaining = component.GetUsesRemaining();
+        args.PushMarkup(Loc.GetString("language-item-uses-remaining", ("uses", component.GetUsesRemaining())));
+    }
 
-        args.PushMarkup(Loc.GetString("language-item-uses-remaining", ("uses", usesRemaining)));
+    private bool KnowsAllLanguages(EntityUid user, LanguageLearnComponent component)
+    {
+        if (component.Languages.Count == 0)
+            return true;
+
+        foreach (var language in component.Languages)
+        {
+            if (!KnowsSpokenLanguage(user, language))
+                return false;
+        }
+
+        return true;
+    }
+
+    private bool KnowsSpokenLanguage(EntityUid user, ProtoId<LanguagePrototype> language)
+    {
+        return TryComp<LanguageKnowledgeComponent>(user, out var knowledge)
+               && knowledge.SpokenLanguages.Contains(language);
     }
 }

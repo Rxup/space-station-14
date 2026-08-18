@@ -8,6 +8,7 @@ using Content.Shared.Atmos;
 using Content.Shared.Backmen.Research;
 using Content.Shared.Examine;
 using Content.Shared.Power.EntitySystems;
+using Robust.Shared.Prototypes;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Server.Research.Systems;
@@ -21,6 +22,74 @@ public sealed partial class ResearchSystem
     {
         SubscribeLocalEvent<ResearchServerComponent, MapInitEvent>(OnServerInit);
         SubscribeLocalEvent<ResearchServerScalingPowerComponent, ExaminedEvent>(OnServerPowerExamined);
+        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        var techsChanged = args.WasModified<TechnologyPrototype>() || args.WasModified<TechDisciplinePrototype>();
+        var recipesChanged = args.WasModified<LatheRecipePrototype>();
+
+        if (!techsChanged && !recipesChanged)
+            return;
+
+        var servers = EntityQueryEnumerator<ResearchServerComponent, TechnologyDatabaseComponent>();
+        while (servers.MoveNext(out var uid, out _, out var db))
+        {
+            SyncUnlockedRecipesFromTechnologies((uid, db));
+
+            if (!techsChanged)
+                continue;
+
+            UpdateTechnologyCards(uid, db);
+            UpdateResearchServerPower(uid);
+        }
+
+        if (!techsChanged)
+            return;
+
+        var consoles = EntityQueryEnumerator<ResearchConsoleComponent>();
+        while (consoles.MoveNext(out var uid, out var console))
+        {
+            if (!_uiSystem.IsUiOpen(uid, ResearchConsoleUiKey.Key))
+                continue;
+
+            SyncClientWithServer(uid);
+            UpdateConsoleInterface(uid, console);
+        }
+    }
+
+    /// <summary>
+    /// Rebuilds cached lathe unlocks from currently loaded technology prototypes.
+    /// Needed after runtime YAML uploads, which do not recreate research databases.
+    /// </summary>
+    private void SyncUnlockedRecipesFromTechnologies(Entity<TechnologyDatabaseComponent> entity)
+    {
+        var recipes = new HashSet<ProtoId<LatheRecipePrototype>>();
+
+        foreach (var techId in entity.Comp.UnlockedTechnologies)
+        {
+            if (!PrototypeManager.TryIndex(techId, out TechnologyPrototype? tech))
+                continue;
+
+            foreach (var recipe in tech.RecipeUnlocks)
+                recipes.Add(recipe);
+        }
+
+        var oldRecipes = entity.Comp.UnlockedRecipes.ToHashSet();
+        if (oldRecipes.SetEquals(recipes))
+            return;
+
+        var newlyUnlocked = recipes
+            .Where(recipe => !oldRecipes.Contains(recipe))
+            .Select(recipe => recipe.Id)
+            .ToList();
+
+        entity.Comp.UnlockedRecipes = recipes.ToList();
+        Dirty(entity, entity.Comp);
+
+        var ev = new TechnologyDatabaseModifiedEvent(newlyUnlocked);
+        RaiseLocalEvent(entity, ref ev);
     }
 
     private void UpdateFancyConsoleInterface(EntityUid uid,

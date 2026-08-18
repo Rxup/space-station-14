@@ -1,8 +1,8 @@
 - type: entity
   parent: BaseItem
   id: ManualBabel
-  name: babel manual
-  description: Manual that teaches you all languages.
+  name: flesh language manual
+  description: Manual that teaches you the flesh language.
   suffix: 1 uses
   components:
   - type: Sprite
@@ -20,7 +20,7 @@
   - type: LanguageLearn
     deleteAfterUse: true
     languages:
-      - Universal
+      - Flesh
 
 - type: entity
   parent: BaseItem

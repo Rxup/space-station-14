@@ -15,10 +15,25 @@
   wageDepartment: Civilian
   wage: 50
   #end-backmen: currency
+  # start-backmen: librarian-languages
   special:
-  - !type:AddComponentSpecial
-    components:
-    - type: UniversalLanguageSpeaker
+  - !type:AddLanguagesSpecial
+    speaks:
+    - SolCommon # Human, Dwarf
+    - Dwarven # Dwarf
+    - Slime # Slime
+    - Moffic # Moth
+    - EvePishtu # Shark
+    - Freespeak # Vox
+    - Dragon # Reptilian
+    - Nekomimetic # Felinid, Oni
+    - Spider # Arachnid, Arachne
+    - Shadokin # Shadowkin
+    - RootSpeak # Diona
+    - Canilunzt # Vulpkanin, Fox
+    - Garpy # Harpy
+    - Carshnil # Demon
+  # end-backmen: librarian-languages
 
 - type: startingGear
   id: LibrarianGear

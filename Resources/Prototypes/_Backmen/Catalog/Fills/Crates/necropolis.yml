@@ -10,8 +10,60 @@
 - type: entity
   parent: LavalandCrateNecropolis
   id: LavalandCrateNecropolisManualBabel
-  suffix: Manual Babel
+  suffix: Flesh Manual
   components:
   - type: StorageFill
     contents:
       - id: ManualBabel
+
+- type: entity
+  parent: LavalandCrateNecropolis
+  id: LavalandCrateNecropolisShipWeaponFlatpack
+  suffix: Frontier Flatpack
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponTurretL85AutocannonFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretDravonFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretAK570FlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretRAC30FlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretType35FlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponLaserTurretL1PhalanxFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretVanykFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretASM220FlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretLightMunitionsBayFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretTarnyxReloadFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretCharonetteFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretBoforsFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretKargilFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretCyrexaFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretType54FlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponLaserTurretApolloFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretVesperaFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretASM501FlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretTovekFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretCharonReloadFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretHadesFlatPack
+      orGroup: frontier-flatpack
+    - id: WeaponTurretType241FlatPack
+      orGroup: frontier-flatpack

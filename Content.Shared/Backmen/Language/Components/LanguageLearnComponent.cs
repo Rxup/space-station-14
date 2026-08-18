@@ -1,6 +1,7 @@
+using Content.Shared.Backmen.Language;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Backmen.Language.Components;
 
@@ -10,8 +11,8 @@ public sealed partial class LanguageLearnComponent : Component
     /// <summary>
     /// The languages to be learned when the item is used.
     /// </summary>
-    [DataField(required: true, customTypeSerializer: typeof(PrototypeIdListSerializer<LanguagePrototype>))]
-    public List<string> Languages { get; set; } = new List<string>();
+    [DataField(required: true)]
+    public List<ProtoId<LanguagePrototype>> Languages = new();
 
     /// <summary>
     /// The amount of time it takes to learn the language.
@@ -26,7 +27,7 @@ public sealed partial class LanguageLearnComponent : Component
     public SoundSpecifier? UseSound = new SoundPathSpecifier("/Audio/Items/Paper/paper_scribble1.ogg");
 
     /// <summary>
-    /// Maximum number of times the item can be used.  If 0, the item is single-use.
+    /// Maximum number of times the item can be used.
     /// </summary>
     [DataField]
     public int MaxUses = 1;

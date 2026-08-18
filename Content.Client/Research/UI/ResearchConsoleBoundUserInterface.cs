@@ -43,7 +43,7 @@ public sealed class ResearchConsoleBoundUserInterface : BoundUserInterface
     {
         base.OnProtoReload(args);
 
-        if (!args.WasModified<TechnologyPrototype>())
+        if (!args.WasModified<TechnologyPrototype>() && !args.WasModified<LatheRecipePrototype>()) // backmen: proto-reload-techs
             return;
 
         if (State is not ResearchConsoleBoundInterfaceState rState)

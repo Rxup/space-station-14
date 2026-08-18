@@ -112,7 +112,10 @@ public abstract partial class SharedResearchSystem : EntitySystem
         var allUnlocked = new List<TechnologyPrototype>();
         foreach (var recipe in component.UnlockedTechnologies)
         {
-            var proto = PrototypeManager.Index<TechnologyPrototype>(recipe);
+            // start-backmen: proto-reload-techs
+            if (!PrototypeManager.TryIndex<TechnologyPrototype>(recipe, out var proto))
+                continue;
+            // end-backmen: proto-reload-techs
             if (proto.Discipline != techDiscipline.ID)
                 continue;
             allUnlocked.Add(proto);
