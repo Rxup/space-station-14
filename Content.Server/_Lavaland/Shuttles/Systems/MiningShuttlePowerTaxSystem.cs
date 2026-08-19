@@ -9,20 +9,19 @@ namespace Content.Server._Lavaland.Shuttles.Systems;
 
 /// <summary>
 /// Devices placed on the mining shuttle after mapinit draw extra APC power.
+/// Stock map equipment is grandfathered and keeps its normal load.
 /// </summary>
 public sealed partial class MiningShuttlePowerTaxSystem : EntitySystem
 {
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!;
 
     private EntityQuery<MiningShuttleComponent> _shuttleQuery;
-    private EntityQuery<MiningShuttlePowerTrackerComponent> _trackerQuery;
 
     public override void Initialize()
     {
         base.Initialize();
 
         _shuttleQuery = GetEntityQuery<MiningShuttleComponent>();
-        _trackerQuery = GetEntityQuery<MiningShuttlePowerTrackerComponent>();
 
         SubscribeLocalEvent<MiningShuttleComponent, MapInitEvent>(OnShuttleMapInit);
         SubscribeLocalEvent<ApcPowerReceiverComponent, ApcPowerReceiverMapInitEvent>(OnReceiverMapInit);
@@ -32,15 +31,17 @@ public sealed partial class MiningShuttlePowerTaxSystem : EntitySystem
 
     private void OnShuttleMapInit(Entity<MiningShuttleComponent> ent, ref MapInitEvent args)
     {
-        var tracker = EnsureComp<MiningShuttlePowerTrackerComponent>(ent);
+        // Walk the transform tree instead of EntityQueryEnumerator: that enumerator skips
+        // paused entities, and shuttle MapInit often runs while the dummy/load map is paused.
+        ExemptDescendants(ent.Owner);
 
-        var query = EntityQueryEnumerator<ApcPowerReceiverComponent, TransformComponent>();
+        var query = AllEntityQuery<ApcPowerReceiverComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var xform))
         {
             if (xform.GridUid != ent.Owner)
                 continue;
 
-            tracker.MapInitReceivers.Add(uid);
+            Exempt(uid);
         }
     }
 
@@ -54,6 +55,14 @@ public sealed partial class MiningShuttlePowerTaxSystem : EntitySystem
         var grid = Transform(ent).GridUid;
         if (grid != null && _shuttleQuery.HasComp(grid.Value))
         {
+            // Transform startup fires parent-changed before the shuttle itself map-inits.
+            // Those receivers are stock equipment, not player-built additions.
+            if (LifeStage(grid.Value) < EntityLifeStage.MapInitialized)
+            {
+                Exempt(ent.Owner);
+                return;
+            }
+
             TryApplyTax(ent);
             return;
         }
@@ -69,16 +78,36 @@ public sealed partial class MiningShuttlePowerTaxSystem : EntitySystem
         args.PushMarkup(Loc.GetString("mining-shuttle-power-tax-examine", ("multiplier", ent.Comp.Multiplier)));
     }
 
+    private void ExemptDescendants(EntityUid uid)
+    {
+        var enumerator = Transform(uid).ChildEnumerator;
+        while (enumerator.MoveNext(out var child))
+        {
+            if (HasComp<ApcPowerReceiverComponent>(child))
+                Exempt(child);
+
+            ExemptDescendants(child);
+        }
+    }
+
+    private void Exempt(EntityUid uid)
+    {
+        EnsureComp<MiningShuttlePowerExemptComponent>(uid);
+
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var receiver))
+            TryRemoveTax((uid, receiver));
+    }
+
     private void TryApplyTax(Entity<ApcPowerReceiverComponent> ent)
     {
-        if (HasComp<MiningShuttlePowerTaxComponent>(ent))
+        if (HasComp<MiningShuttlePowerTaxComponent>(ent) || HasComp<MiningShuttlePowerExemptComponent>(ent))
             return;
 
         var grid = Transform(ent).GridUid;
         if (grid == null || !_shuttleQuery.TryComp(grid.Value, out var shuttle))
             return;
 
-        if (!_trackerQuery.TryComp(grid.Value, out var tracker) || tracker.MapInitReceivers.Contains(ent.Owner))
+        if (LifeStage(grid.Value) < EntityLifeStage.MapInitialized)
             return;
 
         var tax = EnsureComp<MiningShuttlePowerTaxComponent>(ent);
