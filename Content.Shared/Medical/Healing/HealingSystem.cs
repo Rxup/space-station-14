@@ -571,7 +571,7 @@ public sealed partial class HealingSystem : EntitySystem
         {
             var span = consciousness.Cap - consciousness.Threshold;
             if (span != 0)
-                percentDamage = (float)((consciousness.Cap - consciousness.Consciousness) / span);
+                percentDamage = Math.Clamp((float)((consciousness.Cap - consciousness.Consciousness) / span), 0f, 1f);
         }
         // end-backmen: consciousness
         //basically make it scale from 1 to the multiplier.
