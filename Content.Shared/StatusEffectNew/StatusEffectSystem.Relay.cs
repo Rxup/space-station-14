@@ -7,6 +7,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Flash;
+using Content.Shared.HealthExaminable; // backmen: pain-immune-status
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Events;
 using Content.Shared.Movement.Events;
@@ -56,6 +57,7 @@ public sealed partial class StatusEffectsSystem
 
         SubscribeLocalEvent<StatusEffectContainerComponent, CanVisionAttemptEvent>(RelayStatusEffectEvent); // backmen
         SubscribeLocalEvent<StatusEffectContainerComponent, MobStateChangedEvent>(RefRelayStatusEffectEvent); // backmen
+        SubscribeLocalEvent<StatusEffectContainerComponent, HealthBeingExaminedEvent>(RelayStatusEffectEvent); // backmen: pain-immune-status
     }
 
     private void RefRelayStatusEffectEvent<T>(EntityUid uid, StatusEffectContainerComponent component, ref T args)

@@ -84,6 +84,10 @@ seeds-chilly-name = chilly
 seeds-chilly-display-name = chilly peppers
 seeds-poppy-name = poppy
 seeds-poppy-display-name = poppies
+# start-backmen: poppy-opium
+seeds-opium-poppy-name = opium poppy
+seeds-opium-poppy-display-name = opium poppies
+# end-backmen: poppy-opium
 seeds-aloe-name = aloe
 seeds-aloe-display-name = aloe
 seeds-laughin-pea-name = laughin' peas

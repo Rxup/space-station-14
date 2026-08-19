@@ -638,11 +638,14 @@
     emptySpriteName: morphen_empty
   - type: Solution
     solution:
+      maxVol: 40 # backmen: morphazine
       reagents:
       - ReagentId: Omnizine
         Quantity: 25
       - ReagentId: TranexamicAcid
         Quantity: 5
+      - ReagentId: Morphazine # backmen: morphazine
+        Quantity: 10
   - type: StaticPrice
     price: 1500
 

@@ -324,6 +324,10 @@ public sealed partial class HealingSystem : EntitySystem
             // Prefer the next best part for the repeated do-after tick.
             if (_medicalTarget.TryResolveHealTarget(ent, args.User, healing, out var nextWoundable, out _, out _))
                 args.TargetWoundable = GetNetEntity(nextWoundable);
+
+            // Update our self heal delay so it shortens as we heal more damage.
+            if (args.User == ent)
+                args.Args.Delay = healing.Delay * GetScaledHealingPenalty(ent, healing.SelfHealPenaltyMultiplier);
             return;
         }
 
@@ -562,10 +566,14 @@ public sealed partial class HealingSystem : EntitySystem
 
         var percentDamage = (float)(_damageable.GetTotalDamage(ent.AsNullable()) / amount);
 
+        // start-backmen: consciousness
         if (TryComp<ConsciousnessComponent>(ent, out var consciousness))
         {
-            percentDamage = (float)(consciousness.Threshold / (consciousness.Cap - consciousness.Consciousness)); // backmen edit; consciousness
+            var span = consciousness.Cap - consciousness.Threshold;
+            if (span != 0)
+                percentDamage = (float)((consciousness.Cap - consciousness.Consciousness) / span);
         }
+        // end-backmen: consciousness
         //basically make it scale from 1 to the multiplier.
 
         var output = percentDamage * (mod - 1) + 1;

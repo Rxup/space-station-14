@@ -1,5 +1,5 @@
 using Content.Server.Medical.Components;
-using Content.Shared.Backmen.Surgery.Pain.Components;
+using Content.Shared.Backmen.Surgery.Pain.Systems;
 using Content.Shared.Backmen.Targeting;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
@@ -61,10 +61,9 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popupSystem = default!;
     [Dependency] private SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private ServerConsciousnessSystem _consciousnessSystem = default!; // backmen: pain
+    [Dependency] private PainSystem _pain = default!; // backmen: pain
     [Dependency] private HungerSystem _hungerSystem = default!; // backmen: analyzer-satiation
     [Dependency] private ThirstSystem _thirstSystem = default!; // backmen: analyzer-satiation
-
-    [Dependency] private EntityQuery<PainImmuneComponent> _painImmuneQuery = default!;
     // start-backmen: analyzer-authoritative-damage
     [Dependency] private EntityQuery<ConsciousnessComponent> _consciousnessQuery = default!;
     [Dependency] private DamageableSystem _damageable = default!;
@@ -292,7 +291,7 @@ public sealed partial class HealthAnalyzerSystem : EntitySystem
 
         var painCauses = _consciousnessSystem.GetPainCauses(entity);
         var totalPain = _consciousnessSystem.GetTotalPain(entity);
-        var painImmune = _painImmuneQuery.HasComp(entity);
+        var painImmune = _pain.IsPainImmune(entity);
 
         // start-backmen: analyzer-satiation
         var hungerLevel = float.NaN;

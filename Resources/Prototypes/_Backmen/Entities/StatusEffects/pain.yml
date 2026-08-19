@@ -1,0 +1,8 @@
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectPainImmune
+  name: pain immunity
+  components:
+  - type: PainImmune
+  - type: StatusEffectAlert
+    alert: PainImmune

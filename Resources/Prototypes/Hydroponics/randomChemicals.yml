@@ -66,6 +66,7 @@
     weight: 3
     reagents:
     - Bicaridine
+    - Opium # backmen: poppy-opium
     - Dermaline
     - Ephedrine
     - NorepinephricAcid

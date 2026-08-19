@@ -84,6 +84,10 @@ seeds-chilly-name = перец чилли
 seeds-chilly-display-name = перец чилли
 seeds-poppy-name = мак
 seeds-poppy-display-name = мак
+# start-backmen: poppy-opium
+seeds-opium-poppy-name = опийный мак
+seeds-opium-poppy-display-name = опийный мак
+# end-backmen: poppy-opium
 seeds-aloe-name = алоэ
 seeds-aloe-display-name = алоэ
 seeds-laughin-pea-name = смешной горошек

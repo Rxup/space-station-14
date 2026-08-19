@@ -20,7 +20,7 @@
   components:
   - type: Solution
     solution:
-      maxVol: 55
+      maxVol: 63
       reagents:
       - ReagentId: Omnizine
         Quantity: 20
@@ -32,6 +32,8 @@
         Quantity: 3
       - ReagentId: DexalinPlus
         Quantity: 10
+      - ReagentId: Morphazine
+        Quantity: 8
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     netsync: false
@@ -48,12 +50,14 @@
   components:
   - type: Solution
     solution:
-      maxVol: 80
+      maxVol: 90
       reagents:
       - ReagentId: AntlionGrubCore
         Quantity: 40
       - ReagentId: Stimulants
         Quantity: 40
+      - ReagentId: Morphazine
+        Quantity: 10
   - type: Sprite
     sprite: Objects/Specific/Medical/medipen.rsi
     netsync: false

@@ -1,0 +1,21 @@
+- type: entity
+  parent: FoodPoppy
+  id: FoodOpiumPoppy
+  name: opium poppy
+  description: A lilac cultivar of poppy with a much richer opium extract.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/poppy.rsi
+    state: produce
+    color: "#B57EDC"
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Bicaridine
+        Quantity: 6
+      - ReagentId: Opium
+        Quantity: 8
+  - type: Produce
+    seedId: opiumPoppy

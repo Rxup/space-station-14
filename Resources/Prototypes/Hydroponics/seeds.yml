@@ -1166,6 +1166,7 @@
     - FoodPoppy
   mutationPrototypes:
     - lily
+    - opiumPoppy # backmen: poppy-opium
   lifespan: 25
   maturation: 10
   production: 3
@@ -1182,6 +1183,12 @@
       Min: 1
       Max: 20
       PotencyDivisor: 5
+    # start-backmen: poppy-opium
+    Opium:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 50
+    # end-backmen: poppy-opium
 
 - type: seed
   id: aloe

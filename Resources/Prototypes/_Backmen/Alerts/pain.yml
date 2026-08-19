@@ -1,0 +1,7 @@
+- type: alert
+  id: PainImmune
+  icons:
+  - sprite: /Textures/Backmen/Interface/Alerts/pain_immune.rsi
+    state: icon
+  name: alerts-pain-immune-name
+  description: alerts-pain-immune-desc
