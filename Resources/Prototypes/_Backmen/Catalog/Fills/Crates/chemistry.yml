@@ -1,0 +1,23 @@
+- type: entity
+  parent: CrateChemistrySecure
+  id: CrateChemistryOpium
+  name: opium crate
+  description: Contains a jug of opium. Requires Chemistry access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: JugOpium
+
+- type: entity
+  parent: CrateChemistrySecure
+  id: CrateChemistryNociceptine
+  name: nociceptine crate
+  description: Contains a jug of nociceptine concentrate. Requires Chemistry access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: JugNociceptine

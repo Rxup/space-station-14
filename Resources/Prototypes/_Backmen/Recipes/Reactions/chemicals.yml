@@ -25,14 +25,27 @@
 
 - type: reaction
   id: Morphine
-  minTemp: 480
+  impact: Medium
+  minTemp: 370
   reactants:
-    Vinegar:
-      amount: 4
+    Opium:
+      amount: 3
     Ethanol:
       amount: 1
   products:
-    Morphine: 5
+    Morphine: 2
+
+- type: reaction
+  id: Morphazine
+  impact: High
+  minTemp: 370
+  reactants:
+    Morphine:
+      amount: 1
+    Nociceptine:
+      amount: 1
+  products:
+    Morphazine: 1
 
 # start-backmen: medicine
 - type: reaction

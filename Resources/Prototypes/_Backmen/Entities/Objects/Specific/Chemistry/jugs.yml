@@ -1,0 +1,27 @@
+- type: entity
+  parent: Jug
+  suffix: opium
+  id: JugOpium
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-opium
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Opium
+        Quantity: 240
+
+- type: entity
+  parent: Jug
+  suffix: nociceptine
+  id: JugNociceptine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-nociceptine
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nociceptine
+        Quantity: 240

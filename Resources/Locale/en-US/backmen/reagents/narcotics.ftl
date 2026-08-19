@@ -1,4 +1,10 @@
 reagent-name-morphine = morphine
 reagent-desc-morphine = A painkiller that allows the patient to move at full speed even when injured. Causes drowsiness and eventually unconsciousness in high doses. Overdose will cause a variety of effects, ranging from minor to lethal.
+reagent-name-opium = opium
+reagent-desc-opium = A dark oily poppy extract. Mildly dulls pain; high doses cause drowsiness. Must be refined into morphine for real pain relief.
+reagent-name-nociceptine = nociceptine
+reagent-desc-nociceptine = A military concentrate used to synthesize morphazine. Useless on its own and mildly poisonous.
+reagent-name-morphazine = morphazine
+reagent-desc-morphazine = A combat analgesic that fully blocks pain, but causes a trance of jittering, stuttering, and hallucinations. When it wears off the user blacks out. Overdose strains the heart and breathing.
 reagent-name-stimulants-super = суперстимулятор
 reagent-desc-stimulants-super = Сверхмощный коктейль самых сильных веществ галактики, быстро лечащий от механического урона и ожогов, значительно повыщающий скорость и выносливость, однако имеющий выраженные побочные эффекты. При передозировке вызывает сильное отравление.

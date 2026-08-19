@@ -1547,6 +1547,10 @@
         Quantity: 5
       - ReagentId: Bicaridine
         Quantity: 10
+      # start-backmen: poppy-opium
+      - ReagentId: Opium
+        Quantity: 2
+      # end-backmen: poppy-opium
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/poppy.rsi
   - type: Produce

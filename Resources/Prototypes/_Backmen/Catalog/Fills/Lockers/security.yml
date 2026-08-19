@@ -9,6 +9,8 @@
       amount: 2
     - id: MagazineRifle556UEG
       amount: 4
+    - id: BattleMedipen
+      amount: 2
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -21,6 +23,8 @@
       amount: 2
     - id: MagazinePistolSubMachineGunVector45ACP
       amount: 4
+    - id: BattleMedipen
+      amount: 2
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -33,6 +37,8 @@
       amount: 2
     - id: MagazineShotgun
       amount: 4
+    - id: BattleMedipen
+      amount: 2
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -45,6 +51,8 @@
       amount: 2
     - id: MagazineShotgun
       amount: 4
+    - id: BattleMedipen
+      amount: 2
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -57,6 +65,8 @@
       amount: 2
     - id: MagazinePistolSubMachineGun9x17
       amount: 4
+    - id: BattleMedipen
+      amount: 2
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -67,6 +77,8 @@
     contents:
     - id: WeaponEarthGovLaserRifle
       amount: 3
+    - id: BattleMedipen
+      amount: 2
 
 - type: entity
   parent: GunSafeBaseSecure
@@ -80,3 +92,5 @@
       amount: 4
     - id: MagazinePistol9x17
       amount: 8
+    - id: BattleMedipen
+      amount: 2

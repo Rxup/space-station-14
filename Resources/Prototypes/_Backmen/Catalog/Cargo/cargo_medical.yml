@@ -1,0 +1,19 @@
+- type: cargoProduct
+  id: ChemistryOpium
+  icon:
+    sprite: Objects/Specific/Chemistry/jug.rsi
+    state: icon_empty
+  product: CrateChemistryOpium
+  cost: 9500
+  category: cargoproduct-category-name-medical
+  group: market
+
+- type: cargoProduct
+  id: ChemistryNociceptine
+  icon:
+    sprite: Objects/Specific/Chemistry/jug.rsi
+    state: icon_empty
+  product: CrateChemistryNociceptine
+  cost: 12000
+  category: cargoproduct-category-name-medical
+  group: market

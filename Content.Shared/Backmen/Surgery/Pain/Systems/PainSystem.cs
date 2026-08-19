@@ -1,9 +1,12 @@
 ﻿using System.Linq;
 using Content.Shared.Backmen.Surgery.Pain.Components;
 using Content.Shared.HealthExaminable;
+using Content.Shared.StatusEffectNew;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
+using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Backmen.Surgery.Pain.Systems;
 
@@ -13,9 +16,12 @@ public abstract partial class PainSystem : EntitySystem
     [Dependency] protected IConfigurationManager Cfg = default!;
 
     [Dependency] protected SharedAudioSystem IHaveNoMouthAndIMustScream = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
 
     protected EntityQuery<NerveSystemComponent> NerveSystemQuery;
     protected EntityQuery<NerveOrganComponent> NerveQuery;
+    protected EntityQuery<PainImmuneComponent> PainImmuneQuery;
 
     public override void Initialize()
     {
@@ -25,17 +31,44 @@ public abstract partial class PainSystem : EntitySystem
         SubscribeLocalEvent<NerveSystemComponent, EntityTerminatingEvent>(OnNerveSystemTerminating);
         SubscribeLocalEvent<NerveOrganComponent, AfterAutoHandleStateEvent>(OnNerveAfterAutoHandleState);
         SubscribeLocalEvent<PainImmuneComponent, HealthBeingExaminedEvent>(OnPainImmuneHealthExamined);
+        SubscribeLocalEvent<PainImmuneComponent, StatusEffectRelayedEvent<HealthBeingExaminedEvent>>(OnPainImmuneHealthExaminedRelayed);
 
         NerveSystemQuery = GetEntityQuery<NerveSystemComponent>();
         NerveQuery = GetEntityQuery<NerveOrganComponent>();
+        PainImmuneQuery = GetEntityQuery<PainImmuneComponent>();
+    }
+
+    /// <summary>
+    /// True if the entity has inherent <see cref="PainImmuneComponent"/> or a status effect that carries it.
+    /// </summary>
+    public bool IsPainImmune(EntityUid uid)
+    {
+        return PainImmuneQuery.HasComp(uid) || _statusEffects.HasEffectComp<PainImmuneComponent>(uid);
     }
 
     private void OnPainImmuneHealthExamined(Entity<PainImmuneComponent> ent, ref HealthBeingExaminedEvent args)
     {
-        if (!args.Message.IsEmpty)
-            args.Message.PushNewline();
+        AddPainImmuneExamineText(args.Message, ent.Owner);
+    }
 
-        args.Message.TryAddMarkup(Loc.GetString("pain-immune-health-examine", ("target", ent.Owner)), out _);
+    private void OnPainImmuneHealthExaminedRelayed(Entity<PainImmuneComponent> ent, ref StatusEffectRelayedEvent<HealthBeingExaminedEvent> args)
+    {
+        if (!_container.TryGetContainingContainer((ent.Owner, null, null), out var container))
+            return;
+
+        var target = container.Owner;
+        if (PainImmuneQuery.HasComp(target))
+            return;
+
+        AddPainImmuneExamineText(args.Args.Message, target);
+    }
+
+    private void AddPainImmuneExamineText(FormattedMessage message, EntityUid target)
+    {
+        if (!message.IsEmpty)
+            message.PushNewline();
+
+        message.TryAddMarkup(Loc.GetString("pain-immune-health-examine", ("target", target)), out _);
     }
 
     private void OnNerveSystemTerminating(Entity<NerveSystemComponent> ent, ref EntityTerminatingEvent args)

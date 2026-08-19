@@ -132,3 +132,87 @@
         key: Adrenaline
         component: IgnoreSlowOnDamage
         time: 30
+
+- type: reagent
+  id: Opium
+  name: reagent-name-opium
+  group: Narcotics
+  desc: reagent-desc-opium
+  physicalDesc: reagent-physical-desc-oily
+  flavor: bitter
+  color: "#3B2F2F"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.25
+      effects:
+      - !type:SuppressPain
+        amount: 15
+        time: 30
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Opium
+          min: 15
+        effectProto: StatusEffectDrowsiness
+        time: 20
+
+- type: reagent
+  id: Nociceptine
+  name: reagent-name-nociceptine
+  group: Narcotics
+  desc: reagent-desc-nociceptine
+  physicalDesc: reagent-physical-desc-viscous
+  flavor: bitter
+  color: "#6B4C7A"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.5
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.4
+
+- type: reagent
+  id: Morphazine
+  name: reagent-name-morphazine
+  group: Narcotics
+  desc: reagent-desc-morphazine
+  physicalDesc: reagent-physical-desc-opaque
+  flavor: bitter
+  color: "#7B68EE"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.5
+      effects:
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectPainImmune
+        time: 4
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 4
+      - !type:Jitter
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        time: 4
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
+        time: 4
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Morphazine
+          max: 2
+        effectProto: StatusEffectForcedSleeping
+        time: 8
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Morphazine
+          min: 20
+        damage:
+          types:
+            Poison: 2
+            Asphyxiation: 1
