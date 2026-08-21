@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Backmen.Flesh;
+using Content.Shared.Body.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Popups;
