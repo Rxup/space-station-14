@@ -11,7 +11,6 @@ using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
@@ -428,10 +427,12 @@ public sealed partial class FleshCultistSystem : EntitySystem
             {
                 foreach (var cont in _container.GetAllContainers(target, container).ToArray())
                 {
+                    if (FleshCorpseContainerDump.ShouldSkipContainer(cont))
+                        continue;
+
                     foreach (var ent in cont.ContainedEntities.ToArray())
                     {
-                        // Body organs must be removed via StripBodyForSkeleton, not container dump.
-                        if (HasComp<OrganComponent>(ent) || HasComp<BodyPartComponent>(ent))
+                        if (FleshCorpseContainerDump.ShouldSkipEntity(ent, EntityManager))
                             continue;
 
                         _container.Remove(ent, cont, force: true, destination: coordinates);
@@ -571,18 +572,17 @@ public sealed partial class FleshCultistSystem : EntitySystem
         {
             foreach (var cont in _container.GetAllContainers(uid,container).ToArray())
             {
+                if (FleshCorpseContainerDump.ShouldSkipContainer(cont))
+                    continue;
+
                 foreach (var ent in cont.ContainedEntities.ToArray())
                 {
-                    {
-                        if (HasComp<BodyPartComponent>(ent))
-                            continue;
-                        if (HasComp<UnremoveableComponent>(ent))
-                            continue;
-                        _container.Remove(ent, cont, force: true, destination: coordinates);
-                        //cont.Remove(ent, EntityManager, force: true);
-                        //_transformSystem.SetCoordinates(ent, coordinates);
-                        _randomHelper.RandomOffset(ent, 0.25f);
-                    }
+                    if (FleshCorpseContainerDump.ShouldSkipEntity(ent, EntityManager))
+                        continue;
+                    if (HasComp<UnremoveableComponent>(ent))
+                        continue;
+                    _container.Remove(ent, cont, force: true, destination: coordinates);
+                    _randomHelper.RandomOffset(ent, 0.25f);
                 }
             }
         }

@@ -25,6 +25,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Tag; // backmen: arrivals-dock-priority
 using Content.Shared.Tiles;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
@@ -82,6 +83,10 @@ public sealed partial class ArrivalsSystem : EntitySystem
     ///     The first arrival is a little early, to save everyone 10s
     /// </summary>
     private const float RoundStartFTLDuration = 10f;
+
+    // start-backmen: arrivals-dock-priority
+    private static readonly ProtoId<TagPrototype> DockTag = "DockArrivals";
+    // end-backmen: arrivals-dock-priority
 
     private readonly List<ProtoId<BiomeTemplatePrototype>> _arrivalsBiomeOptions = new()
     {
@@ -510,7 +515,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
                 if (xform.MapUid != arrivalsXform.MapUid)
                 {
                     if (arrivals.IsValid())
-                        _shuttles.FTLToDock(uid, shuttle, arrivals);
+                        _shuttles.FTLToDock(uid, shuttle, arrivals, priorityTag: DockTag); // backmen: arrivals-dock-priority
 
                     comp.NextArrivalsTime = _timing.CurTime + TimeSpan.FromSeconds(tripTime);
                 }
@@ -520,7 +525,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
                     var targetGrid = _station.GetLargestGrid(comp.Station);
 
                     if (targetGrid != null)
-                        _shuttles.FTLToDock(uid, shuttle, targetGrid.Value);
+                        _shuttles.FTLToDock(uid, shuttle, targetGrid.Value, priorityTag: DockTag); // backmen: arrivals-dock-priority
 
                     // The ArrivalsCooldown includes the trip there, so we only need to add the time taken for
                     // the trip back.
@@ -643,7 +648,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
             var arrivalsComp = EnsureComp<ArrivalsShuttleComponent>(component.Shuttle);
             arrivalsComp.Station = uid;
             EnsureComp<ProtectedGridComponent>(uid);
-            _shuttles.FTLToDock(component.Shuttle, shuttleComp, arrivals, hyperspaceTime: RoundStartFTLDuration);
+            _shuttles.FTLToDock(component.Shuttle, shuttleComp, arrivals, hyperspaceTime: RoundStartFTLDuration, priorityTag: DockTag); // backmen: arrivals-dock-priority
             arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown));
         }
 

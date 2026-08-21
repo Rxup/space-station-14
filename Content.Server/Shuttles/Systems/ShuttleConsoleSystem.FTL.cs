@@ -159,6 +159,6 @@ public sealed partial class ShuttleConsoleSystem
         var ev = new ShuttleConsoleFTLTravelStartEvent(ent.Owner);
         RaiseLocalEvent(ref ev);
 
-        _shuttle.FTLToCoordinates(shuttleUid.Value, shuttleComp, adjustedCoordinates, targetAngle);
+        _shuttle.FTLToCoordinates(shuttleUid.Value, shuttleComp, adjustedCoordinates, targetAngle, priorityTag: tagEv.Tag); // backmen: arrivals-dock-priority
     }
 }

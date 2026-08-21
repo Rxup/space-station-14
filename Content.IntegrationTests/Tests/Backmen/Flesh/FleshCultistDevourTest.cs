@@ -10,6 +10,7 @@ using Content.Shared.Store.Components;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Physics;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Containers;
 
 namespace Content.IntegrationTests.Tests.Backmen.Flesh;
 
@@ -119,6 +120,18 @@ public sealed class FleshCultistDevourTest : GameTest
             Assert.That(fixtures!.Fixtures.TryGetValue("fix1", out var fixture), Is.True);
             Assert.That(fixture!.Density, Is.EqualTo(10f).Within(0.01f),
                 "Devoured body density should be reduced.");
+
+            var containerSys = Server.EntMan.System<SharedContainerSystem>();
+            var droppedActions = 0;
+            var actionQuery = Server.EntMan.EntityQueryEnumerator<ActionComponent, TransformComponent>();
+            while (actionQuery.MoveNext(out var actionUid, out _, out var actionXform))
+            {
+                if (!containerSys.IsEntityInContainer(actionUid, actionXform))
+                    droppedActions++;
+            }
+
+            Assert.That(droppedActions, Is.EqualTo(0),
+                "Devour must not dump the victim's action icons onto the ground.");
         });
     }
 }

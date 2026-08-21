@@ -7,7 +7,6 @@ using Content.Server.Popups;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.Body;
-using Content.Shared.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.Backmen.Flesh;
@@ -265,10 +264,12 @@ public sealed partial class FleshHeartSystem : EntitySystem
         {
             foreach (var cont in _containerSystem.GetAllContainers(args.Climber, container).ToArray())
             {
+                if (FleshCorpseContainerDump.ShouldSkipContainer(cont))
+                    continue;
+
                 foreach (var ent in cont.ContainedEntities.ToArray())
                 {
-                    // Body organs must be removed via StripBodyForSkeleton, not container dump.
-                    if (HasComp<OrganComponent>(ent) || HasComp<BodyPartComponent>(ent))
+                    if (FleshCorpseContainerDump.ShouldSkipEntity(ent, EntityManager))
                         continue;
 
                     _containerSystem.Remove(ent, cont, force: true, destination: xform.Coordinates);

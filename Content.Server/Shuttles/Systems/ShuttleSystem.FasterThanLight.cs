@@ -303,6 +303,10 @@ public sealed partial class ShuttleSystem
         startupTime ??= DefaultStartupTime;
         hyperspaceTime ??= DefaultTravelTime;
 
+        // start-backmen: arrivals-dock-priority
+        priorityTag = ResolvePriorityTag(shuttleUid, priorityTag);
+        // end-backmen: arrivals-dock-priority
+
         var config = _dockSystem.GetDockingConfig(shuttleUid, target, priorityTag);
         hyperspace.StartupTime = startupTime.Value;
         hyperspace.TravelTime = hyperspaceTime.Value;
@@ -331,6 +335,18 @@ public sealed partial class ShuttleSystem
             Log.Error($"Unable to FTL grid {ToPrettyString(shuttleUid)} to target properly?");
         }
     }
+
+    // start-backmen: arrivals-dock-priority
+    private string? ResolvePriorityTag(EntityUid shuttleUid, string? priorityTag)
+    {
+        if (priorityTag != null)
+            return priorityTag;
+
+        var tagEv = new FTLTagEvent();
+        RaiseLocalEvent(shuttleUid, ref tagEv);
+        return tagEv.Tag;
+    }
+    // end-backmen: arrivals-dock-priority
 
     private bool TrySetupFTL(EntityUid uid, ShuttleComponent shuttle, [NotNullWhen(true)] out FTLComponent? component)
     {
@@ -718,6 +734,10 @@ public sealed partial class ShuttleSystem
         {
             return false;
         }
+
+        // start-backmen: arrivals-dock-priority
+        priorityTag = ResolvePriorityTag(shuttleUid, priorityTag);
+        // end-backmen: arrivals-dock-priority
 
         config = _dockSystem.GetDockingConfig(shuttleUid, targetUid, priorityTag);
 

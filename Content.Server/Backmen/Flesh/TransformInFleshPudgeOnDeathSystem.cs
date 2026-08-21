@@ -1,9 +1,8 @@
 using System.Linq;
-using Content.Shared.Body.Components;
+using Content.Shared.Backmen.Flesh;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Forensics;
 using Content.Server.Popups;
-using Content.Shared.Body.Part;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
@@ -70,17 +69,16 @@ public sealed partial class TransformInFleshPudgeOnDeathSystem : EntitySystem
             {
                 foreach (var cont in _container.GetAllContainers(uid, container).ToArray())
                 {
+                    if (FleshCorpseContainerDump.ShouldSkipContainer(cont))
+                        continue;
+
                     foreach (var ent in cont.ContainedEntities.ToArray())
                     {
-                        {
-                            if (HasComp<BodyPartComponent>(ent))
-                                continue;
+                        if (FleshCorpseContainerDump.ShouldSkipEntity(ent, EntityManager))
+                            continue;
 
-                            _container.Remove(ent, cont, force: true, destination: coordinates);
-                            //cont.Remove(ent, EntityManager, force: true);
-                            //_transform.SetCoordinates(ent, coordinates);
-                            _randomHelper.RandomOffset(ent, 0.25f);
-                        }
+                        _container.Remove(ent, cont, force: true, destination: coordinates);
+                        _randomHelper.RandomOffset(ent, 0.25f);
                     }
                 }
             }
