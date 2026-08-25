@@ -1,24 +1,24 @@
 - type: gameMap
   id: BackmenDelta
-  mapName: 'WonderDelta Station'
-  mapPath: /Maps/Backmen/WonderDelta.yml
-  minPlayers: 30
+  mapName: 'BM Delta'
+  mapPath: /Maps/Backmen/backmen_delta.yml 
+  minPlayers: 15
+  maxPlayers: 60
   stations:
     Delta:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Delta {1}'
+          mapNameTemplate: 'BM Delta {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
-            prefixCreator: 'BM'
+            prefixCreator: '14'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Corvax/Shuttles/emergency_corvaxdelta.yml
+          emergencyShuttlePath: /Maps/Corvax/Shuttles/emergency_corvaxdelta.yml 
         - type: StationJobs
           availableJobs:
             Borg: [ 2, 3 ]
             #Boxer: [ 2, 2 ]
-            Pilot: [ 1, 1 ]
             CargoTechnician: [ 4, 4 ]
             Passenger: [ -1, -1 ]
             Bartender: [ 1, 1 ]
