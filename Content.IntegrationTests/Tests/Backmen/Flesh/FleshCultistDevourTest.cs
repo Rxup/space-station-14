@@ -123,10 +123,10 @@ public sealed class FleshCultistDevourTest : GameTest
 
             var containerSys = Server.EntMan.System<SharedContainerSystem>();
             var droppedActions = 0;
-            var actionQuery = Server.EntMan.EntityQueryEnumerator<ActionComponent, TransformComponent>();
-            while (actionQuery.MoveNext(out var actionUid, out _, out var actionXform))
+            var actionQuery = Server.EntMan.EntityQueryEnumerator<ActionComponent>();
+            while (actionQuery.MoveNext(out var actionUid, out _))
             {
-                if (!containerSys.IsEntityInContainer(actionUid, actionXform))
+                if (!containerSys.IsEntityInContainer(actionUid))
                     droppedActions++;
             }
 
