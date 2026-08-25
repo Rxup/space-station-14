@@ -19,7 +19,6 @@
           availableJobs:
             Borg: [ 2, 3 ]
             #Boxer: [ 2, 2 ]
-            Pilot: [ 1, 1 ]
             CargoTechnician: [ 4, 4 ]
             Passenger: [ -1, -1 ]
             Bartender: [ 1, 1 ]
