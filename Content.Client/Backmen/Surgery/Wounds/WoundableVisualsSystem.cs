@@ -1,11 +1,11 @@
 using System.Linq;
-using Content.Shared.Backmen.Surgery.Body.Events;
+using Content.Shared.Backmen.Body.OrganRelations;
 using Content.Shared.Backmen.Surgery.Traumas.Components;
 using Content.Shared.Backmen.Surgery.Wounds;
 using Content.Shared.Backmen.Surgery.Wounds.Systems;
 using Content.Shared.Body;
+using Content.Shared.Body.Events;
 using Content.Shared.Body.Part;
-using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.FixedPoint;
 using Robust.Client.GameObjects;
 using Robust.Shared.Random;
@@ -15,7 +15,7 @@ namespace Content.Client.Backmen.Surgery.Wounds;
 
 public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableVisualsComponent>
 {
-    [Dependency] private BkmBodySharedSystem _body = default!;
+    [Dependency] private OrganRelationSystem _organRelations = default!;
     [Dependency] private WoundSystem _wound = default!;
 
     [Dependency] private IRobustRandom _random = default!;
@@ -29,8 +29,8 @@ public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableV
         SubscribeLocalEvent<WoundableVisualsComponent, ComponentInit>(InitializeEntity, after: [typeof(WoundSystem)]);
         SubscribeLocalEvent<WoundableVisualsComponent, ComponentStartup>(StartupEntity, after: [typeof(WoundSystem)]);
 
-        SubscribeLocalEvent<WoundableVisualsComponent, BodyPartRemovedEvent>(WoundableRemoved);
-        SubscribeLocalEvent<WoundableVisualsComponent, BodyPartAddedEvent>(WoundableConnected);
+        SubscribeLocalEvent<WoundableVisualsComponent, OrganRemovedFromBodyEvent>(WoundableRemoved);
+        SubscribeLocalEvent<WoundableVisualsComponent, OrganAddedToBodyEvent>(WoundableConnected);
 
         SubscribeLocalEvent<WoundableVisualsComponent, WoundableIntegrityChangedEvent>(OnWoundableIntegrityChanged);
     }
@@ -73,43 +73,52 @@ public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableV
         UpdateWoundableVisuals(uid, component, bodySprite);
     }
 
-    private void WoundableConnected(EntityUid uid, WoundableVisualsComponent component, ref BodyPartAddedEvent args)
+    private void WoundableConnected(EntityUid uid, WoundableVisualsComponent component, ref OrganAddedToBodyEvent args)
     {
-        if (!TryComp(args.Part.Comp.Body, out SpriteComponent? bodySprite))
+        if (!TryComp(args.Body, out SpriteComponent? bodySprite))
             return;
 
         EnsureDamageLayersOnSprite(component, bodySprite);
     }
 
-    private void WoundableRemoved(EntityUid uid, WoundableVisualsComponent component, ref BodyPartRemovedEvent args)
+    private void WoundableRemoved(EntityUid uid, WoundableVisualsComponent component, ref OrganRemovedFromBodyEvent args)
     {
-        var body = args.Part.Comp.Body;
-        if (!TryComp(body, out SpriteComponent? bodySprite))
+        if (!TryComp(args.OldBody, out SpriteComponent? bodySprite))
             return;
 
-        foreach (var part in _body.GetBodyPartChildren(uid))
+        ClearWoundableLayers(uid, component, bodySprite);
+
+        foreach (var child in _organRelations.AllChildren(uid))
         {
-            if (!TryComp<WoundableVisualsComponent>(part.Id, out var woundableVisuals))
+            if (!TryComp(child, out WoundableVisualsComponent? woundableVisuals))
                 continue;
 
-            foreach (var (group, _) in woundableVisuals.DamageOverlayGroups!)
-            {
-                if (!bodySprite.LayerMapTryGet($"{woundableVisuals.OccupiedLayer}{group}", out var layer))
-                    continue;
-
-                bodySprite.LayerSetVisible(layer, false);
-                bodySprite.LayerMapRemove(layer);
-            }
-
-            if (bodySprite.LayerMapTryGet($"{woundableVisuals.OccupiedLayer}Bleeding", out var childBleeds))
-            {
-                bodySprite.LayerSetVisible(childBleeds, false);
-                bodySprite.LayerMapRemove(childBleeds);
-            }
+            ClearWoundableLayers(child, woundableVisuals, bodySprite);
 
             if (TryComp(uid, out SpriteComponent? pieceSprite))
-                UpdateWoundableVisuals(part.Id, woundableVisuals, pieceSprite);
+                UpdateWoundableVisuals(child, woundableVisuals, pieceSprite);
         }
+    }
+
+    private void ClearWoundableLayers(EntityUid woundable, WoundableVisualsComponent visuals, SpriteComponent bodySprite)
+    {
+        if (visuals.DamageOverlayGroups == null)
+            return;
+
+        foreach (var (group, _) in visuals.DamageOverlayGroups)
+        {
+            if (!bodySprite.LayerMapTryGet($"{visuals.OccupiedLayer}{group}", out var layer))
+                continue;
+
+            bodySprite.LayerSetVisible(layer, false);
+            bodySprite.LayerMapRemove(layer);
+        }
+
+        if (!bodySprite.LayerMapTryGet($"{visuals.OccupiedLayer}Bleeding", out var bleeds))
+            return;
+
+        bodySprite.LayerSetVisible(bleeds, false);
+        bodySprite.LayerMapRemove(bleeds);
     }
 
     private void OnWoundableIntegrityChanged(EntityUid uid, WoundableVisualsComponent component, ref WoundableIntegrityChangedEvent args)
@@ -127,19 +136,56 @@ public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableV
 
     private bool TryGetWoundableBody(EntityUid woundableUid, out EntityUid bodyUid)
     {
-        if (TryComp<BodyPartComponent>(woundableUid, out var bodyPart) && bodyPart.Body is { } partBody)
-        {
-            bodyUid = partBody;
-            return true;
-        }
-
         if (TryComp<OrganComponent>(woundableUid, out var organ) && organ.Body is { } organBody)
         {
             bodyUid = organBody;
             return true;
         }
 
+        if (TryComp<BodyPartComponent>(woundableUid, out var bodyPart) && bodyPart.Body is { } partBody)
+        {
+            bodyUid = partBody;
+            return true;
+        }
+
         bodyUid = default;
+        return false;
+    }
+
+    private bool TryGetWoundableParent(EntityUid woundableUid, out EntityUid parentUid)
+    {
+        if (TryComp<ChildOrganComponent>(woundableUid, out var child) && child.Parent is { } organParent)
+        {
+            parentUid = organParent;
+            return true;
+        }
+
+        parentUid = default;
+        return false;
+    }
+
+    private bool TryGetWoundablePartIdentity(
+        EntityUid woundableUid,
+        out BodyPartType partType,
+        out BodyPartSymmetry symmetry)
+    {
+        if (TryComp<OrganComponent>(woundableUid, out var organ)
+            && organ.Category is { } category
+            && Content.Shared.Backmen.Targeting.SurgeryBodyPartMapping.TryGetBodyPartType(category, out partType, out var mappedSymmetry))
+        {
+            symmetry = mappedSymmetry ?? BodyPartSymmetry.None;
+            return true;
+        }
+
+        if (TryComp<BodyPartComponent>(woundableUid, out var bodyPart))
+        {
+            partType = bodyPart.PartType;
+            symmetry = bodyPart.Symmetry;
+            return true;
+        }
+
+        partType = default;
+        symmetry = BodyPartSymmetry.None;
         return false;
     }
 
@@ -198,16 +244,16 @@ public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableV
 
     private void UpdateBleeding(EntityUid uid, WoundableVisualsComponent comp, Enum layer, SpriteComponent sprite)
     {
-        if (!TryComp<BodyPartComponent>(uid, out var bodyPart))
+        if (!TryGetWoundablePartIdentity(uid, out var partType, out var symmetry))
             return;
 
         if (comp.BleedingOverlay == null)
         {
-            if (!_body.TryGetParentBodyPart(uid, out var parentUid, out _))
+            if (!TryGetWoundableParent(uid, out var parentUid))
                 return;
 
             var totalBleeds = FixedPoint2.Zero;
-            foreach (var woundEnt in _wound.GetWoundableWounds(parentUid.Value))
+            foreach (var woundEnt in _wound.GetWoundableWounds(parentUid))
             {
                 if (!TryComp<BleedInflicterComponent>(woundEnt, out var bleeds) || !bleeds.IsBleeding)
                     continue;
@@ -223,10 +269,10 @@ public sealed partial class WoundableVisualsSystem : VisualizerSystem<WoundableV
                 totalBleeds += bleeds.BleedingAmount;
             }
 
-            var symmetry = bodyPart.Symmetry == BodyPartSymmetry.Left ? "L" : "R";
-            var partType = bodyPart.PartType == BodyPartType.Foot ? "Leg" : "Arm";
+            var symmetryPrefix = symmetry == BodyPartSymmetry.Left ? "L" : "R";
+            var parentPartType = partType == BodyPartType.Foot ? "Leg" : "Arm";
 
-            var part = symmetry + partType;
+            var part = symmetryPrefix + parentPartType;
 
             if (sprite.LayerMapTryGet($"{part}Bleeding", out var parentBleedingLayer))
             {

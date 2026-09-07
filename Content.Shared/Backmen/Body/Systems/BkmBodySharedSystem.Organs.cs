@@ -2,7 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Body;
 using Content.Shared.Body.Events;
-using Content.Shared.Body.Part;
 using Content.Shared.Damage.Components;
 using Robust.Shared.Containers;
 
@@ -83,84 +82,7 @@ public partial class BkmBodySharedSystem
     }
 
     /// <summary>
-    /// Creates the specified organ slot on the parent entity.
-    /// </summary>
-    private OrganSlot? CreateOrganSlot(Entity<BodyPartComponent?> parentEnt, string slotId)
-    {
-        if (!Resolve(parentEnt, ref parentEnt.Comp, logMissing: false))
-            return null;
-
-        Containers.EnsureContainer<ContainerSlot>(parentEnt, GetOrganContainerId(slotId));
-        var slot = new OrganSlot(slotId);
-        parentEnt.Comp.Organs.Add(slotId, slot);
-        return slot;
-    }
-
-    /// <summary>
-    /// Attempts to create the specified organ slot on the specified parent if it exists.
-    /// </summary>
-    public bool TryCreateOrganSlot(
-        EntityUid? parent,
-        string slotId,
-        [NotNullWhen(true)] out OrganSlot? slot,
-        BodyPartComponent? part = null)
-    {
-        slot = null;
-
-        if (parent is null || !Resolve(parent.Value, ref part, logMissing: false))
-        {
-            return false;
-        }
-
-        Containers.EnsureContainer<ContainerSlot>(parent.Value, GetOrganContainerId(slotId));
-        slot = new OrganSlot(slotId);
-        return part.Organs.TryAdd(slotId, slot.Value);
-    }
-
-    /// <summary>
-    /// Returns whether the slotId exists on the partId.
-    /// </summary>
-    public bool CanInsertOrgan(
-        EntityUid partId,
-        string slotId,
-        BodyPartComponent? part = null)
-    {
-        return Resolve(partId, ref part) && part.Organs.ContainsKey(slotId);
-    }
-
-    /// <summary>
-    /// Returns whether the specified organ slot exists on the partId.
-    /// </summary>
-    public bool CanInsertOrgan(
-        EntityUid partId,
-        OrganSlot slot,
-        BodyPartComponent? part = null)
-    {
-        return CanInsertOrgan(partId, slot.Id, part);
-    }
-
-    public bool InsertOrgan(
-        EntityUid partId,
-        EntityUid organId,
-        string slotId,
-        BodyPartComponent? part = null,
-        OrganComponent? organ = null)
-    {
-        if (!Resolve(organId, ref organ, logMissing: false)
-            || !Resolve(partId, ref part, logMissing: false)
-            || !CanInsertOrgan(partId, slotId, part))
-        {
-            return false;
-        }
-
-        var containerId = GetOrganContainerId(slotId);
-
-        return Containers.TryGetContainer(partId, containerId, out var container)
-            && Containers.Insert(organId, container);
-    }
-
-    /// <summary>
-    /// Removes the organ if it is inside of a body part.
+    /// Removes the organ from its body container if present.
     /// </summary>
     public bool RemoveOrgan(EntityUid organId, OrganComponent? organ = null)
     {
@@ -180,8 +102,7 @@ public partial class BkmBodySharedSystem
         {
             var parent = container.Owner;
 
-            if (HasComp<BodyPartComponent>(parent)
-                || (TryComp<BodyComponent>(parent, out var bodyFromContainer) && bodyFromContainer.Organs == container))
+            if (TryComp<BodyComponent>(parent, out var bodyFromContainer) && bodyFromContainer.Organs == container)
             {
                 if (Containers.Remove(organId, container, force: true))
                     return true;
@@ -226,30 +147,6 @@ public partial class BkmBodySharedSystem
         }
 
         return Containers.Insert(organId, body.Organs);
-    }
-
-    /// <summary>
-    /// Tries to add this organ to any matching slot on this body part.
-    /// </summary>
-    public bool AddOrganToFirstValidSlot(
-        EntityUid partId,
-        EntityUid organId,
-        BodyPartComponent? part = null,
-        OrganComponent? organ = null)
-    {
-        if (!Resolve(partId, ref part, logMissing: false)
-            || !Resolve(organId, ref organ, logMissing: false))
-        {
-            return false;
-        }
-
-        foreach (var slotId in part.Organs.Keys)
-        {
-            InsertOrgan(partId, organId, slotId, part, organ);
-            return true;
-        }
-
-        return false;
     }
 
     /// <summary>
@@ -341,12 +238,8 @@ public partial class BkmBodySharedSystem
         if (!TryComp(organEnt.Comp.Body, out BodyComponent? body))
             return;
 
-        // I hate having to hardcode these checks so much.
-        if (HasComp<EyesComponent>(organEnt))
-        {
-            var ev = new OrganEnabledEvent(organEnt);
-            RaiseLocalEvent(organEnt, ref ev);
-        }
+        var ev = new OrganEnabledEvent(organEnt);
+        RaiseLocalEvent(organEnt, ref ev);
     }
 
     private void DisableOrgan(Entity<OrganComponent> organEnt)
@@ -354,12 +247,8 @@ public partial class BkmBodySharedSystem
         if (!TryComp(organEnt.Comp.Body, out BodyComponent? body))
             return;
 
-        // I hate having to hardcode these checks so much.
-        if (HasComp<EyesComponent>(organEnt))
-        {
-            var ev = new OrganDisabledEvent(organEnt);
-            RaiseLocalEvent(organEnt, ref ev);
-        }
+        var ev = new OrganDisabledEvent(organEnt);
+        RaiseLocalEvent(organEnt, ref ev);
     }
 
     // Shitmed Change End
