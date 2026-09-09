@@ -655,8 +655,6 @@ public sealed partial class ServerWoundSystem : WoundSystem
         if (!Body.TryGetWoundableBodyPartInfo(woundableEntity, out _, out var childPartType, out _))
             return;
 
-        var hasContainer = Containers.TryGetContainingContainer(parentWoundableEntity, woundableEntity, out var container);
-
         woundableComp.WoundableSeverity = WoundableSeverity.Loss;
 
         if (TryComp<TargetingComponent>(bodyUid, out var targeting))
@@ -690,19 +688,6 @@ public sealed partial class ServerWoundSystem : WoundSystem
             Body.RemoveOrgan(woundableEntity, organ);
             return;
         }
-
-        if (!hasContainer
-            || !TryComp<BodyPartComponent>(parentWoundableEntity, out var parentBodyPart)
-            || !TryComp<BodyPartComponent>(woundableEntity, out var childBodyPart))
-            return;
-
-        var bodyPartId = container!.ID;
-        Body.DetachPart(
-            parentWoundableEntity,
-            BkmBodySharedSystem.GetPartSlotContainerIdFromContainer(bodyPartId),
-            woundableEntity,
-            parentBodyPart,
-            childBodyPart);
     }
 
     #endregion

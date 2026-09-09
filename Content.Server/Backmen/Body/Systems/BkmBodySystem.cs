@@ -3,7 +3,6 @@ using System.Numerics;
 using Content.Server.Ghost;
 using Content.Shared.Backmen.Body.Systems;
 using Content.Shared.Body;
-using Content.Shared.Body.Part;
 using Content.Shared.Damage.Components;
 using Content.Shared.Gibbing;
 using Content.Shared.Gibbing.Events;
@@ -42,22 +41,6 @@ public sealed partial class BkmBodySystem : BkmBodySharedSystem
             mind.TimeOfDeath ??= _gameTiming.RealTime;
             _ghostSystem.OnGhostAttempt(mindId, canReturnGlobal: true, mind: mind);
         }
-    }
-
-    protected override void AddPart(
-        Entity<BodyComponent?> bodyEnt,
-        Entity<BodyPartComponent> partEnt,
-        string slotId)
-    {
-        base.AddPart(bodyEnt, partEnt, slotId);
-    }
-
-    protected override void RemovePart(
-        Entity<BodyComponent?> bodyEnt,
-        Entity<BodyPartComponent> partEnt,
-        string slotId)
-    {
-        base.RemovePart(bodyEnt, partEnt, slotId);
     }
 
     public override HashSet<EntityUid> GibBody(

@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Shared.Backmen.CCVar;
-using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Systems;
 using Content.Shared.Backmen.Surgery.Pain;
@@ -68,8 +67,6 @@ public sealed partial class ServerPainSystem : PainSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NerveOrganComponent, BodyPartAddedEvent>(OnBodyPartAdded, after: [typeof(ConsciousnessSystem)]);
-        SubscribeLocalEvent<NerveOrganComponent, BodyPartRemovedEvent>(OnBodyPartRemoved, after: [typeof(ConsciousnessSystem)]);
         SubscribeLocalEvent<NerveOrganComponent, OrganAddedToBodyEvent>(OnOrganAddedToBody, after: [typeof(ConsciousnessSystem)]);
         SubscribeLocalEvent<NerveOrganComponent, OrganRemovedFromBodyEvent>(OnOrganRemovedFromBody, after: [typeof(ConsciousnessSystem)]);
 
@@ -230,24 +227,6 @@ public sealed partial class ServerPainSystem : PainSystem
     }
 
     #region Event Handling
-
-    private void OnBodyPartAdded(Entity<NerveOrganComponent> nerve, ref BodyPartAddedEvent args)
-    {
-        var bodyPart = args.Part.Comp;
-        if (!bodyPart.Body.HasValue)
-            return;
-
-        HandleWoundableAttachedToBody(bodyPart.Body.Value, nerve);
-    }
-
-    private void OnBodyPartRemoved(Entity<NerveOrganComponent> nerve, ref BodyPartRemovedEvent args)
-    {
-        var bodyPart = args.Part.Comp;
-        if (!bodyPart.Body.HasValue)
-            return;
-
-        HandleWoundableDetachedFromBody(bodyPart.Body.Value, nerve);
-    }
 
     private void OnOrganAddedToBody(Entity<NerveOrganComponent> nerve, ref OrganAddedToBodyEvent args)
     {

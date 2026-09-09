@@ -3,7 +3,6 @@ using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Shared.Backmen.CCVar;
 using Content.Shared.Backmen.Damage;
-using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;
 using Content.Shared.Backmen.Surgery.Consciousness;
 using Content.Shared.Backmen.Surgery.Consciousness.Components;
@@ -78,9 +77,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         // end-backmen: repairable-consciousness
         SubscribeLocalEvent<ConsciousnessComponent, HandleUnhandledWoundsEvent>(OnHandleUnhandledDamage);
         SubscribeLocalEvent<ConsciousnessComponent, DamageableGetHealableDamageEvent>(OnGetHealableDamage);
-
-        SubscribeLocalEvent<ConsciousnessRequiredComponent, BodyPartAddedEvent>(OnBodyPartAdded);
-        SubscribeLocalEvent<ConsciousnessRequiredComponent, BodyPartRemovedEvent>(OnBodyPartRemoved);
 
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganAddedToBodyEvent>(OnOrganAdded);
         SubscribeLocalEvent<ConsciousnessRequiredComponent, OrganRemovedFromBodyEvent>(OnOrganRemoved);
@@ -686,33 +682,6 @@ public sealed partial class ServerConsciousnessSystem : ConsciousnessSystem
         }
 
         return damageValue;
-    }
-
-    private void OnBodyPartAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartAddedEvent args)
-    {
-        if (args.Part.Comp.Body == null || !ConsciousnessQuery.TryComp(args.Part.Comp.Body, out var consciousness))
-            return;
-
-        consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, component.CausesDeath, false);
-        CheckRequiredParts((args.Part.Comp.Body.Value, consciousness));
-    }
-
-    private void OnBodyPartRemoved(EntityUid uid, ConsciousnessRequiredComponent component, ref BodyPartRemovedEvent args)
-    {
-        if(TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.Part))
-            return;
-
-        if (args.Part.Comp.Body == null || !ConsciousnessQuery.TryComp(args.Part.Comp.Body.Value, out var consciousness))
-            return;
-
-        if (!consciousness.RequiredConsciousnessParts.TryGetValue(component.Identifier, out var value))
-        {
-            Log.Warning($"ConsciousnessRequirementPart with identifier {component.Identifier}:{uid} not found on body:{args.Part.Comp.Body}");
-            return;
-        }
-
-        consciousness.RequiredConsciousnessParts[component.Identifier] = (uid, value.Item2, true);
-        CheckRequiredParts((args.Part.Comp.Body.Value, consciousness));
     }
 
     private void OnOrganAdded(EntityUid uid, ConsciousnessRequiredComponent component, ref OrganAddedToBodyEvent args)

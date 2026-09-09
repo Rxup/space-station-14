@@ -455,30 +455,27 @@ public partial class TraumaSystem
         partType = BodyPartType.Chest;
         totalOrganIntegrity = FixedPoint2.Zero;
 
-        if (TryComp<BodyPartComponent>(woundable, out var bodyPart))
+        if (TryComp<OrganComponent>(woundable, out var organ) && organ.Body is { } body)
         {
-            if (!bodyPart.Body.HasValue)
-                return false;
+            bodyUid = body;
+            if (organ.Category is { } category
+                && SurgeryBodyPartMapping.TryGetBodyPartType(category, out var mappedType, out _))
+            {
+                partType = mappedType;
+            }
 
-            bodyUid = bodyPart.Body.Value;
-            partType = bodyPart.PartType;
-            totalOrganIntegrity = Body.GetPartOrgans(woundable, bodyPart)
-                .Aggregate(FixedPoint2.Zero, (current, organ) => current + organ.Component.OrganIntegrity);
+            totalOrganIntegrity = Body.GetOrgansForWoundable(woundable)
+                .Aggregate(FixedPoint2.Zero, (current, o) => current + o.Component.OrganIntegrity);
             return true;
         }
 
-        if (!TryComp<OrganComponent>(woundable, out var organ) || organ.Body is not { } body)
+        if (!TryComp<BodyPartComponent>(woundable, out var bodyPart) || !bodyPart.Body.HasValue)
             return false;
 
-        bodyUid = body;
-        if (organ.Category is { } category
-            && SurgeryBodyPartMapping.TryGetBodyPartType(category, out var mappedType, out _))
-        {
-            partType = mappedType;
-        }
-
-        totalOrganIntegrity = Body.GetOrgansForWoundable(woundable)
-            .Aggregate(FixedPoint2.Zero, (current, o) => current + o.Component.OrganIntegrity);
+        // Leftover BodyPartComponent item metadata without organ lifecycle.
+        bodyUid = bodyPart.Body.Value;
+        partType = bodyPart.PartType;
+        totalOrganIntegrity = FixedPoint2.Zero;
         return true;
     }
 

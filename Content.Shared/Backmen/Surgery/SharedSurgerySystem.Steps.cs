@@ -467,19 +467,10 @@ public abstract partial class SharedSurgerySystem
                 && (removedComp.Symmetry == null || partComp.Symmetry == removedComp.Symmetry)
                 && !(_body.BodyHasArachneOrgan(args.Body)
                     && SurgeryBodyPartMapping.TryGetCategory(removedComp.Part, removedComp.Symmetry, out var blockedCategory)
-                    && SurgeryBodyPartMapping.IsHumanLegOrFootCategory(blockedCategory)))
+                    && SurgeryBodyPartMapping.IsHumanLegOrFootCategory(blockedCategory))
+                && TryAttachLimbAsOrgan(args.Body, tool, removedComp))
             {
-                // start-backmen: cybernetic-limb-attach
-                if (HasComp<CyberneticsComponent>(tool) && TryAttachCyberneticBodyPart(args.Body, tool, removedComp))
-                    return;
-                // end-backmen: cybernetic-limb-attach
-
-                var slotName = removedComp.Symmetry != null
-                    ? $"{removedComp.Symmetry?.ToString().ToLower()} {removedComp.Part.ToString().ToLower()}"
-                    : removedComp.Part.ToString().ToLower();
-                _body.TryCreatePartSlot(args.Part, slotName, partComp.PartType, out _, partComp.Symmetry);
-                _body.AttachPart(args.Part, slotName, tool);
-                EnsureComp<BodyPartReattachedComponent>(tool);
+                return;
             }
         }
     }
@@ -717,16 +708,6 @@ public abstract partial class SharedSurgerySystem
             AmputateNubodyExternalOrgan(args.Body, args.User, args.Part);
             return;
         }
-
-        if (!TryComp(args.Part, out BodyPartComponent? partComp)
-            || partComp.Body != args.Body)
-            return;
-
-        if (!_body.TryGetParentBodyPart(args.Part, out var parentPart, out _))
-            return;
-
-        _wounds.AmputateWoundableSafely(parentPart.Value, args.Part);
-        _hands.TryPickupAnyHand(args.User, args.Part);
     }
 
     private void OnRemovePartCheck(Entity<SurgeryRemovePartStepComponent> ent, ref SurgeryStepCompleteCheckEvent args)
@@ -738,9 +719,7 @@ public abstract partial class SharedSurgerySystem
             return;
         }
 
-        if (!TryComp(args.Part, out BodyPartComponent? partComp)
-            || partComp.Body == args.Body)
-            args.Cancelled = true;
+        // Non-organ / detached limbs complete the step.
     }
 
     /// <summary>
@@ -1393,7 +1372,7 @@ public abstract partial class SharedSurgerySystem
     // end-backmen: cavity-implant
 
     // start-backmen: cybernetic-limb-attach
-    private bool TryAttachCyberneticBodyPart(
+    private bool TryAttachLimbAsOrgan(
         EntityUid body,
         EntityUid tool,
         SurgeryPartRemovedConditionComponent removedComp)
@@ -1419,7 +1398,7 @@ public abstract partial class SharedSurgerySystem
             return false;
         }
 
-        TryAttachCyberneticChildPart(body, tool);
+        TryAttachGeneratedChildOrgan(body, tool);
 
         _wounds.RestoreWoundableAfterReattachment(tool);
         EnsureComp<OrganReattachedComponent>(tool);
@@ -1430,7 +1409,7 @@ public abstract partial class SharedSurgerySystem
         return true;
     }
 
-    private void TryAttachCyberneticChildPart(EntityUid body, EntityUid parentPart)
+    private void TryAttachGeneratedChildOrgan(EntityUid body, EntityUid parentPart)
     {
         if (!_net.IsServer
             || !TryComp<GenerateChildPartComponent>(parentPart, out var gen)

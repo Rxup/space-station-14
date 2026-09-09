@@ -4,7 +4,10 @@ using Content.Client.DisplacementMap;
 using Content.Client.Examine;
 using Content.Client.Strip;
 using Content.Client.Verbs.UI;
-using Content.Shared.Backmen.Surgery.Body.Events;
+using Content.Shared.Backmen.Surgery.Body.Organs;
+using Content.Shared.Backmen.Targeting;
+using Content.Shared.Body;
+using Content.Shared.Body.Events;
 using Content.Shared.Body.Part;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
@@ -50,8 +53,8 @@ namespace Content.Client.Hands.Systems
             SubscribeLocalEvent<HandsComponent, ComponentShutdown>(OnHandsShutdown);
             SubscribeLocalEvent<HandsComponent, ComponentHandleState>(HandleComponentState);
             SubscribeLocalEvent<HandsComponent, VisualsChangedEvent>(OnVisualsChanged);
-            SubscribeLocalEvent<HandsComponent, BodyPartRemovedEvent>(HandleBodyPartRemoved);
-            SubscribeLocalEvent<HandsComponent, BodyPartDisabledEvent>(HandleBodyPartDisabled);
+            SubscribeLocalEvent<OrganComponent, OrganRemovedFromBodyEvent>(HandleOrganRemovedFromBody);
+            SubscribeLocalEvent<OrganComponent, OrganDisabledEvent>(HandleOrganDisabled);
 
             OnHandSetActive += OnHandActivated;
         }
@@ -209,31 +212,67 @@ namespace Content.Client.Hands.Systems
 
         #region visuals
 
-        private void HideLayers(EntityUid uid, HandsComponent component, Entity<BodyPartComponent> part, SpriteComponent? sprite = null)
+        private void HideHandLayers(EntityUid body, HandsComponent component, BodyPartSymmetry symmetry, SpriteComponent? sprite = null)
         {
-            if (part.Comp.PartType != BodyPartType.Hand || !Resolve(uid, ref sprite, logMissing: false))
+            if (!Resolve(body, ref sprite, logMissing: false))
                 return;
 
-            var location = part.Comp.Symmetry switch
+            var location = symmetry switch
             {
                 BodyPartSymmetry.None => HandLocation.Middle,
                 BodyPartSymmetry.Left => HandLocation.Left,
                 BodyPartSymmetry.Right => HandLocation.Right,
-                _ => throw new ArgumentOutOfRangeException(nameof(part.Comp.Symmetry))
+                _ => throw new ArgumentOutOfRangeException(nameof(symmetry))
             };
 
-            if (component.RevealedLayers.TryGetValue(location, out var revealedLayers))
-            {
-                foreach (var key in revealedLayers)
-                    sprite.RemoveLayer(key);
+            if (!component.RevealedLayers.TryGetValue(location, out var revealedLayers))
+                return;
 
-                revealedLayers.Clear();
-            }
+            foreach (var key in revealedLayers)
+                sprite.RemoveLayer(key);
+
+            revealedLayers.Clear();
         }
 
-        private void HandleBodyPartRemoved(EntityUid uid, HandsComponent component, ref BodyPartRemovedEvent args) => HideLayers(uid, component, args.Part);
+        private bool TryGetHandIdentity(Entity<OrganComponent> organ, out BodyPartSymmetry symmetry)
+        {
+            symmetry = BodyPartSymmetry.None;
 
-        private void HandleBodyPartDisabled(EntityUid uid, HandsComponent component, ref BodyPartDisabledEvent args) => HideLayers(uid, component, args.Part);
+            if (organ.Comp.Category is { } category
+                && SurgeryBodyPartMapping.TryGetBodyPartType(category, out var type, out var mappedSymmetry)
+                && type == BodyPartType.Hand)
+            {
+                symmetry = mappedSymmetry ?? BodyPartSymmetry.None;
+                return true;
+            }
+
+            if (TryComp(organ, out BodyPartComponent? part) && part.PartType == BodyPartType.Hand)
+            {
+                symmetry = part.Symmetry;
+                return true;
+            }
+
+            return false;
+        }
+
+        private void HandleOrganRemovedFromBody(Entity<OrganComponent> organ, ref OrganRemovedFromBodyEvent args)
+        {
+            if (!TryGetHandIdentity(organ, out var symmetry)
+                || !TryComp(args.OldBody, out HandsComponent? hands))
+                return;
+
+            HideHandLayers(args.OldBody, hands, symmetry);
+        }
+
+        private void HandleOrganDisabled(Entity<OrganComponent> organ, ref OrganDisabledEvent args)
+        {
+            if (!TryGetHandIdentity(organ, out var symmetry)
+                || organ.Comp.Body is not { } body
+                || !TryComp(body, out HandsComponent? hands))
+                return;
+
+            HideHandLayers(body, hands, symmetry);
+        }
 
         protected override void HandleEntityInserted(EntityUid uid, HandsComponent hands, EntInsertedIntoContainerMessage args)
         {

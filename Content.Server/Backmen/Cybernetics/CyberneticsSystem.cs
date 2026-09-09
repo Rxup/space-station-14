@@ -1,7 +1,5 @@
 using Content.Shared.Backmen.Surgery.Body;
-using Content.Shared.Backmen.Surgery.Body.Events;
 using Content.Shared.Backmen.Surgery.Body.Organs;
-using Content.Shared.Body.Part;
 using Content.Shared.Body;
 using Content.Shared.Emp;
 
@@ -14,42 +12,34 @@ internal sealed class CyberneticsSystem : EntitySystem
         SubscribeLocalEvent<CyberneticsComponent, EmpPulseEvent>(OnEmpPulse);
         SubscribeLocalEvent<CyberneticsComponent, EmpDisabledRemovedEvent>(OnEmpDisabledRemoved);
     }
+
     private void OnEmpPulse(Entity<CyberneticsComponent> cyberEnt, ref EmpPulseEvent ev)
     {
-        if (!cyberEnt.Comp.Disabled)
-        {
-            ev.Affected = true;
-            ev.Disabled = true;
-            cyberEnt.Comp.Disabled = true;
+        if (cyberEnt.Comp.Disabled)
+            return;
 
-            if (HasComp<OrganComponent>(cyberEnt))
-            {
-                var disableEvent = new OrganEnableChangedEvent(false);
-                RaiseLocalEvent(cyberEnt, ref disableEvent);
-            }
-            else if (HasComp<BodyPartComponent>(cyberEnt))
-            {
-                var disableEvent = new BodyPartEnableChangedEvent(false);
-                RaiseLocalEvent(cyberEnt, ref disableEvent);
-            }
-        }
+        ev.Affected = true;
+        ev.Disabled = true;
+        cyberEnt.Comp.Disabled = true;
+
+        if (!HasComp<OrganComponent>(cyberEnt))
+            return;
+
+        var disableEvent = new OrganEnableChangedEvent(false);
+        RaiseLocalEvent(cyberEnt, ref disableEvent);
     }
 
     private void OnEmpDisabledRemoved(Entity<CyberneticsComponent> cyberEnt, ref EmpDisabledRemovedEvent ev)
     {
-        if (cyberEnt.Comp.Disabled)
-        {
-            cyberEnt.Comp.Disabled = false;
-            if (HasComp<OrganComponent>(cyberEnt))
-            {
-                var enableEvent = new OrganEnableChangedEvent(true);
-                RaiseLocalEvent(cyberEnt, ref enableEvent);
-            }
-            else if (HasComp<BodyPartComponent>(cyberEnt))
-            {
-                var enableEvent = new BodyPartEnableChangedEvent(true);
-                RaiseLocalEvent(cyberEnt, ref enableEvent);
-            }
-        }
+        if (!cyberEnt.Comp.Disabled)
+            return;
+
+        cyberEnt.Comp.Disabled = false;
+
+        if (!HasComp<OrganComponent>(cyberEnt))
+            return;
+
+        var enableEvent = new OrganEnableChangedEvent(true);
+        RaiseLocalEvent(cyberEnt, ref enableEvent);
     }
 }
