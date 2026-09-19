@@ -121,7 +121,9 @@ public abstract partial class InventorySystem
 
         RaiseLocalEvent(held.Value, new HandDeselectedEvent(actor));
 
-        TryEquip(actor, actor, held.Value, ev.Slot, predicted: true, inventory: inventory, force: true, checkDoafter: true, triggerHandContact: true);
+        // start-backmen: body-equip-force — was force: true, which skipped CanEquip limb checks
+        TryEquip(actor, actor, held.Value, ev.Slot, predicted: true, inventory: inventory, checkDoafter: true, triggerHandContact: true);
+        // end-backmen: body-equip-force
     }
 
     public bool TryEquip(EntityUid uid, EntityUid itemUid, string slot, bool silent = false, bool force = false, bool predicted = false,

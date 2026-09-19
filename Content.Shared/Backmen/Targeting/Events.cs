@@ -25,3 +25,17 @@ public sealed class TargetIntegrityChangeEvent : EntityEventArgs
         RefreshUi = refreshUi;
     }
 }
+
+/// <summary>
+/// Raised on a body when an inventory clothing slot is enabled/disabled due to amputation or reattachment.
+/// Client removes or re-adds the corresponding hotbar button.
+/// </summary>
+public sealed class RefreshInventorySlotsEvent : EntityEventArgs
+{
+    public string SlotName { get; }
+
+    public RefreshInventorySlotsEvent(string slotName)
+    {
+        SlotName = slotName;
+    }
+}

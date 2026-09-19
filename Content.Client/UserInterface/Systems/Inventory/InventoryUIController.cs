@@ -394,6 +394,11 @@ public sealed partial class InventoryUIController : UIController, IOnStateEntere
         _playerInventory = clientInv;
         foreach (var slotData in clientInv.SlotData.Values)
         {
+            // start-backmen: amputate-slot-disable
+            if (slotData.SlotDef.Disabled)
+                continue;
+            // end-backmen: amputate-slot-disable
+
             AddSlot(slotData);
 
             if (_inventoryButton != null)

@@ -51,6 +51,15 @@ public sealed partial class InventoryComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<string, DisplacementData> MaleDisplacements = new();
+
+    // start-backmen: amputate-slot-disable
+    /// <summary>
+    /// Inventory slots hidden/disabled while the wearer is missing the required body parts (e.g. shoes without feet).
+    /// Stored separately from <see cref="Slots"/> so template rebuilds do not wipe or mutate prototypes.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public HashSet<string> DisabledSlots = new();
+    // end-backmen: amputate-slot-disable
 }
 
 /// <summary>

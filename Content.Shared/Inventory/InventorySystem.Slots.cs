@@ -4,6 +4,7 @@ using Content.Shared.DisplacementMap;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Storage;
 using Content.Shared.Random;
+using Content.Shared.Backmen.Targeting; // backmen: amputate-slot-disable
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
@@ -107,7 +108,16 @@ public partial class InventorySystem : EntitySystem
         }
 
         // Ensure the containers from the template.
-        ent.Comp.Slots = invTemplate.Slots;
+        // start-backmen: amputate-slot-disable — clone so Disabled does not mutate shared prototypes
+        ent.Comp.Slots = new SlotDefinition[invTemplate.Slots.Length];
+        for (var i = 0; i < invTemplate.Slots.Length; i++)
+        {
+            var slot = _serializationManager.CreateCopy(invTemplate.Slots[i], notNullableOverride: true);
+            if (ent.Comp.DisabledSlots.Contains(slot.Name))
+                slot.Disabled = true;
+            ent.Comp.Slots[i] = slot;
+        }
+        // end-backmen: amputate-slot-disable
         ent.Comp.Containers = new ContainerSlot[ent.Comp.Slots.Length];
         for (var i = 0; i < ent.Comp.Containers.Length; i++)
         {
@@ -384,6 +394,57 @@ public partial class InventorySystem : EntitySystem
         }
 
         Dirty(uid, inventory);
+    }
+
+    /// <summary>
+    /// Enables or disables an inventory clothing slot (hides it in the UI when disabled).
+    /// Used when body parts required for that slot are amputated or reattached.
+    /// </summary>
+    public void SetSlotStatus(EntityUid uid, string slotName, bool isDisabled, InventoryComponent? inventory = null)
+    {
+        if (!Resolve(uid, ref inventory))
+            return;
+
+        var changed = isDisabled
+            ? inventory.DisabledSlots.Add(slotName)
+            : inventory.DisabledSlots.Remove(slotName);
+
+        for (var i = 0; i < inventory.Slots.Length; i++)
+        {
+            var slot = inventory.Slots[i];
+            if (slot.Name != slotName)
+                continue;
+
+            // Look up the container by index — TryGetSlot skips Disabled slots.
+            if (isDisabled
+                && i < inventory.Containers.Length
+                && inventory.Containers[i].ContainedEntity is { } entityUid
+                && TryComp(entityUid, out TransformComponent? transform)
+                && _gameTiming.IsFirstTimePredicted)
+            {
+                _transform.AttachToGridOrMap(entityUid, transform);
+                _randomHelper.RandomOffset(entityUid, 0.5f);
+            }
+
+            if (slot.Disabled != isDisabled)
+            {
+                slot.Disabled = isDisabled;
+                changed = true;
+            }
+
+            break;
+        }
+
+        if (!changed)
+            return;
+
+        Dirty(uid, inventory);
+        RaiseLocalEvent(uid, new RefreshInventorySlotsEvent(slotName));
+    }
+
+    public bool IsSlotDisabled(EntityUid uid, string slotName, InventoryComponent? inventory = null)
+    {
+        return Resolve(uid, ref inventory, false) && inventory.DisabledSlots.Contains(slotName);
     }
     // Shitmed Change End
 }

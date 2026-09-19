@@ -22,7 +22,6 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Inventory.VirtualItem;
-using Content.Shared.Popups;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Standing;
@@ -47,7 +46,6 @@ public partial class BkmBodySharedSystem
     [Dependency] private ItemSlotsSystem _slots = default!;
     [Dependency] private LegacyGibbingSystem _gibbingSystem = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private TraumaSystem _trauma = default!; // backmen edit
     [Dependency] private OrganRelationInitializerSystem _organRelations = default!;
     private const float GibletLaunchImpulse = 8;
@@ -118,6 +116,12 @@ public partial class BkmBodySharedSystem
         {
             OnArachneOrganBodyChanged(ent);
         }
+
+        if (organ.Category is { } insertedCategory
+            && SurgeryBodyPartMapping.TryGetBodyPartType(insertedCategory, out var partType, out _))
+        {
+            SyncInventorySlotsForPartType(ent, partType, ent.Comp);
+        }
     }
 
     private void OnOrganRemovedFromBody(Entity<BodyComponent> ent, ref OrganRemovedFromEvent args)
@@ -160,13 +164,15 @@ public partial class BkmBodySharedSystem
 
             Dirty(ent, ent.Comp);
         }
-        else if (organ.Category is { } category && SurgeryBodyPartMapping.IsHumanFootCategory(category))
-        {
-            TryDropFootwearWithoutHumanFeet(ent);
-        }
 
         if (HasComp<ArachneOrganComponent>(args.Organ))
             OnArachneOrganBodyChanged(ent);
+
+        if (organ.Category is { } syncCategory
+            && SurgeryBodyPartMapping.TryGetBodyPartType(syncCategory, out var partType, out _))
+        {
+            SyncInventorySlotsForPartType(ent, partType, ent.Comp);
+        }
 
         RemoveOrgan((args.Organ, organ), ent);
     }
@@ -516,13 +522,19 @@ public partial class BkmBodySharedSystem
         _physics.ApplyLinearImpulse(target, scatterVector);
     }
 
-    private void TryDropFootwearWithoutHumanFeet(Entity<BodyComponent> ent)
+    /// <summary>
+    /// Shoes/socks require both human feet and enough tracked legs.
+    /// Legs-only amputation can leave stranded feet; still block footwear.
+    /// </summary>
+    public bool CanWearFootwear(EntityUid bodyId, BodyComponent? body = null)
     {
-        if (HasBothHumanFeet(ent, ent.Comp) || !TryComp<InventoryComponent>(ent, out var inventory))
-            return;
+        if (!Resolve(bodyId, ref body, logMissing: false))
+            return false;
 
-        InventorySystem.DropSlotContents(ent, "shoes", inventory);
-        InventorySystem.DropSlotContents(ent, "socks", inventory);
+        if (!HasBothHumanFeet(bodyId, body))
+            return false;
+
+        return body.LegEntities.Count >= GetEffectiveRequiredLegs(bodyId, body);
     }
 
     private void OnEquipTargetAttempt(Entity<BodyComponent> ent, ref IsEquippingTargetAttemptEvent args)
@@ -530,19 +542,17 @@ public partial class BkmBodySharedSystem
         if (!TryGetRequiredBodyPartForSlot(args.Slot, out var bodyPart))
             return;
 
+        // Flat-sprite NPCs may lack mapped external organs but still use clothing slots.
         if (UsesFlatOrgans(args.EquipTarget))
             return;
 
         if (bodyPart == BodyPartType.Foot)
         {
-            if (!HasBothHumanFeet(args.EquipTarget))
+            if (!CanWearFootwear(args.EquipTarget))
             {
-                if (_timing.IsFirstTimePredicted)
-                {
-                    _popup.PopupEntity(Loc.GetString("equip-part-missing-error",
-                        ("target", args.EquipTarget), ("part", bodyPart.ToString())), args.EquipTarget, args.EquipTarget);
-                }
-
+                // Already-localized; InventorySystem.CanEquip passes Reason through Loc.GetString again.
+                args.Reason = Loc.GetString("equip-part-missing-error",
+                    ("target", args.EquipTarget), ("part", bodyPart.ToString()));
                 args.Cancel();
             }
 
@@ -551,9 +561,8 @@ public partial class BkmBodySharedSystem
 
         if (GetBodyPartCount(args.EquipTarget, bodyPart) == 0)
         {
-            if (_timing.IsFirstTimePredicted)
-                _popup.PopupEntity(Loc.GetString("equip-part-missing-error",
-                    ("target", args.EquipTarget), ("part", bodyPart.ToString())), args.EquipTarget, args.EquipTarget);
+            args.Reason = Loc.GetString("equip-part-missing-error",
+                ("target", args.EquipTarget), ("part", bodyPart.ToString()));
             args.Cancel();
         }
     }

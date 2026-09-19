@@ -35,18 +35,42 @@ public partial class BkmBodySharedSystem
     }
 
     /// <summary>
-    /// Drops inventory items when the body loses its last part of a given type.
+    /// Drops inventory items and disables clothing slots when the body loses its last part of a given type.
     /// </summary>
     public void DropSlotContents(EntityUid body, BodyPartType partType)
     {
-        if (!TryComp<InventoryComponent>(body, out var inventory)
-            || GetBodyPartCount(body, partType) != 1
-            || !TryGetPartSlotContainerName(partType, out var containerNames))
+        SyncInventorySlotsForPartType(body, partType);
+    }
+
+    /// <summary>
+    /// Enables or disables inventory UI slots for a body-part type based on whether any remain.
+    /// Footwear also requires enough legs (<see cref="CanWearFootwear"/>).
+    /// </summary>
+    public void SyncInventorySlotsForPartType(EntityUid body, BodyPartType partType, BodyComponent? bodyComp = null)
+    {
+        if (!Resolve(body, ref bodyComp, logMissing: false)
+            || !TryComp<InventoryComponent>(body, out var inventory))
             return;
 
+        // Flat-sprite NPCs may lack mapped organs but still use clothing slots.
+        if (UsesFlatOrgans(body))
+            return;
+
+        if (partType is BodyPartType.Foot or BodyPartType.Leg)
+        {
+            var disableFootwear = !CanWearFootwear(body, bodyComp);
+            InventorySystem.SetSlotStatus(body, "shoes", disableFootwear, inventory);
+            InventorySystem.SetSlotStatus(body, "socks", disableFootwear, inventory);
+            return;
+        }
+
+        if (!TryGetPartSlotContainerName(partType, out var containerNames))
+            return;
+
+        var disable = GetBodyPartCount(body, partType, bodyComp) == 0;
         foreach (var containerName in containerNames)
         {
-            InventorySystem.DropSlotContents(body, containerName, inventory);
+            InventorySystem.SetSlotStatus(body, containerName, disable, inventory);
         }
     }
 
@@ -255,7 +279,7 @@ public partial class BkmBodySharedSystem
         containerNames = partType switch
         {
             BodyPartType.Hand => ["gloves"],
-            BodyPartType.Foot => ["shoes"],
+            BodyPartType.Foot => ["shoes", "socks"],
             BodyPartType.Head => ["eyes", "ears", "head", "mask"],
             _ => [],
         };

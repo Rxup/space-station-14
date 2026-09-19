@@ -41,6 +41,9 @@ namespace Content.Client.Inventory
 
             SubscribeLocalEvent<InventorySlotsComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
             SubscribeLocalEvent<InventorySlotsComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+            // start-backmen: amputate-slot-disable
+            SubscribeLocalEvent<InventorySlotsComponent, RefreshInventorySlotsEvent>(OnRefreshInventorySlots);
+            // end-backmen: amputate-slot-disable
             SubscribeLocalEvent<InventoryComponent, ComponentShutdown>(OnShutdown);
 
             SubscribeLocalEvent<InventorySlotsComponent, DidEquipEvent>((_, comp, args) =>
@@ -270,6 +273,47 @@ namespace Content.Client.Inventory
             if (ent.Owner == _playerManager.LocalEntity)
                 ReloadInventory(inventorySlots);
         }
+
+        // start-backmen: amputate-slot-disable
+        private void OnRefreshInventorySlots(EntityUid owner, InventorySlotsComponent component, RefreshInventorySlotsEvent args)
+        {
+            if (_playerManager.LocalEntity != owner)
+                return;
+
+            if (!TryComp(owner, out InventoryComponent? inventory)
+                || !TryGetSlots(owner, out var slots))
+                return;
+
+            SlotDefinition? slotDef = null;
+            foreach (var slot in slots)
+            {
+                if (slot.Name != args.SlotName)
+                    continue;
+                slotDef = slot;
+                break;
+            }
+
+            if (slotDef == null)
+                return;
+
+            if (inventory.DisabledSlots.Contains(args.SlotName) || slotDef.Disabled)
+            {
+                if (component.SlotData.TryGetValue(args.SlotName, out var removed))
+                    OnSlotRemoved?.Invoke(removed);
+                return;
+            }
+
+            if (component.SlotData.TryGetValue(args.SlotName, out var existing))
+            {
+                existing.SlotDef = slotDef;
+                OnSlotAdded?.Invoke(existing);
+            }
+            else
+            {
+                TryAddSlotData((owner, component), (SlotData)slotDef);
+            }
+        }
+        // end-backmen: amputate-slot-disable
 
         public sealed class SlotData
         {
