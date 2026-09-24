@@ -79,7 +79,7 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
         SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundUserInterface, after: [typeof(SharedInteractionSystem)]);
     }
 
-    public bool HasLegs(Entity<LayingDownComponent> ent)
+    public bool HasLegs(Entity<LayingDownComponent?> ent)
     {
         if (!TryComp<BodyComponent>(ent, out var body))
             return false;
@@ -90,13 +90,13 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
 
     private void OnCheckLegs(Entity<LayingDownComponent> ent, ref StandAttemptEvent args)
     {
-        if (!HasLegs(ent))
+        if (!HasLegs(ent.AsNullable()))
             args.Cancel();
     }
 
     private void OnStandUpAttempt(Entity<LayingDownComponent> ent, ref StandUpAttemptEvent args)
     {
-        if (_mobState.IsAlive(ent) && HasLegs(ent))
+        if (_mobState.IsAlive(ent) && HasLegs(ent.AsNullable()))
             return;
 
         args.Cancelled = true;
