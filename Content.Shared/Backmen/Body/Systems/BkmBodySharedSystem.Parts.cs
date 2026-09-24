@@ -48,6 +48,11 @@ public partial class BkmBodySharedSystem
     /// </summary>
     public void SyncInventorySlotsForPartType(EntityUid body, BodyPartType partType, BodyComponent? bodyComp = null)
     {
+        // Client container inserts during spawn see a partial organ set and would hide slots locally.
+        // Server state is authoritative; PVS re-entry was the only thing correcting the client.
+        if (!Net.IsServer)
+            return;
+
         if (!Resolve(body, ref bodyComp, logMissing: false)
             || !TryComp<InventoryComponent>(body, out var inventory))
             return;

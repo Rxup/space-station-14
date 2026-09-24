@@ -75,9 +75,9 @@ public abstract partial class SharedStunSystem
         SubscribeAllEvent<ForceStandUpEvent>(OnForceStandup);
         SubscribeLocalEvent<KnockedDownComponent, KnockedDownAlertEvent>(OnKnockedDownAlert);
 
-        CommandBinds.Builder
-            .Bind(ContentKeyFunctions.ToggleKnockdown, InputCmdHandler.FromDelegate(HandleToggleKnockdown, handle: false))
-            .Register<SharedStunSystem>();
+        // start-backmen: knockdown-key-v
+        // Key is owned by SharedLayingDownSystem so lie-down and crawl share one bind.
+        // end-backmen: knockdown-key-v
     }
 
     public override void Update(float frameTime)
@@ -255,7 +255,7 @@ public abstract partial class SharedStunSystem
     /// Handles an entity trying to make itself fall down.
     /// </summary>
     /// <param name="entity">Entity who is trying to fall down</param>
-    private void ToggleKnockdown(Entity<CrawlerComponent?, KnockedDownComponent?> entity)
+    public void ToggleKnockdown(Entity<CrawlerComponent?, KnockedDownComponent?> entity) // backmen: knockdown-key-v
     {
         // We resolve here instead of using TryCrawling to be extra sure someone without crawler can't stand up early.
         if (!Resolve(entity, ref entity.Comp1, false) || !_cfgManager.GetCVar(CCVars.MovementCrawling))

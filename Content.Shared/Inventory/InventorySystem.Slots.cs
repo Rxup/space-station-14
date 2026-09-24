@@ -6,6 +6,7 @@ using Content.Shared.Storage;
 using Content.Shared.Random;
 using Content.Shared.Backmen.Targeting; // backmen: amputate-slot-disable
 using Robust.Shared.Containers;
+using Robust.Shared.Network; // backmen: amputate-slot-disable
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Timing;
@@ -19,6 +20,7 @@ public partial class InventorySystem : EntitySystem
     [Dependency] private RandomHelperSystem _randomHelper = default!;
     [Dependency] private ISerializationManager _serializationManager = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private INetManager _net = default!; // backmen: amputate-slot-disable
 
     private void InitializeSlots()
     {
@@ -402,6 +404,9 @@ public partial class InventorySystem : EntitySystem
     /// </summary>
     public void SetSlotStatus(EntityUid uid, string slotName, bool isDisabled, InventoryComponent? inventory = null)
     {
+        if (!_net.IsServer) // backmen: amputate-slot-disable
+            return;
+
         if (!Resolve(uid, ref inventory))
             return;
 

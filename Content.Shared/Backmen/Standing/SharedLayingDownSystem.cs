@@ -62,6 +62,7 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
     public override void Initialize()
     {
         CommandBinds.Builder
+            .Bind(ContentKeyFunctions.ToggleKnockdown, InputCmdHandler.FromDelegate(ToggleStanding))
             .Bind(ContentKeyFunctions.ToggleStanding, InputCmdHandler.FromDelegate(ToggleStanding))
             .Register<SharedLayingDownSystem>();
 
@@ -74,6 +75,7 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
 
         SubscribeLocalEvent<LayingDownComponent, UnbuckledEvent>(OnUnBuckled);
         SubscribeLocalEvent<LayingDownComponent, StandAttemptEvent>(OnCheckLegs);
+        SubscribeLocalEvent<LayingDownComponent, StandUpAttemptEvent>(OnStandUpAttempt);
         SubscribeLocalEvent<BoundUserInterfaceMessageAttempt>(OnBoundUserInterface, after: [typeof(SharedInteractionSystem)]);
     }
 
@@ -92,6 +94,15 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
             args.Cancel();
     }
 
+    private void OnStandUpAttempt(Entity<LayingDownComponent> ent, ref StandUpAttemptEvent args)
+    {
+        if (_mobState.IsAlive(ent) && HasLegs(ent))
+            return;
+
+        args.Cancelled = true;
+        args.Autostand = false;
+    }
+
     private void OnBoundUserInterface(BoundUserInterfaceMessageAttempt args)
     {
         if (args.Cancelled ||
@@ -106,20 +117,29 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
 
     private void OnChangeMobState(Entity<LayingDownComponent> ent, ref MobStateChangedEvent args)
     {
+        if (args.NewMobState != MobState.Alive)
+        {
+            CancelStandingUpDoAfters(ent);
+            if (TryComp<KnockedDownComponent>(ent, out var knocked))
+            {
+                _stun.CancelKnockdownDoAfter((ent, knocked));
+                _stun.SetAutoStand((ent, knocked), false);
+            }
+
+            return;
+        }
+
         if (!TryComp<StandingStateComponent>(ent, out var standingStateComponent) ||
             standingStateComponent.Standing)
             return;
 
-        if (args.NewMobState == MobState.Alive)
+        if (HasComp<ActiveNPCComponent>(ent))
         {
-            if (HasComp<ActiveNPCComponent>(ent))
-            {
-                TryStandUp(ent, ent, standingStateComponent);
-                return;
-            }
-            AutoGetUp(ent);
-            //TryStandUp(ent, ent, standingStateComponent);
+            TryStandUp(ent, ent, standingStateComponent);
+            return;
         }
+
+        AutoGetUp(ent);
     }
 
     private void OnUnBuckled(Entity<LayingDownComponent> ent, ref UnbuckledEvent args)
@@ -155,6 +175,9 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
         if (!IsSafeToStandUp(ent, out _))
             return false;
 
+        if (!HasLegs(ent))
+            return false;
+
         var autoUp = !_playerManager.TryGetSessionByEntity(ent, out var player) ||
                      GetAutoGetUp((ent,ent.Comp), session: player);
 
@@ -172,17 +195,19 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
 
     private void ToggleStanding(ICommonSession? session)
     {
-        if (session?.AttachedEntity == null ||
-            !HasComp<LayingDownComponent>(session.AttachedEntity) ||
-            _gravity.IsWeightless(session.AttachedEntity.Value))
+        if (session?.AttachedEntity is not { } uid)
+            return;
+
+        if (HasComp<LayingDownComponent>(uid) && !_gravity.IsWeightless(uid))
         {
+            if (!_timing.IsFirstTimePredicted)
+                return;
+
+            RaisePredictiveEvent(new ChangeLayingDownEvent());
             return;
         }
 
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
-        RaisePredictiveEvent(new ChangeLayingDownEvent());
+        _stun.ToggleKnockdown(uid);
     }
 
     public virtual void AutoGetUp(Entity<LayingDownComponent> ent)
@@ -321,9 +346,12 @@ public abstract partial class SharedLayingDownSystem : EntitySystem
     public bool TryStandUp(EntityUid uid, LayingDownComponent? layingDown = null, StandingStateComponent? standingState = null)
     {
         if (!Resolve(uid, ref standingState, false) ||
-            !Resolve(uid, ref layingDown, false) ||
-            standingState.CurrentState is not StandingState.Lying ||
+            !Resolve(uid, ref layingDown, false))
+            return false;
+
+        if (standingState.CurrentState is not StandingState.Lying ||
             !_mobState.IsAlive(uid) ||
+            (HasComp<ActiveNPCComponent>(uid) && !HasLegs((uid, layingDown))) ||
             _buckle.IsBuckled(uid) ||
             _pulling.IsPulled(uid) ||
             HasComp<LegsParalyzedComponent>(uid) ||
